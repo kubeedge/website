@@ -1,0 +1,38 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "Kubeedge"
+theme = "theer"
+
+
+[Params]
+  RSSLink = "/index.xml"
+  author = "" # add your company name
+  github = "Kubeedge" # add your github profile name
+  twitter = "" # add your twitter profile
+  email = "myemail@myaddress.xxx"
+
+  version = "master"
+  githubbranch = "master"
+
+# Add new release versions here
+[[Params.versions]]
+  version = "master"
+  githubbranch = "master"
+  url = "/"
+
+[[menu.main]]
+    name = "What is Kubeedge?"
+    weight = 10
+    url = "/docs/about/"
+[[menu.main]]
+    name = "Getting Started"
+    weight = 20
+    url = "/docs/started/"
+[[menu.main]]
+    name = "Guides"
+    weight = 30
+    url = "/docs/guides/"
+[[menu.main]]
+    name = "GitHub"
+    weight = 40
+    url = "https://github.com/kubeedge/"
