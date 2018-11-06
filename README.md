@@ -1,7 +1,7 @@
-# Creating and updating the Kubeedge docs
+# Creating and updating the KubeEdge docs
 
-Welcome to the GitHub repository for Kubeedge's public website. The docs are
-hosted at https://kubeedge.io.
+Welcome to the GitHub repository for KubeEdge's public website. The docs are
+hosted at https://kubeedge.netlify.com.
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, and
 [Netlify](https://www.netlify.com/) to manage the deployment of the site. Hugo
@@ -9,13 +9,17 @@ is an open-source static site generator that provides us with templates, content
 organisation in a standard directory structure, and a website generation engine.
 You write the pages in Markdown, and Hugo wraps them up into a website.
 
+* Please see [How to contributing](CONTRIBUTING.md) for instructions on how to contribute, if you are not familiar with the
+  GitHub workflow
+* [Start contributing](https://kubeedge.netlify.com/docs/about/contributing/)
+
 ## Quickstart
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
-1. Fork the [Kubeedge/website repo][kubeedge-website-repo] on GitHub.
+1. Fork the [KubeEdge/website repo][kubeEdge-website-repo] on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add a comment to the PR saying it's a
   work in progress or add `[WIP]` in your PRs title. You can also add `/hold` in a comment to mark the PR as not
@@ -62,19 +66,15 @@ brew install hugo
     hugo version
     ```
 
-### Clone the website repo and run a local website server
+### Run a local website server
 
 Follow the usual GitHub workflow to fork the repo on GitHub and clone it to your
 local machine, then use your local repo as input to your Hugo web server:
 
-1. **Fork** the [Kubeedge/website repo][kubeedge-website-repo] in the GitHub UI.
-1. Clone your fork locally. This example uses SSH cloning:
+1. Ensure you are in your target branch:
 
     ```
-    mkdir kubeedge
-    cd kubeedge/
-    git clone git@github.com:<your-github-username>/website.git
-    cd website/
+    git branch
     ```
 
 1. Start your website server. Make sure you run this command from the
@@ -87,7 +87,7 @@ local machine, then use your local repo as input to your Hugo web server:
 1. Your website is at [http://localhost:1313/](http://localhost:1313/).
 
 1. Continue with the usual GitHub workflow to edit files, commit them, push the
-  changes up to your fork, and create a pull request. (See below.)
+  changes up to your fork, and create a pull request. (See the GitHub workflow
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
@@ -101,110 +101,21 @@ Useful Hugo docs:
 - [hugo server reference](https://gohugo.io/commands/hugo_server/)
 - [hugo new reference](https://gohugo.io/commands/hugo_new/)
 
-## Using Hugo shortcodes
-
-Sometimes it's useful to define a snippet of information in one place and reuse
-it wherever we need it. For example, we want to be able to refer to the minimum
-version of various frameworks/libraries throughout the docs, without
-causing a maintenance nightmare.
-
-For this purpose, we use Hugo's "shortcodes". Shortcodes are similar to Django
-variables. You define a shortcode in a file, then use a specific markup to
-invoke the shortcode in the docs. That markup is replaced by the content of the
-shortcode file when the page is built.
-
-To create a shortcode:
-
-1. Add an HTML file in  the `/website/themes/kf/layouts/shortcodes/` directory.
-   The file name must be short and meaningful, as it determines the shortcode
-   you and others use in the docs.
-
-1. For the file content, add the text and HTML markup that should replace the
-   shortcode markup when the web page is built.
-
-To use a shortcode in a document, wrap the name of the shortcode in braces and
-percent signs like this:
-
-  ```
-  {{% shortcode-name %}}
-  ```
-
-The shortcode name is the file name minus the `.html` file extension.
-
-**Example:** The following shortcode defines the minimum required version of
-Kubernetes:
-
-- File name of the shortcode:
-
-  ```
-  kubernetes-min-version.html
-  ```
-
-- Content of the shortcode:
-
-  ```
-  <a href="https://kubernetes.io/docs/imported/release/notes/">1.8</a>
-  ```
-- Usage in a document:
-
-  ```
-  You need Kubernetes {{% kubernetes-min-version %}} or later.
-  ```
-
-Useful Hugo docs:
-- [Shortcode templates][hugo-shortcode-templates]
-- [Shortcodes][hugo-shortcodes]
-
-## Making changes to CSS
-
-The css/sass style code is located in the `themes/theer/sass` directory.
-
-### CSS Dev Setup
-You need to install node.js. Download the binary for your platform
-[here](https://nodejs.org/en/download/). This will also install npm.
-
-
-### Updating theme style
-
-If you need to make changes to the style, you can update the theme's style using:
-
-```
-cd themes/theer/sass
-# Note the npm install steps are needed only the first time.
-npm install
-npm install gulp-cli -g
-gulp
-```
-
-Note that if you didn't make any changes to style (most of the time you won't), you
-don't need the above steps at all.
-
-## Contributing
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to contribute.
-
 ## Versioning
 
 For each stable release, we should create a new branch for the relevant documentation. For
-example, the documentation for the v0.2 stable release are maintained in the
-[v0.2-branch](https://github.com/kubeedge/website/tree/v0.2-branch).
+example, the documentation for the v0.1 stable release are maintained in the
+[v0.1-branch](https://github.com/seattle-cloud-lab/kubeedge-website/tree/v0.1-branch).
 Each branch has a corresponding netlify website that automatically syncs each merged PR.
 
 Going forward, the versioned sites should follow this convention:
-* `www.kubeedge.io` always points to the current *master branch*
-* `master.kubeedge.io` always points to Github head
-* `vXXX-YYY.kubeedge.io` points to the release at vXXX.YYY-branch
-
-Furthermore, whenever any documents reference any source code, the links should be created
-using the version shortcode, like so:
-```
-https://github.com/kubeedge/kubeedge/blob/{{< params "githubbranch" >}}/scripts/gke/deploy.sh
-```
-This ensures that all the links in a versioned webpage point to the correct branch.
+* `https://kubeedge.netlify.com/` always points to the current *master branch*
+* `https://master.kubeedge.netlify.com/` always points to Github head
+* `https://vXXX-YYY.kubeedge.netlify.com/` points to the release at vXXX.YYY-branch
 
 [hugo-install]: https://gohugo.io/getting-started/installing/
 [hugo-shortcode-templates]: https://gohugo.io/templates/shortcode-templates/
 [hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
 
-[kubeedge-contributor-guide]: https://github.com/kubeedge/community/blob/master/CONTRIBUTING.md
-[kubeedge-website-repo]: https://github.com/kubeedge/website
+[kubeedge-contributor-guide]: CONTRIBUTING.md
+[kubeEdge-website-repo]: https://github.com/seattle-cloud-lab/kubeedge-website

@@ -2,18 +2,15 @@
 
 Thanks for taking the time to join our community and start contributing!
 
-Please remember to sign the [CNCF CLA](https://github.com/kubernetes/community/blob/master/CLA.md) and
-read and observe the [Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
-
 ## Quick guide to working with a GitHub repo
 
 Here's a quick guide to a fairly standard GitHub workflow. This section is handy
 for people who don't use git or GitHub often, and just need a quick guide to
 get going:
 
-1. Fork the kubeedge/website repo:
+1. Fork the kubeEdge/website repo:
 
-    * Go to the [kubeedge/website repo][kubeedge-website-repo] on GitHub.
+    * Go to the [kubeEdge/website repo][kubeedge-website-repo] on GitHub.
     * Click **Fork** to make your own copy of the repo. GitHub creates a copy
       at `https://github.com/<your-github-username>/website`.
 
@@ -26,14 +23,15 @@ get going:
     ```
     mkdir kubeedge
     cd kubeedge/
-    git clone git@github.com:<your-github-username>/website.git
-    cd website/
+    git clone git@github.com:<your-github-username>/kubeedge-website.git
+    cd kubeedge-website/
     ```
 
 1. Add the upstream repo as a git remote repo:
 
     ```
-    git remote add upstream https://github.com/kubeedge/website.git
+    git remote add upstream https://github.com/seattle-cloud-lab/kubeedge-website.git
+    git remote set-url --push upstream no_push
     ```
 
 1. Check your remotes:
@@ -65,7 +63,7 @@ get going:
     The branch mark with `*` is your branch now.
 
 1. Add and edit the files as you like. The doc pages are in the
-  `/website/content/docs/` directory.
+  `/kubeedge-website/content/docs/` directory.
 
 1. Run `git status` at any time, to check the status of your local files.
   Git tells you which files need adding or committing to your local repo.
@@ -103,5 +101,8 @@ get going:
   your SSH key passphrase to the managing agent, so that you don't have to
   keep authenticating to GitHub. You need to do this again after every reboot.
 
-The [Contributor Guide](https://github.com/kubeedge/kubeedge/blob/master/contributors/guide/README.md)
+Please remember read and observe the [Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). and
+the [Contributor Guide](https://kubeedge.netlify.com/docs/about/contributing/) on website
 provides more detailed instructions on how to get your ideas and bug fixes seen and accepted.
+
+[kubeEdge-website-repo]: https://github.com/seattle-cloud-lab/kubeedge-website
