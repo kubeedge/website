@@ -1,7 +1,7 @@
 # Creating and updating the KubeEdge docs
 
 Welcome to the GitHub repository for KubeEdge's public website. The docs are
-hosted at https://kubeedge.netlify.com.
+hosted at https://kubeedge.io.
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, and
 [Netlify](https://www.netlify.com/) to manage the deployment of the site. Hugo
@@ -105,7 +105,7 @@ Useful Hugo docs:
 
 For each stable release, we should create a new branch for the relevant documentation. For
 example, the documentation for the v0.1 stable release are maintained in the
-[v0.1-branch](https://github.com/seattle-cloud-lab/kubeedge-website/tree/v0.1-branch).
+[v0.1-branch](https://github.com/kubeedge/website/tree/v0.1-branch).
 Each branch has a corresponding netlify website that automatically syncs each merged PR.
 
 Going forward, the versioned sites should follow this convention:
