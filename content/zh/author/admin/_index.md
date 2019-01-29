@@ -1,45 +1,41 @@
 +++
 # Display name
-name = "Nelson Bighetti"
+name = "KubeEdge"
 
 # Is this the primary user of the site?
 superuser = true
 
 # Role/position
-role = "Professor of Artificial Intelligence"
+role = "一个支持Edge计算的开放平台"
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-organizations = [ { name = "Stanford University", url = "" } ]
+organizations = [ { name = "", url = "" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = "My research interests include distributed robotics, mobile computing and programmable matter."
+bio = ""
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email = ""
 
 # List (academic) interests or hobbies
-interests = [
-  "Artificial Intelligence",
-  "Computational Linguistics",
-  "Information Retrieval"
-]
+interests = []
 
 # List qualifications (such as academic degrees)
-[[education.courses]]
-  course = "PhD in Artificial Intelligence"
-  institution = "Stanford University"
-  year = 2012
+#[[education.courses]]
+#  course = "PhD in Artificial Intelligence"
+#  institution = "Stanford University"
+#  year = 2012
 
-[[education.courses]]
-  course = "MEng in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2009
+#[[education.courses]]
+#  course = "MEng in Artificial Intelligence"
+#  institution = "Massachusetts Institute of Technology"
+#  year = 2009
 
-[[education.courses]]
-  course = "BSc in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2008
+#[[education.courses]]
+#  course = "BSc in Artificial Intelligence"
+#  institution = "Massachusetts Institute of Technology"
+#  year = 2008
 
 # Social/Academic Networking
 #
@@ -59,25 +55,25 @@ interests = [
 #
 #   Full list: https://jpswalsh.github.io/academicons/
 
-[[social]]
-  icon = "envelope"
-  icon_pack = "fas"
-  link = "#contact"  # For a direct email link, use "mailto:test@example.org".
+# [[social]]
+#   icon = "envelope"
+#   icon_pack = "fas"
+#   link = "#contact"  # For a direct email link, use "mailto:test@example.org".
 
-[[social]]
-  icon = "twitter"
-  icon_pack = "fab"
-  link = "https://twitter.com/GeorgeCushen"
+# [[social]]
+#   icon = "twitter"
+#   icon_pack = "fab"
+#   link = "https://twitter.com/GeorgeCushen"
 
-[[social]]
-  icon = "google-scholar"
-  icon_pack = "ai"
-  link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
+# [[social]]
+#   icon = "google-scholar"
+#   icon_pack = "ai"
+#   link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
 
 [[social]]
   icon = "github"
   icon_pack = "fab"
-  link = "https://github.com/gcushen"
+  link = "https://github.com/kubeedge/kubeedge"
 
 # Link to a PDF of your resume/CV from the About widget.
 # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
@@ -88,6 +84,6 @@ interests = [
 
 +++
 
-NELSON Bighetti是在斯坦福人工智能实验室的人工智能教授。他的研究兴趣包括分布式机器人，移动计算和可编程物质。他带领机器人神经生物学组，开发自重构机器人，机器人的自组织系统和移动传感器网络。
+KubeEdge是一个开源系统，用于将本机容器化应用程序编排功能扩展到Edge的主机。它基于kubernetes构建，并为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。 Kubeedge在Apache 2.0下获得许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！   
 
-Lorem存有悲坐阿梅德，consectetur adipiscing ELIT。无物，也没有竞争，tristique placerat feugiat交流，facilisis简历arcu。中秋节需要执法宣传。表现为SEM NEC arcu aliquet pellentesque。 Vulputate时间为直径或胁迫功课蛋白。 
+我们的目标是创建一个开放平台，支持Edge计算，将本机容器化应用程序编排功能扩展到Edge上的主机，后者基于kubernetes构建，并为云和边缘之间的网络，应用程序部署和元数据同步提供基础架构支持。

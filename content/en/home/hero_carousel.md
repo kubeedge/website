@@ -9,11 +9,11 @@ weight = 1
 
 # Slide interval.
 # Use `false` to disable animation or enter a time in ms, e.g. `5000` (5s).
-interval = false
+interval = 5000
 
 # Minimum slide height.
 # Specify a height to ensure a consistent height for each slide.
-height = "300px"
+height = "350px"
 
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
@@ -39,19 +39,19 @@ height = "300px"
 [[item]]
   title = "Compute at the Edge"
   content = "reducing transmission costs, shrinking latency between the data and the decision, improving quality of service"
-  align = "left"
+  align = "right"
 
   overlay_color = "#555"  # An HTML color value.
-  overlay_img = ""  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/pattern-2-blue.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "Simplify development"
   content = "Same code can be run on a device or in cloud, and you can code in any language you know and use existing business logic without any change."
-  align = "right"
+  align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = ""  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/light-trail.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 [[item]]
@@ -60,16 +60,16 @@ height = "300px"
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = ""  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/pattern-1-blue.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "Abundant applications"
   content = "You can easily get and deploy complicate machine learning, image recognition, event processing and other high level applications to your edge side. "
-  align = "right"
+  align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = ""  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/pattern-3-blue.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 +++

@@ -20,26 +20,7 @@
   weight = 1
 
   [[zh.menu.main]]
-    name = "出版物"
-    url = "#publications_featured"
-    weight = 2
-
-  [[zh.menu.main]]
-    name = "帖子"
-    url = "#posts"
-    weight = 3
-
-  [[zh.menu.main]]
-    name = "项目"
-    url = "#projects"
-    weight = 4
-
-  [[zh.menu.main]]
     name = "文档"
     url = "/docs/"
     weight = 5
 
-  [[zh.menu.main]]
-    name = "联系"
-    url = "#contact"
-    weight = 6

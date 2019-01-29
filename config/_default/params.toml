@@ -168,3 +168,6 @@ sharing = true
     api_key = ""
     index_name = ""
     show_logo = false
+
+# Custom css
+custom_css = ["custom.css"]
