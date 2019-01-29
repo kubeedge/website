@@ -11,9 +11,9 @@
 [zh]
   languageCode = "zh-Hans"
   contentDir = "content/zh"
-  title = "Chinese website title..."
+  title = "KubeEdge一个支持Edge计算的开放平台 "
   [zh.params]
-    description = "Site description in Chinese..."
+    description = ""
   [[zh.menu.main]]
   name = "Home"
   url = "#about"
