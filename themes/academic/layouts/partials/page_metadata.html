@@ -1,0 +1,73 @@
+{{ $is_list := .is_list }}
+{{ $ := .content }}
+
+<meta content="{{ $.Params.Date }}" itemprop="datePublished">
+<meta content="{{ $.Params.LastMod }}" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  {{/* If `authors` is set and is not empty. */}}
+  {{ if $.Params.authors }}
+  {{ $authorLen := len $.Params.authors }}
+  {{ if gt $authorLen 0 }}
+  <div>
+    {{ range $k, $v := $.Params.authors -}}
+    <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+      <span itemprop="name">
+        {{with $.Site.GetPage (printf "/authors/%s" $v) }}{{ printf "<a href=\"%s\">" .RelPermalink | safeHTML }}{{end}}
+        {{- $v | markdownify -}}
+        {{with $.Site.GetPage (printf "/authors/%s" $v) }}{{ printf "</a>" | safeHTML }}{{end}}
+      </span>
+    </span>
+    {{- if lt $k (sub $authorLen 1) -}}, {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+
+  {{ if not (in (slice "talk" "page") $.Type) }}
+  <span class="article-date">
+    {{ $date := $.Lastmod.Format $.Site.Params.date_format }}
+    {{ if eq $.Type "publication" }}
+      {{ $date = $.Date.Format ($.Site.Params.publications.date_format | default "January, 2006") }}
+    {{ else }}
+      {{ if ne $.Params.Lastmod $.Params.Date }}
+          {{ i18n "last_updated" }}
+      {{ end }}
+    {{ end }}
+    <time>{{ $date }}</time>
+  </span>
+  {{ end }}
+
+  {{ if and (eq $.Type "post") (not (or (eq $.Site.Params.reading_time false) (eq $.Params.reading_time false))) }}
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    {{ $.ReadingTime }} {{ i18n "minute_read" }}
+  </span>
+  {{ end }}
+
+  {{ $comments_enabled := and $.Site.DisqusShortname (not (or $.Site.Params.disable_comments (eq $.Params.comments false))) }}
+  {{ if and $comments_enabled ($.Site.Params.comment_count | default true) }}
+  <span class="middot-divider"></span>
+  <a href="{{ $.RelPermalink }}#disqus_thread"><!-- Count will be inserted here --></a>
+  {{ end}}
+
+  {{ if $.Params.categories }}
+  {{ $categoriesLen := len $.Params.categories }}
+  {{ if gt $categoriesLen 0 }}
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    {{ range $k, $v := $.Params.categories }}
+    <a href="{{ ($.Site.GetPage (printf "categories/%s" .)).RelPermalink }}">{{ . }}</a>
+    {{- if lt $k (sub $categoriesLen 1) -}}, {{ end }}
+    {{ end }}
+  </span>
+  {{ end }}
+  {{ end }}
+
+  {{ if ne $is_list 1 }}
+  {{ partial "share.html" $ }}
+  {{ end }}
+
+</div>
