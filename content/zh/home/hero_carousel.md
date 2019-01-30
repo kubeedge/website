@@ -39,19 +39,19 @@ height = "350px"
 [[item]]
   title = "在边缘计算"
   content = "降低传输成本，缩短数据与决策之间的延迟，提高服务质量。"
-  align = "left"
+  align = "right"
 
   overlay_color = "#555"  # An HTML color value.
-  overlay_img = "headers/bubbles-wide.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/pattern-2-blue.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "简化开发"
   content = "相同的代码可以在设备或云中运行，您可以使用您知道的任何语言进行编码，并使用现有的业务逻辑而无需任何更改。"
-  align = "right"
+  align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/bubbles-wide.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/light-trail.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 [[item]]
@@ -60,16 +60,16 @@ height = "350px"
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/bubbles-wide.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/pattern-1-blue.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "丰富的应用程序"
   content = "您可以轻松地将复杂的机器学习，图像识别，事件处理和其他高级应用程序部署到您的边缘。 "
-  align = "right"
+  align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/bubbles-wide.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/pattern-3-blue.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.5  # Darken the image. Value in range 0-1.
 
 +++

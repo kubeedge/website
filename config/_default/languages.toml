@@ -16,11 +16,35 @@
     description = ""
   [[zh.menu.main]]
   name = "Home"
-  url = "#about"
+  url = "#hero_carousel"
   weight = 1
+
+  [[zh.menu.main]]
+  name = "关于"
+  url = "#about"
+  weight = 2
+
+  [[zh.menu.main]]
+  name = "要求"
+  url = "#required"
+  weight = 3
+
 
   [[zh.menu.main]]
     name = "文档"
     url = "/docs/"
     weight = 5
+  
+  # Right Menu
+[[zh.menu.main_right]]
+  name = "<i class=\"fab fa-github-alt\" style=\"color: #333; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://github.com/kubeedge/kubeedge"
+  weight = 10
+
+[[zh.menu.main_right]]
+  name = "<i class=\"fab fa-twitter\" style=\"color: #55acee; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://twitter.com/KubeEdge"
+  weight = 20
 

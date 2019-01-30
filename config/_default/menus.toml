@@ -9,13 +9,29 @@
   weight = 1
 
 [[main]]
+  name = "About"
+  url = "#about"
+  weight = 2
+
+[[main]]
+  name = "Requirements"
+  url = "#required"
+  weight = 3
+
+[[main]]
   name = "Documentation"
   url = "/docs/"
   weight = 5
 
-# Link to a PDF of your resume/CV from the menu.
-# To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
-# [[main]]
-#    name = "CV"
-#    url = "files/cv.pdf"
-#    weight = 7
+# Right Menu
+[[main_right]]
+  name = "<i class=\"fab fa-github-alt\" style=\"color: #333; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://github.com/kubeedge/kubeedge"
+  weight = 10
+
+[[main_right]]
+  name = "<i class=\"fab fa-twitter\" style=\"color: #55acee; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://twitter.com/KubeEdge"
+  weight = 20
