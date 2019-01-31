@@ -38,7 +38,7 @@ height = "350px"
 
 [[item]]
   title = "Compute at the Edge"
-  content = "reducing transmission costs, shrinking latency between the data and the decision, improving quality of service"
+  content = "Reduce transmission costs, shrink latency between the data and the decision, improve quality of service."
   align = "right"
 
   overlay_color = "#555"  # An HTML color value.
@@ -47,7 +47,7 @@ height = "350px"
 
 [[item]]
   title = "Simplify development"
-  content = "Same code can be run on a device or in cloud, and you can code in any language you know and use existing business logic without any change."
+  content = "Same code can be run on a device or on the cloud. You can code in any language you know and use existing business logic without any change."
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
@@ -56,7 +56,7 @@ height = "350px"
 
 [[item]]
   title = "Kubernetes-Native"
-  content = "KubeEdge is built upon kubernetes and provides fundamental infrastructure support for network, application anagement and metadata synchronization between cloud and edge."
+  content = "KubeEdge is built upon Kubernetes and provides fundamental infrastructure support for network, application management and metadata synchronization between cloud and edge."
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
@@ -65,7 +65,7 @@ height = "350px"
 
 [[item]]
   title = "Abundant applications"
-  content = "You can easily get and deploy complicate machine learning, image recognition, event processing and other high level applications to your edge side. "
+  content = "You can easily get and deploy complicated machine learning, image recognition, event processing and other high level applications to your edge side."
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
