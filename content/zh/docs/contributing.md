@@ -13,7 +13,7 @@ type = "docs"  # Do not modify.
 linktitle = "Contributing to Kubeedge"
 [menu.docs]
   parent = "welcome"
-  weight = 2
+  weight = 3
 +++
 
 ## Getting started as a Kubeedge contributor

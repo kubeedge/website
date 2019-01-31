@@ -13,7 +13,7 @@ type = "docs"  # Do not modify.
 linktitle = "Roadmap"
 [menu.docs]
   parent = "welcome"
-  weight = 3
+  weight = 4
 +++
 ## Roadmap
 

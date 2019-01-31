@@ -13,7 +13,7 @@ type = "docs"  # Do not modify.
 linktitle = "Support"
 [menu.docs]
   parent = "welcome"
-  weight = 4
+  weight = 5
 +++
 ## Support
 
