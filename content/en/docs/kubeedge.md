@@ -14,6 +14,7 @@ share = true  # Show social sharing links?
 # Add menu entry to sidebar.
 linktitle = "What is KubeEdge"
 [menu.docs]
+  parent = "concepts"
   weight = 1
 +++
 
@@ -69,5 +70,5 @@ to use for your environment: `certfile`, `keyfile`, and so on.
 ## Getting involved
 
 There are many ways to contribute to Kubeedge, and we welcome contributions! 
-Read the [contributor's guide](/docs/about/contributing) to get started on the 
+Read the [contributor's guide](/en/docs/contributing) to get started on the 
 code.

@@ -20,7 +20,7 @@
 
 [[main]]
   name = "Documentation"
-  url = "/docs/"
+  url = "docs/"
   weight = 5
 
 # Right Menu
@@ -35,3 +35,31 @@
   post = ""
   url = "https://twitter.com/KubeEdge"
   weight = 20
+
+# Documentation 
+
+[[docs]]
+  name = "Welcome"
+  weight = 5
+  identifier = "welcome"
+
+[[docs]]
+  name = "Concepts"
+  weight = 10
+  identifier = "concepts"
+
+[[docs]]
+  name = "Setup"
+  weight = 20
+  identifier = "setup"
+
+[[docs]]
+  name = "Guides"
+  weight = 30
+  identifier = "guides"
+
+[[docs]]
+  name = "Troubleshooting"
+  weight = 40
+  identifier = "faq"
+

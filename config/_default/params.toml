@@ -12,13 +12,13 @@ day_night = true
 font = "default"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = ""
+description = "KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.It is built upon kubernetes and provides fundamental infrastructure support for network, app. deployment and metadata synchronization between cloud and edge. Kubeedge is licensed under Apache 2.0. and free for personal or commercial use absolutely. We welcome contributors!"
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
 sharing_image = "kubeedge-200.png"
 
 # Twitter username (without @). Used when a vistor shares your site on Twitter.
-twitter = ""
+twitter = "KubeEdge"
 
 # Diplay a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".

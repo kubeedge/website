@@ -32,7 +32,7 @@
 
   [[zh.menu.main]]
     name = "文档"
-    url = "/docs/"
+    url = "docs/"
     weight = 5
   
   # Right Menu
@@ -47,4 +47,32 @@
   post = ""
   url = "https://twitter.com/KubeEdge"
   weight = 20
+
+# Documentation 
+
+[[zh.menu.docs]]
+  name = "欢迎"
+  weight = 5
+  identifier = "welcome"
+
+[[zh.menu.docs]]
+  name = "概念"
+  weight = 10
+  identifier = "concepts"
+
+[[zh.menu.docs]]
+  name = "建立"
+  weight = 20
+  identifier = "setup"
+
+[[zh.menu.docs]]
+  name = "指南"
+  weight = 30
+  identifier = "guides"
+
+[[zh.menu.docs]]
+  name = "故障排除"
+  weight = 40
+  identifier = "faq"
+
 

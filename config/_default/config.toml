@@ -13,7 +13,7 @@ baseurl = "/"
 
 # Enter a copyright notice to display in the site footer.
 # To display a copyright symbol, type `&copy;`.
-copyright = "&copy; KubeEdge"
+copyright = "&copy;2019 KubeEdge"
 
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = ""

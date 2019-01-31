@@ -11,35 +11,10 @@ type = "docs"  # Do not modify.
 
 # aliases = ["/docs/", "/docs/about/", "/docs/Kubeedge/"]
 # Add menu entry to sidebar.
-linktitle = "Setup"
 [menu.docs]
+  parent = "setup"
   weight = 2
 +++
-[![Go Report Card](https://goreportcard.com/badge/github.com/kubeedge/kubeedge)](https://goreportcard.com/report/github.com/kubeedge/kubeedge)[![LICENSE](https://img.shields.io/github/license/kubeedge/kubeedge.svg?style=flat-square)](https://github.com/kubeedge/kubeedge/blob/master/LICENSE)[![Releases](https://img.shields.io/github/release/kubeedge/kubeedge/all.svg?style=flat-square)](https://github.com/kubeedge/kubeedge/releases)
-
-{{<figure library="1" src="icon-192.png" title="">}}
-
-KubeEdge is an open source system extending native containerized application orchestration and device management to hosts at Edge. It is built upon Kubernetes and provides core infrastructure support for network, app. deployment and metadata synchronization between cloud and edge. It also supports **MQTT** and allows developers to author customer logic and enable resource constraint devices communication at Edge.
-
-## Advantages
-
-#### Edge Computing
-
-With business logic running at Edge, volumes of data can be secured & processed locally. It reduces the bandwidth request between Edge and Cloud; increases the response speak; and protects customers' data privacy. 
-
-#### Simplify development
-
-Developers can write regular http or mqtt based applications; containerize and run anywhere at Edge or Cloud.
-
-#### Kubernetes-native support
-
-With KubeEdge, users can orchestrate apps, manage devices and monitor app/device status against Edge nodes like a normal K8s cluster in the Cloud
-
-#### Abundant applications
-
-You can easily get and deploy complicated machine learning, image recognition, event processing and other high level applications to your Edge side.
-
-## Introduction
 
 KubeEdge is composed of these components:
 
@@ -49,27 +24,9 @@ KubeEdge is composed of these components:
 - **DeviceTwin:** DeviceTwin is responsible for storing device status and syncing device status to the cloud. It also provides query interfaces for applications.
 - **MetaManager:** MetaManager is the message processor and between edged and edgehub. It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite). 
 
-### Architecture
+## Architecture
 
 {{<figure library="1" src="kubeedge_arch.png" title="">}}
-## Roadmap
-
-### Release 1.0
-KubeEdge will provide the fundamental infrastructure and basic functionalities for IOT/Edge workload. This includes: 
-- K8s Application deployment through kubectl from Cloud to Edge node(s)
-- K8s configmap, secret deployment through kubectl from Cloud to Edge node(s) and their applications in Pod
-- Bi-directional and multiplex network communication between Cloud and edge nodes
-- K8s Pod and Node status querying with kubectl at Cloud with data collected/reported from Edge
-- Edge node autonomy when its getting offline and recover post reconnection to Cloud
-- Device twin and MQTT protocol for IOT devices talking to Edge node
-
-### Release 2.0 and Future
-- Build service mesh with KubeEdge and Istio 
-- Enable function as a service at Edge
-- Support more types of device protocols to Edge node such as AMQP, BlueTooth, ZigBee, etc.
-- Evaluate and enable super large scale of Edge clusters with thousands of Edge nodes and millions of devices
-- Enable intelligent scheduling of apps. to large scale of Edge nodes
-- etc.
 
 ## Usage
 
@@ -144,7 +101,9 @@ make # or `make edge_core`
 ```
 
 ### Integrate with HuaweiCloud [Intelligent EdgeFabric (IEF)](https://www.huaweicloud.com/product/ief.html)
-**Note:** The HuaweiCloud IEF is only available in China now.
+{{% alert note %}}
+The HuaweiCloud IEF is only available in China now.
+{{% /alert %}}
 
 1. Create an account in [HuaweiCloud](https://www.huaweicloud.com).
 2. Go to [IEF](https://www.huaweicloud.com/product/ief.html) and create an Edge node.
@@ -181,25 +140,3 @@ If you are using HuaweiCloud IEF, then the edge node you created should be runni
  go test -v
  
  ```
-## Community
-
-**Slack channel:** 
-
-kubeedge.slack.com
-
-Users can join this channel by clicking the invitation [link](https://join.slack.com/t/kubeedge/shared_invite/enQtNDg1MjAwMDI0MTgyLTQ1NzliNzYwNWU5MWYxOTdmNDZjZjI2YWE2NDRlYjdiZGYxZGUwYzkzZWI2NGZjZWRkZDVlZDQwZWI0MzM1Yzc).
-
-## Documentation
-
-Please find [link](https://github.com/kubeedge/kubeedge/tree/master/docs/modules) for detailed information about individual modules of KubeEdge.
-
-## Support
-
-If you need support, start with the [troubleshooting guide], and work your way through the process that we've outlined.
-
-That said, if you have questions, reach out to us, feel free to reach out to these folks:
-
-- @m1093782566 
-- @islinwb 
-- @Lion-Wei 
-

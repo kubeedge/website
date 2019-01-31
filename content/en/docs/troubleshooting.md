@@ -1,5 +1,5 @@
 +++
-title = "Troubleshooting"
+title = "FAQs"
 description = "Troubleshooting KubeEdge"
 date = 2019-01-28
 lastmod = 2019-01-29
@@ -9,7 +9,7 @@ toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
-linktitle = "Troubleshooting"
 [menu.docs]
-  weight = 3
+  parent = "faq"
+  weight = 1
 +++

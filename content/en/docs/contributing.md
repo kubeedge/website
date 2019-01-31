@@ -12,6 +12,7 @@ type = "docs"  # Do not modify.
 # Add menu entry to sidebar.
 linktitle = "Contributing to Kubeedge"
 [menu.docs]
+  parent = "welcome"
   weight = 2
 +++
 

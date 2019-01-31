@@ -5,9 +5,7 @@ weight = 25
 toc = true
 bref = "The Kubeedge project is dedicated to making an open platform, which is built upon kubernetes and provides fundamental infrastructure support for network, app. deployment and metadata synchronization between cloud and edge."
 aliases = ["/docs/started/"]
-[menu.main]
-  parent = "Getting Started"
-  weight = 1
+
 +++
 
 ## Who should consider using Kubeedge?

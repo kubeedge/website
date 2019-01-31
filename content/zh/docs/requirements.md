@@ -12,7 +12,8 @@ type = "docs"  # Do not modify.
 # Add menu entry to sidebar.
 linktitle = "Prerequisites"
 [menu.docs]
-  weight = 3
+  parent = "setup"
+  weight = 1
 +++
 
 For best understanding of the guides, it's useful to have some knowledge of

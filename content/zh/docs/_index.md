@@ -10,7 +10,7 @@ type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
 [menu.docs]
-  name = "Overview"
+  parent = "welcome"
   weight = 1
 +++
 

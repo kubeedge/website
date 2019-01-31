@@ -14,56 +14,56 @@ share = true  # Show social sharing links?
 # Add menu entry to sidebar.
 linktitle = "What is KubeEdge"
 [menu.docs]
+  parent = "concepts"
   weight = 1
 +++
 
-## Kubeedge任务
+## The Kubeedge mission
 
-我们的目标是建立一个开放平台，以实现Edge计算，扩展本机容器化
-Edge的主机应用程序编排功能。它建立在kubernetes并提供
-基础架构支持网络，app.deployment和元数据同步
-云与边缘之间。它还支持`MQTT`并允许开发人员编写客户逻辑
-并在Edge启用资源约束设备通信。 Kubeedge是*支持Edge computing *的开放平台。
-Kubeedge的优势主要包括：
+Our goal is to make an open platform to enable Edge computing, extending native containerized application orchestration capabilities to hosts at Edge. which built upon kubernetes and provides fundamental infrastructure support for network, app.deployment and metadata synchronization between cloud and edge. It also supports `MQTT` and allows developers to author customer logic and enable resource constraint devices communication at Edge. Kubeedge is *the open platform to enable Edge computing*. The advantages of Kubeedge include mainly:
 
-* **边缘计算**
+* **Edge Computing**
 
-     通过在Edge上运行业务逻辑，可以在本地保护和处理大量数据。它减少了带宽
-     Edge和Cloud之间的请求;增加回应说话;并保护客户的数据隐私。
+     With business logic running at Edge, volumes of data can be secured & processed locally. It reduces the bandwidth
+     request between Edge and Cloud; increases the response speak; and protects customers' data privacy.
 
-* **简化开发**
+* **Simplify development**
 
-     开发人员可以编写常规的基于http或mqtt的应用程序;容纳并在Edge或Cloud的任何地方运行。
+     Developers can write regular http or mqtt based applications; containerize and run anywhere at Edge or Cloud.
 
-* **Kubernetes原生支持**
+* **Kubernetes-native support**
 
-     使用KubeEdge，用户可以根据Edge节点编排应用程序，管理设备和监控应用程序/设备状态
-     云中的普通K8s群集。
+     With KubeEdge, users can orchestrate apps, manage devices and monitor app/device status against Edge nodes like
+     a normal K8s cluster in the Cloud.
 
-* **丰富的应用程序**
+* **Abundant applications**
 
-     您可以轻松获取和部署复杂的机器学习，图像识别，事件处理等
-     适用于Edge端的应用程序。
+     You can easily get and deploy complicated machine learning, image recognition, event processing and other high
+     level applications to your Edge side.
 
-* **等等**
+* **And so on**
 
-## 什么是KubeEdge?
+## What is KubeEdge?
 
-KubeEdge是一个开源系统，用于将本机容器化应用程序编排功能扩展到Edge的主机。它基于kubernetes构建，为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。
+KubeEdge is an open source system for extending native containerized application
+orchestration capabilities to hosts at Edge. It is built upon kubernetes and provides
+fundamental infrastructure support for network, app. deployment and metadata
+synchronization between cloud and edge.
 
-## 工作流程 
+## Workflow 
 
-基本工作流程是:
+The basic workflow is:
 
-* 确保你的环境中有一些基本的工具，比如`mosquitto`和`docker`.
-* 下载Kubeedge脚本和配置文件。
-* 自定义配置。
-* 在您选择的环境中运行`mosquitto`和`Kubeedge`二进制文件。
+* Make sure some basically tool in your Env, such as `mosquitto` and `docker`.
+* Download the Kubeedge scripts and configuration files.
+* Customize the configuration.
+* Run `mosquitto` and `Kubeedge` binary to your chosen environment.
 
-您可以调整配置以选择要用于您的环境的平台和服务：`certfile`，`keyfile`等。
+You adapt the configuration to choose the platforms and services that you want
+to use for your environment: `certfile`, `keyfile`, and so on.
 
-## 参与进来
+## Getting involved
 
-有很多方法可以为Kubeedge做出贡献，我们欢迎捐款！
-阅读[贡献者指南]（/ docs / about / contributions）开始使用
-码。
+There are many ways to contribute to Kubeedge, and we welcome contributions! 
+Read the [contributor's guide](/en/docs/contributing) to get started on the 
+code.
