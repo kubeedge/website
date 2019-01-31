@@ -48,6 +48,12 @@
   url = "https://twitter.com/KubeEdge"
   weight = 20
 
+[[zh.menu.main_right]]
+  name = "<i class=\"fab fa-slack\" style=\"color: #55acee; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://kubeedge.slack.com"
+  weight = 30
+
 # Documentation 
 
 [[zh.menu.docs]]
