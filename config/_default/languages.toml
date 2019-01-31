@@ -1,0 +1,84 @@
+# Languages
+#   Create a `[X]` block for each language you want, where X is the language ID.
+#   Refer to https://sourcethemes.com/academic/docs/language/
+
+# Configure the English version of the site.
+[en]
+  languageCode = "en-us"
+  contentDir = "content/en"
+
+#Uncomment the lines below to configure your website in a second language.
+[zh]
+  languageCode = "zh-Hans"
+  contentDir = "content/zh"
+  title = "KubeEdge一个支持Edge计算的开放平台 "
+  [zh.params]
+    description = ""
+  [[zh.menu.main]]
+  name = "Home"
+  url = "#hero_carousel"
+  weight = 1
+
+  [[zh.menu.main]]
+  name = "关于"
+  url = "#about"
+  weight = 2
+
+  [[zh.menu.main]]
+  name = "要求"
+  url = "#required"
+  weight = 3
+
+
+  [[zh.menu.main]]
+    name = "文档"
+    url = "docs/"
+    weight = 5
+  
+  # Right Menu
+[[zh.menu.main_right]]
+  name = "<i class=\"fab fa-github-alt\" style=\"color: #333; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://github.com/kubeedge/kubeedge"
+  weight = 10
+
+[[zh.menu.main_right]]
+  name = "<i class=\"fab fa-twitter\" style=\"color: #55acee; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://twitter.com/KubeEdge"
+  weight = 20
+
+[[zh.menu.main_right]]
+  name = "<i class=\"fab fa-slack\" style=\"color: #55acee; font-size: 1rem; line-height: 1.25\"></i>"
+  post = ""
+  url = "https://kubeedge.slack.com"
+  weight = 30
+
+# Documentation 
+
+[[zh.menu.docs]]
+  name = "欢迎"
+  weight = 5
+  identifier = "welcome"
+
+[[zh.menu.docs]]
+  name = "概念"
+  weight = 10
+  identifier = "concepts"
+
+[[zh.menu.docs]]
+  name = "建立"
+  weight = 20
+  identifier = "setup"
+
+[[zh.menu.docs]]
+  name = "指南"
+  weight = 30
+  identifier = "guides"
+
+[[zh.menu.docs]]
+  name = "故障排除"
+  weight = 40
+  identifier = "faq"
+
+

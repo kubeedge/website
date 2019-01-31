@@ -1,0 +1,39 @@
+
+
+/*************************************************
+ *  Featured Widget
+ **************************************************/
+
+ .featured {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #555;
+    text-align: center;
+  }
+  
+  .featured h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+  }
+  
+  .dark .featured,
+  .dark .featured h3 {
+    color: #fff;
+  }
+  
+  .featured-icon {
+    display: block;
+    width: 100%;
+    font-size: 3rem;
+    text-align: center;
+  }
+  .featured-icon img{
+    margin: 0 auto;
+  }
+
+  .featured .col-sm-4 p{
+    text-align: justify;
+}
