@@ -47,8 +47,8 @@ height = "350px"
 
 [[item]]
   title = "Simplify development"
-  content = "Same code can be run on a device or on the cloud. You can code in any language you know and use existing business logic without any change."
-  align = "right"
+  content = "Developers can write regular http or mqtt based applications; containerize and run anywhere at Edge or Cloud.."
+  align = "left"
 
   overlay_color = "#333"  # An HTML color value.
   overlay_img = "headers/header-code.jpg"  # Image path relative to your `static/img/` folder.

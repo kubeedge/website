@@ -16,25 +16,13 @@ type = "docs"  # Do not modify.
   weight = 2
 +++
 
-KubeEdge is composed of these components:
-
-- **Edged:** Edged is an agent running on edge node for managing user's application.
-- **EdgeHub:** EdgeHub is a web socket client, which is responsible for interacting with **Huawei Cloud IEF service**, including sync cloud side resources update, report edged side host and device status changes.
-- **EventBus:** EventBus is a MQTT client to interact with MQTT server(mosquitto), offer subscribe and publish capability to other components.
-- **DeviceTwin:** DeviceTwin is responsible for storing device status and syncing device status to the cloud. It also provides query interfaces for applications.
-- **MetaManager:** MetaManager is the message processor and between edged and edgehub. It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite). 
-
-## Architecture
-
-{{<figure library="1" src="kubeedge_arch.png" title="">}}
-
 ## Usage
 
-### Prerequisites
+## Prerequisites
 
 To use KubeEdge, make sure you have **docker** in your environment, if don't have, please reference the following steps to install docker.
 
-#### Install docker
+## Install docker
 
 For ubuntu:
 
@@ -74,7 +62,7 @@ KubeEdge uses MQTT for communication between deviceTwin and devices. KubeEdge su
 Use mode field in [edge.yaml](https://github.com/kubeedge/kubeedge/blob/master/conf/edge.yaml) to select the desired mode
 
 To use kubeedge in double mqtt or external mode, make sure you have **mosquitto** in your environment. Please reference the following steps to install mosquitto if it is not already present in your environment.
-#### Install mosquitto
+## Install mosquitto
 
 For ubuntu:
 
@@ -90,7 +78,7 @@ yum install mosquitto
 
 See [mosquitto official website](https://mosquitto.org/download/) for more information.
 
-### Build
+## Build
 
 Clone kube-edge
 
@@ -100,7 +88,7 @@ cd $GOPATH/src/github.com/kubeedge/kubeedge
 make # or `make edge_core`
 ```
 
-### Integrate with HuaweiCloud [Intelligent EdgeFabric (IEF)](https://www.huaweicloud.com/product/ief.html)
+## Integrate with HuaweiCloud [Intelligent EdgeFabric (IEF)](https://www.huaweicloud.com/product/ief.html)
 {{% alert note %}}
 The HuaweiCloud IEF is only available in China now.
 {{% /alert %}}
@@ -112,7 +100,7 @@ The HuaweiCloud IEF is only available in China now.
 
 
 
-### Run
+## Run
 
 ```shell
 # run mosquitto
@@ -128,7 +116,7 @@ nohup ./edge_core > edge_core.log 2>&1 &
 If you are using HuaweiCloud IEF, then the edge node you created should be running (check it in the IEF console page).
 
 
-### Run Unit Tests
+## Run Unit Tests
 
  ```shell
  make test
