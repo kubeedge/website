@@ -46,7 +46,7 @@ get going:
 1. Add the upstream repo as a git remote repo:
 
     ```
-    git remote add upstream https://github.com/seattle-cloud-lab/kubeedge-website.git
+    git remote add upstream https://github.com/kubeedge/website.git
     git remote set-url --push upstream no_push
     ```
 
@@ -117,8 +117,6 @@ get going:
   your SSH key passphrase to the managing agent, so that you don't have to
   keep authenticating to GitHub. You need to do this again after every reboot.
 
-Please remember read and observe the [Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). and
-the [Contributor Guide](https://kubeedge.netlify.com/docs/about/contributing/) on website
-provides more detailed instructions on how to get your ideas and bug fixes seen and accepted.
+Please remember read and observe the [Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
 
-[kubeEdge-website-repo]: https://github.com/seattle-cloud-lab/kubeedge-website
+[kubeEdge-website-repo]: https://github.com/kubeedge/website
