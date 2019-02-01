@@ -42,26 +42,26 @@ height = "350px"
   align = "right"
 
   overlay_color = "#555"  # An HTML color value.
-  overlay_img = "headers/pattern-2-blue.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-edge-2.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.65  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "Simplify development"
   content = "Same code can be run on a device or on the cloud. You can code in any language you know and use existing business logic without any change."
-  align = "left"
+  align = "right"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/light-trail.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-code.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.85  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "Kubernetes-Native"
   content = "KubeEdge is built upon Kubernetes and provides fundamental infrastructure support for network, application management and metadata synchronization between cloud and edge."
-  align = "left"
+  align = "center"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/pattern-1-blue.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-k8s.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.75  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "Abundant applications"
@@ -69,8 +69,8 @@ height = "350px"
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/pattern-3-blue.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-apps-2.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.75  # Darken the image. Value in range 0-1.
 
 +++
 
