@@ -42,26 +42,26 @@ height = "350px"
   align = "right"
 
   overlay_color = "#555"  # An HTML color value.
-  overlay_img = "headers/pattern-2-blue.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-edge-2.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.65  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "简化开发"
   content = "相同的代码可以在设备或云中运行，您可以使用您知道的任何语言进行编码，并使用现有的业务逻辑而无需任何更改。"
-  align = "left"
+  align = "right"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/light-trail.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-code.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.85  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "Kubernetes本土"
   content = "KubeEdge基于kubernetes构建，为云和边缘之间的网络，应用程序管理和元数据同步提供基础架构支持。"
-  align = "left"
+  align = "center"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/pattern-1-blue.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-k8s.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.75  # Darken the image. Value in range 0-1.
 
 [[item]]
   title = "丰富的应用程序"
@@ -69,7 +69,12 @@ height = "350px"
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
-  overlay_img = "headers/pattern-3-blue.jpg"  # Image path relative to your `static/img/` folder.
-  overlay_filter = 0.5  # Darken the image. Value in range 0-1.
+  overlay_img = "headers/header-apps-2.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.75  # Darken the image. Value in range 0-1.
 
 +++
+
+<div class="mt-3">
+  <a class="github-button" href="https://github.com/kubeedge/kubeedge" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star this on GitHub">Star</a>
+</div>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
