@@ -79,7 +79,10 @@ get going:
     The branch mark with `*` is your branch now.
 
 1. Add and edit the files as you like. The doc pages are in the
-  `/kubeedge-website/content/docs/` directory.
+  `/<LANG-CODE>/content/docs/` directory.
+{{% alert note %}}
+You can use the guide [here](https://sourcethemes.com/academic/docs/writing-markdown-latex/) for formatting your content and using shortcodes.
+{{% /alert %}}  
 
 1. Run `git status` at any time, to check the status of your local files.
   Git tells you which files need adding or committing to your local repo.

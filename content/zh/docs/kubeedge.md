@@ -62,6 +62,19 @@ The basic workflow is:
 You adapt the configuration to choose the platforms and services that you want
 to use for your environment: `certfile`, `keyfile`, and so on.
 
+## Components
+KubeEdge is composed of these components:
+
+- **Edged:** Edged is an agent running on edge node for managing user's application.
+- **[EdgeHub](/zh/docs/edgehub):** EdgeHub is a web socket client, which is responsible for interacting with **Huawei Cloud IEF service**, including sync cloud side resources update, report edged side host and device status changes.
+- **[EventBus](/zh/docs/event-bus):** EventBus is a MQTT client to interact with MQTT server(mosquitto), offer subscribe and publish capability to other components.
+- **DeviceTwin:** DeviceTwin is responsible for storing device status and syncing device status to the cloud. It also provides query interfaces for applications.
+- **[MetaManager](/zh/docs/meta-manager):** MetaManager is the message processor and between edged and edgehub. It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite). 
+
+## Architecture
+
+{{<figure library="1" src="kubeedge_arch.png" title="">}}
+
 ## Getting involved
 
 There are many ways to contribute to Kubeedge, and we welcome contributions! 

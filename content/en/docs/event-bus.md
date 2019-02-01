@@ -1,5 +1,5 @@
 +++
-title =  "Event Bus"
+title =  "EventBus"
 
 
 date = 2019-01-28
@@ -10,7 +10,7 @@ toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
 
 # Add menu entry to sidebar.
-linktitle = "Event Bus"
+linktitle = "EventBus"
 [menu.docs]
   parent = "concepts"
   weight = 3

@@ -47,7 +47,7 @@ height = "350px"
 
 [[item]]
   title = "简化开发"
-  content = "相同的代码可以在设备或云中运行，您可以使用您知道的任何语言进行编码，并使用现有的业务逻辑而无需任何更改。"
+  content = "开发人员可以编写常规的基于http或mqtt的应用程序;容纳并在Edge或Cloud的任何地方运行。"
   align = "right"
 
   overlay_color = "#333"  # An HTML color value.
