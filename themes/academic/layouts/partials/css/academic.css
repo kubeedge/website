@@ -487,6 +487,44 @@ a[data-fancybox] img {
   animation-delay: 0.15s;
 }
 
+/* Override dark colors that may be inherited from body.dark */
+.home-section.dark,
+.home-section.dark h1,
+.home-section.dark h2,
+.home-section.dark h3,
+.home-section.dark a:not(.btn):not(.alert a) {
+  color: rgb(248, 248, 242);
+}
+
+/* Underline links in dark sections to separate them from text */
+.home-section.dark a:not(.btn):not(.hero-cta-alt):not(.alert a) {
+  text-decoration: underline;
+}
+
+/* Big underline style for links in dark sections */
+.home-section.dark.big-underline a:not(.btn):not(.hero-cta-alt):not(.alert a) {
+  text-decoration: none;
+  position: relative;
+}
+.home-section.dark.big-underline a:not(.btn):not(.hero-cta-alt):not(.alert a):after {
+  background: #fff;
+  content: "";
+  height: 2px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 100%;
+}
+
+/* Create the parallax scrolling effect */
+.parallax {
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .home-section:first-of-type {
   padding-top: 50px;
 }
@@ -523,10 +561,19 @@ a[data-fancybox] img {
 }
 
 /*************************************************
+ *  Widgets (common)
+ **************************************************/
+
+.see-all {
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+/*************************************************
  *  Hero Widget
  **************************************************/
 
-.hero-overlay {
+.wg-hero {
   padding: 3em 0;
   clear: both;
   background-size: cover;
@@ -548,24 +595,60 @@ a[data-fancybox] img {
   font-size: 1.35rem;
 }
 
-.hero-overlay .hero-title,
-.hero-overlay .hero-lead,
-.hero-overlay .btn {
+.wg-hero .hero-title,
+.wg-hero .hero-lead,
+.wg-hero .hero-cta-alt,
+.wg-hero .hero-note {
   color: #fff;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.5);*/ /* Uncomment to standout on complicated backgrounds. */
 }
 
-.hero-overlay a {
+.wg-hero a:not(.wg-hero .btn) {
   color: #fff;
 }
 
-.hero-overlay .hero-lead a {
-  color: #fff;
-  text-decoration-line: underline;
+.wg-hero .hero-lead a {
+  text-decoration: underline;
 }
 
-.hero-overlay .btn-lg {
+.wg-hero .cta-btns {
+  margin-bottom: 16px;
+}
+
+.wg-hero .btn {
+  color: {{ .Get "primary_dark" }};
+  padding: .6em 2.1em;
+}
+
+a.hero-cta-alt {
+  display: inline-block;
+  position: relative;
+  transition-duration: .2s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
   font-size: 1.1rem;
+}
+
+a.hero-cta-alt:active,
+a.hero-cta-alt:focus,
+a.hero-cta-alt:hover {
+  transform: scale(1.1);
+}
+
+.wg-hero .btn-lg {
+  font-size: 1.1rem;
+}
+
+.wg-hero .hero-note {
+  font-size: 0.8rem;
+}
+
+.hero-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
 }
 
 /*************************************************
@@ -600,7 +683,7 @@ a[data-fancybox] img {
 }
 
 /*************************************************
- *  Biography
+ *  About widget
  **************************************************/
 
 #profile {
@@ -609,7 +692,7 @@ a[data-fancybox] img {
   position: relative;
 }
 
-#profile .portrait {
+.portrait {
   width: 200px;
   height: 200px;
   margin: 0 auto;
@@ -617,14 +700,14 @@ a[data-fancybox] img {
   object-fit: cover;
 }
 
-#profile .portrait-title h2 {
+.portrait-title h2 {
   font-size: 1.75em;
   font-weight: 300;
   color: #000000;
   margin: 20px 0 10px 0;
 }
 
-#profile .portrait-title h3 {
+.portrait-title h3 {
   font-size: 1rem;
   font-weight: 300;
   color: rgba(0,0,0, 0.54);
@@ -684,6 +767,40 @@ ul.ul-edu li .description p.course {
 ul.ul-edu li .description p.institution {
   font-size: 0.75rem;
   color: rgba(0,0,0,0.6);
+}
+
+/*************************************************
+ *  People widget
+ **************************************************/
+
+.people-widget {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.people-widget .portrait-title h2 {
+  font-size: 1rem;
+}
+
+.people-widget .portrait-title h3 {
+  font-size: 0.7rem;
+}
+
+.people-widget .portrait {
+  width: 80%;
+  max-width: 150px;
+  height: auto;
+}
+
+@media (min-width: 576px) {
+  .people-widget  .col-sm-auto {
+    max-width: 30% !important;
+  }
+}
+@media (min-width: 992px) {
+  .people-widget  .col-sm-auto {
+    max-width: 20% !important;
+  }
 }
 
 /*************************************************
@@ -964,11 +1081,13 @@ article .article-metadata {
   margin-bottom: 2rem;
 }
 
-.media.stream-item .article-title {
+.media.stream-item .article-title,
+.card-simple .article-title {
   font-size: 1.2rem;
 }
 
-.media.stream-item .article-style {
+.media.stream-item .article-style,
+.card-simple .article-style {
   margin-top: 2px;
   font-size: 0.8rem;
 }
@@ -1053,14 +1172,34 @@ article .article-metadata {
 }
 
 /*************************************************
- *  Publications
+ *  List items
  **************************************************/
+
+.view-list-item {
+  margin-bottom: 1rem;
+}
 
 .pub-icon {
   color: rgba(0, 0, 0, 0.54);
   font-size: 0.81em;
-  padding-top: 6px;
+  padding-right: 6px;
 }
+
+.view-list-item .article-metadata {
+  margin-bottom: 0;
+}
+
+.pub-list-item .pub-abstract {
+  font-size: 1rem;
+}
+
+.pub-list-item .btn-links {
+  padding-top: 10px;
+}
+
+/*************************************************
+ *  Publications
+ **************************************************/
 
 .pub-banner {
   max-width: 100%;
@@ -1069,39 +1208,8 @@ article .article-metadata {
   margin-right: auto;
 }
 
-.pub .pub-authors {
-  font-style: italic;
-  line-height: 30px; /* Match share bar line height. */
-}
-
 .pub-row-heading {
   font-weight: bold;
-}
-
-.pub-list-item .pub-abstract {
-  font-size: 1rem;
-}
-
-.pub-list-item .pub-authors {
-  line-height: normal;
-  font-style: normal;
-  font-size: 0.9rem;
-  color: rgba(0,0,0,0.54);
-}
-
-.pub-list-item .pub-publication {
-  color: rgba(0,0,0,0.54);
-  font-size: 0.9rem;
-}
-
-
-.dark .pub-authors,
-.dark .pub-publication {
-  color: rgba(255,255,255,0.54);
-}
-
-.pub-list-item .btn-links {
-  padding-top: 10px;
 }
 
 #container-publications {
@@ -1197,8 +1305,31 @@ article .article-metadata {
   margin-bottom: 2rem;
 }
 
+.project-card {
+  position: relative;
+  width: calc(33.3% - 2*20px); /* Fluid 3 columns (inc. 20px gutter) */
+}
+@media screen and (max-width: 1199px) {
+  .project-card {
+    width: calc(50% - 20px); /* Fluid 2 columns (inc. 20px gutter) */
+  }
+}
+@media screen and (max-width: 768px) {
+  .project-card {
+    width: 100%; /* 1 column */
+  }
+}
+
 .project-item {
   margin-bottom: 1.5rem;
+}
+
+.project-card.project-item {
+  margin: 0 0 20px 0; /* Set to Isotope's gutter size */
+}
+
+.project-card .card {
+  margin: 0; /* Remove default card margin and use Isotope gutter */
 }
 
 .project-showcase .project-item {
@@ -1443,6 +1574,29 @@ footer a#back_to_top i {
 a.badge:focus,
 a.badge:hover {
   color: rgba(0,0,0,.68);
+}
+
+.tag-cloud a {
+  display: inline-block;
+  position: relative;
+  margin: 5px 10px;
+  word-wrap: break-word;
+  transition-duration: .2s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+
+.tag-cloud a:active,
+.tag-cloud a:focus,
+.tag-cloud a:hover {
+  color: {{ .Get "primary_dark" }};
+  transform: scale(1.2);
+}
+
+.dark .tag-cloud a:active,
+.dark .tag-cloud a:focus,
+.dark .tag-cloud a:hover {
+  color: {{ .Get "primary_light" }};
 }
 
 /*************************************************
@@ -2202,11 +2356,11 @@ body.dark,
   color: #fff;
 }
 
-.dark #profile .portrait-title h2 {
+.dark .portrait-title h2 {
   color: #fff;
 }
 
-.dark #profile .portrait-title h3 {
+.dark .portrait-title h3 {
   color: rgba(255, 255, 255, 0.54);
 }
 
