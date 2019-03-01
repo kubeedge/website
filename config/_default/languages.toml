@@ -29,6 +29,11 @@
   url = "#required"
   weight = 3
 
+  [[zh.menu.main]]
+  name = "博客帖子"
+  url = "post/"
+  weight = 4
+
 
   [[zh.menu.main]]
     name = "文档"
