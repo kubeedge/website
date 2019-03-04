@@ -37,7 +37,7 @@
 
   [[zh.menu.main]]
     name = "文档"
-    url = "docs/"
+    url = "https://docs.kubeedge.io"
     weight = 5
   
   # Right Menu
