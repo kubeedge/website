@@ -10,7 +10,7 @@ title = "KubeEdge is completely open source and runs on open source technologies
 subtitle = ""
 
 # Order that this section will appear in.
-weight = 7
+ weight = 4
 
 # Showcase personal skills or business features.
 # 

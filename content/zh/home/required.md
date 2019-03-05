@@ -10,7 +10,7 @@ title = "KubeEdge是完全开源的，可以在开源技术上运行"
 subtitle = ""
 
 # Order that this section will appear in.
-weight = 7
+weight = 4
 
 # Showcase personal skills or business features.
 # 
