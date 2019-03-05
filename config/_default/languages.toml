@@ -40,7 +40,7 @@
 
   [[zh.menu.main]]
   name = "博客帖子"
-  url = "post/"
+  url = "blog/"
   weight = 6
 
 
