@@ -1,7 +1,7 @@
 
 
 /*************************************************
- *  Featured Widget
+ *  Featured Section Widget
  **************************************************/
 
  .featured {
@@ -37,3 +37,97 @@
   .featured .col-sm-4 p{
     text-align: justify;
 }
+
+/*************************************************
+ *  Featured Section Widget Ends
+ **************************************************/
+/********************************************
+*   Why KubeEdge Widget
+********************************************/
+.why-kubeedge h1{
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700;
+  width: 100%;
+}
+
+.page-heading{
+    position: relative;
+    margin-bottom: 20px;
+}
+.page-heading h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.page-heading p {
+  font-size: 18px;
+  color:#ffffff;
+}
+.skill-block {
+  overflow: hidden;
+  padding: 5px 15px 15px;
+  text-align: center;
+  box-shadow:1px 2px 6px 2px rgba(0, 0, 0, 0.1);
+  margin: 15px auto;
+  animation: pulse;
+  animation-duration: 3s;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+}
+.sk-border h2 {
+  color: #fefefe;
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 700;
+  height: 200px;
+  width: 180px;
+}
+.sk-border{
+    text-align: center;
+    line-height: 100px;
+    position:relative;
+    z-index:0;
+    margin: 70px auto;
+}
+.sk-border,
+.sk-border:before,
+.sk-border:after{
+    border-style: solid;
+    border-color: #0179C3;
+    border-width: 7px;
+    border-top: none;
+    border-bottom: none;
+    height: 111px;
+    width: 193px;
+}
+.sk-border:after,
+.sk-border:before{
+    content: "";
+    position: absolute;
+    top:0;
+    left: -7px;
+    z-index: -1;
+}
+.sk-border:before{
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+            transform: rotate(60deg);
+}
+.sk-border:after{
+    -webkit-transform: rotate(-60deg);
+       -moz-transform: rotate(-60deg);
+        -ms-transform: rotate(-60deg);
+         -o-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+}
+.sk-text h4 {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/********************************************
+*   Why KubeEdge Widget Ends
+********************************************/

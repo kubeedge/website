@@ -46,7 +46,7 @@ height = "350px"
   overlay_filter = 0.65  # Darken the image. Value in range 0-1.
 
 [[item]]
-  title = "Simplify development"
+  title = "Simplified development"
   content = "Developers can write regular http or mqtt based applications; containerize and run anywhere at Edge or Cloud.."
   align = "left"
 
@@ -56,7 +56,7 @@ height = "350px"
 
 [[item]]
   title = "Kubernetes-Native"
-  content = "KubeEdge is built upon Kubernetes and provides fundamental infrastructure support for network, application management and metadata synchronization between cloud and edge."
+  content = "KubeEdge is built upon Kubernetes. Users can orchestrate apps, manage devices and monitor app and device status on Edge nodes just like a traditional Kubernetes cluster in the Cloud"
   align = "center"
 
   overlay_color = "#333"  # An HTML color value.
@@ -65,7 +65,7 @@ height = "350px"
 
 [[item]]
   title = "Abundant applications"
-  content = "You can easily get and deploy complicated machine learning, image recognition, event processing and other high level applications to your edge side."
+  content = "It is easy to get and deploy existing complicated machine learning, image recognition, event processing and other high level applications to the Edge."
   align = "left"
 
   overlay_color = "#333"  # An HTML color value.
