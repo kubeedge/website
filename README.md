@@ -118,4 +118,4 @@ Going forward, the versioned sites should follow this convention:
 [hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
 
 [kubeedge-contributor-guide]: CONTRIBUTING.md
-[kubeEdge-website-repo]: https://github.com/seattle-cloud-lab/kubeedge-website
+[kubeEdge-website-repo]: https://github.com/kubeedge/website
