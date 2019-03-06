@@ -50,10 +50,10 @@
   {{ if ne $widget "blank-full-width" }}
     {{ $container = "container" }}
   {{ else }}
-    {{ $container = "" }}
+    {{ $container = "container-full-width" }}
   {{ end }}
   <section id="{{ $st.File.TranslationBaseName }}" class="home-section {{ printf "wg-%s" (replace $widget "_" "-") }} {{if $bg.text_color_light}}dark{{end}} {{if $bg.image}}parallax{{end}} {{ with $st.Params.advanced.css_class }}{{ . }}{{ end }}" {{with $style}}style="{{. | safeCSS}}"{{end}}>
-    <div class="{{ $container }}">
+    <div class=" {{ $container }} ">
       {{ partial $widget_path $params }}
     </div>
   </section>
