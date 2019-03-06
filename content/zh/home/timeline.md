@@ -31,18 +31,7 @@ date_format = "January 2006"
 - Edge-controller which connects to Kubernetes api-server and sync node/pod status between edge and kubernetes api-server.
 - Cloudhub which is a websocket server in cloud part of kubeedge.
 - Internal MQTT mode in which MQTT broker is started with edge_core and removes dependency on external MQTT broker.
-- Integration test framework for edge. Improved edge_core unit-test coverage.
-
-**Known issues**  
-
-- We do not have any e2e tests yet.
-- Unit tests coverage should be improved for cloud part.
-
-**Features Work In Progress (Future release)**  
-
-- Describe device API via CRD.
-- Edge to Edge Communication.
-- Different Protocol support for KubeEdge like BLE, Zigbee,etc  
+- Integration test framework for edge. Improved edge_core unit-test coverage.  
 
   """
 
@@ -62,16 +51,6 @@ date_format = "January 2006"
 - Local self-government via HTTP restful interfaces.
 - Integrated with Huawei Cloud IEF service for node, device and application status updates.
 - Edge node autonomy when its getting offline and recover post reconnection to Cloud.  
-
-**Known issues**  
-
-- We do not have any e2e tests yet.
-- Unit tests coverage should be improved.  
-
-**Features Work In Progress (Future release)**  
-
-- Develop and open-source the cloud part components.
-- Describe device API via CRD.  
 
 """
 
