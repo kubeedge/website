@@ -34,7 +34,7 @@
   weight = 4
 
   [[zh.menu.main]]
-  parent = "About"
+  parent = "about"
   name = "Release Timeline"
   url = "#timeline"
   weight = 8
