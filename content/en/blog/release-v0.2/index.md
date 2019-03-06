@@ -48,8 +48,8 @@ Instructions on how to setup KubeEdge can be found [here](https://github.com/kub
 {{% /alert %}}
 
 ### Features added  
-- Edge-controller which connects to Kubernetes api-server and sync node/pod status between edge and kubernetes api-server.  
-- Cloudhub which is a websocket server in cloud part of kubeedge.
+- Edge-controller which connects to Kubernetes api-server and sync node/pod status between edge and Kubernetes api-server.  
+- Cloudhub which is a websocket server in cloud part of KubeEdge.
 - Internal MQTT mode in which MQTT broker is started with edge_core and removes dependency on external MQTT broker.
 - Integration test framework for edge. Improved edge_core unit-test coverage.
 
