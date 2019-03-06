@@ -133,9 +133,28 @@
 ********************************************/
 
 /*******************************************
-*   Custom Code                             
+*   Custom Css                           
 *******************************************/
-.article-single-wide{
-  width: 1280px;
-  max-width: 1280px;;
+@media (min-width: 1200px)
+.container-full-width {
+    max-width: 1140px;
+}
+@media (min-width: 992px)
+.container-full-width {
+    max-width: 960px;
+}
+@media (min-width: 768px)
+.container-full-width {
+    max-width: 720px;
+}
+@media (min-width: 576px)
+.container-full-width {
+    max-width: 540px;
+}
+.container-full-width {
+    width: 98%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
