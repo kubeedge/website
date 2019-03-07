@@ -32,7 +32,7 @@ height = "350px"
   #   Activate the button by specifying a URL and button label below.
   #   Deactivate by commenting out parameters, prefixing lines with `#`.
   cta_label = "了解有关KubeEdge的更多信息"
-  cta_url = "/zh/docs/kubeedge/"
+  cta_url = "https://docs.kubeedge.io"
   cta_icon_pack = "fas"
   cta_icon = "graduation-cap"
 
