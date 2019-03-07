@@ -21,6 +21,11 @@
   name = "Requirements"
   url = "#required"
   weight = 4
+[[main]]
+  parent = "About"
+  name = "Release Timeline"
+  url = "#timeline"
+  weight = 8
 
 [[main]]
   name = "Why KubeEdge"

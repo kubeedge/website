@@ -34,6 +34,12 @@
   weight = 4
 
   [[zh.menu.main]]
+  parent = "about"
+  name = "Release Timeline"
+  url = "#timeline"
+  weight = 8
+
+  [[zh.menu.main]]
   name = "为何选择KubeEdge"
   url = "#why-kubeedge"
   weight = 5
