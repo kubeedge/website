@@ -16,7 +16,7 @@
     description = ""
   [[zh.menu.main]]
   name = "Home"
-  url = "#hero_carousel"
+  url = "#home_slider"
   weight = 1
 
   [[zh.menu.main]]
