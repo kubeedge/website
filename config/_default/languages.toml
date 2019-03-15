@@ -37,7 +37,7 @@
   parent = "about"
   name = "Release Timeline"
   url = "#timeline"
-  weight = 8
+  weight = 9
 
   [[zh.menu.main]]
   name = "为何选择KubeEdge"
