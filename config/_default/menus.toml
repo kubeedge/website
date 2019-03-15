@@ -47,10 +47,7 @@
   url = "https://docs.kubeedge.io"
   weight = 8
 
-[[main]]
-  name = "Demos"
-  url = "pages/demo"
-  weight = 9
+
 
 
 # Right Menu
