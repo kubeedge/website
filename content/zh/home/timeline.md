@@ -7,7 +7,7 @@ title = "Release Timeline"
 subtitle = "[Click Here](https://github.com/kubeedge/kubeedge/releases) to go to the release page."
 
 # Order that this section will appear in.
-weight = 40
+weight = 6
 
 # Date format for experience
 #   Refer to https://sourcethemes.com/academic/docs/customization/#date-format

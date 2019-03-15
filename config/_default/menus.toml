@@ -38,9 +38,19 @@
   weight = 6
 
 [[main]]
+  name = "Talks"
+  url = "#talks"
+  weight = 7
+
+[[main]]
   name = "Documentation"
   url = "https://docs.kubeedge.io"
-  weight = 7
+  weight = 8
+
+[[main]]
+  name = "Demos"
+  url = "pages/demo"
+  weight = 9
 
 
 # Right Menu
