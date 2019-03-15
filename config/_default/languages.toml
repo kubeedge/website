@@ -49,11 +49,16 @@
   url = "blog/"
   weight = 6
 
+  [[zh.menu.main]]
+  name = "Talks"
+  url = "talk/"
+  weight = 7
+
 
   [[zh.menu.main]]
     name = "文档"
     url = "https://docs.kubeedge.io"
-    weight = 7
+    weight = 8
   
   # Right Menu
 [[zh.menu.main_right]]
