@@ -1,5 +1,6 @@
 +++
-title = "KubeEdge has been accepted into the CNCF Sandbox"
+title = "From the K8S blog: KubeEdge - a Kubernetes Native Edge Computing Framework"
+subtitle = "KubeEdge was accepted into the CNCF sandbox in March 2019"
 date = 2019-03-19
 lastmod = 2019-03-19
 
