@@ -16,7 +16,7 @@ baseurl = "/"
 copyright = "&copy;2019 KubeEdge"
 
 # Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = ""
+googleAnalytics = "UA-137983920-1"
 
 # Enable comments by entering your Disqus shortname
 disqusShortname = ""
