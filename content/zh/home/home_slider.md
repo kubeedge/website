@@ -47,7 +47,7 @@ height = "350px"
 
 [[item]]
   title = "简化开发"
-  content = "开发人员可以编写常规的基于http或mqtt的应用程序;容纳并在Edge或Cloud的任何地方运行。"
+  content = "开发人员可以编写常规的基于http或mqtt的应用程序；容纳并在Edge或Cloud的任何地方运行。"
   align = "right"
 
   overlay_color = "#333"  # An HTML color value.
@@ -55,7 +55,7 @@ height = "350px"
   overlay_filter = 0.85  # Darken the image. Value in range 0-1.
 
 [[item]]
-  title = "Kubernetes本土"
+  title = "Kubernetes原生"
   content = "KubeEdge基于kubernetes构建，为云和边缘之间的网络，应用程序管理和元数据同步提供基础架构支持。"
   align = "center"
 

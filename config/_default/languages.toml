@@ -11,54 +11,53 @@
 [zh]
   languageCode = "zh-Hans"
   contentDir = "content/zh"
-  title = "KubeEdge一个支持Edge计算的开放平台 "
+  title = "KubeEdge一个支持边缘计算的开放平台"
   [zh.params]
     description = ""
   [[zh.menu.main]]
-  name = "Home"
+  name = "主页"
   url = "#home_slider"
   weight = 1
+
+
+  [[zh.menu.main]]
+  name = "为何选择KubeEdge"
+  url = "#why-kubeedge"
+  weight = 2
+
+  [[zh.menu.main]]
+  name = "博客帖子"
+  url = "blog/"
+  weight = 3
+
+  [[zh.menu.main]]
+  name = "演讲"
+  url = "talk/"
+  weight = 4
+
+  [[zh.menu.main]]
+  name = "文档"
+  url = "https://docs.kubeedge.io"
+  weight = 5
 
   [[zh.menu.main]]
   identifier = "about"
   name = "关于"
   url = "#about"
-  weight = 2
-
-  [[zh.menu.main]]
-  name = "要求"
-  [[zh.menu.main]]
-  parent = "about"
-  name = "Requirements"
-  url = "#required"
-  weight = 4
-
-  [[zh.menu.main]]
-  parent = "about"
-  name = "Release Timeline"
-  url = "#timeline"
-  weight = 9
-
-  [[zh.menu.main]]
-  name = "为何选择KubeEdge"
-  url = "#why-kubeedge"
-  weight = 5
-
-  [[zh.menu.main]]
-  name = "博客帖子"
-  url = "blog/"
   weight = 6
 
   [[zh.menu.main]]
-  name = "Talks"
-  url = "talk/"
+  parent = "about"
+  name = "系统要求"
+  url = "#required"
   weight = 7
 
-
   [[zh.menu.main]]
-    name = "文档"
-    url = "https://docs.kubeedge.io"
-    weight = 8
+  parent = "about"
+  name = "版本记录"
+  url = "#timeline"
+  weight = 8
+
   
   # Right Menu
 [[zh.menu.main_right]]
@@ -102,7 +101,7 @@
   identifier = "guides"
 
 [[zh.menu.docs]]
-  name = "故障排除"
+  name = "常见问题"
   weight = 40
   identifier = "faq"
 
