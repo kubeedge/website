@@ -18,6 +18,19 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
+  title = "Contribute to win KubeCon Shanghai tickets!"
+  align = "center"
+
+  overlay_color = "#555"  # An HTML color value.
+  overlay_img = "headers/header-kubecon.jpg"  # Image path relative to your `static/img/` folder.
+  overlay_filter = 0.25  # Darken the image. Value in range 0-1.
+
+  cta_label = "Keep watching our blogs"
+  cta_url = "/zh/blog/"
+  cta_icon_pack = "fas"
+  cta_icon = "fa fa-bullhorn"
+
+[[item]]
   title = "欢迎来到KubeEdge"
   content = "Kubernetes原生边缘计算框架 <br /> <a class=\"github-button\" href=\"https://github.com/kubeedge/kubeedge\" data-icon=\"octicon-star\" data-size=\"large\" data-show-count=\"true\" aria-label=\"Star this on GitHub\">Star</a>"
   align = "center"  # Choose `center`, `left`, or `right`.
@@ -47,7 +60,7 @@ height = "350px"
 
 [[item]]
   title = "简化开发"
-  content = "开发人员可以编写常规的基于http或mqtt的应用程序;容纳并在Edge或Cloud的任何地方运行。"
+  content = "开发人员可以编写常规的基于http或mqtt的应用程序；容纳并在Edge或Cloud的任何地方运行。"
   align = "right"
 
   overlay_color = "#333"  # An HTML color value.
@@ -55,7 +68,7 @@ height = "350px"
   overlay_filter = 0.85  # Darken the image. Value in range 0-1.
 
 [[item]]
-  title = "Kubernetes本土"
+  title = "Kubernetes原生"
   content = "KubeEdge基于kubernetes构建，为云和边缘之间的网络，应用程序管理和元数据同步提供基础架构支持。"
   align = "center"
 

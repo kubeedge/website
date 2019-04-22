@@ -53,7 +53,7 @@ brew install hugo
 #### Debian:
 
 1. Download the latest Debian package from the [Hugo website][hugo-install].
-  For example, `hugo_0.46_Linux-64bit.deb`.
+  For example, `hugo_0.54_Linux-64bit.deb`.
 1. Install the package using `dpkg`:
 
     ```

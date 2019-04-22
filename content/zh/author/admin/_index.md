@@ -6,7 +6,7 @@ name = "KubeEdge"
 superuser = true
 
 # Role/position
-role = "一个支持Edge计算的开放平台"
+role = "一个使能边缘计算的开放平台"
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
@@ -84,6 +84,6 @@ interests = []
 
 +++
 
-KubeEdge是一个开源系统，用于将本机容器化应用程序编排功能扩展到Edge的主机。它基于kubernetes构建，并为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。 Kubeedge在Apache 2.0下获得许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！   
+KubeEdge是一个开源系统，用于将容器化应用程序编排功能扩展到Edge的主机。它基于kubernetes构建，并为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。 KubeEdge使用Apache 2.0许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！   
 
-我们的目标是创建一个开放平台，支持Edge计算，将本机容器化应用程序编排功能扩展到Edge上的主机，后者基于kubernetes构建，并为云和边缘之间的网络，应用程序部署和元数据同步提供基础架构支持。
+我们的目标是创建一个开放平台，使能边缘计算，将容器化应用编排功能扩展到边缘的节点和设备，后者基于kubernetes构建，并为云和边缘之间的网络，应用部署和元数据同步提供基础架构支持。
