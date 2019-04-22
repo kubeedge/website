@@ -19,7 +19,7 @@ copyright = "&copy;2019 KubeEdge"
 googleAnalytics = "UA-137983920-1"
 
 # Enable comments by entering your Disqus shortname
-disqusShortname = ""
+disqusShortname = "kubeedge"
 
 ############################
 ## Advanced options below ##
