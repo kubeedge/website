@@ -1,8 +1,8 @@
 +++
-title = "KubeEdge contributor contest"
-subtitle = "To encourage open source community members participation in KubeEdge project, this contest is been conducted. KubeEdge maintainers welcome community members, individuals, organizations & students for this contest. Each winner will get a free pass to [KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/) The contest will start on **20th April 2019** and end on **23rd May 2019.**"
-date = 2019-04-20
-lastmod = 2019-04-20
+title = 'Win tickets to "KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019"'
+subtitle = "KubeEdge is an open source project, recently sandboxed under CNCF. It is one of the few, if not the only, open source edge computing platforms that has both cloud and edge parts opensourced."
+date = 2019-04-22
+lastmod = 2019-04-22
 
 draft = false
 
@@ -13,7 +13,7 @@ authors = ["KubeEdge"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
 categories = ["General", "Announcements"]
-summary = "To encourage open source community members participation in KubeEdge project, this contest is been conducted. KubeEdge maintainers welcome community members, individuals, organizations & students for this contest. The event will start on 20th April 2019 and end on 23rd May 2019"
+summary = "KubeEdge is an open source project, recently sandboxed under CNCF. It is one of the few, if not the only, open source edge computing platforms that has both cloud and edge parts opensourced."
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
@@ -36,74 +36,69 @@ summary = "To encourage open source community members participation in KubeEdge 
 
   
 
+Any open source project is successful only if the community keeps contributing regularly. We want to encourage our community members and 
+also anyone who wants to start contributing to KubeEdge. To sweeten the deal we have created a contest for you. To put it in simple words,
+
+{{% alert note %}}
+
+Contribute to KubeEdge and Win a ticket to **[KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)**
+
+{{% /alert %}}
+
+That's right! Contribute and win. Contribution does not mean only code contribution. You can contribute to KubeEdge in various ways.
+
 ## **How to participate ?**
 
 {{% alert note %}}
-*Category 1*
 
 1. Raise pull request (PR) either for feature development / test code development (may be unit test code, edge module test code or end to end test code) in repos [kubeedge](https://github.com/kubeedge/kubeedge) / [beehive](https://github.com/kubeedge/beehive) / [viaduct](https://github.com/kubeedge/viaduct) / [website](https://github.com/kubeedge/website).
 2. Identify defects, raise issues in respective repos [kubeedge](https://github.com/kubeedge/kubeedge) / [beehive](https://github.com/kubeedge/beehive) / [viaduct](https://github.com/kubeedge/viaduct) / [website](https://github.com/kubeedge/website).
 3. Re-solving existing issues in repos [kubeedge](https://github.com/kubeedge/kubeedge) / [beehive](https://github.com/kubeedge/beehive) / [viaduct](https://github.com/kubeedge/viaduct) / [website](https://github.com/kubeedge/website).
 4. Share requirements by creating issues in repo [kubeedge](https://github.com/kubeedge/kubeedge).
-{{% /alert %}}
-
-{{% alert note %}}
-*Category 2*
-
-Writing blogs about KubeEdge either in the [website](https://github.com/kubeedge/website) (on PR approved & merged, this gets published in kubeedge.io website blog) or in other popular technical blogging site.
-
+5. Writing blogs about KubeEdge either in the [KubeEdge website](https://kubeedge.io) (on PR approved & merged, this gets published in kubeedge.io website blog) or in other technical blogging site. Please refer here to know how to write a [KubeEdge blog](https://github.com/kubeedge/website/wiki/How-to-write-a-blog).
 Submit your blog details  [here](https://docs.google.com/forms/d/e/1FAIpQLSd9luGaHWt5jABEQjtr11CgWLVw7Px6tJf0TIjidbl3UL_Izg/viewform).
+6. Create your own sample applications and demo examples to illustrate possible use case(s) of using KubeEdge in repo [examples](https://github.com/kubeedge/examples).
 
-{{% /alert %}}
-
-{{% alert note %}}
-*Category 3*
-
-Create your own sample applications and demo examples to illustrate possible use case(s) of using KubeEdge in repo [examples](https://github.com/kubeedge/examples).
-{{% /alert %}}
-
-
-## **How the winners are selected**
-
-{{% alert note %}}
-In case of Category 1
-
-KubeEdge maintainers will review the code submitted with PR(s) for feature / test case development or issue fix. 
-For issues raised, KubeEdge maintainers will review severity of issue, quality of steps described towards reproducing, data sufficiency. 
-If a requirement is logged under issues, then maintainers will review against quality of description, uniqueness & how much value it could create in comparision with other edge computing platforms.
-
-One individual from this category will win free pass to free pass to [KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)
-{{% /alert %}}
-
-
-{{% alert note %}}
-In case of Category 2 
-
-KubeEdge maintainers will decide winner based on the content & popularity of that blog. 
-
-One individual from this category will win free pass to free pass to [KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)
-{{% /alert %}}
-
-{{% alert note %}}
-In case of Category 3 
-
-KubeEdge maintainers will review the code, documentation describing the steps & how to use guide submitted with PR(s) submitted in repo examples.
-
-One individual from this category will win free pass to free pass to [KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)
 {{% /alert %}}
 
 ## **Who can participate ?**
 
-As majority of KubeEdge contributors are currently from Huawei organization, KubeEdge maintainers want to encourage other individuals, hence any commits done from Github accounts which are based on huawei domain will not qualify in participation. Other than non-huawei domain all other commits are considered. Hence this contest is open for any individuals.
+At the moment most of the contributors are from Huawei organization. We want to encourage contributions from individual contributors or individuals of other organizations.  
+Contributions made from accounts linked to email ids of huawei organization will not be eligible for participation. 
+The contest is open to all other members.
+
+
+## **How the winners are selected ?**
+
+Any code contributions should follow the [contribution flow](https://github.com/kubeedge/kubeedge/blob/master/CONTRIBUTING.md) to get accepted. We consider the code submitted along with PR(s) for feature / test case development or issue fix. For issues created, will check severity of issue, quality of steps described towards reproducing, data sufficiency. If a requirement is logged as issue, then quality of description, uniqueness & how much value it could create in comparison with other edge computing platforms taken into consideration.  
+
+For a blog written, we consider content & popularity of that blog.  
+
+For an example created, we consider code, documentation describing the steps & user guide.  
+
+Considering above points, 3 winners will be selected.
 
 
 ## **Timeline**
-From 20th April 2019 to 23rd May 2019
+
+{{% alert note %}}
+
+ Starts from **23rd April 2019 00:00 (UTC)** and ends on **22nd May 2019 23:59 (UTC)**
+
+{{% /alert %}}
 
 
 ## **How the winners are notified ?**
 
-In this blog a “Result” section will be added on 31st May 2019. Winners Github ID will be published in this section. An e-mail will also be sent to winners respective e-mail ID’s associated with Github ID. In case of any clarification required on results one could reach out to us via
+{{% alert note %}}
+
+On **23rd May 2019 00:00 (UTC)** through e-mail, slack, twitter and results announcement blog will be published. 
+
+{{% /alert %}}
+
+ 
+
+Winners Github ID will be published in this section. An e-mail will also be sent to winners respective e-mail ID’s associated with Github ID. In case of any clarification required on results one could reach out to us via
 
 - [mailing list](https://groups.google.com/forum/#!forum/kubeedge)
 - [slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNDg1MjAwMDI0MTgyLTQ1NzliNzYwNWU5MWYxOTdmNDZjZjI2YWE2NDRlYjdiZGYxZGUwYzkzZWI2NGZjZWRkZDVlZDQwZWI0MzM1Yzc)
@@ -111,15 +106,15 @@ In this blog a “Result” section will be added on 31st May 2019. Winners Gith
 ## **Resources**
 
 
-https://github.com/kubeedge/kubeedge
+- [kubeedge](https://github.com/kubeedge/kubeedge)
 
-https://github.com/kubeedge/viaduct
+- [viaduct](https://github.com/kubeedge/viaduct)
 
-https://github.com/kubeedge/beehive
+- [beehive](https://github.com/kubeedge/beehive)
 
-https://github.com/kubeedge/examples
+- [examples](https://github.com/kubeedge/examples)
 
-https://github.com/kubeedge/website
+- [website](https://github.com/kubeedge/website)
 
 
 
