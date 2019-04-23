@@ -42,11 +42,9 @@ Contribute to KubeEdge and Win a ticket to **[KubeCon + CloudNativeCon & Open So
 
 {{% /alert %}}
 
-That's right, Contribute and win! Contribution is not limited to code contribution only; it can also include documentation, blogging, testing/issue identification, requirement identification and others. See details below
+That's right, contribute and win! Contribution is not limited to code contribution only; it can also include documentation, blogging, testing/issue identification, requirement identification and others. See details below
 
 ## **How to participate ?**
-
-{{% alert note %}}
 
 1. Raise pull request (PR) either for feature development / test code development (may be unit test code, edge module test code or end to end test code) in repos [kubeedge](https://github.com/kubeedge/kubeedge) / [beehive](https://github.com/kubeedge/beehive) / [viaduct](https://github.com/kubeedge/viaduct) / [website](https://github.com/kubeedge/website).
 2. Identify defects, raise issues in respective repos [kubeedge](https://github.com/kubeedge/kubeedge) / [beehive](https://github.com/kubeedge/beehive) / [viaduct](https://github.com/kubeedge/viaduct) / [website](https://github.com/kubeedge/website).
@@ -56,12 +54,10 @@ That's right, Contribute and win! Contribution is not limited to code contributi
 Submit your blog details [here](https://docs.google.com/forms/d/e/1FAIpQLSd9luGaHWt5jABEQjtr11CgWLVw7Px6tJf0TIjidbl3UL_Izg/viewform).
 6. Create your own sample applications and demo examples to illustrate possible use case(s) of using KubeEdge in repo [examples](https://github.com/kubeedge/examples).
 
-{{% /alert %}}
 
 ## **Who can participate ?**
-{{% alert note %}}
+
 Anyone is welcome!
-{{% /alert %}}
 
 
 ## **How the winners are selected ?**
@@ -120,7 +116,7 @@ Winners' Github ID will be published in this section. Winners will receive an e-
 
 ## **KubeEdge community Code of Conduct**
 
-[KubeEdge follows the CNCF Code of conduct.](https://github.com/kubeedge/kubeedge/blob/master/CODE_OF_CONDUCT.md)
+KubeEdge follows the CNCF [Code of conduct](https://github.com/kubeedge/kubeedge/blob/master/CODE_OF_CONDUCT.md).
 
 
 
