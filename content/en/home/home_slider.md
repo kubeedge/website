@@ -18,7 +18,7 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
-  title = "Win tickets to KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019"
+  title = "Win a conference ticket to KubeCon + CloudNativeCon & Open Source Summit, Shanghai, China 2019"
   align = "center"
 
   overlay_color = "#555"  # An HTML color value.
