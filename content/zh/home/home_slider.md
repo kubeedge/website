@@ -18,14 +18,14 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
-  title = "Win tickets to KubeCon + CloudNativeCon & Open source summit, Shanghai, China 2019"
+  title = "赢取2019中国上海KubeCon + CloudNativeCon & Open Source Summit门票"
   align = "center"
 
   overlay_color = "#555"  # An HTML color value.
   overlay_img = "headers/header-kubecon.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.25  # Darken the image. Value in range 0-1.
 
-  cta_label = "Click here for more details"
+  cta_label = "点击查看更多信息"
   cta_url = "/zh/blog/"
   cta_icon_pack = "fas"
   cta_icon = "fa fa-bullhorn"
