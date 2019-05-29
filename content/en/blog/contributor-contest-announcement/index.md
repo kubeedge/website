@@ -53,4 +53,4 @@ We are very pleased to share that we received a very good response from communit
 
 {{% /alert %}}
 
-Hearty Congratulations to all the winners.
+Hearty Congratulations to all the winners. We will reach out to the winners soon via email.
