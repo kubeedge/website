@@ -10,7 +10,7 @@ authors = ["KubeEdge"]
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
+tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8s edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
 categories = ["General", "Announcements"]
 summary = "Win a conference ticket to KubeCon + CloudNativeCon & Open Source Summit, Shanghai, China 2019."
 
