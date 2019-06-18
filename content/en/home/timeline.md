@@ -19,6 +19,23 @@ date_format = "January 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
+  title = "v0.3"
+  company = "Third Release"
+  company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v0.3.0"
+  location = "May, 2019"
+  date_start = ""
+  date_end = ""
+  description = """
+**Features added**  
+
+- Device Management using CRDs feature mainly provides APIs for managing devices from cloud and synchronize the device updates between cloud and edge <a href='https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd.md' target="_blank">&hellip; Read more</a>
+- Bluetooth Mapper application support which is used to connect and control devices that use bluetooth as a communication protocol.
+- Performance Test Framework to measure the performance against the Service Level Objectives like Latency, Throughput, Scalability, CPU Usage, Memory Usage etc <a href='https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/perf.md' target="_blank">&hellip; Read more</a>
+- KubeEdge Installer support for basic commands like "kubeedge init", "kubeedge join" and "kubeedge reset" to bootstrap and teardown both KubeEdge cloud and edge components <a href='https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/keadm-scope.md' target="_blank">&hellip; Read more</a>
+
+  """
+
+[[experience]]
   title = "v0.2"
   company = "Second Release"
   company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v0.2"
@@ -30,8 +47,7 @@ date_format = "January 2006"
 
 - Edge-controller which connects to Kubernetes api-server and sync node/pod status between edge and kubernetes api-server.
 - Cloudhub which is a websocket server in cloud part of kubeedge.
-- Internal MQTT mode in which MQTT broker is started with edge_core and removes dependency on external MQTT broker.
-- Integration test framework for edge. Improved edge_core unit-test coverage.  
+- Internal MQTT mode in which MQTT broker is started with edge_core and removes dependency on external MQTT broker. 
 
   """
 
