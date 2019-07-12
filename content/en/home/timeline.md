@@ -19,8 +19,25 @@ date_format = "January 2006"
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 [[experience]]
+  title = "v1.0.0"
+  company = "KubeEdge v1.0.0 release"
+  company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v1.0.0"
+  location = "June, 2019"
+  date_start = ""
+  date_end = ""
+  description = """
+**Features added**
+
+- Edge mesh provides service mesh capabilities on the edge. Pod-to-pod communication on the same edge node or across edge nodes in the same subnet is supported. <a href='https://docs.kubeedge.io/en/latest/guides/edgemesh_test_env_guide.html' target="_blank">&hellip; Read more</a>
+- CRI-compliant runtimes like containerd are supported at the edge. This enables edged to communicate with the runtime to manage containers running on resource constrained edge nodes.
+- Enhanced cloud and edge communication efficiency via QUIC, a UDP-based protocol. CloudHub supports both Websocket and QUIC protocol access at the same time. The edgehub can choose one of the protocols to access the cloudhub.
+- Modbus Mapper to connect and control devices that use Modbus(RTU/TCP) as a communication protocol.<a href='https://docs.kubeedge.io/en/latest/mappers/modbus_mapper.html' target="_blank">&hellip; Read more</a>
+- Edge Site enables to run a standalone Kubernetes cluster at the edge along with KubeEdge to get full control and improve the offline scheduling capability. <a href='https://docs.kubeedge.io/en/latest/modules/edgesite.html' target="_blank">&hellip; Read more</a>
+  """
+
+[[experience]]
   title = "v0.3"
-  company = "Third Release"
+  company = "KubeEdge v0.3.0 release"
   company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v0.3.0"
   location = "May, 2019"
   date_start = ""
@@ -37,7 +54,7 @@ date_format = "January 2006"
 
 [[experience]]
   title = "v0.2"
-  company = "Second Release"
+  company = "KubeEdge v0.2 release"
   company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v0.2"
   location = "March, 2019"
   date_start = ""
@@ -53,7 +70,7 @@ date_format = "January 2006"
 
 [[experience]]
   title = "v0.1"
-  company = "First Release"
+  company = "KubeEdge v0.1 release"
   company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v0.1"
   location = "December, 2018"
   date_start = ""
