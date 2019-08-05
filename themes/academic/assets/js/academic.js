@@ -339,14 +339,14 @@
     let dark_mode = parseInt(localStorage.getItem('dark_mode') || default_mode);
     if (dark_mode) {
       $('body').addClass('dark');
-      $('link[title=hl-light]')[0].disabled = true;
-      $('link[title=hl-dark]')[0].disabled = false;
+      $('link[title=hl-light]').attr('disabled', true);
+      $('link[title=hl-dark]').attr('disabled', false);
       $('.js-dark-toggle i').removeClass('fa-moon');
       $('.js-dark-toggle i').addClass('fa-sun');
     } else {
       $('body').removeClass('dark');
-      $('link[title=hl-light]')[0].disabled = false;
-      $('link[title=hl-dark]')[0].disabled = true;
+      $('link[title=hl-light]').attr('disabled', false);
+      $('link[title=hl-dark]').attr('disabled', true);
       $('.js-dark-toggle i').removeClass('fa-sun');
       $('.js-dark-toggle i').addClass('fa-moon');
     }
