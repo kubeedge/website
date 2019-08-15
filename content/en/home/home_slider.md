@@ -18,7 +18,7 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
-  title = "Announcement for KubeEdge Contribution Competition Winners"
+  title = "KubeEdge Contribution Sprint #2"
   align = "center"
 
   overlay_color = "#555"  # An HTML color value.
@@ -26,7 +26,7 @@ height = "350px"
   overlay_filter = 0.25  # Darken the image. Value in range 0-1.
 
   cta_label = "Click here for more details"
-  cta_url = "/en/blog/contributor-contest-announcement"
+  cta_url = "/en/blog/contributor-contest-hc"
   cta_icon_pack = "fas"
   cta_icon = "fa fa-bullhorn"
 

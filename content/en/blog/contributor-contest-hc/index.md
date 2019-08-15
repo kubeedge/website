@@ -1,8 +1,8 @@
 +++
-title = 'KubeEdge Contribution Sprint Guide #1'
-subtitle = "Win a conference ticket to [KubeCon + CloudNativeCon & Open Source Summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)"
-date = 2019-04-23
-lastmod = 2019-04-23
+title = 'KubeEdge Contribution Sprint Guide #2'
+subtitle = "Win a conference ticket to [HUAWEI CONNECT 2019, Shanghai, China.](https://www.huawei.com/en/press-events/events/huaweiconnect2019)"
+date = 2019-08-15
+lastmod = 2019-08-15
 
 draft = false
 
@@ -11,9 +11,9 @@ authors = ["KubeEdge"]
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
+tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native"]
 categories = ["General", "Announcements"]
-summary = "Win a conference ticket to KubeCon + CloudNativeCon & Open Source Summit, Shanghai, China 2019."
+summary = "Win a conference ticket to HUAWEI CONNECT 2019, Shanghai, China."
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
@@ -38,7 +38,7 @@ KubeEdge is a CNCF Sandbox project that extends K8s from Cloud to Edge. We would
 
 {{% alert note %}}
 
-Contribute to KubeEdge and Win a ticket to **[KubeCon + CloudNativeCon & Open Source Summit, Shanghai, China 2019.](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)**
+Contribute to KubeEdge and Win a ticket to **[HUAWEI CONNECT 2019, Shanghai, China.](https://www.huawei.com/en/press-events/events/huaweiconnect2019)**
 
 {{% /alert %}}
 
@@ -80,8 +80,8 @@ Contribution can be made in the following various ways. Please see below for con
 
 {{% alert note %}}
 
-Sprint starts: **23rd April 2019 00:00 (UTC)**  
-Sprint ends: **22nd May 2019 23:59 (UTC)**
+Sprint starts: **13rd August 2019 00:00 (UTC)**  
+Sprint ends: **12nd September 2019 23:59 (UTC)**
 
 {{% /alert %}}
 
@@ -90,14 +90,14 @@ Sprint ends: **22nd May 2019 23:59 (UTC)**
 
 {{% alert note %}}
 
-We will make the winner announcement blog on **23rd May 2019 00:00 (UTC)** via e-mail, slack, wechat, twitter.
+We will make the winner announcement blog on **13rd September 2019 00:00 (UTC)** via e-mail, slack, wechat, twitter.
 
 {{% /alert %}} 
 
 Winners' Github ID will be published in this section. Winners will receive an e-mail that is associated with his/her Github ID. Any question, please contact us via:
 
 - [mailing list](https://groups.google.com/forum/#!forum/kubeedge)
-- [slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNDg1MjAwMDI0MTgyLTQ1NzliNzYwNWU5MWYxOTdmNDZjZjI2YWE2NDRlYjdiZGYxZGUwYzkzZWI2NGZjZWRkZDVlZDQwZWI0MzM1Yzc)
+- [slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI)
 
 ## **Resources**
 

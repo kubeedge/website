@@ -1,5 +1,5 @@
 +++
-title = 'Announcement for "KubeEdge Contribution Competition" Winners'
+title = 'Announcement for "KubeEdge Contribution Sprint" Winners #1'
 date = 2019-05-29
 lastmod = 2019-05-29
 

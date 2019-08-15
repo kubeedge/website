@@ -1,8 +1,8 @@
 +++
-title = 'KubeEdge社区贡献者竞赛 #1'
-subtitle = "赢取[2019中国上海KubeCon + CloudNativeCon & Open Source Summit](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)大会门票"
-date = 2019-04-23
-lastmod = 2019-04-23
+title = 'KubeEdge社区贡献者竞赛 #2'
+subtitle = "赢取[2019华为全联接大会（HUAWEI CONNECT）](https://www.huawei.com/cn/press-events/events/huaweiconnect2019)门票"
+date = 2019-08-15
+lastmod = 2019-08-15
 
 draft = false
 
@@ -11,9 +11,9 @@ authors = ["KubeEdge"]
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
+tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native"]
 categories = ["General", "Announcements"]
-summary = "赢取2019中国上海KubeCon + CloudNativeCon & Open Source Summit大会门票"
+summary = "赢取2019华为全联接大会（HUAWEI CONNECT）门票"
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
@@ -41,7 +41,7 @@ KubeEdge是一个将K8S从云端扩展到边缘的CNCF社区项目。
 
 {{% alert note %}}
 
-参与KubeEdge社区贡献赢取**[2019中国上海KubeCon + CloudNativeCon & Open Source Summit](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)**门票。
+参与KubeEdge社区贡献赢取**[2019华为全联接大会（HUAWEI CONNECT）](https://www.huawei.com/cn/press-events/events/huaweiconnect2019)**门票。
 
 {{% /alert %}}
 
@@ -102,9 +102,9 @@ KubeEdge是一个将K8S从云端扩展到边缘的CNCF社区项目。
 
 {{% alert note %}}
 
-竞赛开始时间：**2019年4月23日00:00(UTC时间)**
+竞赛开始时间：**2019年8月13日00:00(UTC时间)**
 
-竞赛结束时间：**2019年5月22日23:59(UTC时间)**
+竞赛结束时间：**2019年9月12日23:59(UTC时间)**
 
 {{% /alert %}}
 
@@ -112,7 +112,7 @@ KubeEdge是一个将K8S从云端扩展到边缘的CNCF社区项目。
 
 {{% alert note %}}
 
-我们将在**2019年5月23日00:00(UTC时间)**通过邮件、Slack、微信、Twitter等多个渠道发布获胜者名单。
+我们将在**2019年9月13日00:00(UTC时间)**通过邮件、Slack、微信、Twitter等多个渠道发布获胜者名单。
 
 {{% /alert %}}
 
@@ -121,7 +121,7 @@ KubeEdge是一个将K8S从云端扩展到边缘的CNCF社区项目。
 
 - [mailing list](https://groups.google.com/forum/#!forum/kubeedge)
 
-- [slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNDg1MjAwMDI0MTgyLTQ1NzliNzYwNWU5MWYxOTdmNDZjZjI2YWE2NDRlYjdiZGYxZGUwYzkzZWI2NGZjZWRkZDVlZDQwZWI0MzM1Yzc)
+- [slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI)
 
 ## **资源列表**
 
