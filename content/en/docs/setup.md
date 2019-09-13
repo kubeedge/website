@@ -88,7 +88,7 @@ Clone kube-edge
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git $GOPATH/src/github.com/kubeedge/kubeedge
 cd $GOPATH/src/github.com/kubeedge/kubeedge
-make # or `make edge_core`
+make # or `make -C edge edgecore`
 ```
 
 ## Integrate with HuaweiCloud [Intelligent EdgeFabric (IEF)](https://www.huaweicloud.com/product/ief.html)
@@ -108,11 +108,11 @@ The HuaweiCloud IEF is only available in China now.
 # run mosquitto
 mosquitto -d -p 1883
 
-# run edge_core
+# run edgecore
 # `conf/` should be in the same directory as the binary
-./edge_core
+./edgecore
 # or
-nohup ./edge_core > edge_core.log 2>&1 &
+nohup ./edgecore > edgecore.log 2>&1 &
 ```
 
 If you are using HuaweiCloud IEF, then the edge node you created should be running (check it in the IEF console page).
