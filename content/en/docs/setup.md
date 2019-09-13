@@ -54,14 +54,17 @@ yum-config-manager \
     https://download.docker.com/linux/centos/docker-ce.repo
 yum update && yum install docker-ce-18.06.1.ce
 ```
+
 KubeEdge uses MQTT for communication between deviceTwin and devices. KubeEdge supports 3 MQTT modes:
+
 1) internalMqttMode: internal mqtt broker is enabled
 2) bothMqttMode: internal as well as external broker are enabled
 3) externalMqttMode: only external broker is enabled
 
-Use mode field in [edge.yaml](https://github.com/kubeedge/kubeedge/blob/master/conf/edge.yaml) to select the desired mode
+Use mode field in [edge.yaml](https://github.com/kubeedge/kubeedge/blob/master/edge/conf/edge.yaml) to select the desired mode
 
 To use kubeedge in double mqtt or external mode, make sure you have **mosquitto** in your environment. Please reference the following steps to install mosquitto if it is not already present in your environment.
+
 ## Install mosquitto
 
 For ubuntu:
@@ -85,10 +88,11 @@ Clone kube-edge
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git $GOPATH/src/github.com/kubeedge/kubeedge
 cd $GOPATH/src/github.com/kubeedge/kubeedge
-make # or `make edge_core`
+make # or `make -C edge edgecore`
 ```
 
 ## Integrate with HuaweiCloud [Intelligent EdgeFabric (IEF)](https://www.huaweicloud.com/product/ief.html)
+
 {{% alert note %}}
 The HuaweiCloud IEF is only available in China now.
 {{% /alert %}}
@@ -98,33 +102,31 @@ The HuaweiCloud IEF is only available in China now.
 3. Download the node configuration file (<node_name>.tar.gz).
 4. Run `bash -x hack/setup_for_IEF.sh /PATH/TO/<node_name>.tar.gz` to modify the configuration files in `conf/`.
 
-
-
 ## Run
 
 ```shell
 # run mosquitto
 mosquitto -d -p 1883
 
-# run edge_core
+# run edgecore
 # `conf/` should be in the same directory as the binary
-./edge_core
+./edgecore
 # or
-nohup ./edge_core > edge_core.log 2>&1 &
+nohup ./edgecore > edgecore.log 2>&1 &
 ```
 
 If you are using HuaweiCloud IEF, then the edge node you created should be running (check it in the IEF console page).
-
 
 ## Run Unit Tests
 
  ```shell
  make test
  ```
- To run unit tests of a package individually 
+
+ To run unit tests of a package individually
+
  ```shell
  export GOARCHAIUS_CONFIG_PATH=$GOPATH/src/github.com/kubeedge/kubeedge
  cd <path to package to be tested>
  go test -v
- 
  ```
