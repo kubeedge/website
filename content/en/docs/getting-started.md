@@ -28,10 +28,10 @@ functionality and actively soliciting help from companies and individuals intere
 This documentation assumes you have a Kubernetes cluster available. If not, set up one of these environments first:
 
   * Local - there are a several options:
-    * [Minikube setup](/docs/started/getting-started-minikube/)
+    * [Minikube setup](/docs/getting-started-minikube/)
       * Minikube leverages virtualization applications like [Virtual Box](https://www.virtualbox.org/) or [VMware Fusion](https://www.vmware.com/products/fusion.html) to host the virtual machine and provides a CLI that can be leveraged outside of the VM.
       * Minikube defines a fully baked ISO that contains a minimal operating system and kubernetes already installed.
-      * This option may be useful if you are just starting to learn and already have one of the virtualization applications already installed.  
+      * This option may be useful if you are just starting to learn and already have one of the virtualization applications already installed.
     * [Multipass & Microk8s setup](/docs/started/getting-started-multipass/)
       * Multipass is a general purpose CLI that launches virtual machines, with Ubuntu [cloud-images](http://cloud-images.ubuntu.com/) already integrated. Multipass uses lightweight, native operating system mechanisms (e.g. [Hypervisor Framework](https://developer.apple.com/documentation/hypervisor) on MacOS, [Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v), QEMU/KVM for linux), which means you don't need to install a virtualization application.
       * [Microk8s](https://microk8s.io) is used to create the Kubernetes cluster inside the virtual machine. It is installed as a [snap](https://snapcraft.io/), which means it has strong isolation and update semantics - your cluster will be updated within a short period after upstream Kubernetes releases.
