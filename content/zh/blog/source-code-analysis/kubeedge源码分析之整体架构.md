@@ -56,12 +56,18 @@ kubeedge中的组件及组件关系，先从官方的架构图说起，具体如
 	
 	kubeedge/cloud/cloudcore/cloudcore.go
 	
+	```
+	
 		func main() {
 			command := app.NewCloudCoreCommand() //此函数是对cobra调用的封装
 			...
 		}
 	
+	```
+	
 	进入app.NewCloudCoreCommand()函数内部，也就是kubeedge/cloud/cloudcore/app/server.go中的NewCloudCoreCommand()函数中，具体如下：
+	
+	```
 	
 		func NewCloudCoreCommand() *cobra.Command {
 			...
@@ -76,6 +82,8 @@ kubeedge中的组件及组件关系，先从官方的架构图说起，具体如
 		  }
 		  ...
 		}
+		
+	```
  	在NewCloudCoreCommand()函数中，通过	registerModules()函数注册cloudcore中的功能模块，通过core.Run()函数启动已注册的cloudcore中的功能模块，至于registerModules()函数注册了哪些功能模块，core.Run()函数怎么启动已注册功能模块的，详见“组件中模块的共用框架和功能”。
  	
 > 注意：kubeedge/cloud/admission/admission.go，kubeedge/cloud/csidriver/csidriver.go两个入口，目前貌似还没有用到，暂不分析。
@@ -84,11 +92,17 @@ kubeedge中的组件及组件关系，先从官方的架构图说起，具体如
 
 	kubeedge/edge/cmd/edgecore/edgecore.go
 	
+	```
+	
 		func main() {
 			command := app.NewEdgeCoreCommand()//此函数是对cobra调用的封装
 			...
 		}
+		
+	```
 进入app.NewEdgeCoreCommand()函数内部，也就是kubeedge/edge/cmd/edgecore/app/server.go中的NewEdgeCoreCommand()函数中，具体如下：
+
+```
 
 		func NewEdgeCoreCommand() *cobra.Command {
 			...
@@ -104,11 +118,16 @@ kubeedge中的组件及组件关系，先从官方的架构图说起，具体如
 		  ...
 		}
 		
-	在NewEdgeCoreCommand()函数中，通过	registerModules()函数注册edgecore中的功能模块，通过core.Run()函数启动已注册的edgecore中的功能模块，至于registerModules()函数注册了哪些功能模块，core.Run()函数怎么启动已注册功能模块的，详见“组件中模块的共用框架和功能”。
+```
+
+在NewEdgeCoreCommand()函数中，通过	registerModules()函数注册edgecore中的功能模块，通过core.Run()函数启动已注册的edgecore中的功能模块，至于registerModules()函数注册了哪些功能模块，core.Run()函数怎么启动已注册功能模块的，详见“组件中模块的共用框架和功能”。
 	
 3. edge_mesh代码入口
 
 	kubeedge/edgemesh/cmd/edgemesh.go
+	
+	
+	```
 	
 		func main() {
 			
@@ -118,12 +137,17 @@ kubeedge中的组件及组件关系，先从官方的架构图说起，具体如
 			//Start server
 			server.StartTCP() //启动一个tcp服务
 		}
+		
+	```
+	
 	
 	从main()函数中可以看到，edgemesh没有使用cobra，而是直接注册功能模块，然后启动了一个TCP服务。
 	
 4. edge_site代码入口
 
 	kubeedge/edgesite/cmd/edgesite.go
+	
+	```
 	
 		func NewEdgeSiteCommand() *cobra.Command {
 			...
@@ -138,6 +162,8 @@ kubeedge中的组件及组件关系，先从官方的架构图说起，具体如
 		  }
 		  ...
 		}
+		
+	```
 		
 	在NewEdgeSiteCommand()函数中，通过	registerModules()函数注册edgesite中的功能模块，通过core.Run()函数启动已注册的edgecore中的功能模块，至于registerModules()函数注册了哪些功能模块，core.Run()函数怎么启动已注册功能模块的，详见“组件中模块的共用框架和功能”。
 	
@@ -154,18 +180,29 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 
 1. cloudcore中功能模块的注册
 
+```
+
 		func registerModules() {
 			cloudhub.Register()
 			edgecontroller.Register()
 			devicecontroller.Register()
 		}
+```
+
 
 	从registerModules()函数中，可以知道cloudcore中有cloudhub、edgecontroller和devicecontroller共3个功能模块，进入Register()函数中来探索一下在模块注册中具体做了什么：
+	
+```
 	
 		func Register() {
 			core.Register(&cloudHub{})
 		}
+		
+```
+
 	在kubeedge/cloud/pkg/cloudhub/cloudhub.go中的Register()函数只是调用了kubeedge/beehive/pkg/core/module.go中的Register(...）函数，继续进入Register(...）函数，会看到：
+	
+```
 	
 		...
 		var (
@@ -184,11 +221,15 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 			}
 		}
 		
-	从上面的变量和函数定义可以清楚地看到，cloudhub模块注册最终会将该模块的结构体放入一个map[string]Module类型的全局变量modules中。
+```
+		
+从上面的变量和函数定义可以清楚地看到，cloudhub模块注册最终会将该模块的结构体放入一个map[string]Module类型的全局变量modules中。
 	
-	按照cloudhub模块注册的思路分析，edgecontroller和devicecontroller也做了相同的事情，最终把各自的结构体放入一个map[string]Module类型的全局变量modules中。
+按照cloudhub模块注册的思路分析，edgecontroller和devicecontroller也做了相同的事情，最终把各自的结构体放入一个map[string]Module类型的全局变量modules中。
 	
-	cloudhub、edgecontroller和devicecontroller三个功能模块，之所以能够采用相同的注册流程，是因为它们都实现了kubeedge/beehive/pkg/core/module.go中的Module接口，Module接口具体内容如下：
+cloudhub、edgecontroller和devicecontroller三个功能模块，之所以能够采用相同的注册流程，是因为它们都实现了kubeedge/beehive/pkg/core/module.go中的Module接口，Module接口具体内容如下：
+	
+```
 	
 		type Module interface {
 			Name() string
@@ -196,11 +237,18 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 			Start(c *context.Context)
 			Cleanup()
 		}
-	可以分别在kubeedge/cloud/pkg/cloudhub/cloudhub.go，kubeedge/cloud/pkg/controller/controller.go，kubeedge/cloud/pkg/devicecontroller/module.go中找到cloudhub、edgecontroller和devicecontroller三个功能模块对Module接口的具体实现。
+		
+```
+
+
+可以分别在kubeedge/cloud/pkg/cloudhub/cloudhub.go，kubeedge/cloud/pkg/controller/controller.go，kubeedge/cloud/pkg/devicecontroller/module.go中找到cloudhub、edgecontroller和devicecontroller三个功能模块对Module接口的具体实现。
+	
 
 2. cloudcore中功能模块的启动
 
 	kubeedge/beehive/pkg/core/core.go
+	
+```
 	
 		//Run starts the modules and in the end does module cleanup
 		func Run() {
@@ -209,10 +257,14 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 			// monitor system signal and shutdown gracefully
 			GracefulShutdown()
 		}
+		
+```
 	
-	从上面的Run()函数中可以知道，该函数通过StartModules()启动已经注册的modules，通过GracefulShutdown()将模块优雅的停止，至于如何启动和停止的，需要进入函数内容一探究竟：
+从上面的Run()函数中可以知道，该函数通过StartModules()启动已经注册的modules，通过GracefulShutdown()将模块优雅的停止，至于如何启动和停止的，需要进入函数内容一探究竟：
 	
 	kubeedge/beehive/pkg/core/core.go
+	
+	```
 	
 		// StartModules starts modules that are registered
 		func StartModules() {
@@ -229,10 +281,13 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 			}
 		}
 		
-	从上面 StartModules()函数的定义，可以清楚地知道该函数首先获得已经注册的module，然后通过一个for循环启动所有的module。
+	```
 	
-	kubeedge/beehive/pkg/core/core.go
+从上面 StartModules()函数的定义，可以清楚地知道该函数首先获得已经注册的module，然后通过一个for循环启动所有的module。
 	
+kubeedge/beehive/pkg/core/core.go
+	
+```
 		// GracefulShutdown is if it gets the special signals it does modules cleanup
 		func GracefulShutdown() {
 			c := make(chan os.Signal)
@@ -249,8 +304,9 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 				}
 			}
 		}
+```
 		
-	GracefulShutdown()函数与StartModules()函数的逻辑类似，也是首先获得已经注册的module，然后通过一个for循环等待关闭所有的module。
+GracefulShutdown()函数与StartModules()函数的逻辑类似，也是首先获得已经注册的module，然后通过一个for循环等待关闭所有的module。
 	
 	
 ### edgecore中模块的共用框架和功能分析
@@ -259,6 +315,7 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 
 1. edgecore中功能模块的注册
 
+```
 		// registerModules register all the modules started in edgecore
 		func registerModules() {
 			devicetwin.Register()
@@ -271,17 +328,22 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 			test.Register()
 			dbm.InitDBManager()
 		}
-		
-	从registerModules()函数中，可以知道edgecore中有devicetwin、edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test共8个功能模块，还有一个db初始化函数，进入Register()函数中来探索一下在模块注册中具体做了什么：
+```
+
+从registerModules()函数中，可以知道edgecore中有devicetwin、edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test共8个功能模块，还有一个db初始化函数，进入Register()函数中来探索一下在模块注册中具体做了什么：
 	
+```
 		// Register register devicetwin
 		func Register() {
 			dtclient.InitDBTable()
 			dt := DeviceTwin{}
 			core.Register(&dt)
 		}
-	在kubeedge/edge/pkg/devicetwin/devicetwin.go中的Register()函数只是调用了kubeedge/beehive/pkg/core/module.go中的Register(...）函数，继续进入Register(...）函数，会看到：	
-	
+
+```
+
+在kubeedge/edge/pkg/devicetwin/devicetwin.go中的Register()函数只是调用了kubeedge/beehive/pkg/core/module.go中的Register(...）函数，继续进入Register(...）函数，会看到：	
+```
 			...
 		var (
 			// Modules map
@@ -298,20 +360,24 @@ kubeedge组件中各个功能模块之间是通过Beehive来组织和管理的�
 				klog.Warningf("Module %v is not register, please check modules.yaml",m.Name())
 			}
 		}
+```
 	
-	从上面的变量和函数定义可以清楚地看到，devicetwin模块注册最终会将该模块的结构体放入一个map[string]Module类型的全局变量modules中。
+从上面的变量和函数定义可以清楚地看到，devicetwin模块注册最终会将该模块的结构体放入一个map[string]Module类型的全局变量modules中。
 	
-	按照cloudhub模块注册的思路分析，edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test也做了相同的事情，最终把各自的结构体放入一个map[string]Module类型的全局变量modules中。
+按照cloudhub模块注册的思路分析，edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test也做了相同的事情，最终把各自的结构体放入一个map[string]Module类型的全局变量modules中。
 	
-	devicetwin、edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test共8个功能模块，之所以能够采用相同的注册流程，是因为它们都实现了kubeedge/beehive/pkg/core/module.go中的Module接口，Module接口具体内容如下：
+devicetwin、edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test共8个功能模块，之所以能够采用相同的注册流程，是因为它们都实现了kubeedge/beehive/pkg/core/module.go中的Module接口，Module接口具体内容如下：
 	
+```
 		type Module interface {
 			Name() string
 			Group() string
 			Start(c *context.Context)
 			Cleanup()
 		}
-	可以分别在kubeedge/edge/pkg/devicetwin/devicetwin.go，kubeedge/edge/pkg/edged/edged.go，kubeedge/edge/pkg/edgehub/module.go，kubeedge/edge/pkg/eventbus/event_bus.go，kubeedge/edge/pkg/edgemesh/module.go，kubeedge/edge/pkg/metamanager/module.go，kubeedge/edge/pkg/servicebush/servicebus.go，kubeedge/edge/pkg/test/test.go中找到devicetwin、edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test共8个功能模块对Module接口的具体实现。	
+```
+
+可以分别在kubeedge/edge/pkg/devicetwin/devicetwin.go，kubeedge/edge/pkg/edged/edged.go，kubeedge/edge/pkg/edgehub/module.go，kubeedge/edge/pkg/eventbus/event_bus.go，kubeedge/edge/pkg/edgemesh/module.go，kubeedge/edge/pkg/metamanager/module.go，kubeedge/edge/pkg/servicebush/servicebus.go，kubeedge/edge/pkg/test/test.go中找到devicetwin、edged、edgehub、eventbus、edgemesh、metamanager、servicebus、和test共8个功能模块对Module接口的具体实现。	
 2. edgecore中功能模块的启动
 
 dgecore中功能模块的启动与“cloudcore中模块的共用框架和功能分析”中的“cloudcore中功能模块的启动”流程完全相同，大家可以参考改部分。
@@ -346,10 +412,10 @@ edgesite中功能模块的注册请参考”edgecore中功能模块的注册”�
 	
 
 	
-本文是“之江实验室端边云操作系统团队” kubeedge源码分析系列的第一篇，接下来会对各组件的源码进行系统分析。如果有机会我们团队也会积极解决kubeedge的issue和实现新的feature。
 
 
-这是我们“之江实验室端边云操作系统团队”维护的“之江实验室kubeedge源码分析群“微信群，欢迎大家的参与！！！
+## 作者简介
 
-[之江实验室kubeedge源码分析群二维码入口](https://pan.baidu.com/s/1x1EAfIeKcSyAsBAQTn3ZIA)
-	
+### 崔广章
+
+从2014年接触云计算以来，完整经历了多次云计算技术的出现、落地和普及，参与过多 个云 计算生产项目，项目涉及多个行业，其中比较有代表性的有基于OpenStack进行定制开发的运营商私有云、政务云，基于开源容器云方案进行定制开发的浙江移动数据中心操作系统 (DCOS)。2017年开始从事边缘计算，主导参与了以函数计算为实现载体的边缘计算在运营商车联网的尝试，主导参与了通过定制应用运行时和应用编排框架的边缘计算方案在运营商CDN的落地。目前在之江实验室。	
