@@ -264,8 +264,7 @@ cloudhub、edgecontroller和devicecontroller三个功能模块，之所以能够
 	
 	kubeedge/beehive/pkg/core/core.go
 	
-	```go
-	
+```go
 		// StartModules starts modules that are registered
 		func StartModules() {
 			coreContext := context.GetContext(context.MsgCtxTypeChannel)
@@ -279,9 +278,8 @@ cloudhub、edgecontroller和devicecontroller三个功能模块，之所以能够
 				go module.Start(coreContext)
 				klog.Infof("Starting module %v", name)
 			}
-		}
-		
-	```
+		}	
+```
 	
 从上面 StartModules()函数的定义，可以清楚地知道该函数首先获得已经注册的module，然后通过一个for循环启动所有的module。
 	
