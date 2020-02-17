@@ -10,7 +10,7 @@ authors = ["Yin Ding"]
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "release v0.2", "v0.2"]
+tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "release v1.2", "v1.2"]
 categories = ["General", "Announcements"]
 summary = "KubeEdge v1.2 is released."
 
@@ -26,7 +26,7 @@ summary = "KubeEdge v1.2 is released."
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 #[image]
   # Caption (optional)
-#  caption = "KubeEdge v0.2 is out. Try it now!"
+#  caption = "KubeEdge v1.2 is out. Try it now!"
 
   # Focal point (optional)
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
@@ -55,9 +55,10 @@ Instructions on how to setup KubeEdge can be found [here](https://github.com/kub
 ### A major upgrade on Cloud-Edge transmission reliability
 
 In an Edge Computing scenario, the instability of edge network could cause the reliability issues of edge’s communication to cloud, which could further cause data loss during communication. To improve Cloud-Edge transmission reliability, KubeEdge v1.2 includes following update：
+
 1. Added a verification mechanism for application layer message sending. There is a handshake mechanism built in to acknowledge (via ACK message) the successful state synchronization between cloud and edge. If the acknowledgement fails due to some reason, an application layer code will trigger the retransmission mechanism to re-synchronize the state.
-2. Implemented persistent cloud side collaborative messages. During the cloud-edge status synchronization process, cloud will record in real time the latest message version number (ResourceVersion) of each edge node that is successfully synchronized, and persist it to Kubernetes in the form of CRD. This mechanism can ensure the order and the continuity of message after a cloud failure or an edge node offline restart, avoiding cloud/edge inconsistent status caused by resending old messages.
-3. Implemented a periodic check for cloud-edge data to ensure consistency. Based on the above two features, KubeEdge 1.2 includes a new module that synchronizes Controller to CloudCore. This module periodically checks the synchronization status of edge nodes, compares the information of resources in Kubernetes, and synchronizes states, and ensure the ultimate state consistency between cloud and edge. 
+1. Implemented persistent cloud side collaborative messages. During the cloud-edge status synchronization process, cloud will record in real time the latest message version number (ResourceVersion) of each edge node that is successfully synchronized, and persist it to Kubernetes in the form of CRD. This mechanism can ensure the order and the continuity of message after a cloud failure or an edge node offline restart, avoiding cloud/edge inconsistent status caused by resending old messages.
+1. Implemented a periodic check for cloud-edge data to ensure consistency. Based on the above two features, KubeEdge 1.2 includes a new module that synchronizes Controller to CloudCore. This module periodically checks the synchronization status of edge nodes, compares the information of resources in Kubernetes, and synchronizes states, and ensure the ultimate state consistency between cloud and edge. 
 
 See more details here:
 https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/reliable-message-delivery.md
