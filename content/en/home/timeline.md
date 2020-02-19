@@ -18,6 +18,61 @@ date_format = "January 2006"
 #   Required fields are `title`, `company`, and `date_start`.
 #   Leave `date_end` empty if it's your current employer.
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
+
+[[experience]]
+  title = "v1.2.0"
+  company = "KubeEdge v1.2.0 release"
+  company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v1.2.0"
+  location = "February, 2020"
+  date_start = ""
+  date_end = ""
+  description = """
+**Features added**
+
+- **Reliable message delivery from cloud to edge**: This feature improved the reliable message delivery
+mechanism from cloud to edge. If cloudcore or edgecore being restarted or offline for a while, it can
+ensure that the messages sent to the edge are not lost, and avoid inconsistency between cloud and edge.
+([#1343](https://github.com/kubeedge/kubeedge/pull/1343), [@kevin-wangzefeng](https://github.com/kevin-wangzefeng),
+[@fisherxu](https://github.com/fisherxu), [@SpaghettiAndSalmon](https://github.com/SpaghettiAndSalmon))
+
+- **KubeEdge Component Config**: The configuration information of all KubeEdge components is integrated
+into the unified API, and users can view all configuration information and their default values through
+the API. ([#1172](https://github.com/kubeedge/kubeedge/pull/1172), [@kadisi](https://github.com/kadisi))
+
+- **Kubernetes dependencies Upgrade**: Upgrade the venderod kubernetes version to v1.17.1, so users can
+use the feature of new version on the cloud and on the edge side.
+([#1349](https://github.com/kubeedge/kubeedge/pull/1349), [@fisherxu](https://github.com/fisherxu))
+
+- **Auto registration of edge node**: Users can set the `register-node` option to `true` in EdgeCore
+so that edge nodes will automatically register node info to K8s master in the cloud.
+([#1401](https://github.com/kubeedge/kubeedge/pull/1401), [@kuramal](https://github.com/kuramal))
+  """
+
+[[experience]]
+  title = "v1.1.0"
+  company = "KubeEdge v1.1.0 release"
+  company_url = "https://github.com/kubeedge/kubeedge/releases/tag/v1.1.0"
+  location = "September, 2019"
+  date_start = ""
+  date_end = ""
+  description = """
+**Features added**
+- **Container Storage Interface (CSI) support**: This feature enables running applications with
+persistant data store at edge and KubeEdge to support
+[basic CSI Volume Lifecycle](https://github.com/container-storage-interface/spec/blob/master/spec.md#volume-lifecycle)
+and is compatible with Kubernetes and CSI.
+
+- **Dynamic Admission Control Webhook**: Admission control webhook is an effective way of
+validating/mutating the object configuration for KubeEdge API objects like devicemodels, devices.
+
+- **Kubernetes Upgrade**: Upgrade the venderod kubernetes version to v1.15.3, so users can use the
+feature of new version on the cloud and on the edge side.
+
+- **KubeEdge local setup scripts**: A bash script that can start a KubeEdge cluster in a VM with
+cloudcore, edgecore binaries and kind. It uses kind to start K8s cluster and runs cloudcore, edgecore
+binaries as processes in a single VM.
+  """
+
 [[experience]]
   title = "v1.0.0"
   company = "KubeEdge v1.0.0 release"
@@ -64,7 +119,7 @@ date_format = "January 2006"
 
 - Edge-controller which connects to Kubernetes api-server and sync node/pod status between edge and kubernetes api-server.
 - Cloudhub which is a websocket server in cloud part of kubeedge.
-- Internal MQTT mode in which MQTT broker is started with edge_core and removes dependency on external MQTT broker. 
+- Internal MQTT mode in which MQTT broker is started with edge_core and removes dependency on external MQTT broker.
 
   """
 
