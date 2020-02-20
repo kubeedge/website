@@ -18,7 +18,7 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
-  title = "【公告】KubeEdge社区贡献者竞赛获胜者名单"
+  title = "KubeEdge v1.2现已发布"
   align = "center"
 
   overlay_color = "#555"  # An HTML color value.
@@ -26,7 +26,7 @@ height = "350px"
   overlay_filter = 0.25  # Darken the image. Value in range 0-1.
 
   cta_label = "点击查看更多信息"
-  cta_url = "/zh/blog/contributor-contest-announcement"
+  cta_url = "/zh/blog/release-v1.2"
   cta_icon_pack = "fas"
   cta_icon = "fa fa-bullhorn"
 
