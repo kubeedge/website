@@ -75,7 +75,7 @@
 [[zh.menu.main_right]]
   name = "<i class=\"fab fa-slack\" style=\"color: #55acee; font-size: 1rem; line-height: 1.25\"></i>"
   post = ""
-  url = "https://kubeedge.slack.com"
+  url = "https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI"
   weight = 30
 
 # Documentation 
