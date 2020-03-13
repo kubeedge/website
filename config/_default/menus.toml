@@ -9,40 +9,24 @@
   weight = 1
 
 [[main]]
-  identifier = "about"
-  parent = "About"
-  name = "About"
-  url = "#about"
-  weight = 2
-
-[[main]]
-[[main]]
-  parent = "About"
-  name = "Requirements"
-  url = "#required"
-  weight = 4
-
-[[main]]
   name = "Why KubeEdge"
   url = "#why-kubeedge"
-  weight = 5
-
-[[main]]
-  name = "Blog"
-  url = "blog/"
-  weight = 6
-
-[[main]]
-  name = "Talks"
-  url = "#talks"
-  weight = 7
+  weight = 2
 
 [[main]]
   name = "Documentation"
   url = "https://docs.kubeedge.io"
-  weight = 8
+  weight = 3
 
+[[main]]
+  name = "Blog"
+  url = "blog/"
+  weight = 4
 
+[[main]]
+  name = "Downloads"
+  url = "https://github.com/kubeedge/kubeedge/releases"
+  weight = 5
 
 
 # Right Menu
