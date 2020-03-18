@@ -19,44 +19,25 @@
   url = "#home_slider"
   weight = 1
 
-
   [[zh.menu.main]]
   name = "为何选择KubeEdge"
   url = "#why-kubeedge"
   weight = 2
 
   [[zh.menu.main]]
-  name = "博客帖子"
-  url = "blog/"
+  name = "文档"
+  url = "https://docs.kubeedge.io"
   weight = 3
 
   [[zh.menu.main]]
-  name = "演讲"
-  url = "talk/"
+  name = "博客帖子"
+  url = "blog/"
   weight = 4
 
   [[zh.menu.main]]
-  name = "文档"
-  url = "https://docs.kubeedge.io"
+  name = "下载"
+  url = "https://github.com/kubeedge/kubeedge/releases"
   weight = 5
-
-  [[zh.menu.main]]
-  identifier = "about"
-  name = "关于"
-  url = "#about"
-  weight = 6
-
-  [[zh.menu.main]]
-  parent = "about"
-  name = "系统要求"
-  url = "#required"
-  weight = 7
-
-  [[zh.menu.main]]
-  parent = "about"
-  name = "版本记录"
-  url = "#timeline"
-  weight = 8
 
   
   # Right Menu
