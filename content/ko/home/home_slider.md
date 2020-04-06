@@ -25,7 +25,7 @@ height = "350px"
   overlay_img = "headers/header-kubecon.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0.25  # Darken the image. Value in range 0-1.
 
-  cta_label = "세부 정보 확인을 위해 클릭Click here for more details"
+  cta_label = "세부 정보 확인"
   cta_url = "/en/blog/release-v1.2"
   cta_icon_pack = "fas"
   cta_icon = "fa fa-bullhorn"
@@ -69,7 +69,7 @@ height = "350px"
 
 [[item]]
   title = "쿠버네티스 네이티브"
-  content = "큐브엣지는 쿠버네티스를 기반으로 합니다. 사용자는 클라우드 환경의 기존 쿠버네티스 클러스터와 마찬가지로 엣지 노드에서 앱을 조정하고 장치를 관리하며, 앱 및 장치의 상태를 모니터링 할 수 있습니다."
+  content = "큐브엣지는 쿠버네티스를 기반으로 합니다. 기존 쿠버네티스 클러스터와 마찬가지로 엣지 노드에서 앱을 조정하고 장치를 관리하며, 앱 및 장치의 상태를 모니터링 할 수 있습니다."
   align = "center"
 
   overlay_color = "#333"  # An HTML color value.
