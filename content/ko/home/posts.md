@@ -6,8 +6,8 @@ widget = "pages"  # Do not modify this line!
 active = true  # Activate this widget? true/false
 weight = 7  # Order that this section will appear.
 
-title = "Recent Posts"
-subtitle = "[View all](blog/)"
+title = "최근의 포스팅"
+subtitle = "[전부 보기](blog/)"
 
 [content]
   # Page type to display. E.g. post, talk, or publication.
