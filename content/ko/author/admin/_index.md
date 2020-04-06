@@ -1,6 +1,6 @@
 +++
 # Display name
-name = "KubeEdge"
+name = "큐브엣지"
 
 # Is this the primary user of the site?
 superuser = true
