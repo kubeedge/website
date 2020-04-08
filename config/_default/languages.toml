@@ -90,7 +90,7 @@
 [ko]
   languageCode = "ko"
   contentDir = "content/ko"
-  title = "큐브엣지"
+  title = "KubeEdge"
   [ko.params]
     description = ""
   [[ko.menu.main]]
