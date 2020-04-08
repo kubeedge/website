@@ -99,7 +99,7 @@
   weight = 1
 
   [[ko.menu.main]]
-  name = "why 큐브엣지"
+  name = "why KubeEdge"
   url = "#why-kubeedge"
   weight = 2
 

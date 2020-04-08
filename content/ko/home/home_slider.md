@@ -18,7 +18,7 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
-  title = "큐브엣지 v1.2 발표"
+  title = "KubeEdge v1.2 발표"
   align = "center"
 
   overlay_color = "#555"  # An HTML color value.
@@ -31,7 +31,7 @@ height = "350px"
   cta_icon = "fa fa-bullhorn"
 
 [[item]]
-  title = "큐브엣지에 오신걸 환영합니다."
+  title = "KubeEdge에 오신걸 환영합니다."
   content = "쿠버네티스 네이티브 엣지 컴퓨팅 프레임워크 <br /> <a class=\"github-button\" href=\"https://github.com/kubeedge/kubeedge\" data-icon=\"octicon-star\" data-size=\"large\" data-show-count=\"true\" aria-label=\"Star this on GitHub\">Star</a>"
   align = "center"  # Choose `center`, `left`, or `right`.
 
@@ -44,7 +44,7 @@ height = "350px"
   # Call to action button (optional).
   #   Activate the button by specifying a URL and button label below.
   #   Deactivate by commenting out parameters, prefixing lines with `#`.
-  cta_label = "큐브엣지에 대하여 더 공부해보기"
+  cta_label = "KubeEdge에 대하여 더 공부해보기"
   cta_url = "https://docs.kubeedge.io"
   cta_icon_pack = "fas"
   cta_icon = "graduation-cap"
@@ -69,7 +69,7 @@ height = "350px"
 
 [[item]]
   title = "쿠버네티스 네이티브"
-  content = "큐브엣지는 쿠버네티스를 기반으로 합니다. 기존 쿠버네티스 클러스터와 마찬가지로 엣지 노드에서 앱을 조정하고 장치를 관리하며, 앱 및 장치의 상태를 모니터링 할 수 있습니다."
+  content = "KubeEdge는 쿠버네티스를 기반으로 합니다. 기존 쿠버네티스 클러스터와 마찬가지로 엣지 노드에서 앱을 조정하고 장치를 관리하며, 앱 및 장치의 상태를 모니터링 할 수 있습니다."
   align = "center"
 
   overlay_color = "#333"  # An HTML color value.

@@ -6,7 +6,7 @@ widget = "featured-section"
 active = true
 date = 2016-04-20T00:00:00
 
-title = "큐브엣지는 완전한 오픈소스이며, 오픈소스 기술 위에서 동작합니다."
+title = "KubeEdge는 완전한 오픈소스이며, 오픈소스 기술 위에서 동작합니다."
 subtitle = ""
 
 # Order that this section will appear in.
@@ -25,7 +25,7 @@ weight = 4
   img_src = "kubernetes-200.png"
   img_width = "100px"
   name = "쿠버네티스"
-  description = "큐브엣지 프로젝트는 쿠버네티스 기술을 기반으로 하는 개방형 플랫폼을 만들고 있으며 클라우드와 엣지 간의 네트워크, 애플리케이션의 배포 및 메타 데이터 동기화를 위한 기본 인프라 지원을 제공합니다."
+  description = "KubeEdge 프로젝트는 쿠버네티스 기술을 기반으로 하는 개방형 플랫폼을 만들고 있으며 클라우드와 엣지 간의 네트워크, 애플리케이션의 배포 및 메타 데이터 동기화를 위한 기본 인프라 지원을 제공합니다."
   
 [[featured]]
   img_src = "mosquitto-200.png"
