@@ -87,7 +87,7 @@ KubeEdge v1.3版本内置了流数据通道，用户可以很方便地通过`kub
 
 默认情况下，KubeEdge会为用户生成自签名证书，用于云端组件和边缘节点的加密通信。针对需要统一管理证书的场景，用户也可以使用指定信任机构签发的证书。
 
-下一步，社区将支持节点的证书自动更新。
+下一步，社区将支持节点的证书到期自动更新。
 
 文档链接：https://github.com/kubeedge/kubeedge/blob/master/docs/setup/kubeedge_configure.md
 
