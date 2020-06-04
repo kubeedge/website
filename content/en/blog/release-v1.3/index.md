@@ -10,7 +10,7 @@ authors = ["Yin Ding"]
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "release v1.3", "v1.3"]
+tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native", "iot", "iiot", "release v1.3", "v1.3"]
 categories = ["General", "Announcements"]
 summary = "KubeEdge v1.3 is released."
 
@@ -41,13 +41,13 @@ summary = "KubeEdge v1.3 is released."
 
 On May 15th, the KubeEdge community is proud to announce the availability of KubeEdge 1.3. This release includes a major upgrade for maintainability, which includes:
 
-- Edge pod log collection from the cloud
+- Collecting logs from pods at edge in cloud
 
 - Edge node and container monitoring
 
 - High availability of KubeEdge cloud components
 
-- Automation of edge node certificate issuing
+- Automated TLS bootstrapping for edge nodes
 
 - CRI-O and Kata container runtime support
 
@@ -65,7 +65,7 @@ How to set up KubeEdge - [https://github.com/kubeedge/kubeedge - usage](https://
 
 ## **Release Highlights**
 
-### Edge pod log collection from the cloud
+### Collecting logs from pods at edge in cloud
 
 In most edge computing scenarios, the edge node is in a private network, and the pod logs running on the edge node cannot be directly pulled from the cloud, resulting issues for maintenance and debugging.
 
@@ -91,9 +91,9 @@ KubeEdge v1.3 has a built-in high-availability for the KubeEdge cloud component,
 
 In subsequent versions, the KubeEdge community will further optimize the high concurrency of cloud components to improve throughput in large-scale edge nodes scenarios. 
 
-### Automation of Edge node certificate issuing
+### Automated TLS bootstrapping for edge nodes
 
-KubeEdge v1.3 automates the edge node certificate issuing, which simplifies the operation for users to configure cloud-edge secure channels and improves ease-of-use.
+KubeEdge v1.3 introduced automated TLS bootstrapping for edge nodes, which simplifies the operation for users to configure cloud-edge secure channels and improves ease-of-use.
 
 By default, KubeEdge generates a self-signed certificate for users, which is used for encrypted communication between cloud components and edge nodes. For scenarios that require an unified management of certificates, users can also use certificates issued by designated trust authorities.
 
@@ -103,7 +103,7 @@ See more feature details: https://github.com/kubeedge/kubeedge/blob/master/docs/
 
 ### More container runtime support
 
-KubeEdge v1.3 supports CRI-O and Kata Container runtimes
+KubeEdge v1.3 adds support of CRI-O and Kata Container as container runtime.
 
 - CRI-O, a CNCF incubation project, is a lightweight container, taking up to 30MB memory, and is in compliance with OCI standards. 
 
@@ -134,7 +134,6 @@ https://github.com/kubeedge/kubeedge/blob/master/docs/getting-started/roadmap.md
 For more details regarding KubeEdge, please follow and join us here:
 
 https://kubeedge.io
-
 
 
 
