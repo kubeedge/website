@@ -18,7 +18,7 @@ height = "350px"
 # Slides.
 # Duplicate an `[[item]]` block to add more slides.
 [[item]]
-  title = "KubeEdge v1.3 Announcement"
+  title = "KubeEdge v1.3 is live!"
   align = "center"
 
   overlay_color = "#555"  # An HTML color value.

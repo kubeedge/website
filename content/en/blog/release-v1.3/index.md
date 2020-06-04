@@ -1,18 +1,18 @@
 +++
-title = "KubeEdge v1.3 Announcement"
+title = "KubeEdge v1.3 is live!"
 date = 2020-05-30
 lastmod = 2020-05-30
 
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Yin Ding"]
+authors = ["Yin Ding", "Kevin Wang"]
 
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native", "iot", "iiot", "release v1.3", "v1.3"]
 categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3 is released."
+summary = "KubeEdge v1.3 is live!"
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
@@ -26,7 +26,7 @@ summary = "KubeEdge v1.3 is released."
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 #[image]
   # Caption (optional)
-#  caption = "KubeEdge v1.3 Announcement"
+#  caption = "KubeEdge v1.3 is live!"
 
   # Focal point (optional)
   # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
@@ -49,7 +49,7 @@ On May 15th, the KubeEdge community is proud to announce the availability of Kub
 
 - Automated TLS bootstrapping for edge nodes
 
-- CRI-O and Kata container runtime support
+- CRI-O and Kata Containers runtime support
 
 - 25+ bug fixes and enhancements.
 
@@ -103,13 +103,13 @@ See more feature details: https://github.com/kubeedge/kubeedge/blob/master/docs/
 
 ### More container runtime support
 
-KubeEdge v1.3 adds support of CRI-O and Kata Container as container runtime.
+KubeEdge v1.3 adds support of CRI-O and Kata Containers as container runtime.
 
 - CRI-O, a CNCF incubation project, is a lightweight container, taking up to 30MB memory, and is in compliance with OCI standards. 
 
-- Kata Container, a OpenStack Foundation project, is a container runtime based on lightweight virtual machines. It is designed to combine the security advantages of virtual machines (VMs) with the speed and the manageability of containers.
+- Kata Containers is an open source container runtime based on lightweight virtual machines. It is designed to combine the security advantages of virtual machines (VMs) with the speed and the manageability of containers.
 
-With v1.3, KubeEdge has official support for all mainstream container runtimes including Docker, containerd, CRI-O and Kata Container.
+With v1.3, KubeEdge has official support for all mainstream container runtimes including Docker, containerd, CRI-O and Kata Containers.
 
 See more feature details: https://github.com/kubeedge/kubeedge/blob/master/docs/setup/kubeedge_cri_configure.md
 
@@ -134,6 +134,5 @@ https://github.com/kubeedge/kubeedge/blob/master/docs/getting-started/roadmap.md
 For more details regarding KubeEdge, please follow and join us here:
 
 https://kubeedge.io
-
 
 
