@@ -551,12 +551,12 @@ kubeedge-pi-counter-c69698d6-rb4xz      1/1     Running   0          2m      192
 ```
 [root@ke-edge1 ~]# docker logs -f counter-container-id
 ```
-![image](https://github.com/Poorunga/website/blob/wangjiezhang/content/zh/blog/kubeedge-deployment-manual/images/trun_on.png)
+![image](trun_on.png)
 
 **2）查看counter STATUS**
 
 在web页面上选择STATUS，并点击Execute，会在Web页面上返回counter当前的status，如下所示：
-![image](https://github.com/Poorunga/website/blob/wangjiezhang/content/zh/blog/kubeedge-deployment-manual/images/check_status.png)
+![image](check_status.png)
 
 **2）执行OFF命令**
 
@@ -564,6 +564,6 @@ kubeedge-pi-counter-c69698d6-rb4xz      1/1     Running   0          2m      192
 ```
 [root@ke-edge1 ~]# docker logs -f counter-container-id
 ```
-![image](https://github.com/Poorunga/website/blob/wangjiezhang/content/zh/blog/kubeedge-deployment-manual/images/trun_off.png)
+![image](trun_off.png)
 
 # End~
