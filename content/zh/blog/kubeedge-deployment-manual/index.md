@@ -355,6 +355,8 @@ kube-scheduler-ke-cloud            1/1     Running   0          13h
 **选用示例：KubeEdge Counter Demo**
 计数器是一个伪设备，用户无需任何额外的物理设备即可运行此演示。计数器在边缘侧运行，用户可以从云侧在Web中对其进行控制，也可以从云侧在Web中获得计数器值。原理图如下：
 
+![image](../images/work-flow.png)
+
 详细文档参考：https://github.com/kubeedge/examples/tree/master/kubeedge-counter-demo
 ## 4.1 准备工作
 **1）本示例要求KubeEdge版本必须是v1.2.1+**
