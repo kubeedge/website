@@ -389,6 +389,7 @@ ke-edge1   Ready    agent,edge   64s   v1.17.1-kubeedge-v1.3.1
 ```
 
 **2）创建device**
+
 根据你的实际情况修改matchExpressions：
 ```
 [root@ke-cloud ~]# cd $GOPATH/src/github.com/kubeedge/examples/kubeedge-counter-demo/crds
@@ -428,6 +429,7 @@ status:
 
 ## 4.3 部署云端应用
 **1）修改代码**
+
 云端应用web-controller-app用来控制边缘端的pi-counter-app应用，该程序默认监听的端口号为80，此处修改为8089，如下所示：
 ```
 [root@ke-cloud ~]# cd $GOPATH/src/github.com/kubeedge/examples/kubeedge-counter-demo/web-controller-app
@@ -448,6 +450,7 @@ func main() {
 ```
 
 **2）构建镜像**
+
 注意：构建镜像时，请将源码拷贝到GOPATH对应的路径下，如果开启了go mod请关闭。
 ```
 [root@ke-cloud web-controller-app~]# make all
@@ -462,7 +465,9 @@ func main() {
 
 ## 4.3 部署边缘端应用
 边缘端的pi-counter-app应用受云端应用控制，主要与mqtt服务器通信，进行简单的计数功能。
+
 **1）修改代码与构建镜像**
+
 需要将Makefile中的GOARCH修改为amd64才能运行该容器。
 ```
 [root@ke-cloud ~]# cd $GOPATH/src/github.com/kubeedge/examples/kubeedge-counter-demo/counter-mapper
@@ -506,6 +511,7 @@ kubeedge-pi-counter-c69698d6-rb4xz      1/1     Running   0          2m      192
 我们现在开始测试一下该Demo运行效果：
 
 **1）执行ON命令**
+
 在web页面上选择ON，并点击Execute，可以在edge节点上通过以下命令查看执行结果：
 ```
 [root@ke-edge1 ~]# docker logs -f counter-container-id
@@ -513,10 +519,12 @@ kubeedge-pi-counter-c69698d6-rb4xz      1/1     Running   0          2m      192
 ![image](https://github.com/Poorunga/website/blob/wangjiezhang/content/zh/blog/kubeedge-deployment-manual/images/trun_on.png)
 
 **2）查看counter STATUS**
+
 在web页面上选择STATUS，并点击Execute，会在Web页面上返回counter当前的status，如下所示：
 ![image](https://github.com/Poorunga/website/blob/wangjiezhang/content/zh/blog/kubeedge-deployment-manual/images/check_status.png)
 
 **2）执行OFF命令**
+
 在web页面上选择OFF，并点击Execute，可以再edge节点上通过以下命令查看执行结果：
 ```
 [root@ke-edge1 ~]# docker logs -f counter-container-id
