@@ -404,14 +404,14 @@ ke-edge1   Ready    agent,edge   64s   v1.17.1-kubeedge-v1.3.1
 说明：本文接下来的验证将使用边缘节点ke-edge1进行，如果你参考本文进行相关验证，后续边缘节点名称的配置需要根据你的实际情况进行更改。
 ```
 
-**2）确保k8s apiserver开启了以下配置：**
+<!--**2）确保k8s apiserver开启了以下配置：**
 ```
 --insecuret-port=8080
 --insecure-bind-address=0.0.0.0
 ```
-可以通过修改/etc/kubernetes/manifests/kube-apiserver.yaml文件，并重启k8s-apiserver组件的pod来进行更改。
+可以通过修改/etc/kubernetes/manifests/kube-apiserver.yaml文件，并重启k8s-apiserver组件的pod来进行更改。-->
 
-**3）下载示例代码：**
+**2）下载示例代码：**
 ```
 [root@ke-cloud ~]# git clone https://github.com/kubeedge/examples.git $GOPATH/src/github.com/kubeedge/examples
 ```
