@@ -1,5 +1,5 @@
 exports.handler = function(event, context, callback) {
-    // your server-side functionality
+    // Set the latest version here.
 	const latestVersion = "v1.4";
 	callback(null, {
     		headers: {
