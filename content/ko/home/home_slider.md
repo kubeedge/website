@@ -26,7 +26,7 @@ height = "350px"
   overlay_filter = 0.25  # Darken the image. Value in range 0-1.
 
   cta_label = "세부 정보 확인"
-  cta_url = "/en/blog/release-v1.3"
+  cta_url = "/ko/blog/release-v1.3"
   cta_icon_pack = "fas"
   cta_icon = "fa fa-bullhorn"
 
