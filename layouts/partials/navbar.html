@@ -96,6 +96,20 @@
           <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
         </li>
         {{ end }}
+<!--        {{ if  .Site.Params.versions }}-->
+<!--          <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--              <span>{{ .Site.Params.version_menu }}</span>-->
+<!--            </a>-->
+<!--            <ul class="dropdown-menu">-->
+<!--              {{ range .Site.Params.versions }}-->
+<!--                <li class="dropdown-item my-0 py-0 mx-0 px-0">-->
+<!--                  <a class="dropdown-item" href="{{ .url }}">{{ .version }}</a>-->
+<!--                </li>-->
+<!--              {{ end }}-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        {{ end }}-->
 
         {{ if .IsTranslated }}
         <li class="nav-item dropdown">
@@ -113,20 +127,6 @@
             {{ end }}
           </ul>
         </li>
-        {{ end }}
-        {{ if  .Site.Params.versions }}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span>{{ .Site.Params.version_menu }}</span>
-            </a>
-            <ul class="dropdown-menu">
-              {{ range .Site.Params.versions }}
-                <li class="dropdown-item my-0 py-0 mx-0 px-0">
-                  <a class="dropdown-item" href="{{ .url }}">{{ .version }}</a>
-                </li>
-              {{ end }}
-            </ul>
-          </li>
         {{ end }}
         {{ if .Site.Params.day_night }}
         <li class="nav-item">
