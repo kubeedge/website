@@ -60,3 +60,20 @@ preserveTaxonomyNames = true
   category = "categories"
   publication_type = "publication_types"
   author = "authors"
+
+[params]
+# Menu title if your navbar has a versions selector to access old versions of your site.
+# This menu appears only if you have at least one [params.versions] set.
+version_menu = "Versions"
+
+[[params.versions]]
+fullversion = "master"
+version = "master"
+githubbranch = "master"
+url = "https://kubeedge.io/en/"
+
+[[params.versions]]
+fullversion = "website-v2"
+version = "website-v2"
+githubbranch = "website-v2"
+url = "https://website-v2.kubeedge.io/en/"
