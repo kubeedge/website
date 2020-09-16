@@ -1,7 +1,7 @@
 +++
 title = "KubeEdge v1.4 is live!"
 date = 2020-08-15
-lastmod = 2020-09-16
+lastmod = 2020-08-15
 
 draft = false
 
@@ -110,5 +110,4 @@ The community plans to further improve the user experience and the stability of 
 For more details regarding KubeEdge, please follow and join us here:
 
 https://kubeedge.io
-
 

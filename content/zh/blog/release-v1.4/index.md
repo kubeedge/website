@@ -1,7 +1,7 @@
 +++
 title = "KubeEdge v1.4发布：边缘监控与设备管理迎来重大提升！"
 date = 2020-08-15
-lastmod = 2020-09-16
+lastmod = 2020-08-15
 
 draft = false
 
