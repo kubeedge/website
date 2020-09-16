@@ -37,7 +37,7 @@ summary = "KubeEdge v1.4 is live!"
 
 **KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge.  
 
-## **KubeEdge v1.4: A major upgrade for maintainability**
+## **KubeEdge v1.4: A major upgrade for maintainability and edge devices management**
 
 On August 15th, the KubeEdge community is proud to announce the availability of KubeEdge 1.4. This release includes a major upgrade for maintainability and edge devices management, which includes:
 
@@ -51,7 +51,7 @@ On August 15th, the KubeEdge community is proud to announce the availability of 
 
 - 34+ bug fixes and enhancements.
 
-Please refer to https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG-1.4.md for a full list of features in this release
+Please refer to https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.4.md for a full list of features in this release
 
 {{% alert note %}}
 Release details - [Release v1.4](https://github.com/kubeedge/kubeedge/releases/tag/v1.4.0)
@@ -105,9 +105,7 @@ In addition to the above new features, KubeEdge v1.4 also includes the following
 
 With the release of v1.4, KubeEdge provides more complete edge application monitoring and management capabilities, a more stable and reliable cloud-side collaborative transmission mechanism, a more friendly user experience, and a more friendly community contributor experience. Thanks to Huawei, China Unicom, Zhejiang University SEL Lab, ARM and other organizations for their contributions, as well as all community contributors for their support!
 
-The community plans to further improve the user experience and the stability of KubeEdge in subsequent versions and create the best “open source” intelligent edge computing platform for everyone to freely use. Please refer to the roadmap document for future release plans:
-
-https://github.com/kubeedge/kubeedge/blob/master/docs/getting-started/roadmap.md
+The community plans to further improve the user experience and the stability of KubeEdge in subsequent versions and create the best “open source” intelligent edge computing platform for everyone to freely use.
 
 For more details regarding KubeEdge, please follow and join us here:
 
