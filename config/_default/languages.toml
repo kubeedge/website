@@ -14,30 +14,42 @@
   title = "KubeEdge一个支持边缘计算的开放平台"
   [zh.params]
     description = ""
-  [[zh.menu.main]]
-  name = "主页"
-  url = "#home_slider"
-  weight = 1
 
   [[zh.menu.main]]
-  name = "为何选择KubeEdge"
-  url = "#why-kubeedge"
-  weight = 2
+    name = "主页"
+    url = "#home_slider"
+    weight = 1
+
 
   [[zh.menu.main]]
-  name = "文档"
-  url = "https://docs.kubeedge.io"
-  weight = 3
+    name = "文档"
+    url = "https://docs.kubeedge.io"
+    weight = 2
 
   [[zh.menu.main]]
-  name = "博客帖子"
-  url = "blog/"
-  weight = 4
+    name = "博客"
+    url = "blog/"
+    weight = 3
 
   [[zh.menu.main]]
-  name = "下载"
-  url = "https://github.com/kubeedge/kubeedge/releases"
-  weight = 5
+    name = "事件"
+    url = "blog/"
+    weight = 4
+
+  [[zh.menu.main]]
+    name = "Github"
+    url = "https://github.com/kubeedge"
+    weight = 5
+
+  [[zh.menu.main]]
+    name = "社区"
+    url = "blog/"
+    weight = 6
+
+  [[zh.menu.main]]
+    name = "下载"
+    url = "https://github.com/kubeedge/kubeedge/releases"
+    weight = 7
 
   
   # Right Menu
