@@ -587,7 +587,7 @@ a[data-fancybox] img {
 .hero-header{
   display: flex;
   flex-direction: row;
-  margin-top: 5rem;
+  margin-top: 1rem;
   text-align: left;
   text-shadow: #000 3px 4px 5px; 
 }
@@ -598,17 +598,25 @@ a[data-fancybox] img {
 }
 
 .hero-title {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: bold;
   margin-top: 0;
   line-height: 1;
   letter-spacing: 0.4rem;
 }
 
+.carousel-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
 .hero-main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
 }
 
 .hero-main-row {
@@ -616,7 +624,14 @@ a[data-fancybox] img {
   flex-direction: row;
   justify-content: space-between;
   width: 68rem;
-  height: 18rem;
+  height: 15rem;
+}
+
+.content-img {
+  margin-top: 4rem;
+  width: 14rem;
+  height: 9rem;
+  background-image: url(/img/contents/content-kubeedge.png);
 }
 
 .hero-main-row-icon {
@@ -646,12 +661,12 @@ a[data-fancybox] img {
 }
 
 .hero-main-font {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #34495e;
 }
 
 .hero-main-small-font {
-  height: 0.3rem;
+  height: 0.2rem;
   font-size: 0.9rem;
   color: #34495e;
 }

@@ -11,7 +11,7 @@
   </ol>
 
   <!-- Carousel slides wrapper -->
-  <div class="carousel-inner" style="height: {{$page.Params.height | default "1100px"}};">
+  <div class="carousel-inner">
     {{ range $index, $item := $page.Params.item }}
     <div class="wg-hero carousel-item{{ if eq $index 0 }} active{{ end }}" style="min-height: inherit;
       {{ if $item.overlay_color }}
@@ -58,94 +58,96 @@
         </p>
         {{ end }} -->
       </div>    
-      <div style="height: 23rem;"></div>
-      <div class="hero-main">
-        <div class="hero-main-row">
-          <div class="hero-main-row-left">
-            <div class="hero-main-row-left-col">
-              {{ with $item.content1_title }}
-              <p class="hero-main-font" >
-                {{ . | markdownify | emojify }}
-              </p>
-              {{ end }}
-              {{ with $item.content1_line1 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content1_line2 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content1_line3 }}
-              <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-            </div>
-            <img class="hero-main-row-icon" src="{{ $item.content1_icon }}" alt="icon2">
+      
+    </div>
+    <div class="hero-main">
+      <div class="hero-main-row">
+        <div class="hero-main-row-left">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content1_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content1_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content1_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content1_line3 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
           </div>
-          <div class="hero-main-row-right">
-            <img class="hero-main-row-icon" src="{{ $item.content2_icon }}" alt="icon2">
-            <div class="hero-main-row-left-col">
-              {{ with $item.content2_title }}
-              <p class="hero-main-font" >
-                {{ . | markdownify | emojify }}
-              </p>
-              {{ end }}
-              {{ with $item.content2_line1 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content2_line2 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content2_line3 }}
-              <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content2_line4 }}
-              <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-            </div> 
-          </div>
+          <img class="hero-main-row-icon" src="{{ $item.content1_icon }}" alt="icon2">
         </div>
-        <div class="hero-main-row">
-          <div class="hero-main-row-left">
-            <div class="hero-main-row-left-col">
-              {{ with $item.content3_title }}
-              <p class="hero-main-font" >
-                {{ . | markdownify | emojify }}
-              </p>
-              {{ end }}
-              {{ with $item.content3_line1 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content3_line2 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content3_line3 }}
-              <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content3_line4 }}
-              <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
-              {{ end }}
+        <div class="content-img"></div>
 
-            </div>
-            <div><img class="hero-main-row-icon" src="{{ $item.content3_icon }}" alt="icon3"></div>
-          </div>
-          <div class="hero-main-row-right">
-            <img class="hero-main-row-icon" src="{{ $item.content4_icon }}" alt="icon4">
-            <div class="hero-main-row-left-col">
-              {{ with $item.content4_title }}
-              <p class="hero-main-font" >
-                {{ . | markdownify | emojify }}
-              </p>
-              {{ end }}
-              {{ with $item.content4_line1 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-              {{ with $item.content4_line2 }}
-              <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
-              {{ end }}
-            </div>
-          </div>
+        <div class="hero-main-row-right">
+          <img class="hero-main-row-icon" src="{{ $item.content2_icon }}" alt="icon2">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content2_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content2_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content2_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content2_line3 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content2_line4 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+          </div> 
         </div>
-
       </div>
+      <div class="hero-main-row">
+        <div class="hero-main-row-left">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content3_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content3_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content3_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content3_line3 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content3_line4 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+
+          </div>
+          <div><img class="hero-main-row-icon" src="{{ $item.content3_icon }}" alt="icon3"></div>
+        </div>
+        <div class="hero-main-row-right">
+          <img class="hero-main-row-icon" src="{{ $item.content4_icon }}" alt="icon4">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content4_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content4_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content4_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
     </div>
     {{ end }}
   </div>

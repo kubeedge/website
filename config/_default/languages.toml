@@ -51,6 +51,23 @@
     url = "https://github.com/kubeedge/kubeedge/releases"
     weight = 7
 
+  [[zh.menu.main]]
+    name = "加入社区"
+    url = "blog/"
+    parent = "Community"
+    weight = 8
+
+  [[zh.menu.main]]
+    name = "合作伙伴"
+    url = "blog/"
+    parent = "Community"
+    weight = 9
+
+  [[zh.menu.main]]
+    name = "案例研究"
+    url = "blog/"
+    parent = "Community"
+    weight = 10
   
   # Right Menu
 [[zh.menu.main_right]]
