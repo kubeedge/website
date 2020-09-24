@@ -586,7 +586,13 @@ a[data-fancybox] img {
 
 .hero-header{
   display: flex;
+  align-items: center;
+}
+
+.hero-header-box{
+  display: flex;
   flex-direction: row;
+  align-items: center;
   margin-top: 1rem;
   text-align: left;
   text-shadow: #000 3px 4px 5px; 
@@ -609,14 +615,22 @@ a[data-fancybox] img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
+  height: 100%;
+}
+
+.hero-core-values {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 .hero-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  background: rgb(247, 247, 247);
 }
 
 .hero-main-row {

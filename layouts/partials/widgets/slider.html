@@ -18,36 +18,40 @@
       background-color: {{ $item.overlay_color | default "transparent" }};
       {{ end }}
       {{ if $item.overlay_img }}
-      height: inherit;
+      width:100%;
+      height: auto;
       background-image:
       {{ if $item.overlay_filter }}linear-gradient(rgba(0, 0, 0, {{ $item.overlay_filter }}), rgba(0, 0, 0, {{ $item.overlay_filter }})), {{ end }}
       url('{{ printf "img/%s" $item.overlay_img | absURL }}');
       {{ end }}
       ;">
       <div class="hero-header" >
-        <h1 class="hero-title" itemprop="headline">
-          {{ with $item.title }}{{ . | markdownify | emojify }}{{ end }}
-        </h1>
-        <div>
-          <p class="horizontal-line" > </p>
-          <div class="hero-header-row">
-            {{ with $item.header1 }}
-            <p class="hero-lead" >
+        <div class="hero-header-box">
+          <h1 class="hero-title" itemprop="headline">
+            {{ with $item.title }}{{ . | markdownify | emojify }}{{ end }}
+          </h1>
+          <div>
+            <p class="horizontal-line" > </p>
+            <div class="hero-header-row">
+              {{ with $item.header1 }}
+              <p class="hero-lead" >
+                {{ . | markdownify | emojify }}
+              </p>
+              {{ end }}  
+              {{ with $item.header2 }}
+              <p class="hero-lead" style="font-size: 1rem; margin: 1rem 0 0 1rem;">
+                {{ . | markdownify | emojify }}
+              </p>
+              {{ end }}  
+            </div>
+            {{ with $item.header3 }}
+            <p class="hero-lead" style="font-size: 1rem; margin-top: 0.6rem;" >
               {{ . | markdownify | emojify }}
             </p>
-            {{ end }}  
-            {{ with $item.header2 }}
-            <p class="hero-lead" style="font-size: 1rem; margin: 1rem 0 0 1rem;">
-              {{ . | markdownify | emojify }}
-            </p>
-            {{ end }}  
+            {{ end }}
           </div>
-          {{ with $item.header3 }}
-          <p class="hero-lead" style="font-size: 1rem; margin-top: 0.6rem;" >
-            {{ . | markdownify | emojify }}
-          </p>
-          {{ end }}
         </div>
+        
         <!-- {{ if $item.cta_url }}
         {{ $pack := or .icon_pack "fa" }}
         <p>
@@ -58,9 +62,9 @@
         </p>
         {{ end }} -->
       </div>    
-      
     </div>
     <div class="hero-main">
+      <div class="hero-core-values"><p>CORE VALUES</p></div>
       <div class="hero-main-row">
         <div class="hero-main-row-left">
           <div class="hero-main-row-left-col">
