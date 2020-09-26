@@ -6,15 +6,18 @@ title = "Introducing KubeEdge"
 date = 2018-12-13T14:35:00
 date_end = 2018-12-13T15:10:00
 all_day = false
+date_icon = "/img/icon/talks-date.png"  
 
 # Schedule page publish date (NOT talk date).
 publishDate = 2019-03-15T00:00:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Li \"Cindy\" Xing"]
+authors_icon = "/img/icon/talks-authors.png"  
 
 # Location of event.
 location = "Seattle, USA"
+location_icon = "/img/icon/talks-location.png"  
 
 # Name of event and optional event URL.
 event = "KubeCon Seattle"

@@ -222,13 +222,16 @@ blockquote p:last-child {
 }
 
 .universal-wrapper {
-  margin: 0 auto;
+  margin: 2rem auto;
   padding-right: 1rem;
   padding-left: 1rem;
   padding-top: 0.1rem;
   width: 100%;
 }
 
+.universal-wrapper .row {
+  margin: 20px -15px 0 -15px;
+}
 @media only screen and (min-width: 1001px) {
   .universal-wrapper {
     width: 1000px;
@@ -1105,7 +1108,10 @@ article {
 }
 
 .stream-meta.article-metadata {
-  margin-bottom: 5px;
+  margin: 0 0 5px 10px;
+  padding-left: 15px;
+  width: 20rem;
+  border-left: 4px solid blueviolet ;
 }
 
 /* For article page only, not lists. */
@@ -1115,7 +1121,7 @@ article .article-metadata {
 }
 
 .article-metadata a {
-  color: rgba(0,0,0,.54);
+  color: #000;
 }
 
 .dark .article-metadata a {
@@ -1196,14 +1202,27 @@ article .article-metadata {
 .card-simple .article-style {
   margin-top: 2px;
   font-size: 0.8rem;
+  margin: 0.5rem 0 0.5rem 0;
+
 }
 
 .media.stream-item .stream-meta {
   margin-top: 12px;
 }
 
+.stream-meta-talks-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stream-meta-talks-icon {
+  width: 0.8rem;
+  margin-right: 2px;
+}
+
 .media.stream-item img {
-  max-width: 150px;
+  max-width: 300px;
   height: auto;
   object-fit: cover;
 }
@@ -1640,6 +1659,11 @@ footer {
 footer p {
   font-size: 0.75rem;
   text-align: center;
+}
+
+.site-footer {
+  position: absolute;
+  bottom: 0;
 }
 
 .site-footer,
