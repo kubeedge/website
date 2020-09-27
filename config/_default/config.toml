@@ -13,7 +13,7 @@ baseurl = "/"
 
 # Enter a copyright notice to display in the site footer.
 # To display a copyright symbol, type `&copy;`.
-copyright = "&copy;2020 KubeEdge"
+copyright = "&copy;2020 KubeEdge ® Authors 2020 | Documentation"
 
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = "UA-137983920-1"

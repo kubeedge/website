@@ -490,7 +490,9 @@ a[data-fancybox] img {
   animation-delay: 0.15s;
 }
 
-
+.home-section.wg-partner {
+  padding: 60px 0 0 0;
+}
 
 /* Override dark colors that may be inherited from body.dark */
 .home-section.dark,
@@ -1663,6 +1665,56 @@ article .article-metadata {
   color: #b2b2b2;
 }
 
+.cloud-native {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  background-color: var(--ifm-hero-background-color);
+  color: #444950;
+  color: var(--ifm-hero-text-color);
+  padding: 4rem 2rem 0 2rem;
+}
+
+
+.cloud-native-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1140px;
+  max-width: var(--ifm-container-width);
+  padding-left: 1rem;
+  padding-left: var(--ifm-spacing-horizontal);
+  padding-right: 1rem;
+  padding-right: var(--ifm-spacing-horizontal);
+  text-align: center;
+}
+
+.cloud-native-container__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  line-height: 1.25;
+  color: #444950;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -webkit-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+}
+
+.cloud-native-cainter-cncf-logo {
+  width: auto;
+  min-width: 628px;
+  height: 128px;
+  background: 50% no-repeat url(/img/icon/cncf-color.jpg);
+}
+
+.cloud-native-container__subtitle a {
+  color: #3578e5;
+}
 /*************************************************
  *  Case_studies
  **************************************************/
@@ -1761,13 +1813,14 @@ article .article-metadata {
  *  Footer
  **************************************************/
 
-footer {
-  margin: 4rem 0 0;
+.footer {
+  margin: 2rem 0 0;
   padding: 2rem 0;
   width: 100%;
+  background-color: #f5f6f7;
 }
 
-footer p {
+.footer p {
   font-size: 0.75rem;
   text-align: center;
 }
@@ -1775,6 +1828,54 @@ footer p {
 .site-footer {
   position: relative;
   bottom: 0;
+}
+
+.footer__links-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-left: calc(var(--ifm-spacing-horizontal)*-1);
+  margin-right: -1rem;
+  margin-right: calc(var(--ifm-spacing-horizontal)*-1);
+  margin-bottom: 1rem;
+  background-color: #f5f6f7;
+}
+
+.footer__links-col {
+  --ifm-col-width: 100%;
+  display: block;
+  flex: 1 0;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-left: var(--ifm-spacing-horizontal);
+  padding-right: 1rem;
+  padding-right: var(--ifm-spacing-horizontal);
+  width: 100%;
+}
+
+.footer__title {
+  color: inherit;
+  color: var(--ifm-footer-title-color);
+}
+
+.footer__items {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.footer__link-item {
+  font-size: 0.7rem;
+  color: #606770;
+  color: var(--ifm-footer-link-color);
+  line-height: 1.5;
+}
+
+.powered-by {
+  margin-bottom: 0;
+  font-weight: bold;
+  color: #000;
 }
 
 .site-footer,
@@ -2677,3 +2778,4 @@ body.dark,
 .dark .btn.btn-primary.active {
   color: initial;
 }
+

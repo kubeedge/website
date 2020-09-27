@@ -7,6 +7,9 @@ color_theme = "default"
 # Enable users to switch between day and night mode?
 day_night = true
 
+# copyright_content in footer
+copyright_content = "© 2020 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. "
+
 # Font style.
 #   Choose from `default`, `classic`, or `playfair`.
 font = "default"
@@ -195,3 +198,5 @@ sharing = true
   study_raisecom = "/img/icon/study-raisecom.jpg"
   study_woyun = "/img/icon/study-woyun.jpg"
   study_xhwl = "/img/icon/study-xhwl.jpg"
+
+

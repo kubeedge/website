@@ -19,4 +19,7 @@
     </span>
     {{ end }}
   </p>
+  <p class="powered-by-content">
+    {{ with .Site.Params.copyright_content }}{{ . | markdownify}} &middot; {{ end }}
+  </p>
 </footer>
