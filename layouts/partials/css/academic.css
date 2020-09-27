@@ -485,7 +485,7 @@ a[data-fancybox] img {
 
 .home-section {
   background-color: {{ .Get "home_section_odd" }};
-  padding: 110px 0 110px 0;
+  padding: 70px 0 70px 0;
   animation: intro 0.3s both;
   animation-delay: 0.15s;
 }
@@ -648,7 +648,7 @@ a[data-fancybox] img {
   margin-top: 4rem;
   width: 14rem;
   height: 9rem;
-  background-image: url(/img/contents/content-kubeedge.png);
+  background-image: url(/img/hero/content-kubeedge.png);
 }
 
 .hero-main-row-icon {
@@ -1616,6 +1616,47 @@ article .article-metadata {
   opacity: 0.6;
 }
 
+
+/*************************************************
+ *  Partner
+ **************************************************/
+.partner-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.partner-main-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-main-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 900px;
+}
+
+.partner-main-row img {
+  width: 400px;
+}
+
+.partners-main-title {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.partners-main-font {
+  height: 1.6rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+
+}
+
 /*************************************************
  *  Contact
  **************************************************/
@@ -1662,7 +1703,7 @@ footer p {
 }
 
 .site-footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 

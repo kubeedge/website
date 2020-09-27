@@ -28,27 +28,27 @@ height = "1360px"
   overlay_img = "headers/header-kubeedge.png"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
   
-  content1_icon = "/img/contents/content-icon1.png"  # Icon path relative to your `static/` folder.
+  content1_icon = "/img/hero/content-icon1.png"  # Icon path relative to your `static/` folder.
   content1_title = "无缝云边缘协调"
   content1_line1 = "双向的沟通,"
   content1_line2 = "能够与位于专用子网的边缘节点通话。"
   content1_line3 = "同时支持元数据和数据。"
 
-  content2_icon = "/img/contents/content-icon2.png"
+  content2_icon = "/img/hero/content-icon2.png"
   content2_title = "边缘的自主权"
   content2_line1 = "每个节点的元数据持久，节点恢复期间"
   content2_line2 = "不需要列表监视，准备得更快。"
   content2_line3 = "即使在与云断开连接时，"
   content2_line4 = "edge也能自主运行。"
 
-  content3_icon = "/img/contents/content-icon3.png"
+  content3_icon = "/img/hero/content-icon3.png"
   content3_title = "低资源准备"
   content3_line1 = "可以在资源有限的情况下工作，"
   content3_line2 = "foot print存储 ~70mb。"
   content3_line3 = "支持CRI，与Containerd集成，"
   content3_line4 = "CRI- O，运行时开销更少。"
 
-  content4_icon = "/img/contents/content-icon4.png"
+  content4_icon = "/img/hero/content-icon4.png"
   content4_title = "简化设备通信"
   content4_line1 = "在物联网和工业互联网的应用程序"
   content4_line2 = "和设备之间方便的通信。"

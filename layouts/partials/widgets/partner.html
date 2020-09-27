@@ -1,0 +1,31 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+<div id="{{ $page.File.TranslationBaseName }}" class="carousel slide" data-ride="carousel">
+  <div class="partner-main">
+      <div class="partner-main-col">
+          <div class="partners-main-title">
+            {{ with $page.Params.partners_title }}
+            <p class="partners-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $page.Params.partners_subtitle }}
+            <p class="partners-main-subfont" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+          </div>
+          <div class="partner-main-row">
+            <img src="{{ $page.Params.partners_huawei }}" alt="partners_huawei">
+            <img src="{{ $page.Params.partners_woyun }}" alt="partners_woyun">
+
+          </div>
+          <div class="partner-main-row">
+            <img src="{{ $page.Params.partners_dianxin }}" alt="partners_dianxin">
+
+            <img src="{{ $page.Params.partners_yidong }}" alt="partners_yidong">
+          </div>
+      </div>
+  </div>
+</div>

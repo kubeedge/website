@@ -46,7 +46,7 @@
 
 [[main]]
   name = "Partner"
-  url = "blog/"
+  url = "partner/"
   parent = "Community"
   weight = 9
 

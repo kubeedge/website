@@ -27,27 +27,27 @@ interval = 6000
   overlay_img = "headers/header-kubeedge.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
   
-  content1_icon = "/img/contents/content-icon1.png"  # Icon path relative to your `static/` folder.
+  content1_icon = "/img/hero/content-icon1.png"  # Icon path relative to your `static/` folder.
   content1_title = "Seamless Cloud-Edge Coordination"
   content1_line1 = "Bidirectional communication,"
   content1_line2 = "able to talk to edge nodes located in private subnet."
   content1_line3 = "Support both meta data and data."
 
-  content2_icon = "/img/contents/content-icon2.png"
+  content2_icon = "/img/hero/content-icon2.png"
   content2_title = "Edge Autonomy"
   content2_line1 = "Meta Data persistent per node,no list-watch needed "
   content2_line2 = "during node recovery,get ready faster."
   content2_line3 = "Autonomous operation of edge even during"
   content2_line4 = "disconnection from cloud."
 
-  content3_icon = "/img/contents/content-icon3.png"
+  content3_icon = "/img/hero/content-icon3.png"
   content3_title = "Low Resource Readiness"
   content3_line1 = "Can work in constrained resource situations,"
   content3_line2 = "Mmemory foot print ~70mb."
   content3_line3 = "Support CRI,integrate with Containerd,"
   content3_line4 = "CRI- O, less runtime overhead."
 
-  content4_icon = "/img/contents/content-icon4.png"
+  content4_icon = "/img/hero/content-icon4.png"
   content4_title = "Simplified Device COmmunication"
   content4_line1 = "Easy communication between application and"
   content4_line2 = "devices for IOT and Industrial internet."
