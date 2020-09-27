@@ -1,0 +1,119 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+<div class="carousel slide" data-ride="carousel">
+    <div class="community-main">
+      <div class="community-main-col">
+        <div class="community-main-title">
+          {{ with $.Site.Params.community.community_title }}
+          <p class="community-main-font" >
+            {{ . | markdownify | emojify }}
+          </p>
+          {{ end }}
+        </div>
+        {{ with $.Site.Params.community }}
+        <div class="community-main-row">
+          <a href="https://github.com/kubeedge">
+            <div class="community-main-row-item">
+              <img src="{{ .community_github }}" alt="community_github">
+              <p>Github</p>
+            </div>  
+          </a>
+          <a href="https://groups.google.com/forum/#!forum/ kubeedge">
+            <div class="community-main-row-item">
+              <img src="{{ .community_mail }}" alt="community_mail">
+              <p>Mailing List</p>
+            </div>
+          </a>
+          <a href="https://join.slack.com/t/kubeedge/shared_ invite/
+          enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRk ZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDA yMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5 YmIxZjU1ZDI">
+            <div class="community-main-row-item">
+              <img src="{{ .community_slack }}" alt="community_slack">
+              <p>Slack</p>
+            </div>  
+          </a>
+          <a href="https://twitter.com/kubeedge">
+            <div class="community-main-row-item">
+              <img src="{{ .community_twitter }}" alt="community_twitter">
+              <p>Twitter</p>
+            </div>
+          </a>
+          
+        </div>
+
+        <div class="community-content">
+            <div class="community-content-subtitle">
+                {{ with $.Site.Params.community.community_subtitle }}
+                <p class="community-content-font" >
+                  {{ . | markdownify | emojify }}
+                </p>
+                {{ end }}
+              </div>
+            <div class="community-content-row">
+              <div class="community-content-row-item">
+                <img src="{{ .community_icon1 }}" alt="community_icon1">
+                <p>Meeting Calender</p>
+                <div class="community-content__hidden-list">
+                  <ul>
+                    <a href="https://calendar.google.com/calendar/
+                    embed?src=8rjk8o516vfte21qibvlae3lj4%
+                    40group.calendar.google.com">
+                      <li>
+                        <img src="{{ .community_airplane }}" alt="community_airplane">
+                        Calender...
+                      </li>
+                    </a>
+                    <a href="https://calendar.google.com/calendar?cid= OHJqazhvNTE2dmZ0ZTIxcWlidmxhZTNsajR
+                    AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvb Q">
+                      <li>
+                        <img src="{{ .community_airplane }}" alt="community_airplane">
+                        Subscribe...
+                      </li>
+                    </a>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="community-content-row-item">
+                <img src="{{ .community_icon2 }}" alt="community_icon2">
+                <p>Meeting Notes and Agenda</p>
+                <div class="community-content__hidden-list">
+                  <ul>
+                    <a href="https://docs.google.com/document/d/ 1Sr5QS_ Z04uPfRbA7PrXr3aPwCRpx7EtsyHq7mp6Cn Hs/edit">
+                      <li>
+                        <img src="{{ .community_airplane }}" alt="community_airplane">
+                        Docs...
+                      </li>
+                    </a>
+                  </ul>
+                </div>
+              </div>
+              <div class="community-content-row-item">
+                <img src="{{ .community_icon3 }}" alt="community_icon3">
+                <p>Meeting Records</p>
+                <div class="community-content__hidden-list">
+                  <ul>
+                    <a href="https://www.youtube.com/playlist?list= PLQtlO1kVWGXkRGkjSrLGEPJODoPb8s5FM">
+                      <li>
+                        <img src="{{ .community_airplane }}" alt="community_airplane">
+                        YouTube...
+                      </li>
+                    </a>
+                    <a href="https://space.bilibili.com/448816706">
+                      <li>
+                        <img src="{{ .community_airplane }}" alt="community_airplane">
+                        BiliBili...
+                      </li>
+                    </a>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+  </div>
+</div>
+
+  <!-- Page Footer -->
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}

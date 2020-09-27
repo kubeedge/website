@@ -29,32 +29,29 @@
   url = "https://github.com/kubeedge"
   weight = 5
 
-[[main]]
-  name = "Community"
-  weight = 6
 
 [[main]]
   name = "Downloads"
   url = "https://github.com/kubeedge/kubeedge/releases"
-  weight = 7
+  weight = 6
 
 [[main]]
   name = "Join Community"
-  url = "blog/"
+  url = "community/"
   parent = "Community"
-  weight = 8
+  weight = 7
 
 [[main]]
   name = "Partner"
   url = "partner/"
   parent = "Community"
-  weight = 9
+  weight = 8
 
 [[main]]
   name = "Case Studies"
   url = "study/"
   parent = "Community"
-  weight = 10
+  weight = 9
 
 # Right Menu
 [[main_right]]

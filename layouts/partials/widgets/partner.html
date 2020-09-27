@@ -32,12 +32,19 @@
   </div>
   <div class="cloud-native">
     <div class="cloud-native-container">
+      
       <h2 class="cloud-native-container__subtitle">
-        Kubeedge® is a 
+        {{ with $page.Params.partners_cncf1 }}
+        {{ . | markdownify | emojify }}
+        {{end}}
         <a href="https://cncf.io/">
-          Cloud Native Computing Foundation
+          {{ with $page.Params.partners_cncf2 }}
+          {{ . | markdownify | emojify }}
+          {{end}}
         </a> 
-        Incubation project
+        {{ with $page.Params.partners_cncf3 }}
+        {{ . | markdownify | emojify }}
+        {{end}}
       </h2>
       <div class="cloud-native-cainter-cncf-logo">
       </div>

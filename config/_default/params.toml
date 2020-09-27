@@ -199,4 +199,15 @@ sharing = true
   study_woyun = "/img/icon/study-woyun.jpg"
   study_xhwl = "/img/icon/study-xhwl.jpg"
 
-
+# community
+[community]
+  community_title = "JOIN COMMUNITY"
+  community_subtitle = "Community Meetings"
+  community_github = "/img/icon/community-github.png"
+  community_mail = "/img/icon/community-mail.png"
+  community_slack = "/img/icon/community-slack.png"
+  community_twitter = "/img/icon/community-twitter.png"
+  community_icon1 = "/img/icon/community-icon1.png"
+  community_icon2 = "/img/icon/community-icon2.png"
+  community_icon3 = "/img/icon/community-icon3.png"
+  community_airplane = "/img/icon/community-airplane.png"

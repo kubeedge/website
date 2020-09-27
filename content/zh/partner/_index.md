@@ -10,12 +10,7 @@ title = "partner"
 weight = 8
 
 # partner's title
-partners_title = "PARTNERS"
-partners_subtitle = "WORK TOGETHER"
+partners_title = "合作伙伴"
+partners_subtitle = "一起调研"
 
-# partner's img path, relative to your `static/` folder.
-partners_dianxin = "/img/icon/partners-dianxin.jpg"
-partners_huawei = "/img/icon/partners-huawei.jpg"
-partners_woyun = "/img/icon/partners-woyun.jpg"
-partners_yidong = "/img/icon/partners-yidong.jpg"
 +++

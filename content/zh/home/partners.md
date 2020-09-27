@@ -13,9 +13,7 @@ weight = 12
 partners_title = "合作伙伴"
 partners_subtitle = "一起研发"
 
-# partner's img path, relative to your `static/` folder.
-partners_dianxin = "/img/icon/partners-dianxin.jpg"
-partners_huawei = "/img/icon/partners-huawei.jpg"
-partners_woyun = "/img/icon/partners-woyun.jpg"
-partners_yidong = "/img/icon/partners-yidong.jpg"
+partners_cncf1 = "Kubeedge® 是一个"
+partners_cncf2 = "云本地计算基础"
+partners_cncf3 = "孵化项目"
 +++

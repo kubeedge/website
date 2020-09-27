@@ -41,33 +41,29 @@
     url = "https://github.com/kubeedge"
     weight = 5
 
-  [[zh.menu.main]]
-    name = "社区"
-    url = "blog/"
-    weight = 6
 
   [[zh.menu.main]]
     name = "下载"
     url = "https://github.com/kubeedge/kubeedge/releases"
-    weight = 7
+    weight = 6
 
   [[zh.menu.main]]
     name = "加入社区"
-    url = "blog/"
-    parent = "Community"
-    weight = 8
+    url = "community/"
+    parent = "社区"
+    weight = 7
 
   [[zh.menu.main]]
     name = "合作伙伴"
     url = "partner/"
-    parent = "Community"
-    weight = 9
+    parent = "社区"
+    weight = 8
 
   [[zh.menu.main]]
     name = "案例研究"
     url = "study/"
-    parent = "Community"
-    weight = 10
+    parent = "社区"
+    weight = 9
   
   # Right Menu
 [[zh.menu.main_right]]
