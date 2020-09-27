@@ -1,0 +1,34 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+<div class="carousel slide" data-ride="carousel">
+    <div class="partner-main">
+        <div class="partner-main-col">
+            <div class="partner-main-title">
+              {{ with $.Site.Params.partner.partners_title }}
+              <p class="partner-main-font" >
+                {{ . | markdownify | emojify }}
+              </p>
+              {{ end }}
+              {{ with $.Site.Params.partner.partners_subtitle }}
+              <p class="partner-main-subfont" >
+                {{ . | markdownify | emojify }}
+              </p>
+              {{ end }}
+            </div>
+            <div class="partner-main-row">
+              <img src="{{ $.Site.Params.partner.partners_huawei }}" alt="partners_huawei">
+              <img src="{{ $.Site.Params.partner.partners_woyun }}" alt="partners_woyun">
+  
+            </div>
+            <div class="partner-main-row">
+              <img src="{{ $.Site.Params.partner.partners_dianxin }}" alt="partners_dianxin">
+  
+              <img src="{{ $.Site.Params.partner.partners_yidong }}" alt="partners_yidong">
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Page Footer -->
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}

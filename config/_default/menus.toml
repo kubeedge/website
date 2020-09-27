@@ -52,7 +52,7 @@
 
 [[main]]
   name = "Case Studies"
-  url = "blog/"
+  url = "study/"
   parent = "Community"
   weight = 10
 

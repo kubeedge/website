@@ -59,13 +59,13 @@
 
   [[zh.menu.main]]
     name = "合作伙伴"
-    url = "blog/"
+    url = "partner/"
     parent = "Community"
     weight = 9
 
   [[zh.menu.main]]
     name = "案例研究"
-    url = "blog/"
+    url = "study/"
     parent = "Community"
     weight = 10
   

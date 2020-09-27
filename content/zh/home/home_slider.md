@@ -25,7 +25,7 @@ height = "1360px"
   align = "left"
 
   # overlay_color = "#555"  # An HTML color value.
-  overlay_img = "headers/header-kubeedge.png"  # Image path relative to your `static/img/` folder.
+  overlay_img = "headers/header-kubeedge.jpg"  # Image path relative to your `static/img/` folder.
   overlay_filter = 0  # Darken the image. Value in range 0-1.
   
   content1_icon = "/img/hero/content-icon1.png"  # Icon path relative to your `static/` folder.
