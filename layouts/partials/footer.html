@@ -5,7 +5,7 @@
     {{ $mathjax_config := resources.Get "js/mathjax-config.js" }}
     <script src="{{ $mathjax_config.RelPermalink }}"></script>
     {{ end }}
-
+    <script src="/js/sloth.js"></script>
     {{/* Attempt to load local vendor JS, otherwise load from CDN. */}}
     {{ $js := .Site.Data.assets.js }}
     {{ if not ($scr.Get "use_cdn") }}
