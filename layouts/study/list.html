@@ -1,49 +1,118 @@
 {{ partial "header.html" . }}
 {{ partial "navbar.html" . }}
 <div class="carousel slide" data-ride="carousel">
-    <div class="study-main">
-      <div class="study-main-col">
-        <div class="study-main-title">
-          {{ with $.Site.Params.study.study_title }}
-          <p class="study-main-font" >
-            {{ . | markdownify | emojify }}
-          </p>
-          {{ end }}
-          {{ with $.Site.Params.study.study_subtitle }}
-          <p class="study-main-subfont" >
-            {{ . | markdownify | emojify }}
-          </p>
-          {{ end }}
-        </div>
-        {{ with $.Site.Params.study }}
-        <div class="study-main-row">
-          <div class="study-main-row-right">
-            <img sloth-img="{{ .study_raisecom }}" alt="study_raisecom">
-          </div>  
-          <div class="study-main-row-left">
-            <img sloth-img="{{ .study_xhwl }}" alt="study_xhwl">
-          </div>
-        </div>
-        <div class="study-main-row">
-          <div class="study-main-row-right">
-            <img style="margin-top: 10px; height: 50px;"  sloth-img="{{ .study_jysz }}" alt="study_jysz">
-          </div>  
-          <div class="study-main-row-left">
-            <img style="margin-top: 10px; height: 50px;"  sloth-img="{{ .study_woyun }}" alt="study_woyun">
-          </div>
-
-        </div>
-        <div class="study-main-row">
-          <div class="study-main-row-right">
-              <img sloth-img="{{ .study_kubesphere }}" alt="study_kubesphere">
-          </div>  
-          <div class="study-main-row-left">   
-              <img style="width: 100px;" sloth-img="{{ .study_cloud }}" alt="study_cloud">
-          </div>
-        </div>
+  {{ with $.Site.Params.study }}
+  <div class="study-main">
+    <div class="study-main-col">
+      <div class="study-main-title">
+        {{ with .study_title }}
+        <p class="study-main-font" >
+          {{ . | markdownify | emojify }}
+        </p>
         {{ end }}
+        {{ with .study_subtitle }}
+        <p class="study-main-subfont" >
+          {{ . | markdownify | emojify }}
+        </p>
+        {{ end }}
+      </div>
+
+      <div class="study-main-row">
+        <div class="study-main-row-right">
+          <a href="https://www.mindspore.cn/">
+            <img sloth-img="{{ .study_raisecom }}" alt="study_raisecom">
+          </a>
+        </div>  
+        <div class="study-main-row-left">
+          <a href="http://xh-iot.net/">
+            <img sloth-img="{{ .study_xhwl }}" alt="study_xhwl">
+          </a>
+        </div>
+      </div>
+
+      <div class="study-main-row">
+        <div class="study-main-row-right">
+          <a href="http://www.jylink.com/">
+            <img style="margin-top: 10px; height: 50px;"  sloth-img="{{ .study_jysz }}" alt="study_jysz">
+          </a>
+        </div>  
+        <div class="study-main-row-left">
+          <a href="https://cucc.wocloud.cn/">
+           <img style="margin-top: 10px; height: 50px;"  sloth-img="{{ .study_woyun }}" alt="study_woyun">
+          </a>
+        </div>
+      </div>
+
+      <div class="study-main-row">
+        <div class="study-main-row-right">
+          <a href="https://kubesphere.io/">
+            <img sloth-img="{{ .study_kubesphere }}" alt="study_kubesphere">
+          </a>
+        </div>  
+        <div class="study-main-row-left">   
+          <a href="https://www.huaweicloud.com/en-us/product/ief.html">
+            <img style="width: 100px;" sloth-img="{{ .study_cloud }}" alt="study_cloud">
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
+
+  <div class="study-content-col">
+
+    <div class="study-content-item">
+      <div class="study-content-item-row">
+        <div class="study-title">
+          <p class="main-title">RAISECOM</p>
+          <p class="sub-title" >Technology Co.,Ltd.</p>
+          <p class="sub-content">
+            "It is an important demand for the manufactory of Raisecom 
+            Technology to ensure the industrial production safety" .etc
+          </p>
+          <a href="https://www.mindspore.cn/"><p class="sub-link">Read about RAISECOM</p></a>
+        </div>
+        <div class="study-img">
+          <img sloth-img="{{ .study_raisecom }}" alt="study_raisecom">
+        </div>
+      </div>
+    </div>
+
+    <div class="study-content-item" style="background: #FFFAFA;">
+      <div class="study-content-item-row">
+        <div class="study-title">
+          <p class="main-title">XINGHAI IOT</p>
+          <p class="sub-content">
+            "Xinghai IoT is an IoT company that provides comprehensive smart building 
+            solutions by leveraging a construction IoT platform, intelligent hardware, and AI" .etc
+          </p>
+          <a href="http://xh-iot.net/"><p class="sub-link">Read about XINGHAI IOT</p></a>
+        </div>
+        <div class="study-img">
+          <img sloth-img="{{ .study_xhwl }}" alt="study_xhwl">
+        </div>
+      </div>
+    </div>
+
+    <div class="study-content-item">
+      <div class="study-content-item-row">
+        <div class="study-title">
+          <p class="main-title">Jingying Shuzhi</p>
+          <p class="sub-title" >Technology Co.,Ltd.</p>
+          <p class="sub-content">
+            "Jingying Shuzhi Technology Co., Ltd focuses on providing security monitoring and
+             management solutions for coal mining and gas enterprises" .etc
+          </p>
+          <a href="http://www.jylink.com/"><p class="sub-link">Read about Jingying Shuzhi</p></a>
+        </div>
+        <div class="study-img">
+          <img sloth-img="{{ .study_jysz }}" alt="study_jysz">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {{ end }}
 </div>
 
   <!-- Page Footer -->

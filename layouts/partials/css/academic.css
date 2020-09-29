@@ -1778,6 +1778,66 @@ article .article-metadata {
   color: #b2b2b2;
 }
 
+.study-content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.study-content-item {
+  width: 800px;
+  height: 250px;
+  margin: 0 auto;
+  background: rgb(241, 243, 247);
+}
+
+.study-content-item-row {
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  height: 180px;
+  margin: 35px 50px;
+}
+
+.study-content-item-row .study-title {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: inherit;
+}
+
+.study-title .main-title {
+  font-weight: bold; 
+  color: #011f5a;
+}
+
+.study-title .sub-title {
+  font-size: 1rem;
+  color: #011f5a;
+}
+
+.study-title .sub-content {
+  margin-top: 5px;
+  height: auto !important; 
+  font-size: 0.7rem; 
+  color: darkcyan;
+}
+
+.study-title .sub-link {
+  font-size: 0.9rem;
+}
+
+.study-content-item-row .study-title p {
+  height: 7px;
+}
+
+.study-content-item-row .study-img {
+  width: 200px;
+  margin: auto 0;
+
+}
+
 /*************************************************
  *  Join_community
  **************************************************/
