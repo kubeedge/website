@@ -35,7 +35,7 @@
 
       {{ if eq $item.Type "talk" }}
       <div class="stream-meta-talks-row">
-        <img class="stream-meta-talks-icon" src="{{ $item.Params.date_icon }}" alt="date_icon">
+        <img class="stream-meta-talks-icon" sloth-img="{{ $item.Params.date_icon }}" alt="date_icon">
         <span itemprop="startDate">
           {{ $date := $item.Date }}
           {{ (time $date).Format $.Site.Params.date_format }}
@@ -61,7 +61,7 @@
       {{ with $item.Params.location }}
       <div>
         <div class="stream-meta-talks-row">
-          <img class="stream-meta-talks-icon" src="{{ $item.Params.location_icon }}" alt="location_icon">
+          <img class="stream-meta-talks-icon" sloth-img="{{ $item.Params.location_icon }}" alt="location_icon">
           <!-- <span class="middot-divider"></span> -->
           <span itemprop="location">{{ . }}</span>
         </div>
@@ -72,7 +72,7 @@
 
       <div class="stream-meta-talks-row">
         {{ if and $show_authors_only $item.Params.authors }}
-        <img class="stream-meta-talks-icon" src="{{ $item.Params.authors_icon }}" alt="authors_icon">
+        <img class="stream-meta-talks-icon" sloth-img="{{ $item.Params.authors_icon }}" alt="authors_icon">
         <div itemprop="author">
           {{ partial "page_metadata_authors" $item }}
         </div>
@@ -94,7 +94,7 @@
     {{ with $resource }}
     {{ $image := .Resize "350x" }}
     <a href="{{ $item.RelPermalink }}">
-      <img src="{{ $image.RelPermalink }}" itemprop="image">
+      <img sloth-img="{{ $image.RelPermalink }}" itemprop="image">
     </a>
     {{end}}
   </div>

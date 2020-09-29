@@ -6,33 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Source Themes Academic {{ .Site.Data.academic.version }}">
-  <script type="text/javascript">
-  $(function(){
-    var $winH = $(window).height();//获取窗口高度
-    var $img = $("#show img");
-    var $imgH = parseInt($img.height()/2);//图片到一半的时候显示
-    var $srcDef = "a.gif";
-    runing();//页面刚载入时判断要显示的图片
-    //****************************************
-    $(window).scroll(function(){
-    runing();//滚动刷新
-    })
-    //****************************************
-    function runing(){
-    $img.each(function(i){//遍历img
-      var $src = $img.eq(i).attr("original");//获取当前img URL地址
-      var $scroTop = $img.eq(i).offset();//获取图片位置
-      if($scroTop.top + $imgH >= $(window).scrollTop() && $(window).scrollTop() + $winH >= $scroTop.top + $imgH){//判断窗口至上往下的位置
-      if($img.eq(i).attr("src") == $srcDef){
-        $img.eq(i).hide();
-      }
-      $img.eq(i).attr("src",function(){return $src}).fadeIn(300);//元素属性的交换
-      }
-    })
-    }
-  })
-  </script>
-  
+  <script src="/js/sloth.js"></script>
+
   {{ .Hugo.Generator }}
 
   {{ $scr := .Scratch }}

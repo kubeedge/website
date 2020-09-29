@@ -1,5 +1,9 @@
     {{ $scr := $.Scratch }}
-
+    
+    <script type="text/javascript">
+      var sloth = new Sloth();
+      sloth.init();
+    </script>
     {{/* Config LaTeX math rendering. */}}
     {{ if or .Params.math .Site.Params.math }}
     {{ $mathjax_config := resources.Get "js/mathjax-config.js" }}

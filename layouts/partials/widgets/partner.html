@@ -18,14 +18,12 @@
           </div>
           {{ with $.Site.Params.partner }}
           <div class="partner-main-row">
-            <img src="{{ .partners_huawei }}" alt="partners_huawei">
-            <img src="{{ .partners_woyun }}" alt="partners_woyun">
-
+              <img sloth-img="{{ .partners_huawei }}" alt="partners_huawei">
+              <img sloth-img="{{ .partners_woyun }}" alt="partners_woyun">
           </div>
           <div class="partner-main-row">
-            <img src="{{ .partners_dianxin }}" alt="partners_dianxin">
-
-            <img src="{{ .partners_yidong }}" alt="partners_yidong">
+              <img sloth-img="{{ .partners_dianxin }}" alt="partners_dianxin">
+              <img sloth-img="{{ .partners_yidong }}" alt="partners_yidong">
           </div>
           {{ end }}
       </div>
