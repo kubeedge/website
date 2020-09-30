@@ -594,6 +594,7 @@ a[data-fancybox] img {
 .hero-header{
   display: flex;
   align-items: center;
+  margin-top: 30px;
 }
 
 .hero-header-box{
