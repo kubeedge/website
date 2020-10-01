@@ -1,17 +1,25 @@
-# editorconfig.org
-
-root = true
-
-[*]
-charset = utf-8
-end_of_line = lf
-indent_size = 2
-indent_style = space
-insert_final_newline = true
-trim_trailing_whitespace = true
-
-[*.toml]
-max_line_length = 100
+<p id="example1-description">
+  This is the descriptive text before the code example:
+</p>
+<figure>
+  <figcaption id="example1-caption">
+    This is the caption
+  </figcaption>
+<pre 
+  aria-labelledby="example1-caption" 
+  aria-describedby="example1-description"><code>function getToSleep()
+{
+  while(noise &lt;= 10 &amp;&amp; sleep !== "zzz")
+  {
+    sheep ++;
+  }
+  if(noise &gt; 10)
+  {
+    return false;
+  }
+  return true;
+}</code></pre>
+</figure>
 
 [*.md]
 trim_trailing_whitespace = false
