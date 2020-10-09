@@ -1,4 +1,4 @@
-# Contributing
+# Contributing of website
 
 Thanks for taking the time to join our community and start contributing!
 
@@ -102,7 +102,8 @@ get going:
   keep authenticating to GitHub. You need to do this again after every reboot.
 
 Please remember read and observe the [Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). and
-the [Contributor Guide](https://kubeedge.netlify.com/docs/about/contributing/) on website
+the [Contributor Guide](docs.kubeedge.io/en/latest/contributing/contribute.html) on website
+
 provides more detailed instructions on how to get your ideas and bug fixes seen and accepted.
 
-[kubeEdge-website-repo]: https://github.com/seattle-cloud-lab/kubeedge-website
+[kubeEdge-website-repo]: https://github.com/kubeedge/website
