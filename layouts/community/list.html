@@ -10,34 +10,60 @@
           </p>
           {{ end }}
         </div>
+        
         {{ with $.Site.Params.community }}
-        <div class="community-main-row">
-          <a href="https://github.com/kubeedge">
-            <div class="community-main-row-item">
-              <img sloth-img="{{ .community_github }}" alt="community_github">
-              <p>Github</p>
-            </div>  
-          </a>
-          <a href="https://groups.google.com/forum/#!forum/ kubeedge">
-            <div class="community-main-row-item">
-              <img sloth-img="{{ .community_mail }}" alt="community_mail">
-              <p>Mailing List</p>
+        <div class="community-main-box">
+          <div class="community-main-box-item">
+            <div class="community-main-box-left">
+              <a href="https://github.com/kubeedge">
+                <img sloth-img="{{ .community_github }}" alt="community_github">
+              </a>
             </div>
-          </a>
-          <a href="https://join.slack.com/t/kubeedge/shared_ invite/
-          enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRk ZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDA yMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5 YmIxZjU1ZDI">
-            <div class="community-main-row-item">
-              <img sloth-img="{{ .community_slack }}" alt="community_slack">
-              <p>Slack</p>
-            </div>  
-          </a>
-          <a href="https://twitter.com/kubeedge">
-            <div class="community-main-row-item">
-              <img sloth-img="{{ .community_twitter }}" alt="community_twitter">
-              <p>Twitter</p>
+            <div class="community-main-box-right">
+              <a href="https://github.com/kubeedge">
+                Github: https://github.com/kubeedge
+              </a>
             </div>
-          </a>
-          
+          </div>
+
+          <div class="community-main-box-item">
+            <div class="community-main-box-left">
+              <a href="https://groups.google.com/forum/#!forum/kubeedge">
+                <img sloth-img="{{ .community_mail }}" alt="community_mail">
+              </a>
+            </div>
+            <div class="community-main-box-right">
+              <a href="https://groups.google.com/forum/#!forum/kubeedge">
+                Mailing List: https://groups.google.com/forum/#!forum/kubeedge
+              </a>
+            </div>
+          </div>
+
+          <div class="community-main-box-item">
+            <div class="community-main-box-left">
+              <a href="https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI">
+                <img sloth-img="{{ .community_slack }}" alt="community_slack">
+              </a>
+            </div>
+            <div class="community-main-box-right">
+              <a href="https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI">
+                Slack: https://join.slack.com/t/kubeedge/shared_invite/enQ...
+              </a>
+            </div>
+          </div>
+
+          <div class="community-main-box-item">
+            <div class="community-main-box-left">
+              <a href="https://twitter.com/kubeedge">
+                <img sloth-img="{{ .community_twitter }}" alt="community_twitter">
+              </a>
+            </div>
+            <div class="community-main-box-right">
+              <a href="https://twitter.com/kubeedge">
+                Twitter: https://twitter.com/kubeedge
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="community-content">
@@ -48,60 +74,61 @@
                 </p>
                 {{ end }}
               </div>
-            <div class="community-content-row">
-              <div class="community-content-row-item">
-                <img sloth-img="{{ .community_icon1 }}" alt="community_icon1">
-                <p>Meeting Calender</p>
-                <div class="community-content__hidden-list">
+            <div class="community-content-col">
+              <div class="community-content-col-item">
+                <div class="community-content-col-item-left">
+                  <img sloth-img="{{ .community_icon1 }}" alt="community_icon1">
+                  <p>Meeting Calender</p>
+                </div>
+                <div class="community-content-col-item-right">
                   <ul>
-                    <a href="https://calendar.google.com/calendar/
-                    embed?sloth-img=8rjk8o516vfte21qibvlae3lj4%
-                    40group.calendar.google.com">
+                    <a href="https://calendar.google.com/calendar/embed?sloth-img=8rjk8o516vfte21qibvlae3lj4%40group.calendar.google.com">
                       <li>
-                        <img sloth-img="{{ .community_airplane }}" alt="community_airplane">
-                        Calender...
+                        Calender: https://calendar.google.com/calendar/embed?sloth-img=8rjk8o516vfte21qibvlae3lj4%40group.calendar.google.com
                       </li>
                     </a>
-                    <a href="https://calendar.google.com/calendar?cid= OHJqazhvNTE2dmZ0ZTIxcWlidmxhZTNsajR
-                    AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvb Q">
+                    <a href="https://calendar.google.com/calendar?cid=OHJqazhvNTE2dmZ0ZTIxcWlidmxhZTNsajRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">
                       <li>
-                        <img sloth-img="{{ .community_airplane }}" alt="community_airplane">
-                        Subscribe...
+                        Subscribe: https://calendar.google.com/calendar?cid=OHJqazhvNTE2dmZ0ZTIxcWlidmxhZTNsajRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
                       </li>
                     </a>
                   </ul>
                 </div>
               </div>
               
-              <div class="community-content-row-item">
-                <img sloth-img="{{ .community_icon2 }}" alt="community_icon2">
-                <p>Meeting Notes and Agenda</p>
-                <div class="community-content__hidden-list">
+              <div class="community-content-col-item">
+                <div class="community-content-col-item-left">
+                  <img sloth-img="{{ .community_icon2 }}" alt="community_icon2">
+                  <p>Meeting Notes and Agenda</p>
+                </div>
+                <div class="community-content-col-item-right">
                   <ul>
-                    <a href="https://docs.google.com/document/d/ 1Sr5QS_ Z04uPfRbA7PrXr3aPwCRpx7EtsyHq7mp6Cn Hs/edit">
+                    <a href="https://docs.google.com/document/d/1Sr5QS_Z04uPfRbA7PrXr3aPwCRpx7EtsyHq7mp6CnHs/edit">
                       <li>
-                        <img sloth-img="{{ .community_airplane }}" alt="community_airplane">
-                        Docs...
+                        Docs: https://docs.google.com/document/d/1Sr5QS_Z04uPfRbA7PrXr3aPwCRpx7EtsyHq7mp6CnHs/edit
                       </li>
                     </a>
                   </ul>
                 </div>
               </div>
-              <div class="community-content-row-item">
-                <img sloth-img="{{ .community_icon3 }}" alt="community_icon3">
-                <p>Meeting Records</p>
-                <div class="community-content__hidden-list">
+
+
+              <div class="community-content-col-item">
+                <div class="community-content-col-item-left">
+                  <img sloth-img="{{ .community_icon3 }}" alt="community_icon3">
+                  <p>Meeting Records</p>
+                </div>
+
+                <div class="community-content-col-item-right">
                   <ul>
-                    <a href="https://www.youtube.com/playlist?list= PLQtlO1kVWGXkRGkjSrLGEPJODoPb8s5FM">
+                    <a href="https://www.youtube.com/playlist?list=PLQtlO1kVWGXkRGkjSrLGEPJODoPb8s5FM">
                       <li>
-                        <img sloth-img="{{ .community_airplane }}" alt="community_airplane">
-                        YouTube...
+                        YouTube playlist: https://www.youtube.com/playlist?list=PLQtlO1kVWGXkRGkjSrLGEPJODoPb8s5FM
                       </li>
                     </a>
                     <a href="https://space.bilibili.com/448816706">
                       <li>
-                        <img sloth-img="{{ .community_airplane }}" alt="community_airplane">
-                        BiliBili...
+                        BiliBili: https://space.bilibili.com/448816706
                       </li>
                     </a>
                   </ul>

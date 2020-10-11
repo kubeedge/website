@@ -594,14 +594,14 @@ a[data-fancybox] img {
 .hero-header{
   display: flex;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 60px;
 }
 
 .hero-header-box{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 1rem;
+  margin: 1rem 0 0 1rem;
   text-align: left;
   text-shadow: #000 3px 4px 5px; 
 }
@@ -612,8 +612,8 @@ a[data-fancybox] img {
 }
 
 .hero-title {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 5rem;
-  font-weight: bold;
   margin-top: 0;
   line-height: 1;
   letter-spacing: 0.4rem;
@@ -705,6 +705,7 @@ a[data-fancybox] img {
   max-width: 768px;
   height: 1rem;
   font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0.2rem;
 }
 
@@ -1855,34 +1856,41 @@ article .article-metadata {
   align-items: center;
 }
 
-.community-main-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  min-width: 700px;
-}
-
-.community-main-row-item {
+.community-main-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 700px;
+  border: #b5c6ce solid 1px;
+  border-radius: 8px;
+}
+
+.community-main-box-item {
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-.community-main-row-item p {
+.community-main-box-left {
+  display: flex;
+}
+
+.community-main-box-left a p {
   margin: 0.2rem 0 0 0;
   font-size: 0.8rem;
   color: #000;
 }
 
-.community-main-row div {
-  width: 120px;
-  height: 120px;
-  border: #b5c6ce solid 1px;
-  border-radius: 5%;
+.community-main-box-left a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  height: 100px;
 }
 
-.community-main-row div img {
+.community-main-box-left a img {
+  margin: auto 0;
   width: 70px;
   height: 68px;
 }
@@ -1905,6 +1913,7 @@ article .article-metadata {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  min-width: 700px;
 }
 
 .community-content-subtitle {
@@ -1912,90 +1921,52 @@ article .article-metadata {
   color: green;
 }
 
-.community-content-row {
+.community-content-col {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 130px;
+  width: inherit;
   border: #b5c6ce solid 1px;
   border-radius: 8px;
 }
 
-.community-content-row-item {
+.community-content-col-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.community-content-col-item-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  float: left;
   width: 200px;
   height: 130px;
 }
 
-.community-content-row-item:hover {
-  background: #3578e5;
+.community-content-col-item-left p {
+  width: 200px;
+  text-align: center;
 }
 
-.community-content-row-item img {
+.community-content-col-item-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.community-content-col-item img {
   width: 60px;
   height: 70px;
 }
 
-.community-content-row-item p {
+.community-content-col-item p {
   margin: 0.2em 0 0 0;
   font-size: 0.6rem;
   font-weight: bold;
   color: #000;
 }
-
-.community-content-row-item:hover .community-content__hidden-list {
-  height:60px;
-}
-
-.community-content__hidden-list {
-  position: absolute;
-  margin: 9rem 0 0 0;
-  width: inherit;
-  height: 0;
-  overflow:hidden;
-  /* background:transparent;; */
-  transition:height 0.5s ;
-}
-
-.community-content__hidden-list ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: auto;
-  height: 70px;
-  margin-top: 10px;
-  padding: 0;
-  list-style: none;
-}
-
-.community-content__hidden-list ul a {
-  width: 120px;
-}
-
-.community-content__hidden-list ul li{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width:80px;
-  background:transparent;;
-  width: inherit;
-  height: auto;
-  font-size: 0.9rem;
-  color: #209cee;
-}
-
-.community-content__hidden-list ul li img {
-  margin-right: 5px;
-  width: 20px;
-  height: 20px;
-}
-
-
 /*************************************************
  *  Contact
  **************************************************/
@@ -2031,7 +2002,7 @@ article .article-metadata {
  **************************************************/
 
 .footer {
-  margin: 2rem 0 0;
+  margin: 3rem 0 0;
   padding: 2rem 0;
   width: 100%;
   background-color: #f5f6f7;

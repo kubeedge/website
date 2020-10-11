@@ -19,7 +19,7 @@
       {{ end }}
       {{ if $item.overlay_img }}
       width:100%;
-      height: 400px;
+      height: 410px;
       background-image:
       {{ if $item.overlay_filter }}linear-gradient(rgba(0, 0, 0, {{ $item.overlay_filter }}), rgba(0, 0, 0, {{ $item.overlay_filter }})), {{ end }}
       url('{{ printf "img/%s" $item.overlay_img | absURL }}');
