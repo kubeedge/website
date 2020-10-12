@@ -1,0 +1,59 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+<div id="{{ $page.File.TranslationBaseName }}" class="carousel slide" data-ride="carousel">
+  <div class="partner-main">
+      <div class="partner-main-col">
+          <div class="partner-main-title">
+            {{ with $page.Params.partners_title }}
+            <p class="partner-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $page.Params.partners_subtitle }}
+            <p class="partner-main-subfont" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+          </div>
+          {{ with $.Site.Params.partner }}
+          <div class="partner-main-row">
+            <a href="https://www.huaweicloud.com/en-us/product/ief.html">
+              <img sloth-img="{{ .partners_huawei }}" alt="partners_huawei">
+            </a>
+            <a href="https://cucc.wocloud.cn/">
+              <img sloth-img="{{ .partners_woyun }}" alt="partners_woyun">
+            </a>
+          </div>
+          <div class="partner-main-row">
+            <a href="http://www.189.cn/fj_np/">
+              <img sloth-img="{{ .partners_dianxin }}" alt="partners_dianxin">
+            </a>
+            <a href="http://www.10086.cn/index/zj/index_571_571.html">
+              <img sloth-img="{{ .partners_yidong }}" alt="partners_yidong">
+            </a>
+          </div>
+          {{ end }}
+      </div>
+  </div>
+  <div class="cloud-native">
+    <div class="cloud-native-container">
+      
+      <h2 class="cloud-native-container__subtitle">
+        {{ with $page.Params.partners_cncf1 }}
+        {{ . | markdownify | emojify }}
+        {{end}}
+        <a href="https://cncf.io/">
+          {{ with $page.Params.partners_cncf2 }}
+          {{ . | markdownify | emojify }}
+          {{end}}
+        </a> 
+        {{ with $page.Params.partners_cncf3 }}
+        {{ . | markdownify | emojify }}
+        {{end}}
+      </h2>
+      <div class="cloud-native-cainter-cncf-logo">
+      </div>
+    </div>
+  </div>
+</div>

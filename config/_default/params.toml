@@ -7,6 +7,9 @@ color_theme = "default"
 # Enable users to switch between day and night mode?
 day_night = true
 
+# copyright_content in footer
+copyright_content = "© 2020 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. "
+
 # Font style.
 #   Choose from `default`, `classic`, or `playfair`.
 font = "default"
@@ -170,3 +173,41 @@ sharing = true
     show_logo = false
 
 
+# Partner.
+[partner]
+
+  # partner's title
+  partners_title = "PARTNER"
+  partners_subtitle = "WORK TOGETHER"
+
+  # partner's img path, relative to your `static/` folder.
+  partners_dianxin = "/img/icon/partners-dianxin.jpg"
+  partners_huawei = "/img/icon/partners-huawei.jpg"
+  partners_woyun = "/img/icon/partners-woyun.jpg"
+  partners_yidong = "/img/icon/partners-yidong.jpg"
+
+# Case_studies.
+[study]
+  study_title = "CASE STUDIES"
+  study_subtitle = "WORK TOGETHER"
+
+  # case_studies's img path, relative to your `static/` folder.
+  study_cloud = "/img/icon/study-cloud.jpg"
+  study_jysz = "/img/icon/study-jysz.jpg"
+  study_kubesphere = "/img/icon/study-kubesphere.jpg"
+  study_raisecom = "/img/icon/study-raisecom.jpg"
+  study_woyun = "/img/icon/study-woyun.jpg"
+  study_xhwl = "/img/icon/study-xhwl.jpg"
+
+# community
+[community]
+  community_title = "JOIN COMMUNITY"
+  community_subtitle = "Community Meetings"
+  community_github = "/img/icon/community-github.png"
+  community_mail = "/img/icon/community-mail.png"
+  community_slack = "/img/icon/community-slack.png"
+  community_twitter = "/img/icon/community-twitter.png"
+  community_icon1 = "/img/icon/community-icon1.png"
+  community_icon2 = "/img/icon/community-icon2.png"
+  community_icon3 = "/img/icon/community-icon3.png"
+  community_airplane = "/img/icon/community-airplane.png"

@@ -1,0 +1,169 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+<section id="{{ $page.File.TranslationBaseName }}" class="carousel slide" data-ride="carousel" data-interval="{{if isset $page.Params "interval"}}{{$page.Params.interval}}{{else}}5000{{end}}">
+
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {{ range $index, $item := $page.Params.item }}
+    <li data-target="#{{ $page.File.TranslationBaseName }}" data-slide-to="{{ $index }}" {{ if eq $index 0 }}class="active"{{ end }}></li>
+    {{ end }}
+  </ol>
+
+  <!-- Carousel slides wrapper -->
+  <div class="carousel-inner">
+    {{ range $index, $item := $page.Params.item }}
+    <div class="wg-hero carousel-item{{ if eq $index 0 }} active{{ end }}" style="min-height: inherit;
+      {{ if $item.overlay_color }}
+      background-color: {{ $item.overlay_color | default "transparent" }};
+      {{ end }}
+      {{ if $item.overlay_img }}
+      width:100%;
+      height: 410px;
+      background-image:
+      {{ if $item.overlay_filter }}linear-gradient(rgba(0, 0, 0, {{ $item.overlay_filter }}), rgba(0, 0, 0, {{ $item.overlay_filter }})), {{ end }}
+      url('{{ printf "img/%s" $item.overlay_img | absURL }}');
+      {{ end }}
+      ;">
+      <div class="hero-header" >
+        <div class="hero-header-box">
+          <h1 class="hero-title" itemprop="headline">
+            {{ with $item.title }}{{ . | markdownify | emojify }}{{ end }}
+          </h1>
+          <div>
+            <p class="horizontal-line" > </p>
+            <div class="hero-header-row">
+              {{ with $item.header1 }}
+              <p class="hero-lead" >
+                {{ . | markdownify | emojify }}
+              </p>
+              {{ end }}  
+              {{ with $item.header2 }}
+              <p class="hero-lead" style="font-size: 1rem; margin: 1rem 0 0 1rem;">
+                {{ . | markdownify | emojify }}
+              </p>
+              {{ end }}  
+            </div>
+            {{ with $item.header3 }}
+            <p class="hero-lead" style="font-size: 1rem; margin-top: 0.6rem;" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+          </div>
+        </div>
+        
+        <!-- {{ if $item.cta_url }}
+        {{ $pack := or .icon_pack "fa" }}
+        <p>
+          <a href="{{ $item.cta_url }}" class="btn btn-light btn-lg">
+            {{- with $item.cta_icon -}}<i class="{{ $pack }} {{ $pack }}-{{ . }}" style="padding-right: 10px;"></i>{{- end -}}
+            {{- $item.cta_label | emojify | safeHTML -}}
+          </a>
+        </p>
+        {{ end }} -->
+      </div>    
+    </div>
+    <div class="hero-main">
+      <div class="hero-core-values"><p>CORE VALUES</p></div>
+      <div class="hero-main-row">
+        <div class="hero-main-row-left">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content1_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content1_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content1_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content1_line3 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+          </div>
+          <img class="hero-main-row-icon" sloth-img="{{ $item.content1_icon }}" alt="content1_icon">
+        </div>
+        <div class="content-img"></div>
+
+        <div class="hero-main-row-right">
+          <img class="hero-main-row-icon" sloth-img="{{ $item.content2_icon }}" alt="content2_icon">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content2_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content2_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content2_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content2_line3 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content2_line4 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+          </div> 
+        </div>
+      </div>
+      <div class="hero-main-row">
+        <div class="hero-main-row-left">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content3_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content3_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content3_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content3_line3 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content3_line4 }}
+            <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+
+          </div>
+          <div><img class="hero-main-row-icon" sloth-img="{{ $item.content3_icon }}" alt="content3_icon"></div>
+        </div>
+        <div class="hero-main-row-right">
+          <img class="hero-main-row-icon" sloth-img="{{ $item.content4_icon }}" alt="content4_icon">
+          <div class="hero-main-row-left-col">
+            {{ with $item.content4_title }}
+            <p class="hero-main-font" >
+              {{ . | markdownify | emojify }}
+            </p>
+            {{ end }}
+            {{ with $item.content4_line1 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+            {{ with $item.content4_line2 }}
+            <p class="hero-main-small-font">{{ . | markdownify | emojify }}</p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- Left and right controls -->
+  <!-- <a class="carousel-control-prev" href="#{{ $page.File.TranslationBaseName }}" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#{{ $page.File.TranslationBaseName }}" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="sr-only">Next</span>
+  </a> -->
+
+</section>

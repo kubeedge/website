@@ -8,26 +8,50 @@
   url = "#home_slider"
   weight = 1
 
-[[main]]
-  name = "Why KubeEdge"
-  url = "#why-kubeedge"
-  weight = 2
 
 [[main]]
   name = "Documentation"
   url = "https://docs.kubeedge.io"
-  weight = 3
+  weight = 2
 
 [[main]]
   name = "Blog"
   url = "blog/"
+  weight = 3
+
+[[main]]
+  name = "Events"
+  url = "talk/"
   weight = 4
+
+[[main]]
+  name = "Github"
+  url = "https://github.com/kubeedge"
+  weight = 5
+
 
 [[main]]
   name = "Downloads"
   url = "https://github.com/kubeedge/kubeedge/releases"
-  weight = 5
+  weight = 6
 
+[[main]]
+  name = "Join Community"
+  url = "community/"
+  parent = "Community"
+  weight = 7
+
+[[main]]
+  name = "Partner"
+  url = "partner/"
+  parent = "Community"
+  weight = 8
+
+[[main]]
+  name = "Case Studies"
+  url = "study/"
+  parent = "Community"
+  weight = 9
 
 # Right Menu
 [[main_right]]

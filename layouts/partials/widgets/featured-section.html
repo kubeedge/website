@@ -21,7 +21,7 @@
   {{ $image_src = printf "img/%s" $image_src | relURL }}
   
   <div class="col-12 col-sm-4">
-    {{ with .img_src }}<div class="featured-icon"><img src="{{ $image_src }}" alt="" width="{{ $width }}"/></div>{{ end }}
+    {{ with .img_src }}<div class="featured-icon"><img sloth-img="{{ $image_src }}" alt="" width="{{ $width }}"/></div>{{ end }}
     <h3>{{ .name | markdownify | emojify }}</h3>
     {{ with .description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
   </div>
