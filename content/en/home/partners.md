@@ -13,7 +13,7 @@ weight = 12
 partners_title = "PARTNERS"
 partners_subtitle = "WORK TOGETHER"
 
-partners_cncf1 = "Kubeedge® is a "
+partners_cncf1 = "KubeEdge® is a "
 partners_cncf2 = "Cloud Native Computing Foundation"
 partners_cncf3 = "Incubation project"
 +++

@@ -34,24 +34,19 @@
             <p class="horizontal-line" > </p>
             <div class="hero-header-row">
               {{ with $item.header1 }}
-              <p class="hero-lead" >
+              <p class="hero-lead" style="font-size: 1rem; margin: 1rem 0 0 0;">
                 {{ . | markdownify | emojify }}
               </p>
-              {{ end }}  
-              {{ with $item.header2 }}
-              <p class="hero-lead" style="font-size: 1rem; margin: 1rem 0 0 1rem;">
-                {{ . | markdownify | emojify }}
-              </p>
-              {{ end }}  
+              {{ end }}
             </div>
-            {{ with $item.header3 }}
+            {{ with $item.header2 }}
             <p class="hero-lead" style="font-size: 1rem; margin-top: 0.6rem;" >
               {{ . | markdownify | emojify }}
             </p>
             {{ end }}
           </div>
         </div>
-        
+
         <!-- {{ if $item.cta_url }}
         {{ $pack := or .icon_pack "fa" }}
         <p>
@@ -61,7 +56,7 @@
           </a>
         </p>
         {{ end }} -->
-      </div>    
+      </div>
     </div>
     <div class="hero-main">
       <div class="hero-core-values"><p>CORE VALUES</p></div>
@@ -107,7 +102,7 @@
             {{ with $item.content2_line4 }}
             <p class="hero-main-small-font" style="margin-top: 0.8rem;">{{ . | markdownify | emojify }}</p>
             {{ end }}
-          </div> 
+          </div>
         </div>
       </div>
       <div class="hero-main-row">
