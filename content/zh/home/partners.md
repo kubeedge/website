@@ -13,7 +13,7 @@ weight = 12
 partners_title = "合作伙伴"
 partners_subtitle = "一起研发"
 
-partners_cncf1 = "Kubeedge® 是一个"
-partners_cncf2 = "云本地计算基础"
+partners_cncf1 = "KubeEdge® 目前是"
+partners_cncf2 = "云原生计算基金会"
 partners_cncf3 = "孵化项目"
 +++
