@@ -601,7 +601,7 @@ a[data-fancybox] img {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 1rem 0 0 1rem;
+  margin: 1rem 0 0 15%;
   text-align: left;
   text-shadow: #000 3px 4px 5px; 
 }
@@ -1622,6 +1622,98 @@ article .article-metadata {
   opacity: 0.6;
 }
 
+/*************************************************
+ *  Blog
+ **************************************************/
+ .blog-universal-wrapper {
+  margin: 5rem auto 1rem auto;
+  width: 1200px;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #f5f6f7;
+  border-radius: 5px;
+ }
+
+ .blog-universal-wrapper-left {
+  display: flex;
+  flex-direction: column;
+ }
+
+.blog-universal-wrapper-left-title {
+  margin: 25px auto 10px auto;
+  width: 180px;
+  height: 50px;
+  text-align: center;
+  border-bottom: 2px solid #f5f6f7;
+}
+
+.blog-universal-wrapper-left-year {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-universal-wrapper-left-year div {
+  margin-top: 3px;
+}
+
+ .blog-universal-wrapper-right-2020 {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #f5f6f7;
+ }
+
+ .blog-universal-wrapper-right-2019 {
+  display: none;
+  flex-direction: column;
+  border-left: 2px solid #f5f6f7;
+ }
+
+ .blog-universal-wrapper-right-title {
+   margin: 10px 0 10px 10px;
+   font-size: 1.8rem;
+ }
+
+.blog-box {
+  margin:0 0 1rem 2rem ;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.blog-box-title h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3371e5;
+}
+
+.blog-box-content {
+  width: 900px;
+  border-top: 3px solid #ccffff;
+}
+
+.blog-box-content-author {
+  margin-top: 5px;
+  color: #C0C0C0;
+}
+
+.blog-box-content-summary {
+  font-size: 0.7rem;
+  margin: 5px 0;
+}
+
+.blog-box-more a {
+  padding: 4px;
+  width: 120px;
+  background: #2962ff;
+  font-size: 0.9rem;
+  color: #FFF;
+  border-radius: 5px;
+  text-decoration: none
+}
+
+.universal-wrapper h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 /*************************************************
  *  Partner
@@ -1643,11 +1735,18 @@ article .article-metadata {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  min-width: 900px;
+  min-width: 800px;
+}
+
+.partner-main-row a {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px solid rgb(233, 233, 242);
+  border-radius: 5px;
 }
 
 .partner-main-row img {
-  width: 400px;
+  width: 340px;
 }
 
 .partner-main-title {
@@ -1758,8 +1857,11 @@ article .article-metadata {
 }
 
 .study-main-row div img {
+  padding: 4px;
   width: 200px;
   height: 60px;
+  border: 2px solid rgb(233, 233, 242);
+  border-radius: 5px;
 }
 
 .study-main-title {
