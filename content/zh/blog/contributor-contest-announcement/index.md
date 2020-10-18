@@ -15,8 +15,7 @@ authors = ["KubeEdge"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
 categories = ["General", "Announcements"]
-summary = "【公告】KubeEdge社区贡献者竞赛获胜者名单。KubeEdge社区贡献者竞赛自2019年4月23日开始以来，得到了广大社区贡献者的积极响应。
-广大参与者积极通过提交Issue的方式反馈问题和用户诉求，以提交PR的方式实现KubeEdge新特性以及解决现有Bug。"
+summary = "【公告】KubeEdge社区贡献者竞赛获胜者名单。KubeEdge社区贡献者竞赛自2019年4月23日开始以来，得到了广大社区贡献者的积极响应。广大参与者积极通过提交Issue的方式反馈问题和用户诉求，以提交PR的方式实现KubeEdge新特性以及解决现有Bug。"
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
