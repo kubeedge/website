@@ -13,7 +13,7 @@ You write the pages in Markdown, and Hugo wraps them up into a website.
   GitHub workflow
 * [Start contributing](https://kubeedge.netlify.com/docs/about/contributing/)
 
-## Quickstart
+## Quick start
 
 Here's a quick guide to updating the docs. It assumes you're familiar with the
 GitHub workflow and you're happy to use the automated preview of your doc
