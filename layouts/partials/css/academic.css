@@ -1649,8 +1649,13 @@ article .article-metadata {
 
 .blog-universal-wrapper-left-year {
   margin-left: 30px;
+  width: 50px;
   display: flex;
   flex-direction: column;
+}
+
+.blog-universal-wrapper-left-year div:hover {
+  cursor: pointer;
 }
 
 .blog-universal-wrapper-left-year div {
@@ -1684,6 +1689,10 @@ article .article-metadata {
 .blog-box-title h2 {
   font-family: Arial, Helvetica, sans-serif;
   color: #3371e5;
+}
+
+.blog-box-title a:hover {
+  text-decoration: none;
 }
 
 .blog-box-content {

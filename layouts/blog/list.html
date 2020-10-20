@@ -23,7 +23,7 @@
     {{ range where $paginator.Pages ".Params.year" "=" "2020" }}
     <div class="blog-box">
         <div class="blog-box-title">
-          <h2>{{ .Title }}</h2>
+          <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
         </div>
         <div class="blog-box-content">
           <div class="blog-box-content-author">
@@ -52,7 +52,7 @@
     {{ range where $paginator.Pages ".Params.year" "=" "2019" }}
     <div class="blog-box">
         <div class="blog-box-title">
-          <h2>{{ .Title }}</h2>
+          <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
         </div>
         <div class="blog-box-content">
           <div class="blog-box-content-author">
