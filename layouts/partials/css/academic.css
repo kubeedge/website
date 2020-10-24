@@ -638,7 +638,9 @@ a[data-fancybox] img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 740px;
   background: rgb(247, 247, 247);
+  background-image: url(/img/hero/content-background.png);
 }
 
 .hero-main-row {
@@ -651,9 +653,8 @@ a[data-fancybox] img {
 
 .content-img {
   margin-top: 4rem;
-  width: 14rem;
+  width: 12rem;
   height: 9rem;
-  background-image: url(/img/hero/content-kubeedge.png);
 }
 
 .hero-main-row-icon {
