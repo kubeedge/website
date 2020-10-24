@@ -5,6 +5,9 @@ lastmod = 2020-05-30
 
 draft = false
 
+# Year of publication, used for screening
+year = "2020"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Yin Ding", "Kevin Wang"]
 
@@ -12,7 +15,8 @@ authors = ["Yin Ding", "Kevin Wang"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native", "iot", "iiot", "release v1.3", "v1.3"]
 categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3 is live!"
+summary = "KubeEdge v1.3 is live!On May 15th, the KubeEdge community is proud to announce the availability of KubeEdge 1.3. This release includes a major upgrade for maintainability, which includes:Collecting logs from pods at edge in cloud,Edge node and container monitoring,High availability of KubeEdge cloud components,Automated TLS bootstrapping for edge nodes,CRI-O and Kata Containers runtime support,25+ bug fixes and enhancements."
+
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.

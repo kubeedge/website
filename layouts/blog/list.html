@@ -1,0 +1,102 @@
+{{ if .Params.widgets }}
+
+{{ partial "widget_page.html" . }}
+
+{{ else }}
+
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+{{ $myPageParams := .Page.Params }}
+<div class="blog-universal-wrapper">
+  <div class="blog-universal-wrapper-left">
+    <div class="blog-universal-wrapper-left-title">
+      ARCHIVE<span style="font-size: 0.8rem; color: #C0C0C0;"> (year)</span>
+    </div>
+    <div class="blog-universal-wrapper-left-year">
+      <div id="2020" onclick="year2020()" style="text-decoration: underline;">2020</div>
+      <div id="2019" onclick="year2019()">2019</div>
+    </div>
+  </div>
+  {{ $paginator := .Paginate .Data.Pages }}
+  <div id="blog2020" class="blog-universal-wrapper-right-2020">
+    <div class="blog-universal-wrapper-right-title">{{ $myPageParams.title }}</div>
+    {{ range where $paginator.Pages ".Params.year" "=" "2020" }}
+    <div class="blog-box">
+        <div class="blog-box-title">
+          <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+        </div>
+        <div class="blog-box-content">
+          <div class="blog-box-content-author">
+            By {{  delimit .Params.authors ", " }} , Last update on {{ dateFormat "Jan 2, 2006" .Params.lastmod }}
+          </div>
+          <div class="blog-box-content-summary">
+            {{ if .Params.summary }}
+            {{ .Params.summary | plainify | emojify }}
+            {{ else if .Params.abstract }}
+            {{ .Params.abstract | plainify | emojify | truncate 250 }}
+            {{ else if .Summary }}
+            {{ .Summary | plainify | emojify }}
+            {{ end }}
+          </div>
+          <h2></h2>
+        </div>
+        <div class="blog-box-more">
+          <a href="{{ .RelPermalink }}">READ MORE</a>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+  <div id="blog2019" class="blog-universal-wrapper-right-2019">
+    <div class="blog-universal-wrapper-right-title">{{ $myPageParams.title }}</div>
+    {{ range where $paginator.Pages ".Params.year" "=" "2019" }}
+    <div class="blog-box">
+        <div class="blog-box-title">
+          <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+        </div>
+        <div class="blog-box-content">
+          <div class="blog-box-content-author">
+            By {{  delimit .Params.authors ", " }} , Last update on {{ dateFormat "Jan 2, 2006" .Params.lastmod }}
+          </div>
+          <div class="blog-box-content-summary">
+            {{ if .Params.summary }}
+            {{ .Params.summary | plainify | emojify }}
+            {{ else if .Params.abstract }}
+            {{ .Params.abstract | plainify | emojify | truncate 250 }}
+            {{ else if .Summary }}
+            {{ .Summary | plainify | emojify }}
+            {{ end }}
+          </div>
+          <h2></h2>
+        </div>
+        <div class="blog-box-more">
+          <a href="{{ .RelPermalink }}">READ MORE</a>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+
+  {{ partial "pagination" . }}
+</div>
+<script>
+function year2020() {
+  // 选中的年份
+  document.getElementById("2020").style.textDecoration="underline";
+  document.getElementById("2019").style.textDecoration="none";
+  // 展示哪年的blog
+  document.getElementById("blog2020").style.display="flex";
+  document.getElementById("blog2019").style.display="none";
+}
+function year2019() {
+  document.getElementById("2020").style.textDecoration="none";
+  document.getElementById("2019").style.textDecoration="underline";
+
+  document.getElementById("blog2020").style.display="none";
+  document.getElementById("blog2019").style.display="flex";
+}
+</script>
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}
+
+{{ end }}

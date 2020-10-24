@@ -6,6 +6,9 @@ lastmod = 2019-03-19
 
 draft = false
 
+# Year of publication, used for screening
+year = "2019"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Sanil Kumar", "Jun Du"]
 
@@ -13,7 +16,7 @@ authors = ["Sanil Kumar", "Jun Du"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cncf sandbox", "cloud native"]
 categories = ["General", "Announcements"]
-summary = "KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge was accepted into the CNCF sandbox in March 2019"
+summary = "KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge was accepted into the CNCF sandbox in March 2019.Open source edge computing is going through its most dynamic phase of development in the industry. So many open source platforms, so many consolidations and so many initiatives for standardization! This shows the strong drive to build better platforms to bring cloud computing to the edges to meet ever increasing demand..."
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.
