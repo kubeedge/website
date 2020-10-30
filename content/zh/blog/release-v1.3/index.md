@@ -5,6 +5,9 @@ lastmod = 2020-05-20
 
 draft = false
 
+# Year of publication, used for screening
+year = "2020"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Fei Xu", "Kevin Wang", "Jie Zhang", "Dave Chen"]
 
@@ -12,7 +15,7 @@ authors = ["Fei Xu", "Kevin Wang", "Jie Zhang", "Dave Chen"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "边缘计算", "kubernetes 边缘计算", "K8s 边缘计算", "边缘计算平台", "release v1.3", "v1.3"]
 categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3发布：大幅提升系统可维护性！"
+summary = "KubeEdge v1.3发布：北京时间5月15日，KubeEdge发布了新的特性版本v1.3.0。本次发布的1.3版本大幅提升了系统的可维护性，包括：支持从云端收集边缘Pod日志、支持边缘节点与容器监控、云端组件高可用部署、边缘节点自动签发证书、支持使用CRI-O和Kata container作为容器运行时，并修复了25处问题。"
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.

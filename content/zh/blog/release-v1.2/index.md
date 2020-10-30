@@ -5,6 +5,9 @@ lastmod = 2020-02-15
 
 draft = false
 
+# Year of publication, used for screening
+year = "2020"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Fei Xu", "Kevin Wang"]
 
@@ -12,7 +15,7 @@ authors = ["Fei Xu", "Kevin Wang"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "边缘计算", "kubernetes 边缘计算", "K8S 边缘计算", "边缘计算平台", "release v1.2", "v1.2"]
 categories = ["General", "Announcements"]
-summary = "KubeEdge v1.2 现已发布"
+summary = "KubeEdge v1.2 现已发布。2月7日，KubeEdge社区发布了全新的特性版本v1.2.0。本次发布的1.2版本迎来可靠性方面的重大升级，包含：增强云边协同传输的可靠性、Component Config API、自动注册边缘节点到云端、Kubernetes v1.17.1支持，以及30处问题修复。"
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.

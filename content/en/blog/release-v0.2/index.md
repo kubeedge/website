@@ -5,6 +5,9 @@ lastmod = 2019-03-05
 
 draft = false
 
+# Year of publication, used for screening
+year = "2019"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["KubeEdge"]
 
@@ -12,7 +15,7 @@ authors = ["KubeEdge"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "release v0.2", "v0.2"]
 categories = ["General", "Announcements"]
-summary = "KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge v0.2 is released today."
+summary = "KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge v0.2 is released today.KubeEdge is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge..."
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.

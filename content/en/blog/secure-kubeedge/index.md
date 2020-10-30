@@ -5,6 +5,9 @@ lastmod = 2019-04-16
 
 draft = false
 
+# Year of publication, used for screening
+year = "2019"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Trilok Geer"]
 
@@ -12,7 +15,7 @@ authors = ["Trilok Geer"]
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "security"]
 categories = ["Security"]
-summary = "Secure kubeedge workloads using SPIFFE/SPIRE"
+summary = "Secure kubeedge workloads using SPIFFE/SPIRE.Edge computing framework capabilities should be able to cloud-native design patterns and practices such as container orchestration, microservices, serverless computation which has led to increasing heterogenous deployment environments. Conventional practices for securing heterogenous deployments add complexity overhead to enforcing policies, prevention and detection of threats. Due to the increase in complexity, there is more scope of error in manageability and also..."
 
 # Projects (optional).
 #   Associate this post with one or more of your projects.

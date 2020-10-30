@@ -5,6 +5,9 @@ lastmod = 2019-03-05
 
 draft = false
 
+# Year of publication, used for screening
+year = "2019"
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["KubeEdge"]
 
