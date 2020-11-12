@@ -1,87 +1,51 @@
 +++
-title = "What is KubeEdge"
-description = "Quickly get running with your kubeedge"
-date = 2019-01-28
-lastmod = 2019-01-29
+title =  "Why KubeEdge"
 
 draft = false  # Is this a draft? true/false
 toc = true  # Show table of contents? true/false
 type = "docs"  # Do not modify.
-reading_time = true  # Show estimated reading time?
-share = true  # Show social sharing links?
 
-# aliases = ["/docs/", "/docs/about/", "/docs/Kubeedge/"]
 # Add menu entry to sidebar.
-linktitle = "What is KubeEdge"
+linktitle = "Why KubeEdge"
 [menu.docs]
-  parent = "concepts"
-  weight = 1
+  parent = "welcome"
+  weight = 2
 +++
 
-## The KubeEdge mission
 
-Our goal is to make an open platform to enable Edge computing, extending native containerized
-application orchestration capabilities to hosts at Edge. which built upon kubernetes and provides
-fundamental infrastructure support for network, app.deployment and metadata synchronization
-between cloud and edge. It also supports `MQTT` and allows developers to author customer logic
-and enable resource constraint devices communication at Edge. Kubeedge is *the open platform to enable Edge computing*.
-The advantages of Kubeedge include mainly:
+**KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge. KubeEdge consists of a cloud part and an edge part. Both edge and cloud parts are now open-sourced.
+
+## Advantages
+
+The advantages of KubeEdge include mainly:
 
 * **Edge Computing**
 
-     With business logic running at Edge, volumes of data can be secured & processed locally. It reduces the bandwidth
-     request between Edge and Cloud; increases the response speak; and protects customers' data privacy.
+     With business logic running at the Edge, much larger volumes of data can be secured & processed locally where the data is produced. This reduces the network bandwidth requirements and consumption between Edge and Cloud. This increases responsiveness, decreases costs, and protects customers' data privacy.
 
-* **Simplify development**
+* **Simplified development**
 
-     Developers can write regular http or mqtt based applications; containerize and run anywhere at Edge or Cloud.
+     Developers can write regular HTTP or MQTT based applications, containerize these, and run them anywhere - either at the Edge or in the Cloud - whichever is more appropriate.
 
 * **Kubernetes-native support**
 
-     With KubeEdge, users can orchestrate apps, manage devices and monitor app/device status against Edge nodes like
-     a normal K8s cluster in the Cloud.
+     With KubeEdge, users can orchestrate apps, manage devices and monitor app and device status on Edge nodes just like a traditional Kubernetes cluster in the Cloud.
 
 * **Abundant applications**
 
-     You can easily get and deploy complicated machine learning, image recognition, event processing and other high
-     level applications to your Edge side.
-
-* **And so on**
-
-## What is KubeEdge?
-
-KubeEdge is an open source system for extending native containerized application
-orchestration capabilities to hosts at Edge. It is built upon kubernetes and provides
-fundamental infrastructure support for network, app. deployment and metadata
-synchronization between cloud and edge.
-
-## Workflow 
-
-The basic workflow is:
-
-* Make sure some basically tool in your Env, such as `mosquitto` and `docker`.
-* Download the Kubeedge scripts and configuration files.
-* Customize the configuration.
-* Run `mosquitto` and `Kubeedge` binary to your chosen environment.
-
-You adapt the configuration to choose the platforms and services that you want
-to use for your environment: `certfile`, `keyfile`, and so on.
+     It is easy to get and deploy existing complicated machine learning, image recognition, event processing and other high-level applications to the Edge.
 
 ## Components
 KubeEdge is composed of these components:
 
-- **Edged:** Edged is an agent running on edge node for managing user's application.
-- **[EdgeHub](/en/docs/edgehub):** EdgeHub is a web socket client, which is responsible for interacting with **Huawei Cloud IEF service**, including sync cloud side resources update, report edged side host and device status changes.
-- **[EventBus](/en/docs/event-bus):** EventBus is a MQTT client to interact with MQTT server(mosquitto), offer subscribe and publish capability to other components.
-- **DeviceTwin:** DeviceTwin is responsible for storing device status and syncing device status to the cloud. It also provides query interfaces for applications.
-- **[MetaManager](/en/docs/meta-manager):** MetaManager is the message processor and between edged and edgehub. It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite). 
+- **[Edged](components/edge/edged.md):** an agent that runs on edge nodes and manages containerized applications.
+- **[EdgeHub](components/edge/edgehub.md):** a web socket client responsible for interacting with Cloud Service for edge computing (like Edge Controller as in the KubeEdge Architecture). This includes syncing cloud-side resource updates to the edge and reporting edge-side host and device status changes to the cloud.
+- **[CloudHub](components/cloud/cloudhub.md):** a web socket server responsible for watching changes at the cloud side, caching and sending messages to EdgeHub.
+- **[EdgeController](components/cloud/edge_controller.md):** an extended kubernetes controller which manages edge nodes and pods metadata so that the data can be targeted to a specific edge node.
+- **[EventBus](components/edge/eventbus.md):** an MQTT client to interact with MQTT servers (mosquitto), offering publish and subscribe capabilities to other components.
+- **[DeviceTwin](components/edge/devicetwin.md):** responsible for storing device status and syncing device status to the cloud. It also provides query interfaces for applications.
+- **[MetaManager](components/edge/metamanager.md):** the message processor between edged and edgehub. It is also responsible for storing/retrieving metadata to/from a lightweight database (SQLite).
 
 ## Architecture
 
-{{<figure library="1" src="kubeedge_arch.png" title="">}}
-
-## Getting involved
-
-There are many ways to contribute to Kubeedge, and we welcome contributions! 
-Read the [contributor's guide](/en/docs/contributing) to get started on the 
-code.
+![KubeEdge Architecture](/img/kubeedge_arch.png)
