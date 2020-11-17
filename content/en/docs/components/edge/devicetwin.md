@@ -1,21 +1,14 @@
-+++
-title =  "DeviceTwin"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "DeviceTwin"
-[menu.docs]
-  parent = "edge component"
-  weight = 5
-+++
-
-
-# DeviceTwin
-
-
+---
+draft: false
+linktitle: DeviceTwin
+menu:
+  docs:
+    parent: edge component
+    weight: 5
+title: DeviceTwin
+toc: true
+type: docs
+---
 ## Overview
 
 DeviceTwin module is responsible for storing device status, dealing with device attributes, handling device twin operations, creating a membership
@@ -376,4 +369,3 @@ The following are the operations that can be performed on this data :-
    - **Update Device Twin Multi**: Updates multiple columns of multiple device twins in the device twin table
 
    - **Delete Device Twin Trans**: Inserts device twins, deletes device twins and updates device twins in a single transaction.
-

@@ -1,21 +1,16 @@
-+++
-title =  "EdgeHub"
-
-
-date = 2019-01-31
-lastmod = 2019-02-01
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "EdgeHub"
-[menu.docs]
-  parent = "concepts"
-  weight = 5
-+++
-
+---
+date: 2019-01-31
+draft: false
+lastmod: 2019-02-01
+linktitle: EdgeHub
+menu:
+  docs:
+    parent: concepts
+    weight: 5
+title: EdgeHub
+toc: true
+type: docs
+---
 ## Overview
 
 Edge hub is a web socket client, which is responsible for interacting with Huawei Cloud IEF service.

@@ -1,12 +1,12 @@
-+++
-title = "Minikube for Kubeedge"
-description = "Quickly get Kubeedge running locally"
-weight = 10
-toc = true
-bref = "This document will outline steps that will get your local installation of Kubeedge running on top of Mikikube. Minikube runs a simple, single-node Kubernetes cluster inside a virtual machine (VM)."
-
-+++
-
+---
+bref: This document will outline steps that will get your local installation of Kubeedge
+  running on top of Mikikube. Minikube runs a simple, single-node Kubernetes cluster
+  inside a virtual machine (VM).
+description: Quickly get Kubeedge running locally
+title: Minikube for Kubeedge
+toc: true
+weight: 10
+---
 By the end of this document, you'll have a local installation of Minikube kubernetes cluster along with all the default core components of
 Kubeedge deployed as services in the pods. You should be able to access JupyterHub notebooks, and the Kubeedge Dashboard.
 

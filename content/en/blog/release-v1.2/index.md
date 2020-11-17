@@ -1,40 +1,24 @@
-+++
-title = "KubeEdge v1.2 is out now"
-date = 2020-02-15
-lastmod = 2020-02-15
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Yin Ding"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "release v1.2", "v1.2"]
-categories = ["General", "Announcements"]
-summary = "KubeEdge v1.2 is released."
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-#[image]
-  # Caption (optional)
-#  caption = "KubeEdge v1.2 is out. Try it now!"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-#  focal_point = "Center"
-+++
-
-
-
+---
+authors:
+- Yin Ding
+categories:
+- General
+- Announcements
+date: 2020-02-15
+draft: false
+lastmod: 2020-02-15
+summary: KubeEdge v1.2 is released.
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- release v1.2
+- v1.2
+title: KubeEdge v1.2 is out now
+---
 **KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge.  
 
 ## **Today we announce the v1.2 release of KubeEdge.**
@@ -101,9 +85,3 @@ KubeEdge V1.2 offers a more stable and reliable cloud-edge transmission, enhance
 A big “thank you” to all the community contributors and we hope to continue this momentum.  Future releases of KubeEdge will further enhance KubeEdge user experience, better intelligent edge computing platform, and other advanced features to make KubeEdge a high performing, reliable, and intelligent solution to Connect Cloud to Edge.  
  
 For more details regarding KubeEdge, please follow and join us here: https://kubeedge.io .
-
-
-
-
-
-

@@ -1,38 +1,29 @@
-+++
-title = "From the K8S blog: KubeEdge - a Kubernetes Native Edge Computing Framework"
-subtitle = "KubeEdge was accepted into the CNCF sandbox in March 2019"
-lastmod = 2019-03-19
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Sanil Kumar", "Jun Du"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cncf sandbox", "cloud native"]
-categories = ["General", "Announcements"]
-summary = "KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge was accepted into the CNCF sandbox in March 2019"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-[image]
-  # Caption (optional)
-  caption = "KubeEdge is officially accepted in CNCF Sandbox"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-  focal_point = "Center"
-+++
-
+---
+authors:
+- Sanil Kumar
+- Jun Du
+categories:
+- General
+- Announcements
+draft: false
+image:
+  caption: KubeEdge is officially accepted in CNCF Sandbox
+  focal_point: Center
+lastmod: 2019-03-19
+subtitle: KubeEdge was accepted into the CNCF sandbox in March 2019
+summary: KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge was accepted
+  into the CNCF sandbox in March 2019
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- cncf sandbox
+- cloud native
+title: 'From the K8S blog: KubeEdge - a Kubernetes Native Edge Computing Framework'
+---
 The **KubeEdge** team presented their case for sandboxing at the CNCF TOC meeting on 12th March 2019.  
   
 

@@ -1,20 +1,14 @@
-+++
-title =  "Contributing"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Contributing"
-[menu.docs]
-  parent = "contributing"
-  weight = 1
-+++
-
-
-# Contributing
-
+---
+draft: false
+linktitle: Contributing
+menu:
+  docs:
+    parent: contributing
+    weight: 1
+title: Contributing
+toc: true
+type: docs
+---
 ## Code of Conduct
 
 Please make sure to read and observe our [Code of Conduct](https://github.com/kubeedge/community/blob/master/CODE_OF_CONDUCT.md).

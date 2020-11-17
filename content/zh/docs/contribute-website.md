@@ -1,21 +1,17 @@
-+++
-title =  "Contributing to KubeEdge Docs"
-description = "Information on how to start contributing to Kubeedge"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Contributing to KubeEdge Docs"
-[menu.docs]
-  parent = "welcome"
-  weight = 2
-+++
-
+---
+date: 2019-01-28
+description: Information on how to start contributing to Kubeedge
+draft: false
+lastmod: 2019-01-29
+linktitle: Contributing to KubeEdge Docs
+menu:
+  docs:
+    parent: welcome
+    weight: 2
+title: Contributing to KubeEdge Docs
+toc: true
+type: docs
+---
 Thanks for taking the time to join our community and start contributing!
 
 ## Quick guide to working with a GitHub repo

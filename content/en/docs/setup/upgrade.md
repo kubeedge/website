@@ -1,19 +1,14 @@
-+++
-title =  "Upgrade"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Upgrading KubeEdge"
-[menu.docs]
-  parent = "setup"
-  weight = 3
-+++
-
-# Upgrading KubeEdge
-
+---
+draft: false
+linktitle: Upgrading KubeEdge
+menu:
+  docs:
+    parent: setup
+    weight: 3
+title: Upgrading KubeEdge
+toc: true
+type: docs
+---
 Please refer to following guide to upgrade your KubeEdge cluster.
 
 ## Backup

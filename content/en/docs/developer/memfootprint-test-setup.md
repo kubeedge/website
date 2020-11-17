@@ -1,20 +1,14 @@
-+++
-title =  "MemoryTest"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Memory footprint Test"
-[menu.docs]
-  parent = "developer guide"
-  weight = 3
-+++
-
-
-# Measuring memory footprint of EdgeCore
-
+---
+draft: false
+linktitle: Memory Footprint Test
+menu:
+  docs:
+    parent: developer guide
+    weight: 3
+title: Memory Footprint Test
+toc: true
+type: docs
+---
 ## Why measure memory footprint?
 
 - This platform is designed for a light-weight edge computing deployment, capable of running on devices with few resources (for example, 256MB RAM)

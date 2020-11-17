@@ -1,19 +1,14 @@
-+++
-title = "CRI"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "CRI"
-[menu.docs]
-  parent = "configuration"
-  weight = 2
-+++
-
-# KubeEdge runtime configuration
-
+---
+draft: false
+linktitle: CRI
+menu:
+  docs:
+    parent: configuration
+    weight: 2
+title: CRI
+toc: true
+type: docs
+---
 ## containerd
 
 Docker 18.09 and up ship with `containerd`, so you should not need to install it manually. If you do not have `containerd`, you may install it by running the following:

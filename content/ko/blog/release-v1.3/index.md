@@ -1,39 +1,28 @@
-+++
-title = "KubeEdge v1.3 발표!"
-date = 2020-05-30
-lastmod = 2020-05-30
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Yin Ding", "Kevin Wang"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native", "iot", "iiot", "release v1.3", "v1.3"]
-categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3 발표!"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-#[image]
-  # Caption (optional)
-#  caption = "KubeEdge v1.3 is live!"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-#  focal_point = "Center"
-+++
-
-
+---
+authors:
+- Yin Ding
+- Kevin Wang
+categories:
+- General
+- Announcements
+date: 2020-05-30
+draft: false
+lastmod: 2020-05-30
+summary: KubeEdge v1.3 발표!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.3
+- v1.3
+title: KubeEdge v1.3 발표!
+---
 **KubeEdge** 는 컨테이너화 된 어플리케이션의 오케스트레이션과 장비에 대한 관리를 엣지에 있는 호스트로 확장하기 위한 오픈소스 시스템입니다. Kubernetes를 기반으로 하며 네트워킹, 어플리케이션 배포 및 클라우드와 엣지 간의 메타 데이터 동기화를 지원하기 위한 핵심 인프라를 제공합니다. 또한 MQTT 프로토콜을 지원하며 개발자가 사용자 정의 로직을 작성하고, 엣지에서 자원이 제한된 장비와의 통신을 가능하게 합니다.
 
 ## **KubeEdge v1.3: 유지보수를 위한 주요 업그레이드**
@@ -133,5 +122,3 @@ https://github.com/kubeedge/kubeedge/blob/master/docs/getting-started/roadmap.md
 KubeEdge에 대한 더욱 자세한 내용은 여기에서 우리와 함께 해주세요.
 
 https://kubeedge.io
-
-

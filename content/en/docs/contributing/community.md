@@ -1,20 +1,14 @@
-+++
-title =  "Community"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Community Membership"
-[menu.docs]
-  parent = "contributing"
-  weight = 3 
-+++
-
-
-# KubeEdge Community Membership
-
+---
+draft: false
+linktitle: Community Membership
+menu:
+  docs:
+    parent: contributing
+    weight: 3
+title: Community Membership
+toc: true
+type: docs
+---
 **Note :** This document keeps changing based on the status and feedback of KubeEdge Community.
 
 This document gives a brief overview of the KubeEdge community roles with the requirements and responsibilities associated with them.

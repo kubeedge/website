@@ -1,21 +1,17 @@
-+++
-title = "Requirements"
-description = "Requirements"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Prerequisites"
-[menu.docs]
-  parent = "setup"
-  weight = 1
-+++
-
+---
+date: 2019-01-28
+description: Requirements
+draft: false
+lastmod: 2019-01-29
+linktitle: Prerequisites
+menu:
+  docs:
+    parent: setup
+    weight: 1
+title: Requirements
+toc: true
+type: docs
+---
 For best understanding of the guides, it's useful to have some knowledge of
 the following systems:
 

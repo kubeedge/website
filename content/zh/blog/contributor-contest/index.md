@@ -1,39 +1,27 @@
-+++
-title = 'KubeEdge社区贡献者竞赛'
-subtitle = "赢取[2019中国上海KubeCon + CloudNativeCon & Open Source Summit](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)大会门票"
-date = 2019-04-23
-lastmod = 2019-04-23
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["KubeEdge"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "KubeCon", "cloud native"]
-categories = ["General", "Announcements"]
-summary = "赢取2019中国上海KubeCon + CloudNativeCon & Open Source Summit大会门票"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-[image]
-  # Caption (optional)
-  caption = ""
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-  #focal_point = "Center"
-+++
-
+---
+authors:
+- KubeEdge
+categories:
+- General
+- Announcements
+date: 2019-04-23
+draft: false
+image:
+  caption: ''
+lastmod: 2019-04-23
+subtitle: 赢取[2019中国上海KubeCon + CloudNativeCon & Open Source Summit](https://www.lfasiallc.com/events/kubecon-cloudnativecon-china-2019/)大会门票
+summary: 赢取2019中国上海KubeCon + CloudNativeCon & Open Source Summit大会门票
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- KubeCon
+- cloud native
+title: KubeEdge社区贡献者竞赛
+---
 KubeEdge是一个将K8S从云端扩展到边缘的CNCF社区项目。
 为了更好地让KubeEdge服务于边缘计算的用户，我们诚挚邀请广大开发者加入KubeEdge社区贡献。
 为了让这个事情变得更加有趣，我们举办了这个KubeEdge社区贡献者竞赛。

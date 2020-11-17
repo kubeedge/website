@@ -1,20 +1,17 @@
-+++
-title =  "Roadmap"
-description = "Roadmap of the KubeEdge project"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Roadmap"
-[menu.docs]
-  parent = "welcome"
-  weight = 4
-+++
+---
+date: 2019-01-28
+description: Roadmap of the KubeEdge project
+draft: false
+lastmod: 2019-01-29
+linktitle: Roadmap
+menu:
+  docs:
+    parent: welcome
+    weight: 4
+title: Roadmap
+toc: true
+type: docs
+---
 ## Roadmap
 
 ### Release 1.0

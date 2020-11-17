@@ -1,20 +1,14 @@
-+++
-title =  "Edged"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Edged"
-[menu.docs]
-  parent = "edge component"
-  weight = 1
-+++
-
-
-# Edged
-
+---
+draft: false
+linktitle: Edged
+menu:
+  docs:
+    parent: edge component
+    weight: 1
+title: Edged
+toc: true
+type: docs
+---
 ## Overview
 
 EdgeD is an edge node module which manages pod lifecycle. It helps users to deploy containerized workloads or applications at the edge node. Those workloads could perform any operation from simple telemetry data manipulation to analytics or ML inference and so on. Using `kubectl` command line interface at the cloud side, users can issue commands to launch the workloads.

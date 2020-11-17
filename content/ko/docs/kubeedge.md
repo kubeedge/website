@@ -1,23 +1,19 @@
-+++
-title = "What is KubeEdge"
-description = "Quickly get running with your kubeedge"
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-reading_time = true  # Show estimated reading time?
-share = true  # Show social sharing links?
-
-# aliases = ["/docs/", "/docs/about/", "/docs/Kubeedge/"]
-# Add menu entry to sidebar.
-linktitle = "What is KubeEdge"
-[menu.docs]
-  parent = "concepts"
-  weight = 1
-+++
-
+---
+date: 2019-01-28
+description: Quickly get running with your kubeedge
+draft: false
+lastmod: 2019-01-29
+linktitle: What is KubeEdge
+menu:
+  docs:
+    parent: concepts
+    weight: 1
+reading_time: true
+share: true
+title: What is KubeEdge
+toc: true
+type: docs
+---
 ## The KubeEdge mission
 
 Our goal is to make an open platform to enable Edge computing, extending native containerized

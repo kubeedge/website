@@ -1,18 +1,14 @@
-+++
-title =  "Edge Controller"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Edge Controller"
-[menu.docs]
-  parent = "cloud component"
-  weight = 2
-+++
-
-
+---
+draft: false
+linktitle: Edge Controller
+menu:
+  docs:
+    parent: cloud component
+    weight: 2
+title: Edge Controller
+toc: true
+type: docs
+---
 ## Edge Controller Overview
  EdgeController is the bridge between Kubernetes Api-Server and edgecore
 

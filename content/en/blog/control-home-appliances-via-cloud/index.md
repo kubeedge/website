@@ -1,39 +1,29 @@
-+++
-title = "Control home appliances from cloud"
-date = 2019-03-05
-lastmod = 2019-03-05
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["KubeEdge"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "release v0.2", "v0.2"]
-categories = ["General", "Announcements"]
-summary = "This article will show how KubeEdge manages devices on the edge side through cloud. For example, users can turn on their lights by pressing a button on the app on their phone"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-[image]
-  # Caption (optional)
-  caption = "Smart home using KubeEdge!"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-  focal_point = "Center"
-+++
-
-
+---
+authors:
+- KubeEdge
+categories:
+- General
+- Announcements
+date: 2019-03-05
+draft: false
+image:
+  caption: Smart home using KubeEdge!
+  focal_point: Center
+lastmod: 2019-03-05
+summary: This article will show how KubeEdge manages devices on the edge side through
+  cloud. For example, users can turn on their lights by pressing a button on the app
+  on their phone
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- release v0.2
+- v0.2
+title: Control home appliances from cloud
+---
 **Edge Computing with KubeEdge**
 
 Cloud computing is far away from terminal devices (such as cameras, sensors, etc.). For real-time computing requirements, placing calculations on the cloud can cause long network delays, network congestion, and degradation of service quality. Terminal devices usually have insufficient computing power and cannot be compared to the cloud. In this case, edge computing came into being, extending the cloud computing power to the edge nodes close to the terminal device, which perfectly solved the above problem.
@@ -120,6 +110,3 @@ Https://github.com/kubeedge/kubeedge
 {{% alert note %}}
 Instructions on how to setup KubeEdge can be found [here](https://github.com/kubeedge/kubeedge#usage)  
 {{% /alert %}}
-
-
-

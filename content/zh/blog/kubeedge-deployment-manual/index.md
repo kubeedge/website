@@ -1,38 +1,25 @@
-+++
-title = "KubeEdge v1.3部署指南！"
-date = 2020-07-28
-lastmod = 2020-07-28
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Wang Jiezhang", "Fei Xu"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "边缘计算", "kubernetes 边缘计算", "K8s 边缘计算", "边缘计算平台", "release v1.3", "v1.3"]
-categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3部署指南！"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-#[image]
-  # Caption (optional)
-#  caption = "KubeEdge v1.3 is out. Try it now!"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-#  focal_point = "Center"
-+++
-
+---
+authors:
+- Wang Jiezhang
+- Fei Xu
+categories:
+- General
+- Announcements
+date: 2020-07-28
+draft: false
+lastmod: 2020-07-28
+summary: KubeEdge v1.3部署指南！
+tags:
+- KubeEdge
+- kubeedge
+- 边缘计算
+- kubernetes 边缘计算
+- K8s 边缘计算
+- 边缘计算平台
+- release v1.3
+- v1.3
+title: KubeEdge v1.3部署指南！
+---
 **KubeEdge** 是一个开源系统，可将本机容器化的业务流程和设备管理扩展到Edge上的主机。它基于Kubernetes构建，并为网络，应用程序部署以及云与边缘之间的元数据同步提供核心基础架构支持。它还支持MQTT，并允许开发人员编写自定义逻辑并在Edge上启用资源受限的设备通信。KubeEdge由云部分和边缘部分组成，边缘和云部分现已开源，本文将基于Centos8.0系统对KugeEdge进行编译与部署。
 
 # 一、系统配置

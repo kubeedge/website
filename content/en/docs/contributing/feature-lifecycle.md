@@ -1,20 +1,14 @@
-+++
-title =  "FeatureLifecycle"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Feature Lifecycle"
-[menu.docs]
-  parent = "contributing"
-  weight = 4 
-+++
-
-
-# Feature Lifecycle
-
+---
+draft: false
+linktitle: Feature Lifecycle
+menu:
+  docs:
+    parent: contributing
+    weight: 4
+title: Feature Lifecycle
+toc: true
+type: docs
+---
 This document is to clarify definitions and differences between features and corresponding APIs
 during different development stages (versions).
 

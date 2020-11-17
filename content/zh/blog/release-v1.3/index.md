@@ -1,39 +1,27 @@
-+++
-title = "KubeEdge v1.3发布：大幅提升系统可维护性！"
-date = 2020-05-20
-lastmod = 2020-05-20
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Fei Xu", "Kevin Wang", "Jie Zhang", "Dave Chen"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "边缘计算", "kubernetes 边缘计算", "K8s 边缘计算", "边缘计算平台", "release v1.3", "v1.3"]
-categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3发布：大幅提升系统可维护性！"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-#[image]
-  # Caption (optional)
-#  caption = "KubeEdge v1.3 is out. Try it now!"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-#  focal_point = "Center"
-+++
-
-
+---
+authors:
+- Fei Xu
+- Kevin Wang
+- Jie Zhang
+- Dave Chen
+categories:
+- General
+- Announcements
+date: 2020-05-20
+draft: false
+lastmod: 2020-05-20
+summary: KubeEdge v1.3发布：大幅提升系统可维护性！
+tags:
+- KubeEdge
+- kubeedge
+- 边缘计算
+- kubernetes 边缘计算
+- K8s 边缘计算
+- 边缘计算平台
+- release v1.3
+- v1.3
+title: KubeEdge v1.3发布：大幅提升系统可维护性！
+---
 **KubeEdge** 是一个开源的边缘计算平台，它在Kubernetes原生的容器编排和调度能力之上，实现了 **云边协同**、**计算下沉**、**海量边缘设备管理**、**边缘自治** 等能力。
 在追求边缘极致轻量化的同时，结合云原生生态的众多优势，解决当前智能边缘领域面临的挑战。
 
