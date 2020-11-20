@@ -15,7 +15,7 @@
 
 [[main]]
   name = "Documentation"
-  url = "https://docs.kubeedge.io"
+  url = "docs/"
   weight = 3
 
 [[main]]
