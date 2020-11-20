@@ -1,19 +1,14 @@
-+++
-title =  "EventBus"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "EventBus"
-[menu.docs]
-  parent = "edge component"
-  weight = 2
-+++
-
-
-# EventBus
+---
+draft: false
+linktitle: EventBus
+menu:
+  docs:
+    parent: edge component
+    weight: 2
+title: EventBus
+toc: true
+type: docs
+---
 ## Overview
 Eventbus acts as an interface for sending/receiving messages on mqtt topics.
 
@@ -50,4 +45,3 @@ Note: topic wildcards
 ![eventbus sends response messages to external client](../../images/eventbus/eventbus-handleResMsgToClient.jpg)
 
 The flow is almost the same in internal mode except the eventbus is as message broker itself.
-

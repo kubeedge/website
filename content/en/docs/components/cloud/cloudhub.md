@@ -1,17 +1,14 @@
-+++
-title =  "CloudHub"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "CloudHub"
-[menu.docs]
-  parent = "cloud component"
-  weight = 1
-+++
-
+---
+draft: false
+linktitle: CloudHub
+menu:
+  docs:
+    parent: cloud component
+    weight: 1
+title: CloudHub
+toc: true
+type: docs
+---
 ## CloudHub Overview
 
 CloudHub is one module of cloudcore and is the mediator between Controllers and the Edge side. It supports both web-socket based connection as well as a [QUIC](https://quicwg.org/ops-drafts/draft-ietf-quic-applicability.html) protocol access at the same time.

@@ -1,21 +1,16 @@
-+++
-title =  "Meta Manager"
-
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Meta Manager"
-[menu.docs]
-  parent = "concepts"
-  weight = 4
-+++
-
+---
+date: 2019-01-28
+draft: false
+lastmod: 2019-01-29
+linktitle: Meta Manager
+menu:
+  docs:
+    parent: concepts
+    weight: 4
+title: Meta Manager
+toc: true
+type: docs
+---
 ## Overview
 MetaManager is the message processor between edged and edgehub.
 It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite).

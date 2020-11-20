@@ -1,19 +1,14 @@
-+++
-title = "KubeEdge"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "KubeEdge"
-[menu.docs]
-  parent = "configuration"
-  weight = 1
-+++
-
-# KubeEdge Configuration
-
+---
+draft: false
+linktitle: KubeEdge
+menu:
+  docs:
+    parent: configuration
+    weight: 1
+title: KubeEdge
+toc: true
+type: docs
+---
 KubeEdge requires configuration on both [Cloud side (KubeEdge Master)](#configuration-cloud-side-kubeedge-master) and [Edge side (KubeEdge Worker Node)](#configuration-edge-side-kubeedge-worker-node)
 
 ## Configuration Cloud side (KubeEdge Master)

@@ -1,15 +1,14 @@
-+++
-title = "FAQs"
-description = "Troubleshooting KubeEdge"
-date = 2019-01-28
-lastmod = 2019-01-29
+---
+date: 2019-01-28
+description: Troubleshooting KubeEdge
+draft: false
+lastmod: 2019-01-29
+menu:
+  docs:
+    parent: faq
+    weight: 1
+title: FAQs
+toc: true
+type: docs
+---
 
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-[menu.docs]
-  parent = "faq"
-  weight = 1
-+++

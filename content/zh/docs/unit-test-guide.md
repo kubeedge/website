@@ -1,21 +1,17 @@
-+++
-title = "Unit Test Guide"
-description = "Unit Test Guide"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Unit Test Guide"
-[menu.docs]
-  parent = "guides"
-  weight = 2
-+++
-
+---
+date: 2019-01-28
+description: Unit Test Guide
+draft: false
+lastmod: 2019-01-29
+linktitle: Unit Test Guide
+menu:
+  docs:
+    parent: guides
+    weight: 2
+title: Unit Test Guide
+toc: true
+type: docs
+---
 The purpose of this document is to give introduction about unit tests and to help contributors in writing unit tests.
 
 ## Unit Test  

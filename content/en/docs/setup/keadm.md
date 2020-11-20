@@ -1,19 +1,14 @@
-+++
-title =  "Keadm"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Deploying using Keadm"
-[menu.docs]
-  parent = "setup"
-  weight = 1
-+++
-
-# Deploying using Keadm
-
+---
+draft: false
+linktitle: Deploying using Keadm
+menu:
+  docs:
+    parent: setup
+    weight: 1
+title: Deploying using Keadm
+toc: true
+type: docs
+---
 Keadm is used to install the cloud and edge components of KubeEdge. It is not responsible for installing K8s and runtime.
 
 Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) to get **Kubernetes compatibility** and determine what version of Kubernetes would be installed.

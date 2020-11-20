@@ -1,20 +1,14 @@
-+++
-title =  "EdgeSite"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "EdgeSite"
-[menu.docs]
-  parent = "edgesite"
-  weight = 1
-+++
-
-
-# EdgeSite: Standalone Cluster at edge
-
+---
+draft: false
+linktitle: EdgeSite
+menu:
+  docs:
+    parent: edgesite
+    weight: 1
+title: EdgeSite
+toc: true
+type: docs
+---
 ## Abstract
 
 In Edge computing, there are scenarios where customers would like to have a whole cluster installed at edge location. As a result,

@@ -1,18 +1,14 @@
-+++
-title =  "Device Controller"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Device Controller"
-[menu.docs]
-  parent = "cloud component"
-  weight = 3
-+++
-
-
+---
+draft: false
+linktitle: Device Controller
+menu:
+  docs:
+    parent: cloud component
+    weight: 3
+title: Device Controller
+toc: true
+type: docs
+---
 ## Device Controller Overview
  The device controller is the cloud component of KubeEdge which is responsible for device management. Device management in KubeEdge is implemented by making use of Kubernetes
  [Custom Resource Definitions (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) to describe device metadata/status and device controller to synchronize these device updates between edge and cloud.
@@ -78,4 +74,3 @@ This can be retrieved from the propertyVisitors list. Finally, using the visitor
 ### Syncing Desired Device Twin Property Update From Cloud To Edge
 ![Device Updates Cloud To Edge](/img/device-crd/device-updates-cloud-edge.png)
 The device controller watches device updates in the cloud and relays them to the edge node. These updates are stored locally by the device twin. The mapper gets these updates via the MQTT broker and operates on the device based on the updates.
-

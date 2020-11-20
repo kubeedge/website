@@ -1,18 +1,14 @@
-+++
-title =  "UnitTest"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Unit Test"
-[menu.docs]
-  parent = "developer guide"
-  weight = 3
-+++
-
-
+---
+draft: false
+linktitle: Unit Test
+menu:
+  docs:
+    parent: developer guide
+    weight: 3
+title: Unit Test
+toc: true
+type: docs
+---
 The purpose of this document is to give introduction about unit tests and to help contributors in writing unit tests.
 
 ## Unit Test

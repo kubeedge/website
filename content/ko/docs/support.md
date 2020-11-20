@@ -1,20 +1,17 @@
-+++
-title =  "Support"
-description = "FAQs and support for KubeEdge project"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Support"
-[menu.docs]
-  parent = "welcome"
-  weight = 5
-+++
+---
+date: 2019-01-28
+description: FAQs and support for KubeEdge project
+draft: false
+lastmod: 2019-01-29
+linktitle: Support
+menu:
+  docs:
+    parent: welcome
+    weight: 5
+title: Support
+toc: true
+type: docs
+---
 ## Support
 
 If you need support, start with the [troubleshooting guide], and work your way through the process that we've outlined.

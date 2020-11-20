@@ -1,18 +1,14 @@
-+++
-title =  "Why KubeEdge"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Why KubeEdge"
-[menu.docs]
-  parent = "welcome"
-  weight = 2
-+++
-
-
+---
+draft: false
+linktitle: Why KubeEdge
+menu:
+  docs:
+    parent: welcome
+    weight: 2
+title: Why KubeEdge
+toc: true
+type: docs
+---
 **KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge. KubeEdge consists of a cloud part and an edge part. Both edge and cloud parts are now open-sourced.
 
 ## Advantages

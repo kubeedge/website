@@ -1,15 +1,9 @@
-+++
-title = "블로그"
-date = 2017-01-01T00:00:00
+---
+date: 2017-01-01 00:00:00
+header:
+  caption: ''
+  image: ''
+list_format: 2
+title: 블로그
+---
 
-# List format.
-#   0 = Simple
-#   1 = Detailed
-#   2 = Stream
-list_format = 2
-
-# Optional featured image (relative to `static/img/` folder).
-[header]
-image = ""
-caption = ""
-+++

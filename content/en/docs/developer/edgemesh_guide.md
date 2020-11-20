@@ -1,19 +1,14 @@
-+++
-title =  "EdgeMesh"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "EdgeMesh Guide"
-[menu.docs]
-  parent = "developer guide"
-  weight = 3
-+++
-
-# EdgeMesh guide
-
+---
+draft: false
+linktitle: EdgeMesh Guide
+menu:
+  docs:
+    parent: developer guide
+    weight: 3
+title: EdgeMesh Guide
+toc: true
+type: docs
+---
 In case network issue between cloud and edge side, we intergrate EdgeMesh to support DNS visit at any time.
 
 Currently we only support HTTP1.x, more protocols like HTTPS and gRPC coming later.

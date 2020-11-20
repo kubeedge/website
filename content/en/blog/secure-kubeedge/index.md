@@ -1,31 +1,22 @@
-+++
-title = "Secure kubeedge using SPIFFE/SPIRE"
-date = 2019-04-16
-lastmod = 2019-04-16
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Trilok Geer"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "security"]
-categories = ["Security"]
-summary = "Secure kubeedge workloads using SPIFFE/SPIRE"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-+++
-
+---
+authors:
+- Trilok Geer
+categories:
+- Security
+date: 2019-04-16
+draft: false
+lastmod: 2019-04-16
+summary: Secure kubeedge workloads using SPIFFE/SPIRE
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: Secure kubeedge using SPIFFE/SPIRE
+---
 ## Why SPIFFE for edge computing?
 
 Edge computing framework capabilities should be able to cloud-native design patterns and practices such as container orchestration, microservices, serverless computation which has led to increasing heterogenous deployment environments. Conventional practices for securing heterogenous deployments add complexity overhead to enforcing policies, prevention and detection of threats. Due to the increase in complexity, there is more scope of error in manageability and also, constraints the scalability of the applications across multiple production environments. In such cases, a common identity framework for workloads becomes necessary to avoid the pit-falls of conventional security policies (such as managing network policies that are based on rules for traffic between particular ip addresses) which affect implementation of distributed patterns.
@@ -99,8 +90,3 @@ Security is a paramount requirement for edge computing architecture as security 
 In the present example PoC, there is no solution implemented for secure device provisioning and identity management. It will be added in the forthcoming versions. An example demo using SPIRE for secure deployment of edge node and sample applications can be found at 
 
 [*https://github.com/kubeedge/examples/tree/master/security-demo*](https://github.com/kubeedge/examples/tree/master/security-demo)
-
-
-
-
-

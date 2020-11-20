@@ -1,17 +1,14 @@
-+++
-title =  "Roadmap"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Roadmap"
-[menu.docs]
-  parent = "welcome"
-  weight = 4
-+++
-
+---
+draft: false
+linktitle: Roadmap
+menu:
+  docs:
+    parent: welcome
+    weight: 4
+title: Roadmap
+toc: true
+type: docs
+---
 This document defines a high level roadmap for KubeEdge development.
 
 The [milestones defined in GitHub](https://github.com/kubeedge/kubeedge/milestones) represent the most up-to-date plans.

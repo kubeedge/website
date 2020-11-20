@@ -59,36 +59,26 @@
   name = "Setup"
   weight = 10
   identifier = "setup"
-[[setup]]
-  hidden = true
 
 [[docs]]
   name = "Configuration"
   weight = 15
   identifier = "configuration"
-[[configuration]]
-  hidden = true
 
 [[docs]]
   name = "General Component"
   weight = 20
   identifier = "general component"
-[[components]]
-  hidden = true
 
 [[docs]]
   name = "Cloud Component"
   weight = 25
   identifier = "cloud component"
-[[cloud]]
-  hidden = true
 
 [[docs]]
   name = "Edge Component"
   weight = 30
   identifier = "edge component"
-[[edge]]
-  hidden = true
 
 [[docs]]
   name = "EdgeSite"
@@ -99,19 +89,13 @@
   name = "Mapper"
   weight = 40
   identifier = "mapper"
-[[mappers]]
-  hidden = true
 
 [[docs]]
   name = "Contributing"
   weight = 45
   identifier = "contributing"
-[[contributing]]
-  hidden = true
 
 [[docs]]
   name = "Developer Guide"
   weight = 50
   identifier = "developer guide"
-[[developer]]
-  hidden = true

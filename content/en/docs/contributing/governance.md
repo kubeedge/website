@@ -1,19 +1,14 @@
-+++
-title =  "Community"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Governance"
-[menu.docs]
-  parent = "contributing"
-  weight = 2
-+++
-
-# Governance
-
+---
+draft: false
+linktitle: Governance
+menu:
+  docs:
+    parent: contributing
+    weight: 2
+title: Governance
+toc: true
+type: docs
+---
 The governance model adopted here is heavily influenced by a set of CNCF projects, especially drawing reference from [Kubernetes governance](https://github.com/kubernetes/community/blob/master/governance.md).
 *For similar structures some of the same wordings from kubernetes governance are borrowed to adhere
 to the originally construed meaning.*

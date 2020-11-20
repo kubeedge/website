@@ -1,19 +1,14 @@
-+++
-title =  "Beehive"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Beehive"
-[menu.docs]
-  parent = "general component"
-  weight = 1
-+++
-
-# Beehive
-
+---
+draft: false
+linktitle: Beehive
+menu:
+  docs:
+    parent: general component
+    weight: 1
+title: Beehive
+toc: true
+type: docs
+---
 ## Beehive Overview
 
 Beehive is a messaging framework based on go-channels for communication between modules of KubeEdge. A module registered with beehive can communicate with other beehive modules if the name with which other beehive module is registered or the name of the group of the module is known.

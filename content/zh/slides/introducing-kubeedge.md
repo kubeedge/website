@@ -1,11 +1,8 @@
-+++
-title = "Introducing KubeEdge"
-
-[slides]
-# Choose a theme from https://github.com/hakimel/reveal.js#theming
-theme = "black"
-+++
-
+---
+slides:
+  theme: black
+title: Introducing KubeEdge
+---
 # Deep Dive: Kubernetes IoT Edge WG
 
 Introducing [KubeEdge](https://github.com/kubeedge/kubeedge)

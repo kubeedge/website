@@ -1,18 +1,14 @@
-+++
-title =  "MessageTopics"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "MQTT Message Topics"
-[menu.docs]
-  parent = "developer guide"
-  weight = 3
-+++
-
-
+---
+draft: false
+linktitle: MQTT Message Topics
+menu:
+  docs:
+    parent: developer guide
+    weight: 3
+title: MQTT Message Topics
+toc: true
+type: docs
+---
 KubeEdge uses MQTT for communication between deviceTwin and devices/apps.
 EventBus can be started in multiple MQTT modes and acts as an interface for sending/receiving messages on relevant MQTT topics.
 

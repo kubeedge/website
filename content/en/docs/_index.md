@@ -1,19 +1,15 @@
-+++
-title = "Getting Started"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-[menu.docs]
-  parent = "welcome"
-  weight = 1
-+++
-
+---
+date: 2019-01-28
+draft: false
+lastmod: 2019-01-29
+menu:
+  docs:
+    parent: welcome
+    weight: 1
+title: Getting Started
+toc: true
+type: docs
+---
 KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.
 
 In this quick-start guide, we will explain:
@@ -60,4 +56,3 @@ of the community. Here are ways to get in touch with the community:
 - [Slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI)
 - [Twitter](https://twitter.com/kubeedge)
 - [GitHub Issues](https://github.com/kubeedge/kubeedge/issues)
-

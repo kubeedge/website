@@ -1,40 +1,28 @@
-+++
-title = "KubeEdge v1.3 is live!"
-date = 2020-05-30
-lastmod = 2020-05-30
-
-draft = false
-
-# Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Yin Ding", "Kevin Wang"]
-
-# Tags and categories
-# For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
-tags = ["KubeEdge", "kubeedge", "edge computing", "kubernetes edge computing", "K8S edge orchestration", "edge computing platform", "cloud native", "iot", "iiot", "release v1.3", "v1.3"]
-categories = ["General", "Announcements"]
-summary = "KubeEdge v1.3 is live!"
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["deep-learning"]` references 
-#   `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-# projects = ["internal-project"]
-
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder. 
-#[image]
-  # Caption (optional)
-#  caption = "KubeEdge v1.3 is live!"
-
-  # Focal point (optional)
-  # Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-#  focal_point = "Center"
-+++
-
-
-
+---
+authors:
+- Yin Ding
+- Kevin Wang
+categories:
+- General
+- Announcements
+date: 2020-05-30
+draft: false
+lastmod: 2020-05-30
+summary: KubeEdge v1.3 is live!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.3
+- v1.3
+title: KubeEdge v1.3 is live!
+---
 **KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge.  
 
 ## **KubeEdge v1.3: A major upgrade for maintainability**
@@ -134,5 +122,3 @@ https://github.com/kubeedge/kubeedge/blob/master/docs/getting-started/roadmap.md
 For more details regarding KubeEdge, please follow and join us here:
 
 https://kubeedge.io
-
-

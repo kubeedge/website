@@ -1,21 +1,17 @@
-+++
-title =  "Contributing to Kubeedge"
-description = "Information on how to start contributing to Kubeedge"
-
-date = 2019-01-28
-lastmod = 2019-01-29
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Contributing to Kubeedge"
-[menu.docs]
-  parent = "welcome"
-  weight = 3
-+++
-
+---
+date: 2019-01-28
+description: Information on how to start contributing to Kubeedge
+draft: false
+lastmod: 2019-01-29
+linktitle: Contributing to Kubeedge
+menu:
+  docs:
+    parent: welcome
+    weight: 3
+title: Contributing to Kubeedge
+toc: true
+type: docs
+---
 ## Getting started as a Kubeedge contributor
 
 This document is the single source of truth for how to contribute to the code base.

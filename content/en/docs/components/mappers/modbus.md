@@ -1,21 +1,14 @@
-+++
-title =  "Modbus"
-
-draft = false  # Is this a draft? true/false
-toc = true  # Show table of contents? true/false
-type = "docs"  # Do not modify.
-
-# Add menu entry to sidebar.
-linktitle = "Modbus"
-[menu.docs]
-  parent = "mapper"
-  weight = 2
-+++
-
-
-# Modbus Mapper
-
-
+---
+draft: false
+linktitle: Modbus
+menu:
+  docs:
+    parent: mapper
+    weight: 2
+title: Modbus
+toc: true
+type: docs
+---
 ## Introduction
 
 Mapper is an application that is used to connect and control devices. This is an implementation of mapper for
@@ -90,4 +83,3 @@ The modbus mapper consists of the following four major modules :-
  a) To monitor the dpl configuration file. If this file changed, file watcher will reload the dpl configuration to the mapper.
 
  b) To load dpl and mqtt configuration when mapper starts first time.
-
