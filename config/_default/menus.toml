@@ -61,41 +61,21 @@
   identifier = "setup"
 
 [[docs]]
-  name = "Configuration"
+  name = "Advanced Configuration"
   weight = 15
-  identifier = "configuration"
+  identifier = "advanced configuration"
 
 [[docs]]
-  name = "General Component"
+  name = "Architecture"
   weight = 20
-  identifier = "general component"
-
-[[docs]]
-  name = "Cloud Component"
-  weight = 25
-  identifier = "cloud component"
-
-[[docs]]
-  name = "Edge Component"
-  weight = 30
-  identifier = "edge component"
-
-[[docs]]
-  name = "EdgeSite"
-  weight = 35
-  identifier = "edgesite"
-
-[[docs]]
-  name = "Mapper"
-  weight = 40
-  identifier = "mapper"
-
-[[docs]]
-  name = "Contributing"
-  weight = 45
-  identifier = "contributing"
+  identifier = "architecture"
 
 [[docs]]
   name = "Developer Guide"
-  weight = 50
+  weight = 25
   identifier = "developer guide"
+
+[[docs]]
+  name = "Community"
+  weight = 30
+  identifier = "community"

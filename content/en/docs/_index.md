@@ -41,11 +41,11 @@ During release, we build tarballs for major platforms and release docker images 
 
 ## Deploying KubeEdge
 
-Check [setup docs](setup/keadm).
+Check [setup docs](./setup/keadm).
 
 ## Contributing
 
-Contributions are very welcome! See our [CONTRIBUTING.md](contributing/contribute) for more information.
+Contributions are very welcome! See our [CONTRIBUTING.md](./community/contribute) for more information.
 
 ## Community
 
