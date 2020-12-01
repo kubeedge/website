@@ -22,8 +22,6 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 By default ports `10000` and `10002` in your cloudcore needs to be accessible for your edge nodes.
 
-**Note**: port `10002` only needed since 1.3 release.
-
 `keadm init` will install cloudcore, generate the certs and install the CRDs. It also provides a flag by which a specific version can be set.
 
 **IMPORTANT NOTE:**
@@ -42,32 +40,6 @@ Output:
 Kubernetes version verification passed, KubeEdge installation will start...
 ...
 KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
-```
-
-## (**Only Needed in Pre 1.3 Release**) Manually copy certs.tgz from cloud host to edge host(s)
-
-**Note**: Since release 1.3, feature `EdgeNode auto TLS Bootstrapping` has been added and there is no need to manually copy certificate.
-
-Now users still need to copy the certs to the edge nodes. In the future, it will support the use of tokens for authentication.
-
-On edge host:
-
-```
-mkdir -p /etc/kubeedge
-```
-
-On cloud host:
-
-```
-cd /etc/kubeedge/
-scp -r certs.tgz username@edge_node_ip:/etc/kubeedge
-```
-
-On edge host untar the certs.tgz file
-
-```
-cd /etc/kubeedge
-tar -xvzf certs.tgz
 ```
 
 ## Setup Edge Side (KubeEdge Worker Node)
