@@ -9,7 +9,7 @@ title: Deploying with binary
 toc: true
 type: docs
 ---
-Deploying KubeEdge locally is used to test, never use this way in production environment.
+Deploying KubeEdge with binary is used to test, never use this way in production environment.
 
 ## Limitation
 
@@ -33,7 +33,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 # cloudcore --minconfig > cloudcore.yaml
 ```
 
-please refer to [configuration for cloud](../configuration/kubeedge.md#configuration-cloud-side-kubeedge-master) for details.
+please refer to [configuration for cloud](../config#configuration-cloud-side-kubeedge-master) for details.
 
 ### Run
 
@@ -68,7 +68,7 @@ Run `cloudcore -h` to get help info and add options if needed.
 
 The `token` is what above step get.
 
-please refer to [configuration for edge](../configuration/kubeedge.md#configuration-edge-side-kubeedge-worker-node) for details.
+please refer to [configuration for edge](../config#configuration-edge-side-kubeedge-worker-node) for details.
 
 ### Run
 

@@ -4,7 +4,7 @@ linktitle: Upgrading KubeEdge
 menu:
   docs:
     parent: setup
-    weight: 3
+    weight: 4
 title: Upgrading KubeEdge
 toc: true
 type: docs
@@ -65,4 +65,4 @@ $ mv /tmp/kubeedge_backup/edgecore.db /var/lib/kubeedge/
 
 ## Deploy
 
-Read the [setup](./keadm.md) for deployment.
+Read the [setup](../keadm) for deployment.
