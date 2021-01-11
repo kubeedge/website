@@ -18,7 +18,7 @@ The test server created here is also using the paypal/gatt package.
 
 1. Turn ON bluetooth service of both machines
 2. Run server on first machine. Follow steps given below for running the test server.
-3. For running mapper tests on second machine, clone kubbedge code and follow steps 4,5 and 6.
+3. For running mapper tests on second machine, clone kubeedge code and follow steps 4,5 and 6.
 4. Update "dockerhubusername" and "dockerhubpassword" in tests/e2e/scripts/fast_test.sh with your credentials.
 5. Compile bluetooth mapper e2e by executing the following command in $GOPATH/src/github.com/kubeedge/kubeedge.
 `bash -x tests/e2e/scripts/compile.sh bluetooth`

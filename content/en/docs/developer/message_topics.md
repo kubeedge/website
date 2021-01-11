@@ -26,12 +26,12 @@ On starting EventBus, it subscribes to these 5 topics:
 6. "$ke/events/+/device/data/update"
 ```
 
-If the the message is received on first 3 topics, the message is sent to deviceTwin, else the message is sent to cloud via edgeHub.
+If the message is received on first 3 topics, the message is sent to deviceTwin, else the message is sent to cloud via edgeHub.
 
 We will focus on the message expected on the first 3 topics.
 
 1. `"$hw/events/node/+/membership/get"`:
-This topics is used to get membership details of a node i.e the devices that are associated with the node.
+This topic is used to get membership details of a node i.e the devices that are associated with the node.
 The response of the message is published on `"$hw/events/node/+/membership/get/result"` topic.
 
 2. `"$hw/events/device/+/state/update"`:
