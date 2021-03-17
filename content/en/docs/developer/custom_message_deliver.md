@@ -127,7 +127,7 @@ spec:
                   description: |
                     sourceResource is a map representing the resource info of source. For rest
                     rule-endpoint type its value is {"path":"/a/b"}. For eventbus rule-endpoint type its
-                    value is {"topic":"<user define string>","node_name":"xxxx"}
+                    value is {"topic":"<user define string>","node_name":"edge-node"}
                   type: object
                   additionalProperties:
                     type: string
@@ -139,8 +139,8 @@ spec:
                 targetResource:
                   description: |
                     targetResource is a map representing the resource info of target. For rest
-                    rule-endpoint type its value is {"resource":"http://a.com"}. For eventbus rule-endpoint
-                    type its value is {"topic":"/xxxx"}. For servicebus rule-endpoint type its value is
+                    rule-endpoint type its value is {"resource":"http://127.0.0.1:8081/hello"}. For eventbus rule-endpoint
+                    type its value is {"topic":"/test"}. For servicebus rule-endpoint type its value is
                     {"path":"/request_path"}.
                   type: object
                   additionalProperties:
@@ -170,9 +170,10 @@ spec:
 ```
 
 ### how to deliver custom messages
+* first, you should enable router module in cloudcore by modifying the cloudcore.yaml:
+    add "enable: true" in router module, and restart cloudcore.
 
 1. cloud to edge : **rest->eventbus**
-
 1.1 create rest and eventbus type ruleEndpoint if they don't exist. Exec command:
 
  `kubectl create -f create-ruleEndpoint-rest.yaml`
@@ -223,7 +224,7 @@ metadata:
     description: test
 spec:
   source: "my-rest"
-  sourceResource: {"path":"/a"}
+  sourceResource: {"path":"/test"}
   target: "my-eventbus"
   targetResource: {"topic":"test"}
 ```
@@ -233,12 +234,12 @@ spec:
 The rest api in the cloud can be called to send messages to eventbus on an edge node based on the node name and sourceResource. 
 
 - Method: POST
-- URL: **http://{rest_endpoint}/{node_name}/{namespace}/{path}**, {rest_endpoint} is router's endpoint, {node_name} is name of edgenode, {namespace} is the namespace of rule, {path}'s prefix is source ruleEndpoint's sourceResource.
+- URL: **http://{rest_endpoint}/{node_name}/{namespace}/{path}**, {rest_endpoint} is {cloudcore_ip}:9443, {node_name} is name of edgenode, {namespace} is the namespace of rule, {path}'s prefix is source ruleEndpoint's sourceResource.
 - Body: {user_message}, {user_message} is user's message
 
 For example:
 - Method: POST
-- URL: http://{rest_endpoint}/{node_name}/default/a
+- URL: http://{cloudcore_ip}:9443/{node_name}/default/test
 - Body： {"message":"123"}
 
 1.4 User's app subscribes custom topics from mqtt-broker in edge to receive messages from the cloud. 
@@ -303,12 +304,12 @@ metadata:
     description: test
 spec:
   source: "my-eventbus"
-  sourceResource: {"topic": "test","node_name": "xxx"}
+  sourceResource: {"topic": "test","node_name": "edge-node"}
   target: "my-rest"
-  targetResource: {"resource":"http://a.com"}
+  targetResource: {"resource":"http://127.0.0.1:8080/hello"}
 ```
 
-2.3 User's app in edge publishes messages with custom topic to MQTT broker on edge node. 
+2.3 User's app in edge publishes messages with custom topic to MQTT broker on edge node. (target ruleEndpoint's targetResource http://127.0.0.1:8080/hello should be available before this step)
 - Topic: {namespace}/{topic}
 - Message:  {user_api_body}
 
@@ -320,7 +321,7 @@ for example:
 2.4 Kubeedge delivers messages to user api address in cloud. 
 
 - Method: POST
-- URL: **http://{user_api}**, or **https://{user_api}**,{user_api} is target ruleEndpoint's targetResource.
+- URL: **http://{user_api}**, or **https://{user_api}**, {user_api} is target ruleEndpoint's targetResource, for example http://127.0.0.1:8080/hello.
 - Body: {user_api_body}
 
 For example: user's app in cloud gets the data {"edgemsg":"msgtocloud"}
@@ -378,9 +379,9 @@ metadata:
     description: test
 spec:
   source: "my-rest"
-  sourceResource: {"path":"/a"}
+  sourceResource: {"path":"/source"}
   target: "my-servicebus"
-  targetResource: {"path":"/b"}
+  targetResource: {"path":"/target"}
 ```
 
 3.3 user's app calls rest api in the cloud to send messages to edge.
@@ -388,7 +389,7 @@ spec:
 The rest api in the cloud can be called to send messages to servicebus on an edge node based on the node name and sourceResource. 
 
 - Method: POST/GET/DELETE/PUT
-- URL: **http://{rest_endpoint}/{node_name}/{namespace}/{path}**, {rest_endpoint} is router's endpoint, {node_name} is name of edgenode, {namespace} is namespace of rule. {path} is source ruleEndpoint's sourceResource.
+- URL: **http://{rest_endpoint}/{node_name}/{namespace}/{path}**, {rest_endpoint} is {cloudcore_ip}:9443, {node_name} is name of edgenode, {namespace} is namespace of rule. {path} is source ruleEndpoint's sourceResource.
 - Body: {user_message}, {user_message} is user's message
 
 finally, kubeedge's servicebus will call api on edgen node.
@@ -400,13 +401,13 @@ finally, kubeedge's servicebus will call api on edgen node.
 For example:
 
 - Method: POST
-- URL: http://{rest_endpoint}/{node_name}/default/a
+- URL: http://{cloudcore_ip}:9443/{node_name}/default/source
 - Body： {"message":"123"}
 
 finnaly, kubeedge's servicebus calls api on edge node. For example:
 
 - Method: POST
-- URL: http://127.0.0.1:6666/b
+- URL: http://127.0.0.1:6666/target
 - Body： {"message":"123"}
 
 user's app gets the result of the api on edge node.
