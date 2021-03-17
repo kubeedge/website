@@ -12,12 +12,47 @@ type: docs
 ---
 KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge.
 
-## Why KubeEdge?
-Learn about KubeEdge and the KubeEdge Mission [here](/en/docs/kubeedge/)  
+In this quick-start guide, we will explain:
 
-## First Steps  
-To get the most out of KubeEdge, start by reviewing a few introductory topics:  
-[Setup](/zh/docs/setup/) - Install KubeEdge  
-[Integrate with IEF](/zh/docs/setup/#integrate-with-huaweicloud-intelligent-edgefabric-ief-https-www-huaweicloud-com-product-ief-html) - Integrate with the Intelligent Edge Fabric cloud  
-[Contributing](/zh/docs/contributing/) - Contribute to KubeEdge  
-[Troubleshooting](/zh/docs/troubleshooting) - Troubleshoot commonly occurring issues. GitHub issues are [here](https://github.com/kubeedge/kubeedge/issues)  
+- How to ask questions, build and contribute to KubeEdge.
+- A few common ways of deploying KubeEdge.
+- Links for further reading.
+
+## Dependencies
+
+For cloud side, we need:
+
+- [Kubernetes](https://kubernetes.io) cluster
+
+For edge side, we need:
+
+- Container runtimes, now we support:
+  - [Docker](https://www.docker.com)
+  - [Containerd](https://github.com/containerd/containerd)
+  - [Cri-o](https://cri-o.io)
+  - [Virtlet](https://docs.virtlet.cloud)
+- [MQTT Server(Optional)](https://mosquitto.org)
+
+## Get KubeEdge!
+
+You can find the latest KubeEdge release [here](https://github.com/kubeedge/kubeedge/releases).
+
+During release, we build tarballs for major platforms and release docker images in kubeedge dockerhub.
+
+## Deploying KubeEdge
+
+Check [setup docs](./setup/keadm).
+
+## Contributing
+
+Contributions are very welcome! See our [CONTRIBUTING.md](./community/contribute) for more information.
+
+## Community
+
+KubeEdge is an open source project and we value and welcome new contributors and members
+of the community. Here are ways to get in touch with the community:
+
+- [Mailing list](https://groups.google.com/forum/#!forum/kubeedge)
+- [Slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI)
+- [Twitter](https://twitter.com/kubeedge)
+- [GitHub Issues](https://github.com/kubeedge/kubeedge/issues)

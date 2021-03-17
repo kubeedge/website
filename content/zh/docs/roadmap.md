@@ -1,8 +1,5 @@
 ---
-date: 2019-01-28
-description: Roadmap of the KubeEdge project
 draft: false
-lastmod: 2019-01-29
 linktitle: Roadmap
 menu:
   docs:
@@ -12,21 +9,41 @@ title: Roadmap
 toc: true
 type: docs
 ---
-## Roadmap
+This document defines a high level roadmap for KubeEdge development.
 
-### Release 1.0
-KubeEdge will provide the fundamental infrastructure and basic functionalities for IOT/Edge workload. This includes: 
-- K8s Application deployment through kubectl from Cloud to Edge node(s)
-- K8s configmap, secret deployment through kubectl from Cloud to Edge node(s) and their applications in Pod
-- Bi-directional and multiplex network communication between Cloud and edge nodes
-- K8s Pod and Node status querying with kubectl at Cloud with data collected/reported from Edge
-- Edge node autonomy when its getting offline and recover post reconnection to Cloud
-- Device twin and MQTT protocol for IOT devices talking to Edge node
+The [milestones defined in GitHub](https://github.com/kubeedge/kubeedge/milestones) represent the most up-to-date plans.
 
-### Release 2.0 and Future
-- Build service mesh with KubeEdge and Istio 
-- Enable function as a service at Edge
-- Support more types of device protocols to Edge node such as AMQP, BlueTooth, ZigBee, etc.
-- Evaluate and enable super large scale of Edge clusters with thousands of Edge nodes and millions of devices
-- Enable intelligent scheduling of apps. to large scale of Edge nodes
-- etc.
+KubeEdge 1.4 is our current stable branch. The roadmap below outlines new features that will be added to KubeEdge.
+
+## 2020 Q2 Roadmap
+
+- Support metrics-server in the cloud.
+- Support Kubernetes exec API for edge application.
+- Upgrade Kubernetes dependency to 1.18.
+- Support edgenode certificate rotation.
+- Upgrade golang to 1.14.
+- Support ingress/gateway at edge.
+- Device CRD improvement, support device protocol extension.
+- Edge nodes cross subnet communication.
+- Support list-watch from edgecore for applications on the edge.
+- Collect data information sent from the edge side from CloudHub
+- Improve KubeEdge installation experience
+- Add more docs and move docs out of main repo
+
+
+## Future
+
+- Improve contributor experience by defining project governance policies, release process, membership rules etc.
+- Improve the performance and e2e tests with more metrics and scenarios.
+- Add protobuf support for data exchange format between cloud and edge
+- Finish scalability test and publish report
+- Support managing clusters at edge from cloud (aka. EdgeSite)
+- Enhance performance and reliability of KubeEdge infrastructure.
+- Support edge-cloud communication using edgemesh.
+- Istio-based service mesh across Edge and Cloud where micro-services can communicate freely in the mesh.
+- Enable function as a service at the Edge.
+- Evaluate and enable much larger scale Edge clusters with thousands of Edge nodes and millions of devices.
+- Enable intelligent scheduling of applications to large scale Edge clusters.
+- Data management with support for ingestion of telemetry data and analytics at the edge.
+- Security at the edge.
+- Evaluate gRPC for cloud to edge communication.
