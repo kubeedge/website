@@ -10,7 +10,7 @@ toc: true
 type: docs
 ---
 
-KubeEdge supports [admission webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks) to control resources on the edge.
+KubeEdge uses [admission webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks) for KubeEdge API validation and automated configurations for resources on the edge.
 
 We provide a tool called [admission](https://github.com/kubeedge/kubeedge/tree/master/cloud/cmd/admission) to valid the type of each property should be Int or String.
 
