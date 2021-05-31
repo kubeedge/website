@@ -30,7 +30,7 @@ get going:
 1. Add the upstream repo as a git remote repo:
 
     ```
-    git remote add upstream https://github.com/kubeedge/website.git
+    git remote add upstream https://github.com/seattle-cloud-lab/kubeedge-website.git
     git remote set-url --push upstream no_push
     ```
 
