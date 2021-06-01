@@ -33,13 +33,13 @@ Cloudcore要求更改 `cloudcore.yaml` 配置文件。
 mkdir -p /etc/kubeedge/config/
 ```
 
-使用 `~/kubeedge/cloudcore --minconfig` 命令进行最小配置
+使用 `~/kubeedge/cloudcore --minconfig` 命令获取最小配置模板
 
 ```shell
 ~/kubeedge/cloudcore --minconfig > /etc/kubeedge/config/cloudcore.yaml
 ```
 
-或使用 `~/kubeedge/cloudcore --defaultconfig` 命令进行完整配置
+或使用 `~/kubeedge/cloudcore --defaultconfig` 命令获取完整配置模板
 
 ```shell
 ~/kubeedge/cloudcore --defaultconfig > /etc/kubeedge/config/cloudcore.yaml
@@ -79,7 +79,7 @@ vim /etc/kubeedge/config/cloudcore.yaml
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
     ```
 
-    默认情况下，cloudcore 使用 https 连接到 Kubernetes apiserver。如果 `master` 和 `kubeConfig` 都进行配置了， `master` 将覆盖kubeconfig中的任何值。
+    默认情况下，cloudcore 使用 https 连接到 Kubernetes apiserver。如果 `master` 和 `kubeConfig` 都进行了配置， `master` 将覆盖kubeconfig中的对应值。
 
 
 2. 在 `advertiseAddress` 中配置所有暴露给边缘节点（如动态IP）的 CloudCore 的IP地址，这些IP地址将添加到CloudCore证书中的SAN中。
