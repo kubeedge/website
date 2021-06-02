@@ -68,17 +68,17 @@ get going:
 1. Run `git status` at any time, to check the status of your local files.
   Git tells you which files need adding or committing to your local repo.
 
-1. Commit your updated files to your local git repo. Example commit:
+1. Commit your updated files to your local git repo(`-s` flag add the sign-off to the commit message). Example commit:
 
     ```
-    git commit -a -m "Fixed some doc errors."
+    git commit -a -s -m "Fixed some doc errors."
     ```
 
     Or:
 
     ```
     git add add-this-doc.md
-    git commit -a -m "Added a shiny new doc."
+    git commit -s -m "Added a shiny new doc."
     ```
 
 1. Push from your branch (for example, `doc-updates`) to **the relevant branch
