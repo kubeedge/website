@@ -71,14 +71,14 @@ get going:
 1. Commit your updated files to your local git repo. Example commit:
 
     ```
-    git commit -a -m "Fixed some doc errors."
+    git commit -a -s -m "Fixed some doc errors."
     ```
 
     Or:
 
     ```
     git add add-this-doc.md
-    git commit -a -m "Added a shiny new doc."
+    git commit -s -m "Added a shiny new doc."
     ```
 
 1. Push from your branch (for example, `doc-updates`) to **the relevant branch
