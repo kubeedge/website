@@ -68,11 +68,25 @@ preserveTaxonomyNames = true
 version_menu = "Versions"
 
 [[params.versions]]
+fullversion = "v1.7"
+version = "v1.7"
+githubbranch = "v1.7"
+docsbranch = "master"
+url = "https://kubeedge.io/en/"
+
+[[params.versions]]
+fullversion = "v1.6"
+version = "v1.6"
+githubbranch = "v1.6"
+docsbranch = "release-1.6"
+url = "https://v1-6.docs.kubeedge.io/en/"
+
+[[params.versions]]
 fullversion = "v1.5"
 version = "v1.5"
 githubbranch = "v1.5"
-docsbranch = "master"
-url = "https://kubeedge.io/en/"
+docsbranch = "release-1.5"
+url = "https://v1-5.docs.kubeedge.io/en/"
 
 [[params.versions]]
 fullversion = "v1.4"
