@@ -13,4 +13,5 @@ type: docs
 - [EventBus](./eventbus)
 - [EdgeHub](./edgehub)
 - [DeviceTwin](./devicetwin)
+- [MetaManager](./metamanager)
 - [ServiceBus](./servicebus)

@@ -117,13 +117,27 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
 4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.)
    Run the following command on the host on which each apiserver runs:
 
-    **Note:** You need to set the cloudcoreips variable first
+    **Note:** You need to get the configmap first, which contains all the cloudcore ips and tunnel ports.
+    
+   ```bash
+   kubectl get cm tunnelport -nkubeedge -oyaml
+   
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     annotations:
+       tunnelportrecord.kubeedge.io: '{"ipTunnelPort":{"192.168.1.16":10350, "192.168.1.17":10351},"port":{"10350":true, "10351":true}}'
+     creationTimestamp: "2021-06-01T04:10:20Z"
+   ...
+   ```
+    
+    Then set all the iptables for multi cloudcore instances to every node that apiserver runs. The cloudcore ips and tunnel ports should be get from configmap above.
 
     ```bash
-    iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
+    iptables -t nat -A OUTPUT -p tcp --dport $YOUR-TUNNEL-PORT -j DNAT --to $YOUR-CLOUDCORE-IP:10003
+    iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to 192.168.1.16:10003
+    iptables -t nat -A OUTPUT -p tcp --dport 10351 -j DNAT --to 192.168.1.17:10003
     ```
-    > Port 10003 and 10350 are the default ports for the CloudStream and edgecore,
-      use your own ports if you have changed them.
 
     If you are not sure if you have setting of iptables, and you want to clean all of them.
     (If you set up iptables wrongly, it will block you out of your `kubectl logs` feature)
