@@ -4,7 +4,7 @@ advanced:
   css_class: ''
   css_style: ''
 content:
-  count: 5
+  count: 3
   filters:
     category: ''
     exclude_featured: false
@@ -17,8 +17,7 @@ design:
   background: {}
   view: 2
 subtitle: '[View all](blog/)'
-title: Recent Posts
+title: Recent News
 weight: 7
 widget: pages
 ---
-

@@ -5,6 +5,14 @@ height: 350px
 interval: 6000
 item:
 - align: center
+  content: A Kubernetes Native Edge Computing Framework <br /> <a class="github-button"
+    href="https://github.com/kubeedge/kubeedge" data-icon="octicon-star" data-size="large"
+    data-show-count="true" aria-label="Star this on GitHub">Star</a>
+  overlay_color: '#666'
+  overlay_filter: 0.5
+  overlay_img: headers/bubbles-wide.jpg
+  title: Welcome to KubeEdge
+- align: center
   cta_icon: fa fa-bullhorn
   cta_icon_pack: fas
   cta_label: Click here for more details
@@ -13,18 +21,6 @@ item:
   overlay_filter: 0.25
   overlay_img: headers/header-kubecon.jpg
   title: KubeEdge v1.7 is live!
-- align: center
-  content: A Kubernetes Native Edge Computing Framework <br /> <a class="github-button"
-    href="https://github.com/kubeedge/kubeedge" data-icon="octicon-star" data-size="large"
-    data-show-count="true" aria-label="Star this on GitHub">Star</a>
-  cta_icon: graduation-cap
-  cta_icon_pack: fas
-  cta_label: Learn More About KubeEdge
-  cta_url: https://docs.kubeedge.io
-  overlay_color: '#666'
-  overlay_filter: 0.5
-  overlay_img: headers/bubbles-wide.jpg
-  title: Welcome to KubeEdge
 - align: right
   content: Reduce transmission costs, shrink latency between the data and the decision,
     improve quality of service.

@@ -1,5 +1,5 @@
 ---
-active: true
+active: false
 date: 2016-04-20 00:00:00
 featured:
 - description: The Kubeedge project is dedicated to making an open platform, which
@@ -27,4 +27,3 @@ title: KubeEdge is completely open source and runs on open source technologies
 weight: 4
 widget: featured-section
 ---
-
