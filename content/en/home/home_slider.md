@@ -8,11 +8,11 @@ item:
   cta_icon: fa fa-bullhorn
   cta_icon_pack: fas
   cta_label: Click here for more details
-  cta_url: /en/blog/release-v1.4
+  cta_url: /en/blog/release-v1.7
   overlay_color: '#555'
   overlay_filter: 0.25
   overlay_img: headers/header-kubecon.jpg
-  title: KubeEdge v1.4 is live!
+  title: KubeEdge v1.7 is live!
 - align: center
   content: A Kubernetes Native Edge Computing Framework <br /> <a class="github-button"
     href="https://github.com/kubeedge/kubeedge" data-icon="octicon-star" data-size="large"
