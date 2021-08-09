@@ -41,7 +41,7 @@ On 27th February, the KubeEdge community is proud to announce the availability o
 
 - 24+ bug fixes and enhancements.
 
-Please refer to [CHANGELOG v1.6](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG-1.6.md) for a full list of features in this release.
+Please refer to [CHANGELOG v1.6](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.6.md) for a full list of features in this release.
 
 {{% alert note %}}
 Release details - [Release v1.6](https://github.com/kubeedge/kubeedge/releases/tag/v1.6.0)
@@ -69,7 +69,7 @@ Refer to [custom message deliver](https://kubeedge.io/en/docs/developer/custom_m
 
 ### Simplified Application Autonomy Configuration When Node Is Off-line
 
-If user wants any application to stay on edge nodes when disconnected to the cloud, simply add label app-offline.kubeedge.io=autonomy to its pods. KubeEdge will automatically override pod default toleration configuration for Taint node.kubernetes.io/unreachable to avoid Kubernetes evicting pods from unreachable nodes. ([#2499](https://github.com/kubeedge/kubeedge/pull/2499))
+If user wants any application to stay on edge nodes when disconnected to the cloud, simply add label `app-offline.kubeedge.io=autonomy` to its pods. KubeEdge will automatically override pod default toleration configuration for Taint `node.kubernetes.io/unreachable` to avoid Kubernetes evicting pods from unreachable nodes. ([#2499](https://github.com/kubeedge/kubeedge/pull/2499))
 
 ### New home for Device Mappers code
 

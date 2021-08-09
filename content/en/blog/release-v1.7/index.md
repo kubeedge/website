@@ -41,7 +41,7 @@ On June 10th, the KubeEdge community is proud to announce the availability of Ku
 
 - 34+ bug fixes and enhancements.
 
-Please refer to https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.7.md for a full list of features in this release
+Please refer to [CHANGELOG v1.7](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.7.md) for a full list of features in this release
 
 {{% alert note %}}
 Release details - [Release v1.7](https://github.com/kubeedge/kubeedge/releases/tag/v1.7.1)
@@ -96,8 +96,7 @@ In this release, a bunch of corner case issues are fixed and the stability is im
 
 ### Custom HTTP Request Routing between Cloud and Edge for Applications [Alpha]
 
-A new RuleEndpointType `servicebus` is added to RuleEndpoint API, to support custom http request routing between cloud and edge for applications. This simplifies the rest api access with http server on the edge while client is in the cloud.
-([#2588](https://github.com/kubeedge/kubeedge/pull/2588))
+A new RuleEndpointType `servicebus` is added to RuleEndpoint API, to support custom http request routing between cloud and edge for applications. This simplifies the rest api access with http server on the edge while client is in the cloud. ([#2588](https://github.com/kubeedge/kubeedge/pull/2588))
 
 ### 28+ bug fixes and enhancements
 
