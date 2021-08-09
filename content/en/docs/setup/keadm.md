@@ -28,11 +28,12 @@ By default ports `10000` and `10002` in your cloudcore needs to be accessible fo
 1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
 1. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
 1. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+1. `--kubeedge-version` is setup the keadm download kubeEdge version, if you not setup it will download newest, kubeEdge release version can refer to [this](https://github.com/kubeedge/kubeedge/releases). 
 
 Example:
 
 ```shell
-# keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release)
+# keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release) --kubeedge-version=1.7.1
 ```
 
 Output:
@@ -40,6 +41,11 @@ Output:
 Kubernetes version verification passed, KubeEdge installation will start...
 ...
 KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
+```
+
+Watch cloudcore Log
+```shell
+# tail -f /var/log/kubeedge/cloudcore.log
 ```
 
 ## Setup Edge Side (KubeEdge Worker Node)
@@ -57,16 +63,16 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 
 `keadm join` will install edgecore and mqtt. It also provides a flag by which a specific version can be set.
 
-Example:
-
-```shell
-# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
-```
-
 **IMPORTANT NOTE:**
 1. `--cloudcore-ipport` flag is a mandatory flag.
 1. If you want to apply certificate for edge node automatically, `--token` is needed.
-1. The kubeEdge version used in cloud and edge side should be same.
+1. The kubeEdge version used in cloud and edge side should be same, and you can uses the `--kubeedge-version` to setup the kubeEdge in specify version.
+
+Example:
+
+```shell
+# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=1.7.1
+```
 
 Output:
 
@@ -74,6 +80,40 @@ Output:
 Host has mosquit+ already installed and running. Hence skipping the installation steps !!!
 ...
 KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
+```
+
+#### Check the Edge Node Join Status
+Check edge node ```edgecore.service``` status
+```shell
+# journalctl -u edgecore.service -b
+```
+
+- if you got the
+  ```shell
+  ...
+  edgecore.service: Failed to execute command: No such file or directory
+  edgecore.service: Failed at step EXEC spawning /usr/local/bin/edgecore: No such file or directory
+  ...
+  ```
+    Copy the ```edgecore``` binary for ```edgecore.service```
+    ```shell
+    # cp /etc/kubeedge/edgecore /usr/local/bin
+    ```
+
+Check edge node join to master node state
+Example:
+
+```shell
+# kubectl get node -o wide
+```
+
+Output:
+
+```shell
+root@kubeedge-master:~# kubectl get node 
+NAME              STATUS   ROLES        AGE     VERSION
+kubeedge-edge     Ready    agent,edge   37s     v1.19.3-kubeedge-v1.7.1
+kubeedge-master   Ready    master       3d17h   v1.15.5
 ```
 
 ### Enable `kubectl logs` Feature
@@ -358,5 +398,19 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
  # keadm reset --kube-config=$HOME/.kube/config
 ```
 
- ### Node
+### Node
 `keadm reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.
+
+Full Clean Command:
+1. if you want change cloud side and used the edge node join command, or command the ```service edgecore status``` got ```dial websocket error(x509: certificate signed by unknown authority```
+
+  ```shell
+  # rm -r /etc/kubeedge/ca
+  # rm -r /etc/kubeedge/cert
+  # rm -r /etc/kubeedge/config
+  # rm -r /etc/kubeedge/edgecore.service
+  ```
+1. if you want change the kubeEdge edgecore version, add this command
+  ```shell
+  # rm /usr/local/bin/edgecore
+  ```
