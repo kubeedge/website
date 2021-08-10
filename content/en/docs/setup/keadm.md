@@ -33,7 +33,7 @@ By default ports `10000` and `10002` in your cloudcore needs to be accessible fo
 Example:
 
 ```shell
-# keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release) --kubeedge-version=1.7.1
+# keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version="THE-KUBEEDGE-VERSION"
 ```
 
 Output:
