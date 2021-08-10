@@ -28,7 +28,7 @@ By default ports `10000` and `10002` in your cloudcore needs to be accessible fo
 1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
 1. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
 1. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
-1. `--kubeedge-version` is setup the keadm download kubeEdge version, if you not setup it will download newest, kubeEdge release version can refer to [this](https://github.com/kubeedge/kubeedge/releases). 
+1. `--kubeedge-version` is the KubeEdge release version that keadm will install, the default value is the latest release, which you can refer to [releases](https://github.com/kubeedge/kubeedge/releases). 
 
 Example:
 
