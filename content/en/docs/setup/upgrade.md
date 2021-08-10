@@ -4,7 +4,7 @@ linktitle: Upgrading KubeEdge
 menu:
   docs:
     parent: setup
-    weight: 4
+    weight: 5
 title: Upgrading KubeEdge
 toc: true
 type: docs
