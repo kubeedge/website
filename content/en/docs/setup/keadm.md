@@ -71,7 +71,7 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 Example:
 
 ```shell
-# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=1.7.1
+# keadm join --cloudcore-ipport=192.168.20.50:10000 --token="YOUR_TOKEN" --kubeedge-version="YOUR-KUBEEDGE-VERSION"
 ```
 
 Output:
