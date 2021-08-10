@@ -66,7 +66,7 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 **IMPORTANT NOTE:**
 1. `--cloudcore-ipport` flag is a mandatory flag.
 1. If you want to apply certificate for edge node automatically, `--token` is needed.
-1. The kubeEdge version used in cloud and edge side should be same, and you can uses the `--kubeedge-version` to setup the kubeEdge in specify version.
+1. The kubeEdge version used in cloud and edge side should be same, and you can use `--kubeedge-version` to install a specific version of KubeEdge.
 
 Example:
 
