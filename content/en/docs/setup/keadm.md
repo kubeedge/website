@@ -43,7 +43,7 @@ Kubernetes version verification passed, KubeEdge installation will start...
 KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 ```
 
-Watch cloudcore Log
+View cloudcore log
 ```shell
 # tail -f /var/log/kubeedge/cloudcore.log
 ```
