@@ -1,0 +1,30 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+<div class="row supporter">
+  {{ with $page.Title }}
+  <div class="col-md-12 section-heading">
+    <h1>{{ . | markdownify | emojify }}</h1>
+    {{ if $page.Params.subtitle }}<p>{{ $page.Params.subtitle | markdownify | emojify }}</p>{{ end }}
+  </div>
+  {{ end }}
+
+  {{ with $page.Content }}
+  <div class="col-md-12">
+    <p>{{ . | markdownify }}</p>
+  </div>
+  {{ end }}
+
+  {{ range $page.Params.supporters }}
+  {{ $name := .name }}
+  {{ $image_src := .img_src}}
+  {{ $url := .external_link}}
+  {{ $image_src = printf "img/%s" $image_src | relURL }}
+
+  <div class="col-xs-12 col-sm-6 col-md-3">
+    {{ with .img_src }}<div class="supporter-block">
+      <a href="{{ $url }}" border="0" target="_blank"><img alt="{{ $name }}" src="{{ $image_src }}"></a>
+    </div>{{ end }}
+  </div>
+  {{ end }}
+</div>

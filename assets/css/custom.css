@@ -1,4 +1,10 @@
+.home-section {
+  padding: 60px 0 60px 0;
+}
 
+.media.stream-item {
+    margin-bottom: 0.5rem;
+}
 
 /*************************************************
  *  Featured Section Widget
@@ -10,20 +16,21 @@
     color: #555;
     text-align: center;
   }
-  
+
   .featured h3 {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-weight: 400;
+    /* font-weight: 400; */
     color: #333;
     text-align: center;
+    font-size: 0.9rem;
   }
-  
+
   .dark .featured,
   .dark .featured h3 {
     color: #fff;
   }
-  
+
   .featured-icon {
     display: block;
     width: 100%;
@@ -132,8 +139,42 @@
 *   Why KubeEdge Widget Ends
 ********************************************/
 
+/********************************************
+*   Supporters Widget Starts
+********************************************/
+
+.supporter {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+}
+
+.supporter-block {
+  overflow: hidden;
+  padding: 5px 15px 15px;
+  text-align: center;
+  border-radius: 2px;
+  background-color: #ffffff;
+  margin: 15px auto;
+  height: 80px;
+}
+
+.supporter-block img {
+  position:relative;
+  display: inline-block;
+  text-align:center;
+  vertical-align: middle;
+  margin: 5px auto;
+  object-fit: contain;
+  height: 100%;
+}
+/********************************************
+*   Supporters Widget Ends
+********************************************/
+
 /*******************************************
-*   Custom Css                           
+*   Custom Css
 *******************************************/
 @media (min-width: 1200px)
 .container-full-width {

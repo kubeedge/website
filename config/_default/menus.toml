@@ -5,13 +5,8 @@
 
 [[main]]
   name = "Home"
-  url = "#home_slider"
+  url = "/"
   weight = 1
-
-[[main]]
-  name = "Why KubeEdge"
-  url = "#why-kubeedge"
-  weight = 2
 
 [[main]]
   name = "Documentation"
@@ -47,8 +42,8 @@
   post = ""
   url = "https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI"
   weight = 30
-  
-# Documentation 
+
+# Documentation
 
 [[docs]]
   name = "Welcome"

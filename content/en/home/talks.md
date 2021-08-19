@@ -1,5 +1,5 @@
 ---
-active: true
+active: false
 advanced:
   css_class: ''
   css_style: ''
@@ -23,4 +23,3 @@ title: Recent & Upcoming Talks
 weight: 70
 widget: pages
 ---
-
