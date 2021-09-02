@@ -16,11 +16,11 @@ item:
   cta_icon: fa fa-bullhorn
   cta_icon_pack: fas
   cta_label: Click here for more details
-  cta_url: /en/blog/release-v1.7
+  cta_url: /en/blog/release-v1.8
   overlay_color: '#555'
   overlay_filter: 0.25
   overlay_img: headers/header-kubecon.jpg
-  title: KubeEdge v1.7 is live!
+  title: KubeEdge v1.8 is live!
 - align: right
   content: Reduce transmission costs, shrink latency between the data and the decision,
     improve quality of service.
