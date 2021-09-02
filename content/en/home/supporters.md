@@ -102,4 +102,8 @@ supporters:
 - name: Zhejiang Lab
   img_src: supporters/zhejiang-lab.png
   external_link: https://www.zhejianglab.com/
+  
+- name: ictnj
+  img_src: supporters/ictnj.png
+  external_link: https://www.ictnj.ac.cn/
 ---
