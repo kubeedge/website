@@ -105,5 +105,5 @@ supporters:
   
 - name: ictnj
   img_src: supporters/ictnj.png
-  external_link: https://www.ictnj.ac.cn/
+  external_link: http://www.ictnj.ac.cn/
 ---
