@@ -104,6 +104,6 @@ supporters:
   external_link: https://www.zhejianglab.com/
   
 - name: ictnj
-  img_src: supporters/ictnj.png
+  img_src: supporters/ictnj.svg
   external_link: http://www.ictnj.ac.cn/
 ---
