@@ -27,7 +27,7 @@ The device controller makes use of device model and device instance to implement
 
 ## Operations Performed By Device Controller
 
- The following are the functions performed by the device controller :-
+ The following are the functions performed by the device controller :
  - **Downstream Controller**: Synchronize the device updates from the cloud to the edge node, by watching on K8S API server
  - **Upstream Controller**: Synchronize the device updates from the edge node to the cloud using device twin component
 

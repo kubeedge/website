@@ -19,7 +19,7 @@ It supports functions like sync cloud side resources update, report edged side h
 It acts as the communication link between the edge and the cloud.
 It forwards the messages received from the cloud to the corresponding module at the edge and vice-versa.
 
-The main functions performed by edgehub are :-
+The main functions performed by edgehub are:
 
 - Get CloudHub URL
 - Keep Alive
@@ -57,7 +57,7 @@ A keep-alive message or heartbeat is sent to cloudHub after every heartbeatPerio
 The main responsibility of route to cloud is to receive from the other modules (through beehive framework), all the
 messages that are to be sent to the cloud, and send them to cloudHub through the websocket connection.
  
-The major steps involved in this process are as follows :-
+The major steps involved in this process are as follows:
 
 1. Continuously receive messages from beehive Context 
 2. Send that message to cloudHub 
@@ -76,7 +76,7 @@ The major steps involved in this process are as follows :-
 The main responsibility of route to edge is to receive messages from the cloud (through the websocket connection) and
 send them to the required groups through the beehive framework.
 
-The major steps involved in this process are as follows :-
+The major steps involved in this process are as follows:
 
 - Receive message from cloudHub
 
