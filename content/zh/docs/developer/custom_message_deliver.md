@@ -34,7 +34,7 @@ Users can deliver their custom messages between cloud and edge by mqtt broker.
 
   1. user creates a rule which defines the message's source and target info.
 	2. user's app in cloud calls an api of cloudcore to deliver custom message; cloudcore delivered the message to edgecore. Edgecore will call edge's rest api.
-	3. user's app in cloud got the result of api call in step 2.
+	3. user's app in edge got the result of api call in step 2.
 
 ## Rule And ruleendpoint Model
 
