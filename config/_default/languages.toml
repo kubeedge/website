@@ -26,7 +26,7 @@
 
   [[zh.menu.main]]
   name = "文档"
-  url = "https://docs.kubeedge.io"
+  url = "https://docs.kubeedge.io/zh/docs/"
   weight = 3
 
   [[zh.menu.main]]
