@@ -178,7 +178,7 @@ Verify the configurations before running `edgecore`
 
 #### Modification in edgecore.yaml
 
-1. Check `modules.edged.podSandboxImage` : This is very important and must be set correctly.
+1. Before KubeEdge v1.9: Check `modules.edged.podSandboxImage` : This is very important and must be set correctly.
 
    To check the architecture of your machine run the following
 
@@ -194,7 +194,17 @@ Verify the configurations before running `edgecore`
 
     From KubeEdge v1.3: just skip above check about cert files. However, if you configure the edgecore certificate manually, you must check if the path of certificate is right.
 
-3. Update the IP address and port of the KubeEdge CloudCore in the `modules.edgehub.websocket.server` and `modules.edgehub.quic.server` field. You need set cloudcore ip address.
+3. Update the IP address and port of the KubeEdge CloudCore in the `modules.edgehub.websocket.server` and `modules.edgehub.quic.server` field.
+   You need set the two fields with cloudcore ip address. For example:
+
+   ```yaml
+    modules:
+      edgeHub:
+        websocket:
+          server: 10.1.11.85:10000
+        quic:
+          server: 10.1.11.85:10001
+    ```
 
 4. Configure the desired container runtime to be used as either docker or remote (for all CRI based runtimes including containerd). If this parameter is not specified docker runtime will be used by default
 
