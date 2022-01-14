@@ -41,7 +41,7 @@ KubeEdge是一个开源系统，将原生的容器化应用程序编排功能扩
 
 ## 部署KubeEdge
 
-查看 [安装文档](./setup/keadm) 。
+查看 [安装文档](../setup/keadm_zh) 。
 
 ## 贡献
 
