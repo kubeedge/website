@@ -22,12 +22,15 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 By default ports `10000` and `10002` in your cloudcore needs to be accessible for your edge nodes.
 
+### keadm init 
+
 `keadm init` will install cloudcore, generate the certs and install the CRDs. It also provides a flag by which a specific version can be set.
 
 **IMPORTANT NOTE:**
 1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
-1. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
-1. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
+3. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+4. `keadm init` deploy cloudcore in binary process as system service, if you want to deploy cloudcore as container, please ref `keadm beta init` below.
 
 Example:
 
@@ -41,6 +44,41 @@ Kubernetes version verification passed, KubeEdge installation will start...
 ...
 KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 ```
+
+### keadm beta init
+
+`keadm beta init` provides a solution for integrating Cloudcore Helm Chart. 
+
+Example:
+
+```shell
+# keadm beta init --advertise-address="THE-EXPOSED-IP" --set cloudcore-tag=v1.9.0 --kube-config=/root/.kube/config
+```
+
+**IMPORTANT NOTE:**
+1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md).
+2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to `[version.yaml](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml)` as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
+
+`--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
+
+Example:
+
+```shell
+# keadm beta init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
+```
+
+If you are familiar with the helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/build/helm/charts).
+
+### keadm beta manifest generate
+
+You can also get the manifests with `keadm beta manifest generate`.
+
+Example:
+
+```shell
+# keadm beta manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
+```
+> Add --skip-crds flag to skip outputing the CRDs 
 
 ## Setup Edge Side (KubeEdge Worker Node)
 
@@ -65,8 +103,8 @@ Example:
 
 **IMPORTANT NOTE:**
 1. `--cloudcore-ipport` flag is a mandatory flag.
-1. If you want to apply certificate for edge node automatically, `--token` is needed.
-1. The kubeEdge version used in cloud and edge side should be same.
+2. If you want to apply certificate for edge node automatically, `--token` is needed.
+3. The kubeEdge version used in cloud and edge side should be same.
 
 Output:
 
@@ -75,6 +113,8 @@ Host has mosquit+ already installed and running. Hence skipping the installation
 ...
 KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 ```
+
+> You now can also use `keadm beta join` for better integration steps.
 
 ### Enable `kubectl logs` Feature
 
@@ -146,6 +186,8 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
     ```
 
+    > Note that this part can be finished by iptablesmanager component, no need to manually add. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
+
 5. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
 
     Open the YAML file in cloudcore:
@@ -189,10 +231,14 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     ``` shell
     sudo su
     ```
-    cloudCore:
+    cloudCore in process mode:
     ``` shell
     pkill cloudcore
     nohup cloudcore > cloudcore.log 2>&1 &
+    ```
+    or cloudCore in kubernetes deployment mode:
+    ``` shell
+    kubectl -n kubeedge rollout restart deployment cloudcore
     ```
     edgeCore:
     ``` shell
@@ -213,7 +259,7 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
                     operator: DoesNotExist
     ```
 
-    2. If you still want to run `kube-proxy`, ask **edgecore** not to check the environment by adding the env variable in `edgecore.service` :
+    1. If you still want to run `kube-proxy`, ask **edgecore** not to check the environment by adding the env variable in `edgecore.service` :
 
         ``` shell
         sudo vi /etc/kubeedge/edgecore.service
