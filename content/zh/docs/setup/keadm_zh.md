@@ -21,14 +21,17 @@ Keadm用于安装KubeEdge的云端和边缘端组件。它不负责K8s的安装�
 
 ## 设置云端（KubeEdge主节点）
 
+### keadm init 
+
 默认情况下边缘节点需要访问cloudcore中 `10000` ，`10002` 端口。
 
 `keadm init` 将安装 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。
 
 **重要提示：**
 1. 必须正确配置 kubeconfig 或 master 中的至少一个，以便可以将其用于验证k8s集群的版本和其他信息。
-1. 请确保边缘节点可以使用云节点的本地IP连接云节点，或者需要使用 `--advertise-address` 标记指定云节点的公共IP 。
-1. `--advertise-address`（仅从1.3版本开始可用）是云端公开的地址（将添加到CloudCore证书的SAN中），默认值为本地IP。
+2. 请确保边缘节点可以使用云节点的本地IP连接云节点，或者需要使用 `--advertise-address` 标记指定云节点的公共IP 。
+3. `--advertise-address`（仅从1.3版本开始可用）是云端公开的地址（将添加到CloudCore证书的SAN中），默认值为本地IP。
+4. `keadm init` 将会使用二进制方式部署 cloudcore 为一个系统服务，如果您想实现容器化部署，可以参考 `keadm beta init` 。
 
 举个例子：
 
@@ -42,6 +45,41 @@ Kubernetes version verification passed, KubeEdge installation will start...
 ...
 KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 ```
+
+### keadm beta init
+
+现在可以使用 `keadm beta init` 进行云端组件安装。
+
+举个例子:
+
+```shell
+# keadm beta init --advertise-address="THE-EXPOSED-IP" --set cloudcore-tag=v1.9.0 --kube-config=/root/.kube/config
+```
+
+**IMPORTANT NOTE:**
+1. 自定义 `--set key=value` 值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
+2. 您可以从 Keadm 的一个内置配置概要文件开始，然后根据您的特定需求进一步定制配置。目前，内置的配置概要文件关键字是 `version` 。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml) ，您可以在这里创建您的自定义配置文件, 使用 `--profile version=v1.9.0 --set key=value` 来使用它。 
+
+此外，还可使用 `--external-helm-root` 安装外部的 helm chart 组件，如 edgemesh 。
+
+举个例子:
+
+```shell
+# keadm beta init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
+```
+
+如果您对 Helm Chart 比较熟悉，可以直接参考 [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/build/helm/charts) 进行安装。
+
+### keadm beta manifest generate
+
+`keadm beta manifest generate` 可以帮助我们快速渲染生成期望的 manifests 文件，并输出在终端显示。
+
+Example:
+
+```shell
+# keadm beta manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
+```
+> 使用 --skip-crds 跳过打印 CRDs
 
 ## 设置边缘端（KubeEdge工作节点）
 
@@ -66,8 +104,8 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 
 **重要提示：**
 1. `--cloudcore-ipport` 是必填参数。
-1. 加上 `--token` 会自动为边缘节点生成证书，如果你需要的话。
-1. 需要保证云和边缘端使用的KubeEdge版本相同。
+2. 加上 `--token` 会自动为边缘节点生成证书，如果您需要的话。
+3. 需要保证云和边缘端使用的KubeEdge版本相同。
 
 输出：
 
@@ -76,6 +114,9 @@ Host has mosquit+ already installed and running. Hence skipping the installation
 ...
 KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 ```
+
+=======
+> 也可以使用 `keadm beta join` 来添加边缘节点。
 
 ### 在云端支持 Metrics-server
 
