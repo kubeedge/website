@@ -82,7 +82,7 @@
         {{ end }}
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ .URL | relLangURL }}"{{ if $.IsHome }} data-target="{{ .URL }}"{{ end }}{{ ($.Scratch.Get "target") | safeHTMLAttr }}>
+          <a class="nav-link" aria-label="icon" href="{{ .URL | relLangURL }}"{{ if $.IsHome }} data-target="{{ .URL }}"{{ end }}{{ ($.Scratch.Get "target") | safeHTMLAttr }}>
           {{ .Pre }}
           <span>{{ .Name | safeHTML }}</span>
           {{ .Post }}
@@ -93,7 +93,7 @@
 
         {{ if .Site.Params.search.engine }}
         <li class="nav-item">
-          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+          <a class="nav-link js-search" aria-label="icon" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
         </li>
         {{ end }}
 
