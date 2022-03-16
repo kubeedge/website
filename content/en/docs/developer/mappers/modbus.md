@@ -59,25 +59,25 @@ The modbus mapper consists of the following four major modules :-
  3. Devicetwin Manager
  4. File Watcher
 
- ### Controller
+### Controller
 
  The main entry is index.js. The controller module is responsible for subscribing edge MQTT devicetwin topic and perform check/modify operation on connected modbus devices. The controller is also responsible for loading the configuration and starting the other modules. The controller first connects the MQTT client to the broker to receive message of expected devicetwin value (using the mqtt configurations in conf.json), it then connects to the devices and check all the properties of devices every 2 seconds (based on dpl configuration provided in the configuration file) and the file watcher runs parallelly to check whether the dpl configuration file is changed.
 
- ### Modbus Manager
+### Modbus Manager
 
  Modbus Manager is a component which can perform an read or write action on modbus device. The following are the main responsibilities of this component:
  a) When controller receives message of expected devicetwin value, Modbus Manager will connect to the device and change the registers to make actual state equal to expected.
 
  b) When controller checks all the properties of devices, Modbus Manager will connect to the device and read the actual value in registers according to the dpl configuration.
 
- ### Devicetwin Manager
+### Devicetwin Manager
 
  Devicetwin Manager is a component which can transfer the edge devicetwin message. The following are the main responsibilities of this component:
  a) To receive the edge devicetwin message from edge mqtt broker and parse message.
 
  b) To report the actual value of device properties in devicetwin format to the cloud.
 
- ### File Watcher
+### File Watcher
 
  File Watcher is a component which can load dpl and mqtt configuration from configuration files.The following are the main responsibilities of this component:
  a) To monitor the dpl configuration file. If this file changed, file watcher will reload the dpl configuration to the mapper.

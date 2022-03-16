@@ -155,6 +155,7 @@ kata-runtime kata-check
 ```
 
 `RuntimeClass` is a feature for selecting the container runtime configuration to use to run a pod’s containers that is supported since `containerd` v1.2.0.  If your `containerd` version is later than v1.2.0, you have two choices to configure `containerd` to use Kata Containers:
+
 - Kata Containers as a RuntimeClass
 - Kata Containers as a runtime for untrusted workloads
 
