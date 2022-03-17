@@ -182,6 +182,7 @@ Commercial support is available at
 
 ## Model
 ![model](/img/edgemesh/model.jpg)
+
 1. a headless service (a service with selector but ClusterIP is None)
 2. one or more pods' labels match the headless service's selector
 3. to request a server, use: ```<service_name>.<service_namespace>.svc.<cluster>:<port>```:
@@ -191,6 +192,7 @@ Commercial support is available at
 
 ## Flow
 ![flow](/img/edgemesh/endtoend-test-flow.jpg)
+
 1. client requests to server by server's domain name
 2. DNS being hijacked to EdgeMesh by iptables rules, then a fake ip returned
 3. request hijacked to EdgeMesh by iptables rules

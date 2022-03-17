@@ -69,6 +69,7 @@ The content of data topic should conform to following format
 ```
 
 Following is the explanation of the three suffix used:
+
 1. `update`: this suffix is used to update the twin for the deviceID.
 2. `cloud_updated`: this suffix is used to sync the twin status between edge and cloud.
 3. `get`: is used to get twin status of a device. The response is published on `"$hw/events/device/+/twin/get/result"` topic.
