@@ -201,8 +201,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
    > 现在可以通过 iptablesmanager 这个组件自动运维以上的 iptables 转发规则，参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
 
-5. `/etc/kubeedge/config/cloudcore.yaml` 和 `/etc/kubeedge/config/edgecore.yaml` 上 cloudcore 和 edgecore **都要** 修改。将 **
-   cloudStream** 和 **edgeStream** 设置为 `enable: true` 。将服务器IP更改为 cloudcore IP（与 $ CLOUDCOREIPS 相同）。
+5. `/etc/kubeedge/config/cloudcore.yaml` 和 `/etc/kubeedge/config/edgecore.yaml` 上 cloudcore 和 edgecore **都要** 修改。将 **cloudStream** 和 **edgeStream** 设置为 `enable: true` 。将服务器IP更改为 cloudcore IP（与 $ CLOUDCOREIPS 相同）。
 
    在 cloudcore 中打开 YAML 文件：
 
@@ -335,7 +334,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
     ```
 
    |                  仓库                           |                    标签                   |   镜像ID   |     创建时间     |  大小  |
-       |-------------------------------------------------------|------------------------------------------|--------------|----------------|--------|
+   |-------------------------------------------------------|------------------------------------------|--------------|----------------|--------|
    | gcr.io/k8s-staging-metrics-serer/ metrics-serer-amd64 | 6d92704c5a68cd29a7a81bce68e6c2230c7a6912 | a24f71249d69 | 19秒前 | 57.2MB |
    | metrics-server-kubeedge                               |                 latest                   | aef0fa7a834c | 28秒前 | 57.2MB |
 
