@@ -11,23 +11,24 @@ type: docs
 ---
 Keadm用于安装KubeEdge的云端和边缘端组件。它不负责K8s的安装和运行。
 
-请参考 [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) 
+请参考 [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility)
 了解 **Kubernetes** 兼容性来确定安装哪个版本的Kubernetes。
 
 ## 使用限制
 
--  `keadm` 目前支持 Ubuntu 和 CentOS OS。RaspberryPi的支持正在进行中。
+- `keadm` 目前支持 Ubuntu 和 CentOS OS。RaspberryPi的支持正在进行中。
 - 需要超级用户权限（或root权限）才能运行。
 
 ## 设置云端（KubeEdge主节点）
 
-### keadm init 
+### keadm init
 
 默认情况下边缘节点需要访问cloudcore中 `10000` ，`10002` 端口。
 
 `keadm init` 将安装 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。
 
 **重要提示：**
+
 1. 必须正确配置 kubeconfig 或 master 中的至少一个，以便可以将其用于验证k8s集群的版本和其他信息。
 2. 请确保边缘节点可以使用云节点的本地IP连接云节点，或者需要使用 `--advertise-address` 标记指定云节点的公共IP 。
 3. `--advertise-address`（仅从1.3版本开始可用）是云端公开的地址（将添加到CloudCore证书的SAN中），默认值为本地IP。
@@ -40,6 +41,7 @@ Keadm用于安装KubeEdge的云端和边缘端组件。它不负责K8s的安装�
 ```
 
 输出：
+
 ```
 Kubernetes version verification passed, KubeEdge installation will start...
 ...
@@ -57,8 +59,12 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 ```
 
 **IMPORTANT NOTE:**
-1. 自定义 `--set key=value` 值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
-2. 您可以从 Keadm 的一个内置配置概要文件开始，然后根据您的特定需求进一步定制配置。目前，内置的配置概要文件关键字是 `version` 。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml) ，您可以在这里创建您的自定义配置文件, 使用 `--profile version=v1.9.0 --set key=value` 来使用它。 
+
+1. 自定义 `--set key=value`
+   值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
+2. 您可以从 Keadm 的一个内置配置概要文件开始，然后根据您的特定需求进一步定制配置。目前，内置的配置概要文件关键字是 `version`
+   。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml)
+   ，您可以在这里创建您的自定义配置文件, 使用 `--profile version=v1.9.0 --set key=value` 来使用它。
 
 此外，还可使用 `--external-helm-root` 安装外部的 helm chart 组件，如 edgemesh 。
 
@@ -68,7 +74,8 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 # keadm beta init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
 ```
 
-如果您对 Helm Chart 比较熟悉，可以直接参考 [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/build/helm/charts) 进行安装。
+如果您对 Helm Chart 比较熟悉，可以直接参考 [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/build/helm/charts)
+进行安装。
 
 ### keadm beta manifest generate
 
@@ -79,6 +86,7 @@ Example:
 ```shell
 # keadm beta manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
 ```
+
 > 使用 --skip-crds 跳过打印 CRDs
 
 ## 设置边缘端（KubeEdge工作节点）
@@ -94,6 +102,8 @@ Example:
 
 ### 加入边缘节点
 
+#### keadm join
+
 `keadm join` 将安装 edgecore 和 mqtt。它还提供了一个命令行参数，通过它可以设置特定的版本。
 
 举个例子：
@@ -102,10 +112,28 @@ Example:
 # keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
 ```
 
+#### keadm beta join
+
+现在可以使用 `keadm beta join` 通过镜像下载所需资源，进行节点接入。
+
+##### Docker
+
+```shell
+# keadm beta join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
+```
+
+##### CRI
+
+```shell
+# keadm beta join --cloudcore-ipport=192.168.20.50:10000 --runtimetype remote --remote-runtime-endpoint unix:///run/containerd/containerd.sock --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
+```
+
 **重要提示：**
+
 1. `--cloudcore-ipport` 是必填参数。
 2. 加上 `--token` 会自动为边缘节点生成证书，如果您需要的话。
 3. 需要保证云和边缘端使用的KubeEdge版本相同。
+4. 加上 `--with-mqtt` 会自动为边缘节点以容器运行的方式部署 `mosquitto` 服务 
 
 输出：
 
@@ -119,7 +147,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 ### 启用 `kubectl logs` 功能
 
- `kubectl logs` 必须在使用 metrics-server 之前部署，通过以下操作激活功能：
+`kubectl logs` 必须在使用 metrics-server 之前部署，通过以下操作激活功能：
 
 1. 确保您可以找到 Kubernetes 的 `ca.crt` 和 `ca.key` 文件。如果您通过 `kubeadm` 安装Kubernetes 集群，这些文件将位于 `/etc/kubernetes/pki/` 目录中。
 
@@ -132,7 +160,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
     ```bash
     export CLOUDCOREIPS="192.168.0.139"
     ```
-    （警告：建议使用同一 **终端** 来保持系统工作的持续，在必要时再次键入此命令。）使用以下命令检查环境变量：
+   （警告：建议使用同一 **终端** 来保持系统工作的持续，在必要时再次键入此命令。）使用以下命令检查环境变量：
     ``` shell
     echo $CLOUDCOREIPS
     ```
@@ -144,46 +172,44 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
     ```shell
     sudo su
     ```
-    从原始克隆的存储库中拷贝证书：
+   从原始克隆的存储库中拷贝证书：
     ```shell
     cp $GOPATH/src/github.com/kubeedge/kubeedge/build/tools/certgen.sh /etc/kubeedge/
     ```
-    将目录更改为kubeedge目录：
+   将目录更改为kubeedge目录：
     ```shell
     cd /etc/kubeedge/
     ```
-    从 **certgen.sh** 生成证书
+   从 **certgen.sh** 生成证书
     ```bash
     /etc/kubeedge/certgen.sh stream
     ```
 
-4. 需要在主机上设置 iptables。（此命令应该在每个apiserver部署的节点上执行。）（在这种情况下，须在master节点上执行，并由root用户执行此命令。）
-   在运行每个apiserver的主机上运行以下命令：
+4. 需要在主机上设置 iptables。（此命令应该在每个apiserver部署的节点上执行。）（在这种情况下，须在master节点上执行，并由root用户执行此命令。） 在运行每个apiserver的主机上运行以下命令：
 
-    **注意:** 您需要先设置CLOUDCOREIPS变量
+   **注意:** 您需要先设置CLOUDCOREIPS变量
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```
-    > 端口10003和10350是 CloudStream 和 Edgecore 的默认端口，如果已发生变更，请使用您自己设置的端口。
+   > 端口10003和10350是 CloudStream 和 Edgecore 的默认端口，如果已发生变更，请使用您自己设置的端口。
 
-    如果您不确定是否设置了iptables，并且希望清除所有这些表。（如果您错误地设置了iptables，它将阻止您使用 `kubectl logs` 功能）
-    可以使用以下命令清理iptables规则：
+   如果您不确定是否设置了iptables，并且希望清除所有这些表。（如果您错误地设置了iptables，它将阻止您使用 `kubectl logs` 功能） 可以使用以下命令清理iptables规则：
     ``` shell
     iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
     ```
 
-    > 现在可以通过 iptablesmanager 这个组件自动运维以上的 iptables 转发规则，参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
+   > 现在可以通过 iptablesmanager 这个组件自动运维以上的 iptables 转发规则，参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
 
 5. `/etc/kubeedge/config/cloudcore.yaml` 和 `/etc/kubeedge/config/edgecore.yaml` 上 cloudcore 和 edgecore **都要** 修改。将 **cloudStream** 和 **edgeStream** 设置为 `enable: true` 。将服务器IP更改为 cloudcore IP（与 $ CLOUDCOREIPS 相同）。
 
-    在 cloudcore 中打开 YAML 文件：
+   在 cloudcore 中打开 YAML 文件：
 
     ```shell
     sudo nano /etc/kubeedge/config/cloudcore.yaml
     ```
 
-    在以下文件中修改( `enable: true` )内容：
+   在以下文件中修改( `enable: true` )内容：
     ```yaml
     cloudStream:
       enable: true
@@ -197,13 +223,13 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
       tunnelPort: 10004
     ```
 
-    在 edgecore 中打开 YAML 文件：    
+   在 edgecore 中打开 YAML 文件：
     ``` shell
     sudo nano /etc/kubeedge/config/edgecore.yaml
     ```
-    
-    修改以下部分中的文件 (`enable: true`), (`server: 192.168.0.193:10004`):
-    
+
+   修改以下部分中的文件 (`enable: true`), (`server: 192.168.0.193:10004`):
+
     ``` yaml
     edgeStream:
       enable: true
@@ -221,23 +247,24 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
     ``` shell
     sudo su
     ```
-    cloudCore in process mode:
+   cloudCore in process mode:
     ``` shell
     pkill cloudcore
     nohup cloudcore > cloudcore.log 2>&1 &
     ```
-    or cloudCore in kubernetes deployment mode:
+   or cloudCore in kubernetes deployment mode:
     ``` shell
     kubectl -n kubeedge rollout restart deployment cloudcore
     ```
-    edgeCore:
+   edgeCore:
     ``` shell
     systemctl restart edgecore.service
     ```
 
-    如果您无法重启 edgecore，请检查是否是由于 `kube-proxy` 的缘故，同时杀死这个进程。 **kubeedge** 默认不纳入该进程，我们使用 [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md) 来进行替代
+   如果您无法重启 edgecore，请检查是否是由于 `kube-proxy` 的缘故，同时杀死这个进程。 **kubeedge**
+   默认不纳入该进程，我们使用 [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md) 来进行替代
 
-    **注意：** 可以考虑避免 `kube-proxy` 部署在edgenode上。有两种解决方法：
+   **注意：** 可以考虑避免 `kube-proxy` 部署在edgenode上。有两种解决方法：
 
     1. 通过调用 `kubectl edit daemonsets.apps -n kube-system kube-proxy` 添加以下设置：
     ``` yaml
@@ -262,7 +289,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
         Environment="CHECK_EDGECORE_ENVIRONMENT=false"
         ```
 
-         - 最终文件应如下所示：
+        - 最终文件应如下所示：
 
         ```
         Description=edgecore.service
@@ -282,35 +309,34 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 2. 由于边缘节点和云节点的 kubelet 端口不同，故当前版本的 metrics-server（0.3.x）不支持自动端口识别（这是0.4.0功能），因此您现在需要手动编译从master分支拉取的镜像。
 
-    Git clone 最新的 metrics server 代码仓:
+   Git clone 最新的 metrics server 代码仓:
 
     ```bash
     git clone https://github.com/kubernetes-sigs/metrics-server.git
     ```
 
-    转到 metrics server 目录:
+   转到 metrics server 目录:
 
     ```bash
     cd metrics-server
     ```
 
-    制作 docker 容器:
+   制作 docker 容器:
 
     ```bash
     make container
     ```
 
-    检查您是否有此 docker 镜像：
+   检查您是否有此 docker 镜像：
 
     ```bash
     docker images
     ```
 
-    |                  仓库                           |                    标签                   |   镜像ID   |     创建时间     |  大小  |
-    |-------------------------------------------------------|------------------------------------------|--------------|----------------|--------|
-    | gcr.io/k8s-staging-metrics-serer/ metrics-serer-amd64 | 6d92704c5a68cd29a7a81bce68e6c2230c7a6912 | a24f71249d69 | 19秒前 | 57.2MB |
-    | metrics-server-kubeedge                               |                 latest                   | aef0fa7a834c | 28秒前 | 57.2MB |
-
+   |                  仓库                           |                    标签                   |   镜像ID   |     创建时间     |  大小  |
+   |-------------------------------------------------------|------------------------------------------|--------------|----------------|--------|
+   | gcr.io/k8s-staging-metrics-serer/ metrics-serer-amd64 | 6d92704c5a68cd29a7a81bce68e6c2230c7a6912 | a24f71249d69 | 19秒前 | 57.2MB |
+   | metrics-server-kubeedge                               |                 latest                   | aef0fa7a834c | 28秒前 | 57.2MB |
 
     确保您使用镜像ID来对镜像标签进行变更，以使其与yaml文件中的镜像名称一致。
 
@@ -320,24 +346,24 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 3. 部署yaml应用。可以参考相关部署文档：https://github.com/kubernetes-sigs/metrics-server/tree/master/manifests。
 
-    注意：下面的那些iptables必须应用在机器上（精确地是网络名称空间，因此metrics-server也需要在主机网络模式下运行）metric-server在其上运行。
+   注意：下面的那些iptables必须应用在机器上（精确地是网络名称空间，因此metrics-server也需要在主机网络模式下运行）metric-server在其上运行。
 
-    **注意：** 下面的那些iptables必须应用在已运行metric-server 机器上（精确地命名是网络名称空间，因此metrics-server也需要在主机网络模式下运行）
+   **注意：** 下面的那些iptables必须应用在已运行metric-server 机器上（精确地命名是网络名称空间，因此metrics-server也需要在主机网络模式下运行）
     ```
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```
 
-    （引导对metric-data的请求edgecore:10250至在cloudcore和edgecore之间的隧道中，iptables至关重要。）
+   （引导对metric-data的请求edgecore:10250至在cloudcore和edgecore之间的隧道中，iptables至关重要。）
 
-    在部署 metrics-server 之前，必须确保将其部署在已部署apiserver的节点上。在这种情况下，这就是master节点。作为结果，需要通过以下命令使主节点可调度：
+   在部署 metrics-server 之前，必须确保将其部署在已部署apiserver的节点上。在这种情况下，这就是master节点。作为结果，需要通过以下命令使主节点可调度：
 
     ``` shell
     kubectl taint nodes --all node-role.kubernetes.io/master-
     ```
 
-    然后，在 deployment.yaml 文件中，必须指定 metrics-server 部署在主节点上。（选择主机名作为标记的标签。）
-    
-    在**metrics-server-deployment.yaml**中
+   然后，在 deployment.yaml 文件中，必须指定 metrics-server 部署在主节点上。（选择主机名作为标记的标签。）
+
+   在**metrics-server-deployment.yaml**中
     ``` yaml
         spec:
           affinity:
@@ -354,13 +380,14 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
     ```
 
 **重要提示：**
+
 1. Metrics-server需要使用主机网络网络模式。
 
 2. 使用您自己编译的镜像，并将 imagePullPolicy 设置为Never。
 
 3. 为 Metrics 服务器启用 --kubelet-use-node-status-port 功能
 
-    需要将这些设置写入部署yaml（metrics-server-deployment.yaml）文件中，如下所示：
+   需要将这些设置写入部署yaml（metrics-server-deployment.yaml）文件中，如下所示：
 
     ``` yaml
           volumes:
@@ -400,5 +427,6 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
  # keadm reset --kube-config=$HOME/.kube/config
 ```
 
- ### 节点
+### 节点
+
 `keadm reset` 将停止 `edgecore` ，并且不会卸载/删除任何先决条件。
