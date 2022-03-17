@@ -412,5 +412,5 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
  # keadm reset --kube-config=$HOME/.kube/config
 ```
 
- ### Node
+### Node
 `keadm reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.
