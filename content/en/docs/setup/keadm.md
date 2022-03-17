@@ -18,6 +18,14 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 - Currently support of `keadm` is available for Ubuntu and CentOS OS. RaspberryPi supports is in-progress.
 - Need super user rights (or root rights) to run.
 
+## Install keadm
+
+Run the command below to one-click install `keadm`.
+
+```shell
+# docker run --rm kubeedge/installation-package:v1.10.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
+```
+
 ## Setup Cloud Side (KubeEdge Master Node)
 
 By default ports `10000` and `10002` in your cloudcore needs to be accessible for your edge nodes.
@@ -26,10 +34,10 @@ By default ports `10000` and `10002` in your cloudcore needs to be accessible fo
 
 `keadm init` will install cloudcore, generate the certs and install the CRDs. It also provides a flag by which a specific version can be set.
 
-**IMPORTANT NOTE:**
-1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
-2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
-3. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+**IMPORTANT NOTE:**  
+1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.  
+2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.  
+3. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.  
 4. `keadm init` deploy cloudcore in binary process as system service, if you want to deploy cloudcore as container, please ref `keadm beta init` below.
 
 Example:
@@ -55,8 +63,8 @@ Example:
 # keadm beta init --advertise-address="THE-EXPOSED-IP" --set cloudcore-tag=v1.9.0 --kube-config=/root/.kube/config
 ```
 
-**IMPORTANT NOTE:**
-1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md).
+**IMPORTANT NOTE:**  
+1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md).  
 2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to `[version.yaml](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml)` as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
 
 `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
@@ -101,9 +109,9 @@ Example:
 # keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
 ```
 
-**IMPORTANT NOTE:**
-1. `--cloudcore-ipport` flag is a mandatory flag.
-2. If you want to apply certificate for edge node automatically, `--token` is needed.
+**IMPORTANT NOTE:**  
+1. `--cloudcore-ipport` flag is a mandatory flag.  
+2. If you want to apply certificate for edge node automatically, `--token` is needed.  
 3. The kubeEdge version used in cloud and edge side should be same.
 
 Output:
@@ -404,5 +412,5 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
  # keadm reset --kube-config=$HOME/.kube/config
 ```
 
- ### Node
+### Node
 `keadm reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.

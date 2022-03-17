@@ -13,9 +13,11 @@ type: docs
 Eventbus acts as an interface for sending/receiving messages on mqtt topics.
 
 It supports 3 kinds of mode:
+
 - internalMqttMode
 - externalMqttMode
 - bothMqttMode
+
 ## Topic
 eventbus subscribes to the following topics:
 ```
