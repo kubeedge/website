@@ -203,3 +203,19 @@
 .release-link-icon{
   color : #3f3f3f;
 }
+
+@media (max-width: 991px) {
+    .social-icon {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .social-icon .nav-item {
+        margin-right: 20px;
+    }
+
+    .social-icon .nav-item.dropdown {
+        width: 100%;
+    }
+}
