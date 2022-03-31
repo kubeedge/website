@@ -217,5 +217,6 @@
 
     .social-icon .nav-item.dropdown {
         width: 100%;
+        margin-right: 0;
     }
 }
