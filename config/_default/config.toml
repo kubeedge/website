@@ -94,3 +94,8 @@ version = "v1.4"
 githubbranch = "v1.4"
 docsbranch = "release-1.4"
 url = "https://v1-4.docs.kubeedge.io/en/"
+
+module:
+  imports:
+    - path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy-cms/v5
+    - path: github.com/wowchemy/wowchemy-hugo-modules/wowchemy/v5
