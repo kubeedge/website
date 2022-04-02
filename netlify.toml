@@ -7,6 +7,7 @@ functions = "functions/"
   HUGO_VERSION = "0.96.0 "
 HUGO_ENV = "production"
 HUGO_ENABLEGITINFO = "true"
+NODE_VERSION = "16"
 
 [context.split1]
 command = "hugo --gc --minify --enableGitInfo"
@@ -14,18 +15,21 @@ command = "hugo --gc --minify --enableGitInfo"
 [context.split1.environment]
 HUGO_VERSION = "0.96.0 "
 HUGO_ENV = "production"
+NODE_VERSION = "16"
 
 [context.deploy-preview]
 command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.96.0 "
+NODE_VERSION = "16"
 
 [context.branch-deploy]
 command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.96.0 "
+NODE_VERSION = "16"
 
 [context.next.environment]
 HUGO_ENABLEGITINFO = "true"
