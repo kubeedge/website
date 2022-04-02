@@ -41,7 +41,7 @@ brew install hugo
 1. 使用 `dpkg` 命令安装软件包：
 
     ```
-    sudo dpkg -i hugo_0.46_Linux-64bit.deb
+    sudo dpkg -i hugo_0.96_Linux-64bit.deb
     ```
 
 1. 验证您的安装：
