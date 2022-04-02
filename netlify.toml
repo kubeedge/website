@@ -37,5 +37,5 @@ HUGO_ENABLEGITINFO = "true"
   force = true # COMMENT: ensure that we always redirect
 
 package = "netlify-plugin-hugo-cache-resources"
-  [plugins.inputs]
-    debug = true
+[plugins.inputs]
+debug = true
