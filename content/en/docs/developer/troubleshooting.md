@@ -74,4 +74,4 @@ Connect to the edge node and then either
 - use the log file located in `/var/log/pods` or
 - use commands like `docker logs <container id>`
 
-You can also enable `kubectl logs` feature refer to this [guide](../keadm#enable-kubectl-logs-feature).
+You can also enable `kubectl logs` feature refer to this [guide](../../setup/keadm/#enable-kubectl-logs-feature).
