@@ -35,3 +35,10 @@ HUGO_ENABLEGITINFO = "true"
   to = "/.netlify/functions/latestversion"
   status = 200
   force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "https://edgemesh.kubeedge.io"
+  to = "https://edgemesh.netlify.app"
+  status = 200
+  force = true
+
