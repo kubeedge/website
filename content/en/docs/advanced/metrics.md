@@ -12,7 +12,7 @@ type: docs
 
 ## Enable `kubectl logs/exec` feature
 
-Refer to this [doc](./debug).
+Refer to this [doc](../debug).
 
 
 ## Deploy metrics server
