@@ -35,23 +35,24 @@ By default ports `10000` and `10002` in your cloudcore needs to be accessible fo
 `keadm init` will install cloudcore, generate the certs and install the CRDs. It also provides a flag by which a specific version can be set.
 
 **IMPORTANT NOTE:**  
-1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.  
-2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.  
-3. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.  
+
+1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
+2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
+3. `--advertise-address`(only work since 1.3 release) is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP. 
+
+    Example:
+    ```shell
+    # keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release)
+    ```
+
+    Output:
+    ```
+    Kubernetes version verification passed, KubeEdge installation will start...
+    ...
+    KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
+    ```
+  
 4. `keadm init` deploy cloudcore in binary process as system service, if you want to deploy cloudcore as container, please ref `keadm beta init` below.
-
-Example:
-
-```shell
-# keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release)
-```
-
-Output:
-```
-Kubernetes version verification passed, KubeEdge installation will start...
-...
-KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
-```
 
 ### keadm beta init
 
@@ -163,21 +164,21 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     ```
 
 4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.)
-   Run the following command on the host on which each apiserver runs:
+    Run the following command on the host on which each apiserver runs:
 
     **Note:** You need to get the configmap first, which contains all the cloudcore ips and tunnel ports.
     
-   ```bash
-   kubectl get cm tunnelport -nkubeedge -oyaml
+    ```bash
+    kubectl get cm tunnelport -nkubeedge -oyaml
    
-   apiVersion: v1
-   kind: ConfigMap
-   metadata:
-     annotations:
-       tunnelportrecord.kubeedge.io: '{"ipTunnelPort":{"192.168.1.16":10350, "192.168.1.17":10351},"port":{"10350":true, "10351":true}}'
-     creationTimestamp: "2021-06-01T04:10:20Z"
-   ...
-   ```
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      annotations:
+        tunnelportrecord.kubeedge.io: '{"ipTunnelPort":{"192.168.1.16":10350, "192.168.1.17":10351},"port":{"10350":true, "10351":true}}'
+      creationTimestamp: "2021-06-01T04:10:20Z"
+    ...
+    ```
     
     Then set all the iptables for multi cloudcore instances to every node that apiserver runs. The cloudcore ips and tunnel ports should be get from configmap above.
 
@@ -195,7 +196,7 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     ```
 
     > Note that this part can be finished by iptablesmanager component, no need to manually add. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
-
+    
 5. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
 
     Open the YAML file in cloudcore:
