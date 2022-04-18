@@ -87,3 +87,20 @@ Start edgecore:
 ```
 
 Run `edgecore -h` to get help info and add options if needed.
+
+### Build from source
+If you want to build KubeEdge from source, there are two options:
+
+You have a working Go environment.
+```shell
+git clone https://github.com/kubeedge/kubeedge.git
+cd kubeedge
+make BUILD_WITH_CONTAINER=false
+```
+
+You have a working Docker environment.
+```shell
+git clone https://github.com/kubeedge/kubeedge.git
+cd kubeedge
+make
+```
