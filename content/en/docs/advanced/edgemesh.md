@@ -27,7 +27,7 @@ Before run examples, please check environment first.
 
 Modify `/etc/nsswitch.conf`, make sure `dns` is first order, like below:
 
-```
+```bash
 $ grep hosts /etc/nsswitch.conf
 hosts:          dns file mdns4_minimal [NOTFOUND=return]
 ```
@@ -36,14 +36,14 @@ hosts:          dns file mdns4_minimal [NOTFOUND=return]
 
 Enable ip forward:
 
-```
+```bash
 $ sudo echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 $ sudo sysctl -p
 ```
 
 Then check it:
 
-```
+```bash
 $ sudo sysctl -p | grep ip_forward
 net.ipv4.ip_forward = 1
 ```
@@ -77,7 +77,7 @@ nginx-deployment-54bf9847f8-sxk94   1/1     Running   0          14m   172.17.0.
 
 Check it works:
 
-```bash
+```html
 $ curl 172.17.0.2
 <!DOCTYPE html>
 <html>
@@ -145,7 +145,7 @@ To request a server, use url like this: `<service_name>.<service_namespace>.svc.
 
 In our case, from edge node a or b, run following command:
 
-```bash
+```html
 $ curl http://nginx-svc.default.svc.cluster.local:12345
 <!DOCTYPE html>
 <html>

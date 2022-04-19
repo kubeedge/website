@@ -45,7 +45,7 @@ Check [setup docs](./setup/keadm).
 
 ## Contributing
 
-Contributions are very welcome! See our [CONTRIBUTING.md](./community/contribute) for more information.
+We greatly value feedback from our users. Contributions are very welcome! See our [CONTRIBUTING.md](./community/contribute) for more information.
 
 ## Community
 

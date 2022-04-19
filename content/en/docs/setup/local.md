@@ -28,7 +28,6 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/router/router_v1_rule.yaml
 ```
 
-
 ### Prepare config file
 
 ```shell
@@ -70,7 +69,7 @@ Run `cloudcore -h` to get help info and add options if needed.
 
 The `token` is what above step get.
 
-please refer to [configuration for edge](../config#configuration-edge-side-kubeedge-worker-node) for details.
+Please refer to [configuration for edge](../config#configuration-edge-side-kubeedge-worker-node) for details.
 
 ### Run
 

@@ -220,3 +220,21 @@
         margin-right: 0;
     }
 }
+
+h1{
+  font-weight: bold;
+}
+
+p{
+  margin-bottom: 0.5rem;
+}
+
+h2{
+  margin-top: 1.5rem;
+}
+
+pre, code{
+  color: black;
+  background-color: #F4F4F4;
+  font-weight:500;
+}

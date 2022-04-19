@@ -15,12 +15,12 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 ## Limitation
 
-- Currently support of `keadm` is available for Ubuntu and CentOS OS. RaspberryPi supports is in-progress.
+- Currently support of *keadm* is available for Ubuntu and CentOS OS. RaspberryPi supports is in-progress.
 - Need super user rights (or root rights) to run.
 
 ## Install keadm
 
-Run the command below to one-click install `keadm`.
+Run the command below to one-click install *keadm*.
 
 ```shell
 # docker run --rm kubeedge/installation-package:v1.10.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
@@ -28,7 +28,7 @@ Run the command below to one-click install `keadm`.
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
-By default ports `10000` and `10002` in your cloudcore needs to be accessible for your edge nodes.
+By default ports *10000* and *10002* in your cloudcore needs to be accessible for your edge nodes.
 
 ### keadm init 
 
@@ -66,7 +66,7 @@ Example:
 
 **IMPORTANT NOTE:**  
 1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md).  
-2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to `[version.yaml](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml)` as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
+2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
 
 `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
@@ -87,7 +87,7 @@ Example:
 ```shell
 # keadm beta manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
 ```
-> Add --skip-crds flag to skip outputing the CRDs 
+> Add `--skip-crds` flag to skip outputing the CRDs 
 
 ## Setup Edge Side (KubeEdge Worker Node)
 
@@ -268,7 +268,7 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
                     operator: DoesNotExist
     ```
 
-    1. If you still want to run `kube-proxy`, ask **edgecore** not to check the environment by adding the env variable in `edgecore.service` :
+    2. If you still want to run `kube-proxy`, ask **edgecore** not to check the environment by adding the env variable in `edgecore.service` :
 
         ``` shell
         sudo vi /etc/kubeedge/edgecore.service
@@ -368,6 +368,7 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     ```
 
 **IMPORTANT NOTE:**
+
 1. Metrics-server needs to use hostnetwork network mode.
 
 2. Use the image compiled by yourself and set imagePullPolicy to Never.
@@ -403,7 +404,7 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
 ## Reset KubeEdge Master and Worker nodes
 
 ### Master
-`keadm reset` will stop `cloudcore` and delete KubeEdge related resources from Kubernetes master like `kubeedge` namespace. It doesn't uninstall/remove any of the pre-requisites.
+`keadm reset` will stop *cloudcore* and delete KubeEdge related resources from Kubernetes master like `kubeedge` namespace. It doesn't uninstall/remove any of the pre-requisites.
 
 It provides a flag for users to specify kubeconfig path, the default path is `/root/.kube/config`.
 
@@ -414,4 +415,4 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
 ```
 
 ### Node
-`keadm reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.
+`keadm reset` will stop *edgecore* and it doesn't uninstall/remove any of the pre-requisites.

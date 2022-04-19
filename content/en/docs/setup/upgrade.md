@@ -17,7 +17,7 @@ Please refer to following guide to upgrade your KubeEdge cluster.
 
 Backup edgecore database at each edge node:
 
-```
+```bash
 $ mkdir -p /tmp/kubeedge_backup
 $ cp /var/lib/kubeedge/edgecore.db /tmp/kubeedge_backup/
 ```
@@ -50,7 +50,7 @@ The way to stop depends on how you deploy:
 
 ## Clean up
 
-```
+```bash
 $ rm -rf /var/lib/kubeedge /etc/kubeedge
 ```
 
@@ -58,7 +58,7 @@ $ rm -rf /var/lib/kubeedge /etc/kubeedge
 
 Restore database at each edge node:
 
-```
+```bash
 $ mkdir -p /var/lib/kubeedge
 $ mv /tmp/kubeedge_backup/edgecore.db /var/lib/kubeedge/
 ```

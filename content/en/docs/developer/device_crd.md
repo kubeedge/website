@@ -201,13 +201,13 @@ The following are the steps to
 1. Create a device model in the cloud node.
 
     ```shell
-            kubectl apply -f <path to device model yaml>
+    kubectl apply -f <path to device model yaml>
     ```
 
 2. Create a device instance in the cloud node.
 
     ```shell
-           kubectl apply -f <path to device instance yaml>
+    kubectl apply -f <path to device instance yaml>
     ```
 
     Note: Creation of device instance will also lead to the creation of a config map which will contain information about the devices which are required by the mapper applications
@@ -220,6 +220,4 @@ The following are the steps to
 
 5. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. User can view the update at the cloud by checking his device instance object.
 
-```shell
-    Note: Sample device model and device instance for a few protocols can be found at $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
-```
+  Note: Sample device model and device instance for a few protocols can be found at `$GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices`
