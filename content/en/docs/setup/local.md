@@ -91,14 +91,14 @@ Run `edgecore -h` to get help info and add options if needed.
 ### Build from source
 If you want to build KubeEdge from source, there are two options:
 
-You have a working Go environment.
+You have a working Go environment, and would like to build on host directly.
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git
 cd kubeedge
 make BUILD_WITH_CONTAINER=false
 ```
 
-You have a working Docker environment.
+You have a working Docker environment. And enjoin building inside container for simpilified environment consistency.
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git
 cd kubeedge
