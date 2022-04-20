@@ -98,7 +98,7 @@ cd kubeedge
 make BUILD_WITH_CONTAINER=false
 ```
 
-You have a working Docker environment. And enjoin building inside container for simpilified environment consistency.
+You have a working Docker environment, and enjoy building inside container for simpilified environment consistency.
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git
 cd kubeedge
