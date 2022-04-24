@@ -118,7 +118,7 @@ cp $GOPATH/src/github.com/kubeedge/kubeedge/build/node.json ~/kubeedge/yaml
 
 Node.json
 
-```script
+```json
 {
   "kind": "Node",
   "apiVersion": "v1",
