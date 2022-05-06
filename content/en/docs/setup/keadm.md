@@ -65,8 +65,10 @@ Example:
 ```
 
 **IMPORTANT NOTE:**  
-1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md).  
-2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to `[version.yaml](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml)` as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
+1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).  
+2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration 
+   for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, 
+   you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
 
 `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
@@ -76,7 +78,7 @@ Example:
 # keadm beta init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
 ```
 
-If you are familiar with the helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/build/helm/charts).
+If you are familiar with the helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/manifests/charts).
 
 ### keadm beta manifest generate
 
@@ -195,7 +197,7 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
     ```
 
-    > Note that this part can be finished by iptablesmanager component, no need to manually add. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
+    > Note that this part can be finished by iptablesmanager component, no need to manually add. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
     
 5. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
 
