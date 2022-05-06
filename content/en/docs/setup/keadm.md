@@ -145,6 +145,7 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     ```
 
 2. Set `CLOUDCOREIPS` env. The environment variable is set to specify the IP address of cloudcore, or a VIP if you have a highly available cluster.
+   Set `CLOUDCORE_DOMAINS` instead if Kubernetes uses domain names to communicate with cloudcore. 
 
     ```bash
     export CLOUDCOREIPS="192.168.0.139"
