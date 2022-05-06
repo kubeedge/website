@@ -129,7 +129,14 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 ### Enable `kubectl logs` Feature
 
-Before metrics-server deployed, `kubectl logs` feature must be activated:
+Before deploying metrics-server , `kubectl logs` feature must be activated:
+
+> Note that if cloudcore is deployed using helm:
+> - The stream certs are generated automatically and cloudStream feature is enabled by default. So, step 1-3 could 
+   be skipped unless customization is needed. 
+> - Also, step 4 could be finished by iptablesmanager component by default, manually operations are not needed. 
+   Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
+> - Operations in step 5-6 related to cloudcore could also be skipped.
 
 1. Make sure you can find the kubernetes `ca.crt` and `ca.key` files. If you set up your kubernetes cluster by `kubeadm` , those files will be in `/etc/kubernetes/pki/` dir.
 
@@ -197,7 +204,6 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
     iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
     ```
 
-    > Note that this part can be finished by iptablesmanager component, no need to manually add. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
     
 5. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
 
