@@ -182,9 +182,9 @@ Verify the configurations before running `edgecore`
 
    To check the architecture of your machine run the following
 
-    ```shell
+  ```shell
     getconf LONG_BIT
-    ```
+  ```
 
     + `kubeedge/pause-arm:3.1` for arm arch
     + `kubeedge/pause-arm64:3.1` for arm64 arch
