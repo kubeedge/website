@@ -220,6 +220,7 @@ The following are the steps to
 
 5. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. User can view the update at the cloud by checking his device instance object.
 
-```shell
-    Note: Sample device model and device instance for a few protocols can be found at $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
+Note: Sample device model and device instance for a few protocols can be found at 
+```shell 
+$GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
 ```
