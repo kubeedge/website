@@ -116,6 +116,12 @@ CentOS 7.9 64bit 3.10.0-1160.15.2.el7.x86_64
 Major:"1", Minor:"23", GitVersion:"v1.23.4", GitCommit:"e6c093d87ea4cbb530a7b2ae91e54c0842d8308a", GitTreeState:"clean", BuildDate:"2022-02-16T12:38:05Z", GoVersion:"go1.17.7", Compiler:"gc", Platform:"linux/amd64"
 ```
 
+ KubeEdge 版本
+
+```
+KubeEdge v1.11.0-alpha.0
+```
+
 Master节点配置
 
 -  **CPU**
