@@ -1,3 +1,28 @@
+---
+authors:
+- Wack Xu
+categories:
+- General
+- Announcements
+date: 2022-06-01
+draft: false
+lastmod: 2022-06-01
+summary: 单集群突破10万边缘节点，KubeEdge大规模测试报告发布
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- performance
+- large scale
+- scalability test
+- 边缘计算
+- 大规模测试报告
+- 10万节点
+title: 单集群突破10万边缘节点，KubeEdge大规模测试报告发布
+---
+
 # KubeEdge支持100000边缘节点测试
 
 ## 摘要
@@ -26,17 +51,17 @@ KubeEdge以Kubernetes管控面作为底座，通过将节点拉远的方式，�
 
 1. API Call Latency
 
-   | **Status**   | **SLI**                                       | **SLO**                                                      |
-   | ------------ | --------------------------------------------- | ------------------------------------------------------------ |
-   | **Official** | 最近5min的单个Object  Mutating API P99 时延   | 除聚合API和CRD外，P99 <= 1s                                  |
-   | **Official** | 最近5min的non-streaming read-only P99 API时延 | 除聚合API和CRD外  Scope=resource, P99 <= 1s  Scope=namespace, P99 <= 5s  Scope=cluster, P99 <= 30s |
+| **Status**   | **SLI**                                       | **SLO**                                                      |
+| ------------ | --------------------------------------------- | ------------------------------------------------------------ |
+| **Official** | 最近5min的单个Object  Mutating API P99 时延   | 除聚合API和CRD外，P99 <= 1s                                  |
+| **Official** | 最近5min的non-streaming read-only P99 API时延 | 除聚合API和CRD外  Scope=resource, P99 <= 1s  Scope=namespace, P99 <= 5s  Scope=cluster, P99 <= 30s |
 
 2. Pod Startup Latency
 
-   | **Status**   | **SLI**                                                      |
-   | ------------ | ------------------------------------------------------------ |
-   | **Official** | 无状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 |
-   | **WIP**      | 有状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 |
+| **Status**   | **SLI**                                                      |
+| ------------ | ------------------------------------------------------------ |
+| **Official** | 无状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 |
+| **WIP**      | 有状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 |
 
 社区还定义了In-Cluster Network Programming Latency（Service更新或者其Ready Pod变化最终反映到Iptables/IPVS规则的时延），In-cluster network latency，DNS Programming Latency（ Service更新或者其Ready Pod 反映到dns server的时延）， DNS Latency等指标，这些指标当前还尚未量化。满足所有SLO 为大规模集群测试的目标，因此本报告主要针对Official状态SLIs/SLOs进行测试。
 
@@ -107,7 +132,7 @@ Kubernetes底座管理面采用单master进行部署，ETCD、Kube-apiserver、K
  管理面OS版本
 
 ```
-CentOS 7.9 64bit 3.10.0-1160.15.2.el7.x86_64  
+CentOS 7.9 64bit 3.10.0-1160.15.2.el7.x86_64
 ```
 
  Kubernetes 版本
@@ -117,30 +142,30 @@ Major:"1", Minor:"23", GitVersion:"v1.23.4", GitCommit:"e6c093d87ea4cbb530a7b2ae
 ```
 
  KubeEdge 版本
-
 ```
 KubeEdge v1.11.0-alpha.0
 ```
+
 
 Master节点配置
 
 -  **CPU**
 
 ```
-Architecture:          x86_64  
-CPU op-mode(s):        32-bit, 64-bit  
-Byte Order:            Little Endian  
-CPU(s):                128  
-On-line CPU(s) list:   0-127  
-Thread(s) per core:    2  
-Core(s) per socket:    32  
-Socket(s):             2  
-NUMA node(s):          2  
-Vendor ID:             GenuineIntel  
-CPU family:            6  
-Model:                 106  
-Model name:            Intel(R) Xeon(R) Platinum 8378A CPU @ 3.00GHz  
-Stepping:              6  
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                128
+On-line CPU(s) list:   0-127
+Thread(s) per core:    2
+Core(s) per socket:    32
+Socket(s):             2
+NUMA node(s):          2
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 106
+Model name:            Intel(R) Xeon(R) Platinum 8378A CPU @ 3.00GHz
+Stepping:              6
 CPU MHz:               2999.998
 ```
 
@@ -162,21 +187,21 @@ CloudCore节点配置
 - **CPU**
 
 ```
-Architecture:          x86_64  
-CPU op-mode(s):        32-bit, 64-bit  
-Byte Order:            Little Endian  
-CPU(s):                12  
-On-line CPU(s) list:   0-11  
-Thread(s) per core:    2  
-Core(s) per socket:    6  
-Socket(s):             1  
-NUMA node(s):          1  
-Vendor ID:             GenuineIntel  
-CPU family:            6  
-Model:                 106  
-Model name:            Intel(R) Xeon(R) Platinum 8378A CPU @ 3.00GHz  
-Stepping:              6  
-CPU MHz:               2999.998  
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                12
+On-line CPU(s) list:   0-11
+Thread(s) per core:    2
+Core(s) per socket:    6
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 106
+Model name:            Intel(R) Xeon(R) Platinum 8378A CPU @ 3.00GHz
+Stepping:              6
+CPU MHz:               2999.998
 ```
 
 -  **MEMORY**
@@ -336,7 +361,7 @@ https://github.com/kubernetes/perf-tests/blob/master/clusterloader2/docs/GETTING
 | run_to_watch       | 1087        | 1674        | 2265        | N/A         |
 | schedule_to_watch  | 1657        | 2724        | 3070        | N/A         |
 
- 
+
 
 注：延迟时间理论上应该总是大于零的，因为kube-apiserver不支持RFC339NANO，导致时间戳精度只能达到秒级，故在延迟比较小的情况下，由于精度损失，ClusterLoader2统计到的某些数值为0。
 
@@ -350,7 +375,7 @@ https://github.com/kubernetes/perf-tests/blob/master/clusterloader2/docs/GETTING
 
 List-watch是Kubernetes组件内部统一的异步消息处理机制，list-watch由list和watch两部分组成。list通过调用资源的list API获取资源，可以获取资源的全量数据，基于HTTP短链接实现；watch通过调用资源的watch API监测资源变更事件，持续获取资源的增量变化数据，基于HTTP长链接和分块传输编码实现。在原生的Kubernetes中，每个node节点除了list-watch node本身、分配到本节点的pod以及全量的service元数据外，Kubelet 还必须watch（默认）运行的Pod使用数据卷挂载的 Secret 和 ConfigMap，在大规模的集群中，随着节点和pod规模的增加，list-watch的数量是非常大的，极大的增加了Kube-apiserver的负担。
 
- 
+
 
 KubeEdge采用双向多路复用的边云消息通道，支持websocket（默认）和quic协议，边缘侧EdgeCore主动发起和云端CloudCore连接，CloudCore list-watch Kubernetes资源的变化，并通过云边双向通道主动将元数据下发至边缘测。上行元数据，如边缘侧节点状态和应用状态，EdgeCore通过云边通道上传至CloudCore，CloudCore将接收到的元数据上报到kube-apiserver。
 
@@ -374,7 +399,7 @@ Kubernetes + KubeEdge场景下，kube-apiserver的memory使用
 
 KubeEdge边缘侧EdgeCore对原生的kubelet进行了裁剪，去除了in-tree volume、cloud-provider等边缘场景下用不到的特性，压缩节点上报的状态信息，以及通过优化边缘代理软件资源占用，EdgeCore最低开销只需70MB内存，最小可支持百兆边缘设备。同时，通过WebSocket通道统一管理所有的云边连接，以及对云边的消息合并，数据压缩等，大幅减少云边的通信压力，减轻了对管理面的访问压力，保障在高时延高抖动下仍可正常工作。
 
- 
+
 
 100,000边缘节点接入下，云端ELB连接数为100,000。
 
