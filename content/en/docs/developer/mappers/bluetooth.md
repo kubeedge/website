@@ -61,7 +61,7 @@ The bluetooth mapper consists of the following five major modules :-
  5. Data Converter
 
 
- ### Action Manager
+### Action Manager
 
  A bluetooth device can be controlled by setting a specific value in physical register(s) of a device and readings can be acquired by
  getting the value from specific register(s). We can define an Action as a group of read/write operations on a device. A device may support
@@ -89,7 +89,7 @@ perform the event once.
 
 
 
- ### Scheduler
+### Scheduler
 
  Scheduler is a component which can perform an action or a set of actions at regular intervals of time. They will make use of the actions previously defined in the action manager module,
  it has to be ensured that before the execution of the schedule the action should be defined, otherwise it would lead to an error. The schedule can be configured to run for a specified number of times
@@ -121,7 +121,7 @@ perform the event once.
  6. The user is expected to provide the names of the actions to be performed in the schedule, in the same order that they are to be executed.
 
 
- ### Watcher
+### Watcher
 
  The following are the main responsibilities of the watcher component:
  a) To scan for bluetooth devices and connect to the correct device once it is Online/In-Range.
@@ -149,7 +149,7 @@ perform the event once.
  to be executed.
 
 
- ### Controller
+### Controller
 
  The controller module is responsible for exposing MQTT APIs to perform CRUD operations on the watcher, scheduler and action manager. The controller is also responsible for starting the other modules like action manager, watcher and scheduler.
  The controller first connects the MQTT client to the broker (using the mqtt configurations, specified in the configuration file), it then initiates the watcher which will connect to the device (based on the configurations provided in the configuration file) and the
@@ -163,9 +163,9 @@ perform the event once.
           device-model-name: <device_model_name>
 
 
- ## Usage
+## Usage
 
- ### Configuration File
+### Configuration File
 
  The user can give the configurations specific to the bluetooth device using configurations provided in the configuration file present at $GOPATH/src/github.com/kubeedge/kubeedge/mappers/bluetooth_mapper/configuration/config.yaml.
  The details provided in the configuration file are used by action-manager module, scheduler module, watcher module, the data-converter module and the controller.

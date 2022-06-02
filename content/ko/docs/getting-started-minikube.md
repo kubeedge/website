@@ -30,7 +30,7 @@ If you do not already have a hypervisor or a virtualizer installed, install a ne
 Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [VMware Fusion](https://www.vmware.com/products/fusion).
 
 ##### Ubuntu
-Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](http://www.linux-kvm.org/).
+Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](https://www.linux-kvm.org/).
 
 The KVM2 driver is intended to replace KVM driver. The KVM2 driver is maintained by the minikube team, and is built, tested and released with minikube.
 For installing KVM:
@@ -58,7 +58,7 @@ curl -Lo docker-machine-driver-kvm2 https://storage.googleapis.com/minikube/rele
 ```
 
 ##### CentOS
-Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](http://www.linux-kvm.org/).
+Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) or [KVM](https://www.linux-kvm.org/).
 
 For installing KVM:
 ```

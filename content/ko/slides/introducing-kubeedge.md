@@ -80,6 +80,6 @@ Deep Dive: Kubernetes IoT Edge WG
 - Link to join Slack: [wg-iot-edge](https://kubernetes.slack.com/messages/wg-iot-edge)  
 
 - White Paper
-  - [http://bit.ly/iot-edge-whitepaper](http://bit.ly/iot-edge-whitepaper)
+  - [https://bit.ly/iot-edge-whitepaper](https://bit.ly/iot-edge-whitepaper)
   - Workloads being considered
   - Technical challenges, Available architectural solutions

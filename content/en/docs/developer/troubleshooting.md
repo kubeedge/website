@@ -54,9 +54,9 @@ Then you can do setup without any network issue, `keadm` would detect them and n
 
 6. If all of the above is correctly set, login manually to your edge node and run your docker image manually by
 
-   ```shell
-    docker run <your-container-image>
-   ```
+    ```shell
+     docker run <your-container-image>
+    ```
 
 7. If the docker container image is not pulled from the docker hub, please check that there is enough space on the edge node.
 
@@ -74,4 +74,4 @@ Connect to the edge node and then either
 - use the log file located in `/var/log/pods` or
 - use commands like `docker logs <container id>`
 
-You can also enable `kubectl logs` feature refer to this [guide](../keadm#enable-kubectl-logs-feature).
+You can also enable `kubectl logs` feature refer to this [guide](../../setup/keadm/#enable-kubectl-logs-feature).

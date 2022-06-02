@@ -68,7 +68,7 @@
 
       {{ if not $align_right | and (.IsTranslated | or .Site.Menus.main_right | or .Site.Params.search.engine | or .Site.Params.day_night) }}
       </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto social-icon">
       {{ end }}
 
         {{ range .Site.Menus.main_right }}

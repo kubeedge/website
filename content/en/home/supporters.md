@@ -13,7 +13,7 @@ supporters:
 
 - name: BoCloud
   img_src: supporters/bocloud.svg
-  external_link: http://www.bocloud.com.cn/product/BeyondEdge
+  external_link: https://www.bocloud.com.cn/product/BeyondEdge
 
 - name: China Mobile
   img_src: supporters/china-mobile.png
@@ -49,7 +49,7 @@ supporters:
 
 - name: Harmony Cloud
   img_src: supporters/harmony-cloud.svg
-  external_link: http://harmonycloud.cn/product/2
+  external_link: https://harmonycloud.cn/product/2
 
 - name: Inspur
   img_src: supporters/inspur.svg
@@ -105,5 +105,5 @@ supporters:
   
 - name: ictnj
   img_src: supporters/ictnj.svg
-  external_link: http://www.ictnj.ac.cn/
+  external_link: https://www.ictnj.ac.cn/
 ---
