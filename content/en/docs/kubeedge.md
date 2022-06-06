@@ -41,6 +41,8 @@ KubeEdge is composed of these components:
 - **[EventBus](../architecture/edge/eventbus):** an MQTT client to interact with MQTT servers (mosquitto), offering publish and subscribe capabilities to other components.
 - **[DeviceTwin](../architecture/edge/devicetwin):** responsible for storing device status and syncing device status to the cloud. It also provides query interfaces for applications.
 - **[MetaManager](../architecture/edge/metamanager):** the message processor between edged and edgehub. It is also responsible for storing/retrieving metadata to/from a lightweight database (SQLite).
+- **[ServiceBus](../architecture/edge/servicebus)**: a HTTP client to interact with HTTP servers (REST), offering HTTP client capabilities to components of cloud to reach HTTP servers running at edge.
+- **[DeviceController](../architecture/cloud/device_controller)**: an extended kubernetes controller which manages devices so that the device metadata/status data can be synced between edge and cloud.
 
 ## Architecture
 
