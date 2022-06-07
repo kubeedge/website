@@ -11,7 +11,7 @@ type: docs
 ---
 
 ## Overview
-Mapper is an application that is used to connect and control devices. Following are the responsibilities of mapper:
+Mapper is an application that is used to connect and control devices. The responsibilities of mapper are as follows:
 
 - Scan and connect to the device.
 - Report the actual state of twin-attributes of device.
