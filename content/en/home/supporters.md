@@ -106,4 +106,8 @@ supporters:
 - name: ictnj
   img_src: supporters/ictnj.svg
   external_link: https://www.ictnj.ac.cn/
+
+- name: ci4rail
+  img_src: supporters/ci4rail.png
+  external_link: https://www.ci4rail.com/
 ---
