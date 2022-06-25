@@ -51,6 +51,11 @@
   identifier = "welcome"
 
 [[docs]]
+  name = "Subproject"
+  weight = 9
+  identifier = "subproject"
+
+[[docs]]
   name = "Setup"
   weight = 10
   identifier = "setup"
