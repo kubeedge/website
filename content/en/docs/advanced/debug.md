@@ -86,7 +86,6 @@ type: docs
       tunnelPort: 10004
     ```
 
-    ```
     Modify `/etc/kubeedge/config/edgecore.yaml`:
     ``` yaml
     edgeStream:
