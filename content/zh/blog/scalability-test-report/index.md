@@ -58,10 +58,10 @@ KubeEdge以Kubernetes管控面作为底座，通过将节点拉远的方式，�
 
 2. Pod Startup Latency
 
-| **Status**   | **SLI**                                                      |
-| ------------ | ------------------------------------------------------------ |
-| **Official** | 无状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 |
-| **WIP**      | 有状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 |
+| **Status**   | **SLI**                                                      | SLO       |
+| ------------ | ------------------------------------------------------------ | --------- |
+| **Official** | 无状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 | P99 <= 5s |
+| **WIP**      | 有状态Pod启动时间（不包含拉取镜像和Init  Container），从pod  createTimestamp到所有container都上报启动，并被watch观察到的P99时间 | TBD       |
 
 社区还定义了In-Cluster Network Programming Latency（Service更新或者其Ready Pod变化最终反映到Iptables/IPVS规则的时延），In-cluster network latency，DNS Programming Latency（ Service更新或者其Ready Pod 反映到dns server的时延）， DNS Latency等指标，这些指标当前还尚未量化。满足所有SLO 为大规模集群测试的目标，因此本报告主要针对Official状态SLIs/SLOs进行测试。
 
