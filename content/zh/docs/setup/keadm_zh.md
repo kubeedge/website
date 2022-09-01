@@ -9,23 +9,27 @@ title: 使用Keadm进行部署
 toc: true
 type: docs
 ---
-Keadm用于安装KubeEdge的云端和边缘端组件。它不负责K8s的安装和运行。
+Keadm是一款用于安装KubeEdge的云端和边缘端组件的工具，你可以在[kubeedge/keadm](https://github.com/kubeedge/kubeedge/tree/master/keadm)
+看到它的源码，以及kebeedge的[release](https://github.com/kubeedge/kubeedge/releases/)页面下载到您需要的二进制包。
+Keadm不负责K8s的安装和运行,在使用它之前，请先准备好一个K8s集群。
 
-请参考 [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility)
-了解 **Kubernetes** 兼容性来确定安装哪个版本的Kubernetes。
+KubeEdge对Kubernetes的版本支持从v1.16开始，更多详细信息您可以参考 [kubernetes-兼容性](https://github.com/kubeedge/kubeedge#kubernetes-compatibility)
+来了解，以此来确定安装哪个版本的Kubernetes以及KubeEdge。
 
 ## 使用限制
 
 - `keadm` 目前支持 Ubuntu 和 CentOS OS。RaspberryPi的支持正在进行中。
 - 需要超级用户权限（或root权限）才能运行。
+- `keadm beta`功能在v1.10.0上线，如果您需要使用相关功能，请使用v1.10.0及以上版本的keadm。
 
 ## 设置云端（KubeEdge主节点）
 
 ### keadm init
 
 默认情况下边缘节点需要访问cloudcore中 `10000` ，`10002` 端口。
+若要确保边缘节点可以成功地与集群通信，您需要创建防火墙规则以允许流量进入这些端口（10000 至 10004）。
 
-`keadm init` 将安装 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。
+`keadm init` 将以进程方式安装并运行 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。
 
 **重要提示：**
 
@@ -47,10 +51,11 @@ Kubernetes version verification passed, KubeEdge installation will start...
 ...
 KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 ```
+当您看到以上信息，说明 KubeEdge 的云端组件 cloudcore 已经成功运行。
 
 ### keadm beta init
-
-现在可以使用 `keadm beta init` 进行云端组件安装。
+如果您想要使用容器化方式部署云端组件 cloudcore ，您可以使用 `keadm beta init` 进行云端组件安装。
+> keadm beta  功能在v1.10.0上线，如果您想要使用 `keadm beta init` 部署云端组件，请使用v1.10.0及以上版本的 keadm 进行安装。
 
 举个例子:
 
@@ -58,7 +63,7 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 # keadm beta init --advertise-address="THE-EXPOSED-IP" --set cloudcore-tag=v1.9.0 --kube-config=/root/.kube/config
 ```
 
-**IMPORTANT NOTE:**
+**重要提示：**
 
 1. 自定义 `--set key=value`
    值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
