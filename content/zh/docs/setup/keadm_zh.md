@@ -29,7 +29,10 @@ KubeEdge对Kubernetes的版本支持从v1.16开始，更多详细信息您可以
 默认情况下边缘节点需要访问cloudcore中 `10000` ，`10002` 端口。
 若要确保边缘节点可以成功地与集群通信，您需要创建防火墙规则以允许流量进入这些端口（10000 至 10004）。
 
-`keadm init` 将以进程方式安装并运行 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。
+>`keadm init` 将安装并运行 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。不过需要注意的是：\
+>在v1.11.0之前，`keadm init` 将以进程方式安装并运行 cloudcore，生成证书并安装CRD。它还提供了一个命令行参数，通过它可以设置特定的版本。\
+>在v1.11.0之后，`keadm init` 集成了Helm Chart，这意味着 cloudcore 将以容器化的方式运行。\
+>如果您仍需要使用进程的方式启动 cloudcore ，您可以使用`keadm deprecated init` 进行安装，或者使用v1.10.0之前的版本。
 
 **重要提示：**
 
@@ -55,7 +58,8 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 
 ### keadm beta init
 如果您想要使用容器化方式部署云端组件 cloudcore ，您可以使用 `keadm beta init` 进行云端组件安装。
-> keadm beta  功能在v1.10.0上线，如果您想要使用 `keadm beta init` 部署云端组件，请使用v1.10.0及以上版本的 keadm 进行安装。
+> keadm beta  功能在v1.10.0上线，如果您想要使用 `keadm beta init` 部署云端组件，请使用v1.10.0及以上版本的 keadm 进行安装。\
+> 在v1.11.0版本之后，keadm init 将直接使用容器化方式部署云端组件 cloudcore。
 
 举个例子:
 
