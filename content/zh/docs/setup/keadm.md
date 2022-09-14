@@ -17,6 +17,7 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 - Currently support of `keadm` is available for Ubuntu and CentOS OS. RaspberryPi supports is in-progress.
 - Need super user rights (or root rights) to run.
+- The function of `keadm beta` is launched in v1.10.0. If you need to use related functions, please use keadm of v1.10.0 and above.
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
