@@ -9,11 +9,10 @@ title: 使用Keadm进行部署
 toc: true
 type: docs
 ---
-Keadm是一款用于安装KubeEdge的云端和边缘端组件的工具，你可以在[kubeedge/keadm](https://github.com/kubeedge/kubeedge/tree/master/keadm)
-看到它的源码，以及kebeedge的[release](https://github.com/kubeedge/kubeedge/releases/)页面下载到您需要的二进制包。
+Keadm是一款用于安装KubeEdge的工具。
 Keadm不负责K8s的安装和运行,在使用它之前，请先准备好一个K8s集群。
 
-KubeEdge对Kubernetes的版本支持从v1.16开始，更多详细信息您可以参考 [kubernetes-兼容性](https://github.com/kubeedge/kubeedge#kubernetes-compatibility)
+KubeEdge对Kubernetes的版本兼容性，更多详细信息您可以参考 [kubernetes-兼容性](https://github.com/kubeedge/kubeedge#kubernetes-compatibility)
 来了解，以此来确定安装哪个版本的Kubernetes以及KubeEdge。
 
 ## 使用限制

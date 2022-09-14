@@ -17,6 +17,7 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 - Currently support of `keadm` is available for Ubuntu and CentOS OS. RaspberryPi supports is in-progress.
 - Need super user rights (or root rights) to run.
+- The subcommand `keadm beta` is launched since v1.10.0. If you would like to use it, please use v1.10.0 or above of keadm.
 
 ## Install keadm
 
