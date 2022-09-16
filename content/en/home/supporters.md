@@ -102,7 +102,7 @@ supporters:
 - name: Zhejiang Lab
   img_src: supporters/zhejiang-lab.png
   external_link: https://www.zhejianglab.com/
-  
+
 - name: ictnj
   img_src: supporters/ictnj.svg
   external_link: https://www.ictnj.ac.cn/
@@ -110,4 +110,8 @@ supporters:
 - name: ci4rail
   img_src: supporters/ci4rail.png
   external_link: https://www.ci4rail.com/
+
+- name: vastaitech
+  img_src: supporters/vastaitech.svg
+  external_link: https://www.vastaitech.com/
 ---
