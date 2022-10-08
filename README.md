@@ -52,8 +52,9 @@ brew install hugo
 
 #### Debian:
 
-1. Download the latest Debian package from the [Hugo website][hugo-install].
-  For example, `hugo_0.54_Linux-64bit.deb`.
+1. Download the Debian package from the [Hugo website][hugo-install].
+   Make sure to install the Hugo version specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](netlify.toml#L7) file.
+  For example, [hugo_0.54_Linux-64bit.deb][hugo_0.54_Linux-64bit.deb].
 1. Install the package using `dpkg`:
 
     ```
@@ -119,3 +120,4 @@ Going forward, the versioned sites should follow this convention:
 
 [kubeedge-contributor-guide]: CONTRIBUTING.md
 [kubeEdge-website-repo]: https://github.com/kubeedge/website
+[hugo_0.54_Linux-64bit.deb]: https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.deb

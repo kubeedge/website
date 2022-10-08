@@ -37,7 +37,9 @@ brew install hugo
 
 #### Debian:
 
-1. 从 [Hugo网站][hugo-install].下载最新的Debian软件包。例如，`hugo_0.54_Linux-64bit.deb` 。
+1. 从 [Hugo网站][hugo-install].下载Debian软件包。
+   确保安装由 [`netlify.toml`](netlify.toml#L7) 文件中的 `HUGO_VERSION` 环境变量指定的 Hugo 版本。
+   例如，[hugo_0.54_Linux-64bit.deb][hugo_0.54_Linux-64bit.deb]。
 1. 使用 `dpkg` 命令安装软件包：
 
     ```
@@ -95,3 +97,4 @@ Hugo 参考文档：
 
 [kubeedge-contributor-guide]: CONTRIBUTING.md
 [kubeEdge-website-repo]: https://github.com/kubeedge/website
+[hugo_0.54_Linux-64bit.deb]: https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.deb
