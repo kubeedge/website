@@ -68,29 +68,36 @@ preserveTaxonomyNames = true
 version_menu = "Versions"
 
 [[params.versions]]
-fullversion = "v1.7"
-version = "v1.7"
-githubbranch = "v1.7"
+fullversion = "v1.12"
+version = "v1.12"
+githubbranch = "v1.12"
 docsbranch = "master"
 url = "https://kubeedge.io/en/"
 
 [[params.versions]]
-fullversion = "v1.6"
-version = "v1.6"
-githubbranch = "v1.6"
-docsbranch = "release-1.6"
-url = "https://v1-6.docs.kubeedge.io/en/"
+fullversion = "v1.11"
+version = "v1.11"
+githubbranch = "v1.11"
+docsbranch = "release-1.11"
+url = "https://v1-11.docs.kubeedge.io/en/"
 
 [[params.versions]]
-fullversion = "v1.5"
-version = "v1.5"
-githubbranch = "v1.5"
-docsbranch = "release-1.5"
-url = "https://v1-5.docs.kubeedge.io/en/"
+fullversion = "v1.10"
+version = "v1.10"
+githubbranch = "v1.10"
+docsbranch = "release-1.10"
+url = "https://v1-10.docs.kubeedge.io/en/"
 
 [[params.versions]]
-fullversion = "v1.4"
-version = "v1.4"
-githubbranch = "v1.4"
-docsbranch = "release-1.4"
-url = "https://v1-4.docs.kubeedge.io/en/"
+fullversion = "v1.9"
+version = "v1.9"
+githubbranch = "v1.9"
+docsbranch = "release-1.9"
+url = "https://v1-9.docs.kubeedge.io/en/"
+
+[[params.versions]]
+fullversion = "v1.8"
+version = "v1.8"
+githubbranch = "v1.8"
+docsbranch = "release-1.8"
+url = "https://v1-8.docs.kubeedge.io/en/"
