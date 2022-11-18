@@ -102,40 +102,6 @@ keadm init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=
 
 If you are familiar with the helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/manifests/charts).
 
-4. How to update cloudcore configure?
-
-`keadm init` deploy cloudcore in container mode, and cloudcore configure file is stored in configmap `cloudcore` of `kubeedge` namespace. You can get it using command `kubectl get configmap cloudcore -nkubeedge -oyaml`. cloudcore config is stored data field.
-```shell
-# kubectl get configmap cloudcore -nkubeedge -oyaml
-apiVersion: v1
-data:
-  cloudcore.yaml: "apiVersion: cloudcore.config.kubeedge.io/v1alpha2\nkind: CloudCore\nkubeAPIConfig:\n
-    \ kubeConfig: \"\"\n  master: \"\"\nmodules:\n  cloudHub:\n    advertiseAddress:\n
-    ...
-    ...
-```
-If you want to update cloudcore configuration, you can run `kubectl edit configmap cloudcore -nkubeedge` to update it, and after modifying configmap data, you can attach to the cloudcore pod(using `kubectl exec` command) to check whether configuration `/etc/kubeedge/config/cloudcore.yaml` is updated just as what you expect.
-
-
-```
-# kubectl get pod -nkubeedge
-NAME                        READY   STATUS    RESTARTS   AGE
-cloudcore-f88bbf5bb-kcvf4   1/1     Running   0          3m29s
-# kubectl exec -it cloudcore-f88bbf5bb-kcvf4 -nkubeedge sh
-kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl exec [POD] -- [COMMAND] instead.
-/ # cat /etc/kubeedge/config/cloudcore.yaml 
-apiVersion: cloudcore.config.kubeedge.io/v1alpha2
-kind: CloudCore
-kubeAPIConfig:
-  kubeConfig: ""
-  master: ""
-modules:
-  cloudHub:
-    advertiseAddress:
-    - 127.0.0.1
-    ...
-    ...
-```
 
 ### keadm manifest generate
 
