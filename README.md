@@ -88,7 +88,7 @@ local machine, then use your local repo as input to your Hugo web server:
 1. Your website is at [http://localhost:1313/](http://localhost:1313/).
 
 1. Continue with the usual GitHub workflow to edit files, commit them, push the
-  changes up to your fork, and create a pull request. (See the GitHub workflow
+  changes up to your fork, and create a pull request. (See the GitHub workflow)
 
 1. While making the changes, you can preview them on your local version of the
   website at [http://localhost:1313/](http://localhost:1313/). Note that if you
