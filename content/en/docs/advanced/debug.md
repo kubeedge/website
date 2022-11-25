@@ -48,7 +48,7 @@ type: docs
 
 ## Set Iptables Rule
 
-1. Set iptables on the host. This command should be executed on every apiserver deployed node.(In this case, this the master node, and execute this command by root.)
+1. Set iptables on the host. This command should be executed on every node which deployed apiserver.(In this case, it is the master node, and execute this command by root.)
 
     Run the following command on the host on which each apiserver runs:
 
@@ -60,8 +60,8 @@ type: docs
     > Port 10003 and 10350 are the default ports for the CloudStream and edgecore,
     use your own ports if you have changed them.
 
-    If you are not sure if you have setting of iptables, and you want to clean all of them.
-    (If you set up iptables wrongly, it will block you out of your this feature)
+    If you are not sure whether you have a setting of iptables, and you want to clean all of them.
+    (If you set up iptables wrongly, it will block you out of this feature)
 
     The following command can be used to clean up iptables:
     ``` shell
