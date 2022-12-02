@@ -9,44 +9,9 @@ title: Edge connection with EdgeMesh
 toc: true
 type: docs
 ---
-In case network issue between cloud and edge side, we integrate EdgeMesh to support DNS visit at any time.
+EdgeMesh as the data plane component of the KubeEdge cluster, provides simple service discovery and traffic proxy functions for applications, thereby shielding the complex network structure in edge scenarios.
 
-Currently we only support HTTP1.x, more protocols like HTTPS and gRPC coming later.
-
-EdgeMesh is enabled as default.
-
-## Limitation
-
-* Ensure network interface "docker0" exists, which means that EdgeMesh only works for Docker CRI.
-
-## Environment Check
-
-Before run examples, please check environment first.
-
-### DNS Order
-
-Modify `/etc/nsswitch.conf`, make sure `dns` is first order, like below:
-
-```
-$ grep hosts /etc/nsswitch.conf
-hosts:          dns file mdns4_minimal [NOTFOUND=return]
-```
-
-### IP Forward Setting
-
-Enable ip forward:
-
-```
-$ sudo echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
-$ sudo sysctl -p
-```
-
-Then check it:
-
-```
-$ sudo sysctl -p | grep ip_forward
-net.ipv4.ip_forward = 1
-```
+Check more details at [edgemesh website](https://edgemesh.netlify.app) to use EdgeMesh.
 
 ## Usage
 
@@ -75,7 +40,7 @@ NAME                                READY   STATUS    RESTARTS   AGE   IP       
 nginx-deployment-54bf9847f8-sxk94   1/1     Running   0          14m   172.17.0.2   edge-node-b   <none>           <none>
 ```
 
-Check it works:
+Check if it works:
 
 ```bash
 $ curl 172.17.0.2
@@ -106,7 +71,7 @@ Commercial support is available at
 </html>
 ```
 
-`172.17.0.2` is the IP of deployment and the output may be different since the version of nginx image.
+`172.17.0.2` is the IP of deployment and the output may be different since the version of nginx image is different.
 
 Then create a service for it:
 ```yaml
@@ -117,7 +82,7 @@ metadata:
   name: nginx-svc
   namespace: default
 spec:
-  clusterIP: None
+  type: ClusterIP
   selector:
     app: nginx
   ports:
@@ -134,8 +99,8 @@ Check the service and endpoints:
 
 ```bash
 $ kubectl get service
-NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)     AGE
-nginx-svc    ClusterIP   None         <none>        12345/TCP   77m
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+nginx-svc    ClusterIP   10.96.191.183   <none>        12345/TCP   77m
 $ kubectl get endpoints
 NAME         ENDPOINTS            AGE
 nginx-svc    172.17.0.2:80        81m
@@ -183,22 +148,9 @@ Commercial support is available at
 ## Model
 ![model](/img/edgemesh/model.jpg)
 
-1. a headless service (a service with selector but ClusterIP is None)
-2. one or more pods' labels match the headless service's selector
-3. to request a server, use: ```<service_name>.<service_namespace>.svc.<cluster>:<port>```:
-    1. get the service's name and namespace from domain name
-    2. query all the backend pods from MetaManager by service's namespace and name
-    3. LoadBalance returns the real backend containers' hostIP and hostPort
-
-## Flow
-![flow](/img/edgemesh/endtoend-test-flow.jpg)
-
-1. client requests to server by server's domain name
-2. DNS being hijacked to EdgeMesh by iptables rules, then a fake ip returned
-3. request hijacked to EdgeMesh by iptables rules
-4. EdgeMesh resolves request, gets domain name, protocol, request and so on
-5. EdgeMesh load balances:
-    1. get the service's name and namespace from the domain name
-    2. query backend pods of the service from MetaManager
-    3. choose a backend based on strategy
-6. EdgeMesh transports request to server, wait for server's response and then sends response back to client
+1. One service
+2. One or more pods' labels match the service's selector
+3. To request a server, use: ```<service_name>.<service_namespace>.svc.<cluster>:<port>```:
+   - get the service's name and namespace from domain name
+   - query all the backend pods from MetaManager by service's namespace and name
+   - LoadBalance returns the real backend containers' hostIP and hostPort
