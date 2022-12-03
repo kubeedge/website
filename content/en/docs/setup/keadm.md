@@ -22,18 +22,18 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 There're three ways to download a `keadm` binary
 
-- Download from github release.
+- Download from [github release](https://github.com/kubeedge/kubeedge/releases).
   
-    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package according to your platform.
+    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package according to your platform, with your expected version.
     ```shell
-    wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/keadm-v1.12.0-linux-amd64.tar.gz
-    tar -zxvf keadm-v1.12.0-linux-amd64.tar.gz
-    cp keadm-v1.12.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.1/keadm-v1.12.1-linux-amd64.tar.gz
+    tar -zxvf keadm-v1.12.1-linux-amd64.tar.gz
+    cp keadm-v1.12.1-linux-amd64/keadm/keadm /usr/local/bin/keadm
     ```
 - Download from dockerhub KubeEdge official release image.
 
   ```shell
-  docker run --rm kubeedge/installation-package:v1.12.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
+  docker run --rm kubeedge/installation-package:v1.12.1 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
   ```
 
 - Build from source
@@ -45,14 +45,20 @@ There're three ways to download a `keadm` binary
 
 By default ports `10000` and `10002` in your cloudcore needs to be accessible for your edge nodes.
 
+**IMPORTANT NOTE:**  
+
+1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
+2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
+3. `--advertise-address` is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+
 ### keadm init
 
-`keadm init` provides a solution for integrating Cloudcore Helm Chart. Cloudcore will be deployed to cloud nodes in container mode.
+`keadm init` provides a solution for integrating Cloudcore helm chart. Cloudcore will be deployed to cloud nodes in container mode.
 
 Example:
 
 ```shell
-keadm init --advertise-address="THE-EXPOSED-IP" --profile version=v1.12.0 --kube-config=/root/.kube/config
+keadm init --advertise-address="THE-EXPOSED-IP" --profile version=v1.12.1 --kube-config=/root/.kube/config
 ```
 
 Output:
@@ -92,7 +98,7 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 
 `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
-3. `keadm init` deploy cloudcore in container mode, if you want to deploy cloudcore as container, please ref [`keadm deprecated init`](#keadm-deprecated-init) below.
+3. `keadm init` deploy cloudcore in container mode, if you want to deploy cloudcore as binary, please ref [`keadm deprecated init`](#keadm-deprecated-init) below.
 
 Example:
 
@@ -158,12 +164,12 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 ### Join Edge Node
 
 #### keadm join
-`keadm join` will install edgecore and mqtt. It also provides a flag by which a specific version can be set. It will pull image `kubeedge/installation-package` from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` in binary progress.
+`keadm join` will install edgecore. It also provides a flag by which a specific version can be set. It will pull image `kubeedge/installation-package` from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` as a system service.
 
 Example:
 
 ```shell
-keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.12.0
+keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.12.1
 ```
 
 **IMPORTANT NOTE:**  
