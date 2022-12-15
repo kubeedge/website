@@ -14,13 +14,13 @@ MetaManager is the message processor between edged and edgehub.
 It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite).
 
 Metamanager receives different types of messages based on the operations listed below :
-- Insert
-- Update
-- Delete
-- Query
-- Response
-- NodeConnection
-- MetaSync
+  - Insert
+  - Update
+  - Delete
+  - Query
+  - Response
+  - NodeConnection
+  - MetaSync
 
 ## Insert Operation
 `Insert` operation messages are received via the cloud when new objects are created.
@@ -51,7 +51,7 @@ cloud.
 ![Delete Operation](/img/metamanager/meta-delete.png)
 
 ## Query Operation
-`Query` operations let you query for metadata either locally at the edge or for some remote resources like config maps/secrets from the cloud. edged queries this
+`Query` operations let you query for metadata either locally at the edge or for some remote resources like config maps/secrets from the cloud. Edged queries this
 metadata from metamanager which further handles local/remote query processing and
 returns the response back to edged. A Message resource can be broken into 3 parts
 (resKey,resType,resId) based on separator ‘/’.
@@ -73,7 +73,7 @@ pods running on the edge node. The sync interval is configurable in `conf/edge.y
 
 ```yaml
 meta:
-    sync:
-        podstatus:
-            interval: 60 #seconds
+  sync:
+    podstatus:
+      interval: 60 #seconds
 ```
