@@ -66,6 +66,7 @@ The modbus mapper consists of the following four major modules :-
 ### Modbus Manager
 
  Modbus Manager is a component which can perform an read or write action on modbus device. The following are the main responsibilities of this component:
+
  a) When controller receives message of expected devicetwin value, Modbus Manager will connect to the device and change the registers to make actual state equal to expected.
 
  b) When controller checks all the properties of devices, Modbus Manager will connect to the device and read the actual value in registers according to the dpl configuration.
@@ -73,6 +74,7 @@ The modbus mapper consists of the following four major modules :-
 ### Devicetwin Manager
 
  Devicetwin Manager is a component which can transfer the edge devicetwin message. The following are the main responsibilities of this component:
+
  a) To receive the edge devicetwin message from edge mqtt broker and parse message.
 
  b) To report the actual value of device properties in devicetwin format to the cloud.
@@ -80,6 +82,7 @@ The modbus mapper consists of the following four major modules :-
 ### File Watcher
 
  File Watcher is a component which can load dpl and mqtt configuration from configuration files.The following are the main responsibilities of this component:
+ 
  a) To monitor the dpl configuration file. If this file changed, file watcher will reload the dpl configuration to the mapper.
 
  b) To load dpl and mqtt configuration when mapper starts first time.

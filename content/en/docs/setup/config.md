@@ -208,7 +208,7 @@ Verify the configurations before running `edgecore`
     runtimeType: remote
     ```
 
-5. If your runtime-type is remote, follow this guide [KubeEdge CRI Configuration](../../feature/cri) to setup KubeEdge with the remote/CRI based runtimes.
+5. If your runtime-type is remote, follow this guide [KubeEdge CRI Configuration](../../advanced/cri) to setup KubeEdge with the remote/CRI based runtimes.
 
 
 

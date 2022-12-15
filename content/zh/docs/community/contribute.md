@@ -23,7 +23,7 @@ The goal of the community is to develop a cloud native edge computing platform b
 
 ## Preparation
 
-- Choose matched [golang](https://golang.org/dl) version and install:
+- Choose matched [golang](https://go.dev/dl/) version and install:
 
 |                         | Golang 1.11     | Golang 1.12     | Golang 1.13     | Golang 1.14     |
 |-------------------------|-----------------|-----------------|-----------------|-----------------|

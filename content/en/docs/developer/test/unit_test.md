@@ -14,7 +14,7 @@ The purpose of this document is to give introduction about unit tests and to hel
 ## Unit Test
 
 Read this [article](https://softwaretestingfundamentals.com/unit-testing/) for a simple introduction about unit tests and benefits of unit testing. Go has its own built-in package called testing and command called ```go test```.
-For more detailed information on golang's builtin testing package read this [document](https://golang.org/pkg/testing/).
+For more detailed information on golang's builtin testing package read this [document](https://pkg.go.dev/testing/).
 
 ## Mocks
 
@@ -22,7 +22,7 @@ For more detailed information on golang's builtin testing package read this [doc
  Read this [article](https://medium.com/@piraveenaparalogarajah/what-is-mocking-in-testing-d4b0f2dbe20a) for more information on mocks.
 
  GoMock is a mocking framework for Go programming language.
- Read [godoc](https://godoc.org/github.com/golang/mock/gomock) for more information about gomock.
+ Read [godoc](https://pkg.go.dev/github.com/golang/mock/gomock) for more information about gomock.
 
  Mock for an interface can be automatically generated using [GoMocks](https://github.com/golang/mock) mockgen package.
 
