@@ -39,7 +39,7 @@ Note: topic wildcards
 
 
 ## Flow chart
-### **1. eventbus sends messages from external client**
+### **1. eventbus receives messages from external client**
 ![eventbus sends messages from external client](/img/eventbus/eventbus-handleMsgFromClient.jpg)
 
 ### **2. eventbus sends response messages to external client**
