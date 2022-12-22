@@ -20,7 +20,7 @@ All the request send to CloudHub are of context object which are stored in chann
 mapped channels of event object marked to its nodeID.
 
 
-The main functions performed by CloudHub are :-
+The main functions performed by CloudHub are:
 
 - Get message context and create ChannelQ for events
 - Create http connection over websocket
@@ -41,20 +41,20 @@ Event object is then passed through the channel.
 - TLS certificates are loaded through the path provided in the context object
 - HTTP server is started with TLS configurations
 - Then HTTP connection is upgraded to websocket connection receiving conn object.
-- ServeConn function the serves all the incoming connections
+- ServeConn function is responsible for serving all incoming connections
 
 ### Read message from edge:
 
 - First a deadline is set for keepalive interval
 - Then the JSON message from connection is read
-- After that Message Router details are set
+- After the details of Message Router are all set
 - Message is then converted to event object for cloud internal communication
 - In the end the event is published to Controllers
 
 ### Write Message to Edge:
 
-- First all event objects are received for the given nodeID
-- The existence of same request and the liveness of the node is checked
+- First all event objects are received with the given nodeID
+- The existence of same request and the liveness of the node need to be checked
 - The event object is converted to message structure
 - Write deadline is set. Then the message is passed to the websocket connection
 
@@ -62,7 +62,7 @@ Event object is then passed through the channel.
 
 - A default message with timestamp, clientID and event type is sent to controller
     every time a request is made to websocket connection
-- If the node gets disconnected then error is thrown and an event describing
+- If the node gets disconnected then error is thrown and an event of describing
     node failure is published to the controller.
 
 ## Usage
