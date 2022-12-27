@@ -43,7 +43,7 @@ Note: Before trying to push the docker image to the remote repository please ens
 ```shell
 cd $GOPATH/src/github.com/kubeedge/kubeedge/mappers/bluetooth_mapper
 
-# Please enter the following details in the deployment.yaml :-
+# Please enter the following details in the deployment.yaml:
 #    1. Replace <edge_node_name> with the name of your edge node at spec.template.spec.voluems.configMap.name
 #    2. Replace <your_dockerhub_username> with your dockerhub username at spec.template.spec.containers.image
 
@@ -52,7 +52,7 @@ kubectl create -f deployment.yaml
 
 ## Modules
 
-The bluetooth mapper consists of the following five major modules :-
+The bluetooth mapper consists of the following five major modules:
 
  1. Action Manager
  2. Scheduler
@@ -242,8 +242,8 @@ The user can add or update the watcher properties of the mapper at runtime. It w
 #### Action Manager
 
 In the action manager module the user can perform two types of operations at runtime, i.e. :
-    1. The user can add or update the actions to be performed on the bluetooth device.
-    2. The user can delete the actions that were previously defined for the bluetooth device.
+  1. The user can add or update the actions to be performed on the bluetooth device.
+  2. The user can delete the actions that were previously defined for the bluetooth device.
 
 ##### Action Add
 
