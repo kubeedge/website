@@ -31,7 +31,7 @@ The following are the functions performed by Edge controller:
 - Creates Respective manager (pod, configmap, secret) for handling events by calling manager interface
 - Locates configmap and secret should be send to which node
 
-![Downstream Controller](/static/img/edgecontroller/DownstreamController.png)
+![Downstream Controller](/img/edgecontroller/DownstreamController.png)
 ## Upstream Controller:
 ### Sync watch and update status of resource and events
 
@@ -52,7 +52,7 @@ The following are the functions performed by Edge controller:
    - **PodIp**: IP address allocated to the Pod
    - **QosClass**: Assigned to the pod based on resource requirement
 
-   ![Upstream Controller](/static/img/edgecontroller/UpstreamController.png)
+   ![Upstream Controller](/img/edgecontroller/UpstreamController.png)
 
 ## Controller Manager:
 ### Creates manager interface and implements ConfigmapManager, LocationCache and podManager

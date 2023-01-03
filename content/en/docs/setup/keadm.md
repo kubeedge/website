@@ -90,14 +90,9 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 ```
 
 **IMPORTANT NOTE:**  
-1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).  
 
-2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration 
-   for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, 
-   you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile.
-
-`--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
-
+1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
+2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 3. `keadm init` deploy cloudcore in container mode, if you want to deploy cloudcore as binary, please ref [`keadm deprecated init`](#keadm-deprecated-init) below.
 
 Example:
@@ -164,7 +159,7 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 ### Join Edge Node
 
 #### keadm join
-`keadm join` will install edgecore. It also provides a flag by which a specific version can be set. It will pull image `kubeedge/installation-package` from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` as a system service.
+`keadm join` will install edgecore. It also provides a flag by which a specific version can be set. It will pull image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/cloudcore) from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` as a system service.
 
 Example:
 

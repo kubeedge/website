@@ -188,7 +188,7 @@ The mapper can be specific to a protocol where standards are defined i.e Bluetoo
 
  Mapper design details can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/mapper-design.md#mapper-design)
 
- An example of a mapper application created to support Bluetooth protocol can be found [here](https://github.com/kubeedge/kubeedge/tree/master/mappers/bluetooth_mapper#bluetooth-mapper)
+ An example of a mapper application created to support bluetooth protocol can be found [here](https://github.com/kubeedge/mappers-go/tree/main/mappers/ble)
 
 
 ## Usage of Device CRD
