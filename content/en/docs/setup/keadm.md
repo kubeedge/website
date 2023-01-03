@@ -159,7 +159,7 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 ### Join Edge Node
 
 #### keadm join
-`keadm join` will install edgecore. It also provides a flag by which a specific version can be set. It will pull image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/cloudcore) from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` as a system service.
+`keadm join` will install edgecore. It also provides a flag by which a specific version can be set. It will pull image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` as a system service.
 
 Example:
 
