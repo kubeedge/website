@@ -4,7 +4,7 @@ linktitle: Frequently Asked Questions About Installation
 menu:
   docs:
     parent: setup
-    weight: 1
+    weight: 10
 title: Frequently Asked Questions About Installation
 toc: true
 type: docs
