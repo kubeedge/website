@@ -167,6 +167,11 @@ Example:
 keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.12.1
 ```
 
+And if you enable `cloudcore` service and expose it using `NodePort` service type, you should use 30000 as cloudcore port and 30002 as cert port in command line, just like below.
+```shell
+keadm join --cloudcore-ipport="THE-EXPOSED-IP":30000 --certport=30002 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.12.1
+```
+
 **IMPORTANT NOTE:**  
 1. `--cloudcore-ipport` flag is a mandatory flag.  
 2. If you want to apply certificate for edge node automatically, `--token` is needed.  

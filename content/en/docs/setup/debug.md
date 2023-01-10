@@ -371,7 +371,32 @@ keadm join --cloudcore-ipport=${THE-EXPOSED-IP}:10000
 keadm deprecated join --cloudcore-ipport=${THE-EXPOSED-IP}:10000
 ```
 
-By default, if we just run `keadm init --advertise-address=${THE-EXPOSED-IP} --profile version=v1.12.0` to install cloudcore. We'll create a `cloudcore` service with `ClusterIP` as its ServiceType. And a `cloudcore` pod which will use `hostNetwork`, which means that the pod will run in the host network of the node where the pod is deployed. So here `${THE-EXPOSED-IP}` should be replaced with IP address of your k8s node, where `cloudcore` is deployed. You can run `kubectl get node -owide` to get k8s node IP addresses. And we also should use this IP address to join edge nodes.
+By default, if we just run `keadm init --advertise-address=${THE-EXPOSED-IP} --profile version=v1.12.0` to install cloudcore. We'll create a `cloudcore` service with `NodePort` as its ServiceType. So here `${THE-EXPOSED-IP}` should be replaced with IP address of your k8s node, where `cloudcore` is deployed. You can run `kubectl get node -owide` to get k8s node IP addresses. And we also should use this IP address to join edge nodes.
+
+```
+# kubectl get all -n kubeedge -owide
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                 NOMINATED NODE   READINESS GATES
+pod/cloudcore-7bc5b4b474-llm9r   1/1     Running   0          56s   10.244.0.6   kind-control-plane   <none>           <none>
+
+NAME                TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                                                                           AGE   SELECTOR
+service/cloudcore   NodePort   10.96.193.109   <none>        10000:30000/TCP,10001:30001/TCP,10002:30002/TCP,10003:30003/TCP,10004:30004/TCP   56s   k8s-app=kubeedge,kubeedge=cloudcore
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                       SELECTOR
+deployment.apps/cloudcore   1/1     1            1           56s   cloudcore    kubeedge/cloudcore:v1.12.1   k8s-app=kubeedge,kubeedge=cloudcore
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                       SELECTOR
+replicaset.apps/cloudcore-7bc5b4b474   1         1         1       56s   cloudcore    kubeedge/cloudcore:v1.12.1   k8s-app=kubeedge,kubeedge=cloudcore,pod-template-hash=7bc5b4b474
+```
+So according to the above output, we can find that service/cloudcore is using `NodePort` as its ServiceType, so when we join edge node, we should use k8s node IP and 30000 port as cloudcore port and 30002 as cert port. Just like
+```
+keadm join --cloudcore-ipport="THE-EXPOSED-IP":30000 --certport=30002 --token="${TOKEN}" --kubeedge-version=v1.12.1
+```
+
+And if we don't want to expose service in `NodePort`, we should deploy `cloudcore` using `hostNetwork`, which means that the pod will run in the host network of the node where the pod is deployed. So that edge node can access cloudcore using k8s node IP address.
+```
+keadm init --advertise-address=172.18.0.2 --set cloudCore.hostNetWork=true
+``` 
+
 ```
 # kubectl get pod -nkubeedge -owide
 NAME                        READY   STATUS    RESTARTS   AGE     IP           NODE                 NOMINATED NODE   READINESS GATES
