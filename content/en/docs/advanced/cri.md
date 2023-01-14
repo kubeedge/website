@@ -11,27 +11,7 @@ type: docs
 ---
 ## containerd
 
-Docker 18.09 and up ship with `containerd`, so you should not need to install it manually. If you do not have `containerd`, you may install it by running the following:
-
-```bash
-# Install containerd
-apt-get update && apt-get install -y containerd.io
-
-# Configure containerd
-mkdir -p /etc/containerd
-containerd config default > /etc/containerd/config.toml
-
-# Restart containerd
-systemctl restart containerd
-```
-
-When using `containerd` shipped with Docker, the cri plugin is disabled by default. You will need to update `containerd`’s configuration to enable KubeEdge to use `containerd` as its runtime:
-
-```bash
-# Configure containerd
-mkdir -p /etc/containerd
-containerd config default > /etc/containerd/config.toml
-```
+About how to install containerd, please read the [containerd official getting-started docs](https://github.com/containerd/containerd/blob/main/docs/getting-started.md)
 
 Update the `edgecore` config file `edgecore.yaml`, specifying the following parameters for the `containerd`-based runtime:
 
@@ -92,8 +72,6 @@ ctr --namespace=k8s.io container ls
 CONTAINER                                                           IMAGE                              RUNTIME
 41c1a07fe7bf7425094a9b3be285c312127961c158f30fc308fd6a3b7376eab2    docker.io/library/nginx:1.15.12    io.containerd.runtime.v1.linux
 ```
-
-NOTE: since cri doesn't support multi-tenancy while `containerd` does, the namespace for containers are set to "k8s.io" by default. There is not a way to change that until [support in cri](https://github.com/containerd/cri/pull/1462) has been implemented.
 
 ## CRI-O
 
