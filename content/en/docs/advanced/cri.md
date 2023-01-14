@@ -35,6 +35,7 @@ containerd config default > /etc/containerd/config.toml
 
 Update the `edgecore` config file `edgecore.yaml`, specifying the following parameters for the `containerd`-based runtime:
 
+Before KubeEdge v1.12:
 ```yaml
 remoteRuntimeEndpoint: unix:///var/run/containerd/containerd.sock
 remoteImageEndpoint: unix:///var/run/containerd/containerd.sock
@@ -43,12 +44,30 @@ podSandboxImage: k8s.gcr.io/pause:3.2
 runtimeType: remote
 ```
 
+In KubeEdge v1.12 and later:
+```yaml
+remoteRuntimeEndpoint: unix:///var/run/containerd/containerd.sock
+remoteImageEndpoint: unix:///var/run/containerd/containerd.sock
+runtimeRequestTimeout: 2
+podSandboxImage: k8s.gcr.io/pause:3.2
+containerRuntime: remote
+```
+
 By default, the cgroup driver of cri is configured as `cgroupfs`. If this is not the case, you can switch to `systemd` manually in `edgecore.yaml`:
 
+Before KubeEdge v1.12:
 ```yaml
 modules:
   edged:
     cgroupDriver: systemd
+```
+
+In KubeEdge v1.12 and later:
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
 ```
 
 Set `systemd_cgroup` to `true` in `containerd`’s configuration file (/etc/containerd/config.toml), and then restart `containerd`:
@@ -94,12 +113,22 @@ sudo make install.config
 Set up CNI networking by following this guide: [setup CNI](https://github.com/cri-o/cri-o/blob/master/contrib/cni/README.md).
 Update the edgecore config file, specifying the following parameters for the `CRI-O`-based runtime:
 
+Before KubeEdge v1.12:
 ```yaml
 remoteRuntimeEndpoint: unix:///var/run/crio/crio.sock
 remoteImageEndpoint: unix:////var/run/crio/crio.sock
 runtimeRequestTimeout: 2
 podSandboxImage: k8s.gcr.io/pause:3.2
 runtimeType: remote
+```
+
+In KubeEdge v1.12 and later:
+```yaml
+remoteRuntimeEndpoint: unix:///var/run/crio/crio.sock
+remoteImageEndpoint: unix:////var/run/crio/crio.sock
+runtimeRequestTimeout: 2
+podSandboxImage: k8s.gcr.io/pause:3.2
+containerRuntime: remote
 ```
 
 By default, `CRI-O` uses `cgroupfs` as a cgroup driver manager. If you want to switch to `systemd` instead, update the `CRI-O` config file (/etc/crio/crio.conf.d/00-default.conf):
@@ -117,10 +146,19 @@ pause_image = "k8s.gcr.io/pause-arm64:3.1"
 
 Remember to update `edgecore.yaml` as well for your cgroup driver manager:
 
+Before KubeEdge v1.12:
 ```yaml
 modules:
   edged:
     cgroupDriver: systemd
+```
+
+In KubeEdge v1.12 and later:
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
 ```
 
 Start `CRI-O` and `edgecore` services (assume both services are taken care of by `systemd`),
