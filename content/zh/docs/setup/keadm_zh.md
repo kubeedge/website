@@ -21,6 +21,20 @@ KubeEdge对Kubernetes的版本兼容性，更多详细信息您可以参考 [kub
 - 需要超级用户权限（或root权限）才能运行。
 - `keadm beta`功能在v1.10.0上线，如果您需要使用相关功能，请使用v1.10.0及以上版本的keadm。
 
+## 版本兼容策略
+
+keadm可以用于安装与其版本相同的KubeEdge，或者比keadm早两个版本以内的KubeEdge。可以使用keadm init --profile version或者keadm join --kubeedge-version来指定KubeEdge的版本。
+
+虽然keadm支持版本兼容，但更建议您使用版本匹配的keadm来安装KubeEdge。
+
+例如：
+
+keadm版本为1.13时，KubeEdge必须是1.13，1.12和1.11>
+
+**重要提示：** 
+
+1.12版本的keadm仅支持安装1.12版本的KubeEdge。
+
 ## 设置云端（KubeEdge主节点）
 
 ### keadm init
