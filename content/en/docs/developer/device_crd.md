@@ -10,7 +10,7 @@ toc: true
 type: docs
 ---
 KubeEdge supports device management with the help of Kubernetes [CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) and a Device Mapper (explained below) corresponding to the device being used.
-We currently manage devices from the cloud and synchronize the device updates between edge nodes and cloud, with the help of device controller and device twin modules.
+We currently manage devices from the cloud and synchronize the device updates between edge nodes and the cloud, with the help of a device controller and device twin modules.
 
 ## Notice
 Device Management features are updated from v1alpha1 to v1alpha2 in release v1.4.
@@ -147,7 +147,7 @@ From KubeEdge v1.4, we can support customized protocols and customized settings,
 
 ### Data Topic
 From KubeEdge v1.4, we add a data section defined in the device spec.
-The data section describes a list of time-series properties that will be reported by mappers to the edge MQTT broker and should be processed in the edge.
+Data section describes a list of time-series properties that will be reported by mappers to the edge MQTT broker and should be processed in the edge.
 
 ```yaml
 apiVersion: devices.kubeedge.io/v1alpha1
@@ -179,16 +179,17 @@ spec:
  Mapper is an application that is used to connect and control devices. The following are the responsibilities of the mapper:
  1) Scan and connect to the device.
  2) Report the actual state of twin-attributes of device.
- 3) Map the expected state of device-twin to the actual state of device-twin.
- 4) Collect telemetry data from the device.
- 5) Convert readings from the device to a format accepted by KubeEdge.
+ 3) Map the expected state of device-twin to actual state of device-twin.
+ 4) Collect telemetry data from device.
+ 5) Convert readings from device to a format accepted by KubeEdge.
  6) Schedule actions on the device.
-Check the health of the device.
-The mapper can be specific to a protocol where standards are defined i.e Bluetooth, Zigbee, etc or specific to a device if it is a custom protocol.
+ 7) Check the health of the device.
+
+ Mapper can be specific to a protocol where standards are defined i.e Bluetooth, Zigbee, etc or specific to a device if it is a custom protocol.
 
  Mapper design details can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/mapper-design.md#mapper-design)
 
- An example of a mapper application created to support bluetooth protocol can be found [here](https://github.com/kubeedge/mappers-go/tree/main/mappers/ble)
+ An example of a mapper application created to support bluetooth protocol can be found [here](https://github.com/kubeedge/kubeedge/tree/master/mappers/bluetooth_mapper#bluetooth-mapper)
 
 
 ## Usage of Device CRD
@@ -202,22 +203,22 @@ The following are the steps to
     ```
 
 2. Create a device instance in the cloud node.
-    
+
     ```shell
            kubectl apply -f <path to device instance yaml>
     ```
-    
-Note: The creation of a device instance will also lead to the creation of a config map which will contain information about the devices which are required by the mapper applications
-    The name of the config map will be as follows: device-profile-config-< edge node name >. The updates of the config map are handled internally by the device controller.
 
-1. Run the mapper application corresponding to your protocol.
+    Note: Creation of device instance will also lead to the creation of a config map which will contain information about the devices which are required by the mapper applications
+    The name of the config map will be as follows: device-profile-config-< edge node name >. The updates of the config map is handled internally by the device controller.
 
-2. Edit the status section of the device instance yaml created in step 2 and apply the yaml to change the state of device twin. This change will be reflected at the edge, through the device controller
- and device twin modules. Based on the updated value of device twin at the edge the mapper will be able to perform its operation on the device.
+3. Run the mapper application corresponding to your protocol.
 
-1. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update on the cloud by checking their device instance object.
+4. Edit the status section of the device instance yaml created in step 2 and apply the yaml to change the state of the device twin. This change will be reflected at the edge, through the device controller
+ and device twin modules. Based on the updated value of device twin at the edge, the mapper will be able to perform its operation on the device.
 
-Note: Sample device models and device instances for a few protocols can be found at 
+5. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update in the cloud by checking their device instance object.
+
+Note: Sample device model and device instance for a few protocols can be found at 
 ```shell 
 $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
 ```
