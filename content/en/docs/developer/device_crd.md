@@ -10,18 +10,17 @@ toc: true
 type: docs
 ---
 KubeEdge supports device management with the help of Kubernetes [CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) and a Device Mapper (explained below) corresponding to the device being used.
-We currently manage devices from the cloud and synchronize the device updates between edge nodes and cloud, with the help of device controller and device twin modules.
+We currently manage devices from the cloud and synchronize the device updates between edge nodes and the cloud, with the help of a device controller and device twin modules.
 
 ## Notice
 Device Management features are updated from v1alpha1 to v1alpha2 in release v1.4.
-It is **not** compatible for v1alpha1 and v1alpha2.
+It is **not** compatible with v1alpha1 and v1alpha2.
 Details can be found [device-management-enhance](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-management-enhance.md)
 
 ## Device Model
 
 A `device model` describes the device properties such as 'temperature' or 'pressure'. A device model is like a reusable template using which many devices can be created and managed.
-
-Details on device model definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-management-enhance.md#modifications-on-device-model-types).
+Details on the device model definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-management-enhance.md#modifications-on-device-model-types).
 
 ### Device Model Sample
 A sample device model like below,
@@ -51,9 +50,8 @@ spec:
 
 ## Device Instance
 
-A `device` instance represents an actual device object. It is like an instantiation of the `device model` and references properties defined in the model which exposed by property visitors to access. The device spec is static while the device status contains dynamically changing data like the desired state of a device property and the state reported by the device.
-
-Details on device instance definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-management-enhance.md#modifications-on-device-instance-types).
+A `device` instance represents an actual device object. It is like an instantiation of the `device model` and references properties defined in the model which are exposed by property visitors to access. The device spec is static while the device status contains dynamically changing data like the desired state of a device property and the state reported by the device.
+Details on the device instance definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-management-enhance.md#modifications-on-device-instance-types).
 
 ### Device Instance Sample
 A sample device instance like below,
@@ -148,8 +146,8 @@ From KubeEdge v1.4, we can support customized protocols and customized settings,
 ```
 
 ### Data Topic
-From KubeEdge v1.4, we add data section defined in device spec.
-Data section describe a list of time-series properties which will be reported by mappers to edge MQTT broker and should be processed in edge.
+From KubeEdge v1.4, we add a data section defined in the device spec.
+Data section describes a list of time-series properties that will be reported by mappers to the edge MQTT broker and should be processed in the edge.
 
 ```yaml
 apiVersion: devices.kubeedge.io/v1alpha1
@@ -178,16 +176,16 @@ spec:
 
 ## Device Mapper
 
- Mapper is an application that is used to connect and control devices. Following are the responsibilities of mapper:
+ Mapper is an application that is used to connect and control devices. The following are the responsibilities of the mapper:
  1) Scan and connect to the device.
  2) Report the actual state of twin-attributes of device.
  3) Map the expected state of device-twin to actual state of device-twin.
  4) Collect telemetry data from device.
- 5) Convert readings from device to format accepted by KubeEdge.
+ 5) Convert readings from device to a format accepted by KubeEdge.
  6) Schedule actions on the device.
- 7) Check health of the device.
+ 7) Check the health of the device.
 
- Mapper can be specific to a protocol where standards are defined i.e Bluetooth, Zigbee, etc or specific to a device if it a custom protocol.
+ Mapper can be specific to a protocol where standards are defined i.e Bluetooth, Zigbee, etc or specific to a device if it is a custom protocol.
 
  Mapper design details can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/mapper-design.md#mapper-design)
 
@@ -215,10 +213,10 @@ The following are the steps to
 
 3. Run the mapper application corresponding to your protocol.
 
-4. Edit the status section of the device instance yaml created in step 2 and apply the yaml to change the state of device twin. This change will be reflected at the edge, through the device controller
- and device twin modules. Based on the updated value of device twin at the edge the mapper will be able to perform its operation on the device.
+4. Edit the status section of the device instance yaml created in step 2 and apply the yaml to change the state of the device twin. This change will be reflected at the edge, through the device controller
+ and device twin modules. Based on the updated value of device twin at the edge, the mapper will be able to perform its operation on the device.
 
-5. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. User can view the update at the cloud by checking his device instance object.
+5. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update in the cloud by checking their device instance object.
 
 Note: Sample device model and device instance for a few protocols can be found at 
 ```shell 
