@@ -356,7 +356,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
    注意：下面的那些iptables必须应用在机器上（精确地是网络名称空间，因此metrics-server也需要在主机网络模式下运行）metric-server在其上运行。
 
-   **注意：** 下面的那些iptables必须应用在已运行metric-server 机器上（精确地命名是网络名称空间，因此metrics-server也需要在主机网络模式下运行）
+   **注意：** 下面的那些iptables必须应用在已运行metric-server 机器上（准确的说是网络命名空间，所以metrics-server也需要在主机网络模式下运行）
     ```
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```
