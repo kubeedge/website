@@ -12,6 +12,9 @@ type: docs
 
 ## Prepare certs
 
+  >**IMPORTANT NOTE:**
+  if you run cloucore in container mode (keadm >= 1.12 init will do that default).Those Step will done when `init`, just skip `Prepare certs` step and to next step.
+
 1. Make sure you can find the kubernetes `ca.crt` and `ca.key` files. If you set up your kubernetes cluster by `kubeadm` , those files will be in `/etc/kubernetes/pki/` dir.
 
     ``` shell
@@ -52,10 +55,14 @@ type: docs
 
     Run the following command on the host on which each apiserver runs:
 
-    **Note:** You need to set the cloudcoreips variable first
+    **Note:** 
+    1. You need to set the cloudcoreips variable first
+    2. if you run cloudcore in container mode(keadm >= 1.12 init will do that default) , you can use ``kubectl get cm tunnelport -nkubeedge -oyaml``to find ``ipTunnelPort`` wich is the edgecore port.
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
+    #iptables -t nat -A OUTPUT -p tcp --dport 1035 -j DNAT --to $CLOUDCOREIPS:10003
+    # cloudcore in container mode would be like above
     ```
     > Port 10003 and 10350 are the default ports for the CloudStream and edgecore,
     use your own ports if you have changed them.
@@ -71,6 +78,8 @@ type: docs
 ## Update Configurations
 
 1. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
+    >**IMPORTANT NOTE:**
+    if you run cloucore in container mode (keadm >= 1.12 init with do that default).You can use ``kubectl edit configmap cloudcore -nkubeedge -oyaml`` to modify ``cloucore.yaml``.
 
     Modify `/etc/kubeedge/config/cloudcore.yaml`:
     ```yaml
@@ -85,6 +94,7 @@ type: docs
       tlsTunnelPrivateKeyFile: /etc/kubeedge/certs/server.key
       tunnelPort: 10004
     ```
+
 
     Modify `/etc/kubeedge/config/edgecore.yaml`:
     ``` yaml
@@ -102,8 +112,12 @@ type: docs
 ## Restart
 
 1. Restart all the cloudcore and edgecore.
+  
 
     At the cloud side:
+    >**IMPORTANT NOTE:**
+    >if you run cloucore in container mode (keadm >= 1.12 init will do that default).You can use `kubectl delete pod -n kubeedge $(kubectl get pods -n kubeedge |grep cloudcore|awk '{print $1}')` to restart it.
+
     ``` shell
     sudo systemctl restart cloudcore.service
     ```
