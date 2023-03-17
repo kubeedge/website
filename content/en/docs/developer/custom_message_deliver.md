@@ -172,6 +172,14 @@ spec:
 ### how to deliver custom messages
 * first, you should enable router module in cloudcore by modifying the cloudcore.yaml:
     add "enable: true" in router module, and restart cloudcore.
+    
+The cloudcore.yaml file is stored in the cluster as configmap,If you want to modify this file, you need this command
+
+    `kubectl edit cm cloudcore -nkubeedge`
+    
+After the modification, save and exit. Check whether the modification is successful
+
+    `kubectl get cm cloudcore -nkubeedge -oyaml`
 
 1. cloud to edge : **rest->eventbus**
 1.1 create rest and eventbus type ruleEndpoint if they don't exist. Exec command:
@@ -307,6 +315,45 @@ spec:
   sourceResource: {"topic": "test","node_name": "edge-node"}
   target: "my-rest"
   targetResource: {"resource":"http://127.0.0.1:8080/hello"}
+```
+Make targetResource available use the following statement
+```
+package main
+
+import (
+    "fmt"
+    "net/http"
+    "io/ioutil"
+    "encoding/json"
+)
+
+func main() {
+    http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+            w.Write([]byte("hello go server!"))
+        if r.Method == http.MethodPost {
+            // Parse the request body
+            body, err := ioutil.ReadAll(r.Body)
+            if err != nil {
+                http.Error(w, "Error reading request body", http.StatusBadRequest)
+                return
+            }
+            defer r.Body.Close()
+            // Extract the data from the request body
+			data := struct {
+				Edgemsg string `json:"edgemsg"`
+			}{}
+			err = json.Unmarshal(body, &data)
+			if err != nil {
+				http.Error(w, "Error parsing request body", http.StatusBadRequest)
+				return
+			}
+             // Do something with the data here
+			fmt.Printf("Received data: %+v\n", data)    
+    })
+
+    fmt.Println("Listening on port 8080...")
+    http.ListenAndServe(":8080", nil)
+}
 ```
 
 2.3 User's app in edge publishes messages with custom topic to MQTT broker on edge node. (target ruleEndpoint's targetResource http://127.0.0.1:8080/hello should be available before this step)
