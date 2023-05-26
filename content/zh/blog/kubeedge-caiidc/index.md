@@ -3,9 +3,9 @@ authors:
 - Gangyi Luo
 categories:
 - Case
-date: 2023-05-25
+date: 2020-10-15
 draft: false
-lastmod: 2023-05-25
+lastmod: 2020-10-15
 summary: KubeEdge 在国家工业互联网大数据中心的架构设计与应用
 tags:
 - KubeEdge
