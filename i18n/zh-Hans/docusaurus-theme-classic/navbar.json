@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "Kube  Edge",
+    "description": "The title in the navbar"
+  },
+  "item.label.Documentation": {
+    "message": "文档",
+    "description": "Navbar item with label Documentation"
+  },
+  "item.label.Blog": {
+    "message": "博客  ",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Downloads": {
+    "message": "下载",
+    "description": "Navbar item with label Downloads"
+  },
+  "item.label.Versions": {
+    "message": "版本",
+    "description": "Navbar item with label Versions"
+  },
+  "item.label.v1.12": {
+    "message": "v1.12",
+    "description": "Navbar item with label v1.12"
+  },
+  "item.label.v1-11": {
+    "message": "v1-11",
+    "description": "Navbar item with label v1-11"
+  },
+  "item.label.v1-10": {
+    "message": "v1-10",
+    "description": "Navbar item with label v1-10"
+  },
+  "item.label.v1-9": {
+    "message": "v1-9",
+    "description": "Navbar item with label v1-9"
+  },
+  "item.label.v1-8": {
+    "message": "v1-8",
+    "description": "Navbar item with label v1-8"
+  }
+}

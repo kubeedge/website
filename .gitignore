@@ -5,12 +5,6 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# OSX leaves these everywhere on SMB shares
-._*
-
-# OSX trash
-.DS_Store
-
 # Eclipse files
 .classpath
 .project
@@ -23,18 +17,23 @@ $RECYCLE.BIN/
 # Vscode files
 .vscode
 
-# Emacs save files
-*~
-\#*\#
-.\#*
+# Dependencies
+/node_modules
 
-# Vim-related files
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
+# Production
+/build
 
-# Hugo
-/public
-/resources/_gen/
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
