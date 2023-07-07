@@ -116,6 +116,6 @@ supporters:
   external_link: https://www.vastaitech.com/
 
 - name: njhyst
-  img_src: supporters/njhyst.svg
+  img_src: supporters/njhyst.png
   external_link: http://njhyst.com/
 ---
