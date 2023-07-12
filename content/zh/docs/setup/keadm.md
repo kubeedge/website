@@ -191,13 +191,13 @@ Before metrics-server deployed, `kubectl logs` feature must be activated:
 
     1. Add the following settings by calling `kubectl edit daemonsets.apps -n kube-system kube-proxy`:
     ``` yaml
-    affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:ingExecution:
+              nodeSelectorTerms:
               - matchExpressions:
-                  - key: node-role.kubernetes.io/edge
-                    operator: DoesNotExist
+                - key: node-role.kubernetes.io/edges.io/edge
+                  operator: DoesNotExist
     ```
 
     2. If you still want to run `kube-proxy`, ask **edgecore** not to check the environment by adding the env variable in `edgecore.service` :
