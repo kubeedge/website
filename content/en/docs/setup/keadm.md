@@ -17,6 +17,19 @@ Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kub
 
 - Need super user rights (or root rights) to run.
 
+## Version skew policy
+
+Keadm can be used with KubeEdge components that are the same version as keadm or two version older. The KubeEdge version can be specified to keadm by using the --profile version of keadm init or the --kubeedge-version of keadm join.
+
+While keadm allows version skew, it is recommended that you match the keadm version with the version of KubeEdge components.
+
+Example:
+
+keadm is at 1.13, KubeEdge Version must be at 1.13, 1.12 or 1.11.
+
+**IMPORTANT NOTE:**
+
+keadm 1.12 only supports installing KubeEdge with 1.12 version.
 
 ## Install keadm
 
