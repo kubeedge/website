@@ -1,0 +1,46 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.documentationSideBar.category.Setup": {
+    "message": "Setup",
+    "description": "The label for category Setup in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Advanced Configuration": {
+    "message": "Advanced Configuration",
+    "description": "The label for category Advanced Configuration in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Architecture": {
+    "message": "Architecture",
+    "description": "The label for category Architecture in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Cloud Components": {
+    "message": "Cloud Components",
+    "description": "The label for category Cloud Components in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Edge Components": {
+    "message": "Edge Components",
+    "description": "The label for category Edge Components in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Developer Guide": {
+    "message": "Developer Guide",
+    "description": "The label for category Developer Guide in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Mappers": {
+    "message": "Mappers",
+    "description": "The label for category Mappers in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Tests": {
+    "message": "Tests",
+    "description": "The label for category Tests in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.subproject": {
+    "message": "subproject",
+    "description": "The label for category subproject in sidebar documentationSideBar"
+  }
+}

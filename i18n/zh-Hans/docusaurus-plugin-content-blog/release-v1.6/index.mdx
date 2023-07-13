@@ -1,0 +1,106 @@
+---
+authors:
+- Kevin Wang
+- Fei Xu
+categories:
+- General
+- Announcements
+date: 2021-02-27
+draft: false
+lastmod: 2021-02-27
+summary: KubeEdge v1.6 is live!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.6
+- v1.6
+title: KubeEdge v1.6 is live!
+---
+**KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge.
+
+## **KubeEdge v1.6: A major upgrade for maintainability**
+
+On 27th February, the KubeEdge community is proud to announce the availability of KubeEdge 1.6. This release includes a major upgrade for maintainability, which includes:
+
+- Support Autonomic Kube-API Endpoint for Applications On Edge Nodes [Alpha]
+
+- Custom Message Routing between Cloud and Edge for Applications [Alpha]
+
+- Simplified Application Autonomy Configuration When Node Is Off-line
+
+- New home for Device Mappers code
+
+- OPC-UA Device Mapper
+
+- 24+ bug fixes and enhancements.
+
+Please refer to [CHANGELOG v1.6](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.6.md) for a full list of features in this release.
+
+:::note
+
+Release details - [Release v1.6](https://github.com/kubeedge/kubeedge/releases/tag/v1.6.0)
+
+:::
+
+:::note
+
+How to set up KubeEdge - [KubeEdge Setup](https://kubeedge.io/en/docs/setup/keadm/)
+
+:::
+
+## **Release Highlights**
+
+### Support Autonomic Kube-API Endpoint for Applications On Edge Nodes [Alpha]
+
+Autonomic Kube-API Endpoint is now available on edge nodes! Users are now able to run third-party plugins and applications that depends on Kubernetes APIs on edge nodes. List-watch connections are established between client and the local endpoint provided by EdgeCore. With reliable message delivery and data autonomy provided by KubeEdge, list-watch connections on edge nodes keep available even when nodes are located in high latency network or frequently get disconnected to the Cloud.
+
+This is very useful in cases that users want to install customized versions of Kubelet, Kube-Proxy, CNI and CSI plugins with KubeEdge. Particularly, Kubernetes CRDs are also supported on edge nodes. ([#2508](https://github.com/kubeedge/kubeedge/pull/2508), [#2587](https://github.com/kubeedge/kubeedge/pull/2587))
+
+### Custom Message Routing between Cloud and Edge for Applications [Alpha]
+
+Added support of routing management with Rule, RuleEndpoint API and a router module. Users are now able to use KubeEdge to deliver their custom messages between cloud and edge.
+
+Note that it's designed for control data exchange between cloud and edge, not suitable for large data delivery. The data size of delivery at one time is limited to 12MB.
+
+Refer to [custom message deliver](https://kubeedge.io/en/docs/developer/custom_message_deliver/) for more details. ([#2413](https://github.com/kubeedge/kubeedge/pull/2413))
+
+### Simplified Application Autonomy Configuration When Node Is Off-line
+
+If user wants any application to stay on edge nodes when disconnected to the cloud, simply add label `app-offline.kubeedge.io=autonomy` to its pods. KubeEdge will automatically override pod default toleration configuration for Taint `node.kubernetes.io/unreachable` to avoid Kubernetes evicting pods from unreachable nodes. ([#2499](https://github.com/kubeedge/kubeedge/pull/2499))
+
+### New home for Device Mappers code
+
+Device Mappers implementations now have a new home [kubeedge/mappers-go](https://github.com/kubeedge/mappers-go).
+
+### OPC-UA Device Mapper
+
+OPC-UA Device Mapper with Golang implementation is provided, based on new Device Mapper Standard. ([mappers-go#4](https://github.com/kubeedge/mappers-go/pull/4)).
+
+### 24+ bug fixes and enhancements
+
+In addition to the above new features, KubeEdge v1.6 also includes the following enhancements:
+
+- support kubectl get --raw /api/v1/nodes/{node}/proxy/metrics ([#2437](https://github.com/kubeedge/kubeedge/pull/2437))
+
+- support more metric path in cloud ([#2482](https://github.com/kubeedge/kubeedge/pull/2482))
+  
+- edgecore: add nfs localpath support ([#2529](https://github.com/kubeedge/kubeedge/pull/2529))
+
+- add func that make subscribed topics persistence ([#2457](https://github.com/kubeedge/kubeedge/pull/2457))
+
+## **Future Outlook**
+
+With the release of v1.6, KubeEdge provides autonomic Kube-API endpoint for applications On Edge nodes, custom message routing between Cloud and Edge, a new repository for Device Mappers, a more friendly user experience, and a more friendly community contributor experience. Thanks to Huawei, China Unicom, Zhejiang University SEL Lab, ARM and other organizations for their contributions, as well as all community contributors for their support!
+
+The community plans to further improve the user experience and the stability of KubeEdge in subsequent versions and create the best “open source” intelligent edge computing platform for everyone to freely use.
+
+For more details regarding KubeEdge, please follow and join us here:
+
+https://kubeedge.io

@@ -3,15 +3,15 @@
 Welcome to the GitHub repository for KubeEdge's public website. The docs are
 hosted at https://kubeedge.io.
 
-We use [Hugo](https://gohugo.io/) to format and generate our website, and
-[Netlify](https://www.netlify.com/) to manage the deployment of the site. Hugo
+We use [Docusaurus](https://docusaurus.io/) to format and generate our website, and
+[Netlify](https://www.netlify.com/) to manage the deployment of the site. Docusaurus
 is an open-source static site generator that provides us with templates, content
 organisation in a standard directory structure, and a website generation engine.
-You write the pages in Markdown, and Hugo wraps them up into a website.
+You write the pages in Markdown, and Docusaurus wraps them up into a website.
 
-* Please see [How to contributing](CONTRIBUTING.md) for instructions on how to contribute, if you are not familiar with the
+- Please see [How to contributing](CONTRIBUTING.md) for instructions on how to contribute, if you are not familiar with the
   GitHub workflow
-* [Start contributing](https://kubeedge.netlify.com/docs/about/contributing/)
+- [Start contributing](https://kubeedge.netlify.com/docs/about/contributing/)
 
 ## Quick start
 
@@ -22,85 +22,57 @@ updates:
 1. Fork the [KubeEdge/website repo][kubeEdge-website-repo] on GitHub.
 1. Make your changes and send a pull request (PR).
 1. If you're not yet ready for a review, add a comment to the PR saying it's a
-  work in progress or add `[WIP]` in your PRs title. You can also add `/hold` in a comment to mark the PR as not
-  ready for merge. (**Don't** add the Hugo declarative "draft = true" to the
-  page front matter, because that will prevent the auto-deployment of the
-  content preview described in the next point.)
+   work in progress or add `[WIP]` in your PRs title. You can also add `/hold` in a comment to mark the PR as not
+   ready for merge. 
 1. Wait for the automated PR workflow to do some checks. When it's ready,
-  you should see a comment like this: **deploy/netlify — Deploy preview ready!**
+   you should see a comment like this: **deploy/netlify — Deploy preview ready!**
 1. Click **Details** to the right of "Deploy preview ready" to see a preview
-  of your updates.
+   of your updates.
 1. Continue updating your doc until you're happy with it.
 1. When you're ready for a review, add a comment to the PR and assign a
-  reviewer/approver. See the
-  [Kubeedge contributor guide][kubeedge-contributor-guide].
+   reviewer/approver. See the
+   [Kubeedge contributor guide][kubeedge-contributor-guide].
 
 ## Previewing your changes on a local website server
 
-If you'd like to preview your doc updates as you work, you can install Hugo
+If you'd like to preview your doc updates as you work, you can install Node.js
 and run a local server. This section shows you how.
 
-### Install Hugo
+### Install Node.js
 
-See the [Hugo installation guide][hugo-install]. Here are some examples:
+[Node.js](https://nodejs.org/en/download) version 16.14 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
 
-#### Mac OS X:
+### Install yarn
 
 ```
-brew install hugo
+npm install -g yarn
 ```
 
-#### Debian:
+### Install dependencies
 
-1. Download the Debian package from the [Hugo website][hugo-install].
-   Make sure to install the Hugo version specified by the `HUGO_VERSION` environment variable in the [`netlify.toml`](netlify.toml#L7) file.
-  For example, [hugo_0.54_Linux-64bit.deb][hugo_0.54_Linux-64bit.deb].
-1. Install the package using `dpkg`:
+```
+cd website
 
-    ```
-    sudo dpkg -i hugo_0.46_Linux-64bit.deb
-    ```
+yarn
+```
 
-1. Verify your installation:
+### Local Development
 
-    ```
-    hugo version
-    ```
+```
+$ yarn start
+```
 
-### Run a local website server
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-Follow the usual GitHub workflow to fork the repo on GitHub and clone it to your
-local machine, then use your local repo as input to your Hugo web server:
+Your website is at [http://localhost:3000/](http://localhost:3000/)
 
-1. Ensure you are in your target branch:
+### Build
 
-    ```
-    git branch
-    ```
+```
+$ yarn build
+```
 
-1. Start your website server. Make sure you run this command from the
-   `/website/` directory, so that Hugo can find the config files it needs:
-
-    ```
-    hugo server -D
-    ```
-
-1. Your website is at [http://localhost:1313/](http://localhost:1313/).
-
-1. Continue with the usual GitHub workflow to edit files, commit them, push the
-  changes up to your fork, and create a pull request. (See the GitHub workflow
-
-1. While making the changes, you can preview them on your local version of the
-  website at [http://localhost:1313/](http://localhost:1313/). Note that if you
-  have more than one local git branch, when you switch between git branches the
-  local website reflects the files in the current branch.
-
-Useful Hugo docs:
-- [Hugo installation guide][hugo-install]
-- [Hugo basic usage](https://gohugo.io/getting-started/usage/)
-- [Hugo site directory structure](https://gohugo.io/getting-started/directory-structure/)
-- [hugo server reference](https://gohugo.io/commands/hugo_server/)
-- [hugo new reference](https://gohugo.io/commands/hugo_new/)
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ## Versioning
 
@@ -110,14 +82,7 @@ example, the documentation for the v0.1 stable release are maintained in the
 Each branch has a corresponding netlify website that automatically syncs each merged PR.
 
 Going forward, the versioned sites should follow this convention:
-* `https://kubeedge.netlify.com/` always points to the current *master branch*
-* `https://master.kubeedge.netlify.com/` always points to Github head
-* `https://vXXX-YYY.kubeedge.netlify.com/` points to the release at vXXX.YYY-branch
 
-[hugo-install]: https://gohugo.io/getting-started/installing/
-[hugo-shortcode-templates]: https://gohugo.io/templates/shortcode-templates/
-[hugo-shortcodes]: https://gohugo.io/content-management/shortcodes/
-
-[kubeedge-contributor-guide]: CONTRIBUTING.md
-[kubeEdge-website-repo]: https://github.com/kubeedge/website
-[hugo_0.54_Linux-64bit.deb]: https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.deb
+- `https://kubeedge.netlify.com/` always points to the current _master branch_
+- `https://master.kubeedge.netlify.com/` always points to Github head
+- `https://vXXX-YYY.kubeedge.netlify.com/` points to the release at vXXX.YYY-branch

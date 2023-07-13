@@ -1,0 +1,21 @@
+.whyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reasonBoxContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reasonBox {
+  flex-basis: 33.333%;
+  padding: 0 15px;
+  margin-bottom: 2rem;
+}
+
+.reasonContent {
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
