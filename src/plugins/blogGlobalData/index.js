@@ -16,10 +16,10 @@ const { normalizeUrl } = require("@docusaurus/utils");
 async function blogGlobalDataPlugin(context, options) {
   const currentLocale = context.i18n.currentLocale;
   const blogDir =
-    currentLocale === "zh-Hans"
+    currentLocale === "zh"
       ? path.join(
           context.siteDir,
-          "i18n/zh-Hans/docusaurus-plugin-content-blog"
+          "i18n/zh/docusaurus-plugin-content-blog"
         )
       : path.join(context.siteDir, "blog");
   const blogPlugin = await pluginContentBlog.default(context, {

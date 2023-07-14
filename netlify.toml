@@ -14,6 +14,12 @@ functions = "functions/"
   force = true # COMMENT: ensure that we always redirect
 
 [[redirects]]
+  from = "https://kubeedge.io/en"
+  to = "https://kubeedge.io"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
   from = "https://edgemesh.kubeedge.io"
   to = "https://edgemesh.netlify.app"
   status = 200
