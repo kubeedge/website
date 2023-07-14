@@ -34,9 +34,8 @@ const config = {
 
   presets: [
     [
-      "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      "@docusaurus/preset-classic",
+      {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
@@ -44,6 +43,10 @@ const config = {
           editUrl: "https://github.com/kubeedge/website/tree/main",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+        },
+        gtag: {
+          trackingID: ' G-9PL5BPEXGS',
+          anonymizeIP: true,
         },
         blog: {
           showReadingTime: true,
@@ -57,7 +60,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      },
     ],
   ],
 
