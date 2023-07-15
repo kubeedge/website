@@ -14,6 +14,12 @@ functions = "functions/"
   force = true # COMMENT: ensure that we always redirect
 
 [[redirects]]
+  from = "/en/*"
+  to = "/:splat"
+  status = 301
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
   from = "https://edgemesh.kubeedge.io"
   to = "https://edgemesh.netlify.app"
   status = 200
