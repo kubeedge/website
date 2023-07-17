@@ -19,17 +19,6 @@ const sliderItems = [
     align: "center",
   },
   {
-    title: <Translate>KubeEdge v1.9 is live!</Translate>,
-    subTitle: "",
-    button: {
-      text: <Translate>Click for more info</Translate>,
-      url: "/blog/release-v1.9",
-    },
-    backgroundImage: "img/headers/header-kubecon.jpg",
-    opacity: 0.25,
-    align: "center",
-  },
-  {
     title: <Translate>Compute at the Edge</Translate>,
     subTitle: (
       <Translate>
