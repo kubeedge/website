@@ -1,5 +1,5 @@
 ---
-title: 为什么选择KubeEdge
+title: 为什么选择 KubeEdge
 sidebar_position: 2
 ---
 

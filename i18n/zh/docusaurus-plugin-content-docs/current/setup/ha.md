@@ -1,5 +1,5 @@
 ---
-title: Deploying HA CloudCore
+title: 部署一个高可用的 CloudCore
 sidebar_position: 4
 ---
 
