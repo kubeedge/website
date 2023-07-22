@@ -97,7 +97,7 @@ const SlideItem = (props) => {
       {gitRepoUrl && (
         <span style={{ marginTop: 10 }}>
           <iframe
-            src="https://ghbtns.com/github-btn.html?user=kubeedge&amp;repo=kubeedge&amp;type=star&amp;count=true&amp;size=large"
+            src="https://ghbtns.com/github-btn.html?user=kubeedge&amp;type=star&amp;count=true&amp;size=large"
             width={160}
             height={30}
             title="GitHub Stars"
