@@ -13,7 +13,7 @@ const sliderItems = [
     subTitle: (
       <Translate>A Kubernetes Native Edge Computing Framework</Translate>
     ),
-    gitRepoUrl: "https://github.com/kubeedge/kubeedge",
+    gitRepoUrl: "https://github.com/kubeedge",
     backgroundImage: "img/headers/bubbles-wide.jpg",
     opacity: 0.4,
     align: "center",
