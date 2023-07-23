@@ -25,6 +25,8 @@ In July 2022, the KubeEdge community completed a [third-party security audit of 
 
 Software supply chain integrity attacks (unauthorized modification of software packages) have been increasing in the past three years. After KubeEdge reaches SLSA 3, the E2E security (from source code build to release) is hardened, preventing malicious tampering of binary and container image artifacts. Thanks to SLSA, we can enhance the integrity of software artifacts, against tampering or any type of unauthorized modification of the software or software package, and enable software to defend against common supply chain attacks.
 
+<!--truncate-->
+
 ## About SLSA
 
 Proposed by Google, SLSA (Supply Chain Levels for Software Artifacts) is a security framework and a check-list of standards and controls to prevent tampering, improve software supply chain integrity, and secure software packages and infrastructure in projects, businesses or enterprises. It is not a single tool, but a step-by-step outline to prevent artifacts from being tampered with and tampered artifacts from being used, and at the higher levels, to strengthen the platforms that make up a supply chain. Manufacturers follow the SLSA guidelines to safeguard their software, and users make decisions based on the security status of software packages.
