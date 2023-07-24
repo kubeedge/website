@@ -26,6 +26,8 @@ The discovered security issues have been fixed and patched to the latest three m
 
 For more details of the threat model and the mitigations, Please check KubeEdge Threat Model And Security Protection Analysis: https://github.com/kubeedge/community/tree/master/sig-security/sig-security-audit/KubeEdge-threat-model-and-security-protection-analysis.md.
 
+<!--truncate-->
+
 ## References:
 Audit report: https://github.com/kubeedge/community/tree/master/sig-security/sig-security-audit/KubeEdge-security-audit-2022.pdf
 

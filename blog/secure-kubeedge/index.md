@@ -23,6 +23,8 @@ Edge computing framework capabilities should be able to cloud-native design patt
 
 This enables to build a security model which is application-oriented rather than infrastructure-oriented.
 
+<!--truncate-->
+
 ## What is SPIFFE and SPIRE?
 
 The SPIFFE standard provides a specification for a framework capable of bootstrapping and issuing identity to services across heterogeneous environments and organizational boundaries.

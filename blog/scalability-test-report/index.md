@@ -27,6 +27,8 @@ title: Test Report on KubeEdge's Support for 100,000 Edge Nodes
 
 The population of KubeEdge brings in community interests in the scalability and scale of KubeEdge. Now, Kubernetes clusters powered by KubeEdge, as fully tested, can stably support 100,000 concurrent edge nodes and manage more than one million pods. This report introduces the metrics used in the test, the test procedure, and the method to connect to an ocean of edge nodes.
 
+<!--truncate-->
+
 ## Background
 
 Fast growing technologies, such as 5G networks, industrial Internet, and AI, are giving edge computing an important role in driving digital transformation. Cities, transportation, healthcare, manufacturing, and many other fields are becoming smart thanks to edge computing. According to Gartner, by 2023, the number of intelligent edge devices may be more than 20 times that of traditional IT devices. By 2028, the embedding of sensors, storage, computing, and advanced AI functions in edge devices will grow steadily. IoT devices are of various types and in large quantities. The increasing connected IoT devices are challenging management and O&M.
