@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: KubeEdge 的开发路线
+title: KubeEdge 的开发路标
 ---
 
 该文档描述了 KubeEdge 开发的路线图
