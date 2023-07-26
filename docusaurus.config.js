@@ -8,7 +8,6 @@ const versionsArchived = require("./versionsArchived.json");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "KubeEdge",
-  favicon: "img/favicon.ico",
 
   // Set the production url of your site here
   url: "https://kubeedge.io",
@@ -31,6 +30,64 @@ const config = {
       },
     },
   },
+
+  headTags: [
+    {
+      tagName: "link",
+      attributes: {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/favicons/apple-touch-icon.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicons/favicon-32x32.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicons/favicon-16x16.png",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "shortcut icon",
+        type: "image/x-icon",
+        href: "/favicons/favicon.ico",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "manifest",
+        href: "/favicons/site.webmanifest",
+      },
+    },
+    {
+      tagName: "meta",
+      attributes: {
+        name: "theme-color",
+        content: "#ffffff",
+      },
+    },
+    {
+      tagName: "meta",
+      attributes: {
+        name: "msapplication-config",
+        content: "/favicons/browserconfig.xml",
+      },
+    },
+  ],
 
   presets: [
     [
