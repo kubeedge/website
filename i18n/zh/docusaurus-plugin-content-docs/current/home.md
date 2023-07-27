@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: KubeEdge 入门指南
+title: KubeEdge入门指南
 slug: /
 ---
 

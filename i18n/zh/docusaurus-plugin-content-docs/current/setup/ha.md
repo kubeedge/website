@@ -1,5 +1,5 @@
 ---
-title: 部署一个高可用的 CloudCore
+title: 部署一个高可用的CloudCore
 sidebar_position: 4
 ---
 
