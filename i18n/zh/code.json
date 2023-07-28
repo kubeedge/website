@@ -277,7 +277,7 @@
     "message": "一个使能边缘计算的开放平台"
   },
   "KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge. It is built upon kubernetes and provides fundamental infrastructure support for network, application deployment and metadata synchronization between cloud and edge. KubeEdge is licensed under Apache 2.0. and free for personal or commercial use absolutely. We welcome contributors!": {
-    "message": "KubeEdge是一个开源系统，用于将容器化应用程序编排功能扩展到Edge的主机。它基于kubernetes构建，并为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。 KubeEdge使用Apache 2.0许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！"
+    "message": "KubeEdge是一个开源系统，用于将容器化应用程序编排功能扩展到边缘的主机。它基于Kubernetes构建，并为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。 KubeEdge使用Apache 2.0许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！"
   },
   "Our goal is to make an open platform to enable Edge computing, extending native containerized application orchestration capabilities to hosts at Edge, which is built upon kubernetes and provides fundamental infrastructure support for network, app deployment and metadata synchronization between cloud and edge.": {
     "message": "我们的目标是创建一个开放平台，使能边缘计算，将容器化应用编排功能扩展到边缘的节点和设备，后者基于kubernetes构建，并为云和边缘之间的网络，应用部署和元数据同步提供基础架构支持。"
@@ -295,40 +295,51 @@
     "message": "支持者"
   },
   "Kubernetes Native API at Edge": {
-    "message": "Kubernetes Native API at Edge"
+    "message": "Kubernetes原生边缘API"
   },
   "Autonomic Kube-API Endpoint at Edge, support to run third-party plugins and applications that depends on Kubernetes APIs on edge nodes.": {
-    "message": "Autonomic Kube-API Endpoint at Edge, support to run third-party plugins and applications that depends on Kubernetes APIs on edge nodes."
+    "message": "边缘提供自治Kube-API端点，支持在边缘节点上运行依赖于Kubernetes API的第三方插件和应用程序。"
   },
   "Seamless Cloud-Edge Coordination": {
-    "message": "Seamless Cloud-Edge Coordination"
+    "message": "无缝云边协同"
+  },
+
+  "Bidirectional communication, able to talk to edge nodes located in private subnet.\\nSupport both metadata and data": {
+    "message": "双向通信，能够与位于私有子网中的边缘节点进行通讯。支持元数据和数据传输。"
   },
   "Bidirectional communication, able to talk to edge nodes located in private subnet. <br /> Support both metadata and data": {
     "message": "Bidirectional communication, able to talk to edge nodes located in private subnet. <br /> Support both metadata and data"
   },
   "Edge Autonomy": {
-    "message": "Edge Autonomy"
+    "message": "边缘自治"
+  },
+
+  "Metadata persistent per node, no list-watch needed during node recovery, get ready faster.\\nAutonomous operation of edge even during disconnection from cloud.": {
+    "message": "每个节点的元数据持久存在，节点恢复期间不需要进行列表监视，就绪速度更快。即使与云断开连接，边缘节点也能自主运行。"
   },
   "Metadata persistent per node, no list-watch needed during node recovery, get ready faster. <br /> Autonomous operation of edge even during disconnection from cloud.": {
     "message": "Metadata persistent per node, no list-watch needed during node recovery, get ready faster. <br /> Autonomous operation of edge even during disconnection from cloud."
   },
   "Low Resource Ready": {
-    "message": "Low Resource Ready"
+    "message": "低资源就绪"
+  },
+  "Optimized usage of resource at the edge.\\nMemory footprint down to ~70MB.": {
+    "message": "优化边缘资源的使用。内存占用减少至约70MB。"
   },
   "Optimized usage of resource at the edge.<br /> Memory footprint down to ~70MB.": {
     "message": "Optimized usage of resource at the edge.<br /> Memory footprint down to ~70MB."
   },
   "Simplified Device Communication": {
-    "message": "Simplified Device Communication"
+    "message": "简化的设备通信"
   },
   "Easy communication between application and devices for IOT and Industrial Internet.": {
-    "message": "Easy communication between application and devices for IOT and Industrial Internet."
+    "message": "物联网和工业互联网的应用程序和设备之间轻松通信。"
   },
   "Heterogenous": {
-    "message": "Heterogenous"
+    "message": "异构性"
   },
   "Native support of x86, ARMv7, ARMv8": {
-    "message": "Native support of x86, ARMv7, ARMv8"
+    "message": "原生支持x86、ARMv7、ARMv8架构。"
   },
   "Why KubeEdge": {
     "message": "为何选择KubeEdge"
