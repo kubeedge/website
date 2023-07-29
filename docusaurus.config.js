@@ -40,7 +40,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/kubeedge/website/tree/main",
+          editUrl: "https://github.com/kubeedge/website/blob/master/",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
@@ -52,7 +52,7 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/kubeedge/website/tree/main",
+          editUrl: "https://github.com/kubeedge/website/tree/master/",
           postsPerPage: 5,
           blogSidebarCount: "ALL",
           blogSidebarTitle: "All our posts",
