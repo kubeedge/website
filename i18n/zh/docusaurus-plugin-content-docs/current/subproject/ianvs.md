@@ -24,11 +24,11 @@ The scope of Ianvs includes
 
 ## Architecture
 The architectures and related concepts are shown in the below figure. The ianvs is designed to run within a single node. Critical components include
-- Test Environment Manager: the CRUD of test environments serving for global usage
-- Test Case Controller: control the runtime behavior of test cases like instance generation and vanish
-  - Generation Assistant: assist users to generate test cases based on certain rules or constraints, e.g., the range of parameters
-  - Simulation Controller: control the simulation process of edge-cloud synergy AI, including the instance generation and vanishment of simulation containers
-- Story Manager: the output management and presentation of the test case, e.g., leaderboards
+- **Test Environment Manager**: The CRUD of test environments serving for global usage
+- **Test Case Controller**: Control the runtime behavior of test cases like instance generation and vanish
+  - **Generation Assistant**: Assist users to generate test cases based on certain rules or constraints, e.g., the range of parameters
+  - **Simulation Controller**: Control the simulation process of edge-cloud synergy AI, including the instance generation and vanishment of simulation containers
+- **Story Manager**: The output management and presentation of the test case, e.g., leaderboards
 
 
 ![](/img/subproject/ianvs_arch.png)
@@ -45,11 +45,11 @@ More details on Ianvs components:
     - System constraints or budgets
       - End-to-end cross-node
       - Per node
-1. Test-case Controller, which includes but is not limited to the following components
+2. Test-case Controller, which includes but is not limited to the following components
   - Templates of common distributed-synergy-AI paradigms, which can help the developer to prepare their test case without too much effort. Such paradigms include edge-cloud synergy joint inference, incremental learning, federated learning, and lifelong learning.
   - Simulation tools. Develop simulated test environments for test cases
   - Other tools to assist test-case generation. For instance, prepare test cases based on a given range of hyper-parameters.
-1. Story Manager, which includes but is not limited to the following components
+3. Story Manager, which includes but is not limited to the following components
   - Leaderboard generation
   - Test report generation
 

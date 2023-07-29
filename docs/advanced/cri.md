@@ -224,7 +224,7 @@ Make sure no libvirt is running on the worker nodes.
 	EOF
 	```
 
-1. **Setup VM runtime:**
+2. **Setup VM runtime:**
  Use the script [`hack/setup-vmruntime.sh`](https://github.com/kubeedge/kubeedge/tree/master/hack/setup-vmruntime.sh) to set up a VM runtime. It makes use of the Arktos Runtime release to start three containers:
 
 	 	vmruntime_vms
