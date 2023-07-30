@@ -5,9 +5,9 @@ sidebar_position: 4
 
 ## The HA of CloudCore(deployed in k8s cluster)
 
-**Note:**
+:::note
 There are several ways to achieve the HA of cloudcore, for example, ingress, keepalived etc. Here we adopt the keepalived. The HA of cloudcore according to ingress will be achieved later.
-
+:::
 ## Determine the virtual IP of CloudCore
 
 Determine a VIP that the CloudCore service exposed to the edge nodes. Here we recommend `keepalived` to do that. You had better directly schedule pods to specific number of nodes by `nodeSelector` when using  `keepalived`. And you have  to install `keepalived` in each of nodes where CloudCore runs. The configuration of `keepalived` is shown in the end. Here suppose the VIP is 10.10.102.242.
@@ -45,7 +45,9 @@ make image WHAT=cloudcore
 
 We create k8s resources from the manifests in name order. Before creating, **check the content of each manifest to make sure it meets your environment.**
 
-**Note:** Now the follow manifests don't support `kubectl logs` command yet. If need, you have to make more configuration manually.
+:::note
+Now the follow manifests don't support `kubectl logs` command yet. If need, you have to make more configuration manually.
+:::
 
 ### 02-ha-configmap.yaml
 
@@ -57,8 +59,10 @@ modules:
     advertiseAddress:
     - 10.10.102.242
 ```
+:::note
+If you want to reset the CloudCore, run this before creating k8s resources:
+:::
 
-**Note:** If you want to reset the CloudCore, run this before creating k8s resources:
 
 ```bash
 kubectl delete namespace kubeedge

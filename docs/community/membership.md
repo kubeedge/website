@@ -2,7 +2,10 @@
 title: Membership
 sidebar_position: 3
 ---
-**Note :** This document keeps changing based on the status and feedback of KubeEdge Community.
+:::note
+This document keeps changing based on the status and feedback of KubeEdge Community.
+:::
+
 
 This document gives a brief overview of the KubeEdge community roles with the requirements and responsibilities associated with them.
 
@@ -13,8 +16,10 @@ This document gives a brief overview of the KubeEdge community roles with the re
 | [Maintainer](#maintainer) | Sponsor from 2 owners, shown good technical judgement in feature design/development and PR review | Participate in release planning and feature development/maintenance | Top level write access to relevant repository. Name entry in Maintainers file of the repository |
 | [Owner](#owner) | Sponsor from 3 owners, helps drive the overall KubeEdge project | Drive the overall technical roadmap of the project and set priorities of activities in release planning | KubeEdge GitHub organization Admin access |
 
+:::note
+It is mandatory for all KubeEdge community members to follow KubeEdge [Code of Conduct].
+:::
 
-**Note :** It is mandatory for all KubeEdge community members to follow KubeEdge [Code of Conduct].
 
 ## Member
 
@@ -114,7 +119,10 @@ Has deep understanding of KubeEdge and related domain and facilitates major agre
 - Participate & Drive design/development of multiple features
 
 
-**Note :** These roles are applicable only for KubeEdge github organization and repositories. Currently KubeEdge doesn't have a formal process for review and acceptance into these roles. We will come-up with a process soon.
+:::note
+These roles are applicable only for KubeEdge github organization and repositories. Currently KubeEdge doesn't have a formal process for review and acceptance into these roles. We will come-up with a process soon.
+:::
+
 
 - [Code of Conduct](https://github.com/kubeedge/kubeedge/blob/master/CODE_OF_CONDUCT.md)
 - [two-factor authentication](https://help.github.com/articles/about-two-factor-authentication)

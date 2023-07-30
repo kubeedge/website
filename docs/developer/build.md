@@ -26,7 +26,10 @@ cd kubeedge
 make
 ```
 
-Note: Currently keadm is only supported on Ubuntu and CentOS, so the binaries are built with `GOOS=linux` and placed in `_output/local/bin`.
+:::note
+Currently keadm is only supported on Ubuntu and CentOS, so the binaries are built with `GOOS=linux` and placed in 
+`_output/local/bin`.
+:::
 
 ## Running tests
 
@@ -36,4 +39,6 @@ make test
 make integrationtest
 ```
 
-Note: Currently the integrationtest is only supported on Ubuntu.
+:::note
+Currently the integrationtest is only supported on Ubuntu.
+:::

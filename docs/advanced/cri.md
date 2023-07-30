@@ -101,8 +101,12 @@ By default, `CRI-O` uses `cgroupfs` as a cgroup driver manager. If you want to s
 # Cgroup management implementation used for the runtime.
 cgroup_manager = "systemd"
 ```
+:::note
+The image should be updated if you are on ARM platform and the image you are using is not a multi-arch image.
+:::
 
-*NOTE: the `pause` image should be updated if you are on ARM platform and the `pause` image you are using is not a multi-arch image. To set the pause image, update the `CRI-O` config file:*
+
+To set the pause image, update the `CRI-O` config file:
 
 ```conf
 pause_image = "k8s.gcr.io/pause-arm64:3.1"
@@ -227,6 +231,6 @@ Make sure no libvirt is running on the worker nodes.
 1. **Setup VM runtime:**
  Use the script [`hack/setup-vmruntime.sh`](https://github.com/kubeedge/kubeedge/tree/master/hack/setup-vmruntime.sh) to set up a VM runtime. It makes use of the Arktos Runtime release to start three containers:
 
-	 	vmruntime_vms
-		vmruntime_libvirt
+	 	vmruntime_vms;
+		vmruntime_libvirt;
 		vmruntime_virtlet

@@ -45,7 +45,10 @@ sidebar_position: 3
 
     Run the following command on the host on which each apiserver runs:
 
-    **Note:** You need to set the cloudcoreips variable first
+    :::note
+    You need to set the cloudcoreips variable first
+    :::
+
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003

@@ -19,7 +19,9 @@ For more detailed information on golang's builtin testing package read this [doc
 
  Mock for an interface can be automatically generated using [GoMocks](https://github.com/golang/mock) mockgen package.
 
- **Note** There is gomock package in kubeedge vendor directory without mockgen. Please use mockgen package of tagged version ***v1.1.1*** of [GoMocks github repository](https://github.com/golang/mock) to install mockgen and generate mocks. Using higher version may cause errors/panics during execution of your tests.
+:::note
+There is gomock package in kubeedge vendor directory without mockgen. Please use mockgen package of tagged version ***v1.1.1*** of [GoMocks github repository](https://github.com/golang/mock) to install mockgen and generate mocks. Using higher version may cause errors/panics during execution of your tests.
+:::
 
 There is gomock package in kubeedge vendor directory without mockgen. Please use mockgen package of tagged version ***v1.1.1*** of [GoMocks github repository](https://github.com/golang/mock) to install mockgen and generate mocks. Using higher version may cause errors/panics during execution of your tests.
 

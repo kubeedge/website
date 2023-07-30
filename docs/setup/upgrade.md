@@ -19,9 +19,10 @@ $ cp /var/lib/kubeedge/edgecore.db /tmp/kubeedge_backup/
 
 You can keep old config to save some custom changes as you wish.
 
-*Note*:
-
+:::note
 After upgrading, some options may be deleted and some may be added, please don't use old config directly.
+:::
+
 
 ### Device related(Optional)
 
