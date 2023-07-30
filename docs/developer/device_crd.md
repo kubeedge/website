@@ -170,12 +170,13 @@ spec:
 ## Device Mapper
 
  Mapper is an application that is used to connect and control devices. The following are the responsibilities of the mapper:
- 1) Scan and connect to the device.
- 2) Report the actual state of twin-attributes of device.
- 3) Map the expected state of device-twin to the actual state of device-twin.
- 4) Collect telemetry data from the device.
- 5) Convert readings from the device to a format accepted by KubeEdge.
- 6) Schedule actions on the device.
+
+ 1. Scan and connect to the device.
+ 2. Report the actual state of twin-attributes of device.
+ 3. Map the expected state of device-twin to the actual state of device-twin.
+ 4. Collect telemetry data from the device.
+ 5. Convert readings from the device to a format accepted by KubeEdge.
+ 6. Schedule actions on the device.
 Check the health of the device.
 The mapper can be specific to a protocol where standards are defined i.e Bluetooth, Zigbee, etc or specific to a device if it is a custom protocol.
 
@@ -200,8 +201,10 @@ The following are the steps to
            kubectl apply -f <path to device instance yaml>
     ```
     
-Note: The creation of a device instance will also lead to the creation of a config map which will contain information about the devices which are required by the mapper applications
-    The name of the config map will be as follows: device-profile-config-< edge node name >. The updates of the config map are handled internally by the device controller.
+:::note
+The creation of a device instance will also lead to the creation of a config map which will contain information about the devices which are required by the mapper applications
+The name of the config map will be as follows: device-profile-config-< edge node name >. The updates of the config map are handled internally by the device controller.
+:::
 
 1. Run the mapper application corresponding to your protocol.
 
@@ -210,7 +213,10 @@ Note: The creation of a device instance will also lead to the creation of a conf
 
 1. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update on the cloud by checking their device instance object.
 
-Note: Sample device models and device instances for a few protocols can be found at 
+:::note
+Sample device models and device instances for a few protocols can be found at:
+:::
+
 ```shell 
 $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
 ```
