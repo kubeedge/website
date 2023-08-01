@@ -129,7 +129,7 @@ Provenance 是构建的元数据包括构建过程、构建源和依赖关系，
 
 ### 如何校验 KubeEdge 发布产物是否满足 SLSA L3 等级
 
-详细步骤描述请见https://github.com/kubeedge/kubeedge/pull/4285。
+详细步骤描述请见https://github.com/kubeedge/kubeedge/pull/4285
 
 校验示例如下：
 
