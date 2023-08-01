@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import {translate} from '@docusaurus/Translate';
-import {sortBy} from '@site/src/utils/jsUtils';
+import {sortBy} from '../utils/jsUtils';
 // LIST OF AVAILABLE TAGS
 // Available tags to assign to a showcase site
 // Please choose all tags that you think might apply.

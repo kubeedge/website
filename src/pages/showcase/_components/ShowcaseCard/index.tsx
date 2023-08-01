@@ -3,15 +3,15 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
 // import Image from '@theme/IdealImage';
-import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
+import FavoriteIcon from '../../../../components/FavoriteIcon/index';
 import {
   Tags,
   TagList,
   type TagType,
   type User,
   type Tag,
-} from '@site/src/data/users';
-import {sortBy} from '@site/src/utils/jsUtils';
+} from '../../../../data/users';
+import {sortBy} from '../../../../utils/jsUtils';
 import Heading from '@theme/Heading';
 import Tooltip from '../ShowcaseTooltip';
 import styles from './styles.module.css';
