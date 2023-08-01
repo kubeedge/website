@@ -27,7 +27,8 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.1"
+    "@docusaurus/module-type-aliases": "2.4.1",
+    "antd": "^5.7.0"
   },
   "browserslist": {
     "production": [

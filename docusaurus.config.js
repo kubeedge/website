@@ -45,7 +45,7 @@ const config = {
           showLastUpdateTime: true,
         },
         gtag: {
-          trackingID: ' G-9PL5BPEXGS',
+          trackingID: "G-9PL5BPEXGS",
           anonymizeIP: true,
         },
         blog: {
@@ -87,6 +87,18 @@ const config = {
             label: "Documentation",
           },
           { to: "/blog", label: "Blog", position: "left" },
+          { to: "/case-studies", label: "Case Studies", position: "left" },
+          {
+            type: 'dropdown',
+            label: 'Community',
+            position: 'left',
+            items: [
+              {
+                label: 'Job Center',
+                to: "/job-center",
+              },
+            ],
+          },
           {
             to: "https://github.com/kubeedge/kubeedge/releases",
             label: "Downloads",
@@ -149,6 +161,8 @@ const config = {
 
   plugins: [
     [require.resolve("./src/plugins/blogGlobalData/index.js"), {}],
+    [require.resolve("./src/plugins/caseStudiesGlobalData/index.js"), {}],
+    [require.resolve("./src/plugins/jobCenterGlobalData/index.js"), {}],
     "docusaurus-plugin-sass",
   ],
 };

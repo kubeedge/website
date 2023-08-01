@@ -368,5 +368,29 @@
   },
   "It is easy to get and deploy existing complicated machine learning, image recognition, event processing and other high level applications to the Edge.": {
     "message": "您可以轻松地将复杂的机器学习，图像识别，事件处理和其他高级应用程序部署到您的边缘。"
+  },
+  "Case Studies": {
+    "message": "KubeEdge成功案例"
+  },
+  "READ CASE STUDY": {
+    "message": "阅读案例"
+  },
+  "Case Category": {
+    "message": "案例类别"
+  },
+  "POST YOUR CASE": {
+    "message": "上传你的案例"
+  },
+  "Job Center": {
+    "message": "招聘中心"
+  },
+  "POST A JOB": {
+    "message": "发布一份工作"
+  },
+  "Tell successful stories of using KubeEdge in various business scenarios and the positive effects brought by them": {
+    "message": "展示KubeEdge在各种业务场景中的成功案例以及带来的积极效果"
+  },
+  "Welcome to the KubeEdge Job Center. We wish you the best of luck to find the right job or top telent here.": {
+    "message": "欢迎来到KubeEdge招聘中心，我们希望您在这里可以找到合适的工作或顶尖的人才。"
   }
 }

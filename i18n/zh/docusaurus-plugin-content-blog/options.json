@@ -8,7 +8,7 @@
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "All our posts",
+    "message": "所有博客",
     "description": "The label for the left sidebar"
   }
 }
