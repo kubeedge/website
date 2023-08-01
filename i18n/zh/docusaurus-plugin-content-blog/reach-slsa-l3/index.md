@@ -34,7 +34,7 @@ Google 提出的用于保证整个软件供应链完整性的框架 SLSA，是�
 
 截止目前，SLSA 标准处于 alpha 阶段，相关的定义可能会发生变化。
 
-下图描述了软件供应链中已知的攻击点。更多详细描述，可参考https://slsa.dev/。
+下图描述了软件供应链中已知的攻击点。更多详细描述，可参考https://slsa.dev/
 
 ![slsa-dev](./images/slsa-dev.png)
 
