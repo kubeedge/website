@@ -121,7 +121,7 @@ e) **第三方依赖的完整性：**Provenance 记录运行构建步骤时可�
 
 在 KubeEdge 版本发布的流程（.github/workflows/release.yml）中，集成了 slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml 和 slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml，可保障构建和发布产物（包括二进制文件和容器镜像）的流程满足 SLSA L3 等级的要求。
 
-更多关于 slsa-github-generator 的详细说明请见https://github.com/slsa-framework/slsa-github-generator。
+更多关于 slsa-github-generator 的详细说明请见https://github.com/slsa-framework/slsa-github-generator
 
 ### 关于 Provenance
 
