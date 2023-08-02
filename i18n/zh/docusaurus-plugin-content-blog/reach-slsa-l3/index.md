@@ -34,7 +34,7 @@ Google 提出的用于保证整个软件供应链完整性的框架 SLSA，是�
 
 截止目前，SLSA 标准处于 alpha 阶段，相关的定义可能会发生变化。
 
-下图描述了软件供应链中已知的攻击点。更多详细描述，可参考https://slsa.dev/。
+下图描述了软件供应链中已知的攻击点。更多详细描述，可参考https://slsa.dev/
 
 ![slsa-dev](./images/slsa-dev.png)
 
@@ -121,7 +121,7 @@ e) **第三方依赖的完整性：**Provenance 记录运行构建步骤时可�
 
 在 KubeEdge 版本发布的流程（.github/workflows/release.yml）中，集成了 slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml 和 slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml，可保障构建和发布产物（包括二进制文件和容器镜像）的流程满足 SLSA L3 等级的要求。
 
-更多关于 slsa-github-generator 的详细说明请见https://github.com/slsa-framework/slsa-github-generator。
+更多关于 slsa-github-generator 的详细说明请见https://github.com/slsa-framework/slsa-github-generator
 
 ### 关于 Provenance
 
@@ -129,7 +129,7 @@ Provenance 是构建的元数据包括构建过程、构建源和依赖关系，
 
 ### 如何校验 KubeEdge 发布产物是否满足 SLSA L3 等级
 
-详细步骤描述请见https://github.com/kubeedge/kubeedge/pull/4285。
+详细步骤描述请见https://github.com/kubeedge/kubeedge/pull/4285
 
 校验示例如下：
 
