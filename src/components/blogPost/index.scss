@@ -6,6 +6,7 @@
           .left {
             flex: 0 0 100%;
             max-width: 100%;
+            
           }
         }
       }
@@ -28,7 +29,7 @@
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;
-    margin-left: -15px;
+    margin-left: 15px;
 
     .left {
       flex: 0 0 33.333333%;
