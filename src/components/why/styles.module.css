@@ -19,3 +19,15 @@
   font-size: 0.9rem;
   white-space: pre-wrap;
 }
+@media (max-width: 767px) {
+  .reasonContent {
+    font-size: 0.85rem;
+    margin-top: 0.5rem; 
+  }
+}
+
+@media (max-width: 767px) {
+  .reasonBox {
+    flex-basis: 100%;
+  }
+}
