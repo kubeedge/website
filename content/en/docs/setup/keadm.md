@@ -43,7 +43,7 @@ By default ports `10000` and `10002` in your cloudcore needs to be accessible fo
 
     Example:
     ```shell
-    # keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release)
+    # keadm init --advertise-address="THE-EXPOSED-IP"
     ```
 
     Output:
