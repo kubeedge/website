@@ -49,7 +49,7 @@ const supportList = [
   {
     name: "EMQ",
     img_src: "img/supporters/emq.svg",
-    external_link: "https://www.huaweicloud.com/en-us/product/ief.html",
+    external_link: "https://www.emqx.com/en",
   },
 
   {
@@ -94,7 +94,10 @@ const supportList = [
     external_link: "https://kubesphere.io",
   },
 
-  { name: "Orange", img_src: "img/supporters/orange.png", external_link: "" },
+  { name: "Orange", 
+  img_src: "img/supporters/orange.png", 
+  external_link: "https://www.orange.com/en",
+  },
   {
     name: "Raisecom Technology",
     img_src: "img/supporters/raisecom-technology.png",
