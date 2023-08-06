@@ -1,29 +1,31 @@
 ---
 authors:
-- Sanil Kumar
-- Jun Du
+  - Sanil Kumar
+  - Jun Du
 categories:
-- General
-- Announcements
+  - General
+  - Announcements
 date: 2019-03-19
 draft: false
 lastmod: 2019-03-19
 subtitle: KubeEdge was accepted into the CNCF sandbox in March 2019
-summary: KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge was accepted
+summary:
+  KubeEdge is a Kubernetes Native Edge Computing Framework. KubeEdge was accepted
   into the CNCF sandbox in March 2019
 tags:
-- KubeEdge
-- kubeedge
-- edge computing
-- kubernetes edge computing
-- K8S edge orchestration
-- edge computing platform
-- cncf sandbox
-- cloud native
+  - KubeEdge
+  - kubeedge
+  - edge computing
+  - kubernetes edge computing
+  - K8S edge orchestration
+  - edge computing platform
+  - cncf sandbox
+  - cloud native
 title: 'From the K8S blog: KubeEdge - a Kubernetes Native Edge Computing Framework'
 ---
-The **KubeEdge** team presented their case for sandboxing at the CNCF TOC meeting on 12th March 2019.  
-  
+
+The **KubeEdge** team presented their case for sandboxing at the CNCF TOC meeting on 12th March 2019.
+
 <!--truncate-->
 
 ## **Today we announce the acceptance of KubeEdge under the CNCF sandbox.**
@@ -36,23 +38,24 @@ Original Article: [Source](https://kubernetes.io/blog/2019/03/19/kubeedge-k8s-ba
 
 :::info
 
-CNCF Sandbox page:  [CNCF Sandbox Projects](https://www.cncf.io/sandbox-projects/)
+CNCF Sandbox page: [CNCF Sandbox Projects](https://www.cncf.io/sandbox-projects/)
 
 :::
 
 :::info
 
-[KubeEdge Repository](https://github.com/kubeedge/kubeedge)  | [KubeEdge Documentation](https://docs.kubeedge.io) | [Setup KubeEdge](https://docs.kubeedge.io/en/latest/setup/setup.html)
+[KubeEdge Repository](https://github.com/kubeedge/kubeedge) | [KubeEdge Documentation](https://kubeedge.io/docs) | [Setup KubeEdge](https://kubeedge.io/docs/category/setup)
 
-::: 
+:::
 
-## **KubeEdge becomes the first Kubernetes Native Edge Computing Platform with both Edge and Cloud components open sourced!**  
+## **KubeEdge becomes the first Kubernetes Native Edge Computing Platform with both Edge and Cloud components open sourced!**
 
 Open source edge computing is going through its most dynamic phase of development in the industry. So many open source platforms, so many consolidations and so many initiatives for standardization! This shows the strong drive to build better platforms to bring cloud computing to the edges to meet ever increasing demand. KubeEdge, which was announced last year, now brings great news for cloud native computing! It provides a complete edge computing solution based on Kubernetes with separate cloud and edge core modules. Currently, both the cloud and edge modules are open sourced.
 
 Unlike certain light weight kubernetes platforms available around, KubeEdge is made to build edge computing solutions extending the cloud. The control plane resides in cloud, though scalable and extendable. At the same time, the edge can work in offline mode. Also it is lightweight and containerized, and can support heterogeneous hardware at the edge. With the optimization in edge resource utlization, KubeEdge positions to save significant setup and operation cost for edge solutions. This makes it the most compelling edge computing platform in the world currently, based on Kubernetes!
 
 ### **_Kube(rnetes)Edge_!** - Opening up a new Kubernetes-based ecosystem for Edge Computing
+
 The key goal for KubeEdge is extending Kubernetes ecosystem from cloud to edge. From the time it was announced to the public at KubeCon in Shanghai in November 2018, the architecture direction for KubeEdge was aligned to Kubernetes, as its name!
 
 It started with its v0.1 providing the basic edge computing features. Now, with its latest release v0.2, it brings the cloud components to connect and complete the loop. With consistent and scalable Kubernetes-based interfaces, KubeEdge enables the orchestration and management of edge clusters similar to how Kubernetes manages in the cloud. This opens up seamless possibilities of bringing cloud computing capabilities to the edge, quickly and efficiently.
@@ -60,7 +63,6 @@ It started with its v0.1 providing the basic edge computing features. Now, with 
 Based on its roadmap and architecture, KubeEdge tries to support all edge nodes, applications, devices and even the cluster management consistent with the Kuberenetes interface. This will help the edge cloud act exactly like a cloud cluster. This can save a lot of time and cost on the edge cloud development deployment based on KubeEdge.
 
 KubeEdge provides a containerized edge computing platform, which is inherently scalable. As it’s modular and optimized, it is lightweight (66MB foot print and ~30MB running memory) and could be deployed on low resource devices. Similarly, the edge node can be of different hardware architecture and with different hardware configurations. For the device connectivity, it can support multiple protocols and it uses a standard MQTT-based communication. This helps in scaling the edge clusters with new nodes and devices efficiently.
-
 
 ## **You heard it right!**
 
@@ -91,16 +93,14 @@ Even if you want to add more control plane modules based on the architecture ref
 
 - KubeEdge provides scalable lightweight Kubernetes Native Edge Computing Platform which can work in offline mode.
 
-
 - It helps simplify edge application development and deployment.
-
 
 - Cloud vendor agnostic and can run the cloud core modules on any compute node.
 
 :::
 
-
 ## **Release 0.1 to 0.2 – game changer!**
+
 KubeEdge v0.1 was released at the end of December 2018 with very basic edge features to manage edge applications along with Kubernetes API primitives for node, pod, config etc. In ~2 months, KubeEdge v0.2 was release on March 5th, 2019. This release provides the cloud core modules and enables the end to end open source edge computing solution. The cloud core modules can be deployed to any compute node from any cloud vendors or on-prem.
 
 Now, the complete edge solution can be installed and tested very easily, also with a laptop.
@@ -117,6 +117,7 @@ The installation is simple and can be done in few steps:
 - The detailed steps for each are available at [KubeEdge Setup](https://docs.kubeedge.io/en/latest/setup/setup.html)
 
 ## **Future: Taking off with competent features and community collaboration**
+
 KubeEdge has been developed by members from the community who are active contributors to Kubernetes/CNCF and doing research in edge computing. The KubeEdge team is also actively collaborating with Kubernetes IOT/EDGE WORKING GROUP. Within a few months of the KubeEdge announcement it has attracted members from different organizations including JingDong, Zhejiang University, SEL Lab, Eclipse, China Mobile, ARM, Intel to collaborate in building the platform and ecosystem.
 
 KubeEdge has a clear [roadmap](https://docs.kubeedge.io/en/latest/getting-started/roadmap.html) for its upcoming major releases in 2019. v1.0 targets to provide a complete edge cluster and device management solution with standard edge to edge communication, while v2.0 targets to have advanced features like service mesh, function service , data analytics etc at edge. Also, for all the features, KubeEdge architecture would attempt to utilize the existing CNCF projects/software.
@@ -124,6 +125,7 @@ KubeEdge has a clear [roadmap](https://docs.kubeedge.io/en/latest/getting-starte
 The KubeEdge community needs varied organizations, their requirements, use cases and support to build it. Please join to make a kubernetes native edge computing platform which can extend the cloud native computing paradigm to edge cloud.
 
 ## **How to Get Involved?**
+
 We welcome more collaboration to build the Kubernetes native edge computing ecosystem. Please join us!
 
 :::info
