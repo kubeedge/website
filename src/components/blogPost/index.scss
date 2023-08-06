@@ -20,6 +20,20 @@
         }
       }
     }
+    @media (max-width: 579px) {
+      .sectionContainerInner {
+        .row {
+          justify-content: center;
+          margin-left: -30px;
+          margin-right: -30px;
+          .left {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
   }
 
   .row {
