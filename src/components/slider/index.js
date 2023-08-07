@@ -28,7 +28,7 @@ const sliderItems = [
     ),
     backgroundImage: "img/headers/header-edge-2.jpg",
     opacity: 0.5,
-    align: "right",
+    align: "center",
   },
   {
     title: <Translate>Simplified development</Translate>,
@@ -40,7 +40,7 @@ const sliderItems = [
     ),
     backgroundImage: "img/headers/header-code.jpg",
     opacity: 0.75,
-    align: "right",
+    align: "center",
   },
   {
     title: <Translate>Kubernetes-Native</Translate>,
@@ -66,7 +66,7 @@ const sliderItems = [
     ),
     backgroundImage: "img/headers/header-apps-2.jpg",
     opacity: 0.75,
-    align: "left",
+    align: "center",
   },
 ];
 
