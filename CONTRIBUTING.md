@@ -14,9 +14,9 @@ get going:
     * Click **Fork** to make your own copy of the repo. GitHub creates a copy
       at `https://github.com/<your-github-username>/website`.
 
-1. Open a command window on your local machine.
+2. Open a command window on your local machine.
 
-1. Clone your forked repo, to copy the files down to your local machine.
+3. Clone your forked repo, to copy the files down to your local machine.
   This example creates a directory called `kubeedge` and uses SSH cloning to
   download the files:
 
@@ -27,14 +27,14 @@ get going:
     cd kubeedge-website/
     ```
 
-1. Add the upstream repo as a git remote repo:
+4. Add the upstream repo as a git remote repo:
 
     ```
     git remote add upstream https://github.com/kubeedge/website.git
     git remote set-url --push upstream no_push
     ```
 
-1. Check your remotes:
+5. Check your remotes:
 
     ```
     git remote -v
@@ -46,7 +46,7 @@ get going:
          that is, the one you cloned my local repo from.
       -  `upstream` - points to the actual repo on gitHub.
 
-1. Create a branch. In this example, replace `doc-updates` with any branch name
+6. Create a branch. In this example, replace `doc-updates` with any branch name
   you like. Choose a branch name that helps you recognise the updates you plan
   to make in that branch:
 
@@ -54,7 +54,7 @@ get going:
     git checkout -b doc-updates
     ```
 
-1. Ensure you are in your target branch.
+7. Ensure you are in your target branch.
 
     ```
     git branch
@@ -62,13 +62,13 @@ get going:
 
     The branch mark with `*` is your branch now.
 
-1. Add and edit the files as you like. The doc pages are in the
+8. Add and edit the files as you like. The doc pages are in the
   `/kubeedge-website/content/docs/` directory.
 
-1. Run `git status` at any time, to check the status of your local files.
+9. Run `git status` at any time, to check the status of your local files.
   Git tells you which files need adding or committing to your local repo.
 
-1. Commit your updated files to your local git repo(`-s` flag add the sign-off to the commit message). Example commit:
+10. Commit your updated files to your local git repo(`-s` flag add the sign-off to the commit message). Example commit:
 
     ```
     git commit -a -s -m "Fixed some doc errors."
@@ -81,7 +81,7 @@ get going:
     git commit -s -m "Added a shiny new doc."
     ```
 
-1. Push from your branch (for example, `doc-updates`) to **the relevant branch
+11. Push from your branch (for example, `doc-updates`) to **the relevant branch
   on your fork on GitHub:**
 
     ```
@@ -89,21 +89,19 @@ get going:
     git push origin doc-updates
     ```
 
-1. When you're ready to start the review process, create a pull request (PR)
+12. When you're ready to start the review process, create a pull request (PR)
   **in the branch** on **your fork** on the GitHub UI, based on the above push.
   The PR is auto-sent to the upstream repo - that is, the one you forked from.
 
-1. If you need to make changes to the files in your PR, continue making them
+13. If you need to make changes to the files in your PR, continue making them
   locally in the same branch, then push them again in the same way. GitHub
   automatically sends them through to the same PR on the upstream repo!
 
-1. **Hint:** If you're authenticating to GitHub via SSH, use `ssh-add` to add
+14. **Hint:** If you're authenticating to GitHub via SSH, use `ssh-add` to add
   your SSH key passphrase to the managing agent, so that you don't have to
   keep authenticating to GitHub. You need to do this again after every reboot.
 
 Please remember read and observe the [Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). and
-the [Contributor Guide](docs.kubeedge.io/en/latest/contributing/contribute.html) on website
-
-provides more detailed instructions on how to get your ideas and bug fixes seen and accepted.
+the [Contributor Guide](docs.kubeedge.io/en/latest/contributing/contribute.html) on website provides more detailed instructions on how to get your ideas and bug fixes seen and accepted.
 
 [kubeEdge-website-repo]: https://github.com/kubeedge/website
