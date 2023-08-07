@@ -168,6 +168,12 @@ const supportList = [
     name: "njhyst",
     img_src: "img/supporters/njhyst.png",
     external_link: "http://njhyst.com/",
+  },
+
+  {
+    name: "orientsky",
+    img_src: "img/supporters/orientsky.jpg",
+    external_link: "http://www.orientsky.com.cn/",
   }
 ];
 
