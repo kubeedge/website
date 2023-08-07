@@ -43,7 +43,7 @@ Then you can do setup without any network issue, `keadm` would detect them and n
 4. Check the architecture of the node running `edgecore` and make sure that container image you are trying to run is of the same architecture.
    For example, if you are running `edgecore` on Raspberry Pi 4, which is of `arm64v8` architecture, the nginx image to be executed would be `arm64v8/nginx` from the docker hub.
 
-5. Also, check that the `podSandboxImage` is correctly set as defined in [Modification in edgecore.yaml](../setup/config#modification-in-edgecore-yaml).
+5. Also, check that the `podSandboxImage` is correctly set as defined in [Modification in edgecore.yaml](../setup/config#modification-in-edgecoreyaml).
 
 6. If all of the above is correctly set, login manually to your edge node and run your docker image manually by
 
@@ -67,4 +67,4 @@ Connect to the edge node and then either
 - use the log file located in `/var/log/pods` or
 - use commands like `docker logs <container id>`
 
-You can also enable `kubectl logs` feature refer to this [guide](../setup/keadm/#enable-kubectl-logs-feature).
+You can also enable `kubectl logs` feature refer to this [guide](../advanced/debug.md).

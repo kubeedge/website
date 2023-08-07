@@ -1,6 +1,6 @@
 ---
 title: 配置CloudCore和EdgeCore
-sidebar_position: 3
+sidebar_position: 7
 ---
 KubeEdge要求在 [云端(KubeEdge Master)](#配置云端（KubeEdge-Master节点）) 和 [边缘端(KubeEdge Worker Node)](#配置边缘端（KubeEdge工作节点）) 都进行对应的配置
 
@@ -203,7 +203,7 @@ kubectl apply -f ~/kubeedge/yaml/node.json
     runtimeType: remote
     ```
 
-5. 如果您的运行类型是remote，请遵循[KubeEdge CRI配置](../advanced/cri)指南来设置基于 remote/CRI 的运行时的KubeEdge。
+5. 如果您的运行类型是remote，请遵循[KubeEdge CRI配置](../setup/prerequisites/runtime.md)指南来设置基于 remote/CRI 的运行时的KubeEdge。
 
     **注意：** 如果您的KubeEdge版本低于v1.3，则跳过步骤6-7。
 

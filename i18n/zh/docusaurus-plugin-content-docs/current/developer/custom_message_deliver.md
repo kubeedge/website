@@ -1,5 +1,5 @@
 ---
-title: Router Manager
+title: 路由管理
 sidebar_position: 3
 ---
 KubeEdge supports routing management with the help of Kubernetes [CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) and a router module.

@@ -1,6 +1,6 @@
 ---
 title: 升级KubeEdge
-sidebar_position: 5
+sidebar_position: 8
 ---
 
 请参考以下指南升级您的 KubeEdge 集群。
@@ -58,4 +58,4 @@ $ mv /tmp/kubeedge_backup/edgecore.db /var/lib/kubeedge/
 
 ## 部署
 
-阅读[部署文档](./keadm) 。
+阅读[部署文档](./install-with-keadm) 。

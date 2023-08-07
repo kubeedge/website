@@ -1,6 +1,6 @@
 ---
 title: Upgrading KubeEdge
-sidebar_position: 5
+sidebar_position: 8
 ---
 Please refer to following guide to upgrade your KubeEdge cluster.
 
@@ -58,4 +58,4 @@ $ mv /tmp/kubeedge_backup/edgecore.db /var/lib/kubeedge/
 
 ## Deploy
 
-Read the [setup](./keadm) for deployment.
+Read the [setup](./install-with-keadm) for deployment.

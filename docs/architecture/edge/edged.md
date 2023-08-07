@@ -6,7 +6,7 @@ sidebar_position: 1
 
 EdgeD is an edge node module which manages pod lifecycle. It helps users to deploy containerized workloads or applications at the edge node. Those workloads could perform any operation from simple telemetry data manipulation to analytics or ML inference and so on. Using `kubectl` command line interface at the cloud side, users can issue commands to launch the workloads.
 
-Several OCI-compliant runtimes are supported through the Container Runtime Interface (CRI). See [KubeEdge runtime configuration](../../advanced/cri) for more information on how to configure edged to make use of other runtimes.
+Several OCI-compliant runtimes are supported through the Container Runtime Interface (CRI). See [KubeEdge runtime configuration](../../setup/prerequisites/runtime.md) for more information on how to configure edged to make use of other runtimes.
 
 There are many modules which work in tandem to achieve edged's functionalities.
 
@@ -47,7 +47,7 @@ This module helps in monitoring pod status for edged. Every second, using probes
 
 ## CRI for edged
 
-Container Runtime Interface (CRI) – a plugin interface which enables edged to use a wide variety of container runtimes like Docker, containerd, CRI-O, etc., without the need to recompile. For more on how to configure KubeEdge for container runtimes, see [KubeEdge runtime configuration](../../advanced/cri).
+Container Runtime Interface (CRI) – a plugin interface which enables edged to use a wide variety of container runtimes like Docker, containerd, CRI-O, etc., without the need to recompile. For more on how to configure KubeEdge for container runtimes, see [KubeEdge runtime configuration](../../setup/prerequisites/runtime.md).
 
 #### Why CRI for edged?
 CRI support for multiple container runtimes in edged is needed in order to:
