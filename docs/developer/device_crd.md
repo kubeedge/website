@@ -208,7 +208,7 @@ Note: The creation of a device instance will also lead to the creation of a conf
 2. Edit the status section of the device instance yaml created in step 3. and apply the yaml to change the state of device twin. This change will be reflected at the edge, through the device controller
  and device twin modules. Based on the updated value of device twin at the edge the mapper will be able to perform its operation on the device.
 
-4. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update on the cloud by checking their device instance object.
+3. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update on the cloud by checking their device instance object.
 
 Note: Sample device models and device instances for a few protocols can be found at 
 ```shell 
