@@ -68,7 +68,7 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 1. 自定义 `--set key=value`
    值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
 2. 您可以从 Keadm 的一个内置配置概要文件开始，然后根据您的特定需求进一步定制配置。目前，内置的配置概要文件关键字是 `version`
-   。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/profiles/version.yaml)
+   。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml)
    ，您可以在这里创建您的自定义配置文件, 使用 `--profile version=v1.9.0 --set key=value` 来使用它。
 
 此外，还可使用 `--external-helm-root` 安装外部的 helm chart 组件，如 edgemesh 。
@@ -79,7 +79,7 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 # keadm beta init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
 ```
 
-如果您对 Helm Chart 比较熟悉，可以直接参考 [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/build/helm/charts)
+如果您对 Helm Chart 比较熟悉，可以直接参考 [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/keadm/cmd/keadm/app/cmd/helm)
 进行安装。
 
 ### keadm beta manifest generate
@@ -214,7 +214,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
    iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
    ```
 
-   > 现在可以通过 iptablesmanager 这个组件自动运维以上的 iptables 转发规则，参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/values.yaml#L66).
+   > 现在可以通过 iptablesmanager 这个组件自动运维以上的 iptables 转发规则，参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md#custom-values).
 
 5. `/etc/kubeedge/config/cloudcore.yaml` 和 `/etc/kubeedge/config/edgecore.yaml` 上 cloudcore 和 edgecore **都要** 修改。将 **cloudStream** 和 **edgeStream** 设置为 `enable: true` 。将服务器 IP 更改为 cloudcore IP（与 $ CLOUDCOREIPS 相同）。
 
@@ -368,7 +368,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
    docker tag a24f71249d69 metrics-server-kubeedge:latest
    ```
 
-3. 部署 yaml 应用。可以参考相关部署文档：https://github.com/kubernetes-sigs/metrics-server/tree/master/manifests。
+3. 部署 yaml 应用。可以参考相关部署文档：https://github.com/kubernetes-sigs/metrics-server/tree/master/manifests
 
    注意：下面的那些 iptables 必须应用在机器上（精确地是网络名称空间，因此 metrics-server 也需要在主机网络模式下运行）metric-server 在其上运行。
 
