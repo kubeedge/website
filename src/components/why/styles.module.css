@@ -1,3 +1,4 @@
+/* Default styles */
 .whyContainer {
   display: flex;
   flex-direction: column;
@@ -18,4 +19,17 @@
 .reasonContent {
   font-size: 0.9rem;
   white-space: pre-wrap;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .reasonBox {
+    flex-basis: 50%; /* Show two reasons per row on screens up to 768px */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reasonBox {
+    flex-basis: 100%; /* Show one reason per row on screens up to 480px */
+  }
 }
