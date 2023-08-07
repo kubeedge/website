@@ -20,16 +20,16 @@ GitHub workflow and you're happy to use the automated preview of your doc
 updates:
 
 1. Fork the [KubeEdge/website repo][kubeEdge-website-repo] on GitHub.
-1. Make your changes and send a pull request (PR).
-1. If you're not yet ready for a review, add a comment to the PR saying it's a
+2. Make your changes and send a pull request (PR).
+3. If you're not yet ready for a review, add a comment to the PR saying it's a
    work in progress or add `[WIP]` in your PRs title. You can also add `/hold` in a comment to mark the PR as not
    ready for merge. 
-1. Wait for the automated PR workflow to do some checks. When it's ready,
+4. Wait for the automated PR workflow to do some checks. When it's ready,
    you should see a comment like this: **deploy/netlify — Deploy preview ready!**
-1. Click **Details** to the right of "Deploy preview ready" to see a preview
+5. Click **Details** to the right of "Deploy preview ready" to see a preview
    of your updates.
-1. Continue updating your doc until you're happy with it.
-1. When you're ready for a review, add a comment to the PR and assign a
+6. Continue updating your doc until you're happy with it.
+7. When you're ready for a review, add a comment to the PR and assign a
    reviewer/approver. See the
    [Kubeedge contributor guide][kubeedge-contributor-guide].
 

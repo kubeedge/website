@@ -1,5 +1,5 @@
 ---
-title: Common Component
+title: KubeEdge通用组件
 sidebar_position: 1
 ---
 

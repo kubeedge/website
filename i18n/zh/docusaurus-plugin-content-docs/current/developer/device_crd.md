@@ -203,12 +203,12 @@ The following are the steps to
 Note: The creation of a device instance will also lead to the creation of a config map which will contain information about the devices which are required by the mapper applications
     The name of the config map will be as follows: device-profile-config-< edge node name >. The updates of the config map are handled internally by the device controller.
 
-1. Run the mapper application corresponding to your protocol.
+3. Run the mapper application corresponding to your protocol.
 
-2. Edit the status section of the device instance yaml created in step 2 and apply the yaml to change the state of device twin. This change will be reflected at the edge, through the device controller
+4. Edit the status section of the device instance yaml created in step 2 and apply the yaml to change the state of device twin. This change will be reflected at the edge, through the device controller
  and device twin modules. Based on the updated value of device twin at the edge the mapper will be able to perform its operation on the device.
 
-1. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update on the cloud by checking their device instance object.
+5. The reported values of the device twin are updated by the mapper application at the edge and this data is synced back to the cloud by the device controller. Users can view the update on the cloud by checking their device instance object.
 
 Note: Sample device models and device instances for a few protocols can be found at 
 ```shell 
