@@ -303,20 +303,20 @@
   "Seamless Cloud-Edge Coordination": {
     "message": "Seamless Cloud-Edge Coordination"
   },
-  "Bidirectional communication, able to talk to edge nodes located in private subnet.\\nSupport both metadata and data": {
-    "message": "Bidirectional communication, able to talk to edge nodes located in private subnet.\\nSupport both metadata and data"
+  "Bidirectional communication, able to talk to edge nodes located in private subnet. <br /> Support both metadata and data": {
+    "message": "Bidirectional communication, able to talk to edge nodes located in private subnet. <br /> Support both metadata and data"
   },
   "Edge Autonomy": {
     "message": "Edge Autonomy"
   },
-  "Metadata persistent per node, no list-watch needed during node recovery, get ready faster.\\nAutonomous operation of edge even during disconnection from cloud.": {
-    "message": "Metadata persistent per node, no list-watch needed during node recovery, get ready faster.\\nAutonomous operation of edge even during disconnection from cloud."
+  "Metadata persistent per node, no list-watch needed during node recovery, get ready faster. <br /> Autonomous operation of edge even during disconnection from cloud.": {
+    "message": "Metadata persistent per node, no list-watch needed during node recovery, get ready faster. <br /> Autonomous operation of edge even during disconnection from cloud."
   },
   "Low Resource Ready": {
     "message": "Low Resource Ready"
   },
-  "Optimized usage of resource at the edge.\\nMemory footprint down to ~70MB.": {
-    "message": "Optimized usage of resource at the edge.\\nMemory footprint down to ~70MB."
+  "Optimized usage of resource at the edge.<br /> Memory footprint down to ~70MB.": {
+    "message": "Optimized usage of resource at the edge.<br /> Memory footprint down to ~70MB."
   },
   "Simplified Device Communication": {
     "message": "Simplified Device Communication"

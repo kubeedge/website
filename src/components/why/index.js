@@ -16,29 +16,46 @@ const reasons = [
   {
     title: <Translate>Seamless Cloud-Edge Coordination</Translate>,
     content: (
-      <Translate>
-        Bidirectional communication, able to talk to edge nodes located in
-        private subnet.\nSupport both metadata and data
-      </Translate>
+     <>
+        <Translate>
+          Bidirectional communication, able to talk to edge nodes located in
+          private subnet.
+        </Translate>
+        <br />
+        <Translate>
+
+          Support both metadata and data
+        </Translate>
+     </>
     ),
   },
   {
     title: <Translate>Edge Autonomy</Translate>,
     content: (
-      <Translate>
-        Metadata persistent per node, no list-watch needed during node recovery,
-        get ready faster.\nAutonomous operation of edge even during
-        disconnection from cloud.
-      </Translate>
+        <>
+          <Translate>
+            Metadata persistent per node, no list-watch needed during node recovery,
+            get ready faster.
+          </Translate>
+          <br />
+          <Translate>
+            Autonomous operation of edge even during disconnection from cloud.
+          </Translate>
+        </>
     ),
   },
   {
     title: <Translate>Low Resource Ready</Translate>,
     content: (
-      <Translate>
-        Optimized usage of resource at the edge.\nMemory footprint down to
-        ~70MB.
-      </Translate>
+      <>
+        <Translate>
+          Optimized usage of resource at the edge.
+        </Translate>
+        <br />
+        <Translate>
+          Memory footprint down to ~70MB.
+        </Translate>
+      </>
     ),
   },
   {
