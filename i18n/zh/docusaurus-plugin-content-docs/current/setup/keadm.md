@@ -301,7 +301,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
                  operator: DoesNotExist
    ```
 
-   1. 如果您仍然要运行 `kube-proxy` ，请通过在以下位置添加 `edgecore.service` 中的 env 变量来要求 **edgecore** 不进行检查 edgecore.service：
+   2. 如果您仍然要运行 `kube-proxy` ，请通过在以下位置添加 `edgecore.service` 中的 env 变量来要求 **edgecore** 不进行检查 edgecore.service：
 
       ```shell
       sudo vi /etc/kubeedge/edgecore.service

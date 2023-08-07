@@ -12,12 +12,12 @@
 下面是更新文档的快速指南。假定您熟悉 GitHub 工作流程，您会很乐意使用文档的自动预览更新功能：
 
 1. 在 GitHub 上 Fork 仓库 [KubeEdge/website repo][kubeEdge-website-repo]。
-1. 改进现有内容然后发送 pull request（PR）。
-1. 如果您还没有准备好进行审查（review）, 请在 PR 中添加评论，表明它正在进行中，或者在 PR 中添加标题 `[WIP]` 。您同样还可以添加`/hold` 注释来将 PR 标记为未准备好合并的状态。
-1. 等待自动化的 PR 工作流进行一些检查工作。检查工作全部通过后，您应该会看到以下类似注释：**deploy/netlify — Deploy preview ready!** （部署预览已准备就绪！）
-1. 找到 "Deploy preview ready" 右侧的 **Details** 按钮，点击查看本次更新的预览展示。
-1. 继续更新您的文档，直到您改到满意为止。
-1. 当您准备好进行审核（review）时，请在 PR 中添加评论，并指定审核人/批准人。请参阅
+2. 改进现有内容然后发送 pull request（PR）。
+3. 如果您还没有准备好进行审查（review）, 请在 PR 中添加评论，表明它正在进行中，或者在 PR 中添加标题 `[WIP]` 。您同样还可以添加`/hold` 注释来将 PR 标记为未准备好合并的状态。
+4. 等待自动化的 PR 工作流进行一些检查工作。检查工作全部通过后，您应该会看到以下类似注释：**deploy/netlify — Deploy preview ready!** （部署预览已准备就绪！）
+5. 找到 "Deploy preview ready" 右侧的 **Details** 按钮，点击查看本次更新的预览展示。
+6. 继续更新您的文档，直到您改到满意为止。
+7. 当您准备好进行审核（review）时，请在 PR 中添加评论，并指定审核人/批准人。请参阅
    [Kubeedge 贡献者指南][kubeedge-contributor-guide]。
 
 ## 在本地网站服务器上预览您的更改
