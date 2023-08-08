@@ -1,5 +1,5 @@
 ---
-title: Integrate third party storage with CSI
+title: 使用CSI集成第三方存储
 sidebar_position: 2
 ---
 Consider use case at edge side, we only support following volume types, all of those are same as Kubernetes:

@@ -1,6 +1,6 @@
 ---
-title: CloudCore & EdgeCore Config
-sidebar_position: 3
+title: CloudCore && EdgeCore Config
+sidebar_position: 7
 ---
 KubeEdge requires configuration on both [Cloud side (KubeEdge Master)](#configuration-cloud-side-kubeedge-master) and [Edge side (KubeEdge Worker Node)](#configuration-edge-side-kubeedge-worker-node)
 
@@ -201,7 +201,7 @@ Verify the configurations before running `edgecore`
     runtimeType: remote
     ```
 
-5. If your runtime-type is remote, follow this guide [KubeEdge CRI Configuration](../advanced/cri) to setup KubeEdge with the remote/CRI based runtimes.
+5. If your runtime-type is remote, follow this guide [KubeEdge CRI Configuration](../setup/prerequisites/runtime.md) to setup KubeEdge with the remote/CRI based runtimes.
 
 
 

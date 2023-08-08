@@ -1,5 +1,5 @@
 ---
-title: Collect metrics from edge 
+title: 获取边缘监控
 sidebar_position: 4
 ---
 

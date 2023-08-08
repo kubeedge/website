@@ -1,6 +1,6 @@
 ---
 title: Router Manager
-sidebar_position: 3
+sidebar_position: 5
 ---
 KubeEdge supports routing management with the help of Kubernetes [CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) and a router module.
 Users can deliver their custom messages between cloud and edge by mqtt broker.

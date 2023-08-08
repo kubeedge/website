@@ -3,44 +3,72 @@
     "message": "Next",
     "description": "The label for version current"
   },
+  "sidebar.documentationSideBar.category.Welcome": {
+    "message": "入门指南",
+    "description": "The label for category Welcome in sidebar documentationSideBar"
+  },
   "sidebar.documentationSideBar.category.Setup": {
-    "message": "开始使用KubeEdge",
+    "message": "安装",
     "description": "The label for category Setup in sidebar documentationSideBar"
   },
-  "sidebar.documentationSideBar.category.Advanced Configuration": {
-    "message": "KubeEdge高级配置",
-    "description": "The label for category Advanced Configuration in sidebar documentationSideBar"
+  "sidebar.documentationSideBar.category.Prerequisites": {
+    "message": "前置条件",
+    "description": "The label for category Prerequisites in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Install Tools": {
+    "message": "安装工具",
+    "description": "The label for category Install Tools in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Core Concept": {
+    "message": "核心概念",
+    "description": "The label for category Core Concept in sidebar documentationSideBar"
   },
   "sidebar.documentationSideBar.category.Architecture": {
     "message": "KubeEdge架构",
     "description": "The label for category Architecture in sidebar documentationSideBar"
   },
   "sidebar.documentationSideBar.category.Cloud Components": {
-    "message": "KubeEdge云组件",
+    "message": "云上组件",
     "description": "The label for category Cloud Components in sidebar documentationSideBar"
   },
   "sidebar.documentationSideBar.category.Edge Components": {
-    "message": "KubeEdge边缘组件",
+    "message": "边缘组件",
     "description": "The label for category Edge Components in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Edge AI": {
+    "message": "边缘AI",
+    "description": "The label for category Edge AI in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Advanced Configuration": {
+    "message": "高级配置",
+    "description": "The label for category Advanced Configuration in sidebar documentationSideBar"
   },
   "sidebar.documentationSideBar.category.Developer Guide": {
     "message": "开发者指南",
     "description": "The label for category Developer Guide in sidebar documentationSideBar"
-  },
-  "sidebar.documentationSideBar.category.Mappers": {
-    "message": "Mappers",
-    "description": "The label for category Mappers in sidebar documentationSideBar"
   },
   "sidebar.documentationSideBar.category.Tests": {
     "message": "测试指导",
     "description": "The label for category Tests in sidebar documentationSideBar"
   },
   "sidebar.documentationSideBar.category.Community": {
-    "message": "KubeEdge社区",
+    "message": "社区",
     "description": "The label for category Community in sidebar documentationSideBar"
   },
-  "sidebar.documentationSideBar.category.subproject": {
+  "sidebar.documentationSideBar.category.Subproject": {
     "message": "KubeEdge子项目",
-    "description": "The label for category subproject in sidebar documentationSideBar"
+    "description": "The label for category Subproject in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Frequently Asked Questions (FAQ)": {
+    "message": "常见问题",
+    "description": "The label for category Frequently Asked Questions (FAQ) in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Device IOT": {
+    "message": "Device IOT",
+    "description": "The label for category Device IOT in sidebar documentationSideBar"
+  },
+  "sidebar.documentationSideBar.category.Mappers": {
+    "message": "Mappers",
+    "description": "The label for category Mappers in sidebar documentationSideBar"
   }
 }

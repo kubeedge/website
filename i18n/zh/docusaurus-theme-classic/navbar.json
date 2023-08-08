@@ -23,20 +23,20 @@
     "message": "v1.12",
     "description": "Navbar item with label v1.12"
   },
-  "item.label.v1-11": {
-    "message": "v1-11",
-    "description": "Navbar item with label v1-11"
+  "item.label.v1.11": {
+    "message": "v1.11",
+    "description": "Navbar item with label v1.11"
   },
-  "item.label.v1-10": {
-    "message": "v1-10",
-    "description": "Navbar item with label v1-10"
+  "item.label.v1.10": {
+    "message": "v1.10",
+    "description": "Navbar item with label v1.10"
   },
-  "item.label.v1-9": {
-    "message": "v1-9",
-    "description": "Navbar item with label v1-9"
+  "item.label.v1.9": {
+    "message": "v1.9",
+    "description": "Navbar item with label v1.9"
   },
-  "item.label.v1-8": {
-    "message": "v1-8",
-    "description": "Navbar item with label v1-8"
+  "item.label.v1.8": {
+    "message": "v1.8",
+    "description": "Navbar item with label v1.8"
   }
 }

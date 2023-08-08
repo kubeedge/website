@@ -303,20 +303,11 @@
   "Seamless Cloud-Edge Coordination": {
     "message": "Seamless Cloud-Edge Coordination"
   },
-  "Bidirectional communication, able to talk to edge nodes located in private subnet. <br /> Support both metadata and data": {
-    "message": "Bidirectional communication, able to talk to edge nodes located in private subnet. <br /> Support both metadata and data"
-  },
   "Edge Autonomy": {
     "message": "Edge Autonomy"
   },
-  "Metadata persistent per node, no list-watch needed during node recovery, get ready faster. <br /> Autonomous operation of edge even during disconnection from cloud.": {
-    "message": "Metadata persistent per node, no list-watch needed during node recovery, get ready faster. <br /> Autonomous operation of edge even during disconnection from cloud."
-  },
   "Low Resource Ready": {
     "message": "Low Resource Ready"
-  },
-  "Optimized usage of resource at the edge.<br /> Memory footprint down to ~70MB.": {
-    "message": "Optimized usage of resource at the edge.<br /> Memory footprint down to ~70MB."
   },
   "Simplified Device Communication": {
     "message": "Simplified Device Communication"
@@ -368,5 +359,23 @@
   },
   "It is easy to get and deploy existing complicated machine learning, image recognition, event processing and other high level applications to the Edge.": {
     "message": "您可以轻松地将复杂的机器学习，图像识别，事件处理和其他高级应用程序部署到您的边缘。"
+  },
+  "Bidirectional communication, able to talk to edge nodes located in private subnet.": {
+    "message": "Bidirectional communication, able to talk to edge nodes located in private subnet."
+  },
+  "Support both metadata and data": {
+    "message": "Support both metadata and data"
+  },
+  "Metadata persistent per node, no list-watch needed during node recovery, get ready faster.": {
+    "message": "Metadata persistent per node, no list-watch needed during node recovery, get ready faster."
+  },
+  "Autonomous operation of edge even during disconnection from cloud.": {
+    "message": "Autonomous operation of edge even during disconnection from cloud."
+  },
+  "Optimized usage of resource at the edge.": {
+    "message": "Optimized usage of resource at the edge."
+  },
+  "Memory footprint down to ~70MB.": {
+    "message": "Memory footprint down to ~70MB."
   }
 }

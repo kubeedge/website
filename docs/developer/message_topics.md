@@ -1,6 +1,6 @@
 ---
 title: Message Topics
-sidebar_position: 5
+sidebar_position: 6
 ---
 KubeEdge uses MQTT for communication between deviceTwin and devices/apps.
 EventBus can be started in multiple MQTT modes and acts as an interface for sending/receiving messages on relevant MQTT topics.

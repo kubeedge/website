@@ -1,5 +1,5 @@
 ---
-title: Memory Footprint Test
+title: 边缘内存占用测试
 sidebar_position: 2
 ---
 ## Why measure memory footprint?
