@@ -15,7 +15,10 @@ The device controller leverage the device model and device instance to implement
  - **Device Instance**: A `device` instance represents an actual device object. It is like an instantiation of the `device model` and references properties defined in the model. The device spec is static while the device status contains dynamically changing like the desired state of a device property and the actual state reported by the device.
  Details on device instance definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-crd.md#device-instance-type-definition).
 
- **Note**: A sample of the device model and device instance for a few protocols can be found at $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
+:::note
+A sample of the device model and device instance for a few protocols can be found at $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
+:::
+
 
 ![Device Model](/img/device-crd/device-crd-model.png)
 

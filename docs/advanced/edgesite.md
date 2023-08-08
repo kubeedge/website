@@ -187,7 +187,10 @@ Genarate edgesite config by `edgesite --minconfig` and update:
     nohup ./edgesite --config /path/to/edgesite/config > edgesite.log 2>&1 &
   ```
 
-**Note:** Please run edgesite using the users who have root permission.
+:::note
+Please run edgesite using the users who have root permission.
+:::
+
 
 ### Deploy EdgeSite (Worker) Node to K8S Cluster
 
@@ -235,7 +238,9 @@ Run below steps:
   kubectl apply -f $GOPATH/src/github.com/kubeedge/kubeedge/build/deployment.yaml
   ```
 
-  **Note:** Currently, for edgesite node, we must use hostPort in the Pod container spec so that the pod comes up normally, or the pod will be always in ContainerCreating status. The hostPort must be equal to containerPort and can not be 0.
+:::note
+Currently, for edgesite node, we must use hostPort in the Pod container spec so that the pod comes up normally, or the pod will be always in ContainerCreating status. The hostPort must be equal to containerPort and can not be 0.
+::: 
 
   Then you can use below command to check if the application is normally running.
 

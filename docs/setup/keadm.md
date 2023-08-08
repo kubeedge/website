@@ -252,8 +252,10 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
 4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.)
     Run the following command on the host on which each apiserver runs:
 
-    **Note:** You need to get the configmap first, which contains all the cloudcore ips and tunnel ports.
-    
+    :::note
+    You need to get the configmap first, which contains all the cloudcore ips and tunnel ports.
+    :::
+
     ```bash
     kubectl get cm tunnelport -nkubeedge -oyaml
    
@@ -340,7 +342,10 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     ```
     If you fail to restart edgecore, check if that is because of `kube-proxy` and kill it.  **kubeedge** reject it by default, we use a succedaneum called [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md)
 
-    **Note:** the importance is to avoid `kube-proxy` being deployed on edgenode. There are two methods to solve it:
+    :::note
+    The importance is to avoid `kube-proxy` being deployed on edgenode. There are two methods to solve it.
+    :::
+
 
     1. Add the following settings by calling `kubectl edit daemonsets.apps -n kube-system kube-proxy`:
     ``` yaml
@@ -429,7 +434,11 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
 
 3. Apply the deployment yaml. For specific deployment documents, you can refer to https://github.com/kubernetes-sigs/metrics-server/tree/master/manifests.
 
-    **Note:** those iptables below must be applyed on the machine (to be exactly network namespace, so metrics-server needs to run in hostnetwork mode also) metric-server runs on.
+    :::note
+    Those iptables below must be applyed on the machine (to be exactly network namespace, so metrics-server needs to run in hostnetwork mode also) metric-server runs on.
+    :::
+
+
     ```
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```
