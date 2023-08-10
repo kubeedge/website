@@ -7,7 +7,6 @@ import "./index.scss";
 
 export default function JobCenter() {
   const { jobcenterGlobalData } = usePluginData("jobcenter-global-dataPlugin");
-  console.log(jobcenterGlobalData);
 
   return (
     <Layout>

@@ -1,6 +1,5 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const versionsArchived = require("./versionsArchived.json");
@@ -89,15 +88,16 @@ const config = {
           { to: "/blog", label: "Blog", position: "left" },
           { to: "/case-studies", label: "Case Studies", position: "left" },
           {
-            type: 'dropdown',
-            label: 'Community',
-            position: 'left',
+            type: "dropdown",
+            label: "Community",
+            position: "left",
             items: [
               {
-                label: 'Job Center',
+                label: "Job Center",
                 to: "/job-center",
               },
             ],
+            hide: process.env.DOCUSAURUS_CURRENT_LOCALE === "en",
           },
           {
             to: "https://github.com/kubeedge/kubeedge/releases",
@@ -133,7 +133,7 @@ const config = {
             })),
             className: "navbar__link--community",
           },
-        ],
+        ].filter((item) => !item.hide),
       },
       footer: {
         style: "light",
