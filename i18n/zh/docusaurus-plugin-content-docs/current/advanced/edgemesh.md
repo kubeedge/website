@@ -1,5 +1,5 @@
 ---
-title: Edge connection with EdgeMesh
+title: 使用EdgeMesh实现跨边边通信
 sidebar_position: 5
 ---
 EdgeMesh as the data plane component of the KubeEdge cluster, provides simple service discovery and traffic proxy functions for applications, thereby shielding the complex network structure in edge scenarios.

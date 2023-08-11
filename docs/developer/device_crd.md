@@ -1,6 +1,6 @@
 ---
 title: Device Manager
-sidebar_position: 2
+sidebar_position: 3
 ---
 KubeEdge supports device management with the help of Kubernetes [CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) and a Device Mapper (explained below) corresponding to the device being used.
 We currently manage devices from the cloud and synchronize the device updates between edge nodes and cloud, with the help of device controller and device twin modules.

@@ -1,5 +1,5 @@
 ---
-title: KubeEdge通用组件
+title: 公共组件
 sidebar_position: 1
 ---
 

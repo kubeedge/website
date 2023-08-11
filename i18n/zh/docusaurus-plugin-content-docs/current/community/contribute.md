@@ -1,7 +1,8 @@
 ---
-title: Contributing
+title: 参与贡献
 sidebar_position: 1
 ---
+
 ## Code of Conduct
 
 Please make sure to read and observe our [Code of Conduct](https://github.com/kubeedge/community/blob/master/CODE_OF_CONDUCT.md).

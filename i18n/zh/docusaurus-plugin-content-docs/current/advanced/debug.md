@@ -1,5 +1,5 @@
 ---
-title: Enable Kubectl logs/exec to debug pods on the edge
+title: 启用Kubectl logs/exec/attach等能力
 sidebar_position: 3
 ---
 

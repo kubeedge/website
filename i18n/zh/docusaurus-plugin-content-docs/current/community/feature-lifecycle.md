@@ -1,5 +1,5 @@
 ---
-title: Feature Lifecycle
+title: 特性生命周期管理
 sidebar_position: 4
 ---
 This document is to clarify definitions and differences between features and corresponding APIs

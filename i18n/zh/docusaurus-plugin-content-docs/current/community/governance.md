@@ -1,5 +1,5 @@
 ---
-title: Governance
+title: 社区治理
 sidebar_position: 2
 ---
 The governance model adopted here is heavily influenced by a set of CNCF projects, especially drawing reference from [Kubernetes governance](https://github.com/kubernetes/community/blob/master/governance.md).
