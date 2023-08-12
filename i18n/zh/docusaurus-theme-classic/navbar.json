@@ -38,5 +38,13 @@
   "item.label.v1.8": {
     "message": "v1.8",
     "description": "Navbar item with label v1.8"
+  },
+  "item.label.Community": {
+    "message": "社区",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Job Center": {
+    "message": "招聘中心",
+    "description": "Navbar item with label Job Center"
   }
 }

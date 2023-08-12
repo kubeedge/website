@@ -1,0 +1,57 @@
+.job-center-container {
+  background-color: var(--ifm-background-color);
+
+  .job-center-header {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("/img/jobcenter/header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .button {
+      background-color: #f8f9fa;
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    .job-center-title {
+      font-size: 40px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .job-center-subtitle {
+      font-weight: 500;
+      color: white;
+    }
+  }
+
+  .job-list {
+    max-width: 900px;
+    margin: auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media screen {
+  @media (max-width: 925px) {
+    .job-center-container {
+      .job-list {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+    }
+  }
+}
