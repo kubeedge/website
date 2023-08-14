@@ -1,0 +1,21 @@
+.button {
+    border: none;
+    height: 40px;
+    padding: 5px;
+    margin: 5px;
+    color: black;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.button:active {
+    background: rgb(7, 80, 153);
+    color: white;
+    top: 2px;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+}

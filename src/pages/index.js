@@ -7,11 +7,14 @@ import Supporters from '@site/src/components/supporters';
 import BlogPost from '@site/src/components/blogPost';
 import './index.scss';
 
+import UserCaseStudy from '../components/user-case-study/user-case-study';
+
 export default function Home() {
 
   return (
     <Layout>
       <HomeSlider />
+      <UserCaseStudy />
       <About />
       <Why />
       <Supporters />
