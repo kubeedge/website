@@ -65,39 +65,32 @@ preserveTaxonomyNames = true
 [params]
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Versions"
+version_menu = "Documentation"
+
+[[params.versions]]
+fullversion = "v1.14"
+version = "v1.14"
+githubbranch = "v1.14"
+docsbranch = "release-1.14"
+url = "https://release-1-14.docs.kubeedge.io/docs/"
+
+[[params.versions]]
+fullversion = "v1.13"
+version = "v1.13"
+githubbranch = "v1.13"
+docsbranch = "release-1.13"
+url = "https://release-1-13.docs.kubeedge.io/docs/"
 
 [[params.versions]]
 fullversion = "v1.12"
 version = "v1.12"
 githubbranch = "v1.12"
-docsbranch = "master"
-url = "https://kubeedge.io/en/"
+docsbranch = "release-1.12"
+url = "https://release-1-12.docs.kubeedge.io/en/docs/"
 
 [[params.versions]]
 fullversion = "v1.11"
 version = "v1.11"
 githubbranch = "v1.11"
 docsbranch = "release-1.11"
-url = "https://v1-11.docs.kubeedge.io/en/"
-
-[[params.versions]]
-fullversion = "v1.10"
-version = "v1.10"
-githubbranch = "v1.10"
-docsbranch = "release-1.10"
-url = "https://v1-10.docs.kubeedge.io/en/"
-
-[[params.versions]]
-fullversion = "v1.9"
-version = "v1.9"
-githubbranch = "v1.9"
-docsbranch = "release-1.9"
-url = "https://v1-9.docs.kubeedge.io/en/"
-
-[[params.versions]]
-fullversion = "v1.8"
-version = "v1.8"
-githubbranch = "v1.8"
-docsbranch = "release-1.8"
-url = "https://v1-8.docs.kubeedge.io/en/"
+url = "https://release-1-11.docs.kubeedge.io/en/docs/"

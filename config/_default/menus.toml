@@ -4,18 +4,8 @@
 #   The weight parameter defines the order that the links will appear in.
 
 [[main]]
-  name = "Home"
-  url = "/"
-  weight = 1
-
-[[main]]
-  name = "Documentation"
-  url = "docs/"
-  weight = 3
-
-[[main]]
   name = "Blog"
-  url = "blog/"
+  url = "https://kubeedge.io/blog"
   weight = 4
 
 [[main]]
