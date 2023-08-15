@@ -1,0 +1,135 @@
+.header {
+    padding: 10px;
+    text-align: center;
+    background: linear-gradient(65deg, #13829e 10%, #78b5db );
+} 
+
+.mainHeading {
+    line-height: 2;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+.searchWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 30px auto;
+    position: relative;
+    max-width: 525px;
+    height: 40px;
+    border: none;
+    border-bottom: 1px black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.searchInput {
+    margin: 0;
+    position: absolute; 
+    color: black;
+    max-width: 470px;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border: none;
+    font-size: 16px;
+    padding-left: 20px;
+    border-color:black;
+    background: transparent;
+    outline: none;
+    
+}
+
+.searchInput::placeholder {
+    opacity: 1;
+    color: #e5e5e5;
+}
+
+.searchInput:focus {
+    padding-left: 0;
+}
+
+.searchLabel{
+    max-width: 55px;
+    margin: 0;
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    border: none;
+    right: 0;
+    top: 0;
+} 
+
+.searchButton {
+    color: white;
+    background: black;
+    height: 40px;
+    border: none;
+    margin: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.searchButton:hover {
+    color: black;
+    background: white;
+}
+
+.tags {
+    margin: 20px auto;
+}
+
+.tagsHeading {
+    font-size: 18px;
+}
+
+.tagsItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 5px 30px 5px;
+}
+
+.item {
+    margin: 5px;
+    background: white;
+    height: 30px;
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 1;
+    cursor: pointer;
+}
+  
+.item1 {
+    background: #ffafcc;
+}
+
+.item2 {
+    background: #ffbe0b;
+}
+
+.item3 {
+    background: #ffd6ba;
+}
+
+.item4 {
+    background: #74c69d;
+}
+
+.item5 {
+    background: #f08080;
+}
+.item6 {
+    background: #70e000;
+}
+
+.item7 {
+    background: #cae9ff;
+}
+
+.item8 {
+    background: #ff0a54;
+}
+
+.actionButtons {
+    margin: 20px 10px 30px 10px;
+}

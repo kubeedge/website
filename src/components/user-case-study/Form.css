@@ -1,0 +1,27 @@
+form {
+    border-radius: 15px;
+    width: 80%;
+    background: white;
+    margin: 30px auto;
+}
+
+label {
+    font-size: 18px;
+}
+
+input {
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    padding: 10px;
+    margin-top: 20px;
+    width: 80%;
+    justify-content: space-between;
+    right: 0;
+}
+
+.sendButton {
+    background: black;
+    color: white
+}

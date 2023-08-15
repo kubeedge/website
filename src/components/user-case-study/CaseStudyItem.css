@@ -1,0 +1,27 @@
+.caseStudyContainer {
+    margin: 10px;
+    padding: 10px;   
+}
+
+.heading {
+    text-align: left;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.description {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 200;
+    font-style: italic;
+}
+
+.tag {
+    text-align: left;
+    color: #ff0a54;
+}
+
+.readButton {
+    top: auto;
+    bottom: 0;
+}
