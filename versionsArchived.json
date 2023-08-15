@@ -1,7 +1,6 @@
 {
-  "v1.12": "https://kubeedge.io/en/",
-  "v1.11": "https://v1-11.docs.kubeedge.io/en/",
-  "v1.10": "https://v1-10.docs.kubeedge.io/en/",
-  "v1.9": "https://v1-9.docs.kubeedge.io/en/",
-  "v1.8": "https://v1-8.docs.kubeedge.io/en/"
+  "v1.14": "https://release-1-14.docs.kubeedge.io/docs/",
+  "v1.13": "https://release-1-13.docs.kubeedge.io/docs/",
+  "v1.12": "https://release-1-12.docs.kubeedge.io/en/docs/",
+  "v1.11": "https://release-1-12.docs.kubeedge.io/en/docs/"
 }
