@@ -135,18 +135,29 @@ const config = {
         title: "KubeEdge",
         logo: {
           src: "img/avatar.png",
+          target: "_self",
+          href: "https://kubeedge.io",
         },
         items: [
           {
-            type: "docSidebar",
-            sidebarId: "documentationSideBar",
-            position: "left",
             label: "Documentation",
+            position: "left",
+            items: Object.keys(versionsArchived).map((v) => ({
+              label: v,
+              href: versionsArchived[v],
+              target: "_self",
+            })),
+            className: "navbar__link--community",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
-            to: "https://github.com/kubeedge/kubeedge/releases",
+            label: "Blog",
+            to: "https://kubeedge.io/blog",
+            position: "left",
+            target: "_self",
+          },
+          {
             label: "Downloads",
+            to: "https://github.com/kubeedge/kubeedge/releases",
             position: "left",
           },
           {
@@ -167,16 +178,6 @@ const config = {
           {
             type: "localeDropdown",
             position: "right",
-          },
-          {
-            label: "Versions",
-            position: "right",
-            items: Object.keys(versionsArchived).map((v) => ({
-              label: v,
-              href: versionsArchived[v],
-              target: "_self",
-            })),
-            className: "navbar__link--community",
           },
         ],
       },
