@@ -102,7 +102,7 @@ const config = {
           showLastUpdateTime: true,
         },
         gtag: {
-          trackingID: ' G-9PL5BPEXGS',
+          trackingID: 'G-9PL5BPEXGS',
           anonymizeIP: true,
         },
         blog: {
@@ -156,6 +156,18 @@ const config = {
             target: "_self",
           },
           {
+            type: "dropdown",
+            label: "Community",
+            position: "left",
+            items: [
+              {
+                label: "Job Center",
+                to: "/job-center",
+              },
+            ],
+            hide: true,
+          },
+          {
             label: "Downloads",
             to: "https://github.com/kubeedge/kubeedge/releases",
             position: "left",
@@ -179,7 +191,7 @@ const config = {
             type: "localeDropdown",
             position: "right",
           },
-        ],
+        ].filter((item) => !item.hide),
       },
       footer: {
         style: "light",
@@ -207,6 +219,7 @@ const config = {
 
   plugins: [
     [require.resolve("./src/plugins/blogGlobalData/index.js"), {}],
+    [require.resolve("./src/plugins/jobCenterGlobalData/index.js"), {}],
     "docusaurus-plugin-sass",
   ],
 };

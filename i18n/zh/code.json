@@ -377,5 +377,20 @@
   },
   "Memory footprint down to ~70MB.": {
     "message": "Memory footprint down to ~70MB."
+  },
+  "Job Center": {
+    "message": "招聘中心"
+  },
+  "Welcome to the KubeEdge Job Center. We wish you the best of luck to find the right job or top telent here.": {
+    "message": "欢迎来到KubeEdge招聘中心，我们希望您在这里可以找到合适的工作或顶尖的人才。"
+  },
+  "POST A JOB": {
+    "message": "发布一份工作"
+  },
+  "created-at": {
+    "message": "创建日期"
+  },
+  "expired-at": {
+    "message": "截止日期"
   }
 }
