@@ -2,7 +2,7 @@ import React from "react";
 import SectionContainer from "../sectionContainer";
 import Translate from "@docusaurus/Translate";
 import "./index.scss";
-
+import Link from "@docusaurus/Link";
 const supportList = [
   {
     name: "ARM",
@@ -94,9 +94,10 @@ const supportList = [
     external_link: "https://kubesphere.io",
   },
 
-  { name: "Orange", 
-   img_src: "img/supporters/orange.png", 
-   external_link: "https://www.orange.com/en" 
+  {
+    name: "Orange",
+    img_src: "img/supporters/orange.png",
+    external_link: "https://www.orange.com/en",
   },
   {
     name: "Raisecom Technology",
@@ -168,7 +169,7 @@ const supportList = [
     name: "njhyst",
     img_src: "img/supporters/njhyst.png",
     external_link: "http://njhyst.com/",
-  }
+  },
 ];
 
 export default function Supporters() {
@@ -181,11 +182,9 @@ export default function Supporters() {
         {supportList.map((item, index) => (
           <div key={index} className="supporterBox">
             <div className="imgContainer">
-              <img
-                alt={item.name}
-                src={item.img_src}
-                onClick={() => window.open(item.external_link)}
-              />
+              <Link to={item.external_link}>
+                <img alt={item.name} src={item.img_src} />
+              </Link>
             </div>
           </div>
         ))}
