@@ -3,6 +3,7 @@ import SectionContainer from "../sectionContainer";
 import Translate from "@docusaurus/Translate";
 import "./index.scss";
 import Link from "@docusaurus/Link";
+
 const supportList = [
   {
     name: "ARM",
