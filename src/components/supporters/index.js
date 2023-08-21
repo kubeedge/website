@@ -1,8 +1,8 @@
 import React from "react";
 import SectionContainer from "../sectionContainer";
 import Translate from "@docusaurus/Translate";
-import "./index.scss";
 import Link from "@docusaurus/Link";
+import "./index.scss";
 
 const supportList = [
   {
