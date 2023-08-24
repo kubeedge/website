@@ -102,7 +102,7 @@ const config = {
           showLastUpdateTime: true,
         },
         gtag: {
-          trackingID: 'G-9PL5BPEXGS',
+          trackingID: "G-9PL5BPEXGS",
           anonymizeIP: true,
         },
         blog: {
