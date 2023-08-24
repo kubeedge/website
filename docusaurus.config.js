@@ -156,11 +156,6 @@ const config = {
             target: "_self",
           },
           {
-            label: "Supporters",
-            href: "/#supporters",
-            position: "left",
-          },
-          {
             type: "dropdown",
             label: "Community",
             position: "left",
