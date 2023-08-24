@@ -175,7 +175,7 @@ const supportList = [
 
 export default function Supporters() {
   return (
-    <SectionContainer  className={"supporterContainer"}>
+    <SectionContainer className={"supporterContainer"}>
       <h1>
         <Translate>Supporters</Translate>
       </h1>

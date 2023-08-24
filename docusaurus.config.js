@@ -102,7 +102,7 @@ const config = {
           showLastUpdateTime: true,
         },
         gtag: {
-          trackingID: 'G-9PL5BPEXGS',
+          trackingID: "G-9PL5BPEXGS",
           anonymizeIP: true,
         },
         blog: {
@@ -154,6 +154,11 @@ const config = {
             to: "https://kubeedge.io/blog",
             position: "left",
             target: "_self",
+          },
+          {
+            label: "Supporters",
+            href: "/#supporters",
+            position: "left",
           },
           {
             type: "dropdown",
