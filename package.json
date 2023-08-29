@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.4.1",
-    "antd": "^5.8.4"
+    "antd": "^5.8.5"
   },
   "browserslist": {
     "production": [
