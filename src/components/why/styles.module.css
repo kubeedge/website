@@ -8,12 +8,19 @@
 .reasonBoxContainer {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 3rem;
 }
 
 .reasonBox {
   flex-basis: 33.333%;
   padding: 0 15px;
   margin-bottom: 2rem;
+}
+
+.reasonTitle{
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: bolder;
 }
 
 .reasonContent {
