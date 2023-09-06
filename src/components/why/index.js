@@ -82,7 +82,7 @@ export default function Why() {
       <div className={styles.reasonBoxContainer}>
         {reasons.map((item, index) => (
           <div key={index} className={styles.reasonBox}>
-            <h3 className={styles.reasonTitle}>{item.title}</h3>
+            <p className={styles.reasonTitle}>{item.title}</p>
             <div className={styles.reasonContent}>{item.content}</div>
           </div>
         ))}
