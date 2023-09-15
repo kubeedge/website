@@ -24,12 +24,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-slick": "^0.29.0",
-    "sass": "^1.66.1",
+    "sass": "^1.67.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.4.1",
-    "antd": "^5.8.6"
+    "antd": "^5.9.1"
   },
   "browserslist": {
     "production": [
