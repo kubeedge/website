@@ -14,8 +14,8 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.1",
-    "@docusaurus/preset-classic": "2.4.1",
+    "@docusaurus/core": "2.4.3",
+    "@docusaurus/preset-classic": "2.4.3",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.2.1",
     "docusaurus-plugin-sass": "^0.2.5",
@@ -24,12 +24,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-slick": "^0.29.0",
-    "sass": "^1.67.0",
+    "sass": "^1.68.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.4.1",
-    "antd": "^5.9.1"
+    "@docusaurus/module-type-aliases": "2.4.3",
+    "antd": "^5.9.2"
   },
   "browserslist": {
     "production": [
