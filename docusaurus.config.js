@@ -155,6 +155,7 @@ const config = {
             position: "left",
             target: "_self",
           },
+          { to: "/case-studies", label: "Case Studies", position: "left" },
           {
             type: "dropdown",
             label: "Community",
@@ -219,6 +220,7 @@ const config = {
 
   plugins: [
     [require.resolve("./src/plugins/blogGlobalData/index.js"), {}],
+    [require.resolve("./src/plugins/caseStudiesGlobalData/index.js"), {}],
     [require.resolve("./src/plugins/jobCenterGlobalData/index.js"), {}],
     "docusaurus-plugin-sass",
   ],

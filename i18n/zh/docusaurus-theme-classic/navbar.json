@@ -27,18 +27,6 @@
     "message": "v1.11",
     "description": "Navbar item with label v1.11"
   },
-  "item.label.v1.10": {
-    "message": "v1.10",
-    "description": "Navbar item with label v1.10"
-  },
-  "item.label.v1.9": {
-    "message": "v1.9",
-    "description": "Navbar item with label v1.9"
-  },
-  "item.label.v1.8": {
-    "message": "v1.8",
-    "description": "Navbar item with label v1.8"
-  },
   "item.label.Community": {
     "message": "社区",
     "description": "Navbar item with label Community"
@@ -46,5 +34,17 @@
   "item.label.Job Center": {
     "message": "招聘中心",
     "description": "Navbar item with label Job Center"
+  },
+  "item.label.Case Studies": {
+    "message": "案例中心",
+    "description": "Navbar item with label Case Studies"
+  },
+  "item.label.v1.14": {
+    "message": "v1.14",
+    "description": "Navbar item with label v1.14"
+  },
+  "item.label.v1.13": {
+    "message": "v1.13",
+    "description": "Navbar item with label v1.13"
   }
 }
