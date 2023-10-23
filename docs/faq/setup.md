@@ -381,4 +381,25 @@ F1121 15:21:15.154526 3671032 certmanager.go:94] Error: failed to get CA certifi
 
 One more important thing about `cloudcore` container mode is about how to expose cloudcore port to edge nodes. In container mode, we will also create a cloudcore service. And it's your duty to choose a LoadBalancer or adjust it to `NodePort` ServiceType, to expose `cloudcore` service to edge nodes. For more details, please reference [k8s service docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
 
+## Keadm upgrade related issues
 
+### Keadm upgrade If edgecore is stopped, the keadm upgrade failed
+When the edge node upgrade function is used, keadm upgrade will stop the keadm process if edgecore is stopped.
+You can add KillMode=process to edgecore.service on the side node to upgrade keadm：
+```shell
+vi  /etc/systemd/system/edgecore.service
+
+[Unit]
+Description=edgecore.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/edgecore
+Restart=always
+RestartSec=10
+Environment=DEPLOY_MQTT_CONTAINER=true
+KillMode=process    # ----- Add KillMode
+
+[Install]
+WantedBy=multi-user.target
+```
