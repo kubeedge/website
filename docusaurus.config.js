@@ -176,16 +176,19 @@ const config = {
             href: "https://github.com/kubeedge/kubeedge",
             position: "right",
             className: "header-github-link heade-icon",
+            "aria-label": "GitHub repository",
           },
           {
             href: "https://twitter.com/KubeEdge",
             position: "right",
             className: "header-twitter-link heade-icon",
+            "aria-label": "Twitter",
           },
           {
             href: "https://kubeedge.slack.com/join/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI#/shared-invite/email",
             position: "right",
             className: "header-slack-link heade-icon",
+            "aria-label": "Slack",
           },
           {
             type: "localeDropdown",
