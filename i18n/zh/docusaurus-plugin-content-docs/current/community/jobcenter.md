@@ -17,7 +17,7 @@ KubeEdge[招聘中心](https://kubeedge.io/zh/job-center/)旨在为社区合作�
 
 # 编写岗位信息规范
 
-我们希望您尽可能详细地描述有关工作岗位的详细信息，请使用`Markdown`格式编写：
+我们希望您使用`Markdown`格式编写一份岗位介绍文档，并尽可能详细地描述有关工作岗位的详细信息。完成之后可以按照[提交指南](#提交岗位信息)将文档提交到[官网招聘中心](https://github.com/kubeedge/website/tree/master/src/pages/job-center)模块。
 
 1.  请在文档头部补充如下信息，以下信息会在KubeEdge官网招聘中心的首页以卡片形式展现，能够帮助社区用户快速了解岗位的关键信息。
 

@@ -16,9 +16,9 @@ This guide is intended to help you understand how to post your job positions in 
 
 # Writing Guidelines
 
-We hope that you can provide as much detailed information as possible about the job.
+We kindly request you to prepare a documentation about the job opportunity and provide as much detailed information as possible in `markdown` format. Once completed, please submit it to [job center](https://github.com/kubeedge/website/tree/master/src/pages/job-center) according to [Steps of submit the job](#submit-the-job).
 
-1. Please add the following information at the top of the document. This information will be displayed in a card format on the KubeEdge official website's job center homepage, which will help community users quickly understand the key information about the job.
+1. Please add the following information at the top of your documentation. This information will be displayed in a card format on the KubeEdge official website's job center homepage, which will help community users quickly understand the key information about the job.
 ```
 title: Job Name
 company：Company Name
