@@ -35,9 +35,9 @@ tags： Case tags. Please select Solution or End User based on the type of case.
 
 # Submit Your Case
 
-After completing your case study write-up, please submit your case document to the KubeEdge [website](https://github.com/kubeedge/website) repository, and it will be displayed in the official website's case studies page after community review.
+After completing your case study write-up, please submit your case document to the KubeEdge [website](https://github.com/kubeedge/website) repository, you can submit your case in English or Chinese(languages currently supported by the website), and it will be displayed in the official website's case studies page after community review.
 
-1.  Create a directory for your case study under `src/pages/case-studies` and `i18n/zh/docusaurus-plugin-content-page/case-studies`, naming the directory after your case.
-2.  Place your English case document under the directory you created in `src/pages/case-studies/`, and place your Chinese case document under the corresponding directory you created in `i18n/zh/docusaurus-plugin-content-page/case-studies`.
+1.  Create a directory for your case study under `src/pages/case-studies` in English or `i18n/zh/docusaurus-plugin-content-page/case-studies` in Chinese, naming the directory after your case.
+2.  Place your English case document under the directory you created in `src/pages/case-studies/`, or place your Chinese case document under the corresponding directory you created in `i18n/zh/docusaurus-plugin-content-page/case-studies`.
 3.  Please name your `Markdown` document as index.md or index.mdx.
 4.  Submit your document to the website repository as a pull request.
