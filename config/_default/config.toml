@@ -68,6 +68,13 @@ preserveTaxonomyNames = true
 version_menu = "Documentation"
 
 [[params.versions]]
+fullversion = "Next"
+version = "Next"
+githubbranch = "master"
+docsbranch = "master"
+url = "https://kubeedge.io/docs/"
+
+[[params.versions]]
 fullversion = "v1.15"
 version = "v1.15"
 githubbranch = "v1.15"
