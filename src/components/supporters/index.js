@@ -176,6 +176,18 @@ const supportList = [
     name: "orientsky",
     img_src: "img/supporters/orientsky.jpg",
     external_link: "http://www.orientsky.com.cn/",
+  },
+
+  {
+    name: "Two Win",
+    img_src: "img/supporters/twowin-logo.png",
+    external_link: "https://www.twowinit.com/",
+  },
+
+  {
+    name: "PITS Globale Datenrettungsdienste",
+    img_src: "img/supporters/pits-logo.svg",
+    external_link: "https://www.pitsdatenrettung.de/",
   }
 ];
 
