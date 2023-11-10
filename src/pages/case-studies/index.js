@@ -6,9 +6,11 @@ import CaseCard from "@site/src/components/caseCard";
 import TagToggle from "@site/src/components/tagToggle";
 import { CARD_BACKGROUND_IMAGE_URL } from "@site/src/const";
 import Translate from "@docusaurus/Translate";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import "./index.scss";
 
 export default function CaseStudies() {
+    const { i18n } = useDocusaurusContext();
     const { casestudiesGlobalData } = usePluginData(
         "casestudies-global-dataPlugin"
     );
@@ -35,7 +37,7 @@ export default function CaseStudies() {
                         <Translate>Tell successful stories of using KubeEdge in various business scenarios and the positive effects brought by them</Translate>
                     </p>
                     <button className="button" type="button">
-                        <a href="https://kubeedge.io/docs/community/casestudies" target="_blank">
+                        <a href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/casestudies/`} target="_blank">
                             <Translate>POST YOUR CASE</Translate>
                         </a>
                     </button>
@@ -43,7 +45,7 @@ export default function CaseStudies() {
                 <div className="case-list">
                     <TagToggle selected={filters} onChange={(e) => setFilters(e)} />
                     <Row gutter={[48, 48]}>
-                        {casestudiesGlobalDataMemo.concat(casestudiesGlobalDataMemo).concat(casestudiesGlobalDataMemo).map((item, index) => (
+                        {casestudiesGlobalDataMemo.map((item, index) => (
                             <Col xs={24} sm={24} md={24} lg={12}>
                                 <CaseCard
                                     title={item.metadata?.title}
