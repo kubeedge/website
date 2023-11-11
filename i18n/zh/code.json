@@ -392,5 +392,20 @@
   },
   "expired-at": {
     "message": "截止日期"
+  },
+  "READ CASE STUDY": {
+    "message": "阅读案例"
+  },
+  "Case Category": {
+    "message": "案例类别"
+  },
+  "Case Studies": {
+    "message": "KubeEdge成功案例"
+  },
+  "Tell successful stories of using KubeEdge in various business scenarios and the positive effects brought by them": {
+    "message": "展示KubeEdge在各种业务场景中的成功案例以及带来的积极效果"
+  },
+  "POST YOUR CASE": {
+    "message": "上传你的案例"
   }
 }

@@ -1,0 +1,78 @@
+.case-card {
+  min-height: 280px;
+  min-width: 35px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: grid;
+  grid-template-areas:
+    "title desc"
+    "hr desc"
+    "sub desc"
+    "sub desc"
+    "date btn";
+  grid-template-columns: 6fr 5fr;
+  grid-template-rows: auto auto auto 1fr;
+  grid-column-gap: 40px;
+  padding: 36px;
+
+  .title {
+    grid-area: title;
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 18px;
+    cursor: pointer;
+  }
+
+  hr {
+    grid-area: hr;
+    background: #fff;
+    height: 4px !important;
+    width: 40px !important;
+    margin: 0;
+  }
+
+  .sub {
+    grid-area: sub;
+    font-size: 30px;
+    color: #62a1ff;
+    margin-top: 20px;
+  }
+
+  .date {
+    grid-area: date;
+    color: #fff;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .desc {
+    grid-area: desc;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  a {
+    grid-area: btn;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #1c77c8;
+  }
+}
+
+html[data-theme="dark"] {
+  .case-card {
+    background-color: #242526;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
