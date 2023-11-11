@@ -151,7 +151,7 @@ const config = {
           },
           {
             label: "Blog",
-            to: "https://kubeedge.io/blog",
+            to: "/blog",
             position: "left",
             target: "_self",
           },

@@ -16,7 +16,7 @@ async function jobcenterGlobalDataPlugin(context, options) {
     const currentLocale = context.i18n.currentLocale;
     const jobCenterDir =
         currentLocale === "zh"
-            ? path.join(context.siteDir, "i18n/zh/docusaurus-plugin-content-page/job-center")
+            ? path.join(context.siteDir, "i18n/zh/docusaurus-plugin-content-pages/job-center")
             : path.join(context.siteDir, "src/pages/job-center");
     const jobcenterPlugin = await pluginContentPage.default(context, {
         ...options,
