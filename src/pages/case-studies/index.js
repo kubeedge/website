@@ -34,7 +34,7 @@ export default function CaseStudies() {
                         <Translate>Case Studies</Translate>
                     </h1>
                     <p className="case-studies-subtitle">
-                        <Translate>Tell successful stories of using KubeEdge in various business scenarios and the positive effects brought by them</Translate>
+                        <Translate>Showcase of KubeEdge based solutions and successful stories of using KubeEdge in various business scenarios and the positive effects brought by them</Translate>
                     </p>
                     <button className="button" type="button">
                         <a href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/casestudies/`} target="_blank">
