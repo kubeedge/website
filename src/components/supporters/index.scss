@@ -25,10 +25,10 @@
         border-style: solid;
         border-width: 0.5px;
         border-color: #dde6ed;
+        transition: transform 0.2s;
       }
       .imgContainer:hover {
-        background-color: #eeeeee;
-        border-width: 2px;
+        transform: scale(1.05);
       }
       img {
         position: relative;
