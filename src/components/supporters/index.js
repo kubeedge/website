@@ -188,6 +188,12 @@ const supportList = [
     name: "PITS Globale Datenrettungsdienste",
     img_src: "img/supporters/pits-logo.svg",
     external_link: "https://www.pitsdatenrettung.de/",
+  },
+
+  {
+    name: "Device Edge Cloud Intelligent Collaboration framEwork",
+    img_src: "img/supporters/decice.svg",
+    external_link: "https://www.decice.eu/",
   }
 ];
 
