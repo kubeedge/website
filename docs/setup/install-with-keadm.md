@@ -420,7 +420,6 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     | gcr.io/k8s-staging-metrics-serer/ metrics-serer-amd64 | 6d92704c5a68cd29a7a81bce68e6c2230c7a6912 | a24f71249d69 | 19 seconds ago | 57.2MB |
     | metrics-server-kubeedge                               |                 latest                   | aef0fa7a834c | 28 seconds ago | 57.2MB |
 
-
     Make sure you change the tag of image by using its IMAGE ID to be compactable with image name in yaml file.
 
     ```bash
