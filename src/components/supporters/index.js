@@ -194,6 +194,12 @@ const supportList = [
     name: "Device Edge Cloud Intelligent Collaboration framEwork",
     img_src: "img/supporters/decice.svg",
     external_link: "https://www.decice.eu/",
+  },
+
+  {
+    name: "Open Edge and HPC Initiative (OEHI)",
+    img_src: "img/supporters/oehi.svg",
+    external_link: "https://www.open-edge-hpc-initiative.org/",
   }
 ];
 
