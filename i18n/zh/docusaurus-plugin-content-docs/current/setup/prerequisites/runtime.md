@@ -2,138 +2,197 @@
 title: 容器运行时
 sidebar_position: 3
 ---
+
+你需要在每个边缘节点上安装一个容器运行时，以使边缘引擎EdgeCore能够成功安装，并且边缘Pod可以运行在边缘节点上。
+
+本页简要介绍在KubeEdge中常见的几种容器运行时的安装与配置过程。
+
+- [containerd](#containerd)
+- [cri-o](#cri-o)
+- [docker](#docker-engine)
+- [Kata containers](#kata-containers)
+- [Virtlet](#Virtlet)
+
 ## containerd
 
-Docker 18.09 and up ship with `containerd`, so you should not need to install it manually. If you do not have `containerd`, you may install it by running the following:
+### 安装与配置containerd
+
+首先你需要安装containerd，请参考[containerd安装指南](https://github.com/containerd/containerd/blob/main/docs/getting-started.md)进行操作。
+
+:::tip
+如果你使用KubeEdge v1.15.0以及以上版本，请安装v1.6.0或更高版本的containerd。
+:::
+
+如果在`/etc/containerd/`目录下没有containerd的配置文件，你可以执行如下命令生成配置文件并重启containerd。
 
 ```bash
-# Install containerd
-apt-get update && apt-get install -y containerd.io
-
-# Configure containerd
-mkdir -p /etc/containerd
 containerd config default > /etc/containerd/config.toml
-
-# Restart containerd
 systemctl restart containerd
 ```
 
-When using `containerd` shipped with Docker, the cri plugin is disabled by default. You will need to update `containerd`’s configuration to enable KubeEdge to use `containerd` as its runtime:
+:::tip
+如果你从软件包（例如RPM或者.deb）中安装 containerd，你可能会发现其中默认禁止了 CRI 集成插件。
+
+你需要启用 CRI 支持在KubeEdge场景下使用 containerd。 要确保 cri 没有出现在 /etc/containerd/config.toml 文件中 disabled_plugins 列表内。如果你更改了这个文件，也请记得要重启 containerd。
+:::
+
+如果你需要更新沙箱(pause)镜像，你也可以通过在containerd的配置文件中修改如下设置来实现：
 
 ```bash
-# Configure containerd
-mkdir -p /etc/containerd
-containerd config default > /etc/containerd/config.toml
+[plugins."io.containerd.grpc.v1.cri"]
+  sandbox_image = "kubeedge/pause:3.6"
 ```
 
-Update the `edgecore` config file `edgecore.yaml`, specifying the following parameters for the `containerd`-based runtime:
+你还可以通过containerd的配置文件查看或更新containerd的cgroup驱动
 
-```yaml
-remoteRuntimeEndpoint: unix:///var/run/containerd/containerd.sock
-remoteImageEndpoint: unix:///var/run/containerd/containerd.sock
-runtimeRequestTimeout: 2
-podSandboxImage: k8s.gcr.io/pause:3.2
-runtimeType: remote
+```bash
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+  ...
+  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+    SystemdCgroup = true
 ```
 
-By default, the cgroup driver of cri is configured as `cgroupfs`. If this is not the case, you can switch to `systemd` manually in `edgecore.yaml`:
+:::tip
+如果你修改了配置文件，请确保重新启动 containerd。
+:::
 
+### 使用Keadm安装EdgeCore的运行时配置
+
+如果你使用Keadm安装EdgeCore时，你需要设置--remote-runtime-endpoint=unix:///run/containerd/containerd.sock。 
+
+:::tip
+
+如果你使用的是KubeEdge v1.12或之前的版本，你还需要在执行keadm join时设置--runtimetype=remote
+
+在Windows上，请使用--remote-runtime-endpoint=npipe://./pipe/containerd-containerd来配置CRI端点
+
+:::
+
+KubeEdge默认使用`cgroupfs` cgroup驱动，如果你需要使用`systemd` cgroup驱动，你需要保证containerd配置了`systemd` cgroup，在执行keadm join时设置--cgroupdriver=systemd。
+
+### 使用二进制安装EdgeCore的运行时配置
+
+如果使用二进制方式安装EdgeCore，你需要更新EdgeCore的配置文件`edgecore.yaml`，修改如下参数: 
+
+KubeEdge v1.15以及之前的版本:
 ```yaml
 modules:
   edged:
-    cgroupDriver: systemd
+    containerRuntime: remote
+    remoteImageEndpoint: unix:///run/containerd/containerd.sock
+    remoteRuntimeEndpoint: unix:///run/containerd/containerd.sock
 ```
 
-Set `systemd_cgroup` to `true` in `containerd`’s configuration file (/etc/containerd/config.toml), and then restart `containerd`:
-
-```toml
-# /etc/containerd/config.toml
-systemd_cgroup = true
+KubeEdge默认使用`cgroupfs` cgroup驱动，如果你需要使用`systemd` cgroup驱动，你需要保证containerd配置了`systemd` cgroup，并且修改`edgecore.yaml`的如下参数”：
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
 ```
-
-```bash
-# Restart containerd
-systemctl restart containerd
-```
-
-Create the `nginx` application and check that the container is created with `containerd` on the edge side:
-
-```bash
-kubectl apply -f $GOPATH/src/github.com/kubeedge/kubeedge/build/deployment.yaml
-deployment.apps/nginx-deployment created
-
-ctr --namespace=k8s.io container ls
-CONTAINER                                                           IMAGE                              RUNTIME
-41c1a07fe7bf7425094a9b3be285c312127961c158f30fc308fd6a3b7376eab2    docker.io/library/nginx:1.15.12    io.containerd.runtime.v1.linux
-```
-
-NOTE: since cri doesn't support multi-tenancy while `containerd` does, the namespace for containers are set to "k8s.io" by default. There is not a way to change that until [support in cri](https://github.com/containerd/cri/pull/1462) has been implemented.
 
 ## CRI-O
 
-Follow the [CRI-O install guide](https://github.com/cri-o/cri-o/#installing-cri-o) to setup CRI-O.
+### 安装与配置CRI-O
 
-If your edge node is running on the ARM platform and your distro is ubuntu18.04, you might need to build the binaries form source and then install, since CRI-O packages are not available in the [Kubic](https://build.opensuse.org/project/show/devel:kubic:libcontainers:stable) repository for this combination.
+请先按照[CRI-O安装指南](https://github.com/cri-o/cri-o/blob/main/install.md#cri-o-installation-instructions)安装CRI-O。
+
+如果你需要更新沙箱(pause)镜像，你也可以通过在CRI-O的配置文件(通常是/etc/crio/crio.conf)中修改如下设置来实现：
 
 ```bash
-git clone https://github.com/cri-o/cri-o
-cd cri-o
-make
-sudo make install
-# generate and install configuration files
-sudo make install.config
+[crio.image]
+pause_image="kubeedge/pause:3.6"
 ```
 
-Set up CNI networking by following this guide: [setup CNI](https://github.com/cri-o/cri-o/blob/master/contrib/cni/README.md).
-Update the edgecore config file, specifying the following parameters for the `CRI-O`-based runtime:
+CRI-O默认使用`systemd` cgroup驱动，如果需要切换到`cgroupfs` cgroup驱动，可通过编辑CRI-O的配置文件实现。
 
-```yaml
-remoteRuntimeEndpoint: unix:///var/run/crio/crio.sock
-remoteImageEndpoint: unix:////var/run/crio/crio.sock
-runtimeRequestTimeout: 2
-podSandboxImage: k8s.gcr.io/pause:3.2
-runtimeType: remote
+```bash
+[crio.runtime]
+conmon_cgroup = "pod"
+cgroup_manager = "cgroupfs"
 ```
+:::tip
+当使用 CRI-O时，并且CRI-O的cgroup设置为cgroupfs时，必须将conmon_cgroup设置为值 pod。
+:::
 
-By default, `CRI-O` uses `cgroupfs` as a cgroup driver manager. If you want to switch to `systemd` instead, update the `CRI-O` config file (/etc/crio/crio.conf.d/00-default.conf):
+### 使用Keadm安装EdgeCore的运行时配置
 
-```conf
-# Cgroup management implementation used for the runtime.
-cgroup_manager = "systemd"
-```
+如果你使用Keadm安装EdgeCore时，你需要设置--remote-runtime-endpoint=unix:///var/run/crio/crio.sock。
 
-*NOTE: the `pause` image should be updated if you are on ARM platform and the `pause` image you are using is not a multi-arch image. To set the pause image, update the `CRI-O` config file:*
+:::tip
+如果你使用的是KubeEdge v1.12或之前的版本，你还需要在执行keadm join时设置--runtimetype=remote
+:::
 
-```conf
-pause_image = "k8s.gcr.io/pause-arm64:3.1"
-```
+KubeEdge默认使用`cgroupfs` cgroup驱动，如果你使用`systemd` cgroup驱动，你需要保证CRI-O配置了`systemd` cgroup，在执行keadm join时设置--cgroupdriver=systemd。
 
-Remember to update `edgecore.yaml` as well for your cgroup driver manager:
+### 使用二进制安装EdgeCore的运行时配置
 
+如果使用二进制方式安装EdgeCore，你需要更新EdgeCore的配置文件`edgecore.yaml`，修改如下参数:
+
+KubeEdge v1.15以及之前的版本:
 ```yaml
 modules:
   edged:
-    cgroupDriver: systemd
+    containerRuntime: remote
+    remoteImageEndpoint: unix:///var/run/crio/crio.sock
+    remoteRuntimeEndpoint: unix:///var/run/crio/crio.sock
 ```
 
-Start `CRI-O` and `edgecore` services (assume both services are taken care of by `systemd`),
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable crio
-sudo systemctl start crio
-sudo systemctl start edgecore
+KubeEdge默认使用`cgroupfs` cgroup驱动，如果你使用`systemd` cgroup驱动，你需要保证CRI-O配置了`systemd` cgroup，并且修改`edgecore.yaml`的如下参数”
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
 ```
 
-Create the application and check that the container is created with `CRI-O` on the edge side:
+## Docker Engine
 
-```bash
-kubectl apply -f $GOPATH/src/github.com/kubeedge/kubeedge/build/deployment.yaml
-deployment.apps/nginx-deployment created
+:::tip
+自KubeEdge v1.14版本起，KubeEdge移除了对dockershim的支持，不再支持直接使用docker运行时管理边缘容器。阅读[Dockershim移除的常见问题](https://kubernetes.io/zh-cn/blog/2022/02/17/dockershim-faq/)了解更多详情。
+:::
 
-# crictl ps
-CONTAINER ID        IMAGE               CREATED             STATE               NAME                ATTEMPT             POD ID
-41c1a07fe7bf7       f6d22dec9931b       2 days ago          Running             nginx               0                   51f727498b06f
+### 安装与配置Docker和cri-dockerd
+
+以下安装步骤只针对KubeEdge v1.14以及之后的版本，如果你使用的是更早的版本，你只需要安装docker，执行keadm join时配置--runtimetype=docker以及--remote-runtime-endpoint=unix:///var/run/dockershim.sock即可。
+
+1. 遵循[Docker Engine安装指南](https://docs.docker.com/engine/install/#server)安装Docker。
+
+2. 按照[cri-dockerd安装指南](https://github.com/mirantis/cri-dockerd#install)安装cri-dockerd。
+
+3. 安装CNI Plugin。
+
+你可以参考[kubeedge脚本](https://github.com/kubeedge/kubeedge/blob/master/hack/lib/install.sh)中的`install_cni_plugins函数`安装CNI Plugin，仅供参考。
+
+### 使用Keadm安装EdgeCore的运行时配置
+
+如果你使用Keadm安装EdgeCore时，你需要设置--remote-runtime-endpoint=unix:///var/run/cri-dockerd.sock。
+
+:::tip
+当使用cri-dockerd时，对应的runtimetype也是remote，而不是docker。
+:::
+
+KubeEdge默认使用`cgroupfs` cgroup驱动，如果你使用`systemd` cgroup驱动，你需要保证docker配置了`systemd` cgroup，在执行keadm join时设置--cgroupdriver=systemd。
+
+### 使用二进制安装EdgeCore的运行时配置
+
+如果使用二进制方式安装EdgeCore，你需要更新EdgeCore的配置文件`edgecore.yaml`，修改如下参数:
+
+KubeEdge v1.15以及之前的版本:
+```yaml
+modules:
+  edged:
+    containerRuntime: remote
+    remoteImageEndpoint: unix:///var/run/cri-dockerd.sock
+    remoteRuntimeEndpoint: unix:///var/run/cri-dockerd.sock
+```
+
+KubeEdge默认使用`cgroupfs` cgroup驱动，如果你使用`systemd` cgroup驱动，你需要保证docker配置了`systemd` cgroup，并且修改`edgecore.yaml`的如下参数”
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
 ```
 
 ## Kata Containers
