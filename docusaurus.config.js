@@ -184,7 +184,7 @@ const config = {
             className: "header-twitter-link heade-icon",
           },
           {
-            href: "https://kubeedge.slack.com/join/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI#/shared-invite/email",
+            to: "/docs/community/slack",
             position: "right",
             className: "header-slack-link heade-icon",
           },
