@@ -45,6 +45,6 @@ KubeEdge 是一个开源系统，将原生的容器化应用程序编排功能�
 KubeEdge 是一个开源项目，我们重视并欢迎新的贡献者和社区成员。以下是与社区联系的方法：
 
 - [邮件列表](https://groups.google.com/forum/#!forum/kubeedge)
-- [Slack](https://join.slack.com/t/kubeedge/shared_invite/enQtNjc0MTg2NTg2MTk0LWJmOTBmOGRkZWNhMTVkNGU1ZjkwNDY4MTY4YTAwNDAyMjRkMjdlMjIzYmMxODY1NGZjYzc4MWM5YmIxZjU1ZDI)
+- [Slack](https://kubeedge.io/docs/community/slack/)
 - [Twitter](https://twitter.com/kubeedge)
 - [GitHub Issues](https://github.com/kubeedge/kubeedge/issues)
