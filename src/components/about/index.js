@@ -8,7 +8,7 @@ export default function About() {
     <SectionContainer className="aboutContainer">
       <div className={"row"}>
         <div className={"profile"}>
-          <img className={"portrait"} src="img/avatar.png"></img>
+          <img className={"portrait"} alt="KubeEdge logotype" src="img/avatar.png"></img>
           <div className={"portraitTitle"}>
             <h3 className={"name"}>KubeEdge</h3>
             <h3 className={"jobTitle"}>
