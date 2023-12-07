@@ -381,4 +381,105 @@ F1121 15:21:15.154526 3671032 certmanager.go:94] Error: failed to get CA certifi
 
 One more important thing about `cloudcore` container mode is about how to expose cloudcore port to edge nodes. In container mode, we will also create a cloudcore service. And it's your duty to choose a LoadBalancer or adjust it to `NodePort` ServiceType, to expose `cloudcore` service to edge nodes. For more details, please reference [k8s service docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
 
+## Runtime(运行时)相关问题
 
+### unknown service runtime.v1alpha2.ImageService
+
+如果你在执行keadm join时遇到了类似如下报错：
+
+```bash
+execute keadm command failed: edge node join failed: pull Images failed: rpc error: code = Unimplemented desc = unknown service runtime.v1alpha2.ImageService
+```
+
+说明你的containerd没有开启`cri`插件，你可以检查containerd的配置文件`/etc/containerd/config.toml`中的`disabled_plugins`字段是否包含`cri`。你可以通过编辑配置文件，删除`disabled_plugins`中的`cri`，修改之后请重启containerd。
+
+### failed to reserve sandbox name
+
+如果你在执行keadm join时遇到了类似如下报错：
+
+```bash
+execute keadm command failed: edge node join failed: copy resources failed: rpc error: code = Unknown desc = failed to reserve sandbox name "edgecore_kubeedge__0": name "edgecore_kubeedge__0" is reserved for ...
+```
+
+说明在你的机器上有残留的同名containerd容器或者任务，你可以按照如下步骤清理： 
+
+1. `ctr -n k8s.io t ls`, 如果有残留的task，请执行`ctr -n k8s.io t kill {task id}`清理
+2. `ctr -n k8s.io c ls`, 如果有残留的容器，请执行`ctr -n k8s.io c rm {container id}`清理
+3. 执行`systemctl restart containerd.service`重启containerd
+
+### cni plugin not initialized/cni config uninitialized 
+
+目前在使用cri runtime时，执行keadm join需要先安装cni plugin并配置cni config，您可以参考以下步骤执行。
+
+1. 从 https://github.com/containernetworking/plugins/releases 下载 cni-plugins-{OS}-{ARCH}-{VERSION}.tgz，并将其解压到/opt/cni/bin:
+
+```bash
+$ mkdir -p /opt/cni/bin
+$ tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
+```
+
+2. 创建CNI config
+
+```bash
+$ mkdir -p /etc/cni/net.d/
+
+$ cat >/etc/cni/net.d/10-containerd-net.conflist <<EOF
+{
+  "cniVersion": "1.0.0",
+  "name": "containerd-net",
+  "plugins": [
+    {
+      "type": "bridge",
+      "bridge": "cni0",
+      "isGateway": true,
+      "ipMasq": true,
+      "promiscMode": true,
+      "ipam": {
+        "type": "host-local",
+        "ranges": [
+          [{
+            "subnet": "10.88.0.0/16"
+          }],
+          [{
+            "subnet": "2001:db8:4860::/64"
+          }]
+        ],
+        "routes": [
+          { "dst": "0.0.0.0/0" },
+          { "dst": "::/0" }
+        ]
+      }
+    },
+    {
+      "type": "portmap",
+      "capabilities": {"portMappings": true}
+    }
+  ]
+}
+EOF
+```
+
+3. 重启containerd 
+
+### cgroup driver 不匹配 
+
+如果你在安装EdgeCore出现如下报错：
+```
+failed to create shim task: OCI runtime create failed: runc create failed: expected cgroupsPath to be of format "slice:prefix:name" for systemd cgroups
+```
+或者在EdgeCore日志中出现：
+```
+kubelet cgroup driver: "cgroupfs" is different from docker cgroup driver: "systemd"
+```
+
+说明你安装的运行时的cgroup驱动与KubeEdge的配置不符，KubeEdge默认配置的是`cgroupfs` cgroup驱动。你可以选择修改runtime的配置，或者在keadm join时设置`--remote-runtime-endpoint=unix:///var/run/crio/crio.sock`，或者修改EdgeCore的配置文件(edgecore.yaml)中的如下字段：
+
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
+```
+:::tip
+当你需要使用`systemd` cgroup驱动，并且在使用keadm join安装部分版本(v1.12.0-1.12.4, v1.13.0-1.13.2, v1.14.0-1.14.2)的EdgeCore时，可能也会出现`OCI runtime create failed`的报错，建议使用对应release版本的最新patch版本
+:::
