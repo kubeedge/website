@@ -3,9 +3,11 @@ title: Kubernetes
 sidebar_position: 2
 ---
 
-Kubernetes is not a prerequisite for using KubeEdge, but understanding Kubernetes concepts is beneficial when working with KubeEdge. KubeEdge is an adaptation of Kubernetes that aims to support various edge computing scenarios. It leverages core Kubernetes functionalities to manage edge workloads while enabling additional capabilities suited for edge environments.
+KubeEdge is designed to extend Kubernetes from cloud to edge, and while it's built upon Kubernetes' architecture, it's important to note that having an existing Kubernetes control plane is essential for deploying KubeEdge. This means that to use KubeEdge effectively, one must have a Kubernetes control plane in place.
 
-KubeEdge allows for extending native Kubernetes capabilities to edge devices, enabling them to run, orchestrate, and manage edge workloads. It incorporates Kubernetes into the edge, but having an existing Kubernetes cluster is not a strict requirement to use KubeEdge. However, a solid understanding of Kubernetes concepts, architecture, and operations is certainly advantageous for deploying and managing KubeEdge effectively.
+Kubernetes acts as a foundation for KubeEdge, which extends Kubernetes' capabilities to edge computing. KubeEdge leverages the core functionalities of Kubernetes, enabling it to manage workloads not just in a centralized cloud environment, but also across various edge locations. This extension includes adapting Kubernetes to the unique requirements of edge computing, such as network unreliability and resource constraints.
+
+In summary, while a deep understanding of Kubernetes is highly beneficial for working with KubeEdge, it's also necessary to have a Kubernetes control plane in place. This control plane is crucial for KubeEdge to function, as it extends the native Kubernetes capabilities to edge devices, allowing them to run, orchestrate, and manage workloads in edge environments.
 
 
 
