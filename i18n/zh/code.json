@@ -277,10 +277,10 @@
     "message": "一个使能边缘计算的开放平台"
   },
   "KubeEdge is an open source system for extending native containerized application orchestration capabilities to hosts at Edge. It is built upon kubernetes and provides fundamental infrastructure support for network, application deployment and metadata synchronization between cloud and edge. KubeEdge is licensed under Apache 2.0. and free for personal or commercial use absolutely. We welcome contributors!": {
-    "message": "KubeEdge是一个开源系统，用于将容器化应用程序编排功能扩展到Edge的主机。它基于kubernetes构建，并为网络应用程序提供基础架构支持。云和边缘之间的部署和元数据同步。 KubeEdge使用Apache 2.0许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！"
+    "message": "KubeEdge是一个开源系统，用于将容器化应用程序编排功能扩展到Edge的主机。它基于Kubernetes构建，并为网络应用程序提供基础架构支持、云和边缘之间的部署和元数据同步。 KubeEdge使用Apache 2.0许可。并且绝对可以免费用于个人或商业用途。我们欢迎贡献者！"
   },
   "Our goal is to make an open platform to enable Edge computing, extending native containerized application orchestration capabilities to hosts at Edge, which is built upon kubernetes and provides fundamental infrastructure support for network, app deployment and metadata synchronization between cloud and edge.": {
-    "message": "我们的目标是创建一个开放平台，使能边缘计算，将容器化应用编排功能扩展到边缘的节点和设备，后者基于kubernetes构建，并为云和边缘之间的网络，应用部署和元数据同步提供基础架构支持。"
+    "message": "我们的目标是创建一个开放平台，使能边缘计算，将容器化应用编排功能扩展到基于Kubernetes构建的边缘节点和设备，并为云和边缘之间的网络、应用部署和元数据同步提供基础架构支持。"
   },
   "Recent News": {
     "message": "最新消息"
@@ -295,31 +295,31 @@
     "message": "支持者"
   },
   "Kubernetes Native API at Edge": {
-    "message": "Kubernetes Native API at Edge"
+    "message": "边缘端Kubernetes原生API"
   },
   "Autonomic Kube-API Endpoint at Edge, support to run third-party plugins and applications that depends on Kubernetes APIs on edge nodes.": {
-    "message": "Autonomic Kube-API Endpoint at Edge, support to run third-party plugins and applications that depends on Kubernetes APIs on edge nodes."
+    "message": "边缘自治的Kube-API节点，支持运行依赖于 Kubernetes API 的第三方插件和应用程序。"
   },
   "Seamless Cloud-Edge Coordination": {
-    "message": "Seamless Cloud-Edge Coordination"
+    "message": "云边无缝协同"
   },
   "Edge Autonomy": {
-    "message": "Edge Autonomy"
+    "message": "边缘自治"
   },
   "Low Resource Ready": {
-    "message": "Low Resource Ready"
+    "message": "资源消耗低"
   },
   "Simplified Device Communication": {
-    "message": "Simplified Device Communication"
+    "message": "简化设备通信"
   },
   "Easy communication between application and devices for IOT and Industrial Internet.": {
-    "message": "Easy communication between application and devices for IOT and Industrial Internet."
+    "message": "简化物联网和工业互联网中应用程序和设备之间通信."
   },
   "Heterogenous": {
-    "message": "Heterogenous"
+    "message": "异构性"
   },
   "Native support of x86, ARMv7, ARMv8": {
-    "message": "Native support of x86, ARMv7, ARMv8"
+    "message": "支持x86、ARMv7、ARMv8"
   },
   "Why KubeEdge": {
     "message": "为何选择KubeEdge"
@@ -361,22 +361,22 @@
     "message": "您可以轻松地将复杂的机器学习，图像识别，事件处理和其他高级应用程序部署到您的边缘。"
   },
   "Bidirectional communication, able to talk to edge nodes located in private subnet.": {
-    "message": "Bidirectional communication, able to talk to edge nodes located in private subnet."
+    "message": "云边双向通信，能够与位于私有子网中的边缘节点通信."
   },
   "Support both metadata and data": {
     "message": "Support both metadata and data"
   },
   "Metadata persistent per node, no list-watch needed during node recovery, get ready faster.": {
-    "message": "Metadata persistent per node, no list-watch needed during node recovery, get ready faster."
+    "message": "每个节点拥有持久化元数据，节点恢复期间无需list-watch，启动快速."
   },
   "Autonomous operation of edge even during disconnection from cloud.": {
-    "message": "Autonomous operation of edge even during disconnection from cloud."
+    "message": "即使与云端断开连接，边缘也能自主运行."
   },
   "Optimized usage of resource at the edge.": {
-    "message": "Optimized usage of resource at the edge."
+    "message": "优化边缘资源的使用."
   },
   "Memory footprint down to ~70MB.": {
-    "message": "Memory footprint down to ~70MB."
+    "message": "内存占用降至约 70MB."
   },
   "Job Center": {
     "message": "招聘中心"
