@@ -46,5 +46,13 @@
   "item.label.v1.13": {
     "message": "v1.13",
     "description": "Navbar item with label v1.13"
+  },
+  "item.label.Next": {
+    "message": "Next",
+    "description": "Navbar item with label Next"
+  },
+  "item.label.v1.15": {
+    "message": "v1.15",
+    "description": "Navbar item with label v1.15"
   }
 }

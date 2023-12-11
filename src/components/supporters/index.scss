@@ -1,6 +1,11 @@
 .supporterContainer {
   background-color: rgb(247, 247, 247);
 
+  .supporterLink {
+    text-align: center;
+    color: rgb(28, 119, 200);
+  }
+
   .supporterBoxContainer {
     display: flex;
     cursor: pointer;
