@@ -1,6 +1,14 @@
 .supporterContainer {
   background-color: rgb(247, 247, 247);
 
+  .supporters {
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .supporters:hover {
+    transform: scale(1.05);
+  }
+
   .supporterBoxContainer {
     display: flex;
     cursor: pointer;
