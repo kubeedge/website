@@ -208,12 +208,18 @@ export default function Supporters() {
   const { i18n } = useDocusaurusContext();
   return (
     <SectionContainer className={"supporterContainer"}>
-      <h1>
-        <Translate>Join the Growing </Translate>
-        <a className={"supporterLink"} href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/supporters`} target="_blank">
-          <Translate>Community</Translate>
-        </a>
-      </h1>
+      <div className={"supporters"}>
+        <h1>
+          <a href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/supporters`} target="_blank" style={{textDecoration:'none'}}>
+             <span style={{color: 'black'}}>
+                <Translate>Join the Growing </Translate>
+             </span>
+             <span style={{color: '#1c77c8'}}>
+                <Translate>Community</Translate>
+             </span>
+          </a>
+        </h1>
+      </div>
       <div className={"supporterBoxContainer"}>
         {supportList.map((item, index) => (
           <div key={index} className="supporterBox">

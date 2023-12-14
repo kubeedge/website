@@ -1,9 +1,12 @@
 .supporterContainer {
   background-color: rgb(247, 247, 247);
 
-  .supporterLink {
+  .supporters {
     text-align: center;
-    color: rgb(28, 119, 200);
+    transition: transform 0.2s;
+  }
+  .supporters:hover {
+    transform: scale(1.05);
   }
 
   .supporterBoxContainer {
