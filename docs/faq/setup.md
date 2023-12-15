@@ -250,8 +250,8 @@ Troubleshooting steps:
 
 - Can edge nodes access the Internet? `keadm join` will by default pull `kubeedge/installation-package` image, from dockerhub. If so, users should fix according to the specific error information.
 - If edge nodes cannot access the Internet, there're two ways to avoid this error:
-    1. download images on another machines which can access the Internet, and load images manually to the edge nodes
-    2. download images on another machines which can access the Internet, and push images to an internal image repository, and then run `keadm join` command with flag `--image-repository=xxx` to specify the internal image repository.
+  1. download images on another machines which can access the Internet, and load images manually to the edge nodes
+  2. download images on another machines which can access the Internet, and push images to an internal image repository, and then run `keadm join` command with flag `--image-repository=xxx` to specify the internal image repository.
 
 
 ## Token related issues
@@ -380,5 +380,3 @@ F1121 15:21:15.154526 3671032 certmanager.go:94] Error: failed to get CA certifi
 ```
 
 One more important thing about `cloudcore` container mode is about how to expose cloudcore port to edge nodes. In container mode, we will also create a cloudcore service. And it's your duty to choose a LoadBalancer or adjust it to `NodePort` ServiceType, to expose `cloudcore` service to edge nodes. For more details, please reference [k8s service docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
-
-
