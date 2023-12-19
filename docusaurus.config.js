@@ -156,6 +156,7 @@ const config = {
             target: "_self",
           },
           { to: "/case-studies", label: "Case Studies", position: "left" },
+          { to: "/partners", label: "Partners", position: "left"},
           {
             type: "dropdown",
             label: "Community",
