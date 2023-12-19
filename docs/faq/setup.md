@@ -381,4 +381,108 @@ F1121 15:21:15.154526 3671032 certmanager.go:94] Error: failed to get CA certifi
 
 One more important thing about `cloudcore` container mode is about how to expose cloudcore port to edge nodes. In container mode, we will also create a cloudcore service. And it's your duty to choose a LoadBalancer or adjust it to `NodePort` ServiceType, to expose `cloudcore` service to edge nodes. For more details, please reference [k8s service docs](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
 
+## Runtime related issues
 
+### unknown service runtime.v1alpha2.ImageService
+
+If you encounter an error similar to the following while executing `keadm join`:
+
+```bash
+execute keadm command failed: edge node join failed: pull Images failed: rpc error: code = Unimplemented desc = unknown service runtime.v1alpha2.ImageService
+```
+
+It indicates that the `cri` plugin is not enabled in your containerd config. You can check the configuration file of containerd, `/etc/containerd/config.toml`, and see if the `disabled_plugins` field includes cri. You can edit the configuration file, remove cri from the disabled_plugins, and then restart containerd after making the changes.
+
+### failed to reserve sandbox name
+
+If you encounter an error similar to the following while executing `keadm join`:
+
+```bash
+execute keadm command failed: edge node join failed: copy resources failed: rpc error: code = Unknown desc = failed to reserve sandbox name "edgecore_kubeedge__0": name "edgecore_kubeedge__0" is reserved for ...
+```
+
+It indicates that there are residual containerd containers or tasks with the same name on your machine. You can follow the steps below to clean them up:
+
+1. `ctr -n k8s.io t ls`, if there are residual tasks, please run `ctr -n k8s.io t kill {task id}`to kill tasks
+2. `ctr -n k8s.io c ls`, if there are residual containers, please run `ctr -n k8s.io c rm {container id}`to remove the containers.
+3. Run `systemctl restart containerd.service` to restart containerd
+
+### cni plugin not initialized/cni config uninitialized
+
+Currently, when using the `cri` runtime, you need to install the cni plugin and configure the cni config before executing `keadm join`. You can follow the steps below as a reference:
+
+1. Download cni-plugins-{OS}-{ARCH}-{VERSION}.tgz from https://github.com/containernetworking/plugins/releases , and extract it under `/opt/cni/bin`:
+
+```bash
+$ mkdir -p /opt/cni/bin
+$ tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
+```
+
+2. create CNI config
+
+```bash
+$ mkdir -p /etc/cni/net.d/
+
+$ cat >/etc/cni/net.d/10-containerd-net.conflist <<EOF
+{
+  "cniVersion": "1.0.0",
+  "name": "containerd-net",
+  "plugins": [
+    {
+      "type": "bridge",
+      "bridge": "cni0",
+      "isGateway": true,
+      "ipMasq": true,
+      "promiscMode": true,
+      "ipam": {
+        "type": "host-local",
+        "ranges": [
+          [{
+            "subnet": "10.88.0.0/16"
+          }],
+          [{
+            "subnet": "2001:db8:4860::/64"
+          }]
+        ],
+        "routes": [
+          { "dst": "0.0.0.0/0" },
+          { "dst": "::/0" }
+        ]
+      }
+    },
+    {
+      "type": "portmap",
+      "capabilities": {"portMappings": true}
+    }
+  ]
+}
+EOF
+```
+
+3. restart containerd
+
+### cgroup driver does not match.
+
+If you encounter the following error while installing EdgeCore:
+```
+failed to create shim task: OCI runtime create failed: runc create failed: expected cgroupsPath to be of format "slice:prefix:name" for systemd cgroups
+```
+Or if the error message appears in the EdgeCore logs:
+```
+kubelet cgroup driver: "cgroupfs" is different from docker cgroup driver: "systemd"
+```
+
+It indicates that the cgroup driver of runtime does not match the configuration of KubeEdge. By default, KubeEdge is configured with the cgroupfs cgroup driver. You have the following options:
+
+- Modify the configuration of the runtime.
+- or Set `--remote-runtime-endpoint=unix:///var/run/crio/crio.sock` when  keadm join.
+- or Modify the following field in the EdgeCore configuration file (edgecore.yaml):
+```yaml
+modules:
+  edged:
+    tailoredKubeletConfig:
+      cgroupDriver: systemd
+```
+:::tip
+When you need to use the `systemd` cgroup driver and install certain versions (v1.12.0-1.12.4, v1.13.0-1.13.2, v1.14.0-1.14.2) of EdgeCore using keadm join, you may also encounter `the OCI runtime create failed` error. It is recommended to use the latest patch version of the corresponding release version to address this issue.
+:::
