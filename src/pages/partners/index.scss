@@ -1,0 +1,32 @@
+.partners-pages {
+  background-color: var(--ifm-background-color);
+
+  .partners-header {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/img/partners.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .partners {
+      font-size: 40px;
+      font-weight: 700;
+      color: white;
+   }
+
+  }
+
+  .partners-content {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0;
+
+
+       .partners-md {
+          width: 60%;
+       }
+     }
+}

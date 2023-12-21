@@ -408,10 +408,7 @@
   "POST YOUR CASE": {
     "message": "上传你的案例"
   },
-  "Join the Growing ": {
-    "message": "欢迎加入 "
-  },
-  "Community": {
-    "message": "KubeEdge 社区"
+  "KubeEdge Distributions, Hosted Platforms, and Installers": {
+    "message": "KubeEdge Distributions, Hosted Platforms, and Installers"
   }
 }

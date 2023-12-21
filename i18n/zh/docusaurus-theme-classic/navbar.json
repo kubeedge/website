@@ -47,6 +47,10 @@
     "message": "v1.13",
     "description": "Navbar item with label v1.13"
   },
+  "item.label.Partners": {
+    "message": "合作伙伴",
+    "description": "Navbar item with label Partners"
+  },
   "item.label.Next": {
     "message": "Next",
     "description": "Navbar item with label Next"
