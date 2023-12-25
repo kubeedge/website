@@ -207,6 +207,12 @@ const supportList = [
     name: "SF Technology",
     img_src: "img/supporters/sf-tech.png",
     external_link: "https://www.sf-tech.com.cn/",
+  },
+
+  {
+    name: "Agricultural Bank of China",
+    img_src: "img/supporters/Agricultural-Bank-of-China.png",
+    external_link: "https://www.abchina.com/",
   }
 ];
 
