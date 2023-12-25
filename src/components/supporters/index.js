@@ -201,6 +201,12 @@ const supportList = [
     name: "Open Edge and HPC Initiative (OEHI)",
     img_src: "img/supporters/oehi.svg",
     external_link: "https://www.open-edge-hpc-initiative.org/",
+  },
+
+  {
+    name: "SF Technology",
+    img_src: "img/supporters/sf-tech.png",
+    external_link: "https://www.sf-tech.com.cn/",
   }
 ];
 
