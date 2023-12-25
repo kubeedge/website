@@ -19,7 +19,7 @@ title: Company Name
 subtitle：(Optional) Please use keywords to describe the significant effect of the case study. (Example: 100% Performance Improvement)
 description： Briefly summarize the case study in one sentence.
 date： Date (Format: 2023-01-01)
-tags： Case tags. Please select Solution or End User based on the type of case.
+tags： Case tags. Please select Solutions or UserCase based on the type of case.
 ```
 
 2.  Main Content: Please provide a detailed description of the case study in the main content of the document. You may consider the following points for detailed exposition:
