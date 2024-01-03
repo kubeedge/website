@@ -11,7 +11,7 @@ To add your product, please follow these steps below:
 
 1. Fork the [kubeedge/website](https://github.com/kubeedge/website) repository.
 2. Clone it locally with `git clone https://github.com/<YOUR-GH-USERNAME>/website.git`.
-3. Edit partners list in [src/pages/partners/partners.mdx](https://github.com/kubeedge/website/blob/master/src/pages/partners/partners.mdx). You can refer to the following sample table for the format.
+3. Edit partners list in [src/pages/partners/partners.mdx](https://github.com/kubeedge/website/blob/master/src/pages/partners/partners.mdx) and write your product information in alphabetical order based on the organization/company name. You can refer to the following sample table for the format.
 
    | Organization/Company   | Product  | Description | Website |
    |:-:|:-:|-------------|---------|
