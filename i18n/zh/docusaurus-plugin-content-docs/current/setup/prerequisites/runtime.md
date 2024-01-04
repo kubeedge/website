@@ -4,7 +4,7 @@ sidebar_position: 3
 ---
 ## containerd
 
-Docker 18.09 and up ship with `containerd`, so you should not need to install it manually. If you do not have `containerd`, you may install it by running the following:
+Docker 18.09 及以上版本已随附`containerd`，因此无需手动安装。如果没有`containerd`，可以通过运行以下命令来安装：
 
 ```bash
 # Install containerd
@@ -18,7 +18,7 @@ containerd config default > /etc/containerd/config.toml
 systemctl restart containerd
 ```
 
-When using `containerd` shipped with Docker, the cri plugin is disabled by default. You will need to update `containerd`’s configuration to enable KubeEdge to use `containerd` as its runtime:
+在使用随Docker装运的containerd时，cri插件默认为禁用。您需要更新`containerd`的配置，以使KubeEdge使用`containerd`作为其运行时：
 
 ```bash
 # Configure containerd
@@ -26,7 +26,7 @@ mkdir -p /etc/containerd
 containerd config default > /etc/containerd/config.toml
 ```
 
-Update the `edgecore` config file `edgecore.yaml`, specifying the following parameters for the `containerd`-based runtime:
+更新`edgecore`配置文件`edgecore.yaml`，为基于`containerd`的运行时指定以下参数：
 
 ```yaml
 remoteRuntimeEndpoint: unix:///var/run/containerd/containerd.sock
@@ -36,7 +36,7 @@ podSandboxImage: k8s.gcr.io/pause:3.2
 runtimeType: remote
 ```
 
-By default, the cgroup driver of cri is configured as `cgroupfs`. If this is not the case, you can switch to `systemd` manually in `edgecore.yaml`:
+默认情况下，cri的`cgroup`驱动程序配置为`cgroupfs`。如果不是这种情况，可以在`edgecore.yaml`中手动切换到`systemd`：
 
 ```yaml
 modules:
@@ -44,7 +44,7 @@ modules:
     cgroupDriver: systemd
 ```
 
-Set `systemd_cgroup` to `true` in `containerd`’s configuration file (/etc/containerd/config.toml), and then restart `containerd`:
+在`containerd`的配置文件（/etc/containerd/config.toml）中将`systemd_cgroup`设置为`true`，然后重新启动`containerd`： 
 
 ```toml
 # /etc/containerd/config.toml
@@ -56,7 +56,7 @@ systemd_cgroup = true
 systemctl restart containerd
 ```
 
-Create the `nginx` application and check that the container is created with `containerd` on the edge side:
+创建`nginx`应用程序，并检查是否在边缘侧创建了`containerd`容器：
 
 ```bash
 kubectl apply -f $GOPATH/src/github.com/kubeedge/kubeedge/build/deployment.yaml
@@ -67,13 +67,13 @@ CONTAINER                                                           IMAGE       
 41c1a07fe7bf7425094a9b3be285c312127961c158f30fc308fd6a3b7376eab2    docker.io/library/nginx:1.15.12    io.containerd.runtime.v1.linux
 ```
 
-NOTE: since cri doesn't support multi-tenancy while `containerd` does, the namespace for containers are set to "k8s.io" by default. There is not a way to change that until [support in cri](https://github.com/containerd/cri/pull/1462) has been implemented.
+注意：由于cri不支持多租户，而`containerd`支持，因此容器的命名空间默认设置为 "k8s.io"。在 [cri支持](https://github.com/containerd/cri/pull/1462)之前，无法更改。
 
 ## CRI-O
 
-Follow the [CRI-O install guide](https://github.com/cri-o/cri-o/#installing-cri-o) to setup CRI-O.
+请按照[CRI-O安装指南](https://github.com/cri-o/cri-o/#installing-cri-o)设置CRI-O。
 
-If your edge node is running on the ARM platform and your distro is ubuntu18.04, you might need to build the binaries form source and then install, since CRI-O packages are not available in the [Kubic](https://build.opensuse.org/project/show/devel:kubic:libcontainers:stable) repository for this combination.
+如果你的边缘节点运行在ARM平台上，而你的发行版是ubuntu18.04，你可能需要以源代码形式构建二进制文件，然后再进行安装，因为CRI-O软件包在[Kubic软件仓库](https://build.opensuse.org/project/show/devel:kubic:libcontainers:stable)中并不适用这种组合。
 
 ```bash
 git clone https://github.com/cri-o/cri-o
@@ -84,8 +84,7 @@ sudo make install
 sudo make install.config
 ```
 
-Set up CNI networking by following this guide: [setup CNI](https://github.com/cri-o/cri-o/blob/master/contrib/cni/README.md).
-Update the edgecore config file, specifying the following parameters for the `CRI-O`-based runtime:
+按照以下指南设置CNI网络：[设置CNI](https://github.com/cri-o/cri-o/blob/master/contrib/cni/README.md)。更新edgecore配置文件，为基于`CRI-O`的运行时指定以下参数：
 
 ```yaml
 remoteRuntimeEndpoint: unix:///var/run/crio/crio.sock
@@ -95,20 +94,20 @@ podSandboxImage: k8s.gcr.io/pause:3.2
 runtimeType: remote
 ```
 
-By default, `CRI-O` uses `cgroupfs` as a cgroup driver manager. If you want to switch to `systemd` instead, update the `CRI-O` config file (/etc/crio/crio.conf.d/00-default.conf):
+默认情况下，`CRI-O`使用`cgroupfs`作为`cgroup`驱动程序管理器。如果想改用`systemd`，请更新`CRI-O`配置文件（/etc/crio/crio.conf.d/00-default.conf）：
 
 ```conf
 # Cgroup management implementation used for the runtime.
 cgroup_manager = "systemd"
 ```
 
-*NOTE: the `pause` image should be updated if you are on ARM platform and the `pause` image you are using is not a multi-arch image. To set the pause image, update the `CRI-O` config file:*
+*注意：如果您使用的是ARM平台，且`pause`镜像不是多芯片镜像，则应更新`pause`镜像。要设置暂停映像，请更新`CRI-O`配置文件：*
 
 ```conf
 pause_image = "k8s.gcr.io/pause-arm64:3.1"
 ```
 
-Remember to update `edgecore.yaml` as well for your cgroup driver manager:
+记得更新`edgecore.yaml`以及cgroup驱动程序管理器：
 
 ```yaml
 modules:
@@ -116,7 +115,7 @@ modules:
     cgroupDriver: systemd
 ```
 
-Start `CRI-O` and `edgecore` services (assume both services are taken care of by `systemd`),
+启动`CRI-O`和`edgecore`服务（假设这两个服务都由`systemd`负责）
 
 ```bash
 sudo systemctl daemon-reload
@@ -125,7 +124,7 @@ sudo systemctl start crio
 sudo systemctl start edgecore
 ```
 
-Create the application and check that the container is created with `CRI-O` on the edge side:
+创建应用程序并检查容器是否通过`CRI-O`在边缘侧创建：
 
 ```bash
 kubectl apply -f $GOPATH/src/github.com/kubeedge/kubeedge/build/deployment.yaml
@@ -138,21 +137,20 @@ CONTAINER ID        IMAGE               CREATED             STATE               
 
 ## Kata Containers
 
-Kata Containers is a container runtime created to address security challenges in the multi-tenant, untrusted cloud environment. However, multi-tenancy support is still in KubeEdge’s [backlog](https://github.com/kubeedge/kubeedge/issues/268). If you have a downstream customized KubeEdge which supports multi-tenancy already then Kata Containers is a good option for a lightweight and secure container runtime.
+Kata Containers是一个容器运行时，用于解决多租户、不受信任的云环境中的安全挑战。不过，多租户支持仍在KubeEdge的[积压](https://github.com/kubeedge/kubeedge/issues/268)中。如果你已经有了支持多租户的下游定制KubeEdge，那么Kata Containers就是一个轻量级安全容器运行时的不错选择。
 
-Follow the [install guide]( https://github.com/kata-containers/documentation/blob/master/how-to/containerd-kata.md) to install and configure containerd and  Kata Containers.
-
-If you have “kata-runtime” installed, run this command to check if your host system can run and create a Kata Container:
+请按照[安装指南](https://github.com/kata-containers/documentation/blob/master/how-to/containerd-kata.md)安装和配置containerd和Kata Containers。
+如果已安装 "kata-runtime"，请运行此命令检查主机系统是否可以运行和创建Kata容器：
 ```bash
 kata-runtime kata-check
 ```
 
-`RuntimeClass` is a feature for selecting the container runtime configuration to use to run a pod’s containers that is supported since `containerd` v1.2.0.  If your `containerd` version is later than v1.2.0, you have two choices to configure `containerd` to use Kata Containers:
+`RuntimeClass`是一项用于选择运行pod的容器所使用的容器运行时配置的功能，自`containerd` v1.2.0起支持该功能。如果您的`containerd`版本晚于 v1.2.0，您有两种选择来配置`containerd`以使用 Kata Containers：
 
-- Kata Containers as a RuntimeClass
-- Kata Containers as a runtime for untrusted workloads
+- 作为RuntimeClass的Kata Containers
+- 将Kata Containers作为不信任工作负载的运行时
 
-Suppose you have configured Kata Containers as the runtime for untrusted workloads. In order to verify whether it works on your edge node, you can run:
+假设您已将Kata Containers配置为不受信任工作负载的运行时。为了验证它是否能在边缘节点上运行，可以运行
 
 ```yaml
 cat nginx-untrusted.yaml
@@ -182,12 +180,12 @@ b1c0911644cb9       About a minute ago   Ready               nginx-untrusted    
 
 ## Virtlet
 
-Make sure no libvirt is running on the worker nodes.
+确保工作节点上没有运行libvirt。
 
 ### Steps
 1. **Install CNI plugin:**
 
-   Download CNI plugin release and extract it:
+   下载CNI插件发行版并解压：
 
    ```bash
    $ wget https://github.com/containernetworking/plugins/releases/download/v0.8.2/cni-plugins-linux-amd64-v0.8.2.tgz
@@ -200,7 +198,7 @@ Make sure no libvirt is running on the worker nodes.
    $ cp ./cni/* /opt/cni/bin/
    ```
 
-   Configure CNI plugin:
+   配置CNI插件：
 
    ```bash
    $ mkdir -p /etc/cni/net.d/
@@ -224,9 +222,8 @@ Make sure no libvirt is running on the worker nodes.
    EOF
    ```
 
-2. **Setup VM runtime:**
-   Use the script [`hack/setup-vmruntime.sh`](https://github.com/kubeedge/kubeedge/tree/master/hack/setup-vmruntime.sh) to set up a VM runtime. It makes use of the Arktos Runtime release to start three containers:
-
-    	vmruntime_vms
-   	vmruntime_libvirt
-   	vmruntime_virtlet
+2. **设置虚拟机运行时：**
+   使用脚本[`hack/setup-vmruntime.sh`](https://github.com/kubeedge/kubeedge/tree/master/hack/setup-vmruntime.sh)设置虚拟机运行时。它利用 Arktos Runtime 版本启动三个容器：
+    - vmruntime_vms
+    - vmruntime_libvirt
+   	- vmruntime_virtlet
