@@ -11,7 +11,7 @@ KubeEdge致力于与合作伙伴共同打造一个强大且充满活力的云原
 
 1. Fork [kubeedge/website](https://github.com/kubeedge/website)仓库。
 2. 使用`git clone https://github.com/<YOUR-GH-USERNAME>/website.git`命令clone它到本地。
-3. 在[src/pages/partners/partners.mdx](https://github.com/kubeedge/website/blob/master/src/pages/partners/partners.mdx)文件中编辑partners列表。 你可以参考如下格式：
+3. 在[src/pages/partners/partners.mdx](https://github.com/kubeedge/website/blob/master/src/pages/partners/partners.mdx)文件中编辑partners列表，请按照组织或公司名的字母排序，在列表中写入产品信息。你可以参考如下格式：
 
    | Organization/Company   | Product  | Description | Website |
    |:-:|:-:|-------------|---------|
