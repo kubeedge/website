@@ -1,4 +1,4 @@
-export const TAG_Type_EN = ["All", "UserCase", "Solutions"];
+export const TAG_Type_EN = ["All", "UserCase", "Solution"];
 
 export const TAG_TYPE_ZH = ["全部", "用户案例", "解决方案"];
 
