@@ -19,7 +19,7 @@ title: 公司名称
 subtitle： (选填)请用关键词描述案例带来的显著效果。（示例：100% Performance improvement）
 description： 请用一句话对案例做一个简要的概括。
 date： 时间。（参考格式：2023-01-01）
-tags： 案例标签。请根据案例类型填写Solutions或UserCase(中文文档请对应填写解决方案或用户案例)
+tags： 案例标签。请根据案例类型填写Solution或UserCase(中文文档请对应填写解决方案或用户案例)
 ```
 
 2.  文档正文。请在文档正文里详细描述案例内容，可参考以下几点详细展开介绍。
