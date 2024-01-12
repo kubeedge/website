@@ -7,7 +7,7 @@ sidebar_position: 3
 
 1. Make sure you can find the kubernetes `ca.crt` and `ca.key` files. If you set up your kubernetes cluster by `kubeadm` , those files will be in `/etc/kubernetes/pki/` dir.
 
-    ``` shell
+    ```shell
     ls /etc/kubernetes/pki/
     ```
 
@@ -17,7 +17,7 @@ sidebar_position: 3
     export CLOUDCOREIPS="192.168.0.139"
     ```
     (Warning: the same **terminal** is essential to continue the work, or it is necessary to type this command again.) Checking the environment variable with the following command:
-    ``` shell
+    ```shell
     echo $CLOUDCOREIPS
     ```
 
@@ -45,7 +45,7 @@ sidebar_position: 3
 
     Run the following command on the host on which each apiserver runs:
 
-    **Note:** You need to set the cloudcoreips variable first
+    **Note:** Make sure `CLOUDCOREIPS` environment variable is set
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
@@ -63,9 +63,11 @@ sidebar_position: 3
 
 ## Update Configurations
 
-1. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
+1. Update `cloudcore` configuration to enable **cloudStream**.
 
-    Modify `/etc/kubeedge/config/cloudcore.yaml`:
+    If `cloudcore` is installed as binary, you can directly modify `/etc/kubeedge/config/cloudcore.yaml` with using editor.
+    If `cloudcore` is running as kubernetes deployment, you can use `kubectl edit cm -n kubeedge cloudcore` to update `cloudcore`'s ConfigurationMap.
+
     ```yaml
     cloudStream:
       enable: true
@@ -79,8 +81,12 @@ sidebar_position: 3
       tunnelPort: 10004
     ```
 
-    Modify `/etc/kubeedge/config/edgecore.yaml`:
-    ``` yaml
+2. Update `edgecore` configuration to enable **edgeStream**.
+
+    This modification needs to be done all edge system where `edgecore` runs to update `/etc/kubeedge/config/cloudcore.yaml`.
+    Make sure the `server` IP address to the cloudcore IP (the same as $CLOUDCOREIPS).
+
+    ```yaml
     edgeStream:
       enable: true
       handshakeTimeout: 30
@@ -94,14 +100,19 @@ sidebar_position: 3
 
 ## Restart
 
-1. Restart all the cloudcore and edgecore.
+1. Restart all the cloudcore and edgecore to apply the **Stream** configuration.
 
-    At the cloud side:
-    ``` shell
+    If `cloudcore` is installed as binary:
+    ```shell
     sudo systemctl restart cloudcore.service
     ```
 
-    At the edge side:
-    ``` shell
+    or `cloudcore` is running in kubernetes deployment:
+    ```shell
+    kubectl rollout restart deployment -n kubeedge cloudcore
+    ```
+
+    At the all edge side where `edgecore` runs:
+    ```shell
     sudo systemctl restart edgecore.service
     ```
