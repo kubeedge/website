@@ -11,7 +11,7 @@ You write the pages in Markdown, and Docusaurus wraps them up into a website.
 
 - Please see [How to contributing](CONTRIBUTING.md) for instructions on how to contribute, if you are not familiar with the
   GitHub workflow
-- [Start contributing](https://kubeedge.netlify.com/docs/about/contributing/)
+- [Start contributing](https://kubeedge.io/docs/community/contribute)
 
 ## Quick start
 
