@@ -3,6 +3,8 @@ title: 版本管理
 sidebar_position: 5
 ---
 
+## KubeEdge 版本周期
+
 KubeEdge 目前大约每三个月会发布一个版本。
 
 ![release cycle](/img/community/release-cycle.png)
@@ -25,8 +27,18 @@ KubeEdge 目前大约每三个月会发布一个版本。
 
   完成前三个阶段后，版本进入最后的发布准备阶段。社区通过进行测试、文档和版本Changelog来准备正式发布。随后，最终版本正式发布并可供公众使用。
 
-当代码库足够稳定时，主分支将开放进行开发，并从开始下一个版本的工作。 当前版本的任何修改都是从 master 分支cherry-pick回版本分支。发布版本是从版本release分支构建的。
+当代码库足够稳定时，主分支将开放进行开发，并从开始下一个版本的工作。 
 
-每个版本都是更广泛的 KubeEdge 生命周期的一部分：
+## 补丁版本
+
+补丁版本通常是每月发布一次，如果出现严重问题需要修复，社区也会缩短发布周期，尽快发布补丁版本。
+
+### Cherry Picks
+
+当前版本的任何修改都是从 master 分支cherry-pick回版本分支。Cherry-Pick的PR必须在 GitHub 中准备好合并，带有approved和lgtm标签， 并在补丁版本发布截止日期之前通过 CI 测试。
+
+### 支持的版本
+
+通常社区会维护最新三个版本的补丁发布，这意味着问题修复可以合入最新三个版本来保证版本的稳定性与可靠性。如果出现严重问题，社区会根据具体情况考虑对更早的版本发布补丁。
 
 ![release lifecycle](/img/community/release-lifecycle.png)
