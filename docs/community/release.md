@@ -3,6 +3,8 @@ title: Release Management
 sidebar_position: 5
 ---
 
+## KubeEdge Release Cycle
+
 KubeEdge releases currently happen approximately every three months. 
 
 ![release cycle](/img/community/release-cycle.png)
@@ -25,8 +27,18 @@ The release process can be thought of as having four main phases:
 
   Once the first three phases are comleted, the release branch enters the final stage. The community prepares for the official release by conducting thorough testing and ensuring documentation and release notes are up-to-date. Following this, the final version is officially released and made available for public use.
 
-When the code base is sufficiently stable, the master branch opens for general development and work begins there for the next release milestone. Any remaining modifications for the current release are cherry picked from master back to the release branch. The release is built from the release branch.
+When the code base is sufficiently stable, the master branch opens for general development and work begins there for the next release milestone. 
 
-Each release is part of a broader KubeEdge lifecycle:
+## Patch Release
+
+Our typical patch release cadence is monthly. If there are critical issues present in the current version, an expedited release may be necessary.
+
+### Cherry Picks
+
+Any remaining modifications for the current release are cherry picked from master back to the release branch. Cherry picks must be merge-ready in GitHub with proper labels (e.g., approved, lgtm, release-note) and passing CI tests ahead of the patch release deadline.
+
+### Support Versions
+
+We provide maintenance for the latest three releases. This means that bug fixes will be applied to these releases to ensure their stability and reliability. However, in exceptional cases where severe issues arise, we may consider releasing patches for earlier versions as well, based on the specific circumstances.
 
 ![release lifecycle](/img/community/release-lifecycle.png)
