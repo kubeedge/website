@@ -178,16 +178,19 @@ const config = {
             href: "https://github.com/kubeedge/kubeedge",
             position: "right",
             className: "header-github-link heade-icon",
+            "aria-label": "GitHub repository",
           },
           {
             href: "https://twitter.com/KubeEdge",
             position: "right",
             className: "header-twitter-link heade-icon",
+            "aria-label": "Twitter",
           },
           {
             to: "/docs/community/slack",
             position: "right",
             className: "header-slack-link heade-icon",
+            "aria-label": "Slack",
           },
           {
             type: "localeDropdown",
