@@ -62,6 +62,7 @@ The bluetooth mapper consists of the following five major modules :-
  Each of these actions should be supplied through config-file to action manager or at runtime through MQTT. The values specified initially through the configuration
  file can be modified at runtime through MQTT. Given below is a guide to provide input to action manager through the configuration file.
 
+```
     action-manager:
        actions:          # Multiple actions can be added
          - name: <name of the action>
@@ -69,6 +70,7 @@ The bluetooth mapper consists of the following five major modules :-
            device-property-name: <property-name defined in the device model>
          - .......
            .......
+```
 
 1. Multiple actions can be added in the action manager module. Each of these actions can either be executed by the action manager of invoked by other modules of
 the mapper like scheduler and watcher.
@@ -90,16 +92,18 @@ perform the event once.
  through MQTT at runtime. The values specified initially by the user through the configuration file can be modified at runtime through MQTT. Given below is a guide to provide input to scheduler
  through the configuration file.
 
-          scheduler:
-            schedules:
-              - name: <name of schedule>
-                interval: <time in milliseconds>
-                occurrence-limit: <number of times to be executed>            # if it is 0, then the event will execute infinitely
-                actions:
-                  - <action name>
-                  - <action name>
-              - ......
-                ......
+```
+  scheduler:
+    schedules:
+      - name: <name of schedule>
+        interval: <time in milliseconds>
+        occurrence-limit: <number of times to be executed>            # if it is 0, then the event will execute infinitely
+        actions:
+          - <action name>
+          - <action name>
+      - ......
+        ......
+```
 
  1. Multiple schedules can be defined by the user by providing an array as input though the configuration file.
 
@@ -126,13 +130,15 @@ perform the event once.
  The watcher is an optional component and need not be defined or used by the user if not necessary. The input to the watcher can be provided through the configuration file or through
  mqtt at runtime. The values that are defined through the configuration file can be changed at runtime through MQTT. Given below is a guide to provide input to the watcher through the configuration file.
 
-          watcher:
-              device-twin-attributes :
-              - device-property-name: <name of attribute>
-                  - <action name>
-                  - <action name>
-              - ......
-                ......
+```
+  watcher:
+      device-twin-attributes :
+      - device-property-name: <name of attribute>
+          - <action name>
+          - <action name>
+      - ......
+        ......
+```
 
  1. Device-property-name refers to the device twin attribute name that was given when creating the device. It is using this name that the watcher watches for any change in expected state.
 
@@ -149,12 +155,13 @@ perform the event once.
  watcher runs parallelly, after this it starts the action manger which executes all the actions that have been enabled in it, after which the scheduler is started to run parallelly as well. Given below is a guide to provide input to the
  controller through the configuration file.
 
-          mqtt:
-            mode: 0       # 0 -internal mqtt broker  1 - external mqtt broker
-            server: tcp://127.0.0.1:1883 # external mqtt broker url.
-            internal-server: tcp://127.0.0.1:1884 # internal mqtt broker url.
-          device-model-name: <device_model_name>
-
+```
+  mqtt:
+    mode: 0       # 0 -internal mqtt broker  1 - external mqtt broker
+    server: tcp://127.0.0.1:1883 # external mqtt broker url.
+    internal-server: tcp://127.0.0.1:1884 # internal mqtt broker url.
+  device-model-name: <device_model_name>
+```
 
 ## Usage
 
@@ -165,37 +172,38 @@ perform the event once.
 
  **Example:** Given below is the instructions using which user can create their own configuration file, for their device.
 
-         mqtt:
-           mode: 0       # 0 -internal mqtt broker  1 - external mqtt broker
-           server: tcp://127.0.0.1:1883 # external mqtt broker url.
-           internal-server: tcp://127.0.0.1:1884 # internal mqtt broker url.
-         device-model-name: <device_model_name>        #deviceID received while registering device with the cloud
-         action-manager:
-           actions:          # Multiple actions can be added
-           - name: <name of the action>
-             perform-immediately: <true/false>
-             device-property-name: <property-name defined in the device model>
-           - .......
-             .......
-         scheduler:
-           schedules:
-           - name: <name of schedule>
-             interval: <time in milliseconds>
-             occurrence-limit: <number of times to be executed>            # if it is 0, then the event will execute infinitely
-             actions:
-             - <action name>
-             - <action name>
-             - ......
-           - ......
-         watcher:
-           device-twin-attributes :
-           - device-property-name: <name of attribute>
-             actions:        # Multiple actions can be added
-             - <action name>
-             - <action name>
-             - ......
-           - ......
-
+```
+     mqtt:
+       mode: 0       # 0 -internal mqtt broker  1 - external mqtt broker
+       server: tcp://127.0.0.1:1883 # external mqtt broker url.
+       internal-server: tcp://127.0.0.1:1884 # internal mqtt broker url.
+     device-model-name: <device_model_name>        #deviceID received while registering device with the cloud
+     action-manager:
+       actions:          # Multiple actions can be added
+       - name: <name of the action>
+         perform-immediately: <true/false>
+         device-property-name: <property-name defined in the device model>
+       - .......
+         .......
+     scheduler:
+       schedules:
+       - name: <name of schedule>
+         interval: <time in milliseconds>
+         occurrence-limit: <number of times to be executed>            # if it is 0, then the event will execute infinitely
+         actions:
+         - <action name>
+         - <action name>
+         - ......
+       - ......
+     watcher:
+       device-twin-attributes :
+       - device-property-name: <name of attribute>
+         actions:        # Multiple actions can be added
+         - <action name>
+         - <action name>
+         - ......
+       - ......
+```
 
 ### Runtime Configuration Modifications
 
@@ -218,19 +226,21 @@ The user can add or update the watcher properties of the mapper at runtime. It w
 
 **Message:**
 
-             {
-              "device-twin-attributes": [
-                {
-                  "device-property-name": "IOControl",
-                  "actions": [                     # List of names of actions to be performed (actions should have been defined before watching)
-                    "IOConfigurationInitialize",
-                    "IODataInitialize",
-                    "IOConfiguration",
-                    "IOData"
-                  ]
-                }
-              ]
-            }
+```
+     {
+      "device-twin-attributes": [
+        {
+          "device-property-name": "IOControl",
+          "actions": [                     # List of names of actions to be performed (actions should have been defined before watching)
+            "IOConfigurationInitialize",
+            "IODataInitialize",
+            "IOConfiguration",
+            "IOData"
+          ]
+        }
+      ]
+    }
+```
 
 #### Action Manager
 
@@ -247,18 +257,20 @@ The user can add a set of actions to be performed by the mapper. If an action wi
 
 **Message:**
 
-        [
-          {
-            "name": "IRTemperatureConfiguration",          # name of action
-            "perform-immediately": true,                   # whether the action is to performed immediately or not
-            "device-property-name": "temperature-enable"   #property-name defined in the device model
-          },
-          {
-            "name": "IRTemperatureData",
-            "perform-immediately": true,
-            "device-property-name": "temperature"          #property-name defined in the device model
-          }
-        ]
+```
+    [
+      {
+        "name": "IRTemperatureConfiguration",          # name of action
+        "perform-immediately": true,                   # whether the action is to performed immediately or not
+        "device-property-name": "temperature-enable"   #property-name defined in the device model
+      },
+      {
+        "name": "IRTemperatureData",
+        "perform-immediately": true,
+        "device-property-name": "temperature"          #property-name defined in the device model
+      }
+    ]
+```
 
 ##### Action Delete
 
@@ -269,21 +281,22 @@ then it returns an error message.
 
 **Message:**
 
-        [
-          {
-            "name": "IRTemperatureConfiguration"        #name of action to be deleted
-          },
-          {
-            "name": "IRTemperatureData"
-          },
-          {
-            "name": "IOConfigurationInitialize"
-          },
-          {
-            "name": "IOConfiguration"
-          }
-        ]
-
+```
+    [
+      {
+        "name": "IRTemperatureConfiguration"        #name of action to be deleted
+      },
+      {
+        "name": "IRTemperatureData"
+      },
+      {
+        "name": "IOConfigurationInitialize"
+      },
+      {
+        "name": "IOConfiguration"
+      }
+    ]
+```
 
 #### Scheduler
 
@@ -300,6 +313,7 @@ The user can add a set of schedules to be performed by the mapper. If a schedule
 
 **Message:**
 
+```
     [
       {
         "name": "temperature",            # name of schedule
@@ -311,6 +325,7 @@ The user can add a set of schedules to be performed by the mapper. If a schedule
         ]
       }
     ]
+```
 
 ##### Schedule Delete
 
@@ -321,8 +336,10 @@ then it returns an error message.
 
 **Message:**
 
-        [
-          {
-            "name": "temperature"                  #name of schedule to be deleted
-          }
-        ]
+```
+    [
+      {
+        "name": "temperature"                  #name of schedule to be deleted
+      }
+    ]
+```
