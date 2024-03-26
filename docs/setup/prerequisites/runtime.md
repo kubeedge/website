@@ -12,6 +12,7 @@ This page provides an outline of how to use several common container runtimes wi
 - [docker](#docker-engine)
 - [Kata containers](#kata-containers)
 - [Virtlet](#Virtlet)
+- [iSulad](#iSulad)
 
 ## containerd
 
@@ -283,3 +284,112 @@ Make sure no libvirt is running on the worker nodes.
     	vmruntime_vms
    	vmruntime_libvirt
    	vmruntime_virtlet
+
+
+## iSulad
+
+[iSulad](https://gitee.com/openeuler/iSulad) , written in C/C++, is a lightweight container engine that has the advantage of being light, fast and applicable to multiple hardware specifications and architecture. iSulad has a wide application prospect.
+
+Follow the [install guide]( https://gitee.com/openeuler/iSulad/blob/master/README.md) to install and configure iSulad.
+
+### Steps
+1. **Install iSulad:**
+
+   If you are installing on an OpenEuler system, you can directly install through yum by adding OpenEuler's yum repository:
+
+   ```bash
+   $ cat << EOF > /etc/yum.repos.d/openEuler.repo
+   [openEuler]
+   baseurl=https://repo.openeuler.org/openEuler-22.03-LTS/OS/\$basearch
+   enabled=1
+   EOF
+   ```
+
+   Install iSulad with yum:
+
+   ```bash
+   $ yum install -y iSulad
+   ```
+   If your system is Centos, you can install iSulad by running [scripts]( https://gitee.com/openeuler/iSulad/blob/master/docs/build_docs/guide/script/install_iSulad_on_Centos_7.sh).
+
+   ```bash
+   $ git clone https://gitee.com/openeuler/iSulad.git
+   $ cd iSulad/docs/build_docs/guide/script
+   $ sudo ./install_iSulad_on_Centos_7.sh
+   ```
+   If your system is Ubuntu, you can install iSulad by running [scripts]( https://gitee.com/openeuler/iSulad/blob/master/docs/build_docs/guide/script/install_iSulad_on_Ubuntu_20_04_LTS.sh).
+
+   ```bash
+   $ git clone https://gitee.com/openeuler/iSulad.git
+   $ cd iSulad/docs/build_docs/guide/script
+   $ sudo chmod +x ./install_iSulad_on_Ubuntu_20_04_LTS.sh
+   $ sudo ./install_iSulad_on_Ubuntu_20_04_LTS.sh
+   ```
+   :::tip
+   iSulad started supporting the CRI V1 interface in v2.1.4, and currently CRI V1 is not opened by default during compilation. If you need to use a newer version of KubeEdge (such as v1.15.0), you need to open DENABLE-CRI-API_V1 in the script:
+   
+   ```bash
+   # build and install iSulad
+   cd $BUILD_DIR
+   sudo git clone https://gitee.com/openeuler/iSulad.git
+   cd iSulad
+   sudo mkdir build
+   cd build
+   sudo cmake -DENABLE_CRI_API_V1=ON ..
+   sudo make -j $(nproc)
+   sudo make install
+   ```
+   :::
+
+2. **Configure iSulad:**
+
+   Configure the container image registry address, for example "docker.io" or other registry addrss.
+   
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....
+   "registry-mirrors": [
+    "docker.io"
+    ],
+   .....
+   ```
+
+   Configure CNI plugin:
+
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....
+   "network-plugin": "cni",
+   "cni-bin-dir": "/opt/cni/bin",
+   "cni-conf-dir": "/etc/cni/net.d",
+   .....
+   ```      
+
+   :::tip
+   The default websocket server listing port value for iSulad is 10350, while KubeEdge's 10350 is the server port for edgecore, used for kubectl exec/logs, metrics, and more. So if iSula is running on an edge node, there will be port conflicts. We need to change the websocket server listing port of iSula to a value other than 10350, such as:
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....   
+   "websocket-server-listening-port": 10355,
+   .....
+   ``` 
+   :::
+
+   :::tip
+   If CRI V1 needs to be used, the parameter "enable cri v1" needs to be set to true. 
+   
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....   
+   "enable-cri-v1": true,
+   .....
+   ```
+   :::
+
+3. **Run iSulad:**
+   Use systemd service to start iSulad:
+
+   ```bash
+   $ systemctl enable isulad
+   $ systemctl restart isulad 
+   ```
