@@ -7,7 +7,7 @@ categories:
 date: 2024-05-15
 draft: false
 lastmod: 2024-05-15
-summary: KubeEdge v1.17 is now available!
+summary: KubeEdge v1.17 is live!
 tags:
 - KubeEdge
 - kubeedge  
@@ -23,7 +23,17 @@ tags:
 title: KubeEdge v1.17 Released with Edge Pods InClusterConfig, Video Streaming Support and More!
 ---
 
-KubeEdge v1.17 is now available! This latest release introduces several new features and enhancements, including support for edge pods using InClusterConfig to access the Kubernetes API server, video streaming data reporting in Mappers, auto-restarting for EdgeCore modules, and more. Let's dive into the release highlights:
+KubeEdge v1.17 is now available! This latest release introduces several new features and enhancements, including support for edge pods using InClusterConfig to access the Kubernetes API server, video streaming data reporting in Mappers, auto-restarting for EdgeCore modules, and more.
+
+## 1.17 What's New
+
+- [Support Edge Pods Using InClusterConfig to Access Kube-APIServer](#support-edge-pods-using-inclusterconfig-to-access-kube-apiserver)
+- [Mapper Supports Video Streaming Data Reporting](#mapper-supports-video-streaming-data-reporting)
+- [Support Auto-Restarting for Edge Modules](#support-auto-restarting-for-edge-modules)
+- [Introduce `keadm ctl` Command to Support Pods Query and Restart at Edge](#introduce-keadm-ctl-command-to-support-pods-query-and-restart-at-edge)
+- [Keadm's Enhancement](#keadms-enhancement)
+- [Add MySQL to Mapper Framework](#add-mysql-to-mapper-framework)
+- [Upgrade Kubernetes Dependency to v1.28.6](#upgrade-kubernetes-dependency-to-v1286)
 
 ## Release Highlights
 
@@ -79,9 +89,9 @@ The Mapper Framework data plane now includes MySQL database support in its `push
 
 Refer to the link for more details. ([#5376](https://github.com/kubeedge/kubeedge/pull/5376)) 
 
-### Upgraded Kubernetes Dependency to v1.28.6
+### Upgrade Kubernetes Dependency to v1.28.6
 
-The vendored Kubernetes version has been upgraded to v1.28.6, allowing users to utilize the latest features on both the cloud and edge side.
+The vendored Kubernetes version has been upgraded to v1.28.6, users are now able to use the latest features on both the cloud and edge side.
 
 Refer to the link for more details. ([#5412](https://github.com/kubeedge/kubeedge/pull/5412))
 
