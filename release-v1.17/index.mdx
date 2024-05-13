@@ -31,7 +31,7 @@ KubeEdge v1.17 is now available! This latest release introduces several new feat
 - [Mapper Supports Video Streaming Data Reporting](#mapper-supports-video-streaming-data-reporting)
 - [Support Auto-Restarting for Edge Modules](#support-auto-restarting-for-edge-modules)
 - [Introduce `keadm ctl` Command to Support Pods Query and Restart at Edge](#introduce-keadm-ctl-command-to-support-pods-query-and-restart-at-edge)
-- [Keadm's Enhancement](#keadms-enhancement)
+- [Keadm Enhancements](#keadm-enhancements)
 - [Add MySQL to Mapper Framework](#add-mysql-to-mapper-framework)
 - [Upgrade Kubernetes Dependency to v1.28.6](#upgrade-kubernetes-dependency-to-v1286)
 
@@ -43,7 +43,7 @@ The `InClusterConfig` mechanism enables cloud pods to directly access the Kubern
 
 Refer to the link for more details. ([#5524](https://github.com/kubeedge/kubeedge/pull/5524), [#5541](https://github.com/kubeedge/kubeedge/pull/5541))
 
-### Mapper Supports Video Streaming Data Reporting  
+### Mapper Supports Video Streaming Data Reporting
 
 Previously, Mappers could only process structured device data. In v1.17, video stream data processing features have been added to the Mapper-Framework.
 
@@ -63,7 +63,7 @@ EdgeCore modules could previously fail to start due to non-configurable and reco
 
 Refer to the link for more details. ([#5509](https://github.com/kubeedge/kubeedge/pull/5509), [#5513](https://github.com/kubeedge/kubeedge/pull/5513))
 
-### Introduce `keadm ctl` to Support Pod Queries and Restarts at Edge
+### Introduce `keadm ctl` Command to Support Pods Query and Restart at Edge
 
 The new `keadm ctl` command has been introduced in v1.17, allowing users to query and restart pods on edge nodes when they are offline:
 
@@ -77,19 +77,19 @@ Refer to the link for more details. ([#5504](https://github.com/kubeedge/kubeedg
 Several enhancements were made to the `keadm` installation tool:
 
 - Refactored the `keadm init` command
-- Changed `keadm generate` to `keadm manifest`  
+- Changed the command `keadm generate` to `keadm manifest`  
 - Added `image-repository` flag to `keadm join` to support customization
-- Split `keadm reset` into `keadm reset cloud` and `keadm reset edge`
+- Split the  `keadm reset` command into  `keadm reset cloud` and  `keadm reset edge`.
 
 Refer to the link for more details. ([#5317](https://github.com/kubeedge/kubeedge/pull/5317))
 
-### Added MySQL Support to Mapper Framework
+### Add MySQL to Mapper Framework
 
 The Mapper Framework data plane now includes MySQL database support in its `pushMethod`. When using MySQL, basic configuration parameters for the MySQL client need to be added in the DeviceInstance.
 
 Refer to the link for more details. ([#5376](https://github.com/kubeedge/kubeedge/pull/5376)) 
 
-### Upgrade Kubernetes Dependency to v1.28.6
+### Upgrade Kubernetes Dependency to v1.28.6 
 
 The vendored Kubernetes version has been upgraded to v1.28.6, users are now able to use the latest features on both the cloud and edge side.
 
