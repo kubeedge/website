@@ -1,0 +1,83 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+- Releases
+date: 2023-05-15
+draft: false
+lastmod: 2023-05-15
+summary: KubeEdge v1.12 is live!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.12
+- v1.12
+title: KubeEdge v1.12 is live!
+---
+
+The KubeEdge community is thrilled to announce the release of KubeEdge v1.12! This release introduces several exciting new features and enhancements, including alpha implementation of the next-generation Cloud Native Device Management Interface (DMI), a new version of the lightweight Edged engine, high-availability mode for EdgeMesh, edge node upgrades from the cloud, authorization for the Edge Kube-API endpoint, and more.
+
+## What's New in KubeEdge v1.12
+
+- [Alpha Implementation of Next-Gen Cloud Native Device Management Interface (DMI)](#alpha-implementation-of-next-gen-cloud-native-device-management-interface-dmi)
+
+- [Next-Gen Edged Graduates to GA: Suitable for More Scenarios](#next-gen-edged-graduates-to-ga-suitable-for-more-scenarios)
+
+- [Introducing High-Availability Mode for EdgeMesh](#introducing-high-availability-mode-for-edgemesh)
+
+- [Support Edge Node Upgrade from the Cloud](#support-edge-node-upgrade-from-the-cloud)
+
+- [Support Authorization for Edge Kube-API Endpoint](#support-authorization-for-edge-kube-api-endpoint)
+
+- [New GigE Mapper](#new-gige-mapper)
+
+### Alpha Implementation of Next-Gen Cloud Native Device Management Interface (DMI)
+
+DMI makes KubeEdge's IoT device management more pluggable and modular in a cloud-native way, covering Device Lifecycle Management, Device Operation, and Device Data Management.
+
+- **Device Lifecycle Management**: Simplifies IoT device lifecycle management, making it as easy as managing a pod.
+
+- **Device Operation**: Provides the ability to operate devices through the Kubernetes API.
+
+- **Device Data Management**: Separates device data management from device management, allowing data to be consumed by local applications or synchronized to the cloud through a special tunnel.
+
+### Next-Gen Edged Graduates to GA: Suitable for More Scenarios
+
+The new version of the lightweight Edged engine, optimized from Kubelet and integrated into EdgeCore, has graduated to General Availability (GA) in this release. The new Edged will continue to communicate with the cloud through a reliable transmission tunnel, making it suitable for a wider range of scenarios.
+
+### Introducing High-Availability Mode for EdgeMesh
+
+KubeEdge v1.12 introduces a high-availability mode for EdgeMesh. Unlike the previous centralized relay mode, the EdgeMesh HA mode can set up multiple relay nodes. When some relay nodes fail, other relay nodes can continue to provide relay services, avoiding single points of failure and improving system stability.
+
+### Support Edge Node Upgrade from the Cloud
+
+KubeEdge v1.12 introduces the NodeUpgradeJob v1alpha1 API to upgrade edge nodes from the cloud. With this API and its associated controller, users can upgrade selected edge nodes from the cloud and roll back to the original version if the upgrade fails.
+
+### Support Authorization for Edge Kube-API Endpoint
+
+Authorization for the Edge Kube-API Endpoint is now available in KubeEdge v1.12. Third-party plugins and applications that depend on Kubernetes APIs on edge nodes must use a bearer token to communicate with the kube-apiserver via the HTTPS server in MetaServer.
+
+### New GigE Mapper
+
+KubeEdge v1.12 includes a new GigE Device Mapper with a Golang implementation, which is used to access GigE Vision protocol cameras.
+
+## Important Steps Before Upgrading
+
+- If you want to upgrade KubeEdge to v1.12, the configuration file in EdgeCore has been upgraded to v1alpha2. You must modify your configuration file for Edged in EdgeCore to adapt to the new Edged.
+
+- If you want to use authorization for the Edge Kube-API Endpoint, please enable the `RequireAuthorization` feature through the feature gate in both CloudCore and EdgeCore. If the `RequireAuthorization` feature is enabled, MetaServer will only serve HTTPS requests.
+
+- If you want to upgrade EdgeMesh to v1.12, you do not need to deploy the existing EdgeMesh-server, but you need to configure relayNodes.
+
+- If you want to run EdgeMesh v1.12 on KubeEdge v1.12 and use HTTPS requests to communicate with KubeEdge, you must set `kubeAPIConfig.metaServer.security.enable=true`.
+
+KubeEdge v1.12 brings exciting new features and improvements to the edge computing ecosystem. We invite you to explore the release and provide feedback to the community. Happy edge computing!
