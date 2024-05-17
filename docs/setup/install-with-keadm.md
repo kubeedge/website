@@ -2,47 +2,50 @@
 title: Installing KubeEdge with Keadm
 sidebar_position: 3
 ---
-Keadm is used to install the cloud and edge components of KubeEdge. It is not responsible for installing K8s and runtime.
 
-Please refer [kubernetes-compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) to get **Kubernetes compatibility** and determine what version of Kubernetes would be installed.
+Keadm is used to install the cloud and edge components of KubeEdge. It does not handle the installation of Kubernetes and its runtime environment.
+
+Please refer to [Kubernetes compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) documentation to check **Kubernetes compatibility** and ascertain the Kubernetes version to be installed.
 
 ## Limitation
 
-- Need super user rights (or root rights) to run.
-
+- It Requires super user rights (or root rights) to run.
 
 ## Install keadm
 
-There're three ways to download a `keadm` binary
+There're three ways to download the `keadm` binary:
 
-- Download from [github release](https://github.com/kubeedge/kubeedge/releases).
+1. Download from [GitHub release](https://github.com/kubeedge/kubeedge/releases).
   
-    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package according to your platform, with your expected version.
+    KubeEdge GitHub officially holds three architecture releases: amd64, arm, and arm64. Please download the correct package according to your platform and desired version.
+
     ```shell
     wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.1/keadm-v1.12.1-linux-amd64.tar.gz
     tar -zxvf keadm-v1.12.1-linux-amd64.tar.gz
     cp keadm-v1.12.1-linux-amd64/keadm/keadm /usr/local/bin/keadm
     ```
-- Download from dockerhub KubeEdge official release image.
+
+2. Download from the official KubeEdge release image on Docker Hub.
 
   ```shell
   docker run --rm kubeedge/installation-package:v1.12.1 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
   ```
 
-- Build from source
+3. Build from Source
   
-    ref: [build from source](./install-with-binary#build-from-source)
-
+-   Refer to [build from source](./install-with-binary#build-from-source) for instructions.
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
-By default ports `10000` and `10002` in your cloudcore needs to be accessible for your edge nodes.
+By default, ports `10000` and `10002` on your cloudcore needs to be accessible for your edge nodes.
 
-**IMPORTANT NOTE:**  
+**IMPORTANT NOTES:**  
 
-1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
-2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
-3. `--advertise-address` is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+1. At least one of `kubeconfig` or `master` must be configured correctly to verify the version and other information of the Kubernetes cluster.
+
+2. Ensure the edge node can connect to the cloud node using the local IP of cloud node, or specify the public IP of the cloud node with the `--advertise-address` flag.
+
+3. `--advertise-address` is the address exposed by the cloud side (it will be added to the SANs of the CloudCore certificate), the default value is the local IP.
 
 ### keadm init
 
