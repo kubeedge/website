@@ -1,0 +1,138 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2023-10-25
+draft: false
+lastmod: 2023-10-25
+summary: KubeEdge v1.11 is live!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.11
+- v1.11
+title: KubeEdge v1.11 is live!
+---
+
+On Jun 21, 2022 KubeEdge released v1.11, introducing several exciting new features and enhancements that significantly improve node group management, mapper development, installation experience, and overall stability.
+
+## v1.11 What's New
+
+- [Node Group Management](#node-group-management)
+- [Mapper SDK](#mapper-sdk)
+- [Beta sub-commands in Keadm to GA](#beta-sub-commands-in-keadm-to-ga)
+- [Deprecation of original `init` and `join`](#deprecation-of-original-init-and-join)
+- [Next-gen Edged to Beta: Suitable for more scenarios](#next-gen-edged-to-beta-suitable-for-more-scenarios)
+
+## Release Highlights
+
+### Node Group Management
+
+Users can now deploy applications to several node groups without writing deployment for every group. Node group management helps users to:
+
+- Manage nodes in groups
+
+- Spread apps among node groups
+
+- Run different versions of app instances in different node groups
+
+- Limit service endpoints in the same location as the client
+
+Two new APIs have been introduced to implement Node Group Management:
+
+- **NodeGroup API**: represents a group of nodes that have the same labels.
+- **EdgeApplication API**: contains the template of the application organized by node groups, and the information on how to deploy different editions of the application to different node groups.
+
+Refer to the links for more details ([#3574](https://github.com/kubeedge/kubeedge/pull/3574), [#3719](https://github.com/kubeedge/kubeedge/pull/3719)).
+
+### Mapper SDK
+
+Mapper-sdk is a basic framework written in Go. Based on this framework, developers can more easily implement a new mapper. Mapper-sdk has realized the connection to KubeEdge, provides data conversion, and manages the basic properties and status of devices, etc., as well as basic capabilities and abstract definition of the driver interface. Developers only need to implement the customized protocol driver interface of the corresponding device to realize the function of mapper.
+
+Refer to the link for more details ([#70](https://github.com/kubeedge/mappers-go/pull/70)).
+
+### Beta sub-commands in Keadm to GA
+
+Some new sub-commands in Keadm have moved to GA, including containerized deployment, offline installation, etc. The original `init` and `join` behaviors have been replaced by the implementation from `beta init` and `beta join`:
+
+- CloudCore will be running in containers and managed by Kubernetes Deployment by default.
+- Keadm now downloads releases that are packed as container images to edge nodes for node setup.
+
+- `init`: CloudCore Helm Chart is integrated into `init`, which can be used to deploy containerized CloudCore.
+
+- `join`: Installing edgecore as a system service from a Docker image, no need to download from the GitHub release.
+
+- `reset`: Reset the node, clean up the resources installed on the node by `init` or `join`. It will automatically detect the type of node to clean up.
+
+- `manifest generate`: Generate all the manifests to deploy the cloud-side components.
+
+Refer to the link for more details ([#3900](https://github.com/kubeedge/kubeedge/pull/3900)).
+
+### Deprecation of original `init` and `join`
+
+The original `init` and `join` sub-commands have been deprecated as they had issues with offline installation, etc.
+
+Refer to the link for more details ([#3900](https://github.com/kubeedge/kubeedge/pull/3900)).
+
+### Next-gen Edged to Beta: Suitable for more scenarios
+
+The new version of the lightweight engine Edged, optimized from Kubelet and integrated into edgecore, has moved to Beta. The new Edged will still communicate with the cloud through the reliable transmission tunnel.
+
+Refer to the link for more details (Dev-Branch for beta: [feature-new-edged](https://github.com/kubeedge/kubeedge/tree/feature-new-edged)).
+
+## Important Steps before Upgrading
+
+If you want to use Keadm to deploy KubeEdge v1.11.0, please note that the behaviors of the `init` and `join` sub-commands have been changed.
+
+## Other Notable Changes
+
+- Add custom image repo for keadm join beta ([#3654](https://github.com/kubeedge/kubeedge/pull/3654))
+
+- Keadm: beta join support remote runtime ([#3655](https://github.com/kubeedge/kubeedge/pull/3655))
+
+- Use sync mode to update pod status ([#3658](https://github.com/kubeedge/kubeedge/pull/3658))
+
+- Make log level configurable for local up kubeedge ([#3664](https://github.com/kubeedge/kubeedge/pull/3664))
+
+- Use dependency to pull images ([#3671](https://github.com/kubeedge/kubeedge/pull/3671))
+
+- Move apis and client under kubeedge/cloud/pkg/ to kubeedge/pkg/ ([#3683](https://github.com/kubeedge/kubeedge/pull/3683))
+
+- Add subresource field in application for API with subresource ([#3693](https://github.com/kubeedge/kubeedge/pull/3693))
+
+- Add Keadm beta e2e ([#3699](https://github.com/kubeedge/kubeedge/pull/3699))
+
+- Keadm beta config images: support remote runtime ([#3700](https://github.com/kubeedge/kubeedge/pull/3700))
+
+- Use unified image management ([#3720](https://github.com/kubeedge/kubeedge/pull/3720))
+
+- Use armhf as default for armv7/v6 ([#3723](https://github.com/kubeedge/kubeedge/pull/3723))
+
+- Add ErrStatus in api-server application ([#3742](https://github.com/kubeedge/kubeedge/pull/3742))
+
+- Support compile binaries with kubeedge/build-tools image ([#3756](https://github.com/kubeedge/kubeedge/pull/3756))
+
+- Add min TLS version for stream server ([#3764](https://github.com/kubeedge/kubeedge/pull/3764))
+
+- Adding security policy ([#3778](https://github.com/kubeedge/kubeedge/pull/3778))
+
+- Chart: add cert domain config in helm chart ([#3802](https://github.com/kubeedge/kubeedge/pull/3802))
+
+- Add domain support for certgen.sh ([#3808](https://github.com/kubeedge/kubeedge/pull/3808))
+
+- Remove default KubeConfig for cloudcore ([#3836](https://github.com/kubeedge/kubeedge/pull/3836))
+
+- Helm: Allow annotation of the cloudcore service ([#3856](https://github.com/kubeedge/kubeedge/pull/3856))
+
+- Add rate limiter for edgehub ([#3862](https://github.com/kubeedge/kubeedge/pull/3862))
+
+- Sync pod status immediately when status update ([#3891](https://github.com/kubeedge/kubeedge/pull/3891))
