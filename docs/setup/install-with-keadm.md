@@ -37,7 +37,7 @@ There're three ways to download the `keadm` binary:
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
-By default, ports `10000` and `10002` on your cloudcore needs to be accessible for your edge nodes.
+By default, ports `10000` and `10002` on your CloudCore needs to be accessible for your edge nodes.
 
 **IMPORTANT NOTES:**  
 
@@ -45,11 +45,11 @@ By default, ports `10000` and `10002` on your cloudcore needs to be accessible f
 
 2. Ensure the edge node can connect to the cloud node using the local IP of cloud node, or specify the public IP of the cloud node with the `--advertise-address` flag.
 
-3. `--advertise-address` is the address exposed by the cloud side (it will be added to the SANs of the CloudCore certificate), the default value is the local IP.
+3. `--advertise-address` is the address exposed by the cloud side (it will be added to the SANs of the CloudCore certificate). The default value is the local IP.
 
 ### keadm init
 
-`keadm init` provides a solution for integrating Cloudcore helm chart. Cloudcore will be deployed to cloud nodes in container mode.
+`keadm init` provides a solution for integrating the Cloudcore Helm chart. Cloudcore will be deployed to cloud nodes in container mode.
 
 Example:
 
@@ -58,6 +58,7 @@ keadm init --advertise-address="THE-EXPOSED-IP" --profile version=v1.12.1 --kube
 ```
 
 Output:
+
 ```shell
 Kubernetes version verification passed, KubeEdge installation will start...
 CLOUDCORE started
@@ -69,7 +70,8 @@ STATUS: deployed
 REVISION: 1
 ```
 
-You can run `kubectl get all -n kubeedge` to ensure that cloudcore start successfully just like below.
+You can run `kubectl get all -n kubeedge` to ensure that Cloudcore start successfully, as shown below.
+
 ```shell
 # kubectl get all -n kubeedge
 NAME                             READY   STATUS    RESTARTS   AGE
@@ -85,11 +87,13 @@ NAME                                   DESIRED   CURRENT   READY   AGE
 replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 ```
 
-**IMPORTANT NOTE:**  
+**IMPORTANT NOTES:**  
 
 1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
+
 2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
-3. `keadm init` deploy cloudcore in container mode, if you want to deploy cloudcore as binary, please ref [`keadm deprecated init`](#keadm-deprecated-init) below.
+
+3. `keadm init` by default, deploys Cloudcore in container mode. If you want to deploy Cloudcore as a binary, please refer to [`keadm deprecated init`](#keadm-deprecated-init).
 
 Example:
 
@@ -97,29 +101,32 @@ Example:
 keadm init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
 ```
 
-If you are familiar with the helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/manifests/charts).
+If you are familiar with the Helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/manifests/charts).
 
 
 ### keadm manifest generate
 
-You can also get the manifests with `keadm manifest generate`.
+You can generate the manifests using `keadm manifest generate`.
 
 Example:
 
 ```shell
 keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
 ```
-> Add --skip-crds flag to skip outputing the CRDs 
+
+> Add `--skip-crds` flag to skip outputting the CRDs.
 
 ### keadm deprecated init 
 
-`keadm deprecated init` will install cloudcore in binary process, generate the certs and install the CRDs. It also provides a flag by which a specific version can be set.
+`keadm deprecated init` installs Cloudcore in binary process, generates certificates, and installs the CRDs. It also provides a flag to set a specific version.
 
-**IMPORTANT NOTE:**  
+**IMPORTANT NOTES:**
 
-1. At least one of kubeconfig or master must be configured correctly, so that it can be used to verify the version and other info of the k8s cluster.
-2. Please make sure edge node can connect cloud node using local IP of cloud node, or you need to specify public IP of cloud node with `--advertise-address` flag.
-3. `--advertise-address` is the address exposed by the cloud side (will be added to the SANs of the CloudCore certificate), the default value is the local IP. 
+1. At least one of `kubeconfig` or `master` must be configured correctly to verify the version and other information of the Kubernetes cluster.
+
+2. Ensure the edge node can connect to the cloud node using the local IP of cloud node, or specify the public IP of the cloud node with the `--advertise-address` flag.
+
+3. `--advertise-address` is the address exposed by the cloud side (it will be added to the SANs of the CloudCore certificate). The default value is the local IP.
 
     Example:
     ```shell
@@ -134,7 +141,8 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
     CloudCore started
     ```
 
-    You can run `ps -elf | grep cloudcore` command to ensure that cloudcore is running successfully.
+    You can run the `ps -elf | grep cloudcore` command to ensure that Cloudcore  is running successfully.
+
     ```shell
     # ps -elf | grep cloudcore
     0 S root     2736434       1  1  80   0 - 336281 futex_ 11:02 pts/2   00:00:00 /usr/local/bin/cloudcore
@@ -145,7 +153,7 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
 
 ### Get Token From Cloud Side
 
-Run `keadm gettoken` in **cloud side** will return the token, which will be used when joining edge nodes.
+Run `keadm gettoken` on the **cloud side** to retrieve the token, which will be used when joining edge nodes.
 
 ```shell
 # keadm gettoken
@@ -155,7 +163,8 @@ Run `keadm gettoken` in **cloud side** will return the token, which will be used
 ### Join Edge Node
 
 #### keadm join
-`keadm join` will install edgecore. It also provides a flag by which a specific version can be set. It will pull image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) from dockerhub and copy binary `edgecore` from container to hostpath, and then start `edgecore` as a system service.
+
+`keadm join` installs Edgecore. It also provides a flag  to set a specific version. It pulls the image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) from Docker Hub, copies the `edgecore` binary from container to the hostpath, and then starts `edgecore` as a system service.
 
 Example:
 
@@ -163,10 +172,13 @@ Example:
 keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.12.1
 ```
 
-**IMPORTANT NOTE:**  
-1. `--cloudcore-ipport` flag is a mandatory flag.  
-2. If you want to apply certificate for edge node automatically, `--token` is needed.  
-3. The kubeEdge version used in cloud and edge side should be same.
+**IMPORTANT NOTES:**
+
+1. The `--cloudcore-ipport` flag is mandatory.
+
+2. If you want to apply certificate for the edge node automatically, the `--token` is needed.
+
+3. The KubeEdge version used on the cloud and edge sides should be the same.
 
 Output:
 
@@ -175,7 +187,8 @@ Output:
 KubeEdge edgecore is running, For logs visit: journalctl -u edgecore.service -xe
 ```
 
-you can run `systemctl status edgecore` command to ensure edgecore is running successfully
+You can run the `systemctl status edgecore` command to ensure Edgecore is running successfully:
+
 ```shell
 # systemctl status edgecore
 ● edgecore.service
@@ -188,14 +201,17 @@ you can run `systemctl status edgecore` command to ensure edgecore is running su
 ```
 
 #### keadm deprecated join
-You can also use `keadm deprecated join` to start edgecore from release pacakge. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
+
+You can also use `keadm deprecated join` to start Edgecore from the release pacakge. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
 
 Example:
+
 ```shell
 keadm deprecated join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=1.12.0
 ```
 
 Output:
+
 ```shell
 MQTT is installed in this host
 ...
@@ -203,59 +219,63 @@ KubeEdge edgecore is running, For logs visit: journalctl -u edgecore.service -xe
 ```
 
 ### Deploy demo on edge nodes
-ref: [Deploy demo on edge nodes](./install-with-binary#deploy-demo-on-edge-nodes)
+
+Refer to the [Deploy demo on edge nodes](./install-with-binary#deploy-demo-on-edge-nodes) documentation.
 
 
 ### Enable `kubectl logs` Feature
 
-Before deploying metrics-server , `kubectl logs` feature must be activated:
+Before deploying the metrics-server, the `kubectl logs` feature must be activated:
 
-> Note that if cloudcore is deployed using helm:
-> - The stream certs are generated automatically and cloudStream feature is enabled by default. So, step 1-3 could 
-   be skipped unless customization is needed. 
-> - Also, step 4 could be finished by iptablesmanager component by default, manually operations are not needed. 
-   Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
-> - Operations in step 5-6 related to cloudcore could also be skipped.
+> Note for Helm deployments:
+> - Stream certificates are generated automatically and the CloudStream feature is enabled by default. Therefore, Steps 1-3 can be skipped unless customization is needed. 
+> - Step 4 could be finished by iptablesmanager component by default, so manual operations are not needed. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
+> - Operations in Steps 5-6 related to Cloudcore can also be skipped.
 
-1. Make sure you can find the kubernetes `ca.crt` and `ca.key` files. If you set up your kubernetes cluster by `kubeadm` , those files will be in `/etc/kubernetes/pki/` dir.
+1. Ensure you can locate the Kubernetes `ca.crt` and `ca.key` files. If you set up your Kubernetes cluster with `kubeadm`, these files will be in the `/etc/kubernetes/pki/` directory.
 
     ``` shell
     ls /etc/kubernetes/pki/
     ```
 
-2. Set `CLOUDCOREIPS` env. The environment variable is set to specify the IP address of cloudcore, or a VIP if you have a highly available cluster.
-   Set `CLOUDCORE_DOMAINS` instead if Kubernetes uses domain names to communicate with cloudcore. 
+2. Set the `CLOUDCOREIPS` environment variable to specify the IP address of Cloudcore, or a VIP if you have a highly available cluster. Set `CLOUDCORE_DOMAINS` instead if Kubernetes uses domain names to communicate with Cloudcore.
 
     ```bash
     export CLOUDCOREIPS="192.168.0.139"
     ```
-    (Warning: the same **terminal** is essential to continue the work, or it is necessary to type this command again.) Checking the environment variable with the following command:
+
+    (Warning: the same **terminal** is essential to continue the work, or it is necessary to type this command again). You can check the environment variable with the following command:
+
     ``` shell
     echo $CLOUDCOREIPS
     ```
 
-3. Generate the certificates for **CloudStream** on cloud node, however, the generation file is not in the `/etc/kubeedge/`, we need to copy it from the repository which was git cloned from GitHub.
-   Change user to root:
+3. Generate the certificates for **CloudStream** on the cloud node. The generation file is not in `/etc/kubeedge/`, so it needs to be copied from the repository cloned from GitHub. Switch to the root user:
+
     ```shell
     sudo su
     ```
-    Copy certificates generation file from original cloned repository:
+
+    Copy the certificate generation file from the original cloned repository:
+
     ```shell
     cp $GOPATH/src/github.com/kubeedge/kubeedge/build/tools/certgen.sh /etc/kubeedge/
     ```
+
     Change directory to the kubeedge directory:
+
     ```shell
     cd /etc/kubeedge/
     ```
+    
     Generate certificates from **certgen.sh**
     ```bash
     /etc/kubeedge/certgen.sh stream
     ```
 
-4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.)
-    Run the following command on the host on which each apiserver runs:
+4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.) Run the following command on the host where each apiserver runs:
 
-    **Note:** You need to get the configmap first, which contains all the cloudcore ips and tunnel ports.
+    **Note:** First, get the configmap containing all the Cloudcore IPs and tunnel ports:
     
     ```bash
     kubectl get cm tunnelport -nkubeedge -oyaml
@@ -269,7 +289,7 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     ...
     ```
     
-    Then set all the iptables for multi cloudcore instances to every node that apiserver runs. The cloudcore ips and tunnel ports should be get from configmap above.
+    Then set all the iptables for multi cloudcore instances to every node that apiserver runs. The cloudcore ips and tunnel ports should be obtained from the configmap above.
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport $YOUR-TUNNEL-PORT -j DNAT --to $YOUR-CLOUDCORE-IP:10003
@@ -277,22 +297,24 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     iptables -t nat -A OUTPUT -p tcp --dport 10351 -j DNAT --to 192.168.1.17:10003
     ```
 
-    If you are not sure if you have setting of iptables, and you want to clean all of them.
-    (If you set up iptables wrongly, it will block you out of your `kubectl logs` feature)
+    If you are unsure about the current iptables settings and want to clean all of them. (If you set up iptables wrongly, it will block you out of your `kubectl logs` feature)
+
     The following command can be used to clean up iptables:
+
     ``` shell
     iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
     ```
 
-    
 5. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
 
     Open the YAML file in cloudcore:
+
     ```shell
     sudo nano /etc/kubeedge/config/cloudcore.yaml
     ```
 
     Modify the file in the following part (`enable: true`):
+
     ```yaml
     cloudStream:
       enable: true
@@ -307,10 +329,13 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     ```
 
     Open the YAML file in edgecore:
+
     ``` shell
     sudo nano /etc/kubeedge/config/edgecore.yaml
     ```
+
     Modify the file in the following part (`enable: true`), (`server: 192.168.0.193:10004`):
+
     ``` yaml
     edgeStream:
       enable: true
@@ -328,24 +353,32 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     ``` shell
     sudo su
     ```
-    cloudCore in process mode:
+
+    If CloudCore is running in process mode:
+
     ``` shell
     pkill cloudcore
     nohup cloudcore > cloudcore.log 2>&1 &
     ```
-    or cloudCore in kubernetes deployment mode:
+
+    If CloudCore is running in Kubernetes deployment mode:
+
     ``` shell
     kubectl -n kubeedge rollout restart deployment cloudcore
     ```
-    edgeCore:
+
+    EdgeCore:
+
     ``` shell
     systemctl restart edgecore.service
     ```
-    If you fail to restart edgecore, check if that is because of `kube-proxy` and kill it.  **kubeedge** reject it by default, we use a succedaneum called [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md)
 
-    **Note:** the importance is to avoid `kube-proxy` being deployed on edgenode. There are two methods to solve it:
+    If restarting EdgeCore fails, check if that is due to `kube-proxy` and kill it. **kubeedge** rejects it by default, we use a succedaneum called [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md)
 
-    1. Add the following settings by calling `kubectl edit daemonsets.apps -n kube-system kube-proxy`:
+    **Note:** It is important to avoid `kube-proxy` being deployed on edgenode and there are two methods to achieve this:
+
+    - **Method 1:** Add the following settings by calling `kubectl edit daemonsets.apps -n kube-system kube-proxy`:
+  
     ``` yaml
     spec:
       template:
@@ -358,24 +391,26 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
                   - key: node-role.kubernetes.io/edge
                     operator: DoesNotExist
     ```
-   or just run the below command directly in the shell window:
+
+   or just run the following command directly in the shell window:
+
    ```shell
    kubectl patch daemonset kube-proxy -n kube-system -p '{"spec": {"template": {"spec": {"affinity": {"nodeAffinity": {"requiredDuringSchedulingIgnoredDuringExecution": {"nodeSelectorTerms": [{"matchExpressions": [{"key": "node-role.kubernetes.io/edge", "operator": "DoesNotExist"}]}]}}}}}}}'
    ```
 
-    2. If you still want to run `kube-proxy`, ask **edgecore** not to check the environment by adding the env variable in `edgecore.service` :
+    - **Method 2:** If you still want to run `kube-proxy`, instruct **edgecore** not to check the environment by adding the environment variable in `edgecore.service` :
 
         ``` shell
         sudo vi /etc/kubeedge/edgecore.service
         ```
 
-        - Add the following line into the **edgecore.service** file:
+        Add the following line into the **edgecore.service** file:
 
         ``` shell
         Environment="CHECK_EDGECORE_ENVIRONMENT=false"
         ```
 
-         - The final file should look like this:
+        The final file should look like this:
 
         ```
         Description=edgecore.service
@@ -390,6 +425,7 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
         ```
 
 ### Support Metrics-server in Cloud
+
 1. The realization of this function point reuses cloudstream and edgestream modules. So you also need to perform all steps of *Enable `kubectl logs` Feature*.
 
 2. Since the kubelet ports of edge nodes and cloud nodes are not the same, the current release version of metrics-server(0.3.x) does not support automatic port identification (It is the 0.4.0 feature), so you need to manually compile the image from master branch yourself now.
@@ -461,7 +497,8 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
                     - charlie-latest
     ```
 
-**IMPORTANT NOTE:**
+**IMPORTANT NOTES:**
+
 1. Metrics-server needs to use hostnetwork network mode.
 
 2. Use the image compiled by yourself and set imagePullPolicy to Never.
@@ -510,4 +547,5 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
 ```
 
 ### Node
+
 `keadm reset` or `keadm deprecated reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.
