@@ -1,7 +1,7 @@
 {
   "Next": "https://kubeedge.io/docs/",
+  "v1.17": "https://release-1-17.docs.kubeedge.io/docs/",
+  "v1.16": "https://release-1-16.docs.kubeedge.io/docs/",
   "v1.15": "https://release-1-15.docs.kubeedge.io/docs/",
-  "v1.14": "https://release-1-14.docs.kubeedge.io/docs/",
-  "v1.13": "https://release-1-13.docs.kubeedge.io/docs/",
-  "v1.12": "https://release-1-12.docs.kubeedge.io/en/docs/"
+  "v1.14": "https://release-1-14.docs.kubeedge.io/docs/"
 }
