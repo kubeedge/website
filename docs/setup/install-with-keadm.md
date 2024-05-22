@@ -97,6 +97,23 @@ keadm init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=
 If you are familiar with the helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/manifests/charts).
 
 
+**SPECIAL SCENARIO:**
+In the case of insufficient qualifications for edge nodes, we need to label them to prevent some applications from extending to edge nodes.
+
+```
+kubectl get daemonset -n kube-system |grep -v NAME |awk '{print $1}' | xargs -n 1 kubectl patch daemonset -n kube-system --type='json' -p='[{"op": "replace","path": "/spec/template/spec/affinity","value":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/edge","operator":"DoesNotExist"}]}]}}}}]'
+
+```
+
+
+```
+kubectl get daemonset -n metallb-system |grep -v NAME |awk '{print $1}' | xargs -n 1 kubectl patch daemonset -n metallb-system --type='json' -p='[{"op": "replace","path": "/spec/template/spec/affinity","value":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/edge","operator":"DoesNotExist"}]}]}}}}]'
+
+```
+
+Any daemonset cannot occupy the hardware resources of edge nodes.
+
+
 ### keadm manifest generate
 
 You can also get the manifests with `keadm manifest generate`.
