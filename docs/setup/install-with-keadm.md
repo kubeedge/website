@@ -137,7 +137,7 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
     ```
     Kubernetes version verification passed, KubeEdge installation will start...
     ...
-    KubeEdge Cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
+    KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
     CloudCore started
     ```
 
