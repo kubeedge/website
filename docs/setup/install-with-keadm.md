@@ -7,11 +7,11 @@ Keadm is used to install the cloud and edge components of KubeEdge. It does not 
 
 Please refer to [Kubernetes compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) documentation to check **Kubernetes compatibility** and ascertain the Kubernetes version to be installed.
 
-## Limitation
+## Prerequisite
 
 - It Requires super user rights (or root rights) to run.
 
-## Install keadm
+## Install Keadm
 
 There're three ways to download the `keadm` binary:
 
@@ -20,9 +20,9 @@ There're three ways to download the `keadm` binary:
     KubeEdge GitHub officially holds three architecture releases: amd64, arm, and arm64. Please download the correct package according to your platform and desired version.
 
     ```shell
-    wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.1/keadm-v1.12.1-linux-amd64.tar.gz
-    tar -zxvf keadm-v1.12.1-linux-amd64.tar.gz
-    cp keadm-v1.12.1-linux-amd64/keadm/keadm /usr/local/bin/keadm
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.17.0/keadm-v1.17.0-linux-amd64.tar.gz
+    tar -zxvf keadm-v1.17.0-linux-amd64.tar.gz
+    cp keadm-1.17.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
     ```
 
 2. Download from the official KubeEdge release image on Docker Hub.
@@ -49,7 +49,7 @@ By default, ports `10000` and `10002` on your CloudCore needs to be accessible f
 
 ### keadm init
 
-`keadm init` provides a solution for integrating the Cloudcore Helm chart. Cloudcore will be deployed to cloud nodes in container mode.
+`keadm init` provides a solution for integrating the CloudCore Helm chart. CloudCore will be deployed to cloud nodes in container mode.
 
 Example:
 
@@ -70,7 +70,7 @@ STATUS: deployed
 REVISION: 1
 ```
 
-You can run `kubectl get all -n kubeedge` to ensure that Cloudcore start successfully, as shown below.
+You can run `kubectl get all -n kubeedge` to ensure that CloudCore start successfully, as shown below.
 
 ```shell
 # kubectl get all -n kubeedge
@@ -89,11 +89,11 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 
 **IMPORTANT NOTES:**  
 
-1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
+1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
 
 2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
-3. `keadm init` by default, deploys Cloudcore in container mode. If you want to deploy Cloudcore as a binary, please refer to [`keadm deprecated init`](#keadm-deprecated-init).
+3. `keadm init` by default, deploys CloudCore in container mode. If you want to deploy CloudCore as a binary, please refer to [`keadm deprecated init`](#keadm-deprecated-init).
 
 Example:
 
@@ -118,7 +118,7 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
 
 ### keadm deprecated init 
 
-`keadm deprecated init` installs Cloudcore in binary process, generates certificates, and installs the CRDs. It also provides a flag to set a specific version.
+`keadm deprecated init` installs CloudCore in binary process, generates certificates, and installs the CRDs. It also provides a flag to set a specific version.
 
 **IMPORTANT NOTES:**
 
@@ -137,7 +137,7 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
     ```
     Kubernetes version verification passed, KubeEdge installation will start...
     ...
-    KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
+    KubeEdge Cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
     CloudCore started
     ```
 
@@ -230,7 +230,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
 > Note for Helm deployments:
 > - Stream certificates are generated automatically and the CloudStream feature is enabled by default. Therefore, Steps 1-3 can be skipped unless customization is needed. 
 > - Step 4 could be finished by iptablesmanager component by default, so manual operations are not needed. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
-> - Operations in Steps 5-6 related to Cloudcore can also be skipped.
+> - Operations in Steps 5-6 related to CloudCore can also be skipped.
 
 1. Ensure you can locate the Kubernetes `ca.crt` and `ca.key` files. If you set up your Kubernetes cluster with `kubeadm`, these files will be in the `/etc/kubernetes/pki/` directory.
 
@@ -238,7 +238,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
     ls /etc/kubernetes/pki/
     ```
 
-2. Set the `CLOUDCOREIPS` environment variable to specify the IP address of Cloudcore, or a VIP if you have a highly available cluster. Set `CLOUDCORE_DOMAINS` instead if Kubernetes uses domain names to communicate with Cloudcore.
+2. Set the `CLOUDCOREIPS` environment variable to specify the IP address of CloudCore, or a VIP if you have a highly available cluster. Set `CLOUDCORE_DOMAINS` instead if Kubernetes uses domain names to communicate with CloudCore.
 
     ```bash
     export CLOUDCOREIPS="192.168.0.139"
@@ -275,7 +275,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
 
 4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.) Run the following command on the host where each apiserver runs:
 
-    **Note:** First, get the configmap containing all the Cloudcore IPs and tunnel ports:
+    **Note:** First, get the configmap containing all the CloudCore IPs and tunnel ports:
     
     ```bash
     kubectl get cm tunnelport -nkubeedge -oyaml
@@ -307,7 +307,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
 
 5. Modify **both** `/etc/kubeedge/config/cloudcore.yaml` and `/etc/kubeedge/config/edgecore.yaml` on cloudcore and edgecore. Set up **cloudStream** and **edgeStream** to `enable: true`. Change the server IP to the cloudcore IP (the same as $CLOUDCOREIPS).
 
-    Open the YAML file in cloudcore:
+    Open the YAML file in CloudCore:
 
     ```shell
     sudo nano /etc/kubeedge/config/cloudcore.yaml
@@ -348,7 +348,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
       writeDeadline: 15
     ```
 
-6. Restart all the cloudcore and edgecore.
+6. Restart all the CloudCore and edgecore.
 
     ``` shell
     sudo su
@@ -471,7 +471,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
     ```
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```
-    (To direct the request for metric-data from edgecore:10250 through tunnel between cloudcore and edgecore, the iptables is vitally important.)
+    (To direct the request for metric-data from edgecore:10250 through tunnel between CloudCore and edgecore, the iptables is vitally important.)
 
     Before you deploy metrics-server, you have to make sure that you deploy it on the node which has apiserver deployed on. In this case, that is the master node. As a consequence, it is needed to make master node schedulable by the following command:
 
