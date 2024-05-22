@@ -164,7 +164,7 @@ Run `keadm gettoken` on the **cloud side** to retrieve the token, which will be 
 
 #### keadm join
 
-`keadm join` installs Edgecore. It also provides a flag  to set a specific version. It pulls the image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) from Docker Hub, copies the `edgecore` binary from container to the hostpath, and then starts `edgecore` as a system service.
+`keadm join` installs EdgeCore. It also provides a flag  to set a specific version. It pulls the image [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) from Docker Hub, copies the `edgecore` binary from container to the hostpath, and then starts `edgecore` as a system service.
 
 Example:
 
@@ -187,7 +187,7 @@ Output:
 KubeEdge edgecore is running, For logs visit: journalctl -u edgecore.service -xe
 ```
 
-You can run the `systemctl status edgecore` command to ensure Edgecore is running successfully:
+You can run the `systemctl status edgecore` command to ensure EdgeCore is running successfully:
 
 ```shell
 # systemctl status edgecore
@@ -202,7 +202,7 @@ You can run the `systemctl status edgecore` command to ensure Edgecore is runnin
 
 #### keadm deprecated join
 
-You can also use `keadm deprecated join` to start Edgecore from the release pacakge. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
+You can also use `keadm deprecated join` to start EdgeCore from the release pacakge. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
 
 Example:
 
@@ -328,7 +328,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
       tunnelPort: 10004
     ```
 
-    Open the YAML file in edgecore:
+    Open the YAML file in EdgeCore:
 
     ``` shell
     sudo nano /etc/kubeedge/config/edgecore.yaml
@@ -348,7 +348,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
       writeDeadline: 15
     ```
 
-6. Restart all the CloudCore and edgecore.
+6. Restart all the CloudCore and EdgeCore.
 
     ``` shell
     sudo su
@@ -471,7 +471,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
     ```
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```
-    (To direct the request for metric-data from edgecore:10250 through tunnel between CloudCore and edgecore, the iptables is vitally important.)
+    (To direct the request for metric-data from edgecore:10250 through tunnel between CloudCore and EdgeCore, the iptables is vitally important.)
 
     Before you deploy metrics-server, you have to make sure that you deploy it on the node which has apiserver deployed on. In this case, that is the master node. As a consequence, it is needed to make master node schedulable by the following command:
 
