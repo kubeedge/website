@@ -98,21 +98,14 @@ If you are familiar with the helm chart installation, please refer to [KubeEdge 
 
 
 **SPECIAL SCENARIO:**
-In the case of insufficient qualifications for edge nodes, we need to label them to prevent some applications from extending to edge nodes.
+In the case of insufficient qualifications for edge nodes, we need to label them to prevent some applications from extending to edge nodes. `Kube-proxy` and some others is not required at the edge.We can handle it accordingly.
 
 ```
 kubectl get daemonset -n kube-system |grep -v NAME |awk '{print $1}' | xargs -n 1 kubectl patch daemonset -n kube-system --type='json' -p='[{"op": "replace","path": "/spec/template/spec/affinity","value":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/edge","operator":"DoesNotExist"}]}]}}}}]'
 
 ```
 
-
-```
-kubectl get daemonset -n metallb-system |grep -v NAME |awk '{print $1}' | xargs -n 1 kubectl patch daemonset -n metallb-system --type='json' -p='[{"op": "replace","path": "/spec/template/spec/affinity","value":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/edge","operator":"DoesNotExist"}]}]}}}}]'
-
-```
-
-Any daemonset cannot occupy the hardware resources of edge nodes.
-
+To handle kube-proxy, you can refer to the [two methods](#anchor-name) mentioned in the " Enable `kubectl logs` Feature " section of this document.
 
 ### keadm manifest generate
 
@@ -357,7 +350,7 @@ Before deploying metrics-server , `kubectl logs` feature must be activated:
     ```
     If you fail to restart edgecore, check if that is because of `kube-proxy` and kill it.  **kubeedge** reject it by default, we use a succedaneum called [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md)
 
-    **Note:** the importance is to avoid `kube-proxy` being deployed on edgenode. There are two methods to solve it:
+    **Note:** the importance is to avoid `kube-proxy` being deployed on edgenode.<a name="anchor-name"> There are two methods to solve it: </a >
 
     1. Add the following settings by calling `kubectl edit daemonsets.apps -n kube-system kube-proxy`:
     ``` yaml
