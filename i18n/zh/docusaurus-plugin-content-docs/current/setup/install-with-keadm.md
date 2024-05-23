@@ -51,7 +51,7 @@ KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
 当您看到以上信息，说明 KubeEdge 的云端组件 cloudcore 已经成功运行。
 
 **特殊场景：** 
-边缘计算的硬件条件不好的情况，这里我们需要打上标签，让一些应用不扩展到edge节点上去。
+边缘计算的硬件条件不好的情况，这里我们需要打上标签，让一些应用不扩展到edge节点上去。 kube-proxy和其他的一些应用不是必须部署在边缘端，所以我们可以对他们进行处理。
 
 
 ```
@@ -59,14 +59,7 @@ kubectl get daemonset -n kube-system |grep -v NAME |awk '{print $1}' | xargs -n 
 
 ```
 
-
-```
-kubectl get daemonset -n metallb-system |grep -v NAME |awk '{print $1}' | xargs -n 1 kubectl patch daemonset -n metallb-system --type='json' -p='[{"op": "replace","path": "/spec/template/spec/affinity","value":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/edge","operator":"DoesNotExist"}]}]}}}}]'
-
-```
-
-凡是daemonset的都不可以去占用edge节点的硬件资源。
-
+如何处理kube-proxy，可以参考本文中在'启用 kubectl logs 功能'部分提到的 [2种方法](#anchor-name)
 
 ### keadm beta init
 
@@ -305,7 +298,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
    如果您无法重启 edgecore，请检查是否是由于 `kube-proxy` 的缘故，同时杀死这个进程。 **kubeedge**
    默认不纳入该进程，我们使用 [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md) 来进行替代
 
-   **注意：** 可以考虑避免 `kube-proxy` 部署在 edgenode 上。有两种解决方法：
+   **注意：** 可以考虑避免 `kube-proxy` 部署在 edgenode 上。<a name="anchor-name">有两种解决方法：</a >
 
    1. 通过调用 `kubectl edit daemonsets.apps -n kube-system kube-proxy` 添加以下设置：
 
