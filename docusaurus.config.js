@@ -182,7 +182,7 @@ const config = {
           {
             href: "https://twitter.com/KubeEdge",
             position: "right",
-            className: "header-twitter-link heade-icon",
+            className: "header-x-link heade-icon",
           },
           {
             to: "/docs/community/slack",
