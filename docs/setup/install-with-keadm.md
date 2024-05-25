@@ -3,7 +3,7 @@ title: Installing KubeEdge with Keadm
 sidebar_position: 3
 ---
 
-Keadm is used to install the cloud and edge components of KubeEdge. It does not handle the installation of Kubernetes and its runtime environment.
+Keadm is used to install the cloud and edge components of KubeEdge. It does not handle the installation of Kubernetes and its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).
 
 Please refer to [Kubernetes compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) documentation to check **Kubernetes compatibility** and ascertain the Kubernetes version to be installed.
 
@@ -28,7 +28,7 @@ There're three ways to download the `keadm` binary:
 2. Download from the official KubeEdge release image on Docker Hub.
 
   ```shell
-  docker run --rm kubeedge/installation-package:v1.12.1 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
+  docker run --rm kubeedge/installation-package:v1.17.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
   ```
 
 3. Build from Source
@@ -89,7 +89,7 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 
 **IMPORTANT NOTES:**  
 
-1. Set flags `--set key=value` for cloudcore helm chart could refer to [KubeEdge CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
+1. Set flags `--set key=value` for CloudCore helm chart could refer to [KubeEdge CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
 
 2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
@@ -289,7 +289,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
     ...
     ```
     
-    Then set all the iptables for multi cloudcore instances to every node that apiserver runs. The cloudcore ips and tunnel ports should be obtained from the configmap above.
+    Then set all the iptables for multi CloudCore instances to every node that apiserver runs. The cloudcore ips and tunnel ports should be obtained from the configmap above.
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport $YOUR-TUNNEL-PORT -j DNAT --to $YOUR-CLOUDCORE-IP:10003
