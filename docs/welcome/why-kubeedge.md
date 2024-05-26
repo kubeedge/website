@@ -3,7 +3,7 @@ title: Why KubeEdge
 sidebar_position: 1
 slug: /
 ---
-**KubeEdge** is an open-source system that enhances Kubernetes by extending its capabilities to manage and orchestrate containerized applications and devices to host at the Edge.It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT, a lightweight messaging protocol, and allows developers to write custom logic and enable resource constrained device communication at the Edge.KubeEdge consists of a cloud part and an edge part. Both edge and cloud parts are now open-sourced.
+**KubeEdge** is an open-source system that enhances Kubernetes by extending it's capabilities to manage and orchestrate containerized applications and devices to host at the Edge.It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT, a lightweight messaging protocol, and allows developers to write custom logic and enable resource constrained device communication at the Edge.KubeEdge consists of a cloud part and an edge part. Both edge and cloud parts are now open-sourced.
 
 ## Advantages
 
