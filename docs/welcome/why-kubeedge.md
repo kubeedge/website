@@ -3,7 +3,7 @@ title: Why KubeEdge
 sidebar_position: 1
 slug: /
 ---
-**KubeEdge** is an open source system extending native containerized application orchestration and device management to hosts at the Edge. It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT and allows developers to author custom logic and enable resource constrained device communication at the Edge. KubeEdge consists of a cloud part and an edge part. Both edge and cloud parts are now open-sourced.
+**KubeEdge** is an open-source system that enhances Kubernetes by extending its capabilities to manage and orchestrate containerized applications and devices to host at the Edge.It is built upon Kubernetes and provides core infrastructure support for networking, application deployment and metadata synchronization between cloud and edge. It also supports MQTT, a lightweight messaging protocol, and allows developers to write custom logic and enable resource constrained device communication at the Edge.KubeEdge consists of a cloud part and an edge part. Both edge and cloud parts are now open-sourced.
 
 ## Advantages
 
@@ -11,7 +11,7 @@ The advantages of KubeEdge include mainly:
 
 * **Edge Computing**
 
-     With business logic running at the Edge, much larger volumes of data can be secured & processed locally where the data is produced. This reduces the network bandwidth requirements and consumption between Edge and Cloud. This increases responsiveness, decreases costs, and protects customers' data privacy.
+    KubeEdge enables applications to run at edge, securing larger volumes of data and processing data closer to the data source which reduces the latency effectively. So, processing near the data sources, reduces the network bandwidth requirements and consumption between Edge and Cloud.This also increases responsiveness, decreases costs, and protects customers' data privacy.
 
 * **Simplified development**
 
@@ -37,7 +37,7 @@ KubeEdge is composed of these components:
 - **[MetaManager](./architecture/edge/metamanager):** the message processor between edged and edgehub. It is also responsible for storing/retrieving metadata to/from a lightweight database (SQLite).
 - **[ServiceBus](./architecture/edge/servicebus)**: a HTTP client to interact with HTTP servers (REST), offering HTTP client capabilities to components of cloud to reach HTTP servers running at edge.
 - **[DeviceController](./architecture/cloud/device_controller)**: an extended kubernetes controller which manages devices so that the device metadata/status data can be synced between edge and cloud.
-
+- **MQTT Broker**: A server that handles MQTT messages for efficient communication with IoT devices.
 ## Architecture
 
 ![KubeEdge Architecture](/img/kubeedge_arch.png)
