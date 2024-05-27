@@ -37,7 +37,6 @@ KubeEdge is composed of these components:
 - **[MetaManager](./architecture/edge/metamanager):** the message processor between edged and edgehub. It is also responsible for storing/retrieving metadata to/from a lightweight database (SQLite).
 - **[ServiceBus](./architecture/edge/servicebus)**: a HTTP client to interact with HTTP servers (REST), offering HTTP client capabilities to components of cloud to reach HTTP servers running at edge.
 - **[DeviceController](./architecture/cloud/device_controller)**: an extended kubernetes controller which manages devices so that the device metadata/status data can be synced between edge and cloud.
-
 ## Architecture
 
 ![KubeEdge Architecture](/img/kubeedge_arch.png)
