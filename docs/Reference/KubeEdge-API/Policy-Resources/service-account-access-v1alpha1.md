@@ -31,7 +31,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 - **kind**: ServiceAccountAccess
 
 
-- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
 
 
 - **spec** (AccessSpec)
@@ -86,7 +86,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
-      - **spec.accessClusterRoleBinding.clusterRoleBinding.metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
+      - **spec.accessClusterRoleBinding.clusterRoleBinding.metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
 
         Standard object's metadata.
 
@@ -186,7 +186,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
-      - **spec.accessRoleBinding.roleBinding.metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
+      - **spec.accessRoleBinding.roleBinding.metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
 
         Standard object's metadata.
 
@@ -274,7 +274,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 
       Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
-    - **spec.serviceAccount.metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
+    - **spec.serviceAccount.metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
 
       Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
@@ -348,10 +348,10 @@ ServiceAccountAccessList contains a list of ServiceAccountAccess
 - **kind**: ServiceAccountAccessList
 
 
-- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
 
 
-- **items** ([][ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)), required
+- **items** ([][ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)), required
 
 
 
@@ -385,14 +385,14 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
 
 ### `get` read status of the specified ServiceAccountAccess
@@ -411,14 +411,14 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
 
 ### `list` list or watch objects of kind ServiceAccountAccess
@@ -437,47 +437,47 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 
 - **continue** (*in query*): string
 
-  [continue](../common-parameter/common-parameters#continue)
+  [continue](../Common-Parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../common-parameter/common-parameters#labelselector)
+  [labelSelector](../Common-Parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../common-parameter/common-parameters#limit)
+  [limit](../Common-Parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -489,7 +489,7 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Response
 
 
-200 ([ServiceAccountAccessList](../policy-resources/service-account-access-v1alpha1#serviceaccountaccesslist)): OK
+200 ([ServiceAccountAccessList](/service-account-access-v1alpha1#serviceaccountaccesslist)): OK
 
 
 ### `create` create a ServiceAccountAccess
@@ -501,40 +501,40 @@ POST /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Parameters
 
 
-- **body**: [ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess), required
+- **body**: [ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
-202 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Accepted
+202 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Accepted
 
 
 ### `update` replace the specified ServiceAccountAccess
@@ -551,38 +551,38 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
   name of the ServiceAccountAccess
 
 
-- **body**: [ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess), required
+- **body**: [ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `update` replace status of the specified ServiceAccountAccess
@@ -599,38 +599,38 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
   name of the ServiceAccountAccess
 
 
-- **body**: [ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess), required
+- **body**: [ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `patch` partially update the specified ServiceAccountAccess
@@ -647,43 +647,43 @@ PATCH /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
   name of the ServiceAccountAccess
 
 
-- **body**: [Patch](../common-definitions/patch#patch), required
+- **body**: [Patch](../Common-Definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../common-parameter/common-parameters#force)
+  [force](../Common-Parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `patch` partially update status of the specified ServiceAccountAccess
@@ -700,43 +700,43 @@ PATCH /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
   name of the ServiceAccountAccess
 
 
-- **body**: [Patch](../common-definitions/patch#patch), required
+- **body**: [Patch](../Common-Definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../common-parameter/common-parameters#force)
+  [force](../Common-Parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `delete` delete a ServiceAccountAccess
@@ -753,38 +753,38 @@ DELETE /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
   name of the ServiceAccountAccess
 
 
-- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../common-definitions/status#status)): OK
+200 ([Status](../Common-Definitions/status#status)): OK
 
-202 ([Status](../common-definitions/status#status)): Accepted
+202 ([Status](../Common-Definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of ServiceAccountAccess
@@ -796,74 +796,74 @@ DELETE /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Parameters
 
 
-- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../common-parameter/common-parameters#continue)
+  [continue](../Common-Parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../common-parameter/common-parameters#labelselector)
+  [labelSelector](../Common-Parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../common-parameter/common-parameters#limit)
+  [limit](../Common-Parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../common-definitions/status#status)): OK
+200 ([Status](../Common-Definitions/status#status)): OK
 

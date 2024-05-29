@@ -31,14 +31,14 @@ ImagePrePullJob is used to prepull images on edge node.
 - **kind**: ImagePrePullJob
 
 
-- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
 
 
-- **spec** ([ImagePrePullJobSpec](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljobspec)), required
+- **spec** ([ImagePrePullJobSpec](/image-pre-pull-job-v1alpha1#imageprepulljobspec)), required
 
   Spec represents the specification of the desired behavior of ImagePrePullJob.
 
-- **status** ([ImagePrePullJobStatus](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljobstatus))
+- **status** ([ImagePrePullJobStatus](/image-pre-pull-job-v1alpha1#imageprepulljobstatus))
 
   Status represents the status of ImagePrePullJob.
 
@@ -80,7 +80,7 @@ ImagePrePullSpec represents the specification of the desired behavior of ImagePr
 
     Images is the image list to be prepull
 
-  - **imagePrePullTemplate.labelSelector** ([LabelSelector](../common-definitions/label-selector#labelselector))
+  - **imagePrePullTemplate.labelSelector** ([LabelSelector](../Common-Definitions/label-selector#labelselector))
 
     LabelSelector is a filter to select member clusters by labels. It must match a node's labels for the NodeUpgradeJob to be operated on that node. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.
 
@@ -202,11 +202,11 @@ ImagePrePullJobList is a list of ImagePrePullJob.
 - **kind**: ImagePrePullJobList
 
 
-- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
 
   Standard list metadata.
 
-- **items** ([][ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)), required
+- **items** ([][ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)), required
 
   List of ImagePrePullJob.
 
@@ -241,14 +241,14 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
 
 ### `get` read status of the specified ImagePrePullJob
@@ -267,14 +267,14 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
 
 ### `list` list or watch objects of kind ImagePrePullJob
@@ -293,47 +293,47 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 
 - **continue** (*in query*): string
 
-  [continue](../common-parameter/common-parameters#continue)
+  [continue](../Common-Parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../common-parameter/common-parameters#labelselector)
+  [labelSelector](../Common-Parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../common-parameter/common-parameters#limit)
+  [limit](../Common-Parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -345,7 +345,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 #### Response
 
 
-200 ([ImagePrePullJobList](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljoblist)): OK
+200 ([ImagePrePullJobList](/image-pre-pull-job-v1alpha1#imageprepulljoblist)): OK
 
 
 ### `create` create an ImagePrePullJob
@@ -357,40 +357,40 @@ POST /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 #### Parameters
 
 
-- **body**: [ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob), required
+- **body**: [ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
-202 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Accepted
+202 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Accepted
 
 
 ### `update` replace the specified ImagePrePullJob
@@ -407,38 +407,38 @@ PUT /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
   name of the ImagePrePullJob
 
 
-- **body**: [ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob), required
+- **body**: [ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `update` replace status of the specified ImagePrePullJob
@@ -455,38 +455,38 @@ PUT /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
   name of the ImagePrePullJob
 
 
-- **body**: [ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob), required
+- **body**: [ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `patch` partially update the specified ImagePrePullJob
@@ -503,43 +503,43 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
   name of the ImagePrePullJob
 
 
-- **body**: [Patch](../common-definitions/patch#patch), required
+- **body**: [Patch](../Common-Definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../common-parameter/common-parameters#force)
+  [force](../Common-Parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `patch` partially update status of the specified ImagePrePullJob
@@ -556,43 +556,43 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
   name of the ImagePrePullJob
 
 
-- **body**: [Patch](../common-definitions/patch#patch), required
+- **body**: [Patch](../Common-Definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../common-parameter/common-parameters#force)
+  [force](../Common-Parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `delete` delete an ImagePrePullJob
@@ -609,38 +609,38 @@ DELETE /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
   name of the ImagePrePullJob
 
 
-- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../common-definitions/status#status)): OK
+200 ([Status](../Common-Definitions/status#status)): OK
 
-202 ([Status](../common-definitions/status#status)): Accepted
+202 ([Status](../Common-Definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of ImagePrePullJob
@@ -652,74 +652,74 @@ DELETE /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 #### Parameters
 
 
-- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../common-parameter/common-parameters#continue)
+  [continue](../Common-Parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../common-parameter/common-parameters#labelselector)
+  [labelSelector](../Common-Parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../common-parameter/common-parameters#limit)
+  [limit](../Common-Parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../common-definitions/status#status)): OK
+200 ([Status](../Common-Definitions/status#status)): OK
 

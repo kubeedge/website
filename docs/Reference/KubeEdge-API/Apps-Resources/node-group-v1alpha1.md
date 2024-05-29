@@ -31,14 +31,14 @@ NodeGroup is the Schema for the nodegroups API
 - **kind**: NodeGroup
 
 
-- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
 
 
-- **spec** ([NodeGroupSpec](../apps-resources/node-group-v1alpha1#nodegroupspec))
+- **spec** ([NodeGroupSpec](/node-group-v1alpha1#nodegroupspec))
 
   Spec represents the specification of the desired behavior of member nodegroup.
 
-- **status** ([NodeGroupStatus](../apps-resources/node-group-v1alpha1#nodegroupstatus))
+- **status** ([NodeGroupStatus](/node-group-v1alpha1#nodegroupstatus))
 
   Status represents the status of member nodegroup.
 
@@ -110,10 +110,10 @@ NodeGroupList contains a list of NodeGroup
 - **kind**: NodeGroupList
 
 
-- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
 
 
-- **items** ([][NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)), required
+- **items** ([][NodeGroup](/node-group-v1alpha1#nodegroup)), required
 
 
 
@@ -147,14 +147,14 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
 
 ### `get` read status of the specified NodeGroup
@@ -173,14 +173,14 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
 
 ### `list` list or watch objects of kind NodeGroup
@@ -199,47 +199,47 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups
 
 - **continue** (*in query*): string
 
-  [continue](../common-parameter/common-parameters#continue)
+  [continue](../Common-Parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../common-parameter/common-parameters#labelselector)
+  [labelSelector](../Common-Parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../common-parameter/common-parameters#limit)
+  [limit](../Common-Parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -251,7 +251,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups
 #### Response
 
 
-200 ([NodeGroupList](../apps-resources/node-group-v1alpha1#nodegrouplist)): OK
+200 ([NodeGroupList](/node-group-v1alpha1#nodegrouplist)): OK
 
 
 ### `create` create a NodeGroup
@@ -263,40 +263,40 @@ POST /apis/apps.kubeedge.io/v1alpha1/nodegroups
 #### Parameters
 
 
-- **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
+- **body**: [NodeGroup](/node-group-v1alpha1#nodegroup), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
 
-202 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Accepted
+202 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Accepted
 
 
 ### `update` replace the specified NodeGroup
@@ -313,38 +313,38 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
   name of the NodeGroup
 
 
-- **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
+- **body**: [NodeGroup](/node-group-v1alpha1#nodegroup), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `update` replace status of the specified NodeGroup
@@ -361,38 +361,38 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
   name of the NodeGroup
 
 
-- **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
+- **body**: [NodeGroup](/node-group-v1alpha1#nodegroup), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `patch` partially update the specified NodeGroup
@@ -409,43 +409,43 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
   name of the NodeGroup
 
 
-- **body**: [Patch](../common-definitions/patch#patch), required
+- **body**: [Patch](../Common-Definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../common-parameter/common-parameters#force)
+  [force](../Common-Parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `patch` partially update status of the specified NodeGroup
@@ -462,43 +462,43 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
   name of the NodeGroup
 
 
-- **body**: [Patch](../common-definitions/patch#patch), required
+- **body**: [Patch](../Common-Definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../common-parameter/common-parameters#force)
+  [force](../Common-Parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `delete` delete a NodeGroup
@@ -515,38 +515,38 @@ DELETE /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
   name of the NodeGroup
 
 
-- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../common-definitions/status#status)): OK
+200 ([Status](../Common-Definitions/status#status)): OK
 
-202 ([Status](../common-definitions/status#status)): Accepted
+202 ([Status](../Common-Definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of NodeGroup
@@ -558,74 +558,74 @@ DELETE /apis/apps.kubeedge.io/v1alpha1/nodegroups
 #### Parameters
 
 
-- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../common-parameter/common-parameters#continue)
+  [continue](../Common-Parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../common-parameter/common-parameters#dryrun)
+  [dryRun](../Common-Parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../common-parameter/common-parameters#labelselector)
+  [labelSelector](../Common-Parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../common-parameter/common-parameters#limit)
+  [limit](../Common-Parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../common-parameter/common-parameters#pretty)
+  [pretty](../Common-Parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../common-definitions/status#status)): OK
+200 ([Status](../Common-Definitions/status#status)): OK
 
