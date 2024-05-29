@@ -351,7 +351,7 @@ ServiceAccountAccessList contains a list of ServiceAccountAccess
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)), required
+- **items** ([][ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)), required
 
 
 
@@ -392,7 +392,7 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
 
 ### `get` read status of the specified ServiceAccountAccess
@@ -418,7 +418,7 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
 
 ### `list` list or watch objects of kind ServiceAccountAccess
@@ -489,7 +489,7 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Response
 
 
-200 ([ServiceAccountAccessList](/service-account-access-v1alpha1#serviceaccountaccesslist)): OK
+200 ([ServiceAccountAccessList](../policy-resources/service-account-access-v1alpha1#serviceaccountaccesslist)): OK
 
 
 ### `create` create a ServiceAccountAccess
@@ -501,7 +501,7 @@ POST /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Parameters
 
 
-- **body**: [ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess), required
+- **body**: [ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess), required
 
   
 
@@ -530,11 +530,11 @@ POST /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
-202 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Accepted
+202 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Accepted
 
 
 ### `update` replace the specified ServiceAccountAccess
@@ -551,7 +551,7 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
   name of the ServiceAccountAccess
 
 
-- **body**: [ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess), required
+- **body**: [ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess), required
 
   
 
@@ -580,9 +580,9 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `update` replace status of the specified ServiceAccountAccess
@@ -599,7 +599,7 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
   name of the ServiceAccountAccess
 
 
-- **body**: [ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess), required
+- **body**: [ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess), required
 
   
 
@@ -628,9 +628,9 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `patch` partially update the specified ServiceAccountAccess
@@ -681,9 +681,9 @@ PATCH /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `patch` partially update status of the specified ServiceAccountAccess
@@ -734,9 +734,9 @@ PATCH /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
 #### Response
 
 
-200 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): OK
+200 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): OK
 
-201 ([ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)): Created
+201 ([ServiceAccountAccess](../policy-resources/service-account-access-v1alpha1#serviceaccountaccess)): Created
 
 
 ### `delete` delete a ServiceAccountAccess

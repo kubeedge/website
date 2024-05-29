@@ -34,10 +34,10 @@ Device is the Schema for the devices API
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([DeviceSpec](/device-v1alpha2#devicespec))
+- **spec** ([DeviceSpec](../devices-resources/device-v1alpha2#devicespec))
 
 
-- **status** ([DeviceStatus](/device-v1alpha2#devicestatus))
+- **status** ([DeviceStatus](../devices-resources/device-v1alpha2#devicestatus))
 
 
 
@@ -513,7 +513,7 @@ DeviceList contains a list of Device
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][Device](/device-v1alpha2#device)), required
+- **items** ([][Device](../devices-resources/device-v1alpha2#device)), required
 
 
 
@@ -554,7 +554,7 @@ GET /apis/devices.kubeedge.io/v1alpha2/devices/{name}
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
 
 ### `get` read status of the specified Device
@@ -580,7 +580,7 @@ GET /apis/devices.kubeedge.io/v1alpha2/devices/{name}/status
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
 
 ### `list` list or watch objects of kind Device
@@ -651,7 +651,7 @@ GET /apis/devices.kubeedge.io/v1alpha2/devices
 #### Response
 
 
-200 ([DeviceList](/device-v1alpha2#devicelist)): OK
+200 ([DeviceList](../devices-resources/device-v1alpha2#devicelist)): OK
 
 
 ### `create` create a Device
@@ -663,7 +663,7 @@ POST /apis/devices.kubeedge.io/v1alpha2/devices
 #### Parameters
 
 
-- **body**: [Device](/device-v1alpha2#device), required
+- **body**: [Device](../devices-resources/device-v1alpha2#device), required
 
   
 
@@ -692,11 +692,11 @@ POST /apis/devices.kubeedge.io/v1alpha2/devices
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
-202 ([Device](/device-v1alpha2#device)): Accepted
+202 ([Device](../devices-resources/device-v1alpha2#device)): Accepted
 
 
 ### `update` replace the specified Device
@@ -713,7 +713,7 @@ PUT /apis/devices.kubeedge.io/v1alpha2/devices/{name}
   name of the Device
 
 
-- **body**: [Device](/device-v1alpha2#device), required
+- **body**: [Device](../devices-resources/device-v1alpha2#device), required
 
   
 
@@ -742,9 +742,9 @@ PUT /apis/devices.kubeedge.io/v1alpha2/devices/{name}
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `update` replace status of the specified Device
@@ -761,7 +761,7 @@ PUT /apis/devices.kubeedge.io/v1alpha2/devices/{name}/status
   name of the Device
 
 
-- **body**: [Device](/device-v1alpha2#device), required
+- **body**: [Device](../devices-resources/device-v1alpha2#device), required
 
   
 
@@ -790,9 +790,9 @@ PUT /apis/devices.kubeedge.io/v1alpha2/devices/{name}/status
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `patch` partially update the specified Device
@@ -843,9 +843,9 @@ PATCH /apis/devices.kubeedge.io/v1alpha2/devices/{name}
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `patch` partially update status of the specified Device
@@ -896,9 +896,9 @@ PATCH /apis/devices.kubeedge.io/v1alpha2/devices/{name}/status
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `delete` delete a Device

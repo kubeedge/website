@@ -34,10 +34,10 @@ Rule is the Schema for the rules API
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([RuleSpec](/rule-v1#rulespec)), required
+- **spec** ([RuleSpec](../rules-resources/rule-v1#rulespec)), required
 
 
-- **status** ([RuleStatus](/rule-v1#rulestatus))
+- **status** ([RuleStatus](../rules-resources/rule-v1#rulestatus))
 
 
 
@@ -107,7 +107,7 @@ RuleList contains a list of Rule
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][Rule](/rule-v1#rule)), required
+- **items** ([][Rule](../rules-resources/rule-v1#rule)), required
 
 
 
@@ -148,7 +148,7 @@ GET /apis/rules.kubeedge.io/v1/rules/{name}
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
 
 ### `get` read status of the specified Rule
@@ -174,7 +174,7 @@ GET /apis/rules.kubeedge.io/v1/rules/{name}/status
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
 
 ### `list` list or watch objects of kind Rule
@@ -245,7 +245,7 @@ GET /apis/rules.kubeedge.io/v1/rules
 #### Response
 
 
-200 ([RuleList](/rule-v1#rulelist)): OK
+200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
 
 
 ### `create` create a Rule
@@ -257,7 +257,7 @@ POST /apis/rules.kubeedge.io/v1/rules
 #### Parameters
 
 
-- **body**: [Rule](/rule-v1#rule), required
+- **body**: [Rule](../rules-resources/rule-v1#rule), required
 
   
 
@@ -286,11 +286,11 @@ POST /apis/rules.kubeedge.io/v1/rules
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
-202 ([Rule](/rule-v1#rule)): Accepted
+202 ([Rule](../rules-resources/rule-v1#rule)): Accepted
 
 
 ### `update` replace the specified Rule
@@ -307,7 +307,7 @@ PUT /apis/rules.kubeedge.io/v1/rules/{name}
   name of the Rule
 
 
-- **body**: [Rule](/rule-v1#rule), required
+- **body**: [Rule](../rules-resources/rule-v1#rule), required
 
   
 
@@ -336,9 +336,9 @@ PUT /apis/rules.kubeedge.io/v1/rules/{name}
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `update` replace status of the specified Rule
@@ -355,7 +355,7 @@ PUT /apis/rules.kubeedge.io/v1/rules/{name}/status
   name of the Rule
 
 
-- **body**: [Rule](/rule-v1#rule), required
+- **body**: [Rule](../rules-resources/rule-v1#rule), required
 
   
 
@@ -384,9 +384,9 @@ PUT /apis/rules.kubeedge.io/v1/rules/{name}/status
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `patch` partially update the specified Rule
@@ -437,9 +437,9 @@ PATCH /apis/rules.kubeedge.io/v1/rules/{name}
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `patch` partially update status of the specified Rule
@@ -490,9 +490,9 @@ PATCH /apis/rules.kubeedge.io/v1/rules/{name}/status
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `delete` delete a Rule

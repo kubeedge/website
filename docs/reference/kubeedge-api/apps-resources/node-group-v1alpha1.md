@@ -34,11 +34,11 @@ NodeGroup is the Schema for the nodegroups API
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([NodeGroupSpec](/node-group-v1alpha1#nodegroupspec))
+- **spec** ([NodeGroupSpec](../apps-resources/node-group-v1alpha1#nodegroupspec))
 
   Spec represents the specification of the desired behavior of member nodegroup.
 
-- **status** ([NodeGroupStatus](/node-group-v1alpha1#nodegroupstatus))
+- **status** ([NodeGroupStatus](../apps-resources/node-group-v1alpha1#nodegroupstatus))
 
   Status represents the status of member nodegroup.
 
@@ -113,7 +113,7 @@ NodeGroupList contains a list of NodeGroup
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][NodeGroup](/node-group-v1alpha1#nodegroup)), required
+- **items** ([][NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)), required
 
 
 
@@ -154,7 +154,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 
 ### `get` read status of the specified NodeGroup
@@ -180,7 +180,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 
 ### `list` list or watch objects of kind NodeGroup
@@ -251,7 +251,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups
 #### Response
 
 
-200 ([NodeGroupList](/node-group-v1alpha1#nodegrouplist)): OK
+200 ([NodeGroupList](../apps-resources/node-group-v1alpha1#nodegrouplist)): OK
 
 
 ### `create` create a NodeGroup
@@ -263,7 +263,7 @@ POST /apis/apps.kubeedge.io/v1alpha1/nodegroups
 #### Parameters
 
 
-- **body**: [NodeGroup](/node-group-v1alpha1#nodegroup), required
+- **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
 
   
 
@@ -292,11 +292,11 @@ POST /apis/apps.kubeedge.io/v1alpha1/nodegroups
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
 
-202 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Accepted
+202 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Accepted
 
 
 ### `update` replace the specified NodeGroup
@@ -313,7 +313,7 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
   name of the NodeGroup
 
 
-- **body**: [NodeGroup](/node-group-v1alpha1#nodegroup), required
+- **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
 
   
 
@@ -342,9 +342,9 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `update` replace status of the specified NodeGroup
@@ -361,7 +361,7 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
   name of the NodeGroup
 
 
-- **body**: [NodeGroup](/node-group-v1alpha1#nodegroup), required
+- **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
 
   
 
@@ -390,9 +390,9 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `patch` partially update the specified NodeGroup
@@ -443,9 +443,9 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `patch` partially update status of the specified NodeGroup
@@ -496,9 +496,9 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 #### Response
 
 
-200 ([NodeGroup](/node-group-v1alpha1#nodegroup)): OK
+200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
-201 ([NodeGroup](/node-group-v1alpha1#nodegroup)): Created
+201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
 
 
 ### `delete` delete a NodeGroup

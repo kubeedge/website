@@ -34,11 +34,11 @@ ImagePrePullJob is used to prepull images on edge node.
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([ImagePrePullJobSpec](/image-pre-pull-job-v1alpha1#imageprepulljobspec)), required
+- **spec** ([ImagePrePullJobSpec](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljobspec)), required
 
   Spec represents the specification of the desired behavior of ImagePrePullJob.
 
-- **status** ([ImagePrePullJobStatus](/image-pre-pull-job-v1alpha1#imageprepulljobstatus))
+- **status** ([ImagePrePullJobStatus](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljobstatus))
 
   Status represents the status of ImagePrePullJob.
 
@@ -206,7 +206,7 @@ ImagePrePullJobList is a list of ImagePrePullJob.
 
   Standard list metadata.
 
-- **items** ([][ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)), required
+- **items** ([][ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)), required
 
   List of ImagePrePullJob.
 
@@ -248,7 +248,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
 
 ### `get` read status of the specified ImagePrePullJob
@@ -274,7 +274,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
 
 ### `list` list or watch objects of kind ImagePrePullJob
@@ -345,7 +345,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 #### Response
 
 
-200 ([ImagePrePullJobList](/image-pre-pull-job-v1alpha1#imageprepulljoblist)): OK
+200 ([ImagePrePullJobList](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljoblist)): OK
 
 
 ### `create` create an ImagePrePullJob
@@ -357,7 +357,7 @@ POST /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 #### Parameters
 
 
-- **body**: [ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob), required
+- **body**: [ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob), required
 
   
 
@@ -386,11 +386,11 @@ POST /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
-202 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Accepted
+202 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Accepted
 
 
 ### `update` replace the specified ImagePrePullJob
@@ -407,7 +407,7 @@ PUT /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
   name of the ImagePrePullJob
 
 
-- **body**: [ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob), required
+- **body**: [ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob), required
 
   
 
@@ -436,9 +436,9 @@ PUT /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `update` replace status of the specified ImagePrePullJob
@@ -455,7 +455,7 @@ PUT /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
   name of the ImagePrePullJob
 
 
-- **body**: [ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob), required
+- **body**: [ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob), required
 
   
 
@@ -484,9 +484,9 @@ PUT /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `patch` partially update the specified ImagePrePullJob
@@ -537,9 +537,9 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `patch` partially update status of the specified ImagePrePullJob
@@ -590,9 +590,9 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/imageprepulljobs/{name}/status
 #### Response
 
 
-200 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
+200 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): OK
 
-201 ([ImagePrePullJob](/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
+201 ([ImagePrePullJob](../operations-resources/image-pre-pull-job-v1alpha1#imageprepulljob)): Created
 
 
 ### `delete` delete an ImagePrePullJob

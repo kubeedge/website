@@ -34,11 +34,11 @@ EdgeApplication is the Schema for the edgeapplications API
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([EdgeApplicationSpec](/edge-application-v1alpha1#edgeapplicationspec))
+- **spec** ([EdgeApplicationSpec](../apps-resources/edge-application-v1alpha1#edgeapplicationspec))
 
   Spec represents the desired behavior of EdgeApplication.
 
-- **status** ([EdgeApplicationStatus](/edge-application-v1alpha1#edgeapplicationstatus))
+- **status** ([EdgeApplicationStatus](../apps-resources/edge-application-v1alpha1#edgeapplicationstatus))
 
   Status represents the status of PropagationStatus.
 
@@ -420,7 +420,7 @@ EdgeApplicationList contains a list of EdgeApplication
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][EdgeApplication](/edge-application-v1alpha1#edgeapplication)), required
+- **items** ([][EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)), required
 
 
 
@@ -461,7 +461,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
 
 ### `get` read status of the specified EdgeApplication
@@ -487,7 +487,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
 
 ### `list` list or watch objects of kind EdgeApplication
@@ -558,7 +558,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/edgeapplications
 #### Response
 
 
-200 ([EdgeApplicationList](/edge-application-v1alpha1#edgeapplicationlist)): OK
+200 ([EdgeApplicationList](../apps-resources/edge-application-v1alpha1#edgeapplicationlist)): OK
 
 
 ### `create` create an EdgeApplication
@@ -570,7 +570,7 @@ POST /apis/apps.kubeedge.io/v1alpha1/edgeapplications
 #### Parameters
 
 
-- **body**: [EdgeApplication](/edge-application-v1alpha1#edgeapplication), required
+- **body**: [EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication), required
 
   
 
@@ -599,11 +599,11 @@ POST /apis/apps.kubeedge.io/v1alpha1/edgeapplications
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
-201 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): Created
+201 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): Created
 
-202 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): Accepted
+202 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): Accepted
 
 
 ### `update` replace the specified EdgeApplication
@@ -620,7 +620,7 @@ PUT /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
   name of the EdgeApplication
 
 
-- **body**: [EdgeApplication](/edge-application-v1alpha1#edgeapplication), required
+- **body**: [EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication), required
 
   
 
@@ -649,9 +649,9 @@ PUT /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
-201 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): Created
+201 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): Created
 
 
 ### `update` replace status of the specified EdgeApplication
@@ -668,7 +668,7 @@ PUT /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
   name of the EdgeApplication
 
 
-- **body**: [EdgeApplication](/edge-application-v1alpha1#edgeapplication), required
+- **body**: [EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication), required
 
   
 
@@ -697,9 +697,9 @@ PUT /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
-201 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): Created
+201 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): Created
 
 
 ### `patch` partially update the specified EdgeApplication
@@ -750,9 +750,9 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
-201 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): Created
+201 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): Created
 
 
 ### `patch` partially update status of the specified EdgeApplication
@@ -803,9 +803,9 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
 #### Response
 
 
-200 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): OK
+200 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): OK
 
-201 ([EdgeApplication](/edge-application-v1alpha1#edgeapplication)): Created
+201 ([EdgeApplication](../apps-resources/edge-application-v1alpha1#edgeapplication)): Created
 
 
 ### `delete` delete an EdgeApplication

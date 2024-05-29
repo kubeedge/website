@@ -35,10 +35,10 @@ ObjectSync stores the state of the namespaced object that was successfully persi
 
   Standard Kubernetes object's metadata.
 
-- **spec** ([ObjectSyncSpec](/object-sync-v1alpha1#objectsyncspec))
+- **spec** ([ObjectSyncSpec](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncspec))
 
 
-- **status** ([ObjectSyncStatus](/object-sync-v1alpha1#objectsyncstatus))
+- **status** ([ObjectSyncStatus](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncstatus))
 
 
 
@@ -97,7 +97,7 @@ ObjectSyncList is a list of ObjectSync.
 
   Standard list metadata.
 
-- **items** ([][ObjectSync](/object-sync-v1alpha1#objectsync)), required
+- **items** ([][ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)), required
 
   List of ObjectSync.
 
@@ -139,7 +139,7 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 
 ### `get` read status of the specified ObjectSync
@@ -165,7 +165,7 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 
 ### `list` list or watch objects of kind ObjectSync
@@ -236,7 +236,7 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 #### Response
 
 
-200 ([ObjectSyncList](/object-sync-v1alpha1#objectsynclist)): OK
+200 ([ObjectSyncList](../reliable-syncs-resources/object-sync-v1alpha1#objectsynclist)): OK
 
 
 ### `create` create an ObjectSync
@@ -248,7 +248,7 @@ POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 #### Parameters
 
 
-- **body**: [ObjectSync](/object-sync-v1alpha1#objectsync), required
+- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
@@ -277,11 +277,11 @@ POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
-202 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Accepted
+202 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Accepted
 
 
 ### `update` replace the specified ObjectSync
@@ -298,7 +298,7 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
   name of the ObjectSync
 
 
-- **body**: [ObjectSync](/object-sync-v1alpha1#objectsync), required
+- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
@@ -327,9 +327,9 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `update` replace status of the specified ObjectSync
@@ -346,7 +346,7 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
   name of the ObjectSync
 
 
-- **body**: [ObjectSync](/object-sync-v1alpha1#objectsync), required
+- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
@@ -375,9 +375,9 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `patch` partially update the specified ObjectSync
@@ -428,9 +428,9 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `patch` partially update status of the specified ObjectSync
@@ -481,9 +481,9 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `delete` delete an ObjectSync

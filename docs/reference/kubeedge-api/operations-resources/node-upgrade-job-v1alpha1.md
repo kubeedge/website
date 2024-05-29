@@ -34,11 +34,11 @@ NodeUpgradeJob is used to upgrade edge node from cloud side.
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([NodeUpgradeJobSpec](/node-upgrade-job-v1alpha1#nodeupgradejobspec))
+- **spec** ([NodeUpgradeJobSpec](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejobspec))
 
   Specification of the desired behavior of NodeUpgradeJob.
 
-- **status** ([NodeUpgradeJobStatus](/node-upgrade-job-v1alpha1#nodeupgradejobstatus))
+- **status** ([NodeUpgradeJobStatus](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejobstatus))
 
   Most recently observed status of the NodeUpgradeJob.
 
@@ -173,7 +173,7 @@ NodeUpgradeJobList is a list of NodeUpgradeJob.
 
   Standard list metadata.
 
-- **items** ([][NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)), required
+- **items** ([][NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)), required
 
   List of NodeUpgradeJobs.
 
@@ -215,7 +215,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
 
 ### `get` read status of the specified NodeUpgradeJob
@@ -241,7 +241,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
 
 ### `list` list or watch objects of kind NodeUpgradeJob
@@ -312,7 +312,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 #### Response
 
 
-200 ([NodeUpgradeJobList](/node-upgrade-job-v1alpha1#nodeupgradejoblist)): OK
+200 ([NodeUpgradeJobList](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejoblist)): OK
 
 
 ### `create` create a NodeUpgradeJob
@@ -324,7 +324,7 @@ POST /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 #### Parameters
 
 
-- **body**: [NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob), required
+- **body**: [NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob), required
 
   
 
@@ -353,11 +353,11 @@ POST /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
-202 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): Accepted
+202 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Accepted
 
 
 ### `update` replace the specified NodeUpgradeJob
@@ -374,7 +374,7 @@ PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
   name of the NodeUpgradeJob
 
 
-- **body**: [NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob), required
+- **body**: [NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob), required
 
   
 
@@ -403,9 +403,9 @@ PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
 ### `update` replace status of the specified NodeUpgradeJob
@@ -422,7 +422,7 @@ PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
   name of the NodeUpgradeJob
 
 
-- **body**: [NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob), required
+- **body**: [NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob), required
 
   
 
@@ -451,9 +451,9 @@ PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
 ### `patch` partially update the specified NodeUpgradeJob
@@ -504,9 +504,9 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
 ### `patch` partially update status of the specified NodeUpgradeJob
@@ -557,9 +557,9 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 #### Response
 
 
-200 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([NodeUpgradeJob](/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
 ### `delete` delete a NodeUpgradeJob
