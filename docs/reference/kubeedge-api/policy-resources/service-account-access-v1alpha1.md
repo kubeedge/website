@@ -31,7 +31,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 - **kind**: ServiceAccountAccess
 
 
-- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
 - **spec** (AccessSpec)
@@ -86,7 +86,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
-      - **spec.accessClusterRoleBinding.clusterRoleBinding.metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+      - **spec.accessClusterRoleBinding.clusterRoleBinding.metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
         Standard object's metadata.
 
@@ -186,7 +186,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
-      - **spec.accessRoleBinding.roleBinding.metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+      - **spec.accessRoleBinding.roleBinding.metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
         Standard object's metadata.
 
@@ -274,7 +274,7 @@ ServiceAccountAccess is the Schema for the ServiceAccountAccess API
 
       Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 
-    - **spec.serviceAccount.metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+    - **spec.serviceAccount.metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
       Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
@@ -348,7 +348,7 @@ ServiceAccountAccessList contains a list of ServiceAccountAccess
 - **kind**: ServiceAccountAccessList
 
 
-- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
 - **items** ([][ServiceAccountAccess](/service-account-access-v1alpha1#serviceaccountaccess)), required
@@ -385,7 +385,7 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -411,7 +411,7 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -437,47 +437,47 @@ GET /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -508,22 +508,22 @@ POST /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -558,22 +558,22 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -606,22 +606,22 @@ PUT /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -647,34 +647,34 @@ PATCH /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
   name of the ServiceAccountAccess
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -700,34 +700,34 @@ PATCH /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}/status
   name of the ServiceAccountAccess
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -753,38 +753,38 @@ DELETE /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss/{name}
   name of the ServiceAccountAccess
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common-Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of ServiceAccountAccess
@@ -796,74 +796,74 @@ DELETE /apis/policy.kubeedge.io/v1alpha1/serviceaccountaccesss
 #### Parameters
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 

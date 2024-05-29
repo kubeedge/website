@@ -31,7 +31,7 @@ NodeUpgradeJob is used to upgrade edge node from cloud side.
 - **kind**: NodeUpgradeJob
 
 
-- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
 - **spec** ([NodeUpgradeJobSpec](/node-upgrade-job-v1alpha1#nodeupgradejobspec))
@@ -68,7 +68,7 @@ NodeUpgradeJobSpec is the specification of the desired behavior of the NodeUpgra
 
   Image specifies a container image name, the image contains: keadm and edgecore. keadm is used as upgradetool, to install the new version of edgecore. The image name consists of registry hostname and repository name, if it includes the tag or digest, the tag or digest will be overwritten by Version field above. If the registry hostname is empty, docker.io will be used as default. The default image name is: kubeedge/installation-package.
 
-- **labelSelector** ([LabelSelector](../Common-Definitions/label-selector#labelselector))
+- **labelSelector** ([LabelSelector](../common-definitions/label-selector#labelselector))
 
   LabelSelector is a filter to select member clusters by labels. It must match a node's labels for the NodeUpgradeJob to be operated on that node. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.
 
@@ -169,7 +169,7 @@ NodeUpgradeJobList is a list of NodeUpgradeJob.
 - **kind**: NodeUpgradeJobList
 
 
-- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
   Standard list metadata.
 
@@ -208,7 +208,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -234,7 +234,7 @@ GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -260,47 +260,47 @@ GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -331,22 +331,22 @@ POST /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -381,22 +381,22 @@ PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -429,22 +429,22 @@ PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -470,34 +470,34 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
   name of the NodeUpgradeJob
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -523,34 +523,34 @@ PATCH /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
   name of the NodeUpgradeJob
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -576,38 +576,38 @@ DELETE /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
   name of the NodeUpgradeJob
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common-Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of NodeUpgradeJob
@@ -619,74 +619,74 @@ DELETE /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 #### Parameters
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 

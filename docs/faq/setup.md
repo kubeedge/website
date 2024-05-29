@@ -190,7 +190,7 @@ Events:
   ----     ------     ----                    ----               -------
   Normal   Scheduled  8m39s                   default-scheduler  Successfully assigned kubeedge/cloudcore-644d8f55df-sj7xc to kind-control-plane
   Normal   Pulling    6m59s (x4 over 8m39s)   kubelet            Pulling image "kubeedge/cloudcore:v1.12.19"
-  Warning  Failed     6m58s (x4 over 8m37s)   kubelet            Failed to pull image "kubeedge/cloudcore:v1.12.19": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/kubeedge/cloudcore:v1.12.19": failed to resolve Reference "docker.io/kubeedge/cloudcore:v1.12.19": docker.io/kubeedge/cloudcore:v1.12.19: not found
+  Warning  Failed     6m58s (x4 over 8m37s)   kubelet            Failed to pull image "kubeedge/cloudcore:v1.12.19": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/kubeedge/cloudcore:v1.12.19": failed to resolve reference "docker.io/kubeedge/cloudcore:v1.12.19": docker.io/kubeedge/cloudcore:v1.12.19: not found
   Warning  Failed     6m58s (x4 over 8m37s)   kubelet            Error: ErrImagePull
   Warning  Failed     6m45s (x6 over 8m37s)   kubelet            Error: ImagePullBackOff
   Normal   BackOff    3m36s (x20 over 8m37s)  kubelet            Back-off pulling image "kubeedge/cloudcore:v1.12.19"

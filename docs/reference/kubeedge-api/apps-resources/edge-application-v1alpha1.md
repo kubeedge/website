@@ -31,7 +31,7 @@ EdgeApplication is the Schema for the edgeapplications API
 - **kind**: EdgeApplication
 
 
-- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
 - **spec** ([EdgeApplicationSpec](/edge-application-v1alpha1#edgeapplicationspec))
@@ -212,7 +212,7 @@ EdgeApplicationSpec defines the desired state of EdgeApplication
 
                 Container name: required for volumes, optional for env vars
 
-              - **workloadScope.targetNodeGroups.overriders.envOverriders.value.valueFrom.resourceFieldRef.divisor** ([Quantity](../Common-Definitions/quantity#quantity))
+              - **workloadScope.targetNodeGroups.overriders.envOverriders.value.valueFrom.resourceFieldRef.divisor** ([Quantity](../common-definitions/quantity#quantity))
 
                 Specifies the output format of the exposed resources, defaults to "1"
 
@@ -319,11 +319,11 @@ EdgeApplicationSpec defines the desired state of EdgeApplication
 
               Name must match the name of one entry in pod.spec.resourceClaims of the Pod where this field is used. It makes that resource available inside a container.
 
-          - **workloadScope.targetNodeGroups.overriders.resourcesOverriders.value.limits** (map[string][Quantity](../Common-Definitions/quantity#quantity))
+          - **workloadScope.targetNodeGroups.overriders.resourcesOverriders.value.limits** (map[string][Quantity](../common-definitions/quantity#quantity))
 
             Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-          - **workloadScope.targetNodeGroups.overriders.resourcesOverriders.value.requests** (map[string][Quantity](../Common-Definitions/quantity#quantity))
+          - **workloadScope.targetNodeGroups.overriders.resourcesOverriders.value.requests** (map[string][Quantity](../common-definitions/quantity#quantity))
 
             Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
@@ -417,7 +417,7 @@ EdgeApplicationList contains a list of EdgeApplication
 - **kind**: EdgeApplicationList
 
 
-- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
 - **items** ([][EdgeApplication](/edge-application-v1alpha1#edgeapplication)), required
@@ -454,7 +454,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -480,7 +480,7 @@ GET /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -506,47 +506,47 @@ GET /apis/apps.kubeedge.io/v1alpha1/edgeapplications
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -577,22 +577,22 @@ POST /apis/apps.kubeedge.io/v1alpha1/edgeapplications
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -627,22 +627,22 @@ PUT /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -675,22 +675,22 @@ PUT /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -716,34 +716,34 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
   name of the EdgeApplication
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -769,34 +769,34 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}/status
   name of the EdgeApplication
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -822,38 +822,38 @@ DELETE /apis/apps.kubeedge.io/v1alpha1/edgeapplications/{name}
   name of the EdgeApplication
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common-Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of EdgeApplication
@@ -865,74 +865,74 @@ DELETE /apis/apps.kubeedge.io/v1alpha1/edgeapplications
 #### Parameters
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 

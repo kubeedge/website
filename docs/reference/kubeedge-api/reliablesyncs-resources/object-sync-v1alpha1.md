@@ -31,7 +31,7 @@ ObjectSync stores the state of the namespaced object that was successfully persi
 - **kind**: ObjectSync
 
 
-- **metadata** ([ObjectMeta](../Common-Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
   Standard Kubernetes object's metadata.
 
@@ -93,7 +93,7 @@ ObjectSyncList is a list of ObjectSync.
 - **kind**: ObjectSyncList
 
 
-- **metadata** ([ListMeta](../Common-Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
   Standard list metadata.
 
@@ -132,7 +132,7 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -158,7 +158,7 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -184,47 +184,47 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
@@ -255,22 +255,22 @@ POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -305,22 +305,22 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -353,22 +353,22 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -394,34 +394,34 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
   name of the ObjectSync
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -447,34 +447,34 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
   name of the ObjectSync
 
 
-- **body**: [Patch](../Common-Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common-Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common-Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common-Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
@@ -500,38 +500,38 @@ DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
   name of the ObjectSync
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common-Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of ObjectSync
@@ -543,74 +543,74 @@ DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 #### Parameters
 
 
-- **body**: [DeleteOptions](../Common-Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common-Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common-Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common-Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common-Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common-Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common-Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common-Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common-Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common-Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common-Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common-Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common-Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common-Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
