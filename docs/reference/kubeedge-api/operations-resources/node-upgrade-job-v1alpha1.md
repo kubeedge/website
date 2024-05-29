@@ -1,12 +1,12 @@
 ---
 api_metadata:
-  apiVersion: "reliablesyncs.kubeedge.io/v1alpha1"
-  import: "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"
-  kind: "ObjectSync"
+  apiVersion: "operations.kubeedge.io/v1alpha1"
+  import: "github.com/kubeedge/kubeedge/pkg/apis/operations/v1alpha1"
+  kind: "NodeUpgradeJob"
 content_type: "api_reference"
-description: "ObjectSync stores the state of the namespaced object that was successfully persisted to the edge node."
-title: "ObjectSync v1alpha1"
-weight: 1
+description: "NodeUpgradeJob is used to upgrade edge node from cloud side."
+title: "NodeUpgradeJob v1alpha1"
+weight: 2
 auto_generated: true
 ---
 
@@ -14,92 +14,168 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-`apiVersion: reliablesyncs.kubeedge.io/v1alpha1`
+`apiVersion: operations.kubeedge.io/v1alpha1`
 
-`import "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"`
+`import "github.com/kubeedge/kubeedge/pkg/apis/operations/v1alpha1"`
 
 
-## ObjectSync 
+## NodeUpgradeJob 
 
-ObjectSync stores the state of the namespaced object that was successfully persisted to the edge node. ObjectSync name is a concatenation of the node name which receiving the object and the object UUID.
+NodeUpgradeJob is used to upgrade edge node from cloud side.
 
 <hr/>
 
-- **apiVersion**: reliablesyncs.kubeedge.io/v1alpha1
+- **apiVersion**: operations.kubeedge.io/v1alpha1
 
 
-- **kind**: ObjectSync
+- **kind**: NodeUpgradeJob
 
 
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
-  Standard Kubernetes object's metadata.
 
-- **spec** ([ObjectSyncSpec](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncspec))
+- **spec** ([NodeUpgradeJobSpec](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejobspec))
 
+  Specification of the desired behavior of NodeUpgradeJob.
 
-- **status** ([ObjectSyncStatus](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncstatus))
+- **status** ([NodeUpgradeJobStatus](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejobstatus))
 
-
-
-
-
-
-## ObjectSyncSpec 
-
-ObjectSyncSpec stores the details of objects that persist to the edge.
-
-<hr/>
-
-- **objectAPIVersion** (string)
-
-  ObjectAPIVersion is the APIVersion of the object that was successfully persist to the edge node.
-
-- **objectKind** (string)
-
-  ObjectType is the kind of the object that was successfully persist to the edge node.
-
-- **objectName** (string)
-
-  ObjectName is the name of the object that was successfully persist to the edge node.
+  Most recently observed status of the NodeUpgradeJob.
 
 
 
 
 
-## ObjectSyncStatus 
+## NodeUpgradeJobSpec 
 
-ObjectSyncStatus stores the resourceversion of objects that persist to the edge.
+NodeUpgradeJobSpec is the specification of the desired behavior of the NodeUpgradeJob.
 
 <hr/>
 
-- **objectResourceVersion** (string)
+- **checkItems** ([]string)
 
-  ObjectResourceVersion is the resourceversion of the object that was successfully persist to the edge node.
+  CheckItems specifies the items need to be checked before the task is executed. The default CheckItems value is nil.
+
+- **concurrency** (int32)
+
+  Concurrency specifies the max number of edge nodes that can be upgraded at the same time. The default Concurrency value is 1.
+
+- **failureTolerate** (string)
+
+  FailureTolerate specifies the task tolerance failure ratio. The default FailureTolerate value is 0.1.
+
+- **image** (string)
+
+  Image specifies a container image name, the image contains: keadm and edgecore. keadm is used as upgradetool, to install the new version of edgecore. The image name consists of registry hostname and repository name, if it includes the tag or digest, the tag or digest will be overwritten by Version field above. If the registry hostname is empty, docker.io will be used as default. The default image name is: kubeedge/installation-package.
+
+- **labelSelector** ([LabelSelector](../common-definitions/label-selector#labelselector))
+
+  LabelSelector is a filter to select member clusters by labels. It must match a node's labels for the NodeUpgradeJob to be operated on that node. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.
+
+- **nodeNames** ([]string)
+
+  NodeNames is a request to select some specific nodes. If it is non-empty, the upgrade job simply select these edge nodes to do upgrade operation. Please note that sets of NodeNames and LabelSelector are ORed. Users must set one and can only set one.
+
+- **timeoutSeconds** (int64)
+
+  TimeoutSeconds limits the duration of the node upgrade job. Default to 300. If set to 0, we'll use the default value 300.
+
+- **version** (string)
 
 
 
 
 
-## ObjectSyncList 
 
-ObjectSyncList is a list of ObjectSync.
+## NodeUpgradeJobStatus 
+
+NodeUpgradeJobStatus stores the status of NodeUpgradeJob. contains multiple edge nodes upgrade status.
 
 <hr/>
 
-- **apiVersion**: reliablesyncs.kubeedge.io/v1alpha1
+- **action** (string)
+
+  Action represents for the action of the ImagePrePullJob. There are two possible action values: Success, Failure.
+
+- **currentVersion** (string)
+
+  CurrentVersion represents for the current status of the EdgeCore.
+
+- **event** (string)
+
+  Event represents for the event of the ImagePrePullJob. There are six possible event values: Init, Check, BackUp, Upgrade, TimeOut, Rollback.
+
+- **historicVersion** (string)
+
+  HistoricVersion represents for the historic status of the EdgeCore.
+
+- **nodeStatus** ([]TaskStatus)
+
+  Status contains upgrade Status for each edge node.
+
+  <a name="TaskStatus"></a>
+
+  *TaskStatus stores the status of Upgrade for each edge node.*
+
+  - **nodeStatus.action** (string)
+
+    Action represents for the action of the ImagePrePullJob. There are three possible action values: Success, Failure, TimeOut.
+
+  - **nodeStatus.event** (string)
+
+    Event represents for the event of the ImagePrePullJob. There are three possible event values: Init, Check, Pull.
+
+  - **nodeStatus.nodeName** (string)
+
+    NodeName is the name of edge node.
+
+  - **nodeStatus.reason** (string)
+
+    Reason represents for the reason of the ImagePrePullJob.
+
+  - **nodeStatus.state** (string)
+
+    State represents for the upgrade state phase of the edge node. There are several possible state values: "", Upgrading, BackingUp, RollingBack and Checking.
+
+  - **nodeStatus.time** (string)
+
+    Time represents for the running time of the ImagePrePullJob.
+
+- **reason** (string)
+
+  Reason represents for the reason of the ImagePrePullJob.
+
+- **state** (string)
+
+  State represents for the state phase of the NodeUpgradeJob. There are several possible state values: "", Upgrading, BackingUp, RollingBack and Checking.
+
+- **time** (string)
+
+  Time represents for the running time of the ImagePrePullJob.
 
 
-- **kind**: ObjectSyncList
+
+
+
+## NodeUpgradeJobList 
+
+NodeUpgradeJobList is a list of NodeUpgradeJob.
+
+<hr/>
+
+- **apiVersion**: operations.kubeedge.io/v1alpha1
+
+
+- **kind**: NodeUpgradeJobList
 
 
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
   Standard list metadata.
 
-- **items** ([][ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)), required
+- **items** ([][NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)), required
 
-  List of ObjectSync.
+  List of NodeUpgradeJobs.
 
 
 
@@ -116,18 +192,18 @@ ObjectSyncList is a list of ObjectSync.
 
 
 
-### `get` read the specified ObjectSync
+### `get` read the specified NodeUpgradeJob
 
 #### HTTP Request
 
-GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
 - **pretty** (*in query*): string
@@ -139,21 +215,21 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
 
-### `get` read status of the specified ObjectSync
+### `get` read status of the specified NodeUpgradeJob
 
 #### HTTP Request
 
-GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
+GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
 - **pretty** (*in query*): string
@@ -165,14 +241,14 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
 
-### `list` list or watch objects of kind ObjectSync
+### `list` list or watch objects of kind NodeUpgradeJob
 
 #### HTTP Request
 
-GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
+GET /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 
 #### Parameters
 
@@ -236,19 +312,19 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 #### Response
 
 
-200 ([ObjectSyncList](../reliable-syncs-resources/object-sync-v1alpha1#objectsynclist)): OK
+200 ([NodeUpgradeJobList](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejoblist)): OK
 
 
-### `create` create an ObjectSync
+### `create` create a NodeUpgradeJob
 
 #### HTTP Request
 
-POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
+POST /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 
 #### Parameters
 
 
-- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
+- **body**: [NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob), required
 
   
 
@@ -277,28 +353,28 @@ POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
-202 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Accepted
+202 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Accepted
 
 
-### `update` replace the specified ObjectSync
+### `update` replace the specified NodeUpgradeJob
 
 #### HTTP Request
 
-PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
-- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
+- **body**: [NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob), required
 
   
 
@@ -327,26 +403,26 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
-### `update` replace status of the specified ObjectSync
+### `update` replace status of the specified NodeUpgradeJob
 
 #### HTTP Request
 
-PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
+PUT /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
-- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
+- **body**: [NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob), required
 
   
 
@@ -375,23 +451,23 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
-### `patch` partially update the specified ObjectSync
+### `patch` partially update the specified NodeUpgradeJob
 
 #### HTTP Request
 
-PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+PATCH /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
 - **body**: [Patch](../common-definitions/patch#patch), required
@@ -428,23 +504,23 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
-### `patch` partially update status of the specified ObjectSync
+### `patch` partially update status of the specified NodeUpgradeJob
 
 #### HTTP Request
 
-PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
+PATCH /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}/status
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
 - **body**: [Patch](../common-definitions/patch#patch), required
@@ -481,23 +557,23 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
 #### Response
 
 
-200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
+200 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): OK
 
-201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
+201 ([NodeUpgradeJob](../operations-resources/node-upgrade-job-v1alpha1#nodeupgradejob)): Created
 
 
-### `delete` delete an ObjectSync
+### `delete` delete a NodeUpgradeJob
 
 #### HTTP Request
 
-DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+DELETE /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs/{name}
 
 #### Parameters
 
 
 - **name** (*in path*): string, required
 
-  name of the ObjectSync
+  name of the NodeUpgradeJob
 
 
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
@@ -534,11 +610,11 @@ DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
 202 ([Status](../common-definitions/status#status)): Accepted
 
 
-### `deletecollection` delete collection of ObjectSync
+### `deletecollection` delete collection of NodeUpgradeJob
 
 #### HTTP Request
 
-DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
+DELETE /apis/operations.kubeedge.io/v1alpha1/nodeupgradejobs
 
 #### Parameters
 
