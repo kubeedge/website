@@ -2,15 +2,18 @@
 title: Installing KubeEdge with Binary
 sidebar_position: 4
 ---
-Deploying KubeEdge with binary is used to test, never use this way in production environment.
+
+Deploying KubeEdge with binary is used for testing purposes and should not be used in a production environment.
 
 ## Limitation
 
-- Need super user rights (or root rights) to run.
+- It Requires super user rights (or root rights).
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
 ### Create CRDs
+
+Before setting up the cloud side, you need to create the necessary Custom Resource Definitions (CRDs) for KubeEdge. These CRDs define the custom resources that KubeEdge uses for managing devices, applications, and other components. To create the CRDs, run the following commands:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/devices/devices_v1alpha2_device.yaml
@@ -24,23 +27,23 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha1_nodeupgradejob.yaml
 ```
 
-### Prepare cloudcore binary
-There're two ways to download `cloudcore` binary.
+### Prepare CloudCore binary
 
-- Download from github release.
+There are two ways to download the `cloudcore` binary.
 
-    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package according to your platform.
+1. Download from GitHub release
+
+    KubeEdge officially provides three arch releases: amd64, arm, and arm64. Choose the appropriate package for your platform and download it. 
     
     ```shell
-    wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
-    tar -zxvf kubeedge-v1.12.0-linux-amd64.tar.gz
-    cp kubeedge-v1.12.0-linux-amd64/cloud/cloudcore/cloudcore /usr/local/bin/cloudcore
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.17.0/kubeedge-v1.17.0-linux-amd64.tar.gz
+    tar -zxvf kubeedge-v1.17.0-linux-amd64.tar.gz
+    cp kubeedge-v1.17.0-linux-amd64/cloud/cloudcore/cloudcore /usr/local/bin/cloudcore
     ```
 
-- Build from source
-  
-    ref: [build from source](#build-from-source)
+2. Build from source
 
+    Refer to the [Build from Source](#build-from-source) section.
 
 ### Prepare config file
 
@@ -48,7 +51,7 @@ There're two ways to download `cloudcore` binary.
 cloudcore --defaultconfig > cloudcore.yaml
 ```
 
-please refer to [configuration for cloud](./config#configuration-cloud-side-kubeedge-master) for details.
+Please refer to the [Configuration for Cloud](./config#configuration-cloud-side-kubeedge-master) section for more details.
 
 ### Run
 
@@ -58,101 +61,106 @@ please refer to [configuration for cloud](./config#configuration-cloud-side-kube
 
 Run `cloudcore -h` to get help info and add options if needed.
 
-
 ## Setup Edge Side (KubeEdge Worker Node)
 
-### Prepare edgecore binary
-There're three ways to download a `edgecore` binary.
+### Prepare EdgeCore binary
 
-- Download from github release.
-  
-  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package according to your platform.
-  ```shell
-  wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
-  tar -zxvf kubeedge-v1.12.0-linux-amd64.tar.gz
-  cp kubeedge-v1.12.0-linux-amd64/edge/edgecore /usr/local/bin/edgecore
-  ```
+There are three ways to download the `edgecore` binary:
 
-- Download from dockerhub KubeEdge official release image.
+1. Download from GitHub release
+
+  Similar to the `cloudcore` binary, Download the appropriate package for your platform from the GitHub releases page, extract it, but this time copy the `edgecore` binary to a different directory.
+
+    ```shell
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.17.0/kubeedge-v1.17.0-linux-amd64.tar.gz
+    tar -zxvf kubeedge-v1.17.0-linux-amd64.tar.gz
+    cp kubeedge-v1.17.0-linux-amd64/edge/edgecore /usr/local/bin/edgecore
+    ```
+
+2. Download from the official KubeEdge release image on DockerHub.
+
 ```shell
-docker run --rm kubeedge/installation-package:v1.12.0 cat /usr/local/bin/edgecore > /usr/local/bin/edgecore && chmod +x /usr/local/bin/edgecore
+docker run --rm kubeedge/installation-package:v1.17.0 cat /usr/local/bin/edgecore > /usr/local/bin/edgecore && chmod +x /usr/local/bin/edgecore
 ```
 
-- Build from source
-  
-  ref: [build from source](#build-from-source)
+3. Build from source
+
+    Refer to the [Build from Source](#build-from-source) section.
 
 ### Prepare config file
 
-- generate config file
+- Generate the config file for `edgecore`:
 
 ```shell
 edgecore --defaultconfig > edgecore.yaml
 ```
 
-- get token value at cloud side:
+- Get token value at the cloud side:
 
 ```shell
 kubectl get secret -nkubeedge tokensecret -o=jsonpath='{.data.tokendata}' | base64 -d
 ```
 
-- update token value in edgecore config file:
+- Once you have the token value, update the edgecore.yaml file with this value:
 
 ```shell
 # sed -i -e "s|token: .*|token: ${token}|g" edgecore.yaml
 ```
 
-The `token` is what above step get.
+Replace `token` with the value obtained from the previous step.
 
-please refer to [configuration for edge](./config#configuration-edge-side-kubeedge-worker-node) for details.
+For detailed information about configuring the edge side, please refer to the [Configuration for Edge section](./config#configuration-edge-side-kubeedge-worker-node) for details.
 
 ### Run
 
-If you want to run cloudcore and edgecore at the same host, run following command first:
+If you want to run CloudCore and EdgeCore at the same host, you need to disable the EgdeCore environment checks:
 
 ```shell
 export CHECK_EDGECORE_ENVIRONMENT="false"
 ```
 
-Start edgecore:
+To start the EdgeCore component, run the following command:
 
 ```shell
 edgecore --config edgecore.yaml
 ```
 
-Run `edgecore -h` to get help info and add options if needed.
+> Run `edgecore -h` for additional assistance and add options if needed.
 
+### Build from Source
 
+There are two ways to build KubeEdge from source:
 
-### Build from source
-If you want to build KubeEdge from source, there are two options:
+1. Build on host directly (requires a working Go environment)
 
-You have a working Go environment, and would like to build on host directly.
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git
 cd kubeedge
 make BUILD_WITH_CONTAINER=false
 ```
 
-You have a working Docker environment, and enjoy building inside container for simplified environment consistency.
+2. Build inside a container for simplified environment consistency. (requires a working Docker environment)
+
 ```shell
 git clone https://github.com/kubeedge/kubeedge.git
 cd kubeedge
 make
 ```
 
-The compiled kubeedge binaries will be put to `_output/local/bin` directory.
+You can find the compiled KubeEdge binaries in the `_output/local/bin` directory.
 
-### Deploy demo on edge nodes
+### Deploy a demo Pod on edge nodes
 
-After you start both `cloudcore` and `edgecore` successfully, you can run `kubectl get node` to ensure whether edgecore has already registered to cloudcore successfully. The edge nodes are in `Ready` status like below.
+After you have successfully started both `cloudcore` and `edgecore`, you can run `kubectl get node` to ensure that EdgeCore has registered with CloudCore successfully. The edge nodes should be in the `Ready` status, as shown below:
+
 ```shell
 # kubectl get node
 NAME                 STATUS   ROLES                  AGE     VERSION
 ecs-8f95             Ready    agent,edge             5m45s   v1.22.6-kubeedge-v1.12.0
 kind-control-plane   Ready    control-plane,master   13m     v1.23.4
 ```
-Now we can deploy a Pod to edge node, just run the following command:
+Now, you can deploy a Pod to the edge node by running the following command:
+
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -170,11 +178,12 @@ spec:
 EOF
 ```
 
-Then you can see the Pod is deployed to edge-node succesfully.
+This command will create an Nginx Pod and schedule it to run on the edge node. You can then verify that the Pod is successfully deployed to the edge node:
+
 ```shell
 # kubectl get pod -owide
 NAME    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
 nginx   1/1     Running   0          11s   172.17.0.2   ecs-8f95   <none>           <none>
 ```
 
-Congratulations, a KubeEdge cluster is running successfully.
+Congratulations! Your KubeEdge cluster is now running successfully.
