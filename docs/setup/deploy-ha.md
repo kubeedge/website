@@ -45,7 +45,7 @@ make image WHAT=cloudcore
 
 We will create Kubernetes resources from the manifests in name order. Before creating them, **check the content of each manifest to ensure it meets your environment requirements.**
 
-::: note
+:::note
 **Note:** Currently, the following manifests do not support the `kubectl logs` command. If needed, you will have to make additional configurations manually.
 :::
 
@@ -60,7 +60,7 @@ modules:
     - 10.10.102.242
 ```
 
-::: note
+:::note
 **Note:** If you want to reset the CloudCore, run this command before creating k8s resources:
 :::
 
