@@ -3,14 +3,14 @@ title: Deploying HA CloudCore
 sidebar_position: 6
 ---
 
-## The HA of CloudCore(deployed in k8s cluster)
+## The HA of CloudCore (deployed in k8s cluster)
 
 **Note:**
-There are several ways to achieve the HA of cloudcore, for example, ingress, keepalived etc. Here we adopt the keepalived. The HA of cloudcore according to ingress will be achieved later.
+There are several ways to achieve high availability of CloudCore, for example, using ingress, keepalived, etc. In this guide, we have adopted the keepalived approach. The HA of CloudCore using an ingress controller will be covered later.
 
 ## Determine the virtual IP of CloudCore
 
-Determine a VIP that the CloudCore service exposed to the edge nodes. Here we recommend `keepalived` to do that. You had better directly schedule pods to specific number of nodes by `nodeSelector` when using  `keepalived`. And you have  to install `keepalived` in each of nodes where CloudCore runs. The configuration of `keepalived` is shown in the end. Here suppose the VIP is 10.10.102.242.
+Determine a VIP that the CloudCore service exposed to the edge nodes. Here, we recommend using `keepalived` for this purpose. When using `keepalived`, it is better to schedule pods directly to a specific number of nodes by using `nodeSelector`. Additionally, you will have to install `keepalived` on each node where CloudCore runs. The configuration of `keepalived` is shown at the end. Let's assume the VIP is `10.10.102.242` for this guide.
 
 The use of `nodeSelector` is as follow:
 
@@ -18,7 +18,7 @@ The use of `nodeSelector` is as follow:
 kubectl label nodes [nodename] [key]=[value]  # label the nodes where the cloudcore will run
 ```
 
-modify the term of `nodeselector`:
+Modify the `nodeSelector` section in the deployment manifest:
 
 ```yaml
 apiVersion: apps/v1
@@ -34,22 +34,24 @@ spec:
 
 ## Create k8s resources
 
-The manifests and scripts in `github.com/kubeedge/kubeedge/build/cloud/ha` will be used, so place these files to somewhere you can kubectl with (You have to make some modifications to manifests/scrips to suit your environment.)
+The manifests and scripts in `github.com/kubeedge/kubeedge/build/cloud/ha` will be used. Place these files in a location where you can access them with kubectl. (You may need to make some modifications to manifests/scripts to suit your environment.)
 
-First, ensure your k8s cluster can pull cloudcore image. If the image not exist. We can make one, and push to your registry.
+First, ensure that your Kubernetes cluster can pull the CloudCore image. If the image doesn't exist, you can build it and push it to your registry:
 
 ```bash
 cd $GOPATH/src/github.com/kubeedge/kubeedge
 make image WHAT=cloudcore
 ```
 
-We create k8s resources from the manifests in name order. Before creating, **check the content of each manifest to make sure it meets your environment.**
+We will create Kubernetes resources from the manifests in name order. Before creating them, **check the content of each manifest to ensure it meets your environment requirements.**
 
-**Note:** Now the follow manifests don't support `kubectl logs` command yet. If need, you have to make more configuration manually.
+::: note
+**Note:** Currently, the following manifests do not support the `kubectl logs` command. If needed, you will have to make additional configurations manually.
+:::
 
 ### 02-ha-configmap.yaml
 
-Configure the VIP address of CloudCore which is exposed to the edge nodes in the `advertiseAddress`, which will be added to SANs in cert of CloudCore. For example:
+Configure the VIP address of CloudCore which is exposed to the edge nodes in the `advertiseAddress` field. This address will be added to the Subject Alternative Names (SANs) in the CloudCore cert. For example:
 
 ```yaml
 modules:
@@ -58,13 +60,15 @@ modules:
     - 10.10.102.242
 ```
 
-**Note:** If you want to reset the CloudCore, run this before creating k8s resources:
+::: note
+**Note:** If you want to reset the CloudCore, run this command before creating k8s resources:
+:::
 
 ```bash
 kubectl delete namespace kubeedge
 ```
 
-Then create k8s resources:
+Then create the k8s resources:
 
 ```shell
 cd build/cloud/ha
@@ -77,7 +81,7 @@ The `keepalived` configuration we recommend is as following. You can adjust it a
 
 **keepalived.conf:**
 
-- master:
+- **master:**
 
 ```yaml
 ! Configuration File for keepalived
@@ -113,7 +117,7 @@ vrrp_instance CloudCore {
 }
 ```
 
-- backup:
+- **backup:**
 
 ```yaml
 ! Configuration File for keepalived
@@ -149,7 +153,7 @@ vrrp_instance CloudCore {
 }
 ```
 
-check_cloudcore.sh:
+- **check_cloudcore.sh:**
 
 ```shell
 #!/usr/bin/env bash
