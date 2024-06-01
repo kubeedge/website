@@ -153,7 +153,7 @@ vrrp_instance CloudCore {
 }
 ```
 
-- **check_cloudcore.sh:**
+**check_cloudcore.sh:**
 
 ```shell
 #!/usr/bin/env bash
