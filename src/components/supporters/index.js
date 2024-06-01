@@ -97,6 +97,12 @@ const supportList = [
   },
 
   {
+    name: "LookCan Ai",
+    img_src: "img/supporters/lookcan-logo.svg",
+    external_link: "https://www.lookcan.ai",
+  },
+
+  {
     name: "Orange",
     img_src: "img/supporters/orange.png",
     external_link: "https://www.orange.com/en",
