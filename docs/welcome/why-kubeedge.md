@@ -11,7 +11,7 @@ The advantages of KubeEdge include mainly:
 
 * **Edge Computing**
 
-    KubeEdge enables applications to run at edge, securing larger volumes of data and processing data closer to the data source which reduces the latency effectively. So, processing near the data sources reduces the network bandwidth requirements and consumption between Edge and Cloud.This also increases responsiveness, decreases costs, and protects customers' data privacy.
+  KubeEdge enables applications to run at the edge, securing larger volumes of data and processing it closer to the data source, which effectively reduces latency. This minimizes network bandwidth requirements and consumption between Edge and Cloud. By keeping sensitive data on local edge devices rather than a central cloud server, the risk of data interception, unauthorized access, and breaches is reduced. This also increases responsiveness, decreases costs, and protects customers' data privacy.
 
 * **Simplified development**
 
