@@ -3,11 +3,11 @@ title: Installing KubeEdge with Binary
 sidebar_position: 4
 ---
 
-Deploying KubeEdge with binary is used for testing purposes and should not be used in a production environment.
+Deploying KubeEdge with binary should be used only for testing purposes but not in a production environment.
 
 ## Limitation
 
-- It Requires super user rights (or root rights).
+- It requires super user rights (or root rights).
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
@@ -16,8 +16,8 @@ Deploying KubeEdge with binary is used for testing purposes and should not be us
 Before setting up the cloud side, you need to create the necessary Custom Resource Definitions (CRDs) for KubeEdge. These CRDs define the custom resources that KubeEdge uses for managing devices, applications, and other components. To create the CRDs, run the following commands:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/devices/devices_v1alpha2_device.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/devices/devices_v1alpha2_devicemodel.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/devices/devices_v1beta1_device.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/devices/devices_v1beta1_devicemodel.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/reliablesyncs/objectsync_v1alpha1.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/router/router_v1_ruleEndpoint.yaml
