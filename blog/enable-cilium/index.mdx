@@ -27,7 +27,7 @@ This blog introduces how to enable [Cilium](https://github.com/cilium/cilium) Co
 
 ## Why [Cilium](https://github.com/cilium/cilium) for KubeEdge
 
-[Cilium](https://github.com/cilium/cilium) is one of the most advanced and efficient container network interface plugin for Kubernetes, that provides network connectivity and security for containerized applications in Kubernetes clusters.
+[Cilium](https://github.com/cilium/cilium) is the one of the most advanced and efficient container network interface plugin for Kubernetes, that provides network connectivity and security for containerized applications in Kubernetes clusters.
 It leverages [eBPF (extended Berkeley Packet Filter)](https://ebpf.io/) technology to implement networking and security policies at the Linux kernel level, allowing for high-performance data plane operations and fine-grained security controls.
 
 And KubeEdge extends the cluster orchestration capability down to edge environments to provide unified cluster management and sophisticated edge specific features.
@@ -52,10 +52,10 @@ After all the operations, we can develop the following cluster configuration wit
 <!--truncate-->
 
 - [Prerequisites](#prerequisites)
-- [Kubernetes Master](#kubernetes-master)
+- [Kubernetes Master Setup](#kubernetes-master-setup)
 - [Cilium Install and Setup](#cilium-install-and-setup)
-- [KubeEdge CloudCore](#kubeedge-cloudcore)
-- [KubeEdge EdgeCore](#kubeedge-edgecore)
+- [KubeEdge CloudCore Setup](#kubeedge-cloudcore-setup)
+- [KubeEdge EdgeCore Setup](#kubeedge-edgecore-setup)
 - [Check Cilium Connectivity from Pods](#Check-cilium-connectivity-from-pods)
 
 <!--truncate-->
@@ -71,13 +71,13 @@ After all the operations, we can develop the following cluster configuration wit
 
 - Compatible Kubernetes version with [KubeEdge Release v1.16](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.16.md).
 
-  You can find compatible and supported Kubernetes version [here]([KubeEdge Release v1.16](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.16.md)).
+  You can find compatible and supported Kubernetes version [here](https://github.com/kubeedge/kubeedge?tab=readme-ov-file#kubernetes-compatibility).
 
 - It Requires super user rights (or root rights) to run commands.
 
 <!--truncate-->
 
-### Kubernetes Master
+### Kubernetes Master Setup
 
 Refer to [KubeEdge Setup Prerequisites](https://kubeedge.io/docs/category/prerequisites), and set up the Kubernetes API server as following.
 
@@ -164,9 +164,9 @@ After editing, Cilium pods will be restarted.
 
 <!--truncate-->
 
-### KubeEdge CloudCore
+### KubeEdge CloudCore Setup
 
-1st, we need to install `Keadm` with the official procedure [Installing KubeEdge with Keadm](https://kubeedge.io/docs/setup/install-with-keadm).
+1st of all, we need to install `Keadm` with the official procedure [Installing KubeEdge with Keadm](https://kubeedge.io/docs/setup/install-with-keadm).
 
 In this blog, we use `Keadm v1.16.1` as following.
 
@@ -264,7 +264,7 @@ Finally, we get the token after `CloudCore` has restarted.
 
 <!--truncate-->
 
-### KubeEdge EdgeCore
+### KubeEdge EdgeCore Setup
 
 With the token provided above, we can start the `EdgeCore` to join the cluster system.
 
@@ -328,8 +328,9 @@ index 8d17418..5391776 100644
      timeout: 60
 ```
 
-And then, we need to create another `DaemonSet` of `cilium-agent` for `EdgeCore` nodes.
-we need to deploy `cilium-agent` pods to the nodes where KubeEdge `EdgeCore` runs (labeled with `kubernetes.io/edge=`).
+And then, we need to create another `DaemonSet` of `cilium-agent` only for `EdgeCore` nodes.
+We need to deploy `cilium-agent` pods to the nodes where KubeEdge `EdgeCore` runs and labeled with `kubernetes.io/edge=`.
+Besides that, `cilium-agent` needs to query the APIs to `MetaServer` instead of Kubernetes API-server that is required to keep the edge autonomy provided by KubeEdge.
 
 ```
 ### Dump original Cilium DaemonSet configuration
