@@ -2,7 +2,7 @@
 
 KubeEdge version 1.16 introduces a new feature called Image Pre-Pull, which allows users to load images ahead of time on edge nodes through the Kubernetes API of ImagePrePullJob. This feature supports pre-pull multiple images in batches across multiple edge nodes or node groups, helping to reduce the failure rates and inefficiencies associated with loading images during application deployment or updates, especially in large-scale scenarios.
 
-API example for pre-pull mirror image：
+API example for ImagePrePullJob：
 
 ```
 apiVersion: operations.kubeedge.io/v1alpha1
@@ -10,7 +10,7 @@ kind: ImagePrePullJob
 metadata:
   name: imageprepull-example
   labels:
-    description:ImagePrePullLabel
+    description: ImagePrePullLabel
 spec:
   imagePrePullTemplate：
     images:
@@ -43,41 +43,22 @@ NAME            STATUS    ROLES                  AGE   VERSION
 cloud.kubeedge   Ready    control-plane,master   3d   v1.27.3
 edge.kubeedge    Ready    agent,edge             2d   v1.27.7-kubeedge-v1.16.0
 
-Note: The following verification will use the edge node edge.kubeedge. If you refer to this article for related verification, the configuration of the edge node name in subsequent steps needs to be changed according to your actual situation.
+Note: The following operations will use the edge node edge.kubeedge. If you refer to this document for related operations, the configuration of the edge node name in subsequent steps needs to be changed according to your actual situation.
 ```
 
-**2）Ensure that the K8s apiserver has the following configuration enabled**
+**2）Ensure that the CloudCore has the following configuration enabled**
 
 
 ```
       taskManager:
-        enable: true  // 由false修改为true
+        enable: true  // Change from false to true
 ```
 changes can be made by editing the file kubectl edit configmap cloudcore -n kubeedge with commands, and restarting the cloudcore component of the K8s apiserver.
 
-**3）Preparing Sample Code **
 
-yaml file example code
-```
-apiVersion: operations.kubeedge.io/v1alpha1
-kind: ImagePrePullJob
-metadata:
-  name: imageprepull-example
-spec:
-  imagePrePullTemplate:
-    concurrency: 1
-    failureTolerate: '0.1'
-    images:
-      - test:nginx
-    nodeNames:
-      - edge.kubeedge
-    imageSecrets: default/secret
-    retryTimes: 1
-    timeoutSeconds: 120
 
-```
 
-## 2. Prepare the image and Secret for the private image repository
+## 2. Prepare the Secret for the privare image
 Here is a private image repository prepared for demonstration purposes using Alibaba Cloud's registry URL: registry.cn-hangzhou.aliyuncs.com. The demo space used is jilimoxing, and modifications may be necessary based on actual circumstances during the actual operation.
 
 **1）Pushing nginx into the private image repository**
@@ -88,15 +69,15 @@ Here is a private image repository prepared for demonstration purposes using Ali
 ```
 
 **2）Create a Secret on the cloud**
-
-Using Kubectl create secret docker-registry to generate a secret for a private image repository, modify it according to your actual situation.
+Secret is not a required field in ImagePrePullJob. If you need to prepull private image, you can generate a secret for it.
+You can also use kubectl to create a Secret for accessing a container registry,such as when you don`t have a Docker configuration file:
 
 ```
 [root@cloud ~]# kubectl create secret docker-registry my-secret \
-  --docker-server=registry.cn-hangzhou.aliyuncs.com \
-  --docker-username=23021*****@qq.com \
-  --docker-password=Xy***** \
-  --docker-email=23021*****@qq.com
+  --docker-server=tiger@acme.example \
+  --docker-username=tiger \
+  --docker-password=pass1234 \
+  --docker-email=my-registry.example:5000
 
 [root@cloud ~]# kubectl get secret -A
 NAMESPACE   NAME             TYPE                             DATA   AGE
@@ -139,6 +120,15 @@ spec:
 ```
 
 
+**3) Get ImagePrepulljob Status**
+
+use：kubectl get imageprepulljobs.operations.kubeedge.io imageprepull-example -o jsonpath='{.status}'
+
+```
+[root@ke-cloud ~]# kubectl get imageprepulljobs.operations.kubeedge.io imageprepull-example -o jsonpath='{.status}'
+[root@ke-cloud ~]# {"action":"Success","event":"Pull","state":"Successful","status":[{"imageStatus":[{"image":"registry.cn-hangzhou.aliyuncs.com/jilimoxing/test:nginx","state":"Successful"}],"nodeStatus":{"action":"Success","event":"Pull","nodeName":"edge.kubeedge","state":"Successful","time":"2024-04-26T18:51:41Z"}}],"time":"2024-04-26T18:51:41Z"}
+```
+
 ## 4. Check if the edge node image has been pre-pull successfully
 
 Enter the edge terminal and use the command ctr -n k8s.io i ls to view.
@@ -150,8 +140,4 @@ The corresponding image has been successfully pre-pull.
 REF                                                        TYPE                                                      DIGEST                                                                  SIZE      PLATFORMS                                                                    LABELS                                                          
 registry.cn-hangzhou.aliyuncs.com/jilimoxing/test:nginx    application/vnd.docker.distribution.manifest.v2+json      sha256:73e957703f1266530db0aeac1fd6a3f87c1e59943f4c13eb340bb8521c6041d7 67.3 MiB  linux/amd64 
 ```
-
-## 5. Other
-
-**1）For more official KubeEdge examples, please refer to https://github.com/kubeedge/examples**
 
