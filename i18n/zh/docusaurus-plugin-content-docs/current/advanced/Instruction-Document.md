@@ -44,10 +44,10 @@ NAME            STATUS    ROLES                  AGE   VERSION
 cloud.kubeedge   Ready    control-plane,master   3d   v1.27.3
 edge.kubeedge    Ready    agent,edge             2d   v1.27.7-kubeedge-v1.16.0
 
-说明：本文接下来的验证将使用边缘节点edge.kubeedge进行，如果你参考本文进行相关验证，后续边缘节点名称的配置需要根据你的实际情况进行更改。
+说明：本文接下来的操作将使用边缘节点edge.kubeedge进行，如果你参考本文进行相关操作，后续边缘节点名称的配置需要根据你的实际情况进行更改。
 ```
 
-**2）确保k8s apiserver开启了以下配置：**
+**2）确保CloudCore开启了以下配置：**
 
 
 ```
@@ -56,29 +56,10 @@ edge.kubeedge    Ready    agent,edge             2d   v1.27.7-kubeedge-v1.16.0
 ```
 可以通过命令修改kubectl edit configmap cloudcore -n kubeedge文件，并重启k8s-apiserver组件的cloudcore来进行更改。
 
-**3）准备示例代码：**
 
-yaml文件示例代码
-```
-apiVersion: operations.kubeedge.io/v1alpha1
-kind: ImagePrePullJob
-metadata:
-  name: imageprepull-example
-spec:
-  imagePrePullTemplate:
-    concurrency: 1
-    failureTolerate: '0.1'
-    images:
-      - test:nginx
-    nodeNames:
-      - edge.kubeedge
-    imageSecrets: default/secret
-    retryTimes: 1
-    timeoutSeconds: 120
 
-```
 
-## 2. 准备私有镜像仓的镜像和Secret
+## 2. 为私有镜像准备密钥
 在这里准备了一个阿里云的私有镜像仓用作演示:registry.cn-hangzhou.aliyuncs.com/,使用的演示空间为jilimoxing。实际操作过程中可以依据真实情况进行修改
 
 **1）推送nginx进入私有镜像仓**
@@ -88,15 +69,15 @@ spec:
 ```
 
 **2）在云端创建Secret**
-
-使用Kubectl create secret docker-registry生成私有镜像仓库的secret，根据你的实际情况来进行修改
+Secret 不是 ImagePrePullJob 中的必填字段。如果你需要预拉私有镜像，你可以为它生成一个密钥。
+您还可以使用kubectl创建一个用于访问docker registry的Secret，例如在没有Docker配置文件的情况下：
 
 ```
 [root@cloud ~]# kubectl create secret docker-registry my-secret \
-  --docker-server=registry.cn-hangzhou.aliyuncs.com \
-  --docker-username=23021*****@qq.com \
-  --docker-password=Xy***** \
-  --docker-email=23021*****@qq.com
+  --docker-server=tiger@acme.example \
+  --docker-username=tiger \
+  --docker-password=pass1234 \
+  --docker-email=my-registry.example:5000
 
 [root@cloud ~]# kubectl get secret -A
 NAMESPACE   NAME             TYPE                             DATA   AGE
@@ -138,6 +119,15 @@ spec:
 [root@ke-cloud ~]# kubectl apply -f imageprepull.yaml
 ```
 
+**3) 获取 ImagePrepulljob 的状态**
+
+使用命令：kubectl get imageprepulljobs.operations.kubeedge.io imageprepull-example -o jsonpath='{.status}'进行查看
+
+```
+[root@ke-cloud ~]# kubectl get imageprepulljobs.operations.kubeedge.io imageprepull-example -o jsonpath='{.status}'
+[root@ke-cloud ~]# {"action":"Success","event":"Pull","state":"Successful","status":[{"imageStatus":[{"image":"registry.cn-hangzhou.aliyuncs.com/jilimoxing/test:nginx","state":"Successful"}],"nodeStatus":{"action":"Success","event":"Pull","nodeName":"edge.kubeedge","state":"Successful","time":"2024-04-26T18:51:41Z"}}],"time":"2024-04-26T18:51:41Z"}
+```
+
 
 ## 4. 检查边缘节点镜像是否预加载成功
 
@@ -150,7 +140,3 @@ spec:
 REF                                                        TYPE                                                      DIGEST                                                                  SIZE      PLATFORMS                                                                    LABELS                                                          
 registry.cn-hangzhou.aliyuncs.com/jilimoxing/test:nginx    application/vnd.docker.distribution.manifest.v2+json      sha256:73e957703f1266530db0aeac1fd6a3f87c1e59943f4c13eb340bb8521c6041d7 67.3 MiB  linux/amd64 
 ```
-
-## 5. 其他
-
-**1）更多的KubeEdge官方示例请参考 https://github.com/kubeedge/examples**
