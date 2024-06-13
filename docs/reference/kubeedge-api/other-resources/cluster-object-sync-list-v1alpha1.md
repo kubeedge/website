@@ -1,12 +1,12 @@
 ---
 api_metadata:
-  apiVersion: ""
-  import: "k8s.io/apimachinery/pkg/apis/meta/v1"
-  kind: "Patch"
+  apiVersion: "reliablesyncs.kubeedge.io/v1alpha1"
+  import: "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"
+  kind: "ClusterObjectSyncList"
 content_type: "api_reference"
-description: "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body."
-title: "Patch"
-weight: 6
+description: ""
+title: "ClusterObjectSyncList v1alpha1"
+weight: 2
 auto_generated: true
 ---
 
@@ -14,9 +14,7 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-`import "k8s.io/apimachinery/pkg/apis/meta/v1"`
+`apiVersion: reliablesyncs.kubeedge.io/v1alpha1`
 
-Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.
-
-<hr/>
+`import "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"`
 

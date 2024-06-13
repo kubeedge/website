@@ -18,7 +18,6 @@ auto_generated: true
 
 `import "github.com/kubeedge/kubeedge/pkg/apis/apps/v1alpha1"`
 
-
 ## NodeGroup 
 
 NodeGroup is the Schema for the nodegroups API
@@ -27,12 +26,9 @@ NodeGroup is the Schema for the nodegroups API
 
 - **apiVersion**: apps.kubeedge.io/v1alpha1
 
-
 - **kind**: NodeGroup
 
-
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
-
 
 - **spec** ([NodeGroupSpec](../apps-resources/node-group-v1alpha1#nodegroupspec))
 
@@ -41,10 +37,6 @@ NodeGroup is the Schema for the nodegroups API
 - **status** ([NodeGroupStatus](../apps-resources/node-group-v1alpha1#nodegroupstatus))
 
   Status represents the status of member nodegroup.
-
-
-
-
 
 ## NodeGroupSpec 
 
@@ -59,10 +51,6 @@ NodeGroupSpec defines the desired state of NodeGroup
 - **nodes** ([]string)
 
   Nodes contains names of all the nodes in the nodegroup.
-
-
-
-
 
 ## NodeGroupStatus 
 
@@ -94,10 +82,6 @@ NodeGroupStatus contains the observed status of all selected nodes in this NodeG
 
     SelectionStatusReason contains human-readable reason for this SelectionStatus.
 
-
-
-
-
 ## NodeGroupList 
 
 NodeGroupList contains a list of NodeGroup
@@ -106,30 +90,15 @@ NodeGroupList contains a list of NodeGroup
 
 - **apiVersion**: apps.kubeedge.io/v1alpha1
 
-
 - **kind**: NodeGroupList
-
 
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
-
 - **items** ([][NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)), required
-
-
-
-
-
 
 ## Operations 
 
-
-
 <hr/>
-
-
-
-
-
 
 ### `get` read the specified NodeGroup
 
@@ -139,23 +108,17 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
 
-
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
-
 
 ### `get` read status of the specified NodeGroup
 
@@ -165,23 +128,17 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
 
-
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
-
 
 ### `list` list or watch objects of kind NodeGroup
 
@@ -191,68 +148,53 @@ GET /apis/apps.kubeedge.io/v1alpha1/nodegroups
 
 #### Parameters
 
-
 - **allowWatchBookmarks** (*in query*): boolean
 
-  allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
-
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 - **continue** (*in query*): string
 
   [continue](../common-parameter/common-parameters#continue)
 
-
 - **fieldSelector** (*in query*): string
 
   [fieldSelector](../common-parameter/common-parameters#fieldselector)
-
 
 - **labelSelector** (*in query*): string
 
   [labelSelector](../common-parameter/common-parameters#labelselector)
 
-
 - **limit** (*in query*): integer
 
   [limit](../common-parameter/common-parameters#limit)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
 - **resourceVersion** (*in query*): string
 
   [resourceVersion](../common-parameter/common-parameters#resourceversion)
-
 
 - **resourceVersionMatch** (*in query*): string
 
   [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
-
 - **sendInitialEvents** (*in query*): boolean
 
   [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
-
 
 - **timeoutSeconds** (*in query*): integer
 
   [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
-
 - **watch** (*in query*): boolean
 
-  Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
-
-
+  [watch](../common-parameter/common-parameters#watch)
 
 #### Response
 
-
 200 ([NodeGroupList](../apps-resources/node-group-v1alpha1#nodegrouplist)): OK
-
 
 ### `create` create a NodeGroup
 
@@ -262,42 +204,33 @@ POST /apis/apps.kubeedge.io/v1alpha1/nodegroups
 
 #### Parameters
 
-
 - **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
 
   
-
 
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
 
-
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
-
 
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
 
 202 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Accepted
-
 
 ### `update` replace the specified NodeGroup
 
@@ -307,45 +240,35 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
-
 
 ### `update` replace status of the specified NodeGroup
 
@@ -355,45 +278,35 @@ PUT /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **body**: [NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
-
 
 ### `patch` partially update the specified NodeGroup
 
@@ -403,50 +316,39 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **force** (*in query*): boolean
 
   [force](../common-parameter/common-parameters#force)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
-
 
 ### `patch` partially update status of the specified NodeGroup
 
@@ -456,50 +358,39 @@ PATCH /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}/status
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **force** (*in query*): boolean
 
   [force](../common-parameter/common-parameters#force)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): OK
 
 201 ([NodeGroup](../apps-resources/node-group-v1alpha1#nodegroup)): Created
-
 
 ### `delete` delete a NodeGroup
 
@@ -509,45 +400,35 @@ DELETE /apis/apps.kubeedge.io/v1alpha1/nodegroups/{name}
 
 #### Parameters
 
-
 - **name** (*in path*): string, required
 
   name of the NodeGroup
-
 
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **gracePeriodSeconds** (*in query*): integer
 
   [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
-
 
 - **propagationPolicy** (*in query*): string
 
   [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
-
-
 #### Response
-
 
 200 ([Status](../common-definitions/status#status)): OK
 
 202 ([Status](../common-definitions/status#status)): Accepted
-
 
 ### `deletecollection` delete collection of NodeGroup
 
@@ -557,75 +438,59 @@ DELETE /apis/apps.kubeedge.io/v1alpha1/nodegroups
 
 #### Parameters
 
-
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
-
 
 - **continue** (*in query*): string
 
   [continue](../common-parameter/common-parameters#continue)
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldSelector** (*in query*): string
 
   [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
-
 - **gracePeriodSeconds** (*in query*): integer
 
   [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
-
 
 - **labelSelector** (*in query*): string
 
   [labelSelector](../common-parameter/common-parameters#labelselector)
 
-
 - **limit** (*in query*): integer
 
   [limit](../common-parameter/common-parameters#limit)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
 - **propagationPolicy** (*in query*): string
 
   [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
-
 
 - **resourceVersion** (*in query*): string
 
   [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
-
 - **resourceVersionMatch** (*in query*): string
 
   [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
-
 
 - **sendInitialEvents** (*in query*): boolean
 
   [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
-
 - **timeoutSeconds** (*in query*): integer
 
   [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
-
-
 #### Response
-
 
 200 ([Status](../common-definitions/status#status)): OK
 

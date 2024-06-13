@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: ""
 title: "Common Parameters"
-weight: 8
+weight: 9
 auto_generated: true
 ---
 
@@ -14,10 +14,11 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
+## allowWatchBookmarks 
 
+allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
 
-
-
+<hr/>
 
 ## continue 
 
@@ -27,19 +28,11 @@ This field is not supported when watch is true. Clients may start a watch from t
 
 <hr/>
 
-
-
-
-
 ## dryRun 
 
 When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
 
 <hr/>
-
-
-
-
 
 ## fieldManager 
 
@@ -47,19 +40,11 @@ fieldManager is a name associated with the actor or entity that is making these 
 
 <hr/>
 
-
-
-
-
 ## fieldSelector 
 
 A selector to restrict the list of returned objects by their fields. Defaults to everything.
 
 <hr/>
-
-
-
-
 
 ## fieldValidation 
 
@@ -67,19 +52,11 @@ fieldValidation instructs the server on how to handle objects in the request (PO
 
 <hr/>
 
-
-
-
-
 ## force 
 
 Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
 
 <hr/>
-
-
-
-
 
 ## gracePeriodSeconds 
 
@@ -87,19 +64,11 @@ The duration in seconds before the object should be deleted. Value must be non-n
 
 <hr/>
 
-
-
-
-
 ## labelSelector 
 
 A selector to restrict the list of returned objects by their labels. Defaults to everything.
 
 <hr/>
-
-
-
-
 
 ## limit 
 
@@ -109,9 +78,11 @@ The server guarantees that the objects returned when using continue will be iden
 
 <hr/>
 
+## namespace 
 
+object name and auth scope, such as for teams and projects
 
-
+<hr/>
 
 ## pretty 
 
@@ -119,19 +90,11 @@ If 'true', then the output is pretty printed.
 
 <hr/>
 
-
-
-
-
 ## propagationPolicy 
 
 Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground.
 
 <hr/>
-
-
-
-
 
 ## resourceVersion 
 
@@ -141,10 +104,6 @@ Defaults to unset
 
 <hr/>
 
-
-
-
-
 ## resourceVersionMatch 
 
 resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.
@@ -152,10 +111,6 @@ resourceVersionMatch determines how resourceVersion is applied to list calls. It
 Defaults to unset
 
 <hr/>
-
-
-
-
 
 ## sendInitialEvents 
 
@@ -175,17 +130,15 @@ Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward 
 
 <hr/>
 
-
-
-
-
 ## timeoutSeconds 
 
 Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
 
 <hr/>
 
+## watch 
 
+Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
 
-
+<hr/>
 

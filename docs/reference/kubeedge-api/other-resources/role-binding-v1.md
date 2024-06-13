@@ -1,12 +1,12 @@
 ---
 api_metadata:
-  apiVersion: ""
-  import: "k8s.io/apimachinery/pkg/apis/meta/v1"
-  kind: "Patch"
+  apiVersion: "rbac.authorization.k8s.io/v1"
+  import: "k8s.io/api/rbac/v1"
+  kind: "RoleBinding"
 content_type: "api_reference"
-description: "Patch is provided to give a concrete name and type to the Kubernetes PATCH request body."
-title: "Patch"
-weight: 6
+description: ""
+title: "RoleBinding"
+weight: 4
 auto_generated: true
 ---
 
@@ -14,9 +14,7 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-`import "k8s.io/apimachinery/pkg/apis/meta/v1"`
+`apiVersion: rbac.authorization.k8s.io/v1`
 
-Patch is provided to give a concrete name and type to the Kubernetes PATCH request body.
-
-<hr/>
+`import "k8s.io/api/rbac/v1"`
 

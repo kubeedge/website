@@ -1,12 +1,12 @@
 ---
 api_metadata:
-  apiVersion: "rules.kubeedge.io/v1"
-  import: "github.com/kubeedge/kubeedge/pkg/apis/rules/v1"
-  kind: "Rule"
+  apiVersion: "devices.kubeedge.io/v1beta1"
+  import: "github.com/kubeedge/kubeedge/pkg/apis/devices/v1beta1"
+  kind: "DeviceModel"
 content_type: "api_reference"
-description: "Rule is the Schema for the rules API."
-title: "Rule"
-weight: 1
+description: "DeviceModel is the Schema for the device model API."
+title: "DeviceModel v1beta1"
+weight: 4
 auto_generated: true
 ---
 
@@ -14,95 +14,95 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-`apiVersion: rules.kubeedge.io/v1`
+`apiVersion: devices.kubeedge.io/v1beta1`
 
-`import "github.com/kubeedge/kubeedge/pkg/apis/rules/v1"`
+`import "github.com/kubeedge/kubeedge/pkg/apis/devices/v1beta1"`
 
-## Rule 
+## DeviceModel 
 
-Rule is the Schema for the rules API
+DeviceModel is the Schema for the device model API
 
 <hr/>
 
-- **apiVersion**: rules.kubeedge.io/v1
+- **apiVersion**: devices.kubeedge.io/v1beta1
 
-- **kind**: Rule
+- **kind**: DeviceModel
 
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
-- **spec** ([RuleSpec](../rules-resources/rule-v1#rulespec)), required
+- **spec** ([DeviceModelSpec](../devices-resources/device-model-v1beta1#devicemodelspec))
 
-- **status** ([RuleStatus](../rules-resources/rule-v1#rulestatus))
+## DeviceModelSpec 
 
-## RuleSpec 
-
-RuleSpec defines rule of message delivery.
+DeviceModelSpec defines the model for a device.It is a blueprint which describes the device capabilities and access mechanism via property visitors.
 
 <hr/>
 
-- **source** (string), required
+- **properties** ([]ModelProperty)
 
-  Source represents where the messages come from. Its value is the same with ruleendpoint name. For example, rest or eventbus.
+  Required: List of device properties.
 
-- **sourceResource** (map[string]string), required
+  <a name="ModelProperty"></a>
 
-  SourceResource is a map representing the resource info of source. For rest ruleendpoint type its value is ["path":"/a/b"]. For eventbus ruleendpoint type its value is ["topic":"&lt;user define string&gt;","node_name":"xxxx"]
+  *ModelProperty describes an individual device property / attribute like temperature / humidity etc.*
 
-- **target** (string), required
+  - **properties.accessMode** (string)
 
-  Target represents where the messages go to. its value is the same with ruleendpoint name. For example, eventbus or api or servicebus.
+    Required: Access mode of property, ReadWrite or ReadOnly.
 
-- **targetResource** (map[string]string), required
+  - **properties.description** (string)
 
-  targetResource is a map representing the resource info of target. For api ruleendpoint type its value is ["resource":"http://a.com"]. For eventbus ruleendpoint type its value is ["topic":"/xxxx"]. For servicebus ruleendpoint type its value is ["path":"/request_path"].
+    The device property description.
 
-## RuleStatus 
+  - **properties.maximum** (string)
 
-RuleStatus defines status of message delivery.
+  - **properties.minimum** (string)
+
+  - **properties.name** (string)
+
+    Required: The device property name. Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo
+
+  - **properties.type** (string)
+
+    Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES,STREAM
+
+  - **properties.unit** (string)
+
+    The unit of the property
+
+- **protocol** (string)
+
+  Required: Protocol name used by the device.
+
+## DeviceModelList 
+
+DeviceModelList contains a list of DeviceModel
 
 <hr/>
 
-- **errors** ([]string), required
+- **apiVersion**: devices.kubeedge.io/v1beta1
 
-  Errors represents failed reasons of message delivery of rule.
-
-- **failMessages** (int64), required
-
-  FailMessages represents failed count of message delivery of rule.
-
-- **successMessages** (int64), required
-
-  SuccessMessages represents success count of message delivery of rule.
-
-## RuleList 
-
-RuleList contains a list of Rule
-
-<hr/>
-
-- **apiVersion**: rules.kubeedge.io/v1
-
-- **kind**: RuleList
+- **kind**: DeviceModelList
 
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
-- **items** ([][Rule](../rules-resources/rule-v1#rule)), required
+- **items** ([][DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)), required
 
 ## Operations 
 
 <hr/>
 
-### `get` read the specified Rule
+### `get` read the specified DeviceModel
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+GET /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the DeviceModel
 
 - **namespace** (*in path*): string, required
 
@@ -114,19 +114,19 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
 
-### `get` read status of the specified Rule
+### `get` read status of the specified DeviceModel
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
+GET /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}/status
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the DeviceModel
 
 - **namespace** (*in path*): string, required
 
@@ -138,13 +138,13 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
 
-### `list` list or watch objects of kind Rule
+### `list` list or watch objects of kind DeviceModel
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
+GET /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels
 
 #### Parameters
 
@@ -198,13 +198,13 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
 #### Response
 
-200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
+200 ([DeviceModelList](../devices-resources/device-model-v1beta1#devicemodellist)): OK
 
-### `list` list or watch objects of kind Rule
+### `list` list or watch objects of kind DeviceModel
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/rules
+GET /apis/devices.kubeedge.io/v1beta1/devicemodels
 
 #### Parameters
 
@@ -254,13 +254,13 @@ GET /apis/rules.kubeedge.io/v1/rules
 
 #### Response
 
-200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
+200 ([DeviceModelList](../devices-resources/device-model-v1beta1#devicemodellist)): OK
 
-### `create` create a Rule
+### `create` create a DeviceModel
 
 #### HTTP Request
 
-POST /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
+POST /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels
 
 #### Parameters
 
@@ -268,7 +268,7 @@ POST /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
   [namespace](../common-parameter/common-parameters#namespace)
 
-- **body**: [Rule](../rules-resources/rule-v1#rule), required
+- **body**: [DeviceModel](../devices-resources/device-model-v1beta1#devicemodel), required
 
   
 
@@ -290,29 +290,29 @@ POST /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): Created
 
-202 ([Rule](../rules-resources/rule-v1#rule)): Accepted
+202 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): Accepted
 
-### `update` replace the specified Rule
+### `update` replace the specified DeviceModel
 
 #### HTTP Request
 
-PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+PUT /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the DeviceModel
 
 - **namespace** (*in path*): string, required
 
   [namespace](../common-parameter/common-parameters#namespace)
 
-- **body**: [Rule](../rules-resources/rule-v1#rule), required
+- **body**: [DeviceModel](../devices-resources/device-model-v1beta1#devicemodel), required
 
   
 
@@ -334,27 +334,27 @@ PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): Created
 
-### `update` replace status of the specified Rule
+### `update` replace status of the specified DeviceModel
 
 #### HTTP Request
 
-PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
+PUT /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}/status
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the DeviceModel
 
 - **namespace** (*in path*): string, required
 
   [namespace](../common-parameter/common-parameters#namespace)
 
-- **body**: [Rule](../rules-resources/rule-v1#rule), required
+- **body**: [DeviceModel](../devices-resources/device-model-v1beta1#devicemodel), required
 
   
 
@@ -376,67 +376,21 @@ PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): Created
 
-### `patch` partially update the specified Rule
+### `patch` partially update the specified DeviceModel
 
 #### HTTP Request
 
-PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+PATCH /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
-
-- **body**: [Patch](../common-definitions/patch#patch), required
-
-  
-
-- **dryRun** (*in query*): string
-
-  [dryRun](../common-parameter/common-parameters#dryrun)
-
-- **fieldManager** (*in query*): string
-
-  [fieldManager](../common-parameter/common-parameters#fieldmanager)
-
-- **fieldValidation** (*in query*): string
-
-  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
-- **force** (*in query*): boolean
-
-  [force](../common-parameter/common-parameters#force)
-
-- **pretty** (*in query*): string
-
-  [pretty](../common-parameter/common-parameters#pretty)
-
-#### Response
-
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
-
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
-
-### `patch` partially update status of the specified Rule
-
-#### HTTP Request
-
-PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
-
-#### Parameters
-
-- **name** (*in path*): string, required
-
-  name of the Rule
+  name of the DeviceModel
 
 - **namespace** (*in path*): string, required
 
@@ -468,21 +422,67 @@ PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): Created
 
-### `delete` delete a Rule
+### `patch` partially update status of the specified DeviceModel
 
 #### HTTP Request
 
-DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+PATCH /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}/status
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the DeviceModel
+
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
+
+- **body**: [Patch](../common-definitions/patch#patch), required
+
+  
+
+- **dryRun** (*in query*): string
+
+  [dryRun](../common-parameter/common-parameters#dryrun)
+
+- **fieldManager** (*in query*): string
+
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
+
+- **fieldValidation** (*in query*): string
+
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
+
+- **force** (*in query*): boolean
+
+  [force](../common-parameter/common-parameters#force)
+
+- **pretty** (*in query*): string
+
+  [pretty](../common-parameter/common-parameters#pretty)
+
+#### Response
+
+200 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): OK
+
+201 ([DeviceModel](../devices-resources/device-model-v1beta1#devicemodel)): Created
+
+### `delete` delete a DeviceModel
+
+#### HTTP Request
+
+DELETE /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels/{name}
+
+#### Parameters
+
+- **name** (*in path*): string, required
+
+  name of the DeviceModel
 
 - **namespace** (*in path*): string, required
 
@@ -514,11 +514,11 @@ DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 202 ([Status](../common-definitions/status#status)): Accepted
 
-### `deletecollection` delete collection of Rule
+### `deletecollection` delete collection of DeviceModel
 
 #### HTTP Request
 
-DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
+DELETE /apis/devices.kubeedge.io/v1beta1/namespaces/{namespace}/devicemodels
 
 #### Parameters
 

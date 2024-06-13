@@ -14,10 +14,7 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-
-
 `import "k8s.io/apimachinery/pkg/apis/meta/v1"`
-
 
 ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of [ObjectMeta, ListMeta].
 
@@ -38,8 +35,4 @@ ListMeta describes metadata that synthetic resources must have, including lists 
 - **selfLink** (string)
 
   Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
-
-
-
-
 

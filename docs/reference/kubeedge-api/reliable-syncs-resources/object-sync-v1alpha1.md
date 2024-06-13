@@ -18,7 +18,6 @@ auto_generated: true
 
 `import "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"`
 
-
 ## ObjectSync 
 
 ObjectSync stores the state of the namespaced object that was successfully persisted to the edge node. ObjectSync name is a concatenation of the node name which receiving the object and the object UUID.
@@ -27,9 +26,7 @@ ObjectSync stores the state of the namespaced object that was successfully persi
 
 - **apiVersion**: reliablesyncs.kubeedge.io/v1alpha1
 
-
 - **kind**: ObjectSync
-
 
 - **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
@@ -37,13 +34,7 @@ ObjectSync stores the state of the namespaced object that was successfully persi
 
 - **spec** ([ObjectSyncSpec](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncspec))
 
-
 - **status** ([ObjectSyncStatus](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncstatus))
-
-
-
-
-
 
 ## ObjectSyncSpec 
 
@@ -63,10 +54,6 @@ ObjectSyncSpec stores the details of objects that persist to the edge.
 
   ObjectName is the name of the object that was successfully persist to the edge node.
 
-
-
-
-
 ## ObjectSyncStatus 
 
 ObjectSyncStatus stores the resourceversion of objects that persist to the edge.
@@ -77,10 +64,6 @@ ObjectSyncStatus stores the resourceversion of objects that persist to the edge.
 
   ObjectResourceVersion is the resourceversion of the object that was successfully persist to the edge node.
 
-
-
-
-
 ## ObjectSyncList 
 
 ObjectSyncList is a list of ObjectSync.
@@ -89,9 +72,7 @@ ObjectSyncList is a list of ObjectSync.
 
 - **apiVersion**: reliablesyncs.kubeedge.io/v1alpha1
 
-
 - **kind**: ObjectSyncList
-
 
 - **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
@@ -101,72 +82,117 @@ ObjectSyncList is a list of ObjectSync.
 
   List of ObjectSync.
 
-
-
-
-
 ## Operations 
 
-
-
 <hr/>
-
-
-
-
-
 
 ### `get` read the specified ObjectSync
 
 #### HTTP Request
 
-GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+GET /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
 
-
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
-
 
 ### `get` read status of the specified ObjectSync
 
 #### HTTP Request
 
-GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
+GET /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}/status
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
+### `list` list or watch objects of kind ObjectSync
+
+#### HTTP Request
+
+GET /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs
+
+#### Parameters
+
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
+
+- **allowWatchBookmarks** (*in query*): boolean
+
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
+
+- **continue** (*in query*): string
+
+  [continue](../common-parameter/common-parameters#continue)
+
+- **fieldSelector** (*in query*): string
+
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
+
+- **labelSelector** (*in query*): string
+
+  [labelSelector](../common-parameter/common-parameters#labelselector)
+
+- **limit** (*in query*): integer
+
+  [limit](../common-parameter/common-parameters#limit)
+
+- **pretty** (*in query*): string
+
+  [pretty](../common-parameter/common-parameters#pretty)
+
+- **resourceVersion** (*in query*): string
+
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
+
+- **resourceVersionMatch** (*in query*): string
+
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
+
+- **sendInitialEvents** (*in query*): boolean
+
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
+
+- **timeoutSeconds** (*in query*): integer
+
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
+
+- **watch** (*in query*): boolean
+
+  [watch](../common-parameter/common-parameters#watch)
+
+#### Response
+
+200 ([ObjectSyncList](../reliable-syncs-resources/object-sync-v1alpha1#objectsynclist)): OK
 
 ### `list` list or watch objects of kind ObjectSync
 
@@ -176,106 +202,87 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 
 #### Parameters
 
-
 - **allowWatchBookmarks** (*in query*): boolean
 
-  allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
-
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 - **continue** (*in query*): string
 
   [continue](../common-parameter/common-parameters#continue)
 
-
 - **fieldSelector** (*in query*): string
 
   [fieldSelector](../common-parameter/common-parameters#fieldselector)
-
 
 - **labelSelector** (*in query*): string
 
   [labelSelector](../common-parameter/common-parameters#labelselector)
 
-
 - **limit** (*in query*): integer
 
   [limit](../common-parameter/common-parameters#limit)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
-
 
 - **resourceVersion** (*in query*): string
 
   [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
-
 - **resourceVersionMatch** (*in query*): string
 
   [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
-
 
 - **sendInitialEvents** (*in query*): boolean
 
   [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
-
 - **timeoutSeconds** (*in query*): integer
 
   [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
-
 - **watch** (*in query*): boolean
 
-  Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
-
-
+  [watch](../common-parameter/common-parameters#watch)
 
 #### Response
 
-
 200 ([ObjectSyncList](../reliable-syncs-resources/object-sync-v1alpha1#objectsynclist)): OK
-
 
 ### `create` create an ObjectSync
 
 #### HTTP Request
 
-POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
+POST /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs
 
 #### Parameters
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
@@ -283,334 +290,289 @@ POST /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 
 202 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Accepted
 
-
 ### `update` replace the specified ObjectSync
 
 #### HTTP Request
 
-PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
-
 
 ### `update` replace status of the specified ObjectSync
 
 #### HTTP Request
 
-PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
+PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}/status
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
-
 
 ### `patch` partially update the specified ObjectSync
 
 #### HTTP Request
 
-PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **force** (*in query*): boolean
 
   [force](../common-parameter/common-parameters#force)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
-
 
 ### `patch` partially update status of the specified ObjectSync
 
 #### HTTP Request
 
-PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}/status
+PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}/status
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **fieldManager** (*in query*): string
 
   [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
-
 - **fieldValidation** (*in query*): string
 
   [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
-
 
 - **force** (*in query*): boolean
 
   [force](../common-parameter/common-parameters#force)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
 
-
-
 #### Response
-
 
 200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
-
 ### `delete` delete an ObjectSync
 
 #### HTTP Request
 
-DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs/{name}
+DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/{name}
 
 #### Parameters
-
 
 - **name** (*in path*): string, required
 
   name of the ObjectSync
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
-
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
-
 
 - **gracePeriodSeconds** (*in query*): integer
 
   [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
-
 
 - **propagationPolicy** (*in query*): string
 
   [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
-
-
 #### Response
-
 
 200 ([Status](../common-definitions/status#status)): OK
 
 202 ([Status](../common-definitions/status#status)): Accepted
 
-
 ### `deletecollection` delete collection of ObjectSync
 
 #### HTTP Request
 
-DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
+DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs
 
 #### Parameters
 
+- **namespace** (*in path*): string, required
+
+  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
-
 - **continue** (*in query*): string
 
   [continue](../common-parameter/common-parameters#continue)
-
 
 - **dryRun** (*in query*): string
 
   [dryRun](../common-parameter/common-parameters#dryrun)
 
-
 - **fieldSelector** (*in query*): string
 
   [fieldSelector](../common-parameter/common-parameters#fieldselector)
-
 
 - **gracePeriodSeconds** (*in query*): integer
 
   [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
-
 - **labelSelector** (*in query*): string
 
   [labelSelector](../common-parameter/common-parameters#labelselector)
-
 
 - **limit** (*in query*): integer
 
   [limit](../common-parameter/common-parameters#limit)
 
-
 - **pretty** (*in query*): string
 
   [pretty](../common-parameter/common-parameters#pretty)
-
 
 - **propagationPolicy** (*in query*): string
 
   [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
-
 - **resourceVersion** (*in query*): string
 
   [resourceVersion](../common-parameter/common-parameters#resourceversion)
-
 
 - **resourceVersionMatch** (*in query*): string
 
   [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
-
 - **sendInitialEvents** (*in query*): boolean
 
   [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
-
 
 - **timeoutSeconds** (*in query*): integer
 
   [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
-
-
 #### Response
-
 
 200 ([Status](../common-definitions/status#status)): OK
 

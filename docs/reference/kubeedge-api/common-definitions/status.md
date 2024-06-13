@@ -14,10 +14,7 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-
-
 `import "k8s.io/apimachinery/pkg/apis/meta/v1"`
-
 
 Status is a return value for calls that don't return other objects.
 
@@ -102,8 +99,4 @@ Status is a return value for calls that don't return other objects.
 - **status** (string)
 
   Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-
-
-
-
 

@@ -14,10 +14,7 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-
-
 `import "k8s.io/apimachinery/pkg/api/resource"`
-
 
 Quantity is a fixed-point representation of a number. It provides convenient marshaling/unmarshaling in JSON and YAML, in addition to String() and AsInt64() accessors.
 
@@ -58,8 +55,4 @@ Non-canonical values will still parse as long as they are well formed, but will 
 This format is intended to make it difficult to use these numbers without writing some sort of special handling code in the hopes that that will cause implementors to also use a fixed point implementation.
 
 <hr/>
-
-
-
-
 

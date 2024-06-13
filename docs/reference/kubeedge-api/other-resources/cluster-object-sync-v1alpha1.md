@@ -1,11 +1,11 @@
 ---
 api_metadata:
-  apiVersion: "rules.kubeedge.io/v1"
-  import: "github.com/kubeedge/kubeedge/pkg/apis/rules/v1"
-  kind: "Rule"
+  apiVersion: "reliablesyncs.kubeedge.io/v1alpha1"
+  import: "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"
+  kind: "ClusterObjectSync"
 content_type: "api_reference"
-description: "Rule is the Schema for the rules API."
-title: "Rule"
+description: ""
+title: "ClusterObjectSync v1alpha1"
 weight: 1
 auto_generated: true
 ---
@@ -14,99 +14,23 @@ auto_generated: true
 [//]: # (which is forked from [reference-docs](https://github.com/kubernetes-sigs/reference-docs.)
 [//]: # (To update the reference content, please follow the `reference-api.sh`.)
 
-`apiVersion: rules.kubeedge.io/v1`
+`apiVersion: reliablesyncs.kubeedge.io/v1alpha1`
 
-`import "github.com/kubeedge/kubeedge/pkg/apis/rules/v1"`
-
-## Rule 
-
-Rule is the Schema for the rules API
+`import "github.com/kubeedge/kubeedge/pkg/apis/reliablesyncs/v1alpha1"`
 
 <hr/>
 
-- **apiVersion**: rules.kubeedge.io/v1
-
-- **kind**: Rule
-
-- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
-
-- **spec** ([RuleSpec](../rules-resources/rule-v1#rulespec)), required
-
-- **status** ([RuleStatus](../rules-resources/rule-v1#rulestatus))
-
-## RuleSpec 
-
-RuleSpec defines rule of message delivery.
-
-<hr/>
-
-- **source** (string), required
-
-  Source represents where the messages come from. Its value is the same with ruleendpoint name. For example, rest or eventbus.
-
-- **sourceResource** (map[string]string), required
-
-  SourceResource is a map representing the resource info of source. For rest ruleendpoint type its value is ["path":"/a/b"]. For eventbus ruleendpoint type its value is ["topic":"&lt;user define string&gt;","node_name":"xxxx"]
-
-- **target** (string), required
-
-  Target represents where the messages go to. its value is the same with ruleendpoint name. For example, eventbus or api or servicebus.
-
-- **targetResource** (map[string]string), required
-
-  targetResource is a map representing the resource info of target. For api ruleendpoint type its value is ["resource":"http://a.com"]. For eventbus ruleendpoint type its value is ["topic":"/xxxx"]. For servicebus ruleendpoint type its value is ["path":"/request_path"].
-
-## RuleStatus 
-
-RuleStatus defines status of message delivery.
-
-<hr/>
-
-- **errors** ([]string), required
-
-  Errors represents failed reasons of message delivery of rule.
-
-- **failMessages** (int64), required
-
-  FailMessages represents failed count of message delivery of rule.
-
-- **successMessages** (int64), required
-
-  SuccessMessages represents success count of message delivery of rule.
-
-## RuleList 
-
-RuleList contains a list of Rule
-
-<hr/>
-
-- **apiVersion**: rules.kubeedge.io/v1
-
-- **kind**: RuleList
-
-- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
-
-- **items** ([][Rule](../rules-resources/rule-v1#rule)), required
-
-## Operations 
-
-<hr/>
-
-### `get` read the specified Rule
+### `get` read the specified ClusterObjectSync
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+GET /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
+  name of the ClusterObjectSync
 
 - **pretty** (*in query*): string
 
@@ -114,23 +38,19 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-### `get` read status of the specified Rule
+### `get` read status of the specified ClusterObjectSync
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
+GET /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}/status
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
+  name of the ClusterObjectSync
 
 - **pretty** (*in query*): string
 
@@ -138,73 +58,13 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-### `list` list or watch objects of kind Rule
-
-#### HTTP Request
-
-GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
-
-#### Parameters
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
-
-- **allowWatchBookmarks** (*in query*): boolean
-
-  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
-
-- **continue** (*in query*): string
-
-  [continue](../common-parameter/common-parameters#continue)
-
-- **fieldSelector** (*in query*): string
-
-  [fieldSelector](../common-parameter/common-parameters#fieldselector)
-
-- **labelSelector** (*in query*): string
-
-  [labelSelector](../common-parameter/common-parameters#labelselector)
-
-- **limit** (*in query*): integer
-
-  [limit](../common-parameter/common-parameters#limit)
-
-- **pretty** (*in query*): string
-
-  [pretty](../common-parameter/common-parameters#pretty)
-
-- **resourceVersion** (*in query*): string
-
-  [resourceVersion](../common-parameter/common-parameters#resourceversion)
-
-- **resourceVersionMatch** (*in query*): string
-
-  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
-
-- **sendInitialEvents** (*in query*): boolean
-
-  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
-
-- **timeoutSeconds** (*in query*): integer
-
-  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
-
-- **watch** (*in query*): boolean
-
-  [watch](../common-parameter/common-parameters#watch)
-
-#### Response
-
-200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
-
-### `list` list or watch objects of kind Rule
+### `list` list or watch objects of kind ClusterObjectSync
 
 #### HTTP Request
 
-GET /apis/rules.kubeedge.io/v1/rules
+GET /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs
 
 #### Parameters
 
@@ -254,21 +114,17 @@ GET /apis/rules.kubeedge.io/v1/rules
 
 #### Response
 
-200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
+200 (ClusterObjectSyncList): OK
 
-### `create` create a Rule
+### `create` create a ClusterObjectSync
 
 #### HTTP Request
 
-POST /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
+POST /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs
 
 #### Parameters
 
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
-
-- **body**: [Rule](../rules-resources/rule-v1#rule), required
+- **body**: ClusterObjectSync, required
 
   
 
@@ -290,29 +146,25 @@ POST /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 (ClusterObjectSync): Created
 
-202 ([Rule](../rules-resources/rule-v1#rule)): Accepted
+202 (ClusterObjectSync): Accepted
 
-### `update` replace the specified Rule
+### `update` replace the specified ClusterObjectSync
 
 #### HTTP Request
 
-PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the ClusterObjectSync
 
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
-
-- **body**: [Rule](../rules-resources/rule-v1#rule), required
+- **body**: ClusterObjectSync, required
 
   
 
@@ -334,27 +186,23 @@ PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 (ClusterObjectSync): Created
 
-### `update` replace status of the specified Rule
+### `update` replace status of the specified ClusterObjectSync
 
 #### HTTP Request
 
-PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
+PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}/status
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
+  name of the ClusterObjectSync
 
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
-
-- **body**: [Rule](../rules-resources/rule-v1#rule), required
+- **body**: ClusterObjectSync, required
 
   
 
@@ -376,25 +224,21 @@ PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 (ClusterObjectSync): Created
 
-### `patch` partially update the specified Rule
+### `patch` partially update the specified ClusterObjectSync
 
 #### HTTP Request
 
-PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
+  name of the ClusterObjectSync
 
 - **body**: [Patch](../common-definitions/patch#patch), required
 
@@ -422,25 +266,21 @@ PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 (ClusterObjectSync): Created
 
-### `patch` partially update status of the specified Rule
+### `patch` partially update status of the specified ClusterObjectSync
 
 #### HTTP Request
 
-PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
+PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}/status
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
+  name of the ClusterObjectSync
 
 - **body**: [Patch](../common-definitions/patch#patch), required
 
@@ -468,25 +308,21 @@ PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 #### Response
 
-200 ([Rule](../rules-resources/rule-v1#rule)): OK
+200 (ClusterObjectSync): OK
 
-201 ([Rule](../rules-resources/rule-v1#rule)): Created
+201 (ClusterObjectSync): Created
 
-### `delete` delete a Rule
+### `delete` delete a ClusterObjectSync
 
 #### HTTP Request
 
-DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
+DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs/{name}
 
 #### Parameters
 
 - **name** (*in path*): string, required
 
-  name of the Rule
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
+  name of the ClusterObjectSync
 
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
@@ -514,17 +350,13 @@ DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 202 ([Status](../common-definitions/status#status)): Accepted
 
-### `deletecollection` delete collection of Rule
+### `deletecollection` delete collection of ClusterObjectSync
 
 #### HTTP Request
 
-DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
+DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/clusterobjectsyncs
 
 #### Parameters
-
-- **namespace** (*in path*): string, required
-
-  [namespace](../common-parameter/common-parameters#namespace)
 
 - **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
