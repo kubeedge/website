@@ -136,7 +136,7 @@ const config = {
         logo: {
           src: "img/avatar.png",
           target: "_self",
-          href: "https://kubeedge.io",
+          href: "/",
         },
         items: [
           {
@@ -182,7 +182,7 @@ const config = {
           {
             href: "https://twitter.com/KubeEdge",
             position: "right",
-            className: "header-twitter-link heade-icon",
+            className: "header-x-link heade-icon",
           },
           {
             to: "/docs/community/slack",
