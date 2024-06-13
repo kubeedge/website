@@ -31,13 +31,13 @@ Device is the Schema for the devices API
 - **kind**: Device
 
 
-- **metadata** ([ObjectMeta](../Common%20Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([DeviceSpec](/device-v1alpha2#devicespec))
+- **spec** ([DeviceSpec](../devices-resources/device-v1alpha2#devicespec))
 
 
-- **status** ([DeviceStatus](/device-v1alpha2#devicestatus))
+- **status** ([DeviceStatus](../devices-resources/device-v1alpha2#devicestatus))
 
 
 
@@ -106,11 +106,11 @@ DeviceSpec represents a single device instance. It is an instantation of a devic
 
     *A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.*
 
-    - **nodeSelector.nodeSelectorTerms.matchExpressions** ([][NodeSelectorRequirement](../Common%20Definitions/node-selector-requirement#nodeselectorrequirement))
+    - **nodeSelector.nodeSelectorTerms.matchExpressions** ([][NodeSelectorRequirement](../common-definitions/node-selector-requirement#nodeselectorrequirement))
 
       A list of node selector requirements by node's labels.
 
-    - **nodeSelector.nodeSelectorTerms.matchFields** ([][NodeSelectorRequirement](../Common%20Definitions/node-selector-requirement#nodeselectorrequirement))
+    - **nodeSelector.nodeSelectorTerms.matchFields** ([][NodeSelectorRequirement](../common-definitions/node-selector-requirement#nodeselectorrequirement))
 
       A list of node selector requirements by node's fields.
 
@@ -510,10 +510,10 @@ DeviceList contains a list of Device
 - **kind**: DeviceList
 
 
-- **metadata** ([ListMeta](../Common%20Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][Device](/device-v1alpha2#device)), required
+- **items** ([][Device](../devices-resources/device-v1alpha2#device)), required
 
 
 
@@ -547,19 +547,19 @@ GET /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
 
 ### `get` read status of the specified Device
@@ -578,19 +578,19 @@ GET /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}/sta
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
 
 ### `list` list or watch objects of kind Device
@@ -604,69 +604,69 @@ GET /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  [allowWatchBookmarks](../Common%20Parameter/common-parameters#allowwatchbookmarks)
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
 
-  [watch](../Common%20Parameter/common-parameters#watch)
+  [watch](../common-parameter/common-parameters#watch)
 
 
 
 #### Response
 
 
-200 ([DeviceList](/device-v1alpha2#devicelist)): OK
+200 ([DeviceList](../devices-resources/device-v1alpha2#devicelist)): OK
 
 
 ### `list` list or watch objects of kind Device
@@ -680,64 +680,64 @@ GET /apis/devices.kubeedge.io/v1alpha2/devices
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  [allowWatchBookmarks](../Common%20Parameter/common-parameters#allowwatchbookmarks)
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
 
-  [watch](../Common%20Parameter/common-parameters#watch)
+  [watch](../common-parameter/common-parameters#watch)
 
 
 
 #### Response
 
 
-200 ([DeviceList](/device-v1alpha2#devicelist)): OK
+200 ([DeviceList](../devices-resources/device-v1alpha2#devicelist)): OK
 
 
 ### `create` create a Device
@@ -751,43 +751,43 @@ POST /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Device](/device-v1alpha2#device), required
+- **body**: [Device](../devices-resources/device-v1alpha2#device), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
-202 ([Device](/device-v1alpha2#device)): Accepted
+202 ([Device](../devices-resources/device-v1alpha2#device)): Accepted
 
 
 ### `update` replace the specified Device
@@ -806,41 +806,41 @@ PUT /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Device](/device-v1alpha2#device), required
+- **body**: [Device](../devices-resources/device-v1alpha2#device), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `update` replace status of the specified Device
@@ -859,41 +859,41 @@ PUT /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}/sta
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Device](/device-v1alpha2#device), required
+- **body**: [Device](../devices-resources/device-v1alpha2#device), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `patch` partially update the specified Device
@@ -912,46 +912,46 @@ PATCH /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Patch](../Common%20Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common%20Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `patch` partially update status of the specified Device
@@ -970,46 +970,46 @@ PATCH /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}/s
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Patch](../Common%20Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common%20Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Device](/device-v1alpha2#device)): OK
+200 ([Device](../devices-resources/device-v1alpha2#device)): OK
 
-201 ([Device](/device-v1alpha2#device)): Created
+201 ([Device](../devices-resources/device-v1alpha2#device)): Created
 
 
 ### `delete` delete a Device
@@ -1028,41 +1028,41 @@ DELETE /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [DeleteOptions](../Common%20Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common%20Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common%20Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common%20Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common%20Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of Device
@@ -1076,77 +1076,77 @@ DELETE /apis/devices.kubeedge.io/v1alpha2/namespaces/{namespace}/devices
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [DeleteOptions](../Common%20Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common%20Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common%20Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common%20Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 

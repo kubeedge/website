@@ -31,13 +31,13 @@ Rule is the Schema for the rules API
 - **kind**: Rule
 
 
-- **metadata** ([ObjectMeta](../Common%20Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
 
-- **spec** ([RuleSpec](/rule-v1#rulespec)), required
+- **spec** ([RuleSpec](../rules-resources/rule-v1#rulespec)), required
 
 
-- **status** ([RuleStatus](/rule-v1#rulestatus))
+- **status** ([RuleStatus](../rules-resources/rule-v1#rulestatus))
 
 
 
@@ -104,10 +104,10 @@ RuleList contains a list of Rule
 - **kind**: RuleList
 
 
-- **metadata** ([ListMeta](../Common%20Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
 
-- **items** ([][Rule](/rule-v1#rule)), required
+- **items** ([][Rule](../rules-resources/rule-v1#rule)), required
 
 
 
@@ -141,19 +141,19 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
 
 ### `get` read status of the specified Rule
@@ -172,19 +172,19 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
 
 ### `list` list or watch objects of kind Rule
@@ -198,69 +198,69 @@ GET /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  [allowWatchBookmarks](../Common%20Parameter/common-parameters#allowwatchbookmarks)
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
 
-  [watch](../Common%20Parameter/common-parameters#watch)
+  [watch](../common-parameter/common-parameters#watch)
 
 
 
 #### Response
 
 
-200 ([RuleList](/rule-v1#rulelist)): OK
+200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
 
 
 ### `list` list or watch objects of kind Rule
@@ -274,64 +274,64 @@ GET /apis/rules.kubeedge.io/v1/rules
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  [allowWatchBookmarks](../Common%20Parameter/common-parameters#allowwatchbookmarks)
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
 
-  [watch](../Common%20Parameter/common-parameters#watch)
+  [watch](../common-parameter/common-parameters#watch)
 
 
 
 #### Response
 
 
-200 ([RuleList](/rule-v1#rulelist)): OK
+200 ([RuleList](../rules-resources/rule-v1#rulelist)): OK
 
 
 ### `create` create a Rule
@@ -345,43 +345,43 @@ POST /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Rule](/rule-v1#rule), required
+- **body**: [Rule](../rules-resources/rule-v1#rule), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
-202 ([Rule](/rule-v1#rule)): Accepted
+202 ([Rule](../rules-resources/rule-v1#rule)): Accepted
 
 
 ### `update` replace the specified Rule
@@ -400,41 +400,41 @@ PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Rule](/rule-v1#rule), required
+- **body**: [Rule](../rules-resources/rule-v1#rule), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `update` replace status of the specified Rule
@@ -453,41 +453,41 @@ PUT /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Rule](/rule-v1#rule), required
+- **body**: [Rule](../rules-resources/rule-v1#rule), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `patch` partially update the specified Rule
@@ -506,46 +506,46 @@ PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Patch](../Common%20Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common%20Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `patch` partially update status of the specified Rule
@@ -564,46 +564,46 @@ PATCH /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}/status
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Patch](../Common%20Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common%20Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([Rule](/rule-v1#rule)): OK
+200 ([Rule](../rules-resources/rule-v1#rule)): OK
 
-201 ([Rule](/rule-v1#rule)): Created
+201 ([Rule](../rules-resources/rule-v1#rule)): Created
 
 
 ### `delete` delete a Rule
@@ -622,41 +622,41 @@ DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules/{name}
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [DeleteOptions](../Common%20Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common%20Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common%20Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common%20Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common%20Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of Rule
@@ -670,77 +670,77 @@ DELETE /apis/rules.kubeedge.io/v1/namespaces/{namespace}/rules
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [DeleteOptions](../Common%20Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common%20Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common%20Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common%20Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 

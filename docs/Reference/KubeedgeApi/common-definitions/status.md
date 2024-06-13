@@ -91,7 +91,7 @@ Status is a return value for calls that don't return other objects.
 
   A human-readable description of the status of this operation.
 
-- **metadata** ([ListMeta](/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
   Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
 

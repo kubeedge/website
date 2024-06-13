@@ -31,14 +31,14 @@ ObjectSync stores the state of the namespaced object that was successfully persi
 - **kind**: ObjectSync
 
 
-- **metadata** ([ObjectMeta](../Common%20Definitions/object-meta#objectmeta))
+- **metadata** ([ObjectMeta](../common-definitions/object-meta#objectmeta))
 
   Standard Kubernetes object's metadata.
 
-- **spec** ([ObjectSyncSpec](/object-sync-v1alpha1#objectsyncspec))
+- **spec** ([ObjectSyncSpec](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncspec))
 
 
-- **status** ([ObjectSyncStatus](/object-sync-v1alpha1#objectsyncstatus))
+- **status** ([ObjectSyncStatus](../reliable-syncs-resources/object-sync-v1alpha1#objectsyncstatus))
 
 
 
@@ -93,11 +93,11 @@ ObjectSyncList is a list of ObjectSync.
 - **kind**: ObjectSyncList
 
 
-- **metadata** ([ListMeta](../Common%20Definitions/list-meta#listmeta))
+- **metadata** ([ListMeta](../common-definitions/list-meta#listmeta))
 
   Standard list metadata.
 
-- **items** ([][ObjectSync](/object-sync-v1alpha1#objectsync)), required
+- **items** ([][ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)), required
 
   List of ObjectSync.
 
@@ -132,19 +132,19 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 
 ### `get` read status of the specified ObjectSync
@@ -163,19 +163,19 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
 
 ### `list` list or watch objects of kind ObjectSync
@@ -189,69 +189,69 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  [allowWatchBookmarks](../Common%20Parameter/common-parameters#allowwatchbookmarks)
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
 
-  [watch](../Common%20Parameter/common-parameters#watch)
+  [watch](../common-parameter/common-parameters#watch)
 
 
 
 #### Response
 
 
-200 ([ObjectSyncList](/object-sync-v1alpha1#objectsynclist)): OK
+200 ([ObjectSyncList](../reliable-syncs-resources/object-sync-v1alpha1#objectsynclist)): OK
 
 
 ### `list` list or watch objects of kind ObjectSync
@@ -265,64 +265,64 @@ GET /apis/reliablesyncs.kubeedge.io/v1alpha1/objectsyncs
 
 - **allowWatchBookmarks** (*in query*): boolean
 
-  [allowWatchBookmarks](../Common%20Parameter/common-parameters#allowwatchbookmarks)
+  [allowWatchBookmarks](../common-parameter/common-parameters#allowwatchbookmarks)
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 - **watch** (*in query*): boolean
 
-  [watch](../Common%20Parameter/common-parameters#watch)
+  [watch](../common-parameter/common-parameters#watch)
 
 
 
 #### Response
 
 
-200 ([ObjectSyncList](/object-sync-v1alpha1#objectsynclist)): OK
+200 ([ObjectSyncList](../reliable-syncs-resources/object-sync-v1alpha1#objectsynclist)): OK
 
 
 ### `create` create an ObjectSync
@@ -336,43 +336,43 @@ POST /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [ObjectSync](/object-sync-v1alpha1#objectsync), required
+- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
-202 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Accepted
+202 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Accepted
 
 
 ### `update` replace the specified ObjectSync
@@ -391,41 +391,41 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [ObjectSync](/object-sync-v1alpha1#objectsync), required
+- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `update` replace status of the specified ObjectSync
@@ -444,41 +444,41 @@ PUT /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyncs/
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [ObjectSync](/object-sync-v1alpha1#objectsync), required
+- **body**: [ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `patch` partially update the specified ObjectSync
@@ -497,46 +497,46 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsync
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Patch](../Common%20Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common%20Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `patch` partially update status of the specified ObjectSync
@@ -555,46 +555,46 @@ PATCH /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsync
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [Patch](../Common%20Definitions/patch#patch), required
+- **body**: [Patch](../common-definitions/patch#patch), required
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldManager** (*in query*): string
 
-  [fieldManager](../Common%20Parameter/common-parameters#fieldmanager)
+  [fieldManager](../common-parameter/common-parameters#fieldmanager)
 
 
 - **fieldValidation** (*in query*): string
 
-  [fieldValidation](../Common%20Parameter/common-parameters#fieldvalidation)
+  [fieldValidation](../common-parameter/common-parameters#fieldvalidation)
 
 
 - **force** (*in query*): boolean
 
-  [force](../Common%20Parameter/common-parameters#force)
+  [force](../common-parameter/common-parameters#force)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 
 #### Response
 
 
-200 ([ObjectSync](/object-sync-v1alpha1#objectsync)): OK
+200 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): OK
 
-201 ([ObjectSync](/object-sync-v1alpha1#objectsync)): Created
+201 ([ObjectSync](../reliable-syncs-resources/object-sync-v1alpha1#objectsync)): Created
 
 
 ### `delete` delete an ObjectSync
@@ -613,41 +613,41 @@ DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyn
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [DeleteOptions](../Common%20Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common%20Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common%20Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 
 #### Response
 
 
-200 ([Status](../Common%20Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
-202 ([Status](../Common%20Definitions/status#status)): Accepted
+202 ([Status](../common-definitions/status#status)): Accepted
 
 
 ### `deletecollection` delete collection of ObjectSync
@@ -661,77 +661,77 @@ DELETE /apis/reliablesyncs.kubeedge.io/v1alpha1/namespaces/{namespace}/objectsyn
 
 - **namespace** (*in path*): string, required
 
-  [namespace](../Common%20Parameter/common-parameters#namespace)
+  [namespace](../common-parameter/common-parameters#namespace)
 
 
-- **body**: [DeleteOptions](../Common%20Definitions/delete-options#deleteoptions)
+- **body**: [DeleteOptions](../common-definitions/delete-options#deleteoptions)
 
   
 
 
 - **continue** (*in query*): string
 
-  [continue](../Common%20Parameter/common-parameters#continue)
+  [continue](../common-parameter/common-parameters#continue)
 
 
 - **dryRun** (*in query*): string
 
-  [dryRun](../Common%20Parameter/common-parameters#dryrun)
+  [dryRun](../common-parameter/common-parameters#dryrun)
 
 
 - **fieldSelector** (*in query*): string
 
-  [fieldSelector](../Common%20Parameter/common-parameters#fieldselector)
+  [fieldSelector](../common-parameter/common-parameters#fieldselector)
 
 
 - **gracePeriodSeconds** (*in query*): integer
 
-  [gracePeriodSeconds](../Common%20Parameter/common-parameters#graceperiodseconds)
+  [gracePeriodSeconds](../common-parameter/common-parameters#graceperiodseconds)
 
 
 - **labelSelector** (*in query*): string
 
-  [labelSelector](../Common%20Parameter/common-parameters#labelselector)
+  [labelSelector](../common-parameter/common-parameters#labelselector)
 
 
 - **limit** (*in query*): integer
 
-  [limit](../Common%20Parameter/common-parameters#limit)
+  [limit](../common-parameter/common-parameters#limit)
 
 
 - **pretty** (*in query*): string
 
-  [pretty](../Common%20Parameter/common-parameters#pretty)
+  [pretty](../common-parameter/common-parameters#pretty)
 
 
 - **propagationPolicy** (*in query*): string
 
-  [propagationPolicy](../Common%20Parameter/common-parameters#propagationpolicy)
+  [propagationPolicy](../common-parameter/common-parameters#propagationpolicy)
 
 
 - **resourceVersion** (*in query*): string
 
-  [resourceVersion](../Common%20Parameter/common-parameters#resourceversion)
+  [resourceVersion](../common-parameter/common-parameters#resourceversion)
 
 
 - **resourceVersionMatch** (*in query*): string
 
-  [resourceVersionMatch](../Common%20Parameter/common-parameters#resourceversionmatch)
+  [resourceVersionMatch](../common-parameter/common-parameters#resourceversionmatch)
 
 
 - **sendInitialEvents** (*in query*): boolean
 
-  [sendInitialEvents](../Common%20Parameter/common-parameters#sendinitialevents)
+  [sendInitialEvents](../common-parameter/common-parameters#sendinitialevents)
 
 
 - **timeoutSeconds** (*in query*): integer
 
-  [timeoutSeconds](../Common%20Parameter/common-parameters#timeoutseconds)
+  [timeoutSeconds](../common-parameter/common-parameters#timeoutseconds)
 
 
 
 #### Response
 
 
-200 ([Status](../Common%20Definitions/status#status)): OK
+200 ([Status](../common-definitions/status#status)): OK
 
