@@ -41,12 +41,12 @@
     no-repeat;
 }
 
-.header-twitter-link::before {
+.header-x-link::before {
   content: "";
   width: 25px;
   height: 25px;
   display: flex;
-  background: url("/img/twitter.svg") no-repeat;
+  background: url("/img/x.svg") no-repeat;
 }
 
 .header-slack-link::before {
