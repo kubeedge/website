@@ -7,7 +7,7 @@ This guide provides instructions for developers who want to build and contribute
 
 ## Prerequisites
 
-- A recent Go distribution (>=1.16)
+- A recent Go distribution (>=1.20)
 - Git
 - Make
 
