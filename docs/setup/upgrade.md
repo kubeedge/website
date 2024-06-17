@@ -26,13 +26,13 @@ After upgrading, some options may be removed, and new options may be added. It i
 
 ### Device related (Optional)
 
-If you are upgrading from KubeEdge v1.3 to v1.4, please note that device API should be upgraded from v1alpha1 to v1alpha2.
+If you are upgrading from KubeEdge v1.14 to v1.15, please note that device API should be upgraded from v1alpha2 to v1beta1.
 
-You will have to install [Device v1alpha2](https://github.com/kubeedge/kubeedge/blob/release-1.4/build/crds/devices/devices_v1alpha2_device.yaml)
+You will have to install [Device v1beta1](https://github.com/kubeedge/kubeedge/blob/release-1.15/build/crds/devices/devices_v1beta1_device.yaml)
 and [DeviceModel v1alpha2](https://github.com/kubeedge/kubeedge/blob/release-1.4/build/crds/devices/devices_v1alpha2_devicemodel.yaml),
-and manually convert your existing custom resources from v1alpha1 to v1alpha2.
+and manually convert your existing custom resources from v1alpha2 to v1beta1.
 
-It is recommended to keep the v1alpha1 CRD and custom resources in the cluster or export them somewhere, in case a rollback is needed.
+It is recommended to keep the v1alpha2 CRD and custom resources in the cluster or export them somewhere, in case a rollback is needed.
 
 ## Stop Processes
 
