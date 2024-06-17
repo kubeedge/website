@@ -136,7 +136,7 @@ const config = {
         logo: {
           src: "img/avatar.png",
           target: "_self",
-          href: "https://kubeedge.io",
+          href: "/",
         },
         items: [
           {
