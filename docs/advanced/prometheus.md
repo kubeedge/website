@@ -7,12 +7,13 @@ sidebar_position: 6
 ## Environment Information
 
 | Component  | Version                            |
-| ---------- | ---------------------------------- |
+|------------| ---------------------------------- |
 | containerd | 1.7.2                              |
 | k8s        | 1.26.0                             |
 | KubeEdge   | 1.15.1 or 1.17.0                   |
-| Jetson型号 | NVIDIA Jetson Xavier NX (16GB ram) |
+| Jetson model type    | NVIDIA Jetson Xavier NX (16GB ram) |
 
+> Regarding the KubeEdge version description:This feature is recommended for version 1.15.0 and above. Since v1.17.0 supports edge pods using InclusterConfig, the approach is different for versions before and after v1.17.0. This document will use v1.15.1 and v1.17.0 as examples to illustrate the steps.
 ## Deploying Prometheus
 
 We can quickly install using the [Helm Charts](https://prometheus-community.github.io/helm-charts/)  of [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus), or we can install it manually.
@@ -32,7 +33,7 @@ kubectl apply -f manifests/
 
 You can see that a ClusterIP type Service has been created for grafana, alertmanager, and prometheus. Of course, if we want to access these two services from the Internet, we can create the corresponding Ingress objects or use NodePort type Services. Here, for simplicity, we directly use NodePort type services. Edit the 3 Services of grafana, alertmanager-main, and prometheus-k8s to change the service type to NodePort:
 
-![image-20240524161614721](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240524161614721.png)
+![](..\..\static\img\advanced\image-20240524161614721.png)
 
 ```shell
 kubectl edit svc grafana -n monitoring
@@ -42,7 +43,7 @@ kubectl edit svc prometheus-k8s -n monitoring
 
 Due to the latest version of kube-prometheus setting NetworkPolicy, even if NodePort is configured, access is not possible. You need to modify the NetworkPolicy to allow access from the 10 network segment IP.
 
-![image-20240530111340823](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240530111340823.png)
+![](..\..\static\img\advanced\image-20240530111340823.png)
 
 ```
 kubectl edit  NetworkPolicy prometheus-k8s -n monitoring
@@ -52,7 +53,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 Now you can access the prometheus and grafana services via NodePort.
 
-![image-20240530111642034](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240530111642034.png)
+![](..\..\static\img\advanced\image-20240530111642034.png)
 
 
 
@@ -64,7 +65,7 @@ After deploying KubeEdge, it was found that the node-exporter pod on the edge no
 
 Edit the failed pod with `kubectl edit` and found that the kube-rbac-proxy container failed to start. Looking at the logs of this container, it was found that kube-rbac-proxy wanted to obtain the environment variables KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT, but failed to do so, hence the startup failure.
 
-![image-20240612153658785](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240612153658785.png)
+![](..\..\static\img\advanced\image-20240612153658785.png)
 
 Consulting with the KubeEdge community from Huawei, it was learned that version 1.17 of KubeEdge will add the settings for these two environment variables. The KubeEdge [community proposal link](https://github.com/wackxu/kubeedge/blob/4a7c00783de9b11e56e56968b2cc950a7d32a403/docs/proposals/edge-pod-list-watch-natively.md).
 
@@ -104,7 +105,7 @@ On the other hand, it is recommended to install edgemesh. After installation, po
    $ systemctl restart edgecore
    ```
 
-   ![image-20240329152628525](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240329152628525.png)
+   ![](..\..\static\img\advanced\image-20240329152628525.png)
 
    
 
@@ -136,14 +137,14 @@ On the other hand, it is recommended to install edgemesh. After installation, po
       kubectl apply -f build/agent/resources/
       ```
       
-      ![image-20240329154436074](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240329154436074.png)
+      ![](..\..\static\img\advanced\image-20240329154436074.png)
 
 #### 2. Modify dnsPolicy
 
 After the deployment of edgemesh is complete, the two environment variables in node-exporter on the edge node are still empty, and it is not possible to access kubernetes.default.svc.cluster.local:443. The reason is that the DNS server configuration in the pod is incorrect. It should be 169.254.96.16, but it is the same as the host's DNS configuration.
 
 ```shell
-kubectl exec -it node-exporter-hcmfg -n kubesphere-monitoring-system -- sh
+kubectl exec -it node-exporter-hcmfg -n monitoring -- sh
 Defaulted container "node-exporter" out of: node-exporter, kube-rbac-proxy
 $ cat /etc/resolv.conf 
 nameserver 127.0.0.53
@@ -160,7 +161,7 @@ Change the dnsPolicy to ClusterFirstWithHostNet, then restart node-exporter.
 
 vim /etc/systemd/system/edgecore.service
 
-![image-20240329155133337](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240329155133337.png)
+![](..\..\static\img\advanced\image-20240329155133337.png)
 
 ```
 Environment=METASERVER_DUMMY_IP=kubernetes.default.svc.cluster.local
@@ -215,7 +216,7 @@ It was found that the container inside node-exporter reported an error: `Unable 
 
 Because cloudcore does not have permission, create a clusterrolebinding.
 
-![9b5b3561b967051b6cab073f7eda10d](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/9b5b3561b967051b6cab073f7eda10d.png)
+![](..\..\static\img\advanced\9b5b3561b967051b6cab073f7eda10d.png)
 
 ```
 kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=cluster-admin --serviceaccount=kubeedge:cloudcore
@@ -223,5 +224,5 @@ kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=clus
 
 After creating the clusterrolebinding, you can query the monitoring information of the edge nodes.
 
-![image-20240604094828377](https://zhuyaguang-1308110266.cos.ap-shanghai.myqcloud.com/img/image-20240604094828377.png)
+![](..\..\static\img\advanced\image-20240604094828377.png)
 
