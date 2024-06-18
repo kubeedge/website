@@ -34,7 +34,7 @@ kubectl apply -f manifests/
 
 可以看到上面针对 grafana、alertmanager 和 prometheus 都创建了一个类型为 ClusterIP 的 Service，当然如果我们想要在外网访问这两个服务的话可以通过创建对应的 Ingress 对象或者使用 NodePort 类型的 Service，我们这里为了简单，直接使用 NodePort 类型的服务即可，编辑 `grafana`、`alertmanager-main` 和 `prometheus-k8s` 这 3 个 Service，将服务类型更改为 NodePort:
 
-![](..\..\..\..\..\static\img\advanced\image-20240524161614721.png)
+![](../../../../..\static\img\advanced\image-20240524161614721.png)
 
 ```shell
 kubectl edit svc grafana -n monitoring
@@ -44,7 +44,7 @@ kubectl edit svc prometheus-k8s -n monitoring
 
 由于最新版本的 kube-prometheus 设置了网络策略，即使配置了 NodePort 也无法访问。需要修改 NetworkPolicy，允许 10网段的 IP访问。
 
-![](..\..\..\..\..\static\img\advanced\image-20240530111340823.png)
+![](../../../../..\static\img\advanced\image-20240530111340823.png)
 
 
 
@@ -56,7 +56,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 这样就可以通过 NodePort 访问 prometheus 和 grafana 服务了
 
-![](..\..\..\..\..\static\img\advanced\image-20240530111642034.png)
+![](../../../../..\static\img\advanced\image-20240530111642034.png)
 
 
 
@@ -74,7 +74,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 去节点上查看 node-exporter 容器日志，发现是其中的 kube-rbac-proxy 这个 container 启动失败，看这个 container 的logs。发现是 kube-rbac-proxy 想要获取 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 这两个环境变量，但是获取失败，所以启动失败。
 
-![](..\..\..\..\..\static\img\advanced\image-20240612153658785.png)
+![](../../../../../static\img\advanced\image-20240612153658785.png)
 
 
 
@@ -120,7 +120,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
    
 
-   ![](..\..\..\..\..\static\img\advanced\image-20240329152628525.png)
+   ![](../../../../..\static\img\advanced\image-20240329152628525.png)
 
    
 
@@ -154,7 +154,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
       kubectl apply -f build/agent/resources/
       ```
       
-      ![](..\..\..\..\..\static\img\advanced\image-20240329154436074.png)
+      ![](../../../../..\static\img\advanced\image-20240329154436074.png)
 
 #### 2. 修改dnsPolicy
 
@@ -178,7 +178,7 @@ nameserver 127.0.0.53
 
 vim /etc/systemd/system/edgecore.service
 
-![](..\..\..\..\..\static\img\advanced\image-20240329155133337.png)
+![](../../../../..\static\img\advanced\image-20240329155133337.png)
 
 ```
 Environment=METASERVER_DUMMY_IP=kubernetes.default.svc.cluster.local
@@ -233,7 +233,7 @@ systemctl restart edgecore
 
 因为  cloudcore 没有权限，所以创建一个 clusterrolebinding
 
-![](..\..\..\..\..\static\img\advanced\9b5b3561b967051b6cab073f7eda10d.png)
+![](../../../../..\static\img\advanced\9b5b3561b967051b6cab073f7eda10d.png)
 
 
 
@@ -245,5 +245,5 @@ kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=clus
 
 
 
-![](..\..\..\..\..\static\img\advanced\image-20240604094828377.png)
+![](../../../../..\static\img\advanced\image-20240604094828377.png)
 

@@ -33,7 +33,7 @@ kubectl apply -f manifests/
 
 You can see that a ClusterIP type Service has been created for grafana, alertmanager, and prometheus. Of course, if we want to access these two services from the Internet, we can create the corresponding Ingress objects or use NodePort type Services. Here, for simplicity, we directly use NodePort type services. Edit the 3 Services of grafana, alertmanager-main, and prometheus-k8s to change the service type to NodePort:
 
-![](..\..\static\img\advanced\image-20240524161614721.png)
+![](../..\static\img\advanced\image-20240524161614721.png)
 
 ```shell
 kubectl edit svc grafana -n monitoring
@@ -43,7 +43,7 @@ kubectl edit svc prometheus-k8s -n monitoring
 
 Due to the latest version of kube-prometheus setting NetworkPolicy, even if NodePort is configured, access is not possible. You need to modify the NetworkPolicy to allow access from the 10 network segment IP.
 
-![](..\..\static\img\advanced\image-20240530111340823.png)
+![](../..\static\img\advanced\image-20240530111340823.png)
 
 ```
 kubectl edit  NetworkPolicy prometheus-k8s -n monitoring
@@ -53,7 +53,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 Now you can access the prometheus and grafana services via NodePort.
 
-![](..\..\static\img\advanced\image-20240530111642034.png)
+![](../..\static\img\advanced\image-20240530111642034.png)
 
 
 
@@ -67,7 +67,7 @@ After deploying KubeEdge, it was found that the node-exporter pod on the edge no
 
 Edit the failed pod with `kubectl edit` and found that the kube-rbac-proxy container failed to start. Looking at the logs of this container, it was found that kube-rbac-proxy wanted to obtain the environment variables KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT, but failed to do so, hence the startup failure.
 
-![](..\..\static\img\advanced\image-20240612153658785.png)
+![](../..\static\img\advanced\image-20240612153658785.png)
 
 Consulting with the KubeEdge community from Huawei, it was learned that version 1.17 of KubeEdge will add the settings for these two environment variables. The KubeEdge [community proposal link](https://github.com/wackxu/kubeedge/blob/4a7c00783de9b11e56e56968b2cc950a7d32a403/docs/proposals/edge-pod-list-watch-natively.md).
 
@@ -107,7 +107,7 @@ On the other hand, it is recommended to install edgemesh. After installation, po
    $ systemctl restart edgecore
    ```
 
-   ![](..\..\static\img\advanced\image-20240329152628525.png)
+   ![](../..\static\img\advanced\image-20240329152628525.png)
 
    
 
@@ -139,7 +139,7 @@ On the other hand, it is recommended to install edgemesh. After installation, po
       kubectl apply -f build/agent/resources/
       ```
       
-      ![](..\..\static\img\advanced\image-20240329154436074.png)
+      ![](../..\static\img\advanced\image-20240329154436074.png)
 
 #### 2. Modify dnsPolicy
 
@@ -163,7 +163,7 @@ Change the dnsPolicy to ClusterFirstWithHostNet, then restart node-exporter.
 
 vim /etc/systemd/system/edgecore.service
 
-![](..\..\static\img\advanced\image-20240329155133337.png)
+![](../..\static\img\advanced\image-20240329155133337.png)
 
 ```
 Environment=METASERVER_DUMMY_IP=kubernetes.default.svc.cluster.local
@@ -218,7 +218,7 @@ It was found that the container inside node-exporter reported an error: `Unable 
 
 Because cloudcore does not have permission, create a clusterrolebinding.
 
-![](..\..\static\img\advanced\9b5b3561b967051b6cab073f7eda10d.png)
+![](../..\static\img\advanced\9b5b3561b967051b6cab073f7eda10d.png)
 
 ```
 kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=cluster-admin --serviceaccount=kubeedge:cloudcore
@@ -226,5 +226,5 @@ kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=clus
 
 After creating the clusterrolebinding, you can query the monitoring information of the edge nodes.
 
-![](..\..\static\img\advanced\image-20240604094828377.png)
+![](../..\static\img\advanced\image-20240604094828377.png)
 
