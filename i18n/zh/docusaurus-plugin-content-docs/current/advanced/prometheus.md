@@ -66,7 +66,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 ## 部署 KubeEdge 
 
-
+> 根据您的 KubeEdge 版本，您可以参照适用于 1.17 以下或 1.17.0 及以上版本的步骤
 
 ### KubeEdge < 1.17.0 
 

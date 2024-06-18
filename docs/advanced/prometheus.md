@@ -59,6 +59,8 @@ Now you can access the prometheus and grafana services via NodePort.
 
 ## **Deploying**  KubeEdge 
 
+> Depending on your KubeEdge version, you can refer to the steps for <1.17 or >=1.17.0."
+
 ### KubeEdge < 1.17.0 
 
 After deploying KubeEdge, it was found that the node-exporter pod on the edge node could not start.
