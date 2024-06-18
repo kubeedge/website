@@ -199,7 +199,7 @@ After `CloudCore` is started, we also need to enable `DynamicControllers`.
 ```
 ### edit ConfigMap of CloudCore to enable dynamicController
 > kubectl edit cm -n kubeedge cloudcore
-> kubectl rollout restart deployment -n kubeedge cloudcore
+> kubectl delete pod -n kubeedge --selector=kubeedge=cloudcore
 
 ### Check ConfigMap
 > kubectl get cm -n kubeedge cloudcore -o yaml | grep "dynamicController" -A 1
@@ -292,6 +292,9 @@ After `EdgeCore` is started, we need to enable `ServiceBus` and `MetaServer` to 
 ```
 ### Edit and apply the following patch
 > vi /etc/kubeedge/config/edgecore.yaml
+
+### Restart edgecore systemd-service
+> systemctl restart edgecore
 ```
 
 ```patch
@@ -338,6 +341,9 @@ Besides that, `cilium-agent` needs to query the APIs to `MetaServer` instead of 
 
 ### Edit and apply the following patch
 > vi cilium-edgecore.yaml
+
+### Deploy cilium-agent aligns with edgecore
+> kubectl apply -f cilium-edgecore.yaml
 ```
 
 ```patch
