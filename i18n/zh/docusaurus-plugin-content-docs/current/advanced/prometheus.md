@@ -11,10 +11,12 @@ sidebar_position: 6
 | ---------- | ---------------------------------- |
 | containerd | 1.7.2                              |
 | k8s        | 1.26.0                             |
-| KubeEdge   | 1.15.1或者1.17.0                   |
+| KubeEdge   | 1.17.0                   |
 | Jetson型号 | NVIDIA Jetson Xavier NX (16GB ram) |
 
-> 关于 KubeEdge 版本说明：建议1.15.0及以上版本使用此功能。由于 v1.17.0 支持使用 InclusterConfig 的边缘 pod，因此 v1.17.0 之前和之后的版本的方法是不同的。本文档将以 v1.15.1 和 v1.17.0 为例来说明操作步骤。
+> 关于 KubeEdge 版本说明：由于 v1.17.0 支持使用 InclusterConfig 的边缘 pod，因此 v1.17.0 之前和之后的版本的方法是不同的。本文档将以 v1.17.0 为例来说明操作步骤, v1.17.0 之前版本请参考对应版本文档。
+
+
 ## 部署 prometheus
 
 我们可以直接使用 [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) 的 [Helm Charts](https://prometheus-community.github.io/helm-charts/) 来进行快速安装，也可以直接手动安装。
@@ -58,145 +60,9 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 ![](../../../../..\static\img\advanced\image-20240530111642034.png)
 
-
-
-
-
-
-
 ## 部署 KubeEdge 
 
-> 根据您的 KubeEdge 版本，您可以参照适用于 1.17 以下或 1.17.0 及以上版本的步骤
-
-### KubeEdge < 1.17.0 
-
-部署完 KubeEdge 发现，node-exporter 在边缘节点的 pod 起不来。
-
-去节点上查看 node-exporter 容器日志，发现是其中的 kube-rbac-proxy 这个 container 启动失败，看这个 container 的logs。发现是 kube-rbac-proxy 想要获取 KUBERNETES_SERVICE_HOST 和 KUBERNETES_SERVICE_PORT 这两个环境变量，但是获取失败，所以启动失败。
-
-![](../../../../../static\img\advanced\image-20240612153658785.png)
-
-
-
-和华为 KubeEdge 的社区同学咨询，KubeEdge 1.17版本将会增加这两个环境变量的设置。[KubeEdge 社区  proposals 链接](https://github.com/wackxu/kubeedge/blob/4a7c00783de9b11e56e56968b2cc950a7d32a403/docs/proposals/edge-pod-list-watch-natively.md)。
-
-另一方面，推荐安装 edgemesh，安装之后在 edge 的 pod 上就可以访问 kubernetes.default.svc.cluster.local:443 了。
-
-####  1. edgemesh部署
-
-1. 配置 cloudcore configmap
-
-   `kubectl edit cm cloudcore -n kubeedge`   设置 dynamicController=true.
-
-   修改完 重启 cloudcore `kubectl delete pod cloudcore-776ffcbbb9-s6ff8 -n kubeedge`
-
-2. 配置 edgecore 模块，配置 metaServer=true 和 clusterDNS  
-
-   ```shell
-   $ vim /etc/kubeedge/config/edgecore.yaml
-   
-   modules:
-     ...
-     metaManager:
-       metaServer:
-         enable: true   //配置这里
-   ...
-   
-   modules:
-     ...
-     edged:
-       ...
-       tailoredKubeletConfig:
-         ...
-         clusterDNS:     //配置这里
-         - 169.254.96.16
-   ...
-   
-   //重启edgecore
-   $ systemctl restart edgecore
-   ```
-
-   
-
-   
-
-   ![](../../../../..\static\img\advanced\image-20240329152628525.png)
-
-   
-
-   修改完 验证是否修改成功
-   
-   ```
-   $ curl 127.0.0.1:10550/api/v1/services
-   
-   {"apiVersion":"v1","items":[{"apiVersion":"v1","kind":"Service","metadata":{"creationTimestamp":"2021-04-14T06:30:05Z","labels":{"component":"apiserver","provider":"kubernetes"},"name":"kubernetes","namespace":"default","resourceVersion":"147","selfLink":"default/services/kubernetes","uid":"55eeebea-08cf-4d1a-8b04-e85f8ae112a9"},"spec":{"clusterIP":"10.96.0.1","ports":[{"name":"https","port":443,"protocol":"TCP","targetPort":6443}],"sessionAffinity":"None","type":"ClusterIP"},"status":{"loadBalancer":{}}},{"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"prometheus.io/port":"9153","prometheus.io/scrape":"true"},"creationTimestamp":"2021-04-14T06:30:07Z","labels":{"k8s-app":"kube-dns","kubernetes.io/cluster-service":"true","kubernetes.io/name":"KubeDNS"},"name":"kube-dns","namespace":"kube-system","resourceVersion":"203","selfLink":"kube-system/services/kube-dns","uid":"c221ac20-cbfa-406b-812a-c44b9d82d6dc"},"spec":{"clusterIP":"10.96.0.10","ports":[{"name":"dns","port":53,"protocol":"UDP","targetPort":53},{"name":"dns-tcp","port":53,"protocol":"TCP","targetPort":53},{"name":"metrics","port":9153,"protocol":"TCP","targetPort":9153}],"selector":{"k8s-app":"kube-dns"},"sessionAffinity":"None","type":"ClusterIP"},"status":{"loadBalancer":{}}}],"kind":"ServiceList","metadata":{"resourceVersion":"377360","selfLink":"/api/v1/services"}}
-   
-   ```
-
-   3. 安装 edgemesh
-   
-      ```
-      git clone https://github.com/kubeedge/edgemesh.git
-      cd edgemesh
-      
-      kubectl apply -f build/crds/istio/
-      
-      PSK 和 Relay Node 设置
-      vim 04-configmap.yaml
-      
-        relayNodes:
-        - nodeName: masternode ## your relay node name
-          advertiseAddress:
-          - x.x.x.x ## your relay node ip
-          
-          
-      
-      kubectl apply -f build/agent/resources/
-      ```
-      
-      ![](../../../../..\static\img\advanced\image-20240329154436074.png)
-
-#### 2. 修改dnsPolicy
-
-edgemesh部署完成后，edge节点上的node-exporter中的两个境变量还是空的，也无法访问kubernetes.default.svc.cluster.local:443，原因是该pod中的dns服务器配置错误，应该是169.254.96.16的，但是却是跟宿主机一样的dns配置。
-
-```shell
-kubectl exec -it node-exporter-hcmfg -n monitoring -- sh
-Defaulted container "node-exporter" out of: node-exporter, kube-rbac-proxy
-$ cat /etc/resolv.conf 
-nameserver 127.0.0.53
-```
-
-将dnsPolicy修改为ClusterFirstWithHostNet，之后重启node-exporter，dns的配置正确
-
-`kubectl edit ds node-exporter -n monitoring`
-
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
-
-#### 3. 添加环境变量
-
-vim /etc/systemd/system/edgecore.service
-
-![](../../../../..\static\img\advanced\image-20240329155133337.png)
-
-```
-Environment=METASERVER_DUMMY_IP=kubernetes.default.svc.cluster.local
-Environment=METASERVER_DUMMY_PORT=443
-```
-
-修改完重启 edgecore
-
-```
-systemctl daemon-reload
-systemctl restart edgecore
-```
-
-**node-exporter 变成 running**!!!!
-
-在边缘节点 `curl http://127.0.0.1:9100/metrics`  可以发现 采集到了边缘节点的数据。
-
-### KubeEdge >= 1.17.0 
+### 开启 InClusterConfig 功能
 
 部署 1.17.0版本注意，需要支持边缘 Pods 使用 InClusterConfig 访问 Kube-APIServer ，所以要配置指定 cloudCore.featureGates.requireAuthorization=true 以及 cloudCore.modules.dynamicController.enable=true。 详情可以查看 [KubeEdge 公众号文章](https://mp.weixin.qq.com/s/Dw2IKRDvOWH52xTOStI7dg)
 
@@ -227,7 +93,7 @@ systemctl daemon-reload
 systemctl restart edgecore
 ```
 
-#### 创建 clusterrolebinding
+### 创建 clusterrolebinding
 
 发现 node-exporter 里面的容器报错：`Unable to authenticate the request due to an error: tokenreviews.authentication.k8s.io is forbidden: User "system:serviceaccount:kubeedge:cloudcore" cannot create resource "tokenreviews" in API group "authentication.k8s.io" at the cluster scope`
 
