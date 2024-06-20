@@ -65,8 +65,15 @@
   }
 }
 
+.joins {
+  color:black;
+}
+
 html[data-theme="dark"] {
   .supporterContainer {
     background-color: #242526;
+  }
+  .joins {
+    color:#c4c4d1;
   }
 }
