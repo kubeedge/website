@@ -13,7 +13,8 @@ sidebar_position: 6
 | KubeEdge   | 1.16.0                |
 | Jetson model type    | NVIDIA Jetson Xavier NX (16GB ram) |
 
-> Regarding the KubeEdge version description:This feature is recommended for version 1.15.0 and above. Since v1.17.0 supports edge pods using InclusterConfig, the approach is different for versions before and after v1.17.0. This document will use v1.15.1 and v1.17.0 as examples to illustrate the steps.
+> Regarding the KubeEdge version description:This feature is recommended for version 1.15.0 and above. Since v1.17.0 supports edge pods using InclusterConfig, the approach is different for versions before and after v1.17.0. This document will use v1.16.0 as examples to illustrate the steps.
+
 ## Deploying Prometheus
 
 We can quickly install using the [Helm Charts](https://prometheus-community.github.io/helm-charts/)  of [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus), or we can install it manually.
