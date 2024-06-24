@@ -15,6 +15,8 @@ sidebar_position: 6
 | Jetson型号 | NVIDIA Jetson Xavier NX (16GB ram) |
 
 > 关于 KubeEdge 版本说明：建议1.15.0及以上版本使用此功能。由于 v1.17.0 支持使用 InclusterConfig 的边缘 pod，因此 v1.17.0 之前和之后的版本的方法是不同的。本文档将以 v1.15.1 和 v1.17.0 为例来说明操作步骤。
+
+
 ## 部署 prometheus
 
 我们可以直接使用 [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus) 的 [Helm Charts](https://prometheus-community.github.io/helm-charts/) 来进行快速安装，也可以直接手动安装。
