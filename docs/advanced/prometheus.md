@@ -35,7 +35,7 @@ kubectl apply -f manifests/
 
 You can see that a ClusterIP type Service has been created for grafana, alertmanager, and prometheus. Of course, if we want to access these two services from the Internet, we can create the corresponding Ingress objects or use NodePort type Services. Here, for simplicity, we directly use NodePort type services. Edit the 3 Services of grafana, alertmanager-main, and prometheus-k8s to change the service type to NodePort:
 
-![](../..\static\img\advanced\image-20240524161614721.png)
+![](../..\static\img\advanced\prometheus-svc.png)
 
 ```shell
 kubectl edit svc grafana -n monitoring
@@ -45,7 +45,7 @@ kubectl edit svc prometheus-k8s -n monitoring
 
 Due to the latest version of kube-prometheus setting NetworkPolicy, even if NodePort is configured, access is not possible. You need to modify the NetworkPolicy to allow access from the 10 network segment IP.
 
-![](../..\static\img\advanced\image-20240530111340823.png)
+![](../..\static\img\advanced\NetworkPolicy.png)
 
 ```
 kubectl edit  NetworkPolicy prometheus-k8s -n monitoring
@@ -55,7 +55,7 @@ kubectl edit  NetworkPolicy alertmanager-main -n monitoring
 
 Now you can access the prometheus and grafana services via NodePort.
 
-![](../..\static\img\advanced\image-20240530111642034.png)
+![](../..\static\img\advanced\prometheus-page.png)
 
 
 
@@ -98,7 +98,7 @@ It was found that the container inside node-exporter reported an error: `Unable 
 
 Because cloudcore does not have permission, create a clusterrolebinding.
 
-![](../..\static\img\advanced\9b5b3561b967051b6cab073f7eda10d.png)
+![](../..\static\img\advanced\clusterrolebinding.png)
 
 ```
 kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=cluster-admin --serviceaccount=kubeedge:cloudcore
@@ -106,5 +106,5 @@ kubectl create clusterrolebinding cloudcore-promethus-binding --clusterrole=clus
 
 After creating the clusterrolebinding, you can query the monitoring information of the edge nodes.
 
-![](../..\static\img\advanced\image-20240604094828377.png)
+![](../..\static\img\advanced\node-exporter.png)
 
