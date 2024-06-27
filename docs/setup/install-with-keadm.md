@@ -104,6 +104,16 @@ keadm init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=
 If you are familiar with the Helm chart installation, please refer to [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/manifests/charts).
 
 
+**SPECIAL SCENARIO:**
+In the case of insufficient qualifications for edge nodes, we need to label them to prevent some applications from extending to edge nodes. `Kube-proxy` and some others is not required at the edge.We can handle it accordingly.
+
+```
+kubectl get daemonset -n kube-system |grep -v NAME |awk '{print $1}' | xargs -n 1 kubectl patch daemonset -n kube-system --type='json' -p='[{"op": "replace","path": "/spec/template/spec/affinity","value":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/edge","operator":"DoesNotExist"}]}]}}}}]'
+
+```
+
+To handle kube-proxy, you can refer to the [two methods](#anchor-name) mentioned in the " Enable `kubectl logs` Feature " section of this document.
+
 ### keadm manifest generate
 
 You can generate the manifests using `keadm manifest generate`.
@@ -372,6 +382,7 @@ Before deploying the metrics-server, the `kubectl logs` feature must be activate
     ``` shell
     systemctl restart edgecore.service
     ```
+
 
     If restarting EdgeCore fails, check if that is due to `kube-proxy` and kill it. **kubeedge** rejects it by default, we use a succedaneum called [edgemesh](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/edgemesh-design.md)
 
