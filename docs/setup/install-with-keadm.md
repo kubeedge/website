@@ -54,7 +54,7 @@ By default, ports `10000` and `10002` on your CloudCore needs to be accessible f
 Example:
 
 ```shell
-keadm init --advertise-address="THE-EXPOSED-IP" --profile version=v1.12.1 --kube-config=/root/.kube/config
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0 --kube-config=/root/.kube/config
 ```
 
 Output:
@@ -91,7 +91,7 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 
 1. Set flags `--set key=value` for CloudCore helm chart could refer to [KubeEdge CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
 
-2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
+2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--kubeedge-version=v1.17.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
 3. `keadm init` by default, deploys CloudCore in container mode. If you want to deploy CloudCore as a binary, please refer to [`keadm deprecated init`](#keadm-deprecated-init).
 
