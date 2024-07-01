@@ -80,7 +80,7 @@ get going:
     git add add-this-doc.md
     git commit -s -m "Added a shiny new doc."
     ```
-
+    For more details, please refer to [DCO](docs/developer/Supplemental_developer_guide.md#DCO)
 11. Push from your branch (for example, `doc-updates`) to **the relevant branch
   on your fork on GitHub:**
 
