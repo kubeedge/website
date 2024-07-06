@@ -207,6 +207,12 @@ const supportList = [
     name: "SF Technology",
     img_src: "img/supporters/sf-tech.png",
     external_link: "https://www.sf-tech.com.cn/",
+  },
+
+  {
+    name: "LookCan Ai",
+    img_src: "img/supporters/lookcan-logo.svg", 
+    external_link: "https://www.lookcan.ai/",
   }
 ];
 
@@ -217,7 +223,7 @@ export default function Supporters() {
       <div className={"supporters"}>
         <h1>
           <a href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/supporters`} target="_blank" style={{textDecoration:'none'}}>
-             <span style={{color: 'black'}}>
+             <span className={"joins"} >
                 <Translate>Join the Growing </Translate>
              </span>
              <span style={{color: '#1c77c8'}}>
