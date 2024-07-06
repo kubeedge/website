@@ -1,3 +1,9 @@
+---
+title: KubeEdge Image PrePull Feature Guide Document
+sidebar_position: 6
+---
+
+
 # KubeEdge Image PrePull Feature Guide Document
 
 KubeEdge version 1.16 introduces a new feature called Image Pre-Pull, which allows users to load images ahead of time on edge nodes through the Kubernetes API of ImagePrePullJob. This feature supports pre-pull multiple images in batches across multiple edge nodes or node groups, helping to reduce the failure rates and inefficiencies associated with loading images during application deployment or updates, especially in large-scale scenarios.
@@ -58,7 +64,7 @@ changes can be made by editing the file kubectl edit configmap cloudcore -n kube
 
 
 
-## 2. Prepare the Secret for the privare image
+## 2. Prepare the Secret for the privare image (optional)
 Here is a private image repository prepared for demonstration purposes using Alibaba Cloud's registry URL: registry.cn-hangzhou.aliyuncs.com. The demo space used is jilimoxing, and modifications may be necessary based on actual circumstances during the actual operation.
 
 **1）Pushing nginx into the private image repository**
