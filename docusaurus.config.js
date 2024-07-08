@@ -167,7 +167,6 @@ const config = {
                 to: "/job-center",
               },
             ],
-            hide: true,
           },
           {
             label: "Downloads",
