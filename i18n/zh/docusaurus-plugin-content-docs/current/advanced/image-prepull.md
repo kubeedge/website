@@ -1,3 +1,8 @@
+---
+title: KubeEdge 镜像预加载功能指导文档
+sidebar_position: 6
+---
+
 # KubeEdge 镜像预加载功能指导文档
 
 KubeEdge 1.16版本引入了镜像预下载新特性，用户可以通过ImagePrePullJob的Kubernetes API提前在边缘节点上加载镜像，该特性支持在批量边缘节点或节点组中预下载多个镜像，帮助减少加载镜像在应用部署或更新过程，尤其是大规模场景中，带来的失败率高、效率低下等问题。
@@ -59,7 +64,9 @@ edge.kubeedge    Ready    agent,edge             2d   v1.27.7-kubeedge-v1.16.0
 
 
 
-## 2. 为私有镜像准备密钥
+
+
+## 2. 为私有镜像准备密钥 (可选)
 在这里准备了一个阿里云的私有镜像仓用作演示:registry.cn-hangzhou.aliyuncs.com/,使用的演示空间为jilimoxing。实际操作过程中可以依据真实情况进行修改
 
 **1）推送nginx进入私有镜像仓**
