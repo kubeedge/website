@@ -64,6 +64,7 @@ edge.kubeedge    Ready    agent,edge             2d   v1.27.7-kubeedge-v1.16.0
 
 
 
+
 ## 2. 为私有镜像准备密钥 (可选)
 在这里准备了一个阿里云的私有镜像仓用作演示:registry.cn-hangzhou.aliyuncs.com/,使用的演示空间为jilimoxing。实际操作过程中可以依据真实情况进行修改
 
