@@ -2,66 +2,58 @@
 title: CloudHub
 sidebar_position: 1
 ---
-## CloudHub Overview
+## CloudHub 概览
 
-CloudHub is one module of cloudcore and is the mediator between Controllers and the Edge side. It supports both web-socket based connection as well as a [QUIC](https://quicwg.org/ops-drafts/draft-ietf-quic-applicability.html) protocol access at the same time.
-The edgehub can choose one of the protocols to access to the cloudhub. CloudHub's function is to enable the communication between edge and the Controllers.
+CloudHub 是 cloudcore 的一个模块，其作为媒介实现边缘和控制器之间的通信。它支持基于 WebSocket 的连接和 [QUIC](https://quicwg.org/ops-drafts/draft-ietf-quic-applicability.html) 协议两种访问方式，EdgeHub 可以选择其一来访问 CloudHub。
 
-The connection to the edge(through EdgeHub module) is done through the HTTP over websocket connection.
-For internal communication it directly communicates with the Controllers.
-All the request send to CloudHub are of context object which are stored in channelQ along with the
-mapped channels of event object marked to its nodeID.
+通过 EdgeHub 模块与边缘进行连接是通过 WebSocket 上的 HTTP 连接实现的。而云上的内部通信则是直接与控制器通信。所有发送到 CloudHub 的请求都是上下文对象，这些对象与标记其节点ID的事件对象的映射通道一起存储在 channelQ 中。
 
 
-The main functions performed by CloudHub are:
+CloudHub 执行的主要功能有：
 
-- Get message context and create ChannelQ for events
-- Create http connection over websocket
-- Serve websocket connection
-- Read message from edge
-- Write message to edge
-- Publish message to Controller
+- 获取消息上下文并为事件创建 ChannelQ
+- 通过 WebSocket 创建 HTTP 连接
+- 保持 WebSocket 连接
+- 从读取边缘信息
+- 向边缘写入信息
+- 向控制器发布信息
 
 
-### Get message context and create ChannelQ for events:
+### 获取消息上下文并为事件创建 ChannelQ:
 
-The context object is stored in a channelQ.
-For all nodeID channel is created and the message is converted to event object
-Event object is then passed through the channel.
+上下文对象存储在 channelQ 当中。在所有 nodeID channel 都被创建，消息被转化为事件对象之后，通过该 channel 传递事件对象。
 
-### Create http connection over websocket:
+### 通过 WebSocket 创建 HTTP 连接:
 
-- TLS certificates are loaded through the path provided in the context object
-- HTTP server is started with TLS configurations
-- Then HTTP connection is upgraded to websocket connection receiving conn object.
-- ServeConn function is responsible for serving all incoming connections
+- 通过上下文对象提供的路径加载 TLS 证书
+- 使用 TLS 配置启动 HTTP 服务器
+- 接着 HTTP 被更新为接收 conn 对象的 WebSocket 连接
+- ServeConn 函数负责服务所有传入连接
 
-### Read message from edge:
+### 从读取边缘信息:
 
-- First a deadline is set for keepalive interval
-- Then the JSON message from connection is read
-- After the details of Message Router are all set
-- Message is then converted to event object for cloud internal communication
-- In the end the event is published to Controllers
+- 首先为一个 keepalive 间隔设置一个截止时间
+- 接着从连接中读取 JSON 信息
+- 等待所有消息路由的细节都设置完成
+- 将消息转化为用于云内部通信的事件对象
+- 最后将事件发布给控制器
 
-### Write Message to Edge:
+### 向边缘写入信息:
 
-- First all event objects are received with the given nodeID
-- The existence of same request and the liveness of the node need to be checked
-- The event object is converted to message structure
-- Write deadline is set. Then the message is passed to the websocket connection
+- 首先接收所有带有给定 nodeID 的事件对象
+- 检查是否存在相同的请求以及节点是否存活
+- 将事件对象转化为消息结构体
+- 设置写入截至期后将消息传递给 WebSocket 连接
 
-### Publish Message to Controllers:
+### 向控制器发布信息:
 
-- A default message with timestamp, clientID and event type is sent to controller
-    every time a request is made to websocket connection
-- If the node gets disconnected then error is thrown and an event of describing
-    node failure is published to the controller.
+- 每次向 WebSocket 连接发送请求时都会向控制器发送一个包含时间戳、clientID 和事件类型的默认消息。
+- 若节点断连则会抛出错误，并向控制器发布一个描述该节点失败的事件。
 
-## Usage
+## 用法
 
-The CloudHub can be configured in three ways as mentioned below :
+可通过下述三种方式配置 CloudHub：
 
-- **Start the websocket server only**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#start-the-websocket-server-only) to see the details.
-- **Start the quic server only**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#start-the-quic-server-only) to see the details.
-- **Start the websocket and quic server at the same time**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#start-the-websocket-and-quic-server-at-the-same-time) to see the details
+- **仅启动 WebSocket**： 点击[此处](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#start-the-websocket-server-only)了解详情。
+- **仅启动 QUIC 服务器**： 点击[此处](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#start-the-quic-server-only)了解详情。
+- **同时启动 WebSocket 和 QUIC 服务器**： 点击[此处](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#start-the-websocket-and-quic-server-at-the-same-time)了解详情。
