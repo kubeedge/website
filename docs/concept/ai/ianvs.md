@@ -13,9 +13,9 @@ The distributed synergy AI benchmarking Ianvs aims to test the performance of di
 The scope of Ianvs includes
 - Providing end-to-end benchmark toolkits across devices, edge nodes and cloud nodes based on typical distributed-synergy AI paradigms and applications.
   - Tools to manage test environment. For example, it would be necessary to support the CRUD (Create, Read, Update and Delete) actions in test environments. Elements of such test environments include algorithm-wise and system-wise configuration.
-  - Tools to control test cases. Typical examples include paradigm templates, simulation tools, and hyper-parameter-based assistant tools.
+  - Tools to control test cases. Typical examples include paradigm templates, simulation tools, and hyper-parameter-based assistant tools. Hyper-parameters are settings that can affect how well your AI models learn from the data.
   - Tools to manage benchmark presentation, e.g., leaderboard and test report generation.
-- Cooperation with other organizations or communities, e.g., in KubeEdge SIG AI, to establish comprehensive benchmarks and developed related applications, which can include but are not limited to
+- Cooperation with other organizations or communities, e.g., in KubeEdge SIG AI, to establish comprehensive benchmarks and developed related applications, which can include but are not limited to:
   - Dataset collection, re-organization, and publication
   - Formalized specifications, e.g., standards
   - Holding competitions or coding events, e.g., open source promotion plan
@@ -24,32 +24,32 @@ The scope of Ianvs includes
 
 ## Architecture
 The architectures and related concepts are shown in the below figure. The ianvs is designed to run within a single node. Critical components include
-- Test Environment Manager: the CRUD of test environments serving for global usage
-- Test Case Controller: control the runtime behavior of test cases like instance generation and vanish
-  - Generation Assistant: assist users to generate test cases based on certain rules or constraints, e.g., the range of parameters
-  - Simulation Controller: control the simulation process of edge-cloud synergy AI, including the instance generation and vanishment of simulation containers
+- Test Environment Manager: Manages the setup of test environments. Allow users to do CRUD operations (create,read,update,delete) on test environments.
+- Test Case Controller: Controls the runtime behavior of test cases like instance generation, managing the test cases and vanishing it.
+- Generation Assistant: Assists users to generate test cases based on certain rules or constraints, e.g., the range of parameters.
+- Simulation Controller: Controls the simulation process of edge-cloud synergy AI, including the instance generation and vanishment of simulation containers
 - Story Manager: the output management and presentation of the test case, e.g., leaderboards
 
 
 ![](/img/subproject/ianvs_arch.png)
 
 More details on Ianvs components:
-1. Test-Environment Manager supports the CRUD of Test environments, which basically includes
+1. Test-Environment Manager supports the CRUD of Test environments, which basically includes:
   - Algorithm-wise configuration
     - Public datasets
-    - Pre-processing algorithms
-    - Feature engineering algorithms
-    - Post-processing algorithms like metric computation
+    - Pre-processing algorithms: Preapring data before it's used.
+    - Feature engineering algorithms: For creating new features.
+    - Post-processing algorithms like metric computation.
   - System-wise configuration
     - Overall architecture
     - System constraints or budgets
       - End-to-end cross-node
       - Per node
-1. Test-case Controller, which includes but is not limited to the following components
+2. Test-case Controller, which includes but is not limited to the following components
   - Templates of common distributed-synergy-AI paradigms, which can help the developer to prepare their test case without too much effort. Such paradigms include edge-cloud synergy joint inference, incremental learning, federated learning, and lifelong learning.
   - Simulation tools. Develop simulated test environments for test cases
   - Other tools to assist test-case generation. For instance, prepare test cases based on a given range of hyper-parameters.
-1. Story Manager, which includes but is not limited to the following components
+3. Story Manager, which includes but is not limited to the following components
   - Leaderboard generation
   - Test report generation
 
