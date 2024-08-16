@@ -11,15 +11,15 @@ In summary, while a deep understanding of Kubernetes is highly beneficial for wo
 
 ## Kubernetes compatibility
 
-|                        | Kubernetes 1.20 | Kubernetes 1.21 | Kubernetes 1.22 | Kubernetes 1.23 | Kubernetes 1.24 | Kubernetes 1.25 | Kubernetes 1.26 | Kubernetes 1.27 | Kubernetes 1.28 | Kubernetes 1.29 |
-|------------------------| --------------- | --------------- | --------------- | --------------- |-----------------| --------------- |-----------------| --------------- | --------------- | --------------- |
-| KubeEdge 1.12          | ✓               | ✓               | ✓               | -               | -               | -               | -               | -               | -               | -               |
-| KubeEdge 1.13          | +               | ✓               | ✓               | ✓               | -               | -               | -               | -               | -               | -               |
-| KubeEdge 1.14          | +               | +               | ✓               | ✓               | ✓               | -               | -               | -               | -               | -               |
-| KubeEdge 1.15          | +               | +               | +               | +               | ✓               | ✓               | ✓               | -               | -               | -               |
-| KubeEdge 1.16          | +               | +               | +               | +               | +               | ✓               | ✓               | ✓               | -               | -               |
-| KubeEdge 1.17          | +               | +               | +               | +               | +               | +               | ✓               | ✓               | ✓               | -               |
-| KubeEdge HEAD (master) | +               | +               | +               | +               | +               | +               | +               | ✓               | ✓               | ✓               |
+|                        | Kubernetes 1.20 | Kubernetes 1.21 | Kubernetes 1.22 | Kubernetes 1.23 | Kubernetes 1.24 | Kubernetes 1.25 | Kubernetes 1.26 | Kubernetes 1.27 | Kubernetes 1.28 |
+|------------------------| --------------- | --------------- | --------------- | --------------- |-----------------| --------------- |-----------------| --------------- | --------------- |
+| KubeEdge 1.12          | ✓               | ✓               | ✓               | -               | -               | -               | -               | -               | -               |
+| KubeEdge 1.13          | +               | ✓               | ✓               | ✓               | -               | -               | -               | -               | -               |
+| KubeEdge 1.14          | +               | +               | ✓               | ✓               | ✓               | -               | -               | -               | -               |
+| KubeEdge 1.15          | +               | +               | +               | +               | ✓               | ✓               | ✓               | -               | -               |
+| KubeEdge 1.16          | +               | +               | +               | +               | +               | ✓               | ✓               | ✓               | -               |
+| KubeEdge 1.17          | +               | +               | +               | +               | +               | +               | ✓               | ✓               | ✓               | 
+
 
 Key:
 * `✓` KubeEdge and the Kubernetes version are exactly compatible.
