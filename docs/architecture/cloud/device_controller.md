@@ -11,9 +11,9 @@ sidebar_position: 3
 
 The device controller leverage the device model and device instance to implement device management :
  - **Device Model**: A `device model` describes the device properties exposed by the device and property visitors to access these properties. A device model is like a reusable template that is used to create and manage different kinds of devices.
- Details on the device model definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-crd.md#device-model-type-definition).
+ Details on the device model definition can be found [here](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md#device-model-type-definition).
  - **Device Instance**: A `device` instance represents an actual device object. It is like an instantiation of the `device model` and references properties defined in the model. The device spec is static while the device status contains dynamically changing like the desired state of a device property and the actual state reported by the device.
- Details on device instance definition can be found [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/device-crd.md#device-instance-type-definition).
+ Details on device instance definition can be found [here](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md#device-instance-type-definition).
 
  **Note**: A sample of the device model and device instance for a few protocols can be found at $GOPATH/src/github.com/kubeedge/kubeedge/build/crd-samples/devices
 

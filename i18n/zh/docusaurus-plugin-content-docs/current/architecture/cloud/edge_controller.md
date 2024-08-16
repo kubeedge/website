@@ -3,57 +3,56 @@ title: Edge Controller
 sidebar_position: 2
 ---
 
+## Edge Controller概述
 
-## Edge Controller Overview
- EdgeController is the bridge between Kubernetes Api-Server and edgecore
+**Edge Controller** 是Kubernetes Api-Server和EdgeCore之间的桥梁。
 
+## Edge Controller执行的操作
 
-## Operations Performed By Edge Controller
+Edge Controller执行以下功能：
+- **下行控制器(Downstream Controller)**：从K8s Api-server同步添加/更新/删除事件到EdgeCore
+- **上行控制器(Upstream Controller)**：同步监视并更新资源和事件的状态（节点、Pod 和 ConfigMap）到 K8s Api-server，并且订阅来自 EdgeCore 的消息
+- Device Manager：创建管理接口，实现管理ConfigmapManager,LocationCache 和 PodManager 的事件
 
-The following are the functions performed by Edge controller:
-- Downstream Controller: Sync add/update/delete event to edgecore from K8s Api-server
-- Upstream Controller: Sync watch and update the status of resource and events(node, pod and configmap) to K8s Api-server and also subscribe message from edgecore
-- Controller Manager: Creates manager interface which implements events for managing ConfigmapManager, LocationCache and podManager
+## Downstream Controller：
+### 同步添加/更新/删除事件到边缘
 
-
-## Downstream Controller:
-### Sync add/update/delete event to edge
-
-- Downstream controller: Watches K8S Api-server and sends updates to edgecore via cloudHub
-- Sync (pod, configmap, secret) add/update/delete event to edge via cloudHub
-- Creates Respective manager (pod, configmap, secret) for handling events by calling manager interface
-- Locates configmap and secret should be send to which node
+- Downstream Controller：监视K8S Api-server并通过cloudHub发送更新到EdgeCore
+- 通过cloudHub同步Pod, ConfigMap, Secret 的添加/更新/删除事件到边缘
+- 通过调用Upstream Controller管理接口创建相应的管理器（Pod,ConfigMap,Secret）来处理事件
+- 定位ConfigMap和Secret应发送到哪个节点
 
 ![Downstream Controller](/img/edgecontroller/DownstreamController.png)
-## Upstream Controller:
-### Sync watch and update status of resource and events
 
-- UpstreamController receives messages from edgecore and syncs the updates to K8S-Api-server
-- Creates stop channel to dispatch and stop event to handle pods, configMaps, node and secrets
-- Creates message channel to update Nodestatus, Podstatus, Secret and configmap related events
-- Gets pod condition information like Ready, Initialized, Podscheduled and Unschedulable details
-- **Below is the information for PodCondition**
-   - **Ready**: PodReady means the pod is able to service requests and should be added to the load balancing pools for all matching services
-   - **PodScheduled**: It represents the status of the scheduling process for this pod
-   - **Unschedulable**: It means the scheduler cannot schedule the pod right now, maybe due to insufficient resources in the cluster
-   - **Initialized**: It means that all Init containers in the pod have started successfully
-   - **ContainersReady**: It indicates whether all containers in the pod are ready
-- **Below is the information for PodStatus**
-   - **PodPhase**: Current condition of the pod
-   - **Conditions**: Details indicating why the pod is in this condition
-   - **HostIP**: IP address of the host to which pod is assigned
-   - **PodIp**: IP address allocated to the Pod
-   - **QosClass**: Assigned to the pod based on resource requirement
+## Upstream Controller：
+### 同步监视并更新资源和事件的状态
+
+- Upstream Controller接收来自EdgeCore的消息，并将更新同步到K8S Api-server
+- 创建停止通道以分发和停止处理Pod,ConfigMap节点和Secret事件
+- 创建消息通道以更新NodeStatus,PodStatus,Secret和ConfigMap相关事件
+- 获取Pod状态信息，如Ready,Initialized,PodScheduled和Unschedulable详细信息
+- **以下是 PodCondition 的信息**  <br />
+   - **Ready**：PodReady表示Pod能够提供服务请求，并应添加到所有匹配服务的负载均衡池中  <br />
+   - **PodScheduled**：它表示此Pod的调度过程状态  <br />
+   - **Unschedulable**：表示调度器当前无法调度此Pod，可能是由于集群中的资源不足  <br />
+   - **Initialized**：表示Pod中的所有初始化容器均已成功启动  <br />
+   - **ContainersReady**：表示Pod中的所有容器是否都已准备好  <br />
+- **以下是 PodStatus 的信息**  <br />
+   - **PodPhase**：Pod的当前状态  <br />
+   - **Conditions**：指示Pod处于此状态的详细信息  <br />
+   - **HostIP**：分配给Pod的主机的IP地址  <br />
+   - **PodIp**：分配给Pod的IP地址  <br />
+   - **QosClass**：根据资源需求分配给Pod的QoS类别  <br />
 
    ![Upstream Controller](/img/edgecontroller/UpstreamController.png)
 
-## Controller Manager:
-### Creates manager interface and implements ConfigmapManager, LocationCache and podManager
+## Controller Manager：
+### 创建管理接口并实现 ConfigmapManager, LocationCache 和 PodManager
 
-- Manager defines the interface of a manager, ConfigManager, Podmanager, secretmanager implements it
-- Manages OnAdd, OnUpdate and OnDelete events which will be updated to the respective edge node from the K8s Api-server
-- Creates an eventManager(configMaps, pod, secrets) which will start a CommonResourceEventHandler, NewListWatch and a newShared Informer for each event to sync(add/update/delete)event(pod, configmap, secret) to edgecore via cloudHub
-- **Below is the List of handlers created by the controller Manager**
-   - **CommonResourceEventHandler**: NewcommonResourceEventHandler creates CommonResourceEventHandler which is used for Configmap and pod Manager
-   - **NewListWatch**: Creates a new ListWatch from the specified client resource namespace and field selector
-   - **NewSharedInformer**: Creates a new Instance for the Listwatcher
+- Controller Manager 定义了管理器接口, ConfigManager,PodManager,SecretManager实现了该接口
+- 管理OnAdd,OnUpdate和OnDelete事件，并将这些事件将从K8s Api-server更新到相应的边缘节点
+- 创建一个EventManager(ConfigMap,Pod,Secret)，它将为每个事件启动一个CommonResourceEventHandler、新的ListWatch和一个newShared Informer，以通过cloudHub将事件添加/更新/删除同步到EdgeCore
+- **以下是Controller Manager创建的处理程序列表**  <br />
+   - **CommonResourceEventHandler**：NewcommonResourceEventHandler创建了用于ConfigMap和Pod管理的CommonResourceEventHandler  <br />
+   - **NewListWatch**：从指定的客户端资源命名空间和字段选择器创建一个新的ListWatch  <br />
+   - **NewSharedInformer**：为ListWatcher创建一个新的实例  
