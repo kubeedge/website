@@ -63,7 +63,7 @@ sidebar_position: 3
 
 ## Update Configurations
 
-1. Update `cloudcore` configuration to enable **cloudStream**.
+1. Update `cloudcore` configuration to enable **cloudStream**. （The new version has this feature enabled by default in the cloud, so this configuration can be skipped.）
 
     If `cloudcore` is installed as binary, you can directly modify `/etc/kubeedge/config/cloudcore.yaml` with using editor.
     If `cloudcore` is running as kubernetes deployment, you can use `kubectl edit cm -n kubeedge cloudcore` to update `cloudcore`'s ConfigurationMap.
@@ -83,7 +83,7 @@ sidebar_position: 3
 
 2. Update `edgecore` configuration to enable **edgeStream**.
 
-    This modification needs to be done all edge system where `edgecore` runs to update `/etc/kubeedge/config/cloudcore.yaml`.
+    This modification needs to be done all edge system where `edgecore` runs to update `/etc/kubeedge/config/edgecore.yaml`.
     Make sure the `server` IP address to the cloudcore IP (the same as $CLOUDCOREIPS).
 
     ```yaml
@@ -102,7 +102,8 @@ sidebar_position: 3
 
 1. Restart all the cloudcore and edgecore to apply the **Stream** configuration.
 
-    If `cloudcore` is installed as binary:
+    If `cloudcore` is installed as binary (If the `cloudcore.yaml` has not been updated, there is no need to restart.)
+:
     ```shell
     sudo systemctl restart cloudcore.service
     ```

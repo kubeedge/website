@@ -1,5 +1,5 @@
 ---
-title: 启用 Kubectl logs/exec/attach 等能力
+title: 启用 Kubectl logs/exec/attach 操作边缘 pods
 sidebar_position: 3
 ---
 
@@ -52,7 +52,7 @@ sidebar_position: 3
     ```
     > 端口 10003 和 10350 是 CloudStream 和 edgecore 的默认端口，如果您对它们做过修改，请使用您设置的端口。
 
-    如果您不确定是够有 iptables 设置，并且想清理所有 iptables。
+    如果您不确定是够有 iptables 设置，并且想清理所有 iptables 规则。
     (如果您设置了错误的 iptables，它会阻止您使用此功能)
 
     以下命令用于清除 iptables 规则:
@@ -62,9 +62,9 @@ sidebar_position: 3
 
 ## 更新配置
 
-1. 分别调整 cloudcore 上的 `/etc/kubeedge/config/cloudcore.yaml` 和 edgecore 上的 `/etc/kubeedge/config/edgecore.yaml` 。调整 **cloudStream** 和 **edgeStream** 为 `enable: true`，并且改变server IP 为 cloudcore IP (和 $CLOUDCOREIPS 相同)。
+1. 更新 cloudcore 的配置使 CloudStream 生效 （新版本云端已默认开启，可跳过本配置）
+如果 cloudcore 是以二进制方式安装的，您可以直接使用编辑器修改 /etc/kubeedge/config/cloudcore.yaml。如果 cloudcore是以容器方式运行，您可以直接使用 kubectl edit cm -n kubeedge cloudcore 来更新 cloudcore 的 ConfigMap。
 
-    cloudcore调整 `/etc/kubeedge/config/cloudcore.yaml`:
     ```yaml
     cloudStream:
       enable: true
@@ -77,8 +77,8 @@ sidebar_position: 3
       tlsTunnelPrivateKeyFile: /etc/kubeedge/certs/server.key
       tunnelPort: 10004
     ```
-
-    edgecore调整 `/etc/kubeedge/config/edgecore.yaml`:
+1. 更新 edgecore 的配置使 EdgeStream 生效。
+    此修改需要在 edgecore 运行所在的边缘节点上进行，更新 /etc/kubeedge/config/edgecore.yaml，确保 server IP 地址为 cloudcore IP （与 $CLOUDCOREIPS 相同）。
     ``` yaml
     edgeStream:
       enable: true
@@ -91,11 +91,11 @@ sidebar_position: 3
       writeDeadline: 15
     ```
 
-## 重新启动
+## 重启
 
-1. 重新启动 cloudcore 和 edgecore 让配置生效。
+1. 重启 cloudcore 和 edgecore 让配置生效。
 
-    在云端：
+    在云端（若 cloudcore.yaml 未更新，则无需重启）：
     ``` shell
     sudo systemctl restart cloudcore.service
     ```
