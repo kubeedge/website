@@ -2,129 +2,129 @@
 title: Edged
 sidebar_position: 1
 ---
-## Overview
+## 概览
 
-EdgeD is an edge node module which manages pod lifecycle. It helps users to deploy containerized workloads or applications at the edge node. Those workloads could perform any operation from simple telemetry data manipulation to analytics or ML inference and so on. Using `kubectl` command line interface at the cloud side, users can issue commands to launch the workloads.
+EdgeD 是负责管理 Pod 生命周期的边缘节点模块。它帮助用户在边缘节点部署容器化的工作负载或应用程序。这些工作负载可以执行任意操作，从简单地遥测数据处理到复杂地数据分析/机器学习推理。用户可以在云端使用 `kubectl` 命令行发出命令来启动工作负载。
 
-Several OCI-compliant runtimes are supported through the Container Runtime Interface (CRI). See [KubeEdge runtime configuration](../../setup/prerequisites/runtime.md) for more information on how to configure edged to make use of other runtimes.
+通过容器运行时接口(CRI)，EdgeD 支持多个 OCI 兼容的容器运行时。有关如何配置 EdgeD 以使用其他运行时的更多信息，请参见 [KubeEdge 运行时配置](../../setup/prerequisites/runtime.md)。
 
-There are many modules which work in tandem to achieve edged's functionalities.
+众多模块协同工作实现 EdgeD 的功能。
 
 ![EdgeD Overall](/img/edged/edged-overall.png)
 
-*Fig 1: EdgeD Functionalities*
+*Fig 1: EdgeD 功能集*
 
-## Pod Management
+## Pod 管理
 
-It is handles for pod addition, deletion and modification. It also tracks the health of the pods using pod status manager and pleg.
-Its primary jobs are as follows:
+该模块负责处理 Pod 的添加、删除和修改。它还使用 Pod 状态管理器和 PLEG 跟踪 Pod 的健康状态。
+其主要工作如下：
 
-- Receives and handles pod addition/deletion/modification messages from metamanager.
-- Handles separate worker queues for pod addition and deletion.
-- Handles worker routines to check worker queues to do pod operations.
-- Keeps separate cache for config map and secrets respectively.
-- Regular cleanup of orphaned pods
+- 接收并处理来自 MetaManager 的 Pod 添加/删除/修改消息。
+- 为 Pod 添加和删除事件创建各自独立的工作队列。
+- 建立工作协程用于检查工作队列，执行 Pod 操作
+- 为 ConfigMap 和 Secret 各自设置独立的缓存。
+- 定期清理被遗弃的Pod
 
 ![Pod Addition Flow](/img/edged/pod-addition-flow.png)
 
-*Fig 2: Pod Addition Flow*
+*Fig 2: Pod 添加工作流*
 
 ![Pod Deletion Flow](/img/edged/pod-deletion-flow.png)
 
-*Fig 3: Pod Deletion Flow*
+*Fig 3: Pod 删除工作流*
 
 ![Pod Updation Flow](/img/edged/pod-update-flow.png)
 
-*Fig 4: Pod Updation Flow*
+*Fig 4: Pod 更新工作流*
 
-## Pod Lifecycle Event Generator
+## Pod 生命周期事件生成器(Pod Lifecycle Event Generator, PLEG)
 
-This module helps in monitoring pod status for edged. Every second, using probes for liveness and readiness, it updates the information with pod status manager for every pod.
+该模块帮助 EdgeD 监控 Pod 的状态。每隔一秒，该模块就使用存活探针和就绪探针更新 Pod 状态管理器中的每个 Pod 的信息。
 
 ![PLEG Design](/img/edged/pleg-flow.png)
 
-*Fig 5: PLEG at EdgeD*
+*Fig 5: EdgeD 的 PLEG*
 
-## CRI for edged
+## EdgeD 的 CRI 支持
 
-Container Runtime Interface (CRI) – a plugin interface which enables edged to use a wide variety of container runtimes like Docker, containerd, CRI-O, etc., without the need to recompile. For more on how to configure KubeEdge for container runtimes, see [KubeEdge runtime configuration](../../setup/prerequisites/runtime).
+容器运行时接口(CRI) 是一种插件接口，使 EdgeD 能够使用多种容器运行时，如 Docker、containerd、CRI-O 等，而无需重新编译。有关如何配置 KubeEdge 以使用容器运行时的更多信息，请参见 [KubeEdge 容器运行时配置](../../setup/prerequisites/runtime.md)。
 
-#### Why CRI for edged?
-CRI support for multiple container runtimes in edged is needed in order to:
-+ Support light-weight container runtimes on resource-constrained edge nodes which are unable to run the existing Docker runtime.
-+ Support multiple container runtimes like Docker, containerd, CRI-O, etc., on edge nodes.
+#### 为什么 EdgeD 需要 CRI？
+支持多个容器运行时的 CRI 对 EdgeD 是必要的，这以便于：
++ 支持在资源受限的边缘节点上运行轻量级容器运行时，这些节点无法运行现有的 Docker 运行时。
++ 支持在边缘节点上运行多个容器运行时，如 Docker、containerd、CRI-O 等。
 
-Support for corresponding CNI with pause container and IP will be considered later.
+提供暂停容器和 IP 能力的 CNI 将在以后考虑支持。
 
 ![CRI Design](/img/edged/edged-cri.png)
 
-*Fig 6: CRI at EdgeD*
+*Fig 6: EdgeD 上的 CRI*
 
-## Secret Management
+## Secret 管理
 
-In edged, Secrets are handled separately. For operations like addition, deletion and modification, there are separate sets of config messages and interfaces.
-Using these interfaces, secrets are updated in cache store.
-The flow diagram below explains the message flow.
+在 EdgeD 中，Secrets 被单独处理。对于添加、删除和修改等操作，都有单独的配置消息和接口。
+使用这些接口，Secrets 被更新到缓存存储中。
+下面的流程图解释了消息工作流。
 
 ![Secret Message Handling](/img/edged/secret-handling.png)
 
-*Fig 7: Secret Message Handling at EdgeD*
+*Fig 7: EdgeD 中 Secret 消息的处理*
 
-Edged uses the MetaClient module to fetch secrets from MetaManager. If edged queries for a new secret which is not yet stored in MetaManager, the request is forwarded to the Cloud. Before sending the response containing the secret, MetaManager stores it in a local database. Subsequent queries for the same secret key will be retrieved from the database, reducing latency. The flow diagram below shows how a secret is fetched from MetaManager and the Cloud. It also descibes how the secret is stored in MetaManager.
+EdgeD 使用 MetaClient 模块从 MetaManager 获取 Secret。如果 EdgeD 查询一个尚未存储在 MetaManager 中的 Secret，对应的查询请求将被转发到云端。在返回包含 Secret 的响应之前，MetaManager 会将其存储在本地数据库中。对于相同的 Secret 键的后续查询将从数据库中检索，从而减少延迟。下面的流程图显示了如何从 MetaManager 和云端获取 Secret。它还描述了如何将 Secret 存储在 MetaManager 中。
 
 ![Query Secret](/img/edged/query-secret-from-edged.png)
 
-*Fig 8: Query Secret by EdgeD*
+*Fig 8: EdgeD 查询 Secret*
 
-## Probe Management
+## 探针管理(Probe Management)
 
-Probe management creates two probes for readiness and liveness respectively for pods to monitor the containers. The readiness probe helps by monitoring when the pod has reached a running state. The liveness probe helps by monitoring the health of pods, indicating if they are up or down.
-As explained earlier, the PLEG module uses its services.
+探针管理为 Pod 创建就绪(readiness)探针和存活(liveness)探针，以监视容器。就绪探针监测 Pod 是否已达到运行状态。存活探针通过监测 Pod 的健康状况，指示它们是否正常运行或已经宕机。
+正如前面所述，PLEG 模块依赖探针管理模块。
 
 
-## ConfigMap Management
-In edged, ConfigMaps are also handled separately. For operations like addition, deletion and modification, there are separate sets of config messages and interfaces.
-Using these interfaces, ConfigMaps are updated in cache store.
+## ConfigMap 管理
+使用这些接口，ConfigMaps 被更新到缓存存储中。
 The flow diagram below explains the message flow.
+下面的流程图解释了消息工作流。
 
 ![ConfigMap Message Handling](/img/edged/configmap-handling.png)
 
-*Fig 9: ConfigMap Message Handling at EdgeD*
+*Fig 9: EdgeD 的 ConfigMap 消息处理工作流*
 
-Edged uses the MetaClient module to fetch ConfigMaps from MetaManager. If edged queries for a new ConfigMap which is not yet stored in MetaManager, the request is forwarded to the Cloud. Before sending the response containing the ConfigMap, MetaManager stores it in a local database. Subsequent queries for the same ConfigMap key will be retrieved from the database, reducing latency. The flow diagram below shows how ConfigMaps are fetched from MetaManager and the Cloud. It also descibes how ConfigMaps are stored in MetaManager.
+EdgeD 使用 MetaClient 模块从 MetaManager 获取 ConfigMaps。如果 EdgeD 查询一个尚未存储在 MetaManager 中的 ConfigMap，对应的查询请求将被转发到云端。在返回包含 ConfigMap 的响应之前，MetaManager 会将其存储在本地数据库中。对于相同的 ConfigMap 键的后续查询将从数据库中检索，从而减少延迟。下面的流程图显示了如何从 MetaManager 和云端获取 ConfigMap。它还描述了如何将 ConfigMap 存储在 MetaManager 中。
 
 ![Query Configmaps](/img/edged/query-configmap-from-edged.png)
 
-*Fig 10: Query Configmaps by EdgeD*
+*Fig 10: EdgeD 查询 ConfigMap*
 
-## Container GC
+## 容器回收（Container GC)
 
-The container garbage collector is an edged routine which wakes up every minute, collecting and removing dead containers using the specified container gc policy.
-The policy for garbage collecting containers is determined by three variables, which can be user-defined:
-+ `MinAge` is the minimum age at which a container can be garbage collected, zero for no limit.
-+ `MaxPerPodContainer` is the maximum number of dead containers that any single pod (UID, container name) pair is allowed to have, less than zero for no limit.
-+ `MaxContainers` is the maximum number of total dead containers, less than zero for no limit. Generally, the oldest containers are removed first.
+容器垃圾收集器是一个 EdgeD 协程，该协程被每分钟唤醒一次，并根据指定的容器垃圾收集策略清除死掉的容器。
+容器垃圾收集策略由三个变量决定，这些变量可以由用户定义：
++ `MinAge` 是容器可以被垃圾收集的最小年龄，如果为零则没有限制。
++ `MaxPerPodContainer` 是任何单个 Pod（UID，容器名称）能被允许拥有的最大死掉容器数量，如果小于零则没有限制。
++ `MaxContainers` 是死掉容器总和的最大数量，如果小于零则没有限制。通常，最老的容器首先被删除。
 
-## Image GC
+## 镜像回收(Image GC)
 
-The image garbage collector is an edged routine which wakes up every 5 secs, and collects information about disk usage based on the policy used.
-The policy for garbage collecting images takes two factors into consideration, `HighThresholdPercent` and `LowThresholdPercent`. Disk usage above the high threshold will trigger garbage collection, which attempts to delete unused images until the low threshold is met. Least recently used images are deleted first.
+镜像垃圾收集器是一个 EdgeD 协程，每 5 秒唤醒一次，并根据设置的策略收集关于磁盘使用情况的信息。
+镜像垃圾收集策略考虑了两个因素，`HighThresholdPercent` 和 `LowThresholdPercent`。磁盘使用量超过高阈值将触发垃圾收集，尝试删除未使用的镜像，直到低阈值被满足。最近未使用的镜像首先被删除。
 
-## Status Manager
+## 状态管理器(Status Manager)
 
-Status manager is an independent edge routine, which collects pods statuses every 10 seconds and forwards this information to the cloud using the metaclient interface.
+状态管理器是一个独立的 EdgeD 协程，每 10 秒收集一次 Pod 的状态，并使用 MetaClient 接口将这些信息转发到云端。
 
 ![Status Manager Flow](/img/edged/pod-status-manger-flow.png)
 
-*Fig 11: Status Manager Flow*
+*Fig 11: 状态管理器工作流*
 
-## Volume Management
+## 卷管理(Volume Management) 
 
-Volume manager runs as an edge routine which brings out the information of which volume(s) are to be attached/mounted/unmounted/detached based on pods scheduled on the edge node.
+卷管理器作为一个 EdgeD 协程运行，根据边缘节点上调度的 Pod，提取哪些卷需要被挂载/卸载/卸载/分离的信息。
 
-Before starting the pod, all the specified volumes referenced in pod specs are attached and mounted, Till then the flow is blocked and with it other operations.
+在启动 Pod 之前，将挂载 Pod 规范中引用的所有指定卷，直到完成挂载操作，其他操作都会被阻塞。
 
 ## MetaClient
 
-Metaclient is an interface of Metamanger for edged. It helps edged to get ConfigMaps and secret details from metamanager or cloud.
-It also sends sync messages, node status and pod status towards metamanger to cloud.
+Metaclient 是 EdgeD 的 MetaManager 接口。它帮助 EdgeD 从 MetaManager 或云端获取 ConfigMaps 和 Secret 详情。
+它还向 MetaManager 发送同步消息、节点状态和 Pod 状态到云端。
