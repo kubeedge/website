@@ -213,6 +213,12 @@ const supportList = [
     name: "LookCan Ai",
     img_src: "img/supporters/lookcan-logo.svg", 
     external_link: "https://www.lookcan.ai/",
+  },
+
+  {
+    name: "ZhiYuan Reseach Institute",
+    img_src: "img/supporters/zhiyuan research institute.svg",
+    external_link: "https://zy.csgc.com.cn/",
   }
 ];
 
