@@ -40,7 +40,7 @@ KubeEdge 由以下组件组成：
 - **[DeviceTwin](architecture/edge/devicetwin):** 负责存储设备状态并将设备状态同步到云端。它还为应用程序提供查询接口。
 - **[MetaManager](architecture/edge/metamanager):** Edged 端和 Edgehub 端之间的消息处理器。它还负责将元数据存储到轻量级数据库（SQLite）或从轻量级数据库（SQLite）检索元数据。
 - **[ServiceBus](./architecture/edge/servicebus)**: 用于与 HTTP 服务器 （REST） 交互的 HTTP 客户端，为云组件提供 HTTP 客户端功能，以访问在边缘运行的 HTTP 服务器。
-- **[DeviceController](./architecture/cloud/device_controller)**: 一个扩展的 kubernetes 控制器，用于管理设备，以便设备元数据/状态数据可以在 edge 和 cloud 之间同步。
+- **[DeviceController](./architecture/cloud/device_controller)**: 一个扩展的 kubernetes 控制器，用于管理边缘 IoT 设备，以便设备元数据/状态数据可以在 edge 和 cloud 之间同步。
 
 ## 架构
 
