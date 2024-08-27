@@ -217,7 +217,7 @@ const supportList = [
 
   {
     name: "ZhiYuan Reseach Institute",
-    img_src: "img/supporters/zhiyuan research institute.svg",
+    img_src: "img/supporters/zhiyuan-research-institute.svg",
     external_link: "https://zy.csgc.com.cn/",
   }
 ];
