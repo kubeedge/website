@@ -61,7 +61,7 @@ like remote query to the cloud.
 
 ## MetaSync Operation
 `MetaSync` operation messages are periodically sent by metamanager to sync the status of the
-pods running on the edge node. The sync interval is configurable in `conf/edge.yaml`
+pods running on the edge node. The sync interval is configurable in `conf/edgecore.yaml`
 ( defaults to `60` seconds ).
 
 ```yaml

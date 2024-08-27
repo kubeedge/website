@@ -2,166 +2,158 @@
 title: DeviceTwin
 sidebar_position: 4
 ---
-## Overview
+## 概述
 
-DeviceTwin module is responsible for storing device status, dealing with device attributes, handling device twin operations, creating a membership
-between the edge device and edge node, syncing device status to the cloud and syncing the device twin information between edge and cloud.
-It also provides query interfaces for applications. Device twin consists of four sub modules (namely membership module, communication
-module, device module and device twin module) to perform the responsibilities of device twin module.
+DeviceTwin 模块负责存储设备状态，处理设备属性和设备孪生操作，在边缘设备与边缘节点之间创建关联，将设备状态同步到云端，并在边缘和云端之间同步设备孪生信息。它还为应用程序提供查询接口。DeviceTwin 由四个子模块（即 Membership 模块、Communication 模块、Device 模块和 Twin 模块）组成，以履行 DeviceTwin 模块的职责。
 
 
-## Operations Performed By Device Twin Controller
 
- The following are the functions performed by device twin controller:
+## 由 DeviceTwin Controller 执行的操作
 
-  - Sync metadata to/from db ( Sqlite )
-  - Register and Start Sub Modules
-  - Distribute message to Sub Modules
-  - Health Check
+ 以下是 DeviceTwin Controller 的功能：
 
-
-### Sync Metadata to/from db ( Sqlite )
-
-For all devices managed by the edge node , the device twin performs the below operations:
-
-   - It checks if the device in the device twin context (the list of devices are stored inside the device twin context), if not it adds a mutex to the context.
-   - Query device from database
-   - Query device attribute from database
-   - Query device twin from database
-   - Combine the device, device attribute and device twin data together into a single structure and stores it in the device twin context.
+  - 将元数据同步到数据库/从数据库同步元数据 （ Sqlite ）
+  - 注册和启动子模块
+  - 将消息分发到子模块
+  - 健康检查
 
 
-### Register and Start Sub Modules
+### 将元数据同步到/从数据库同步 （ Sqlite ）
 
-Registers the four device twin modules and starts them as separate go routines
+对于边缘节点管理的所有设备，DeviceTwin 执行以下操作：
 
-
-### Distribute Message To Sub Modules
-
-1. Continuously listen for any device twin message in the beehive framework.
-2. Send the received message to the communication module of device twin
-3. Classify the message according to the message source, i.e. whether the message is from eventBus, edgeManager or edgeHub,
-and fills the action module map of the module (ActionModuleMap is a map of action to module)
-4. Send the message to the required device twin module
+   - 它检查设备是否在 DeviceTwin Context 中，如果没有，它会进行添加。
+   - 从数据库中查询设备
+   - 从数据库中查询设备属性
+   - 从数据库查询设备孪生属性
+   - 将设备、设备属性和设备孪生数据合并到一个结构中，并将其存储在 DeviceTwin Context中
 
 
-### Health Check
+### 注册和启动子模块
 
-The device twin controller periodically ( every 60 s ) sends ping messages to submodules. Each of the submodules updates the timestamp in a map for itself once it receives a ping.
-The controller checks if the timestamp for a module is more than 2 minutes old and restarts the submodule if true.
+注册 DeviceTwin 的四个子模块，并将它们作为单独的 go 协程启动
 
 
-## Modules
+### 将消息分发到子模块
 
-DeviceTwin consists of four modules, namely:
+1. 持续监听 beehive 框架中的任何 DeviceTwin 消息。
+2. 将接收到的消息发送到 DeviceTwin 的通信模块。
+3. 根据消息源对消息进行分类，即消息是来自 eventBus、edgeManager 还是 edgeHub，并填充模块的动作模块映射（ActionModuleMap 是动作到模块的映射）
+4. 将消息发送到所需的 DeviceTwin 模块
 
-- Membership Module
-- Twin Module
-- Communication Module
-- Device Module
 
-### Membership Module
+### 健康检查
 
-The main responsibility of the membership module is to provide membership to the new devices added through the cloud to the edge node.
-This module binds the newly added devices to the edge node and creates a membership between the edge node and the edge devices.
+ DeviceTwin 控制器定期（每 60 秒）向子模块发送 ping 消息。每个子模块在收到 ping 后都会自行更新 map 中的时间戳。控制器检查模块的时间戳是否超过 2 分钟，如果为 true，则重新启动子模块。
 
-The major functions performed by this module are:-
 
-1. Initialize action callback map which is a map[string]Callback that contains the callback functions that can be performed
-2. Receive the messages sent to membership module
-3. For each message the action message is read and the corresponding function is called
-4. Receive heartbeat from the heartbeat channel and send a heartbeat to the controller
+## 模块
 
-The following are the action callbacks which can be performed by the membership module:
+DeviceTwin 由 4 个模块组成，分别是：
+
+- Membership 模块
+- Twin 模块
+- Communication 模块
+- Device 模块
+
+### Membership 模块
+
+Membership 模块主要职责是是为通过云添加到边缘节点的新设备提供成员资格。该模块将新添加的设备绑定到边缘节点，并在边缘节点和边缘设备之间创建成员关系。
+
+该模块执行的主要功能是：
+
+1. 初始化动作回调映射，是一个 map[string] Callback，包含可以执行的回调函数
+2. 接收发送到 Membership 模块的消息
+3. 对于每条消息，都会读取动作消息并调用相应的函数
+4. 从心跳通道接收心跳，并向控制器发送心跳
+
+以下是 Membership 模块可以执行的操作回调：
 
    - dealMembershipGet
    - dealMembershipUpdated
    - dealMembershipDetail
 
-**dealMembershipGet**: dealMembershipGet() gets the information  about the devices associated with the particular edge node from the cache.
-   - The eventbus first receives a message on its subscribed topic (membership-get topic).
-   - This message arrives at the  devicetwin controller, which further sends the message to membership module.
-   - The membership module gets the devices associated with the edge node from the cache (context) and sends the information to the communication module.It also handles errors that may arise while performing the  aforementioned process and sends the error to the communication module instead of device details.
-   - The communication module sends the information to the  eventbus component which further publishes the result on the specified MQTT topic (get membership result topic).
+**dealMembershipGet**: dealMembershipGet() 从缓存中获取与特定边缘节点关联的设备的信息。
+   - eventbus 首先在其订阅的主题（membership-get）上接收一条消息。
+   - 此消息到达 DeviceTwin 控制器，由它进一步将消息发送到 Membership 模块。
+   - Membership 从缓存中获取与边缘节点关联的设备，并将信息发送到 Communication 模块。它还处理在执行上述过程时可能出现的错误，并将错误发送到通信模块而不是设备详细信息。
+   - Communication 模块将信息发送给 eventbus 组件，eventbus 组件进一步在指定的 MQTT topic上发布结果。
 
   ![Membership Get()](/img/devicetwin/membership-get.png)
 
 
-**dealMembershipUpdated**: dealMembershipUpdated() updates the membership details of the node. It adds the devices, that were newly added, to the edge group and removes the devices, that were removed, from the edge group and updates device details, if they have been altered or updated.
-   - The edgehub module receives the membership update message from the cloud and forwards the message to devicetwin controller which further forwards it to the membership module.
-   - The membership  module adds devices that are newly added, removes devices that have been recently deleted and also updates the devices that were already existing in the database as well as in the cache.
-   - After updating the details of the devices a  message is sent to the communication module of the device twin, which sends the message to eventbus module to be published on the given MQTT topic.
+**dealMembershipUpdated**: dealMembershipUpdated() 函数用于更新节点的成员资格详情。它将新添加的设备添加到边缘组中，将已移除的设备从边缘组中删除，并在设备详情发生变更时进行更新。
+   - Edgehub 模块从云端接收成员资格更新消息，并将该消息转发到 DeviceTwin 控制器，后者进一步将其转发到 Membership 模块。
+   - Membership 模块添加新添加的设备、删除最近删除的设备以及更新数据库和缓存中已存在的设备。
+   - 更新设备的详细信息后，一条消息将发送到 DeviceTwin 的 Comunication 模块，该模块将消息发送到要在给定 MQTT 主题上发布的 eventbus 模块。
 
   ![Membership Update](/img/devicetwin/membership-update.png)
 
 
-**dealMembershipDetail**: dealMembershipDetail() provides the membership details of the edge node, providing information about the devices associated with the edge node, after removing the membership details of recently removed devices.
-   - The eventbus module receives the message that arrives on the subscribed topic,the message is then forwarded  to the devicetwin controller which further forwards it to the membership module.
-   - The membership  module adds devices that are mentioned in the message, removes devices that that are not present in the cache.
-   - After updating the details of the devices a message is sent to the communication module of the device twin.
+**dealMembershipDetail**: dealMembershipDetail() 提供边缘节点的成员资格详细信息，在删除最近删除的设备的成员资格详细信息后，提供与边缘节点关联的设备的信息。
+   - eventbus 模块接收到达 MQTT Topic 的消息，然后将该消息转发到 DeviceTwin 控制器，后者进一步将其转发到 Membership 模块.
+   - Membership 模块添加消息中提到的设备，删除缓存中不存在的设备。
+   - 更新设备详细信息后，一条消息将发送至 Communication 模块。
 
   ![Membership Detail](/img/devicetwin/membership-detail.png)
 
 
-### Twin Module
+### Twin 模块
 
-The main responsibility of the twin module is to deal with all the device twin related operations. It can perform
-operations like device twin update, device twin get and device twin sync-to-cloud.
+Twin 模块的主要职责是处理所有 DeviceTwin 相关的操作。它可以执行更新 DeviceTwin、DeviceTwin 获取和 DeviceTwin 同步到云端等操作。
 
-The major functions performed by this module are:
+该模块的主要功能有：
 
-1. Initialize action callback map (which is a  map of action(string) to the callback function that performs the requested action)
-2. Receive the messages sent to twin module
-3. For each message the action message is read and the corresponding function is called
-4. Receive heartbeat from the heartbeat channel and send a heartbeat to the controller
+1. 初始化操作回调映射（这是 action（string）到执行请求操作的回调函数的映射）
+2. 接收发送到 Twin 模块的消息
+3. 对于每条消息，都会读取操作消息并调用相应的函数
+4. 从心跳通道接收心跳并向控制器发送心跳
 
-The following are the action callbacks which can be performed by the twin module:
+以下是 Twin 模块可以执行的操作：
 
    - dealTwinUpdate
    - dealTwinGet
    - dealTwinSync
 
-**dealTwinUpdate**: dealTwinUpdate() updates the device twin information for a particular device.
-- The devicetwin update message can either be received by edgehub module from the cloud or from
-the MQTT broker through the eventbus component (mapper will publish a message on the device twin update topic) .
-- The message is then sent to the device twin controller from where it is sent to the device twin module.
-- The twin module updates the twin value in the database and sends the update result message to the communication module.
-- The communication module will in turn send the publish message to the MQTT broker through the eventbus.
+**dealTwinUpdate**: dealTwinUpdate() 进行特定设备的 DeviceTwin 信息更新。
+- DeviceTwin 更新消息可以由 Edgehub 模块从云端接收，也可以通过 eventbus 组件从 MQTT 代理接收（映射器将在 DeviceTwin 更新 topic 上发布消息）。
+- 然后，该消息被发送到 DeviceTwin 控制器，从那里它被发送到 DeviceTwin 模块。
+- Twin 模块更新数据库中的孪生值，并将更新结果消息发送至 Communication 模块。
+- Communication 模块将依次通过事件总线将发布消息发送到 MQTT 代理。
 
   ![Device Twin Update](/img/devicetwin/devicetwin-update.png)
 
 
-**dealTwinGet**: dealTwinGet() provides the device twin  information for a particular device.
-  - The eventbus component  receives the message that arrives on the subscribed twin get topic and forwards the message to devicetwin controller, which further sends the message to twin module.
-  - The twin module gets the devicetwin related information for the particular device and sends it to the communication module, it also handles errors that arise when the device is not found or if any internal problem occurs.
-  - The communication module sends the information to the eventbus component, which publishes the result on the topic specified .
+**dealTwinGet**: dealTwinGet() 进行特定设备的 DeviceTwin 信息获取。
+  - eventbus 组件接收到达订阅的 twin get 主题的消息，并将该消息转发到 devicetwin 控制器，devicetwin 控制器进一步将消息发送到 twin 模块。
+  - twin 模块获取特定设备的 devicetwin 相关信息并将其发送到 Communication 模块，它还处理未找到设备或发生任何内部问题时出现的错误。
+  - Communication 模块将通过 eventbus 将发布消息依次发送 MQTT 代理。
 
   ![Device Twin Get](/img/devicetwin/devicetwin-get.png)
 
 
-**dealTwinSync**: dealTwinSync() syncs the device twin information to the cloud.
-  - The eventbus module receives the message on the subscribed twin cloud sync topic .
-  - This message is then sent to the devicetwin controller from where it is sent to the twin module.
-  - The twin module then syncs the twin information present in the database and sends the synced twin results to the communication module.
-  - The communication module further sends the information to edgehub component which will in turn send the updates to the cloud through the websocket connection.
-  - This function also performs operations like publishing the updated twin details  document, delta of the device twin as well as the update result (in case there is some error) to a specified topic through the communication module,
-  which sends the data to edgehub, which will send it to eventbus which publishes on the MQTT broker.
+**dealTwinSync**: dealTwinSync() 进行特定设备的 DeviceTwin 信息同步。
+  - eventbus 模块接收有关订阅的 Twin 同步主题的消息。
+  - 然后，该消息被发送到 devicetwin 控制器，从那里它被发送到 Twin 模块。
+  - 然后，Twin 模块同步数据库中存在的 Twin 信息，并将同步的 Twin 结果发送到 Communication 模块。
+  - Communication 模块进一步将信息发送到 edgehub 组件，而 edgehub 组件又通过 websocket 连接将更新发送到云端。
+  - 该函数还执行一些操作，例如通过 Communication 模块将更新的孪生详细信息文档、DeviceTwin 的增量以及更新结果（如果出现错误）发布到指定 topic，该主题将数据发送到 edgehub，edgehub将其发送到 eventbus ，eventbus 再从 MQTT代理上发布。
 
   ![Sync to Cloud](/img/devicetwin/sync-to-cloud.png)
 
-### Communication Module
+### Communication 模块
 
-The main responsibility of communication module is to ensure the communication functionality between device twin  and the other components.
+Comunication 模块的主要职责是确保 DeviceTwin 与其他组件之间的通信功能。
 
-The major functions performed by this module are:-
+该模块的主要功能是：
 
-1. Initialize action callback map which is a map[string]Callback that contains the callback functions that can be performed
-2. Receive the messages sent to communication module
-3. For each message the action message is read and the corresponding function is called
-4. Confirm whether the actions specified in the message are completed or not, if the action is not completed then redo the action
-5. Receive heartbeat from the heartbeat channel and send a heartbeat to the controller
+1. 初始化动作回调映射，它是一个包含可以执行的回调函数的 map[string]Callback
+2. 接收发送至 Communication 模块的消息
+3. 对于每条消息，都会读取操作消息并调用相应的函数
+4. 确认消息中指定的操作是否完成，如果操作未完成则重做该操作
+5. 从心跳通道接收心跳并向控制器发送心跳
 
-The following are the action callbacks which can be performed by the communication module :
+以下是该模块可以执行的操作回调：
 
    - dealSendToCloud
    - dealSendToEdge
@@ -169,186 +161,168 @@ The following are the action callbacks which can be performed by the communicati
    - dealConfirm
 
 
-**dealSendToCloud**: dealSendToCloud() is used to send data to the cloudHub component.
-                     This function first ensures that the cloud is connected, then sends the message to the edgeHub module (through the beehive framework),
-                     which in turn will forward the message to the cloud (through the websocket connection).
+**dealSendToCloud**: dealSendToCloud() 用于将数据发送到 cloudHub 组件。该函数首先确保云端已连接，然后将消息发送到 edgeHub 模块（通过 beehive 框架），edgeHub 模块又将消息转发到云端（通过 websocket 连接）。
 
-**dealSendToEdge**:  dealSendToEdge() is used to send data to the other modules present at the edge.
-                     This function sends the message received to the edgeHub module using beehive framework.
-                     The edgeHub module after receiving the message will send it to the required recipient.
+**dealSendToEdge**:  dealSendToEdge() 用于将数据发送到边缘处的其他模块。该函数使用 beehive 框架将收到的消息发送到 edgeHub 模块。EdgeHub 模块收到消息后会将其发送给所需的接收者。
 
-**dealLifeCycle**:   dealLifeCycle() checks if the cloud is connected and the state of the twin is disconnected, it then changes the status
-                     to connected and sends the node details to edgehub. If the cloud is disconnected then, it sets the state of the twin
-                     as disconnected.
+**dealLifeCycle**:   dealLifeCycle() 检查云是否已连接并且孪生的状态是否已断开连接，然后将状态更改为已连接并将节点详细信息发送到 edgehub。如果云随后断开连接，则会将孪生的状态设置为断开连接。
 
-**dealConfirm**:     dealConfirm() is used to confirm the event. It checks whether the type of the message is right and
-                     then deletes the id from the confirm map.
+**dealConfirm**:     dealConfirm() 用于确认事件。它检查消息的类型是否正确，然后从确认映射中删除该 id。
 
 
-### Device Module
+### Device 模块
 
-The main responsibility of the device module is to perform the device related operations like dealing with device state updates
-and device attribute updates.
+Device 模块的主要职责是执行设备相关操作，例如处理设备状态更新和设备属性更新。
 
-The major functions performed by this module are:
+该模块执行的主要功能是：
 
-1. Initialize action callback map (which is a  map of action(string) to the callback function that performs the requested action)
-2. Receive the messages sent to device module
-3. For each message the action message is read and the corresponding function is called
-4. Receive heartbeat from the heartbeat channel and send a heartbeat to the controller
+1. 初始化操作回调映射（这是 action（string）到执行请求操作的回调函数的映射）
+2. 接收发送到 Device 模块的消息
+3. 对于每条消息，都会读取操作消息并调用相应的函数
+4. 从心跳通道接收心跳并向控制器发送心跳
 
-The following are the action callbacks which can be performed by the device module:
+以下是该模块可以执行的操作回调：
 
    - dealDeviceUpdated
    - dealDeviceStateUpdate
 
- **dealDeviceUpdated**: dealDeviceUpdated() deals with the operations to be performed when a device attribute update is encountered.
-   It updates the changes to the device attributes, like addition of attributes, updation of attributes and deletion of attributes
-   in the database. It also sends the result of the device attribute update to be published to the eventbus component.
-   - The device attribute updation is initiated from the cloud, which sends the update to edgehub.
-   - The edgehub component sends the message to the device twin controller which forwards the message to the device module.
-   - The device module updates the device attribute details into the database after which, the device module sends the result of the device attribute update to be published
-   to the eventbus component through the communicate module of devicetwin. The eventbus component further publishes the result on the specified topic.
+ **dealDeviceUpdated**: dealDeviceUpdated() 处理遇到设备属性更新时要执行的操作。它更新对设备属性的更改，例如数据库中属性的添加、属性更新和属性删除。它还将要发布的设备属性更新的结果发送到事件总线组件。
+
+   - 设备属性更新是从云端发起的，云端将更新发送到edgehub。
+   - Edgehub 组件将消息发送到 DeviceTwin 控制器，控制器将消息转发到设备模块。
+   - Device 模块将设备属性详细信息更新到数据库中，之后 Device 模块将设备属性更新的结果通过 Communication 模块发送到 eventbus 组件进行发布。 eventbus 组件进一步在指定 topic 上发送结果。
 
   ![Device Update](/img/devicetwin/device-update.png)
 
- **dealDeviceStateUpdate**:  dealDeviceStateUpdate() deals with the operations to be performed when a device status update is encountered.
-                             It updates the state of the device as well as the last online time of the device in the database.
-                             It also sends the update state result, through the communication module,  to the cloud through the edgehub module and to the  eventbus module which in turn
-                             publishes the result on the specified topic of the MQTT broker.
-   - The device state updation is initiated by publishing a message on the specified topic which is being subscribed by the eventbus component.
-   - The eventbus component sends the message to the device twin controller which forwards the message to the device module.
-   - The device module updates the state of the device as well as the last online time of the device in the database.
-   - The device module then sends the result of the device state update to the eventbus component and edgehub component through the communicate module of devicetwin. The eventbus component further publishes the result on the specified topic, while the
-   edgehub component sends the device status update to the cloud.
+ **dealDeviceStateUpdate**:  dealDeviceStateUpdate()处理遇到设备状态更新时要执行的操作。它应用了对设备属性的更改，例如数据库中属性的添加、属性更新和属性删除。它还将要发布的设备属性更新的结果发送到 EventBus 组件。
+
+
+   - 设备状态更新是通过在 eventbus 组件订阅的指定 topic 上发布消息来启动的。
+   - eventbus 组件将消息发送到 DeviceTwin 控制器，控制器将消息转发到 Device 模块。
+   - Device 模块更新数据库中设备的状态以及设备的最后在线时间。
+   - Device 模块将设备状态更新的结果通过 devicetwin 的 communication 模块发送给 eventbus 组件和 edgehub 组件。 eventbus 组件进一步在指定 topic 上的发布结果，与此同时 edgehub 组件将设备状态更新发送到云端。
 
   ![Device State Update](/img/devicetwin/device-state-update.png)
 
 
-## Tables
+## 数据表
 
-DeviceTwin module creates three tables in the database, namely:
+DeviceTwin 模块在数据库中创建三个表，分别是：
 
-   - Device Table
-   - Device Attribute Table
-   - Device Twin Table
+   - Device Table：设备表
+   - Device Attribute Table：设备属性表
+   - Device Twin Table：DeviceTwin 属性表
 
 
-### Device Table
+### 设备表
 
-Device table contains the data regarding the devices added to a particular edge node.
-The following are the columns present in the device table :
+设备表包含有关添加到特定边缘节点的设备的数据。以下是设备表中存在的列：
 
-|Column Name | Description |
+|列名 | 描述 |
 |---|---|
-| **ID** |  This field indicates the id assigned to the device |
-| **Name** | This field indicates the name of the device |
-| **Description** | This field indicates the description of the device |
-| **State** | This field indicates the state of the device |
-| **LastOnline** | This fields indicates when the device was last online |
+| **ID** |  该字段表示分配给设备的ID |
+| **Name** | 该字段表示设备的名称 |
+| **Description** | 该字段表示设备的描述信息 |
+| **State** | 该字段表示设备的状态 |
+| **LastOnline** | 该字段表示设备上次在线的时间 |
 
-**Operations Performed:**
+**可执行的操作：**
 
-The following are the operations that can be performed on this data:
+以下是可以对此数据执行的操作：
 
-- **Save Device**: Inserts a device in the device table
+- **Save Device**: 在设备表中插入设备
 
-- **Delete Device By ID**: Deletes a device by its ID from the device table
+- **Delete Device By ID**: 按 ID 从设备表中删除设备
 
-- **Update Device Field**: Updates a single field in the device table
+- **Update Device Field**: 更新设备表中的单个字段
 
-- **Update Device Fields**: Updates multiple fields in the device table
+- **Update Device Fields**: 更新设备表中的多个字段
 
-- **Query Device**: Queries a device from the device table
+- **Query Device**: 从设备表中查询设备
 
-- **Query Device All**: Displays all the devices present in the device table
+- **Query Device All**: 显示设备表中存在的所有设备
 
-- **Update Device Multi**: Updates multiple columns of multiple devices in the device table
+- **Update Device Multi**: 更新设备表中多个设备的多列
 
-- **Add Device Trans**: Inserts device, device attribute and device twin in a single transaction, if any of these operations fail,
-   then it rolls back the other insertions
+- **Add Device Trans**: 在单个事务中插入设备、设备属性和 DeviceTwin，如果其中任何操作失败，则会回滚其他插入
 
-- **Delete Device Trans**: Deletes device, device attribute and device twin in a single transaction, if any of these operations fail,
-   then it rolls back the other deletions
+- **Delete Device Trans**: 在单个事务中删除设备、设备属性和 DeviceTwin，如果其中任何操作失败，则会回滚其他删除操作
 
 
-### Device Attribute Table
+### 设备属性表
 
-Device attribute table contains the data regarding the device attributes associated with a particular device in the edge node.
-The following are the columns present in the device attribute table :
+设备属性表包含有关与边缘节点中的特定设备关联的设备属性的数据。以下是设备属性表中存在的列：
 
-| Column Name | Description |
+| 列名 | 描述 |
 |----------------|--------------------------|
-| **ID** |  This field indicates the id assigned to the device attribute |
-| **DeviceID** |  This field indicates the device id of the device associated with this attribute |
-| **Name** | This field indicates the name of the device attribute |
-| **Description** | This field indicates the description of the device attribute |
-| **Value** | This field indicates the value of the device attribute |
-| **Optional** | This fields indicates whether the device attribute is optional or not |
-| **AttrType** | This fields indicates the type of attribute that is referred to |
-| **Metadata** |This fields describes the metadata associated with the device attribute  |
+| **ID** |  该字段表示分配给设备属性的id |
+| **DeviceID** |  该字段表示与该属性关联的设备的设备ID |
+| **Name** | 该字段表示设备属性的名称 |
+| **Description** | 该字段表示设备属性的描述 |
+| **Value** | 该字段表示设备属性的值 |
+| **Optional** | 该字段指示设备属性是否可选 |
+| **AttrType** | 该字段指示所引用的属性的类型 |
+| **Metadata** |该字段描述与设备属性关联的元数据  |
 
 
-**Operations Performed:**
+**可执行的操作**
 
-The following are the operations that can be performed on this data :
+以下是可以对此数据表执行的操作：
 
-   - **Save Device Attr**: Inserts a device attribute in the device attribute table
+   - **Save Device Attr**: 在设备属性表中插入设备属性
 
-   - **Delete Device Attr By ID**: Deletes a device attribute by its ID from the device attribute table
+   - **Delete Device Attr By ID**: 从设备属性表中按 ID 删除设备属性
 
-   - **Delete Device Attr**: Deletes a device attribute from the device attribute table by filtering based on device id and device name
+   - **Delete Device Attr**: 通过根据设备 id 和设备名称进行过滤，从设备属性表中删除设备属性
 
-   - **Update Device Attr Field**: Updates a single field in the device attribute table
+   - **Update Device Attr Field**: 更新设备属性表中的单个字段
 
-   - **Update Device Attr Fields**: Updates multiple fields in the device attribute table
+   - **Update Device Attr Multi Fields**: 更新设备属性表中的多个字段
 
-   - **Query Device Attr**: Queries a device attribute from the device attribute table
+   - **Query Device Attr**: 从设备属性表中查询设备属性
 
-   - **Update Device Attr Multi**: Updates multiple columns of multiple device attributes in the device attribute table
+   - **Update Device Attr Multi**: 更新设备属性表中多个设备属性的多列
 
-   - **Delete Device Attr Trans**: Inserts device attributes, deletes device attributes and updates device attributes in a single transaction.
-
-
-### Device Twin Table
-
-Device twin table contains the data related to the device device twin associated with a particular device in the edge node.
-The following are the columns present in the device twin table :
+   - **Delete Device Attr Trans**: 在单个事务中插入设备属性、删除设备属性和更新设备属性。
 
 
-| Column Name | Description |
+### DeviceTwin 数据表
+
+DeviceTwin 数据表包含与边缘节点中的特定设备关联的 DeviceTwin 相关的数据。以下是 DeviceTwin 数据表中存在的列：
+
+
+| 列名 | 描述 |
 |---|---|
-| **ID** | This field indicates the id assigned to the device twin |
-| **DeviceID** |  This field indicates the device id of the device associated with this device twin |
-| **Name** | This field indicates the name of the device twin |
-| **Description** | This field indicates the description of the device twin |
-| **Expected** | This field indicates the expected value of the device |
-| **Actual** | This field indicates the actual value of the device |
-| **ExpectedMeta** | This field indicates the metadata associated with the expected value of the device |
-| **ActualMeta** | This field indicates the metadata associated with the actual value of the device |
-| **ExpectedVersion** | This field indicates the version of the expected value of the device |
-| **ActualVersion** | This field indicates the version of the actual value of the device |
-| **Optional** | This fields indicates whether the device twin is optional or not |
-| **AttrType** | This fields indicates the type of attribute that is referred to |
-| **Metadata** | This fields describes the metadata associated with the device twin |
+| **ID** | 该字段表示分配给 DeviceTwin 的 ID |
+| **DeviceID** |  该字段指示与该 DeviceTwin 关联的设备的设备 ID |
+| **Name** | 该字段表示 DeviceTwin 的名称 |
+| **Description** | 该字段表示 DeviceTwin 的描述 |
+| **Expected** | 该字段表示设备的期望值 |
+| **Actual** | 该字段表示设备的实际值 |
+| **ExpectedMeta** | 该字段指示与设备的期望值相关的元数据 |
+| **ActualMeta** | 该字段表示与设备实际值相关的元数据 |
+| **ExpectedVersion** | 该字段表示设备期望值的版本 |
+| **ActualVersion** | 该字段表示设备实际值的版本 |
+| **Optional** | 该字段指示 DeviceTwin 是否可选 |
+| **AttrType** | 该字段指示所引用的属性的类型 |
+| **Metadata** | 该字段描述与 DeviceTwin 关联的元数据 |
 
 
-**Operations Performed:**
+**可执行的操作**
 
-The following are the operations that can be performed on this data:
+以下是可以对此数据表执行的操作：
 
-   - **Save Device Twin**: Inserts a device twin in the device twin table
+   - **Save Device Twin**: 在 DeviceTwin 数据表中新增数据
 
-   - **Delete Device Twin By Device ID**: Deletes a device twin by its ID from the device twin table
+   - **Delete Device Twin By Device ID**: 按 ID 从 DeviceTwin 数据表中删除数据
 
-   - **Delete Device Twin**: Deletes a device twin from the device twin table by filtering based on device id and device name
+   - **Delete Device Twin**: 通过根据设备 ID 和设备名称进行过滤，从 DeviceTwin 数据表中删除数据
 
-   - **Update Device Twin Field**: Updates a single field in the device twin table
+   - **Update Device Twin Field**: 更新 DeviceTwin 数据表中的单个字段
 
-   - **Update Device Twin Fields**: Updates multiple fields in the device twin table
+   - **Update Device Twin Fields**: 更新 DeviceTwin 数据表中的多个字段
 
-   - **Query Device Twin**: Queries a device twin from the device twin table
+   - **Query Device Twin**: 从 DeviceTwin 数据表中查询数据
 
-   - **Update Device Twin Multi**: Updates multiple columns of multiple device twins in the device twin table
-
-   - **Delete Device Twin Trans**: Inserts device twins, deletes device twins and updates device twins in a single transaction.
+   - **Update Device Twin Multi**: 更新 DeviceTwin 表中多列数据
+   - **Delete Device Twin Trans**: 在单个事务中插入、删除和更新数据
