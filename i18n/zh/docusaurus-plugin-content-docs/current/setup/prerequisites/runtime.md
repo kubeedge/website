@@ -11,7 +11,8 @@ sidebar_position: 3
 - [cri-o](#cri-o)
 - [docker](#docker-engine)
 - [Kata containers](#kata-containers)
-- [Virtlet](#Virtlet)
+- [Virtlet](#virtlet)
+- [iSulad](#isulad)
 
 ## containerd
 
@@ -289,3 +290,96 @@ Make sure no libvirt is running on the worker nodes.
     	vmruntime_vms
    	vmruntime_libvirt
    	vmruntime_virtlet
+
+## iSulad
+[iSulad](https://gitee.com/openeuler/iSulad) 是用C/C++编写的，是一个轻量级容器引擎，具有重量轻、速度快、适用于多种硬件规范和体系结构的优点,iSulad具有广阔的应用前景。  请遵循[安装指南]( https://gitee.com/openeuler/iSulad/blob/master/README.md)安装和配置iSulad.
+### Steps
+1. **安装iSulad:**
+- 在OpenEuler系统上安装
+  您可以通过添加OpenEuler的yum仓库，直接通过yum进行安装:
+   ```bash
+   $ cat << EOF > /etc/yum.repos.d/openEuler.repo
+   [openEuler]
+   baseurl=https://repo.openeuler.org/openEuler-22.03-LTS/OS/\$basearch
+   enabled=1
+   EOF
+   ```
+
+  用yum工具安装iSulad:
+   ```bash
+   $ yum install -y iSulad
+   ```
+
+- 在CentOS系统上安装
+  您可以通过运行[脚本]( https://gitee.com/openeuler/iSulad/blob/master/docs/build_docs/guide/script/install_iSulad_on_Centos_7.sh)安装iSulad.
+   ```bash
+   $ wget https://gitee.com/openeuler/iSulad/blob/master/docs/build_docs/guide/script/install_iSulad_on_Centos_7.sh
+   $ sudo chmod +x ./install_iSulad_on_Centos_7.sh
+   $ sudo ./install_iSulad_on_Centos_7.sh
+   ```
+
+- 在Ubuntu系统上安装
+  你可以通过运行[脚本]( https://gitee.com/openeuler/iSulad/blob/master/docs/build_docs/guide/script/install_iSulad_on_Ubuntu_20_04_LTS.sh)安装iSulad .
+   ```bash
+   $ wget https://gitee.com/openeuler/iSulad/blob/master/docs/build_docs/guide/script/install_iSulad_on_Ubuntu_20_04_LTS.sh
+   $ sudo chmod +x ./install_iSulad_on_Ubuntu_20_04_LTS.sh
+   $ sudo ./install_iSulad_on_Ubuntu_20_04_LTS.sh
+   ```
+  :::tip
+  iSulad从v2.1.4开始支持CRI v1接口，目前编译时默认不打开CRI v1。如果您需要使用更新版本的KubeEdge（>=v1.15.0），您需要在脚本中打开`DENABLE_CRI_API_V1`,如下所示：
+   ```bash
+   # build and install iSulad
+   cd $BUILD_DIR
+   sudo git clone https://gitee.com/openeuler/iSulad.git
+   cd iSulad
+   sudo mkdir build
+   cd build
+   sudo cmake -DENABLE_CRI_API_V1=ON ..
+   sudo make -j $(nproc)
+   sudo make install
+   ```
+  :::
+2. **iSulad配置:**
+   配置容器镜像仓库地址，例如“docker.io”或其他地址。
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....
+   "registry-mirrors": [
+    "docker.io"
+    ],
+   .....
+   ```
+
+   CNI插件配置:
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....
+   "network-plugin": "cni",
+   "cni-bin-dir": "/opt/cni/bin",
+   "cni-conf-dir": "/etc/cni/net.d",
+   .....
+   ```      
+   :::tip
+   iSulad的`websocket-server-listening-port`默认端口为10350，而KubeEdge中10350是edgecore的server默认端口，用于kubectl exec/logs/metrics等。因此，如果iSula在边缘节点上运行，则会出现端口冲突。我们需要将iSulad的`websocket-server-listening-port`端口更改为10350以外的值，例如：
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....   
+   "websocket-server-listening-port": 10455,
+   .....
+   ``` 
+   :::
+   :::tip
+   如果需要用CRI v1，则需要将参数`enable-cri-v1`设置为true，如下：
+   ```bash
+   # cat /etc/isulad/daemon.json
+   .....   
+   "enable-cri-v1": true,
+   .....
+   ```
+   :::
+3. **启动 iSulad:**
+   使用systemd service启动iSulad:
+   ```bash
+   $ systemctl enable isulad
+   $ systemctl restart isulad 
+   ```
