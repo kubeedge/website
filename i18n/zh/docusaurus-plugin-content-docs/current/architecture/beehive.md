@@ -3,147 +3,148 @@ title: 公共组件
 sidebar_position: 1
 ---
 
-## Beehive Overview
+## Beehive 概览
 
-Beehive is a messaging framework based on go-channels for communication between modules of KubeEdge. A module registered with beehive can communicate with other beehive modules if the name with which other beehive module is registered or the name of the group of the module is known.
-Beehive supports following module operations:
+Beehive 是一个基于 go-channels 的消息框架，用于 KubeEdge 模块之间的通信。注册到 beehive 的模块可以与其他 beehive 模块通信，只要知道其他 beehive 模块注册的名称或模块的组名称即可。
 
-1. Add Module
-2. Add Module to a group
-3. CleanUp (remove a module from beehive core and all groups)
+Beehive 支持以下模块操作：
 
-Beehive supports following message operations:
+1. 添加模块
+2. 将模块添加到组
+3. 清理（从 beehive 核心和所有组中删除模块）
 
-1. Send to a module/group
-2. Receive by a module
-3. Send Sync to a module/group
-4. Send Response to a sync message
+Beehive 支持以下消息操作：
 
-## Message Format
+1. 发送消息到模块/组
+2. 模块接受消息
+3. 发送同步消息到模块/组
+4. 为一个同步消息发送响应
 
-Message has 3 parts
+## 消息格式
 
-  1. Header:
-      1. ID: message ID (string)
-      2. ParentID: if it is a response to a sync message then parentID exists (string)
-      3. TimeStamp: time when message was generated (int)
-      4. Sync: flag to indicate if message is of type sync (bool)
-  2. Route:
-      1. Source: origin of message (string)
-      2. Group: the group to which the message has to be broadcasted (string)
-      3. Operation: what’s the operation on the resource (string)
-      4. Resource: the resource to operate on (string)
-  3. Content: content of the message (interface{})
+消息由三部分组成
 
-## Register Module
+  1. 头部：
+      1. ID：消息 ID（字符串）
+      2. ParentID：如果是同步消息的响应，则存在 parentID（字符串）
+      3. TimeStamp：消息生成的时间（int）
+      4. Sync：标志，指示消息是否为同步类型（bool）
+  2. 路由：
+      1. Source：消息的来源（字符串）
+      2. Group：消息要广播到的组（字符串）
+      3. Operation：在资源上执行的操作（字符串）
+      4. Resource：要操作的资源（字符串）
+  3. 内容：消息的内容（interface{}）
 
-1. On starting edgecore,  each module tries to register itself with the beehive core.
-2. Beehive core maintains a map named modules which has module name as key and implementation of module interface as value.
-3. When a module tries to register itself with beehive core, beehive core checks from already loaded modules.yaml config file to check if the module is enabled. If it is enabled, it is added in the modules map or else it is added in the disabled modules map.
+## 注册模块
 
-## Channel Context Structure Fields
+1. 在启动 edgecore 时，每个模块都会尝试向 beehive core 注册自己。
+2. Beehive core 维护一个名为 modules 的 map 对象，其中模块名称作为键，模块接口的实现作为值。
+3. 当模块尝试向 beehive core 注册自己时，beehive core 会从已加载的 modules.yaml 配置文件中检查模块是否已启用。如果已启用，则将其添加到 modules map 中，否则将其添加到 disabled modules map 中。
 
-### (_Important for understanding beehive operations_)
+## Channel Context 的结构字段
 
-1. **channels:** channels is a map of string(key) which is name of module and chan(value) of message which will used to send message to the respective module.
-2. **chsLock:** lock for channels map
-3. **typeChannels:** typeChannels is a map of string(key)which is group name and (map of string(key) to chan(value) of message ) (value) which is map of name of each module in the group to the channels of corresponding module.
-4. **typeChsLock:** lock for typeChannels map
-5. **anonChannels:** anonChannels is a map of string(parentid) to chan(value) of message which will be used for sending response for a sync message.
-6. **anonChsLock:** lock for anonChannels map
+### （_重要，用于理解 beehive 操作_）
 
-## Module Operations
+1. **channels：** channels 是一个 map，键(string 类型）是模块名称，值(message 的 chan 类型）是用于将消息发送到相应的模块的消息通道。
+2. **chsLock：** channels map 的锁
+3. **typeChannels：** typeChannels 是一个 map，键(string 类型）是组名称，值也是一个 map。作为值的 map 的键(string 类型）是组中每个模块的名称，值是对应模块的通道的 map。
+4. **typeChsLock：** typeChannels map 的锁
+5. **anonChannels：** anonChannels 是一个 map，键(string 类型）是 parentid，值是用于发送同步消息的响应的消息通道。
+6. **anonChsLock：** anonChannels map 的锁
 
-### Add Module
+## 模块操作
 
-1. Add module operation first creates a new channel of message type.
-2. Then the module name(key) and its channel(value) is added in the channels map of channel context structure.
-3. Eg: add edged module
+### 添加模块
 
-```
+1. 添加模块操作首先创建一个新的消息类型的通道。
+2. 然后将模块名称（键）和其通道（值）添加到 channel context 结构的 channels map 中。
+3. 例如：添加 edged 模块
+
+```go
 coreContext.Addmodule(“edged”)
 ```
-### Add Module to Group
+### 将模块添加到组
 
-1. addModuleGroup first gets the channel of a module from the channels map.
-2. Then the module and its channel is added in the typeChannels map where key is the group and in the value is a map in which (key is module name and value is the channel).
-3. Eg: add edged in edged group. Here 1st edged is module name and 2nd edged is the group name.
+1. addModuleGroup 首先从 channels map 中获取模块的通道。
+2. 然后将模块及其通道添加到 typeChannels map 中，其中键是组名，值是一个 map，其中键是模块名称，值是通道。
+3. 例如：将 edged 添加到 edged 组。这里的第一个 edged 是模块名称，第二个 edged 是组名称。
 
-```
+```go
 coreContext.AddModuleGroup(“edged”,”edged”)
  ```
-### CleanUp
+### 清理
 
-1. CleanUp deletes the module from channels map and deletes the module from all groups(typeChannels map).
-2. Then the channel associated with the module is closed.
-3. Eg: CleanUp edged module
+1. CleanUp 从 channels map 中删除模块，并从所有组（typeChannels map）中删除模块。
+2. 然后关闭与模块关联的通道。
+3. 例如：清理 edged 模块
 
-```
+```go
 coreContext.CleanUp(“edged”)
 ```
-## Message Operations
+## 消息操作
 
-### Send to a Module
+### 发送消息到模块
 
-1. Send gets the channel of a module from channels map.
-2. Then the message is put on the channel.
-3. Eg: send message to edged.
+1. Send 从 channels map 中获取模块的通道。
+2. 然后将消息放入通道。
+3. 例如：发送消息到 edged 模块。
 
-```
+```go
 coreContext.Send(“edged”,message)
 ```
 
-### Send to a Group
+### 发送消息到组
 
-1. SendToGroup gets all modules(map) from the typeChannels map.
-2. Then it iterates over the map and sends the message on the channels of all modules in the map.
-3. Eg: message to be sent to all modules in edged group.
+1. SendToGroup 从 typeChannels map 中获取对应组的所有模块（map）。
+2. 然后遍历 map 并将消息发送到 map 中所有模块的通道。
+3. 例如：发送消息到 edged 组中的所有模块。
 
+```go
+coreContext.SendToGroup(“edged”,message) # message 将发送到 edged 组中的所有模块。
 ```
-coreContext.SendToGroup(“edged”,message) message will be sent to all modules in edged group.
-```
-### Receive by a Module
+### 模块接受消息
 
-1. Receive gets the channel of a module from channels map.
-2. Then it waits for a message to arrive on that channel and returns the message. Error is returned if there is any.
-3. Eg: receive message for edged module
+1. Receive 从 channels map 中获取模块的通道。
+2. 然后等待消息到达该通道并返回消息。如果有错误，则返回错误。
+3. 例如：接收 edged 模块的消息
 
 ```go
 msg, err := coreContext.Receive("edged")
 ```
-### SendSync to a Module
+### 发送同步消息到模块
 
-1. SendSync takes 3 parameters, (module, message and timeout duration)
-2. SendSync first gets the channel of the module from the channels map.
-3. Then the message is put on the channel.
-4. Then a new channel of message is created and is added in anonChannels map where key is the messageID.
-5. Then it waits for the message(response) to be received on the anonChannel it created till timeout.
-6. If message is received before timeout, message is returned with nil error or else timeout error is returned.
-7. Eg: send sync to edged with timeout duration 60 seconds
+1. SendSync 接受 3 个参数（模块、消息和超时时间）。
+2. SendSync 首先从 channels map 中获取模块的通道。
+3. 然后将消息放入通道。
+4. 然后创建一个新的消息通道，并将其添加到 anonChannels map 中，其中键是 messageID。
+5. 然后等待消息（响应）在创建的 anonChannel 上接收，直到超时。
+6. 如果在超时之前接收到消息，则返回消息和 nil 错误，否则返回超时错误。
+7. 例如：发送同步消息到 edged，超时时间为 60 秒
 
 ```go
 response, err := coreContext.SendSync("edged",message,60*time.Second)
 ```
-### SendSync to a Group
+### 发送同步消息到组
 
-1. Get the list of modules from typeChannels map for the group.
-2. Create a channel of message with size equal to the number of modules in that group and put in anonChannels map as value with key as messageID.
-3. Send the message on channels of all the modules.
-4. Wait till timeout. If the length of anonChannel = no of modules in that group, check if all the messages in the channel have parentID = messageID. If no return error else return nil error.
-5. If timeout is reached,return timeout error.
-6. Eg: send sync message to edged group with timeout duration 60 seconds
+1. 从 typeChannels map 中获取该组的模块列表。
+2. 创建一个消息通道，其大小等于该组中的模块数量，并将其作为值放入 anonChannels map，键为 messageID。
+3. 将消息发送到所有模块的通道。
+4. 每间隔一段时间(默认是 20 毫秒)，检查 anonChannel 的长度是否等于该组中的模块数量，等于则检查通道中的所有消息是否具有 parentID = messageID。如果没有，则返回错误，否则返回 nil。
+5. 如果达到超时，则返回超时错误。
+6. 例如：发送同步消息到 edged 组，超时时间为 60 秒
 
 ```go
 err := coreContext.SendToGroupSync("edged",message,60*time.Second)
 ```
 
-### SendResp to a sync message
+### 为一个同步消息发送响应
 
-1. SendResp is used to send response for a sync message.
-2. The messageID for which response is sent needs to be in the parentID of the response message.
-3. When SendResp is called, it checks if for the parentID of response message , there exists a channel is anonChannels.
-4. If channel exists, message(response) is sent on that channel.
-5. Or else error is logged.
+1. SendResp 用于发送同步消息的响应。
+2. 响应消息的 parentID 需要是响应对应的接受消息的 messageID。
+3. 当调用 SendResp 时，它会检查响应消息的 parentID 是否存在于 anonChannels 中。
+4. 如果通道存在，则在该通道上发送消息（响应）。
+5. 否则记录错误。
 ```go
 coreContext.SendResp(respMessage)
 ```

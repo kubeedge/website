@@ -3,22 +3,22 @@ title: 部署高可用的CloudCore
 sidebar_position: 6
 ---
 
-## The HA of CloudCore(deployed in k8s cluster)
+## CloudCore 高可用部署（K8s集群中）
 
-**Note:**
-There are several ways to achieve the HA of cloudcore, for example, ingress, keepalived etc. Here we adopt the keepalived. The HA of cloudcore according to ingress will be achieved later.
+**注意：**
+实现CloudCore的高可用有多种方式，例如ingress、keepalived等。这次我们采用keepalived方式，而基于ingress的CloudCore高可用将在后续实现。
 
-## Determine the virtual IP of CloudCore
+## 确定CloudCore的虚拟IP
 
-Determine a VIP that the CloudCore service exposed to the edge nodes. Here we recommend `keepalived` to do that. You had better directly schedule pods to specific number of nodes by `nodeSelector` when using  `keepalived`. And you have  to install `keepalived` in each of nodes where CloudCore runs. The configuration of `keepalived` is shown in the end. Here suppose the VIP is 10.10.102.242.
+确认并设置CloudCore服务向边缘节点暴露的虚拟IP（VIP），这里我们推荐使用`keepalived`来实现。在使用`keepalived`时，最好通过`nodeSelector`直接将pod调度到特定数量的节点上，并且需要在每个运行CloudCore的节点上安装`keepalived`。`keepalived`的配置将在最后展示。这里假设VIP是 `10.10.102.242`
 
-The use of `nodeSelector` is as follow:
+`nodeSelector`的使用方式如下：
 
 ```bash
-kubectl label nodes [nodename] [key]=[value]  # label the nodes where the cloudcore will run
+kubectl label nodes [nodename] [key]=[value]  # 将有CloudCore运行的节点打上相应的标签
 ```
 
-modify the term of `nodeselector`:
+修改`nodeselector`的配置：
 
 ```yaml
 apiVersion: apps/v1
@@ -28,28 +28,28 @@ metadata:
 spec:
   template:
     spec:
-      nodeSelector: # configure the nodeSelector here!
+      nodeSelector: # 在这里配置nodeSelector！
         [key]: [value]
 ```
 
-## Create k8s resources
+## 创建k8s资源
 
-The manifests and scripts in `github.com/kubeedge/kubeedge/build/cloud/ha` will be used, so place these files to somewhere you can kubectl with (You have to make some modifications to manifests/scrips to suit your environment.)
+`github.com/kubeedge/kubeedge/build/cloud/ha`中的manifests和scripts被用于HA的构建，因此需要将这些文件放到kubectl可以访问的位置（您需要对manifests/scrips进行一些修改以适应您的环境）。
 
-First, ensure your k8s cluster can pull cloudcore image. If the image not exist. We can make one, and push to your registry.
+首先，确保您的k8s集群可以拉取cloudcore镜像。如果镜像不存在，我们可以通过以下命令构建一个 cloudcore 镜像，然后推送到您自己的镜像仓库。
 
 ```bash
 cd $GOPATH/src/github.com/kubeedge/kubeedge
 make image WHAT=cloudcore
 ```
 
-We create k8s resources from the manifests in name order. Before creating, **check the content of each manifest to make sure it meets your environment.**
+我们按照名称顺序从manifests中创建k8s资源。在创建之前，**检查每个manifest的内容，确保其适配您的环境**。
 
-**Note:** Now the follow manifests don't support `kubectl logs` command yet. If need, you have to make more configuration manually.
+**注意：** 目前下面的manifests还不支持`kubectl logs`命令。如果需要，您需要手动修改更多配置。·
 
 ### 02-ha-configmap.yaml
 
-Configure the VIP address of CloudCore which is exposed to the edge nodes in the `advertiseAddress`, which will be added to SANs in cert of CloudCore. For example:
+在`advertiseAddress`中配置CloudCore暴露给边缘节点的VIP地址，该VIP地址将被添加到CloudCore证书的SAN中。例如：
 
 ```yaml
 modules:
@@ -58,13 +58,13 @@ modules:
     - 10.10.102.242
 ```
 
-**Note:** If you want to reset the CloudCore, run this before creating k8s resources:
+**注意**：如果您想重置CloudCore，请在创建k8s资源之前执行以下命令：
 
 ```bash
 kubectl delete namespace kubeedge
 ```
 
-Then create k8s resources:
+再创建k8s资源：
 
 ```shell
 cd build/cloud/ha
@@ -73,7 +73,7 @@ for resource in $(ls *.yaml); do kubectl create -f $resource; done
 
 ## keepalived
 
-The `keepalived` configuration we recommend is as following. You can adjust it according to your needs.
+我们推荐的`keepalived`配置如下。您可以根据自己的需求进行调整。
 
 **keepalived.conf:**
 
@@ -88,7 +88,7 @@ global_defs {
 }
 # CloudCore
 vrrp_script CloudCore_check {
-  script "/etc/keepalived/check_cloudcore.sh" # the script for health check
+  script "/etc/keepalived/check_cloudcore.sh" # 用于健康检查的脚本
   interval 2
   weight 2
   fall 2
@@ -96,7 +96,7 @@ vrrp_script CloudCore_check {
 }
 vrrp_instance CloudCore {
   state MASTER
-  interface eth0 # based on your host
+  interface eth0 # 根据您的主机修改
   virtual_router_id 167
   priority 100
   advert_int 1
@@ -124,7 +124,7 @@ global_defs {
 }
 # CloudCore
 vrrp_script CloudCore_check {
-  script "/etc/keepalived/check_cloudcore.sh" # the script for health check
+  script "/etc/keepalived/check_cloudcore.sh" # 用于健康检查的脚本
   interval 2
   weight 2
   fall 2
@@ -132,7 +132,7 @@ vrrp_script CloudCore_check {
 }
 vrrp_instance CloudCore {
   state BACKUP
-  interface eth0 # based on your host
+  interface eth0 # 根据您的主机修改
   virtual_router_id 167
   priority 99
   advert_int 1
