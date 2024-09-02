@@ -83,7 +83,7 @@ sidebar_position: 3
 
 2. Update `edgecore` configuration to enable **edgeStream**.
 
-    This modification needs to be done all edge system where `edgecore` runs to update `/etc/kubeedge/config/cloudcore.yaml`.
+    This modification needs to be done all edge system where `edgecore` runs to update `/etc/kubeedge/config/edgecore.yaml`.
     Make sure the `server` IP address to the cloudcore IP (the same as $CLOUDCOREIPS).
 
     ```yaml
