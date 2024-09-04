@@ -3,67 +3,68 @@ title: Sedna
 sidebar_position: 1
 ---
 
-## What is Sedna?
+## Senda 是什么？
 
-Sedna is an edge-cloud synergy AI project incubated in KubeEdge SIG AI. Benefiting from the edge-cloud synergy capabilities provided by KubeEdge, Sedna can implement across edge-cloud collaborative training and collaborative inference capabilities, such as joint inference, incremental learning, federated learning, and lifelong learning. Sedna supports popular AI frameworks, such as TensorFlow, Pytorch, PaddlePaddle, MindSpore.
+Senda 是由 KubeEdge SIG AI 孵化的边云协同 AI 项目。受益于 KubeEdge 提供的边云协同能力，Sedna 可以实现跨越云和边的协同训练和协同推理能力，如联合推理、增量学习、联邦学习和终身学习。Sedna 支持流行的 AI 框架，如 TensorFlow、Pytorch、PaddlePaddle、MindSpore。
 
-Sedna can simply enable edge-cloud synergy capabilities to existing training and inference scripts, bringing the benefits of reducing costs, improving model performance, and protecting data privacy.
-
-
-## Features
-
-Sedna has the following features：
-
-* Provide the edge-cloud synergy AI framework.
-  * Provide dataset and model management across edge-cloud, helping developers quickly implement synergy AI applications.
-
-* Provide edge-cloud synergy training and inference frameworks.
-  * Joint inference: under the condition of limited resources on the edge, difficult inference tasks are offloaded to the cloud to improve the overall performance, keeping the throughput.
-  * Incremental training: For small samples and non-iid data on the edge, models can be adaptively optimized over time on the cloud or edge.
-  * Federated learning: For those scenarios that the data being too large, or unwilling to migrate raw data to the cloud, or high privacy protection requirements, models are trained at the edge and parameters are aggregated on the cloud to resolve data silos effectively.
-  * Lifelong learning: Confronted with the challenge of heterogeneous data distributions in complex scenarios and small samples on the edge, the edge-cloud synergy lifelong learning:
-    * leverages the cloud knowledge base which empowers the scheme with memory ability, which helps to continuously learn and accumulate historical knowledge to overcome the catastrophic forgetting challenge.
-    * is essentially the combination of another two learning schemes, i.e., multi-task learning and incremental learning, so that it can learn unseen tasks with shared knowledge among various scenarios over time.
-  * etc..
-
-* Compatibility
-  * Compatible with mainstream AI frameworks such as TensorFlow, Pytorch, PaddlePaddle, and MindSpore.
-  * Provides extended interfaces for developers to quickly integrate third-party algorithms, and some necessary algorithms for edge-cloud synergy have been preset, such as hard sample discovering, aggregation algorithm.
+Senda 可以简单地将边云协同能力应用到现有的训练和推理脚本中，从而降低成本、提高模型性能和保护数据隐私。
 
 
-## Architecture
-#### Sedna's edge-cloud synergy is implemented based on the following capabilities provided by KubeEdge:
-* Unified orchestration of across edge-cloud applications.
-* Router: across edge-cloud message channel in management plane.
-* EdgeMesh: across edge-cloud microservice discovery and traffic governance in data plane.
+## 特性
+
+Sedna 具有以下特性：
+
+* 提供边云协同 AI 框架。
+  * 提供跨云和边的数据集和模型管理功能，帮助开发者快速实现协同 AI 应用。
+
+* 提供边云协同的训练和推理框架。
+  * 联合推理：在边缘节点资源有限的情况下，将困难的推理任务加载到云端计算，以提高整体性能，保持吞吐量。
+  * 增量训练：针对边缘小样本和非独立同分布数据，模型可以在云端或边缘端上随时间自适应优化。
+  * 联邦学习：对于数据量过大、不愿意迁移原始数据到云端、或者对隐私保护要求高的场景，让模型在边缘训练，参数在云端聚合，从而有效解决数据孤岛问题。
+  * 终身学习：面对复杂场景中异构数据分布和边缘端小样本的挑战，边云协同终身学习：
+    * 利用云端知识库，赋予方案记忆能力，帮助持续学习和积累历史知识，以克服灾难性遗忘的挑战。
+    * 本质上是另外两种学习方案的结合，即多任务学习和增量学习，从而能够随着时间的推移在不同场景中通过共享知识学习未见过的任务
+  * 等等。
+
+* 兼容性
+  * 兼容 TensorFlow、Pytorch、PaddlePaddle、MindSpore 等主流 AI 框架。
+  * 为开发者提供扩展接口，快速集成第三方算法，预设了一些边云协同所需的算法，如难样本发现、聚合算法等。
+
+
+## 架构
+#### Sedna 的边云协同是基于 KubeEdge 提供的以下能力实现的：
+* 跨越云边的的应用统一编排。
+* Router：在管控面，提供跨越云边的消息通道。
+* EdgeMesh：在数据面，提供跨越云边的微服务发现和流量治理。
 
 
 
 ![sedna_arch](/img/subproject/sedna_arch.png)
 
 
-### Component
-Sedna consists of the following components：
+### 组件
+Sedna 包括以下组件：
 
 #### GlobalManager
-* Unified edge-cloud synergy AI task management
-* Cross edge-cloud synergy management and collaboration
-* Central Configuration Management
+* 统一的边云协同 AI 任务管理
+* 跨云边的协同管理和协作
+* 中央配置管理
 
 #### LocalController
-* Local process control of edge-cloud synergy AI tasks
-* Local general management: model, dataset, and status synchronization
+* 边云协同 AI 任务的本地流程控制
+* 本地通用管理：模型、数据集和状态同步
 
 
 #### Worker
-* Do inference or training, based on existing ML framework.
-* Launch on demand, imagine they are docker containers.
-* Different workers for different features.
-* Could run on edge or cloud.
+* 根据现有的 ML 框架进行推理或训练。
+* 按需启动，可以想象它们是 docker 容器。
+* 不同的工作节点用于不同的特性。
+* 可以在边缘或云上运行。
 
 
 #### Lib
-* Expose the Edge AI features to applications, i.e. training or inference programs.
+* 暴露边缘 AI 特性给应用，即训练或推理程序。
 
 
-More examples and description can be found from [Sedna documents](https://sedna.readthedocs.io/en/latest/)
+更多示例和描述可以在 [Sedna 文档](https://sedna.readthedocs.io/en/latest/) 中找到。
+

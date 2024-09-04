@@ -45,11 +45,11 @@ More details on Ianvs components:
     - System constraints or budgets
       - End-to-end cross-node
       - Per node
-1. Test-case Controller, which includes but is not limited to the following components
+2. Test-case Controller, which includes but is not limited to the following components
   - Templates of common distributed-synergy-AI paradigms, which can help the developer to prepare their test case without too much effort. Such paradigms include edge-cloud synergy joint inference, incremental learning, federated learning, and lifelong learning.
   - Simulation tools. Develop simulated test environments for test cases
   - Other tools to assist test-case generation. For instance, prepare test cases based on a given range of hyper-parameters.
-1. Story Manager, which includes but is not limited to the following components
+3. Story Manager, which includes but is not limited to the following components
   - Leaderboard generation
   - Test report generation
 

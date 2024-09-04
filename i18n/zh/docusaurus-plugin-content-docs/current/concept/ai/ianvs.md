@@ -5,59 +5,58 @@ sidebar_position: 2
 
 # Ianvs
 
-Ianvs is a distributed synergy AI benchmarking project incubated in KubeEdge SIG AI. Ianvs aims to test the performance of distributed synergy AI solutions following recognized standards, in order to facilitate more efficient and effective development. More detailedly, Ianvs prepares not only test cases with datasets and corresponding algorithms, but also benchmarking tools including simulation and hyper-parameter searching. Ianvs also revealing best practices for developers and end users with presentation tools including leaderboards and test reports.
+Ianvs 是一个由 KubeEdge SIG AI 孵化的分布式协同 AI 基准测试项目。 Ianvs 旨在根据公认的标准测试分布式协同 AI 解决方案的性能，以促进相关工具更快速和有效的发展。具体来说，Ianvs 不仅准备了包含数据集和相应算法的测试用例，还包括模拟和超参数搜索等基准测试工具。Ianvs 还通过排行榜和测试报告等展示工具，为开发人员和最终用户展示最佳实践。
 
-## Scope
-The distributed synergy AI benchmarking Ianvs aims to test the performance of distributed synergy AI solutions following recognized standards, in order to facilitate more efficient and effective development.
+## 范围
+分布式协同 AI 基准测试 Ianvs 旨在根据公认的标准，测试分布式协同 AI 解决方案的性能，以促进相关工具更快速和有效的发展。
 
-The scope of Ianvs includes
-- Providing end-to-end benchmark toolkits across devices, edge nodes and cloud nodes based on typical distributed-synergy AI paradigms and applications.
-  - Tools to manage test environment. For example, it would be necessary to support the CRUD (Create, Read, Update and Delete) actions in test environments. Elements of such test environments include algorithm-wise and system-wise configuration.
-  - Tools to control test cases. Typical examples include paradigm templates, simulation tools, and hyper-parameter-based assistant tools.
-  - Tools to manage benchmark presentation, e.g., leaderboard and test report generation.
-- Cooperation with other organizations or communities, e.g., in KubeEdge SIG AI, to establish comprehensive benchmarks and developed related applications, which can include but are not limited to
-  - Dataset collection, re-organization, and publication
-  - Formalized specifications, e.g., standards
-  - Holding competitions or coding events, e.g., open source promotion plan
-  - Maintaining solution leaderboards or certifications for commercial usage
+Ianvs 的职责范围包括：
+- 基于典型的分布式协同 AI 范式和应用程序，提供跨设备且覆盖边缘节点和云节点的端到端基准工具包。
+  - 用于管理测试环境的工具。例如，支持测试环境中的算法和系统配置的 CRUD（创建、读取、更新和删除）操作。
+  - 用于控制测试用例的工具。典型示例包括范式模板、模拟工具和基于超参数的辅助工具。
+  - 用于管理基准结果展示的工具，例如排行榜和测试报告生成。
+- 与其他组织或社区合作，例如在 KubeEdge SIG AI 中，建立全面的基准，并开发相关应用程序，这可能包括但不限于
+  - 数据集收集、重新组织和发布
+  - 正式规范，例如标准
+  - 举办比赛或编码活动，例如开源推广计划
+  - 为商业用途维护的解决方案排行榜或认证
 
 
-## Architecture
-The architectures and related concepts are shown in the below figure. The ianvs is designed to run within a single node. Critical components include
-- Test Environment Manager: the CRUD of test environments serving for global usage
-- Test Case Controller: control the runtime behavior of test cases like instance generation and vanish
-  - Generation Assistant: assist users to generate test cases based on certain rules or constraints, e.g., the range of parameters
-  - Simulation Controller: control the simulation process of edge-cloud synergy AI, including the instance generation and vanishment of simulation containers
-- Story Manager: the output management and presentation of the test case, e.g., leaderboards
+## 架构
+下图显示了架构和相关概念。Ianvs 被设计为在单个节点内运行。关键组件包括
+- Test Environment Manager：用于全局使用的测试环境的创建、读取、更新和删除 (CRUD)
+- Test Case Controller：控制测试用例的运行时行为，如实例生成和删除
+  - Generation Assistant：帮助用户根据某些规则或约束生成测试用例，例如参数范围
+  - Simulation Controller：控制云边协同 AI 工具的模拟过程，包括模拟容器的实例生成和消失
+- Story Manager：测试用例的输出管理和展示，例如排行榜
 
 
 ![](/img/subproject/ianvs_arch.png)
 
-More details on Ianvs components:
-1. Test-Environment Manager supports the CRUD of Test environments, which basically includes
-  - Algorithm-wise configuration
-    - Public datasets
-    - Pre-processing algorithms
-    - Feature engineering algorithms
-    - Post-processing algorithms like metric computation
-  - System-wise configuration
-    - Overall architecture
-    - System constraints or budgets
-      - End-to-end cross-node
-      - Per node
-1. Test-case Controller, which includes but is not limited to the following components
-  - Templates of common distributed-synergy-AI paradigms, which can help the developer to prepare their test case without too much effort. Such paradigms include edge-cloud synergy joint inference, incremental learning, federated learning, and lifelong learning.
-  - Simulation tools. Develop simulated test environments for test cases
-  - Other tools to assist test-case generation. For instance, prepare test cases based on a given range of hyper-parameters.
-1. Story Manager, which includes but is not limited to the following components
-  - Leaderboard generation
-  - Test report generation
+Ianvs 组件的更多细节：
+1. 测试环境管理器支持测试环境的 CRUD，包括
+  - 算法配置
+    - 公共数据集
+    - 预处理算法
+    - 特征工程算法
+    - 后处理算法，如指标计算
+  - 系统配置
+    - 整体架构
+    - 系统约束或预算
+      - 端到端跨节点
+      - 每个节点
+2. 测试用例控制器，包括但不限于以下组件
+  - 常见分布式协同 AI 范式的模板，可以帮助开发人员准备他们的测试用例而不需要太多的工作。这些范式包括云边协同推理、增量学习、联邦学习和终身学习。
+  - 模拟工具。为测试用例开发的模拟测试环境
+  - 其他辅助测试用例生成的工具。例如，根据给定的超参数范围准备测试用例。
+3. 故事管理器，包括但不限于以下组件
+  - 排行榜生成
+  - 测试报告生成
 
 
-## Guides
+## 指南
 
-### Documents
+### 文档
 
-Documentation is located on [readthedoc.io](https://ianvs.readthedocs.io/). These documents can help you understand Ianvs better.
-
+文档位于 [readthedoc.io](https://ianvs.readthedocs.io/)。这些文档可以帮助您更好地了解 Ianvs。
 
