@@ -93,12 +93,13 @@ vim /etc/kubeedge/config/cloudcore.yaml
 
 #### 节点 - 自动注册
 
-如果 edgecore 的[配置](#创建并设置Edgecore配置文件) 中的`modules.edged.registerNode` 设置为true，Edge节点则会自动注册。
+如果 edgecore 的[配置](#创建并设置Edgecore配置文件) 中的`modules.edged.tailoredKubeletConfig.registerNode` 设置为true，Edge节点则会自动注册。
 
 ```yaml
 modules:
   edged:
-    registerNode: true
+    tailoredKubeletConfig:
+      registerNode: true
 ```
 
 #### 节点 - 手动注册

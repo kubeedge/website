@@ -60,7 +60,7 @@ Message has 3 parts
 2. Then the module name(key) and its channel(value) is added in the channels map of channel context structure.
 3. Eg: add edged module
 
-```
+```go
 coreContext.Addmodule(“edged”)
 ```
 ### Add Module to Group
@@ -69,7 +69,7 @@ coreContext.Addmodule(“edged”)
 2. Then the module and its channel is added in the typeChannels map where key is the group and in the value is a map in which (key is module name and value is the channel).
 3. Eg: add edged in edged group. Here 1st edged is module name and 2nd edged is the group name.
 
-```
+```go
 coreContext.AddModuleGroup(“edged”,”edged”)
  ```
 ### CleanUp
@@ -78,7 +78,7 @@ coreContext.AddModuleGroup(“edged”,”edged”)
 2. Then the channel associated with the module is closed.
 3. Eg: CleanUp edged module
 
-```
+```go
 coreContext.CleanUp(“edged”)
 ```
 ## Message Operations
@@ -89,7 +89,7 @@ coreContext.CleanUp(“edged”)
 2. Then the message is put on the channel.
 3. Eg: send message to edged.
 
-```
+```go
 coreContext.Send(“edged”,message)
 ```
 
@@ -99,8 +99,8 @@ coreContext.Send(“edged”,message)
 2. Then it iterates over the map and sends the message on the channels of all modules in the map.
 3. Eg: message to be sent to all modules in edged group.
 
-```
-coreContext.SendToGroup(“edged”,message) message will be sent to all modules in edged group.
+```go
+coreContext.SendToGroup(“edged”,message) # message will be sent to all modules in edged group.
 ```
 ### Receive by a Module
 
@@ -129,7 +129,7 @@ response, err := coreContext.SendSync("edged",message,60*time.Second)
 1. Get the list of modules from typeChannels map for the group.
 2. Create a channel of message with size equal to the number of modules in that group and put in anonChannels map as value with key as messageID.
 3. Send the message on channels of all the modules.
-4. Wait till timeout. If the length of anonChannel = no of modules in that group, check if all the messages in the channel have parentID = messageID. If no return error else return nil error.
+4. At regular intervals (default is 20 milliseconds), check if the length of anonChannel = no of modules in that group. If they are equal, check if all messages in the channel have parentID = messageID. If no return error else return nil error.
 5. If timeout is reached,return timeout error.
 6. Eg: send sync message to edged group with timeout duration 60 seconds
 

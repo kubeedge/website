@@ -14,7 +14,7 @@ KubeEdge 的优势主要包括：
 
 - **边缘计算**
 
-  借助在 Edge 上运行的业务逻辑，可以让本地生成的数据，进行大量数据处理操作并对其进行保护。这样可以减少边缘和云之间的网络带宽需求和消耗，提高响应速度，降低成本并保护客户的数据隐私。
+  借助在 Edge 上运行业务应用，可以在产生数据的边端存储和处理大量数据。这样可以减少边缘和云之间的网络带宽需求和消耗，提高响应速度，降低成本并保护客户的数据隐私。
 
 - **简化开发**
 
@@ -39,6 +39,8 @@ KubeEdge 由以下组件组成：
 - **[EventBus](architecture/edge/eventbus):** 一个与 MQTT 服务器（mosquitto）进行交互的 MQTT 客户端，为其他组件提供发布和订阅功能。
 - **[DeviceTwin](architecture/edge/devicetwin):** 负责存储设备状态并将设备状态同步到云端。它还为应用程序提供查询接口。
 - **[MetaManager](architecture/edge/metamanager):** Edged 端和 Edgehub 端之间的消息处理器。它还负责将元数据存储到轻量级数据库（SQLite）或从轻量级数据库（SQLite）检索元数据。
+- **[ServiceBus](./architecture/edge/servicebus)**: 用于与 HTTP 服务器 （REST） 交互的 HTTP 客户端，为云组件提供 HTTP 客户端功能，以访问在边缘运行的 HTTP 服务器。
+- **[DeviceController](./architecture/cloud/device_controller)**: 一个扩展的 kubernetes 控制器，用于管理边缘 IoT 设备，以便设备元数据/状态数据可以在 edge 和 cloud 之间同步。
 
 ## 架构
 

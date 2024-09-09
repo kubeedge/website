@@ -92,12 +92,13 @@ Node registration can be completed in two ways:
 
 #### Node - Automatic Registration
 
-Edge node can be registered automatically if the value of field `modules.edged.registerNode` in edgecore's [config](#create-and-set-edgecore-config-file) is set to true.
+Edge node can be registered automatically if the value of field `modules.edged.tailoredKubeletConfig.registerNode` in edgecore's [config](#create-and-set-edgecore-config-file) is set to true.
 
 ```yaml
 modules:
   edged:
-    registerNode: true
+    tailoredKubeletConfig:
+      registerNode: true
 ```
 
 #### Node - Manual Registration
