@@ -301,7 +301,7 @@ The following are the operations that can be performed on this data :
 
    - **Update Device Attr Field**: Updates a single field in the device attribute table
 
-   - **Update Device Attr Fields**: Updates multiple fields in the device attribute table
+   - **Update Device Attr Multi Fields**: Updates multiple fields in the device attribute table
 
    - **Query Device Attr**: Queries a device attribute from the device attribute table
 

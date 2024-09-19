@@ -2,67 +2,51 @@
 title: MetaManager
 sidebar_position: 5
 ---
-## Overview
-MetaManager is the message processor between edged and edgehub.
-It's also responsible for storing/retrieving metadata to/from a lightweight database(SQLite).
+## 概述
+MetaManager 是 edged 和 edgehub 之间的消息处理器。它还负责在轻量级数据库（SQLite）中存储/检索元数据。
 
-Metamanager receives different types of messages based on the operations listed below :
-  - Insert
-  - Update
-  - Delete
-  - Query
-  - Response
-  - NodeConnection
-  - MetaSync
+Metamanager 有下列操作：
+  - 插入
+  - 更新
+  - 删除
+  - 查询
+  - 响应
+  - 节点连接
+  - 元数据同步
 
-## Insert Operation
-`Insert` operation messages are received via the cloud when new objects are created.
-An example could be a new user application pod created/deployed through the cloud.
+## 插入
+
+创建新对象时，将通过云接收 `插入` 操作消息。例如，通过云创建/部署的新用户应用程序 Pod。
 
 ![Insert Operation](/img/metamanager/meta-insert.png)
 
-The insert operation request is received via the cloud by edgehub. It dispatches the
-request to the metamanager which saves this message in the local database.
-metamanager then sends an asynchronous message to edged. edged processes the insert request e,g.
-by starting the pod and populates the response in the message.
-metamanager inspects the message, extracts the response and sends it back to edged
-which sends it back to the cloud.
+edgehub 通过云接收 `插入` 操作请求。它将请求分派给 MetaManager，其将此消息保存在本地数据库中。然后，MetaManager 向 edged 发送异步消息。edged 处理插入请求，例如通过启动 pod 并在消息中填充响应。MetaManager 检查消息，提取响应并将其发送回 Edged，Edge 将其发送回云端。
 
-## Update Operation
-`Update` operations can happen on objects at the cloud/edge.
+## 更新
+`更新` 操作可以发生在云/边缘的对象上。
 
-The update message flow is similar to an insert operation. Additionally, metamanager checks if the resource being updated has changed locally.
-If there is a delta, only then the update is stored locally and the message is
-passed to edged and response is sent back to the cloud.
+更新消息流类似于插入操作。此外，metamanager 会检查正在更新的资源是否已在本地更改。只有存在差异的时候，更新的数据才会被存储到本地，并且更新消息被传递给 edged ，响应被返回给云端。
 
 ![Update Operation](/img/metamanager/meta-update.png)
 
-## Delete Operation
-`Delete` operations are triggered when objects like pods are deleted from the
-cloud.
+## 删除
+当云端有对象（例如 Pod）被`删除`时，删除操作会被触发
 
 ![Delete Operation](/img/metamanager/meta-delete.png)
 
-## Query Operation
-`Query` operations let you query for metadata either locally at the edge or for some remote resources like config maps/secrets from the cloud. Edged queries this
-metadata from metamanager which further handles local/remote query processing and
-returns the response back to edged. A Message resource can be broken into 3 parts
-(resKey,resType,resId) based on separator ‘/’.
+## 查询
+`查询操作` 使您可以在边缘本地查询元数据，也可以从云中查询一些远程资源（如 maps/secrets）。Edged 从 metamanager 查询此元数据，metamanager 进一步处理本地/远程查询处理，并将响应返回给 edged。Message 资源可以根据分隔符 '/' 分为 3 个部分 （resKey、resType、resId）。
 
 ![Query Operation](/img/metamanager/meta-query.png)
 
-## Response Operation
-`Responses` are returned for any operations performed at the cloud/edge. Previous operations
-showed the response flow either from the cloud or locally at the edge.
+## 响应
+对于在云/边缘执行的任何操作，都会返回 `响应`。上述的操作显示了来自云或本地边缘的响应流。
 
-## NodeConnection Operation
-`NodeConnection` operation messages are received from edgeHub to give information about the cloud connection status. metamanager tracks this state in-memory and uses it in certain operations
-like remote query to the cloud.
+## 节点连接
+从 edgeHub 接收 `节点连接` 操作消息，提供有关云连接状态的信息。MetaManager 在内存中跟踪此状态，并将其用于某些操作，例如向云执行远程查询。
 
-## MetaSync Operation
-`MetaSync` operation messages are periodically sent by metamanager to sync the status of the
-pods running on the edge node. The sync interval is configurable in `conf/edge.yaml`
-( defaults to `60` seconds ).
+## 元数据同步
+`元数据同步` 操作消息由 metamanager 定期发送，以同步在边缘节点上运行的 pod 的状态。同步间隔可在 conf/edgecore.yaml 中配置（默认为 60 秒）。
 
 ```yaml
 meta:
