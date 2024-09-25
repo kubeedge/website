@@ -456,3 +456,68 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 ### 节点
 
 `keadm reset` 将停止 `edgecore` ，并且不会卸载/删除任何先决条件。
+
+
+## 离线安装
+
+在一些应用场景中，用户需要在隔离互联网的环境中进行 KubeEdge 的组件安装。Keadm 在命令行参数中并没有类似于 offline-mode 这样的参数，但只要在环境中预先加载匹配的镜像，也能实现离线安装的目的。
+
+### 云侧离线安装
+
+`keadm init` 在安装过程中会在以下情况下对网络资源进行请求；
+
+1. 未指定版本信息，或者错误指定版本信息时， 会访问 [lastversion](https://kubeedge.io/latestversion) 获取最新 KubeEdge 版本
+2. 经由 Helm 安装的 Chart ，根据配置设置会依赖 [kubeedge/cloudcore](https://hub.docker.com/r/kubeedge/cloudcore)、[kubeedge/iptables-manager](https://hub.docker.com/r/kubeedge/iptables-manager)和 [kubeedge/controller-manager](https://hub.docker.com/r/kubeedge/controller-manager) 镜像，默认配置下仅依赖 cloudcore 镜像。
+
+**注意**: Helm Chart 被以 go embed 方式打包到 keadm 二进制文件中，所以不需要额外的网络请求。
+
+只要正确地设置了 KubeEdge 的版本信息，对于 lastversion 的请求就不会发生，例如
+
+```shell
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=1.18.0 --kube-config=/root/.kube/config
+```
+
+在可联网主机，通过工具将镜像拉取和导出，具体的工具根据您自身的情况选择，例如 `docker`，`crictl`，`skopeo` 等。
+
+以下是以 `docker` 为工具，`cloudcore` 镜像为目标进行操作，其他镜像类似：
+
+```shell
+docker pull kubeedge/cloudcore:v1.18.0
+docker save -o cloudcore.tar kubeedge/cloudcore:v1.18.0
+```
+
+离线环境下镜像的导入要不然直接导入到工作节点上，要不然导入是离线环境中私有镜像中心，前者需要开发者保证部署服务所在节点是导入镜像的节点，后者则需要在 `keadm init` 时通过配置文件或者命令行参数的形式替换服务的镜像地址。
+
+假设 cloudcore 镜像在私有镜像中心的地址为 `self-registry.io/kubeedge/cloudcore:v1.18.0`，通过 `--set` 命令行参数在初始化进行替换，如下示例：
+
+```shell
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=1.18.0 --set cloudCore.image.repository=self-registry.io/kubeedge/cloudcore --kube-config=/root/.kube/config
+```
+
+### 边缘侧离线安装
+
+如前所言，`keadm join` 执行过程中会下载 [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package)，并从中提取 `edgecore` 二进制文件。在离线环境中，用户需要将 installation-package 镜像导入到待加入集群的边缘节点上，根据边缘节点的容器运行时选择合适的工具进行导入，例如 docker 使用 `docker` 命令，containerd 使用 `ctr` 命令等，以下是以 `docker` 为例的操作：
+
+```shell
+# 在有网络的环境中执行
+docker pull kubeedge/installation-package:v1.18.0
+docker save -o installation-package.tar kubeedge/installation-package:v1.18.0
+# 将 installation-package.tar 拷贝到边缘节点，然后导入节点中
+docker load -i installation-package.tar
+```
+
+如果使用 nerdctl 作为命令行工具的话，需要注意 nerdctl 支持 namespace 的概念，所以在导入镜像时需要指定 `k8s.io` namespace，例如：
+
+```shell
+nerdctl --namespace k8s.io load -i installation-package.tar
+```
+
+除了 `installation-package` 镜像外，默认情况下，在边缘节点还需要导入 [eclipse-mosquitto](https://hub.docker.com/_/eclipse-mosquitto) 镜像，原因是 `keadm init` 安装的 Helm Chart 中包含了一个 Mosquitto 的 DaemonSet 部署，用于在边缘节点上运行 MQTT 代理服务，以下为 docker 例子的操作:
+
+```shell
+# 在有网络的环境中执行
+docker pull eclipse-mosquitto:1.6.15
+docker save -o eclipse-mosquitto.tar eclipse-mosquitto:1.6.15
+# 将 eclipse-mosquitto.tar 拷贝到边缘节点，然后导入节点中
+docker load -i eclipse-mosquitto.tar
+```

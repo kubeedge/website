@@ -549,3 +549,62 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
 ### Node
 
 `keadm reset` or `keadm deprecated reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.
+
+## offline installation
+
+In some case, user need to install KubeEdge components in an isolated environment without internet access. Keadm does not have a command line parameter like `offline-mode`, but as long as the matching images are preloaded in the environment, offline installation can also be achieved.
+
+### Cloud Side Offline Installation
+
+`keadm init` would make network requests in the following cases:
+1. When no version information is specified, or incorrect version information is specified, it will access [lastversion](https://kubeedge.io/latestversion) to get the latest KubeEdge version.
+2. Charts installed by Helm, depending on the configuration settings, will rely on [kubeedge/cloudcore](https://hub.docker.com/r/kubeedge/cloudcore), [kubeedge/iptables-manager](https://hub.docker.com/r/kubeedge/iptables-manager) and [kubeedge/controller-manager](https://hub.docker.com/r/kubeedge/controller-manager) images. By default, only the cloudcore image is required.
+
+**Note**: Helm Chart is packaged into keadm binary using go embed, so no extra network request is needed.
+
+if the version information is correctly set, the request to lastversion will not happen, for example
+
+```shell
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=1.18.0 --kube-config=/root/.kube/config
+```
+In the host with internet access, pull and save the images with tools like `docker`, `crictl`, `skopeo`, etc. Here is an example using `docker`:
+
+```shell
+docker pull kubeedge/cloudcore:v1.18.0
+docker save -o cloudcore.tar kubeedge/cloudcore:v1.18.0
+```
+The image can be imported directly into the working node in the offline environment, or imported into the private image center in the offline environment. The former requires the developer to ensure that the node where the deployment service is located is the node where the image is imported, and the latter needs to replace the image address of pod in the form of a configuration file or command line parameter when `keadm init` is executed.
+
+if the cloudcore image is in the private image center, the address is `self-registry.io/kubeedge/cloudcore:v1.18.0`, replace it during initialization through the `--set` command line parameter, as shown below:
+
+```shell
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=1.18.0 --set cloudCore.image.repository=self-registry.io/kubeedge/cloudcore --kube-config=/root/.kube/config
+```
+
+### Edge Core Offline Installation
+
+As mentioned earlier, `keadm join` will download [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) and extract the `edgecore` binary file from it. In an offline environment, users need to import the installation-package image into the edge node to be added to the cluster. According to the container runtime of the edge node, choose the appropriate tool for import, for example, docker uses the `docker` command, containerd uses the `ctr` command, etc. The following is an operation using `docker` as an example:
+
+```shell
+# run in a networked environment
+docker pull kubeedge/installation-package:v1.18.0
+docker save -o installation-package.tar kubeedge/installation-package:v1.18.0
+# copy installation-package.tar to the edge node, then import it into the node
+docker load -i installation-package.tar
+```
+
+If use nerdctl as the command line tool, it is worth noting that nerdctl supports the concept of namespace, so when importing images, you need to specify the `k8s.io` namespace, for example:
+
+```shell
+nerdctl --namespace k8s.io load -i installation-package.tar
+```
+
+In addition to the `installation-package` image, by default, the [eclipse-mosquitto](https://hub.docker.com/_/eclipse-mosquitto) image needs to be imported into the edge node. The reason is that the Helm Chart installed by `keadm init` contains a Mosquitto DaemonSet deployment, which is used to run the MQTT proxy service on the edge node. The following is an example of docker operation:
+
+```shell
+# run in a networked environment
+docker pull eclipse-mosquitto:1.6.15
+docker save -o eclipse-mosquitto.tar eclipse-mosquitto:1.6.15
+# copy eclipse-mosquitto.tar to the edge node, then import it into the node
+docker load -i eclipse-mosquitto.tar
+```
