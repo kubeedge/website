@@ -22,7 +22,7 @@ There're three ways to download the `keadm` binary:
     ```shell
     wget https://github.com/kubeedge/kubeedge/releases/download/v1.17.0/keadm-v1.17.0-linux-amd64.tar.gz
     tar -zxvf keadm-v1.17.0-linux-amd64.tar.gz
-    cp keadm-1.17.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
+    cp keadm-v1.17.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
     ```
 
 2. Download from the official KubeEdge release image on Docker Hub.
