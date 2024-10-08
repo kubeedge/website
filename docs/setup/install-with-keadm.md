@@ -541,7 +541,7 @@ It provides a flag for users to specify kubeconfig path, the default path is `/r
  Example:
 
 ```shell
- # keadm reset --kube-config=$HOME/.kube/config
+ # keadm reset
  # or
  # keadm deprecated reset
 ```

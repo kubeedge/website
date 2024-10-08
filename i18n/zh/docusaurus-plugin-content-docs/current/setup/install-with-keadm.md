@@ -450,7 +450,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 例子：
 
 ```shell
- # keadm reset --kube-config=$HOME/.kube/config
+ # keadm reset
 ```
 
 ### 节点
