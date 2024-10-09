@@ -7,6 +7,12 @@ Keadm is used to install the cloud and edge components of KubeEdge. It does not 
 
 Please refer to [Kubernetes compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) documentation to check **Kubernetes compatibility** and ascertain the Kubernetes version to be installed.
 
+:::tip
+According to the compatibility rules of keadm, keadm only supports the installation of the same version and the immediately preceding version of KubeEdge. For example, keadm v1.17 is only compatible with KubeEdge versions v1.16 and v1.17. 
+
+It is recommended to ensure that the `keadm` version is consistent with the version of kubeedge you are planning to install.
+:::
+
 ## Prerequisite
 
 - It Requires super user rights (or root rights) to run.
@@ -37,6 +43,8 @@ There're three ways to download the `keadm` binary:
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
+### keadm init
+
 By default, ports `10000` and `10002` on your CloudCore needs to be accessible for your edge nodes.
 
 **IMPORTANT NOTES:**  
@@ -47,14 +55,12 @@ By default, ports `10000` and `10002` on your CloudCore needs to be accessible f
 
 3. `--advertise-address` is the address exposed by the cloud side (it will be added to the SANs of the CloudCore certificate). The default value is the local IP.
 
-### keadm init
-
-`keadm init` provides a solution for integrating the CloudCore Helm chart. CloudCore will be deployed to cloud nodes in container mode.
+4. `keadm init` provides a solution for integrating the CloudCore Helm chart. CloudCore will be deployed to cloud nodes in container mode.
 
 Example:
 
 ```shell
-keadm init --advertise-address="THE-EXPOSED-IP" --profile version=v1.12.1 --kube-config=/root/.kube/config
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0 --kube-config=/root/.kube/config
 ```
 
 Output:
@@ -89,11 +95,11 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 
 **IMPORTANT NOTES:**  
 
-1. Set flags `--set key=value` for CloudCore helm chart could refer to [KubeEdge CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
+1. Use `keadm init -h` to get the explains of parameters and usage instructions.
 
-2. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
+2. Set flags `--set key=value` for CloudCore helm chart could refer to [KubeEdge CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
 
-3. `keadm init` by default, deploys CloudCore in container mode. If you want to deploy CloudCore as a binary, please refer to [`keadm deprecated init`](#keadm-deprecated-init).
+3. You can start with one of Keadm’s built-in configuration profiles and then further customize the configuration for your specific needs. Currently, the built-in configuration profile keyword is `version`. Refer to [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`, you can make your custom values file here, and add flags like `--profile version=v1.9.0 --set key=value` to use this profile. `--external-helm-root` flag provides a feature function to install the external helm charts like edgemesh.
 
 Example:
 
@@ -116,7 +122,7 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
 
 > Add `--skip-crds` flag to skip outputting the CRDs.
 
-### keadm deprecated init 
+### keadm deprecated init (deprecated)
 
 `keadm deprecated init` installs CloudCore in binary process, generates certificates, and installs the CRDs. It also provides a flag to set a specific version.
 
@@ -169,7 +175,7 @@ Run `keadm gettoken` on the **cloud side** to retrieve the token, which will be 
 Example:
 
 ```shell
-keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.12.1
+keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.17.0
 ```
 
 **IMPORTANT NOTES:**
@@ -179,6 +185,8 @@ keadm join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8
 2. If you want to apply certificate for the edge node automatically, the `--token` is needed.
 
 3. The KubeEdge version used on the cloud and edge sides should be the same.
+
+4. Please ref to [runtime configuration](./prerequisites/runtime.md) to get how to configure edge runtime. 
 
 Output:
 
@@ -200,7 +208,7 @@ You can run the `systemctl status edgecore` command to ensure EdgeCore is runnin
            └─2745865 /usr/local/bin/edgecore
 ```
 
-#### keadm deprecated join
+#### keadm deprecated join (deprecated)
 
 You can also use `keadm deprecated join` to start EdgeCore from the release pacakge. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
 
