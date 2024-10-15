@@ -13,7 +13,40 @@ KubeEdge 对 Kubernetes 的版本兼容性，更多详细信息您可以参考 [
 
 - `keadm` 目前支持 Ubuntu 和 CentOS OS。RaspberryPi 的支持正在进行中。
 - 需要超级用户权限（或 root 权限）才能运行。
-- `keadm beta`功能在 v1.10.0 上线，如果您需要使用相关功能，请使用 v1.10.0 及以上版本的 keadm。
+
+
+## 安装keadm
+有三种方式下载keadm二进制文件，分别是：
+- 从github下载：[github releases](https://github.com/kubeedge/kubeedge/releases)  
+kubeEdge Github 官方提供了三种架构的发布版本： arm64, arm和amd64。 请根据您的平台和所需的版本下载正确的软件包
+    ```shell
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.17.0/keadm-v1.17.0-linux-amd64.tar.gz
+    tar -zxvf keadm-v1.17.0-linux-amd64.tar.gz
+    cp keadm-1.17.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
+    ```
+	
+- 下载dockerhub KebeEdge的官方发行版本
+  ```shell
+  docker run --rm kubeedge/installation-package:v1.17.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
+  ```
+  
+- 从源代码编译安装：  
+有两种方案可以让您从源码编译安装KubeEdge：  
+1. 如果您有一个本地Go的编译环境，那么可以执行下面的命令在本地编译KubeEdge  
+	```shell
+	git clone https://github.com/kubeedge/kubeedge.git
+	cd kubeedge
+	make BUILD_WITH_CONTAINER=false
+	```
+
+2. 如果您有一个容器化的工作环境，并希望在容器内编译KubeEdge以简化环境的设置，那么您可以执行下面的命令：  
+	```shell
+	git clone https://github.com/kubeedge/kubeedge.git
+	cd kubeedge
+	make
+	```
+
+您可以从`_output/local/bin`找到上面两种方案编译出来的Kubeedge
 
 ## 设置云端（KubeEdge 主节点）
 
@@ -32,67 +65,98 @@ KubeEdge 对 Kubernetes 的版本兼容性，更多详细信息您可以参考 [
 1. 必须正确配置 kubeconfig 或 master 中的至少一个，以便可以将其用于验证 k8s 集群的版本和其他信息。
 2. 请确保边缘节点可以使用云节点的本地 IP 连接云节点，或者需要使用 `--advertise-address` 标记指定云节点的公共 IP 。
 3. `--advertise-address`（仅从 1.3 版本开始可用）是云端公开的地址（将添加到 CloudCore 证书的 SAN 中），默认值为本地 IP。
-4. `keadm init` 将会使用二进制方式部署 cloudcore 为一个系统服务，如果您想实现容器化部署，可以参考 `keadm beta init` 。
+4. 在 v1.11.0 之后，`keadm init` 默认实现容器化部署CloudCore，如果您希望以二进制包来部署CloudCore，请参考 [`keadm deprecated init`](#keadm-deprecated-init).
 
 举个例子：
 
 ```shell
-# keadm init --advertise-address="THE-EXPOSED-IP"(only work since 1.3 release)
+# keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0  --kube-config=/root/.kube/config (only work since 1.3 release)
 ```
 
 输出：
 
-```
-Kubernetes version verification passed, KubeEdge installation will start...
-...
-KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
-```
-
-当您看到以上信息，说明 KubeEdge 的云端组件 cloudcore 已经成功运行。
-
-### keadm beta init
-
-如果您想要使用容器化方式部署云端组件 cloudcore ，您可以使用 `keadm beta init` 进行云端组件安装。
-
-> keadm beta 功能在 v1.10.0 上线，如果您想要使用 `keadm beta init` 部署云端组件，请使用 v1.10.0 及以上版本的 keadm 进行安装。\
-> 在 v1.11.0 版本之后，keadm init 将直接使用容器化方式部署云端组件 cloudcore。
-
-举个例子:
-
 ```shell
-# keadm beta init --advertise-address="THE-EXPOSED-IP" --set cloudcore-tag=v1.9.0 --kube-config=/root/.kube/config
+Kubernetes version verification passed, KubeEdge installation will start...
+CLOUDCORE started
+=========CHART DETAILS=======
+NAME: cloudcore
+LAST DEPLOYED: Wed Oct 26 11:10:04 2022
+NAMESPACE: kubeedge
+STATUS: deployed
+REVISION: 1
+```
+您也可以运行 `kubectl get all -n kubeedge` 来确认KubeEdge的云端组件 cloudcore 已经成功运行
+```shell
+# kubectl get all -n kubeedge
+NAME                             READY   STATUS    RESTARTS   AGE
+pod/cloudcore-56b8454784-ngmm8   1/1     Running   0          46s
+
+NAME                TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)                                             AGE
+service/cloudcore   ClusterIP   10.96.96.56   <none>        10000/TCP,10001/TCP,10002/TCP,10003/TCP,10004/TCP   46s
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/cloudcore   1/1     1            1           46s
+
+NAME                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 ```
 
 **重要提示：**
-
+在 `keadm init` 中：
 1. 自定义 `--set key=value`
    值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
 2. 您可以从 Keadm 的一个内置配置概要文件开始，然后根据您的特定需求进一步定制配置。目前，内置的配置概要文件关键字是 `version`
    。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml)
-   ，您可以在这里创建您的自定义配置文件, 使用 `--profile version=v1.9.0 --set key=value` 来使用它。
+   ，您可以在这里创建您的自定义配置文件, 使用 `--kubeedge-version=v1.17.0 --set key=value` 来使用它。
 
 此外，还可使用 `--external-helm-root` 安装外部的 helm chart 组件，如 edgemesh 。
 
 举个例子:
 
 ```shell
-# keadm beta init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
+# keadm init --set server.advertiseAddress="THE-EXPOSED-IP" --set server.nodeName=allinone  --kube-config=/root/.kube/config --force --external-helm-root=/root/go/src/github.com/edgemesh/build/helm --profile=edgemesh
 ```
 
 如果您对 Helm Chart 比较熟悉，可以直接参考 [KubeEdge Helm Charts](https://github.com/kubeedge/kubeedge/tree/master/keadm/cmd/keadm/app/cmd/helm)
 进行安装。
 
-### keadm beta manifest generate
+### keadm manifest generate
 
-`keadm beta manifest generate` 可以帮助我们快速渲染生成期望的 manifests 文件，并输出在终端显示。
+`keadm manifest generate` 可以帮助我们快速渲染生成期望的 manifests 文件，并输出在终端显示。
 
-Example:
+举例如下:
 
 ```shell
-# keadm beta manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
+# keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
 ```
-
 > 使用 --skip-crds 跳过打印 CRDs
+
+### keadm deprecated init 
+
+`keadm deprecated init` 是以二进制包方式进行安装CloudCore，生成证书并安装CRDs，并提供了安装版本的选择。
+
+1. 必须正确配置 kubeconfig 或 master 中的至少一个，以便可以将其用于验证 k8s 集群的版本和其他信息。
+2. 请确保边缘节点可以使用云节点的本地 IP 连接云节点，或者需要使用 `--advertise-address` 标记指定云节点的公共 IP 。
+3. `--advertise-address`是云端公开的地址（将添加到 CloudCore 证书的 SAN 中），默认值为本地 IP。
+举例如下:
+    ```shell
+    keadm deprecated init --advertise-address="THE-EXPOSED-IP"
+    ```
+
+    输出:
+    ```
+    Kubernetes version verification passed, KubeEdge installation will start...
+    ...
+    KubeEdge cloudcore is running, For logs visit:  /var/log/kubeedge/cloudcore.log
+    CloudCore started
+    ```
+
+    您也可也通过 `ps -elf | grep cloudcore` 来验证Cloudcore是否正确运行。
+
+    ```shell
+    # ps -elf | grep cloudcore
+    0 S root     2736434       1  1  80   0 - 336281 futex_ 11:02 pts/2   00:00:00 /usr/local/bin/cloudcore
+    ```
 
 ## 设置边缘端（KubeEdge 工作节点）
 
@@ -109,28 +173,12 @@ Example:
 
 #### keadm join
 
-`keadm join` 将安装 edgecore 和 mqtt。它还提供了一个命令行参数，通过它可以设置特定的版本。
+`keadm join` 将安装 EdgeCore。它还提供了一个命令行参数，通过它可以设置特定的版本。它也会从dockerhub下载 [kubeedge/installation-package](https://hub.docker.com/r/kubeedge/installation-package) 镜像文件并复制二进制文件`edgecore`到hostpath，并作为系统服务启动。
 
 举个例子：
 
 ```shell
-# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
-```
-
-#### keadm beta join
-
-现在可以使用 `keadm beta join` 通过镜像下载所需资源，进行节点接入。
-
-##### Docker
-
-```shell
-# keadm beta join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
-```
-
-##### CRI
-
-```shell
-# keadm beta join --cloudcore-ipport=192.168.20.50:10000 --runtimetype remote --remote-runtime-endpoint unix:///run/containerd/containerd.sock --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE
+# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.17.0
 ```
 
 **重要提示：**
@@ -138,21 +186,90 @@ Example:
 1. `--cloudcore-ipport` 是必填参数。
 2. 加上 `--token` 会自动为边缘节点生成证书，如果您需要的话。
 3. 需要保证云和边缘端使用的 KubeEdge 版本相同。
-4. 加上 `--with-mqtt` 会自动为边缘节点以容器运行的方式部署 `mosquitto` 服务
 
 输出：
 
 ```shell
-Host has mosquit+ already installed and running. Hence skipping the installation steps !!!
 ...
-KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
+KubeEdge edgecore is running, For logs visit: journalctl -u edgecore.service -xe
 ```
 
-> 也可以使用 `keadm beta join` 来添加边缘节点。
+您也可以使用 `systemctl status edgecore` 来检查edgecore是否正确运行。
+```shell
+# systemctl status edgecore
+● edgecore.service
+   Loaded: loaded (/etc/systemd/system/edgecore.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2022-10-26 11:26:59 CST; 6s ago
+ Main PID: 2745865 (edgecore)
+    Tasks: 13 (limit: 4915)
+   CGroup: /system.slice/edgecore.service
+           └─2745865 /usr/local/bin/edgecore
+```
+
+
+#### keadm deprecated join
+
+您可以使用 `keadm deprecated join` 来启动EdgeCore的release版本. 它会从 [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases) 下载并作为系统服务启动。
+
+举个例子:
+
+```shell
+keadm deprecated join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=1.12.0
+```
+
+输出:
+
+```shell
+MQTT is installed in this host
+...
+KubeEdge edgecore is running, For logs visit: journalctl -u edgecore.service -xe
+```
+
+### 部署边缘节点演示
+
+在您成功启动CloudCore和EdgeCore以后，您可以使用 `kubectl get node` 来确保EdgeCore成功注册到CloudCore。
+
+```shell
+# kubectl get node
+NAME                 STATUS   ROLES                  AGE     VERSION
+ecs-8f95             Ready    agent,edge             5m45s   v1.22.6-kubeedge-v1.12.0
+kind-control-plane   Ready    control-plane,master   13m     v1.23.4
+```
+现在，我们可以执行下面的命令在边缘节点发布一个Pod  
+
+```shell
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+  nodeSelector:
+    "node-role.kubernetes.io/edge": ""
+EOF
+```
+如下所示，我们的边缘节点部署Pod就成功完成了：  
+
+```shell
+# kubectl get pod -owide
+NAME    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+nginx   1/1     Running   0          11s   172.17.0.2   ecs-8f95   <none>           <none>
+```
+恭喜您，KubeEdge集群已经成功运行。
+
 
 ### 启用 `kubectl logs` 功能
 
 `kubectl logs` 必须在使用 metrics-server 之前部署，通过以下操作激活功能：
+> 基于 Helm 部署的重要提示:
+> - 因为Stream证书会自动生成并且CloudStream功能也是默认启动的。 所以, 除非有特别的用户定制，第1-3步可以跳过。
+> - iptablesmanager会默认完成第4步而不需要手动执行. 具体可以参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
+> - 第5-6步关于CloudCore的操作也可以跳过。
 
 1. 确保您可以找到 Kubernetes 的 `ca.crt` 和 `ca.key` 文件。如果您通过 `kubeadm` 安装 Kubernetes 集群，这些文件将位于 `/etc/kubernetes/pki/` 目录中。
 
@@ -160,7 +277,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
    ls /etc/kubernetes/pki/
    ```
 
-2. 设置 `CLOUDCOREIPS` 环境。环境变量设置为指定的 cloudcore 的 IP 地址，如果您具有高可用的集群，则可以指定 VIP（即弹性 IP/虚拟 IP）。
+2. 设置 `CLOUDCOREIPS` 环境。环境变量设置为指定的 cloudcore 的 IP 地址，如果您具有高可用的集群，则可以指定 VIP（即弹性 IP/虚拟 IP）。 如果 Kubernetes 通过domain name和CloudCore通信，那么也需要设置 `CLOUDCORE_DOMAINS`。
 
    ```bash
    export CLOUDCOREIPS="192.168.0.139"
@@ -200,21 +317,32 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 4. 需要在主机上设置 iptables。（此命令应该在每个 apiserver 部署的节点上执行。）（在这种情况下，须在 master 节点上执行，并由 root 用户执行此命令。） 在运行每个 apiserver 的主机上运行以下命令：
 
-   **注意:** 您需要先设置 CLOUDCOREIPS 变量
+   **注意:** 您需要从configmap来获取所有的cloudcore ips和 tunnel端口
+    
+    ```bash
+    kubectl get cm tunnelport -nkubeedge -oyaml
+   
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      annotations:
+        tunnelportrecord.kubeedge.io: '{"ipTunnelPort":{"192.168.1.16":10350, "192.168.1.17":10351},"port":{"10350":true, "10351":true}}'
+      creationTimestamp: "2021-06-01T04:10:20Z"
+    ...
+    ```
+   接着在apiserver运行的所有节点为multi CloudCore实例来设置iptables, 这里的cloudcore ips 和 tunnel端口都是从上面的configmap获得的。
 
-   ```bash
-   iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
-   ```
-
-   > 端口 10003 和 10350 是 CloudStream 和 Edgecore 的默认端口，如果已发生变更，请使用您自己设置的端口。
+    ```bash
+    iptables -t nat -A OUTPUT -p tcp --dport $YOUR-TUNNEL-PORT -j DNAT --to $YOUR-CLOUDCORE-IP:10003
+    iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to 192.168.1.16:10003
+    iptables -t nat -A OUTPUT -p tcp --dport 10351 -j DNAT --to 192.168.1.17:10003
+    ```
 
    如果您不确定是否设置了 iptables，并且希望清除所有这些表。（如果您错误地设置了 iptables，它将阻止您使用 `kubectl logs` 功能） 可以使用以下命令清理 iptables 规则：
 
    ```shell
    iptables -F && iptables -t nat -F && iptables -t mangle -F && iptables -X
    ```
-
-   > 现在可以通过 iptablesmanager 这个组件自动运维以上的 iptables 转发规则，参考 [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md#custom-values).
 
 5. `/etc/kubeedge/config/cloudcore.yaml` 和 `/etc/kubeedge/config/edgecore.yaml` 上 cloudcore 和 edgecore **都要** 修改。将 **cloudStream** 和 **edgeStream** 设置为 `enable: true` 。将服务器 IP 更改为 cloudcore IP（与 $ CLOUDCOREIPS 相同）。
 
@@ -300,7 +428,11 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
                - key: node-role.kubernetes.io/edge
                  operator: DoesNotExist
    ```
-
+      或者您也可以在shell界面直接运行下面的命令
+   ```shell
+   kubectl patch daemonset kube-proxy -n kube-system -p '{"spec": {"template": {"spec": {"affinity": {"nodeAffinity": {"requiredDuringSchedulingIgnoredDuringExecution": {"nodeSelectorTerms": [{"matchExpressions": [{"key": "node-role.kubernetes.io/edge", "operator": "DoesNotExist"}]}]}}}}}}}'
+   ```
+   
    2. 如果您仍然要运行 `kube-proxy` ，请通过在以下位置添加 `edgecore.service` 中的 env 变量来要求 **edgecore** 不进行检查 edgecore.service：
 
       ```shell
@@ -443,7 +575,7 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 ### Master
 
-`keadm reset`将停止 `cloudcore` 并从 Kubernetes master 中删除与 KubeEdge 相关的资源，如 `kubeedge` 命名空间。它不会卸载/删除任何先决条件。
+`keadm reset` 或者 `keadm deprecated reset` 将停止 `cloudcore` 并从 Kubernetes master 中删除与 KubeEdge 相关的资源，如 `kubeedge` 命名空间。它不会卸载/删除任何先决条件。
 
 它为用户提供了一个标志，以指定 kubeconfig 路径，默认路径为 `/root/.kube/config` 。
 
@@ -451,8 +583,10 @@ KubeEdge edgecore is running, For logs visit:  /var/log/kubeedge/edgecore.log
 
 ```shell
  # keadm reset --kube-config=$HOME/.kube/config
+ # or
+ # keadm deprecated reset
 ```
 
 ### 节点
 
-`keadm reset` 将停止 `edgecore` ，并且不会卸载/删除任何先决条件。
+`keadm reset` 或者 `keadm deprecated reset` 将停止 `edgecore` ，并且不会卸载/删除任何先决条件。
