@@ -213,6 +213,12 @@ const supportList = [
     name: "LookCan Ai",
     img_src: "img/supporters/lookcan-logo.svg", 
     external_link: "https://www.lookcan.ai/",
+  },
+
+  {
+    name: "China Ordnance Equipment Group Automation Research Institute Co., Ltd",
+    img_src: "img/supporters/swai.svg",
+    external_link: "https://58suo.csgc.com.cn/",
   }
 ];
 
