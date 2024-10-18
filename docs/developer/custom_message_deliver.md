@@ -227,22 +227,22 @@ spec:
 The rest api in the cloud can be called to send messages to eventbus on an edge node based on the node name and sourceResource. 
 
 - Method: POST
-- URL: **http://{rest_endpoint}/{node_name}/{namespace}/{path}**, {rest_endpoint} is {cloudcore_ip}:9443, {node_name} is name of edgenode, {namespace} is the namespace of rule, {path}'s prefix is source ruleEndpoint's sourceResource.
-- Body: {user_message}, {user_message} is user's message
+- URL: **http://\{rest_endpoint\}/\{node_name\}/\{namespace\}/\{path\}**, \{rest_endpoint\} is \{cloudcore_ip\}:9443, \{node_name\} is name of edgenode, \{namespace\} is the namespace of rule, \{path\}'s prefix is source ruleEndpoint's sourceResource.
+- Body: \{user_message\}, \{user_message\} is user's message
 
 For example:
 - Method: POST
-- URL: http://{cloudcore_ip}:9443/{node_name}/default/test
-- Body： {"message":"123"}
+- URL: http://\{cloudcore_ip\}:9443/\{node_name\}/default/test
+- Body： \{"message":"123"\}
 
 1.4 User's app subscribes custom topics from mqtt-broker in edge to receive messages from the cloud. 
 
-- Topic: {topic}, {topic} is target ruleEndpoint's targetResource.
-- Message:  {user_message}
+- Topic: \{topic\}, \{topic\} is target ruleEndpoint's targetResource.
+- Message:  \{user_message\}
 
 For example:
 - subscribe Topic: 'test', exec command with mosquitto: `mosquitto_sub -t 'test' -d`
-- Get Message: {"message":"123"}
+- Get Message: \{"message":"123"\}
 
 2. edge to cloud: **eventbus->rest**:
 
@@ -303,8 +303,8 @@ spec:
 ```
 
 2.3 User's app in edge publishes messages with custom topic to MQTT broker on edge node. (target ruleEndpoint's targetResource http://127.0.0.1:8080/hello should be available before this step)
-- Topic: {namespace}/{topic}
-- Message:  {user_api_body}
+- Topic: \{namespace\}/\{topic\}
+- Message:  \{user_api_body\}
 
 for example:
 - publish data with mosquitto, exec command:
@@ -314,10 +314,10 @@ for example:
 2.4 Kubeedge delivers messages to user api address in cloud. 
 
 - Method: POST
-- URL: **http://{user_api}**, or **https://{user_api}**, {user_api} is target ruleEndpoint's targetResource, for example http://127.0.0.1:8080/hello.
-- Body: {user_api_body}
+- URL: **http://\{user_api\}**, or **https://\{user_api\}**, \{user_api\} is target ruleEndpoint's targetResource, for example http://127.0.0.1:8080/hello.
+- Body: \{user_api_body\}
 
-For example: user's app in cloud gets the data {"edgemsg":"msgtocloud"}
+For example: user's app in cloud gets the data \{"edgemsg":"msgtocloud"\}
 
 3. cloud to edge : **rest->servicebus**
 
@@ -382,26 +382,26 @@ spec:
 The rest api in the cloud can be called to send messages to servicebus on an edge node based on the node name and sourceResource. 
 
 - Method: POST/GET/DELETE/PUT
-- URL: **http://{rest_endpoint}/{node_name}/{namespace}/{path}**, {rest_endpoint} is {cloudcore_ip}:9443, {node_name} is name of edgenode, {namespace} is namespace of rule. {path} is source ruleEndpoint's sourceResource.
-- Body: {user_message}, {user_message} is user's message
+- URL: **http://\{rest_endpoint\}/\{node_name\}/\{namespace\}/\{path\}**, \{rest_endpoint\} is \{cloudcore_ip\}:9443, \{node_name\} is name of edgenode, \{namespace\} is namespace of rule. \{path\} is source ruleEndpoint's sourceResource.
+- Body: \{user_message\}, \{user_message\} is user's message
 
 finally, kubeedge's servicebus will call api on edgen node.
 
 - Method: POST/GET/DELETE/PUT
-- URL: **http://127.0.0.1:{port}/{path}**, {port} is target ruleEndpoint's properties, {path} is target ruleEndpoint's targetResource.  
-- Body: {user_message}, {user_message} is user's message
+- URL: **http://127.0.0.1:\{port\}/{path}**, \{port\} is target ruleEndpoint's properties, \{path\} is target ruleEndpoint's targetResource.  
+- Body: \{user_message\}, \{user_message\} is user's message
 
 For example:
 
 - Method: POST
-- URL: http://{cloudcore_ip}:9443/{node_name}/default/source
-- Body： {"message":"123"}
+- URL: http://\{cloudcore_ip\}:9443/\{node_name\}/default/source
+- Body： \{"message":"123"\}
 
 finnaly, kubeedge's servicebus calls api on edge node. For example:
 
 - Method: POST
 - URL: http://127.0.0.1:6666/target
-- Body： {"message":"123"}
+- Body： \{"message":"123"\}
 
 user's app gets the result of the api on edge node.
 
