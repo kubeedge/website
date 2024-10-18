@@ -153,7 +153,22 @@ Dockershim has been removed from KubeEdge v1.14. Users can't use docker runtime 
 The following installation steps are only applicable to KubeEdge v1.14 and later versions. If you use an earlier version, you only need to install Docker, configure `--runtimetype=docker` and `--remote-runtime-endpoint=unix:///var/run/dockershim.sock` when executing keadm join.
 
 1. Follow the [Docker Engine Installation Guide](https://docs.docker.com/engine/install/#server) to install Docker.
-2. Follow the [cri-dockerd Installation Guide](https://github.com/mirantis/cri-dockerd#install) to install cri-dockerd.
+2. Follow the [cri-dockerd Installation Guide](https://github.com/mirantis/cri-dockerd#install) to install cri-dockerd. you can also install cri-docked through the following script.
+
+  ```bash
+  CRIDOCKERD_VERSION="v0.3.8"
+  git clone https://github.com/Mirantis/cri-dockerd.git -b ${CRIDOCKERD_VERSION}
+  cd cri-dockerd
+  make cri-dockerd
+  sudo install -o root -g root -m 0755 cri-dockerd /usr/local/bin/cri-dockerd
+  sudo install packaging/systemd/* /etc/systemd/system
+  sudo sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now cri-docker.socket
+  sudo systemctl restart cri-docker
+  cd .. && sudo rm -rf cri-dockerd
+  ```
+
 3. Install CNI Plugin
 
 You can refer to the `install_cni_plugins` function in the [kubeedge script](https://github.com/kubeedge/kubeedge/blob/master/hack/lib/install.sh) for installing CNI plugins. It's provided for reference purposes.
