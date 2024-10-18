@@ -1,0 +1,29 @@
+name: Check Translations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Generate Chinese Translations
+        run: yarn write-translations --locale zh
+
+      - name: Check for Changes
+        run: |
+          if git status --porcelain | grep "i18n/zh"; then
+            echo "Changes detected in Chinese translations."
+          else
+            echo "No changes detected in Chinese translations."
+            exit 1
+          fi
