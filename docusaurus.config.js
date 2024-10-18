@@ -199,7 +199,7 @@ const config = {
         style: "light",
         links: [
           {
-            html: '<p style="font-size: large;">KubeEdge is a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>',
+            html: '<p style="font-size: large;">KubeEdge is a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> graduated project.</p>',
           },
           {
             html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/color/cncf-color.png?raw=true" class="footer__logo light">',
