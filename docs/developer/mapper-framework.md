@@ -96,11 +96,11 @@ Now we provide Influx2,Redis,TDengine database interfaces, we will add more data
 
 #### Pull
 The HTTP server was created to provide API services. It supports directly obtaining device data from the device.
-The URLs listed below are given in the form of local IP. You can use these services from any network accessible to mapper.
+The URLs listed below are given in the form of local IP. You can use these services from any network accessible to Mapper.
 
-Port `7777` is enabled by default.
+Port `7777` is enabled by default. User can change the Mapper API port in [config file](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/mapper-framework/_template/mapper/config.yaml).
 
-`deviceInstance-ID` according to your own CRD definition.
+`deviceInstance-ID` according to your own CRD definition.  
 `propertyName` according to your own CRD definition.
 
 #### Ping
@@ -119,7 +119,7 @@ Port `7777` is enabled by default.
 #### Device Data
 1. Get device's Data  
    Method=**GET**  
-   Url: https://127.0.0.1:7777/api/v1/device/deviceInstance-ID/propertyName 
+   Url: https://127.0.0.1:7777/api/v1/device/{deviceInstance-ID}/{propertyName}  
    Response:
    ```json
    {
@@ -138,7 +138,7 @@ Port `7777` is enabled by default.
 #### Device MetaData
 1. Get device's Model  
    Method=**GET**  
-   Url: https://127.0.0.1:7777/api/v1/meta/model/deviceInstance-ID  
+   Url: https://127.0.0.1:7777/api/v1/meta/model/{deviceInstance-ID}  
    Response:
    ```json
    {
@@ -159,6 +159,52 @@ Port `7777` is enabled by default.
     }
    ```
 
+#### Device Write
+In version 1.19, the feature of Mapper supporting device writing is implemented, which enhances the original Mapper API capabilities. 
+Users can obtain all the device methods of a device that can be called externally through the API, and initiate a write request to 
+the device through the returned call command.
+
+The URLs listed below are given as local IPs. You can use these services from any network accessible to Mapper.
+
+Port `7777` is enabled by default. User can change the Mapper API port in [config file](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/mapper-framework/_template/mapper/config.yaml).
+
+`deviceInstance-ID` according to your own CRD definition.  
+`propertyName` according to your own CRD definition.
+
+1. Get all device methods of a device  
+   Url: https://127.0.0.1:7777/api/v1/devicemethod/{deviceInstance-ID}  
+   Response:
+   ```json
+   {
+    "Data": {
+        "Methods": [
+            {
+                "Name": "setValue",
+                "Path": "/api/v1/devicemethod/default/random-instance-01/setValue/{propertyName}/{data}",
+                "Parameters": [
+                    {
+                        "PropertyName": "random-int",
+                        "ValueType": "int"
+                    }
+                ]
+            }
+        ]
+    }
+    }
+   ```
+
+After obtaining the calling command of the device method, the user can create a device write request:
+
+2. Create device write request  
+   Url: https://127.0.0.1:7777/api/v1/devicemethod/{deviceInstance-ID}/{deviceMethodName}/{propertyName}/{data}  
+   Response:
+   ```json
+    {
+    "statusCode": 200,
+    "Message": "Write data ** to device ** successfully."
+    }
+   ```
+   
 
 
 
