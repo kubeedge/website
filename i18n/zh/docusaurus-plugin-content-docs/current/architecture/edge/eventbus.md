@@ -2,17 +2,17 @@
 title: EventBus
 sidebar_position: 2
 ---
-## Overview
-Eventbus acts as an interface for sending/receiving messages on mqtt topics.
+## 概述
+Eventbus 作为一个模块，负责在 MQTT 主题上发送/接收消息。
 
-It supports 3 kinds of mode:
+该模块支持3种模式：
 
-- internalMqttMode
-- externalMqttMode
-- bothMqttMode
+- 内部MQTT模式 internalMqttMode
+- 外部MQTT模式 externalMqttMode
+- 内外皆有模式 bothMqttMode
 
-## Topic
-eventbus subscribes to the following topics:
+## 主题(Topic)
+EventBus 订阅以下 MQTT 主题：
 ```
 - $hw/events/upload/#
 - SYS/dis/upload_records
@@ -23,20 +23,20 @@ eventbus subscribes to the following topics:
 - $hw/events/device/+/state/update/+
 - $hw/event/device/+/twin/+
 ```
-Note: topic wildcards
+注意：主题中的通配符
 
-| wildcard  |  Description |
+| 通配符  |  描述 |
 |---|---|
-| #  |  It must be the last character in the topic, and matches the current tree and all subtrees. |
-| +  |  It matches exactly one item in the topic tree. |
+| #  |  该通配符必须是主题中的最后一个字符，并且和当前层级和后续层级都是能匹配上的。 |
+| +  |  该通配符在主题中必须精确匹配一个完整的层级对象。 |
 
 
-## Flow chart
-### **1. eventbus receives messages from external client**
+## 流程图
+### **1. eventbus 接收来自外部客户端的消息**
 ![eventbus sends messages from external client](/img/eventbus/eventbus-handleMsgFromClient.jpg)
 
-### **2. eventbus sends response messages to external client**
+### **2. eventbus 发送响应消息给外部客户端**
 
 ![eventbus sends response messages to external client](/img/eventbus/eventbus-handleResMsgToClient.jpg)
 
-The flow is almost the same in internal mode except the eventbus is as message broker itself.
+在内部模式下，流程几乎相同，只是 EventBus 本身作为消息代理器。
