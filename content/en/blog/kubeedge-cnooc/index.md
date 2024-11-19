@@ -1,0 +1,81 @@
+---
+authors:
+- KubeEdge
+categories:
+- Case
+date: 2022-01-04
+draft: false
+lastmod: 2022-01-04
+summary: KubeEdge Best Practices in China National Offshore Oil Corporation
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+title: Intelligent Oilfields of China National Offshore Oil Corporation - A Pioneer of Cloud-Native Innovation Practices
+---
+The year 2022 has already begun, but it seems like we are still living in the long shadow of 2020. In that year, the COVID-19 pandemic spread globally and the international oil price plunged suddenly, making the oil industry deeply feel that "a bitter winter is coming".
+
+Large-scale cuts in capital spending and preparation for the winter were the common choices of major oil companies. However, during the most difficult times, the digital investment of many companies increased instead of reduced.
+
+According to IHS Markit's statistics, since 2013, the digital investment of international oil companies has gradually increased in proportion to their technology investment, and there have been acceleration signs in the last two years - in the upstream part of the oil and gas industry, by using Digital transformation, oil and gas production have been improved by 7% to 8%, lease and operating costs have been reduced by 2% to 3%, and operating uncertainty has been significantly reduced.
+
+It is evident that digital transformation is the necessary path for the oil industry to respond to external shocks and low oil prices.
+
+As a leading enterprise in the domestic energy field, China National Offshore Oil Corporation（CNOOC） is willing to take the lead in applying digital technology. It is actively exploring new models of oil and gas exploration and development, such as unmanned platforms and underwater wellheads, which provides important support for reducing costs, improving quality, and increasing efficiency for the company.
+
+Quantitative changes lead to qualitative changes, and a new digital benchmark has emerged. On October 15th, 2021, China's first large-scale offshore intelligent oilfield construction project - Qinhuangdao 32-6 intelligent oilfield, was fully completed and put into operation. The project applied technologies such as cloud computing, big data, artificial intelligence, 5G, and other technologies to empower traditional oilfields and achieve process re-engineering, building a modern, digital, and intelligent new oilfield in Bohai Bay.
+
+According to "IT Creation Chronicles", CNOOC has deployed Intelligent EdgeFabric（IEF）of Huawei Cloud in the construction project of the intelligent oilfield in Bohai Bay. The cloud-edge collaboration technology simplified the publication and monitoring of application services and model algorithms, and the management and scheduling of container resources related to business management such as platform security, equipment, drilling, and production, reduced the response time of business applications at the field site as well as improved system operation efficiency. It also achieved comprehensive life-cycle management of services, data, networks, and applications through coordination.
+
+## Challenges
+
+In the digital technology arsenal, cloud native is undoubtedly the "sword" used to overcome all obstacles. The intelligent oilfield of CNOOC built on cloud-native technologies is comparable to a forefront fighter. A report by IDC consulting shows that by 2023, the percentage of enterprise cloud-native applications will exceed 80%, and successful implementation of large-scale cloud-native technologies cannot be separated from the trailblazers.
+
+On the one-year anniversary of the establishment of the cloud-native communication platform "Cloud Native Elite Club" jointly initiated by Cloud Native Computing Foundation, China Academy of Information and Communications Technology, and Huawei Cloud, the 2021 Annual Summit of Cloud Native Elite Club was held in Shenzhen. Twenty enterprises, including CNOOC, won the honor of "Ten Cloud-Native Technology Innovation/Frontier Practices" for their outstanding contributions to promoting the development of cloud-native technologies.
+
+Behind the glamourous honor, the serious thinking and positive action of CNOOC's intelligent oilfield in facing challenges have greater exemplary effects.
+
+Bohai Oilfield is the highest-producing, largest, and most promising oil production base in China's offshore oil industry, with over 40 oil and gas fields and over 100 production platforms. Currently, the field's production capacity is over 3000 million tons, and it is expected to reach 4000 million tons by 2025.
+
+Qinhuangdao 32-6 oilfield belongs to a major oil field under the management of Bohai Oilfield, which has been in production for nearly 20 years. According to the vice-team leader of the Intelligent Construction Project Team of Bohai Oilfield - Yang Haibin, compared with other industries, the entire energy industry has a late start in its digital transformation, and how to leverage the opportunity of digital transformation to achieve high-quality development for traditional oil fields is a challenge that CNOOC must overcome.
+
+Along with the increasing oilfield exploitation scale, there are many pain points exposed at various levels:
+
+- On the one hand, oilfield exploitation has long operation periods, high costs, low efficiency, and safety risks. China is both a land-based country and an ocean-based country, with a total coastline length of 32,000 kilometers. Compared with land exploration and mining, operations on offshore oilfields usually require preparation a week ahead, and have long periods and high derivative costs. Routine offshore operations also increase the risk to personnel.
+
+- On the other hand, as heterogeneous compatibility issues are prominent, IT operations face challenges. The construction time of offshore platforms differs, and the hardware and software infrastructure of various parts are uneven. In addition, there are many offshore oil fields, which are scattered, and there is a lack of a unified data collection and application management interface, which greatly increases the difficulty of IT operations.
+
+## Exploration of cloud native for intelligence oilfields
+
+Facing up to challenges is a prerequisite for solving problems, and the exploration of cloud native for intelligent oilfields cannot be achieved without strong collaboration and tackling difficulties.
+
+To solve the pain points of digital transformation, CNOOC has launched the Qinhuangdao 32-6 "Intelligent Oilfield" pilot project in Bohai Oilfield. The project is based on the cloud-native Intelligent EdgeFabric of Huawei Cloud, which enables unified access and management of devices on various platforms distributed across the vast ocean, achieving intelligent data collection, intelligent distribution of application services, and unified operations and management capabilities.
+
+It is worth mentioning that the cloud-native Intelligent EdgeFabric of Huawei Cloud provides industry-leading cloud-edge collaboration integration services, fulfilling the remote control, data processing, analysis and decision, and intelligentization needs of industry users for edge computing resources. It has characteristics including full life-cycle management, extremely lightweight and simple, edge offline autonomous management, ultra-large-scale coordination, and a rich ecosystem.
+
+Bohai Oilfield's land-based data center and various offshore drilling platforms are the stages for cloud-native cloud-edge collaboration of Huawei Cloud to show their capabilities - cloud-based models are deployed and run on the edge, while data collected on the edge is analyzed on the cloud. A real-time intelligent platform is used for dynamic monitoring and analysis, and intelligent migration and repair of applications in case of equipment or application failures, or network instability.
+
+It is clear that with the unified access and management of offshore platforms and the central cloud, enough data parameters can be obtained and most of the operating tasks can be completed just on land, which has significant advantages compared to the old operation model.
+
+- The first advantage is cost reduction and efficiency enhancement. With Intelligent EdgeFabric, tasks can be assigned in seconds or minutes, and thus some operations do not need to be conducted on the sea. Moreover, the unified control of the cloud center on land significantly reduces offshore operation time, thereby reducing costs while maximizing efficiency.
+
+- The second advantage is safe production. To solve the problems that poor network and high risk at sea, the edge-side nodes realize decentralized scheduling, support the restoration of edge applications within seconds in offline scenarios, and enhance the high availability of business while ensuring safe production.
+
+- The third advantage is compatibility with heterogeneous computing. Intelligent EdgeFabric of Huawei Cloud supports x86, ARM32, and ARM64 devices, as well as CentOS and Ubuntu mainstream operating systems. Although there are differences in the construction time and infrastructure of oil fields, the access ability of Intelligent EdgeFabric to heterogeneous devices can reduce the adaptation workload and achieve rapid business integration.
+
+- Additionally, Intelligent EdgeFabric can achieve unified data collection and function visualization, provide full-process life-cycle management, and significantly reduce operations and learning costs.
+
+With the advanced cloud-native platform, Qinhuangdao 32-6 intelligent oilfield deeply integrates application scenarios and digital technologies, builds a new sea-land collaboration paradigm with the land-based control center as the hub, enhances efficiency and empowers the core business of oilfield development and production such as reservoir injection and extraction, safety and environmental protection, equipment and facilities, and process flow. It forms a full-stack solution for offshore intelligent oilfields based on "data, network, platform and application", and explores a new mode of offshore oil and gas exploration and operation that is "intelligent, safe, green and efficient", makes the 20-year-old Qinhuangdao 32-6 oilfield have significant intelligent features such as comprehensive perception, overall collaboration, scientific decision-making, and autonomous optimization, and contributes demonstration value to the comprehensive construction of intelligent oilfields of CNOOC. With an investment of RMB 130 million, the project delivers a 30% increase in production efficiency and an estimated annual direct benefit of RMB 30 million.
+
+## Future landscape of oilfield digital transformation
+
+The construction of intelligent oilfields is only a microcosm of the digital transformation of the energy industry, and it is worth looking forward to the diverse scenarios and future possibility of the "elephant dance".
+
+As early as March 2020, CNOOC officially released the "Top-Level Design Blueprint for Digital Transformation of the Corporation", which proposed a digital transformation overall plan with a "one platform, two systems, three clouds, four capabilities, and five improvements" framework, and clearly defined the development vision: Based on centralized and unified data asset management, create digital capabilities such as perception and insight, intelligent control, collaboration and sharing, and interconnected innovation, construct a digital ecosystem that is vertically connected, horizontally interconnected, and internally and externally integrated, and achieve the goal of building "intelligent CNOOC".
+
+In the grand vision of the digital transformation of the oil industry, the cloud plays a crucial role. In addition to building the cloud's basic platform in the core, the cloud should also be applied more proximate to the production site. For example, by deploying the cloud to satellites and operation platforms, the cloud in the edge layer can realize real-time support for on-site business applications without production data leakage.
+
+In the foreseeable future, the promotion and construction of intelligent oilfields throughout the entire sea of China will gradually proceed. Huawei Cloud will engage in more cooperation with CNOOC in the fields of cloud, AI, and big data. From a longer time perspective, connecting various platforms on the vast ocean with Chinese land to build a distributed cloud-native web may not be far away.
