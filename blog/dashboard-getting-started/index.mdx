@@ -1,0 +1,90 @@
+---
+authors:
+  - KubeEdge
+categories:
+  - General
+  - Dashboard
+date: 2024-12-12
+draft: false
+lastmod: 2024-12-12
+tags:
+  - KubeEdge
+  - Dashboard
+  - edge computing
+  - kubernetes edge computing
+  - K8S edge orchestration
+  - edge computing platform
+  - cloud native
+title: Getting started with KubeEdge Dashboard
+---
+
+In KubeEdge v1.19, we introduced a new version of the KubeEdge Dashboard. This version of KubeEdge Dashboard is built with the Next.js framework and the MUI component library to offer better performance. Meanwhile, we have optimized and enhanced several modules of the KubeEdge Dashboard, including the device management and device model management modules.
+
+In this article, we will introduce how to deploy and use the KubeEdge Dashboard.
+
+## Environment Pre-requisites
+
+We can obtain the source code of KubeEdge Dashboard from the [KubeEdge Dashboard GitHub repository](https://github.com/kubeedge/dashboard). Before building and deploying KubeEdge Dashboard, please ensure the following environment is set up:
+
+- **KubeEdge Cluster**: Please refer to the [KubeEdge official documentation](https://release-1-19.docs.kubeedge.io/docs/category/setup) to set up a KubeEdge cluster. KubeEdge Dashboard requires KubeEdge v1.15 or later versions.
+- **Node.js**: Install Node.js on your system, it is recommended to use Node.js v18 or later versions.
+- **Node.js Package Manager**: Install a Node.js package manager, such as npm, yarn, or pnpm.
+
+## Building and Deploying
+
+Once the environment is set up and the KubeEdge Dashboard source code has been downloaded, we can use the Node.js package manager to start the KubeEdge Dashboard. In the following instructions, we will use pnpm as the example to show how to install dependencies and run KubeEdge Dashboard.
+
+First of all, we need to install the dependencies:
+
+```shell
+pnpm install
+```
+
+KubeEdge Dashboard interacts with KubeEdge resources via the Kubernetes API. Therefore, we need to set the API_SERVER environment variable to specify the API Server address:
+
+```shell
+pnpm run build
+API_SERVER=https://192.168.33.129:6443 pnpm run start
+```
+
+After starting KubeEdge Dashboard, open `http://localhost:3000` in your browser to access the dashboard.
+
+For the KubeEdge cluster with self-signed certificates, we need to set the `NODE_TLS_REJECT_UNAUTHORIZED=0` environment variable to bypass certificate verification:
+
+```shell
+NODE_TLS_REJECT_UNAUTHORIZED=0 API_SERVER=<api-server> pnpm run start
+```
+
+## Creating a Login Token
+
+To authenticate with KubeEdge Dashboard, we need to create a token for login. The following instructions show how to create a service account `dashboard-user` in the `kube-system` namespace and generate a token for authentication.
+
+First, we need to create a service account in the Kubernetes cluster:
+
+```shell
+kubectl create serviceaccount dashboard-user -n kube-system
+```
+
+To grant permissions to the service account, we need to create a cluster role binding that associates the service account with a cluster role. Kubernetes provides some built-in cluster roles, such as `cluster-admin`, which has access to all resources in the cluster. We can also refer to the [Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) to create a custom cluster role if needed.
+
+```shell
+kubectl create clusterrolebinding dashboard-user-binding --clusterrole=cluster-admin --serviceaccount=kube-system:dashboard-user -n kube-system
+```
+
+Since Kubernetes v1.24, secrets for service accounts are no longer created automatically. We need to create an associated token by the `kubectl create token` command. The lifetime of the token will be determined by the server automatically, and we can specify the lifetime of the token by the `--duration` option.
+
+```shell
+kubectl create token dashboard-user -n kube-system
+```
+
+For Kubernetes v1.23 and earlier versions, Kubernetes automatically creates a secret for the service account. We can retrieve the secret by the `kubectl describe secret` command:
+
+```shell
+kubectl describe secret -n kube-system $(kubectl get secret -n kube-system | grep dashboard-user | awk '{print $1}')
+```
+
+## Conclusion
+
+With KubeEdge Dashboard, we can more easily manage KubeEdge resources such as edge applications and devices. We will continue to enhance and optimize the KubeEdge Dashboard and user experience in future releases. We also welcome feedback and suggestions from the community.
+
+For more information on KubeEdge Dashboard, please refer to the [KubeEdge Dashboard GitHub repository](https://github.com/kubeedge/dashboard).
