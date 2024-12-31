@@ -23,7 +23,7 @@ Please ref to [support in-cluster config proposal](https://github.com/kubeedge/k
 When using `keadm init` to deploy CloudCore, please enable `dynamiccontroller` module and `requireAuthorization` featureGate:
 
 ```
-keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0 --set cloudCore.modules.dynamicController.enable=true cloudCore.featureGates.requireAuthorization=true
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0 --set cloudCore.modules.dynamicController.enable=true,cloudCore.featureGates.requireAuthorization=true
 ```
 
 If you have already deployed CloudCore without set `dynamiccontroller` and featureGate, you can modify the configuration following these steps: 
@@ -70,7 +70,7 @@ featureGates:
 modules:
 ...
 metaServer:
-  enable: false
+  enable: true
 ...
 ```
 
