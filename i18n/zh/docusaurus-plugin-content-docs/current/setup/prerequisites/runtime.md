@@ -158,7 +158,21 @@ modules:
 
 1. 遵循[Docker Engine安装指南](https://docs.docker.com/engine/install/#server)安装Docker。
 
-2. 按照[cri-dockerd安装指南](https://github.com/mirantis/cri-dockerd#install)安装cri-dockerd。
+2. 按照[cri-dockerd安装指南](https://github.com/mirantis/cri-dockerd#install)安装cri-dockerd，你也可以通过以下脚本安装cri-dockerd。
+
+  ```bash
+  CRIDOCKERD_VERSION="v0.3.8"
+  git clone https://github.com/Mirantis/cri-dockerd.git -b ${CRIDOCKERD_VERSION}
+  cd cri-dockerd
+  make cri-dockerd
+  sudo install -o root -g root -m 0755 cri-dockerd /usr/local/bin/cri-dockerd
+  sudo install packaging/systemd/* /etc/systemd/system
+  sudo sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now cri-docker.socket
+  sudo systemctl restart cri-docker
+  cd .. && sudo rm -rf cri-dockerd
+  ```
 
 3. 安装CNI Plugin。
 
