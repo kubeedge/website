@@ -2,76 +2,72 @@
 title: EdgeHub
 sidebar_position: 3
 ---
-## Overview
+## 概览
 
-Edge hub is responsible for interacting with CloudHub component present in the cloud. It can connect to the CloudHub using either a web-socket connection or using [QUIC](https://quicwg.org/ops-drafts/draft-ietf-quic-applicability.html) protocol.
-It supports functions like sync cloud side resources update, report edged side host and device status changes.
+EdgeHub 负责与云端的 CloudHub 组件进行交互。它可以使用 WebSocket 连接或使用 [QUIC](https://quicwg.org/ops-drafts/draft-ietf-quic-applicability.html) 协议连接到 CloudHub。
+它支持同步云端资源更新、报告边缘端主机和设备状态更改等功能。
 
-It acts as the communication link between the edge and the cloud.
-It forwards the messages received from the cloud to the corresponding module at the edge and vice-versa.
+该模块充当边缘和云之间的通信链路，
+它将从云端接收到的消息转发到边缘端的相应模块，反之亦然。
 
-The main functions performed by edgehub are :-
+EdgeHub 主要功能包括：
 
-- Keep Alive
-- Publish Client Info
-- Route to Cloud
-- Route to Edge
-
-
-## Keep Alive
-
-A keep-alive message or heartbeat is sent to cloudHub after every heartbeatPeriod.
+- 保活
+- 发布连接信息
+- 路由到云端
+- 路由到边缘端
 
 
-## Publish Client Info
+## 保活
 
-- The main responsibility of publish client info is to inform the other groups or modules regarding the status of connection to the cloud.
-
-- It sends a beehive message to all groups (namely metaGroup, twinGroup and busGroup), informing them whether cloud is connected or disconnected.
+每间隔一个心跳周期，EdgeHub 都会向 CloudHub 发送保活消息或心跳。
 
 
-## Route To Cloud
+## 发布连接信息
 
-The main responsibility of route to cloud is to receive from the other modules (through beehive framework), all the
-messages that are to be sent to the cloud, and send them to cloudHub through the websocket connection.
+- 发布连接信息的主要职责是将和云的连接状态通知到其他 Beehive 组或 Beehive 模块。
 
-The major steps involved in this process are as follows :-
+- 他向所有组（metaGroup、twinGroup 和 busGroup）发送一个 Beehive 消息，通知他们云是否已连接或已断开。
 
-1. Continuously receive messages from beehive Context
-2. Send that message to cloudHub
-3. If the message received is a sync message then :
 
- 	3.1 If response is received on syncChannel then it creates a map[string] chan containing the messageID of the message as key
+## 路由到云端
 
-	3.2 It waits for one heartbeat period to receive a response on the channel created, if it does not receive any response on the channel within the specified time then it times out.
+路由到云端的主要职责是接收来自其他模块（通过 Beehive 框架）的要发送到云端的消息，
+并通过 WebSocket 连接将这些消息发送到 CloudHub。
 
-	3.3 The response received on the channel is sent back to the module using the SendResponse() function.
+这个过程中涉及的主要步骤如下：
+
+1. 不断地从 Beehive Context 接收消息
+2. 将这些消息发送到 CloudHub
+3. 如果接收到的消息是一个同步消息，则：
+
+    3.1. 如果在 syncChannel 上收到响应，则它会创建一个 `map[string]chan`，其中包含以消息的 messageID 作为键的键值对
+
+    3.2. 它等待一个心跳周期，在创建的通道上接收响应，如果在指定时间内没有在通道上收到任何响应，则认为超时。
+
+    3.3. 在通道上收到的响应将使用 SendResponse() 函数发送回模块。
 
 ![Route to Cloud](/img/edgehub/route-to-cloud.png)
 
-## Route To Edge
+## 路由到边缘端
 
-The main responsibility of route to edge is to receive messages from the cloud (through the websocket connection) and
-send them to the required groups through the beehive framework.
+路由到边缘端的主要职责是接收来自云端（通过 WebSocket 连接）的消息，
+并通过 Beehive 框架将这些消息发送到所需的组。
 
-The major steps involved in this process are as follows :-
+这个过程中涉及的主要步骤如下：
 
-- Receive message from cloudHub
-
-- Check whether the route group of the message is found.
-
-- Check if it is a response to a SendSync() function.
-
-- If it is not a response message then the message is sent to the required group
-
-- If it is a response message then the message is sent to the syncKeep channel
+- 从 CloudHub 接收消息
+- 检查消息的路由组是否存在。
+- 检查它是否是 SendSync() 函数的响应。
+- 如果不是响应消息，则将消息发送到所需的组
+- 如果是响应消息，则将消息发送到 syncKeep 通道
 
 ![Route to Edge](/img/edgehub/route-to-edge.png)
 
 
-## Usage
+## 用法
 
-EdgeHub can be configured to communicate in two ways as mentioned below:
+EdgeHub 可以配置为以下两种方式进行通信：
 
-- **Through websocket protocol**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#edgehub-connect-to-cloudhub-through-websocket-protocol) for details.
-- **Through QUIC protocol**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#edgehub-connect-to-cloudhub-through-quic) for details.
+- **通过 WebSocket 协议**：点击[这里](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#edgehub-connect-to-cloudhub-through-websocket-protocol) 查看详情。
+- **通过 QUIC 协议**：点击[这里](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#edgehub-connect-to-cloudhub-through-quic) 查看详情。

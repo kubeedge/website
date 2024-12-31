@@ -13,7 +13,7 @@ It forwards the messages received from the cloud to the corresponding module at 
 The main functions performed by edgehub are :-
 
 - Keep Alive
-- Publish Client Info
+- Publish Connection Info
 - Route to Cloud
 - Route to Edge
 
@@ -23,9 +23,9 @@ The main functions performed by edgehub are :-
 A keep-alive message or heartbeat is sent to cloudHub after every heartbeatPeriod.
 
 
-## Publish Client Info
+## Publish Connection Info
 
-- The main responsibility of publish client info is to inform the other groups or modules regarding the status of connection to the cloud.
+- The main responsibility of publish connection info is to inform the other groups or modules regarding the status of connection to the cloud.
 
 - It sends a beehive message to all groups (namely metaGroup, twinGroup and busGroup), informing them whether cloud is connected or disconnected.
 
