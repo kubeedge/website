@@ -299,6 +299,24 @@ Error: failed to get edge certificate from the cloudcore, error: Get "https://19
 
 cloudcore requires the configuration parameter advertise-address, which can contain multiple IP addresses, separated by commas, which need to be defined in advance. It's recommended to use a load balancer or gateway address, to ensure load balancing and high availability of cloudcore. Currently, this address cannot be changed once it's configured. The value of `cloudcore-ipport` at edgecore must exist in the cloudcore `advertise-address` list.
 
+### Certificate Verification Issues When Deploying on k3s
+
+When deploying KubeEdge on k3s with edge logging enabled, you might encounter the following error:
+
+```
+Error from server: Get "https://192.168.50.132:10351/containerLogs/default/nginx/nginx?follow=true": tls: failed to verify certificate: x509: cannot validate certificate for 192.168.50.132 because it doesn't contain any IP SANs
+```
+
+Solution: Add the following parameter when starting k3s:
+
+```bash
+--kube-apiserver-arg=kubelet-certificate-authority=
+```
+
+This disables kubelet certificate verification, which resolves the certificate validation failure.
+
+### 在 k3s 上部署时的证书验证问题
+
 ## Advertise-address related issues
 The most common problems is due to that the IP address that cloudcore expose, is NOT the same as the IP address that edgecore use to connect to.
 
