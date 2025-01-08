@@ -315,7 +315,7 @@ Solution: Add the following parameter when starting k3s:
 
 This disables kubelet certificate verification, which resolves the certificate validation failure.
 
-### 在 k3s 上部署时的证书验证问题
+
 
 ## Advertise-address related issues
 The most common problems is due to that the IP address that cloudcore expose, is NOT the same as the IP address that edgecore use to connect to.
