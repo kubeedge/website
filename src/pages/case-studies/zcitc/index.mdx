@@ -106,8 +106,8 @@ and perform periodic data cleanup.
 
 ## Results
 
-Currently, Zhicheng's smart parking operating system has undergone domestic innovation transformation, with containerized applications fully adapted to computing platforms with x86_64, 
-aarch32, and aarch64 CPU architectures, elastically adapting to parking lot scale and construction costs. Gateway devices use lightweight MQTT protocol for message communication, 
+Currently, Zhicheng's smart parking operating system has implemented application containerization, fully adapted to the computing platform of x86_64, aarch32, 
+and aarch64 CPU architecture, elastically adapting to parking lot scale and construction costs. Gateway devices use lightweight MQTT protocol for message communication,  
 achieving low consumption and stability while greatly reducing bandwidth pressure. Kubernetes' container orchestration capabilities bring rapid deployment and high availability to 
 parking lot systems.
 
@@ -116,12 +116,16 @@ following a "one block, one strategy, one solution" approach. Edge computing pro
 
 (1) Intelligent access to parking lot devices. Achieves collection and reporting of sensor data from entrance/exit cameras and vehicle detectors, and networked control of barriers, 
 space display screens, voice broadcasting, and other control units.
+
 (2) Two-way synchronization of business data. Real-time communication with the cloud, receiving basic information like parking lot, channel, and vehicle whitelist information from the cloud; 
 pre-processing vehicle entry/exit information, generating parking orders, and calculating fees based on charging schemes. Business data has two-way synchronization capability while ensuring data consistency.
+
 (3) Short-term offline working capability. Provides limited services to drivers during short disconnections, such as barrier opening for entry, whitelist and free order barrier opening for exit, 
 and offline parking fee calculation. Data automatically synchronizes when network connection is restored to maintain cloud and edge data consistency.
+
 (4) Load balancing and high availability. Elastic deployment, with some critical businesses meeting "single-point multi-active" and "cloud-edge" multi-site active scenarios, 
 providing load balancing and high availability for parking lot business.
+
 (5) Continuous delivery, rapid deployment, and application updates. Fully containerized applications, combined with Kubernetes and KubeEdge orchestration deployment capabilities, 
 achieve rapid iteration and continuous delivery of parking lot business, with automated deployment, update, and rollback operational management capabilities for edge nodes.
 
