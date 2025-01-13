@@ -483,3 +483,20 @@ modules:
 :::tip
 当你需要使用`systemd` cgroup驱动，并且在使用keadm join安装部分版本(v1.12.0-1.12.4, v1.13.0-1.13.2, v1.14.0-1.14.2)的EdgeCore时，可能也会出现`OCI runtime create failed`的报错，建议使用对应release版本的最新patch版本
 :::
+
+## 在 k3s 上部署时的证书验证问题
+
+当在启用了边缘日志功能的 k3s 上部署 KubeEdge 时，你可能会遇到以下错误:
+
+```
+Error from server: Get "https://192.168.50.132:10351/containerLogs/default/nginx/nginx?follow=true": tls: failed to verify certificate: x509: cannot validate certificate for 192.168.50.132 because it doesn't contain any IP SANs
+```
+
+解决方案：在启动 k3s 时添加以下参数:
+
+```bash
+--kube-apiserver-arg=kubelet-certificate-authority=
+```
+
+这将禁用 kubelet 证书验证，从而解决证书验证失败的问题。
+
