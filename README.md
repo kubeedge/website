@@ -40,24 +40,38 @@ and run a local server. This section shows you how.
 
 ### Install Node.js
 
-[Node.js](https://nodejs.org/en/download) version 16.14 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
+[Node.js](https://nodejs.org/en/download) version 16.14 or above required, please see more details for [Node.js official supported version](https://endoflife.date/nodejs).
 
-- apt
+> [!NOTE]
+> Aligned with [official download](https://nodejs.org/en/download), using `nvm` and `npm` installation is recommended.
+
+- using `nvm` with `npm`
 
 ```shell
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 22
+node -v
+```
+
+If you want to install `apt` package on Ubuntu.
+
+- `apt`
+
+```shell
+curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
+node -v
 ```
 
 ### Install yarn
 
-- npm
+- `npm`
 
 ```shell
 npm install -g yarn
 ```
 
-- apt
+- `apt`
 
 ```shell
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
