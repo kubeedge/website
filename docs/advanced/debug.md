@@ -26,7 +26,7 @@ sidebar_position: 3
     echo $CLOUDCOREIPS
     ```
 
-3. Generate the certificates for **CloudStream** on the cloud node. The generation file is not in `/etc/kubeedge/`, so it needs to be copied from the repository cloned from GitHub.
+3. Generate the certificates for **CloudStream** on the cloud node. Since the generation file is not located in `/etc/kubeedge/`, copy it from the cloned GitHub repository.
 
     Switch to the root user:
 
@@ -52,7 +52,7 @@ sidebar_position: 3
     /etc/kubeedge/certgen.sh stream
     ```
 
-4. It is needed to set iptables on the host. (This command should be executed on every apiserver deployed node.)(In this case, this the master node, and execute this command by root.) Run the following command on the host where each apiserver runs:
+4. It is needed to set iptables on the host. (This procedure should be executed on every node where an api-server is deployed. In this case, it is the control-plane node. Execute those commands as the root user.)
 
     **Note:** First, get the configmap containing all the CloudCore IPs and tunnel ports:
 
@@ -68,7 +68,7 @@ sidebar_position: 3
     ...
     ```
 
-    Then set all the iptables for multiple CloudCore instances to every node where apiserver runs. The cloudcore ips and tunnel ports should be obtained from the configmap above.
+    Then set all the iptables for multiple CloudCore instances to every node where the api-server runs. The CloudCore IPs and tunnel ports should be obtained from the configmap above.
 
     ```bash
     iptables -t nat -A OUTPUT -p tcp --dport $YOUR-TUNNEL-PORT -j DNAT --to $YOUR-CLOUDCORE-IP:10003
@@ -105,7 +105,7 @@ sidebar_position: 3
    Update `edgecore` configuration to enable **edgeStream**.
 
     This modification needs to be done all edge system where `edgecore` runs to update `/etc/kubeedge/config/edgecore.yaml`.
-    Make sure the `server` IP address to the cloudcore IP (the same as $CLOUDCOREIPS).
+    Make sure the `server` IP address to the CloudCore IP (the same as $CLOUDCOREIPS).
 
     ```yaml
     edgeStream:
@@ -119,7 +119,7 @@ sidebar_position: 3
       writeDeadline: 15
     ```
 
-6. Restart all the cloudcore and edgecore to apply the **Stream** configuration.
+6. Restart all the CloudCore and EdgeCore to apply the **Stream** configuration.
 
     ```shell
     sudo su
@@ -138,7 +138,7 @@ sidebar_position: 3
     kubectl -n kubeedge rollout restart deployment cloudcore
     ```
 
-    EdgeCore:
+    Restart the EdgeCore:
 
     ```shell
     systemctl restart edgecore.service
