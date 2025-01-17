@@ -1,6 +1,6 @@
 ---
 title: 边缘Pod使用GPU
-sidebar_position: 7
+sidebar_position: 9
 ---
 
 ## 概要

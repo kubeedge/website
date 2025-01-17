@@ -1,6 +1,6 @@
 ---
 title: Edge Pods use GPU
-sidebar_position: 5
+sidebar_position: 9
 ---
 
 ## Abstract
