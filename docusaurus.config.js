@@ -5,7 +5,22 @@ const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const versionsArchived = require("./versionsArchived.json");
 
+
+
+// Precompute the copyright for each locale
+const currentYear = new Date().getFullYear();
+const localizedCopyrights = {
+  en: `${currentYear} © KubeEdge Project Authors. All rights reserved.`,
+  zh: `${currentYear} © KubeEdge 项目作者。版权所有。`,
+};
+
+// Use the default locale if none is found
+const defaultLocale = "en";
+const selectedLocale = process.env.LOCALE || defaultLocale;
+const localizedCopyright = localizedCopyrights[selectedLocale] || localizedCopyrights[defaultLocale];
+
 /** @type {import('@docusaurus/types').Config} */
+
 const config = {
   title: "KubeEdge",
 
@@ -211,7 +226,8 @@ const config = {
             html: '<p>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademark Usage</a> page.</p>',
           },
         ],
-        copyright: `${new Date().getFullYear()} © KubeEdge Project Authors. All rights reserved.`,
+        copyright:  localizedCopyright,
+        
       },
       prism: {
         theme: lightCodeTheme,
