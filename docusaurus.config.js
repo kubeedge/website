@@ -4,23 +4,15 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const versionsArchived = require("./versionsArchived.json");
-
-
-
-// Precompute the copyright for each locale
-const currentYear = new Date().getFullYear();
-const localizedCopyrights = {
-  en: `${currentYear} © KubeEdge Project Authors. All rights reserved.`,
-  zh: `${currentYear} © KubeEdge 项目作者。版权所有。`,
+const footer = {
+  copyright: {
+    message: "{{year}} © KubeEdge Project Authors. All rights reserved.", 
+    description: "The footer copyright",                               
+  },
 };
-
-// Use the default locale if none is found
-const defaultLocale = "en";
-const selectedLocale = process.env.LOCALE || defaultLocale;
-const localizedCopyright = localizedCopyrights[selectedLocale] || localizedCopyrights[defaultLocale];
-
+const currentYear = new Date().getFullYear();
+footer.copyright.message = footer.copyright.message.replace("{{year}}", String(currentYear));
 /** @type {import('@docusaurus/types').Config} */
-
 const config = {
   title: "KubeEdge",
 
@@ -39,10 +31,10 @@ const config = {
       en: {
         htmlLang: "en-GB",
         label: "English",
-      },
+        },
       zh: {
         label: "简体中文",
-      },
+        },
     },
   },
 
@@ -226,8 +218,7 @@ const config = {
             html: '<p>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademark Usage</a> page.</p>',
           },
         ],
-        copyright:  localizedCopyright,
-        
+        copyright: footer.copyright.message,
       },
       prism: {
         theme: lightCodeTheme,
