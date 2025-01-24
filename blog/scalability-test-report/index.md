@@ -53,14 +53,14 @@ Scalability and performance are important features of Kubernetes clusters. Befor
 
 | **Status**   | **SLI**                                                      | **SLO**                                                      |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Official** | Latency of mutating API calls for single objects for every (resource, verb) pair, measured as 99th percentile over last 5 minutes | In default Kubernetes installation, for every (resource, verb) pair, excluding virtual and aggregated resources and Custom Resource Definitions, 99th percentile per cluster-day <= 1s |
-| **Official** | Latency of non-streaming read-only API calls for every (resource, scope) pair, measured as 99th percentile over last 5 minutes | In default Kubernetes installation, for every (resource, scope) pair, excluding virtual and aggregated resources and Custom Resource Definitions, 99th percentile per cluster-day: (a) <= 1s if `scope=resource` (b) <= 30s[5](https://github.com/kubernetes/community/blob/master/sig-scalability/slos/api_call_latency.md#footnote5) otherwise (if `scope=namespace` or `scope=cluster`) |
+| **Official** | Latency of mutating API calls for single objects for every (resource, verb) pair, measured as 99th percentile over last 5 minutes | In default Kubernetes installation, for every (resource, verb) pair, excluding virtual and aggregated resources and Custom Resource Definitions, 99th percentile per cluster-day ≤ 1s |
+| **Official** | Latency of non-streaming read-only API calls for every (resource, scope) pair, measured as 99th percentile over last 5 minutes | In default Kubernetes installation, for every (resource, scope) pair, excluding virtual and aggregated resources and Custom Resource Definitions, 99th percentile per cluster-day: (a) ≤ 1s if `scope=resource` (b) ≤ 30s[5](https://github.com/kubernetes/community/blob/master/sig-scalability/slos/api_call_latency.md#footnote5) otherwise (if `scope=namespace` or `scope=cluster`) |
 
 2. Pod Startup Latency
 
 | **Status**   | **SLI**                                                      | SLO                                                          |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **Official** | Startup latency of schedulable stateless pods, excluding time to pull images and run init containers, measured from pod creation timestamp to when all its containers are reported as started and observed via watch, measured as 99th percentile over last 5 minutes | In default Kubernetes installation, 99th percentile per cluster-day <= 5s |
+| **Official** | Startup latency of schedulable stateless pods, excluding time to pull images and run init containers, measured from pod creation timestamp to when all its containers are reported as started and observed via watch, measured as 99th percentile over last 5 minutes | In default Kubernetes installation, 99th percentile per cluster-day ≤ 5s |
 | **WIP**      | Startup latency of schedulable stateful pods, excluding time to pull images, run init containers, provision volumes (in delayed binding mode) and unmount/detach volumes (from previous pod if needed), measured from pod creation timestamp to when all its containers are reported as started and observed via watch, measured as 99th percentile over last 5 minutes | TBD                                                          |
 
 The community also defines indicators such as in-cluster network programming latency (latency for Service updates or changes in ready pods to be reflected to iptables/IPVS rules), in-cluster network latency, DNS programming latency (latency for Service updates or changes in ready pods to be reflected to the DNS server), and DNS latency. These indicators have not yet been quantified. This test was conducted to satisfy all SLIs/SLOs in the official state.
@@ -75,10 +75,10 @@ Obviously, it is impossible for a Kubernetes cluster to expand resource objects 
 
 ```
 1. Pods/node 30
-2. Backends <= 50k & Services <= 10k & Backends/service <= 250
+2. Backends ≤ 50k & Services ≤ 10k & Backends/service ≤ 250
 3. Pod churn 20/s
 4. Secret & configmap/node 30
-5. Namespaces <= 10k & Pods <= 150k & Pods/namespace <= 3k
+5. Namespaces ≤ 10k & Pods ≤ 150k & Pods/namespace ≤ 3k
 6. ​    …..
 ```
 
