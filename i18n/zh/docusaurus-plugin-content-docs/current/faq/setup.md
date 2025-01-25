@@ -411,7 +411,7 @@ execute keadm command failed: edge node join failed: copy resources failed: rpc 
 
 目前在使用cri runtime时，执行keadm join需要先安装cni plugin并配置cni config，您可以参考以下步骤执行。
 
-1. 从 https://github.com/containernetworking/plugins/releases 下载 cni-plugins-{OS}-{ARCH}-{VERSION}.tgz，并将其解压到/opt/cni/bin:
+1. 从 https://github.com/containernetworking/plugins/releases 下载 `cni-plugins-{OS}-{ARCH}-{VERSION}.tgz`，并将其解压到/opt/cni/bin:
 
 ```bash
 $ mkdir -p /opt/cni/bin
