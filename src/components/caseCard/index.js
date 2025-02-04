@@ -3,34 +3,41 @@ import { useHistory } from "@docusaurus/router";
 import Translate from "@docusaurus/Translate";
 import "./styles.scss";
 
-export default function CaseCard(props) {
-    const {
-        title = "",
-        subTitle = "",
-        date = "",
-        desc = "",
-        imgUrl = "",
-        link = "",
-    } = props;
-    const history = useHistory();
+export default function StudyCard(props) {
+  const {
+    title = "",
+    subTitle = "",
+    date = "",
+    desc = "",
+    imgUrl = "",
+    link = "",
+  } = props;
 
-    return (
-        <div
-            className="case-card"
-            style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),url(${imgUrl})`,
-            }}
-        >
-            <h2 className="title" onClick={() => history.push(link)}>
-                {title}
-            </h2>
-            <hr />
-            <h3 className="sub">{subTitle}</h3>
-            <p className="desc">{desc}</p>
-            <div className="date">{date}</div>
-            <a className="button" type="button" onClick={() => history.push(link)}>
-                <Translate>READ CASE STUDY</Translate>
-            </a>
+  const history = useHistory();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    history.push(link);
+  };
+
+  return (
+    <div className="case-card" onClick={handleClick}>
+      {imgUrl && (
+        <div className="image-container">
+          <img src={imgUrl} alt={title} className="thumbnail" />
         </div>
-    );
+      )}
+      <div className="text-content">
+        <h2 className="main-title">{title}</h2>
+        <h3 className="sub-heading">{subTitle}</h3>
+        <p className="details">{desc}</p>
+        <div className="card-bottom">
+          <span className="published-date">{date}</span>
+          <button className="more-info" onClick={handleClick}>
+            <Translate>READ CASE STUDY</Translate>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
