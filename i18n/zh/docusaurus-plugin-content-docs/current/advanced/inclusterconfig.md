@@ -23,7 +23,7 @@ unable to load in-cluster configuration, KUBERNETES_SERVICE_HOST and KUBERNETES_
 当您使用`keadm init`来安装CloudCore时，请打开`dynamiccontroller`模块以及`requireAuthorization`特性开关:
 
 ```
-keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0 --set cloudCore.modules.dynamicController.enable=true cloudCore.featureGates.requireAuthorization=true
+keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0 --set cloudCore.modules.dynamicController.enable=true,cloudCore.featureGates.requireAuthorization=true
 ```
 
 如果您已经安装过CloudCore，并且在安装时没有配置`dynamiccontroller`模块以及`requireAuthorization`特性开关，请按照以下步骤修改配置：
@@ -70,7 +70,7 @@ featureGates:
 modules:
 ...
 metaServer:
-  enable: false
+  enable: true
 ...
 ```
 

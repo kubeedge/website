@@ -87,7 +87,7 @@ spec:
 #### 拉取数据
 我们创建HTTP服务用以提供API拉取功能，支持直接从设备拉取设备数据。下面列出的 URL 以本地 IP 的形式给出。你可以从Mapper可访问的任何网络使用这些服务。
 
-默认情况下启用端口“7777”。
+默认情况下启用端口“7777”。你可以在Mapper的[config文件](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/mapper-framework/_template/mapper/config.yaml)中自行设置端口号。
 
 `deviceInstance-ID` 根据你自己的 CRD 定义。
 
@@ -109,7 +109,7 @@ spec:
 #### 设备数据处理
 1. 获取设备数据  
    Method=**GET**  
-   Url: https://127.0.0.1:7777/api/v1/device/deviceInstance-ID/propertyName
+   Url: https://127.0.0.1:7777/api/v1/device/{deviceInstance-ID}/{propertyName}  
    Response: 
    ```json
    {
@@ -128,7 +128,7 @@ spec:
 #### 设备元数据
 1. 获取设备模型  
    Method=**GET**  
-   Url: https://127.0.0.1:7777/api/v1/meta/model/deviceInstance-ID  
+   Url: https://127.0.0.1:7777/api/v1/meta/model/{deviceInstance-ID}  
    Response: 
    ```json
    {
@@ -148,6 +148,52 @@ spec:
         ]
     }
    ```
+
+#### 设备写入
+在1.19版本中实现了Mapper支持设备写入的特性，增强了原有Mapper API能力。用户能够通过API获取某个设备所有可供外部调用的设备方法，通过返回的调用命令向设备发起写入请求。
+下面列出的 URL 以本地 IP 的形式给出。你可以从Mapper可访问的任何网络使用这些服务。
+
+默认情况下启用端口“7777”。你可以在Mapper的[config文件](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/mapper-framework/_template/mapper/config.yaml)中自行制定端口号
+
+`deviceInstance-ID` 根据你自己的 CRD 定义。
+
+`propertyName` 根据你自己的 CRD 定义。
+
+1. 获取设备的所有设备方法  
+   Url: https://127.0.0.1:7777/api/v1/devicemethod/{deviceInstance-ID}  
+   Response:
+   ```json
+   {
+    "Data": {
+        "Methods": [
+            {
+                "Name": "setValue",
+                "Path": "/api/v1/devicemethod/default/random-instance-01/setValue/{propertyName}/{data}",
+                "Parameters": [
+                    {
+                        "PropertyName": "random-int",
+                        "ValueType": "int"
+                    }
+                ]
+            }
+        ]
+    }
+    }
+   ```
+   
+获取设备方法的调用命令后，用户可以创建设备写入请求：
+
+2. 创建设备写入请求  
+   Url: https://127.0.0.1:7777/api/v1/devicemethod/{deviceInstance-ID}/{deviceMethodName}/{propertyName}/{data}  
+   Response:
+   ```json
+    {
+    "statusCode": 200,
+    "Message": "Write data ** to device ** successfully."
+    }
+   ```
+   
+
 
 
 
