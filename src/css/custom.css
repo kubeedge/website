@@ -94,10 +94,29 @@
   overflow-y: auto !important; /* Keep only one vertical scrollbar */
   overflow-x: hidden !important; /* Prevents horizontal scrolling */
   width: 100% !important; /* Ensure full width */
-  min-width: 280px !important;
-  max-width: 100% !important;
+  min-width: 220px !important;
+  max-width: 240px !important;
   display: flex;
   flex-direction: column;
+}
+.col--3 {
+  flex: 0 0 220px !important; /* Reduce width */
+  max-width: 220px !important; /* Fix max-width */
+  min-width: 220px !important;
+  margin-left: 10px !important; /* Shift right slightly to avoid extra space */
+}
+
+/* --- Ensure Blog Content (`col--7`) Expands to Fill Available Space --- */
+.col--7 {
+  flex-grow: 1 !important; /* Fully expands to fill remaining space */
+  max-width: calc(100% - 220px - 300px) !important; /* Adjust for sidebars */
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+.col--2 {
+  flex: 0 0 300px !important; /* Keep right sidebar width fixed */
+  max-width: 300px !important;
+  min-width: 280px !important;
 }
 
 /* --- Fix Parent Container: Expand to Remove Extra Space --- */
@@ -207,15 +226,23 @@ div[class*="col-7"] {
     min-width: unset !important;
     padding: 1rem;
   }
+  .col--3 {
+    flex: 0 0 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important; /* Reset margin on small screens */
+  }
 
+  .col--7 {
+    max-width: 100% !important;
+  }
+
+  .col--2 {
+    flex: 0 0 100% !important;
+    max-width: none !important;
+  }
   div[class*="col-2"] {
     width: 100% !important;
     max-width: none !important;
     justify-content: flex-start !important; /* Align properly on small screens */
-  }
-
-  div[class*="col-7"] {
-    max-width: 100% !important;
-    padding-right: 0 !important;
   }
 }
