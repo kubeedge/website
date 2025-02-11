@@ -76,3 +76,146 @@
 .dropdown__link svg {
   display: none;
 }
+
+/* New Blog Sidebar Styles */
+/* --- Right Sidebar Full Width Fix (No Scrolling Needed) --- */
+/* --- Right Sidebar Fix: Remove Extra Scrollbar & Reduce Size --- */
+/* --- Right Sidebar Enhancements: Full Visibility Without Scrolling --- */
+.table-of-contents,
+.table-of-contents__left-border {
+  padding: 1rem;
+  border-left: 1px solid #ddd !important;
+  background-color: var(--ifm-background-color) !important;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - var(--ifm-navbar-height));
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  overflow-y: auto !important; /* Keep only one vertical scrollbar */
+  overflow-x: hidden !important; /* Prevents horizontal scrolling */
+  width: 100% !important; /* Ensure full width */
+  min-width: 280px !important;
+  max-width: 100% !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Fix Parent Container: Expand to Remove Extra Space --- */
+div[class*="col-2"] {
+  flex-grow: 1 !important;
+  width: 100% !important;
+  min-width: 280px !important;
+  max-width: 100% !important;
+  display: flex;
+  padding-right: 0 !important;
+  justify-content: flex-end; /* Push to right edge */
+}
+
+/* --- Adjust Main Blog Content for Sidebar Expansion --- */
+div[class*="col-7"] {
+  width: 100% !important;
+  max-width: calc(100% - 300px) !important; /* Adjusts based on sidebar width */
+  padding-right: 2rem !important;
+}
+
+/* --- Global Container Fix for Proper Layout --- */
+.container {
+  max-width: none !important;
+  padding-right: 0 !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* --- Reduce Sidebar Item Size for Full Visibility Without Scrolling --- */
+.table-of-contents__left-border li a {
+  margin-bottom: 6px; /* Reduce spacing between items */
+  padding: 6px 8px; /* Reduce padding */
+  border-radius: 4px; /* Slightly smaller corners */
+  font-size: 0.85rem; /* Reduce font size for better fit */
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  text-align: left;
+  white-space: normal !important;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- Default Sidebar Item Styling --- */
+.table-of-contents__left-border li a {
+  color: #333;
+  background-color: transparent;
+}
+
+/* --- Active Sidebar Item Highlight (Same as Before) --- */
+.table-of-contents__left-border li a[href*="#"]:hover,
+.table-of-contents__left-border
+  li
+  a[href*="#"].table-of-contents__link--active {
+  background-color: rgba(0, 0, 255, 0.1) !important;
+  color: #0056b3 !important;
+  font-weight: 600;
+  border-left: 3px solid #0056b3; /* Slightly thinner border */
+  padding-left: 10px;
+}
+
+/* --- Scrollbar Styling for Smooth Look --- */
+.table-of-contents__left-border::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-of-contents__left-border::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.table-of-contents__left-border::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.table-of-contents__left-border::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* --- Dark Mode Adjustments --- */
+[data-theme="dark"] .table-of-contents,
+[data-theme="dark"] .table-of-contents__left-border {
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--ifm-background-surface-color) !important;
+}
+
+[data-theme="dark"] .table-of-contents__left-border li a[href*="#"]:hover,
+[data-theme="dark"]
+  .table-of-contents__left-border
+  li
+  a[href*="#"].table-of-contents__link--active {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--ifm-color-primary-light) !important;
+  font-weight: 600;
+  border-left: 4px solid var(--ifm-color-primary-light);
+}
+
+/* --- Ensure Sidebar Responsiveness on Smaller Screens --- */
+@media screen and (max-width: 1024px) {
+  .table-of-contents,
+  .table-of-contents__left-border {
+    width: 100% !important;
+    min-width: unset !important;
+    padding: 1rem;
+  }
+
+  div[class*="col-2"] {
+    width: 100% !important;
+    max-width: none !important;
+    justify-content: flex-start !important; /* Align properly on small screens */
+  }
+
+  div[class*="col-7"] {
+    max-width: 100% !important;
+    padding-right: 0 !important;
+  }
+}

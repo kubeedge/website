@@ -8,11 +8,7 @@ const versionsArchived = require("./versionsArchived.json");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "KubeEdge",
-
-  // Set the production url of your site here
   url: "https://kubeedge.io",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   onBrokenLinks: "throw",
@@ -95,8 +91,6 @@ const config = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/kubeedge/website/blob/master/",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
@@ -107,12 +101,13 @@ const config = {
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/kubeedge/website/tree/master/",
-          postsPerPage: 5,
+          postsPerPage: 10,
           blogSidebarCount: "ALL",
-          blogSidebarTitle: "All our posts",
+          blogSidebarTitle: "Recent Blog Posts",
+          blogListComponent: "@theme/BlogListPage",
+          blogTagsListComponent: "@theme/BlogTagsListPage",
+          blogTagsPostsComponent: "@theme/BlogTagsPostsPage",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -121,103 +116,101 @@ const config = {
     ],
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      image: "img/docusaurus-social-card.jpg",
-      docs: {
-        sidebar: {
-          hideable: true,
-          autoCollapseCategories: true,
-        },
+  themeConfig: {
+    image: "img/docusaurus-social-card.jpg",
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
       },
-      navbar: {
-        title: "KubeEdge",
-        logo: {
-          src: "img/avatar.png",
-          target: "_self",
-          href: "/",
-        },
-        items: [
-          {
-            label: "Documentation",
-            position: "left",
-            items: Object.keys(versionsArchived).map((v) => ({
-              label: v,
-              href: versionsArchived[v],
-              target: "_self",
-            })),
-            className: "navbar__link--community",
-          },
-          {
-            label: "Blog",
-            to: "/blog",
-            position: "left",
+    },
+    navbar: {
+      title: "KubeEdge",
+      logo: {
+        src: "img/avatar.png",
+        target: "_self",
+        href: "/",
+      },
+      items: [
+        {
+          label: "Documentation",
+          position: "left",
+          items: Object.keys(versionsArchived).map((v) => ({
+            label: v,
+            href: versionsArchived[v],
             target: "_self",
-          },
-          { to: "/case-studies", label: "Case Studies", position: "left" },
-          { to: "/partners", label: "Partners", position: "left"},
-          {
-            type: "dropdown",
-            label: "Community",
-            position: "left",
-            items: [
-              {
-                label: "Job Center",
-                to: "/job-center",
-              },
-            ],
-            hide: true,
-          },
-          {
-            label: "Downloads",
-            to: "https://github.com/kubeedge/kubeedge/releases",
-            position: "left",
-          },
-          {
-            href: "https://github.com/kubeedge/kubeedge",
-            position: "right",
-            className: "header-github-link heade-icon",
-          },
-          {
-            href: "https://twitter.com/KubeEdge",
-            position: "right",
-            className: "header-x-link heade-icon",
-          },
-          {
-            to: "/docs/community/slack",
-            position: "right",
-            className: "header-slack-link heade-icon",
-          },
-          {
-            type: "localeDropdown",
-            position: "right",
-          },
-        ].filter((item) => !item.hide),
-      },
-      footer: {
-        style: "light",
-        links: [
-          {
-            html: '<p style="font-size: large;">KubeEdge is a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> graduated project.</p>',
-          },
-          {
-            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/color/cncf-color.png?raw=true" class="footer__logo light">',
-          },
-          {
-            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" class="footer__logo dark">',
-          },
-          {
-            html: '<p>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademark Usage</a> page.</p>',
-          },
-        ],
-        copyright: `${new Date().getFullYear()} © KubeEdge Project Authors. All rights reserved.`,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+          })),
+          className: "navbar__link--community",
+        },
+        {
+          label: "Blog",
+          to: "/blog",
+          position: "left",
+          target: "_self",
+        },
+        { to: "/case-studies", label: "Case Studies", position: "left" },
+        { to: "/partners", label: "Partners", position: "left" },
+        {
+          type: "dropdown",
+          label: "Community",
+          position: "left",
+          items: [
+            {
+              label: "Job Center",
+              to: "/job-center",
+            },
+          ],
+          hide: true,
+        },
+        {
+          label: "Downloads",
+          to: "https://github.com/kubeedge/kubeedge/releases",
+          position: "left",
+        },
+        {
+          href: "https://github.com/kubeedge/kubeedge",
+          position: "right",
+          className: "header-github-link heade-icon",
+        },
+        {
+          href: "https://twitter.com/KubeEdge",
+          position: "right",
+          className: "header-x-link heade-icon",
+        },
+        {
+          to: "/docs/community/slack",
+          position: "right",
+          className: "header-slack-link heade-icon",
+        },
+        {
+          type: "localeDropdown",
+          position: "right",
+        },
+      ].filter((item) => !item.hide),
+    },
+    footer: {
+      style: "light",
+      links: [
+        {
+          html: '<p style="font-size: large;">KubeEdge is a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> graduated project.</p>',
+        },
+        {
+          html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/color/cncf-color.png?raw=true" class="footer__logo light">',
+        },
+        {
+          html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" class="footer__logo dark">',
+        },
+        {
+          html: '<p>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademark Usage</a> page.</p>',
+        },
+      ],
+      copyright: `${new Date().getFullYear()} © KubeEdge Project Authors. All rights reserved.`,
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
+    },
+  },
 
   plugins: [
     [require.resolve("./src/plugins/blogGlobalData/index.js"), {}],
