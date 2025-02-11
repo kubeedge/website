@@ -9,52 +9,45 @@ const reasons = [
     content: (
       <Translate>
         Autonomic Kube-API Endpoint at Edge, support to run third-party plugins
-        and applications that depends on Kubernetes APIs on edge nodes.
+        and applications that depend on Kubernetes APIs on edge nodes.
       </Translate>
     ),
   },
   {
     title: <Translate>Seamless Cloud-Edge Coordination</Translate>,
     content: (
-     <>
+      <>
         <Translate>
           Bidirectional communication, able to talk to edge nodes located in
           private subnet.
         </Translate>
         <br />
-        <Translate>
-
-          Support both metadata and data
-        </Translate>
-     </>
+        <Translate>Supports both metadata and data.</Translate>
+      </>
     ),
   },
   {
     title: <Translate>Edge Autonomy</Translate>,
     content: (
-        <>
-          <Translate>
-            Metadata persistent per node, no list-watch needed during node recovery,
-            get ready faster.
-          </Translate>
-          <br />
-          <Translate>
-            Autonomous operation of edge even during disconnection from cloud.
-          </Translate>
-        </>
+      <>
+        <Translate>
+          Metadata persists per node, no list-watch needed during node recovery,
+          enabling faster readiness.
+        </Translate>
+        <br />
+        <Translate>
+          Ensures autonomous operation even during cloud disconnection.
+        </Translate>
+      </>
     ),
   },
   {
     title: <Translate>Low Resource Ready</Translate>,
     content: (
       <>
-        <Translate>
-          Optimized usage of resource at the edge.
-        </Translate>
+        <Translate>Optimized resource usage at the edge.</Translate>
         <br />
-        <Translate>
-          Memory footprint down to ~70MB.
-        </Translate>
+        <Translate>Memory footprint down to ~70MB.</Translate>
       </>
     ),
   },
@@ -62,21 +55,21 @@ const reasons = [
     title: <Translate>Simplified Device Communication</Translate>,
     content: (
       <Translate>
-        Easy communication between application and devices for IOT and
-        Industrial Internet.
+        Enables seamless communication between applications and IoT or
+        Industrial Internet devices.
       </Translate>
     ),
   },
   {
-    title: <Translate>Heterogenous</Translate>,
-    content: <Translate>Native support of x86, ARMv7, ARMv8</Translate>,
+    title: <Translate>Heterogeneous Support</Translate>,
+    content: <Translate>Native support for x86, ARMv7, ARMv8.</Translate>,
   },
 ];
 
 export default function Why() {
   return (
     <SectionContainer className={styles.whyContainer}>
-      <h1>
+      <h1 className={styles.sectionTitle}>
         <Translate>Why KubeEdge</Translate>
       </h1>
       <div className={styles.reasonBoxContainer}>
