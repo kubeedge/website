@@ -17,11 +17,11 @@
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   }
 
-  // ✅ Fix logo sizing & remove box
+  //logo sizing
   .image-container {
     width: auto;
     max-width: 100%;
-    height: auto;
+    height: auto; //check with all the other logos as well
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,9 +30,8 @@
 
   .partner-logo {
     width: 100%;
-    // max-width: 220px; // Set a proper max width
     height: auto;
-    object-fit: contain; // Ensures image is fully visible
+    object-fit: contain;
     background-color: white !important; // White bg even in dark mode
   }
 
@@ -51,7 +50,7 @@
   }
 }
 
-// 🌙 Dark Mode Fix (Force White Background for Image)
+
 html[data-theme="dark"] {
   .partner-card {
     background-color: var(--ifm-background-surface-color);

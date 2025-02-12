@@ -6,7 +6,7 @@ import PartnerCard from "../../components/partnerCard";
 import "./index.scss";
 
 export default function Partners() {
-  const partners = frontMatter.partners || []; // Get partners from MDX
+  const partners = frontMatter.partners || []; // Get partners from frontmatter
 
   return (
     <Layout>

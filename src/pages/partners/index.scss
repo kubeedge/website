@@ -30,11 +30,11 @@
        }
        .partner-list {
         display: grid;
-        grid-template-columns: 1fr; // 1 card per row by default
-        gap: 3.5rem; // Space between the cards
+        grid-template-columns: 1fr; // 1 card per row by default(excpet desktop screens)
+        gap: 3.5rem;
       
         // On larger screens (desktop), show 2 cards per row
-        @media (min-width: 768px) {
+        @media (min-width: 1080px) {
           grid-template-columns: repeat(2, 1fr);
         }
       }
