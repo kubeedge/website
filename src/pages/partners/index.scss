@@ -28,5 +28,16 @@
        .partners-md {
           width: 60%;
        }
+       .partner-list {
+        display: grid;
+        grid-template-columns: 1fr; // 1 card per row by default
+        gap: 3.5rem; // Space between the cards
+      
+        // On larger screens (desktop), show 2 cards per row
+        @media (min-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
      }
 }
