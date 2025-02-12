@@ -156,7 +156,7 @@ const config = {
             target: "_self",
           },
           { to: "/case-studies", label: "Case Studies", position: "left" },
-          { to: "/partners", label: "Partners", position: "left"},
+          { to: "/partners", label: "Partners", position: "left" },
           {
             type: "dropdown",
             label: "Community",
@@ -196,22 +196,52 @@ const config = {
         ].filter((item) => !item.hide),
       },
       footer: {
-        style: "light",
-        links: [
-          {
-            html: '<p style="font-size: large;">KubeEdge is a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> graduated project.</p>',
-          },
-          {
-            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/color/cncf-color.png?raw=true" class="footer__logo light">',
-          },
-          {
-            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" class="footer__logo dark">',
-          },
-          {
-            html: '<p>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademark Usage</a> page.</p>',
-          },
-        ],
-        copyright: `${new Date().getFullYear()} © KubeEdge Project Authors. All rights reserved.`,
+        style: "dark",
+        links: [],
+        copyright: `
+          <div class="footer-container">
+            <div class="footer-left">
+              <div class="footer-logo">
+                <img src="/img/avatar.png" alt="KubeEdge Logo" width="50" />
+                <span>kubeEdge</span>
+              </div>
+              <div class="footer-copyright-text">
+                ${new Date().getFullYear()} © KubeEdge Project Authors. All rights reserved.
+              </div>
+              <div class="footer-trademark">
+                The Linux Foundation has registered trademarks and uses trademarks. For a 
+                list of trademarks of The Linux Foundation, please see our 
+                <a href="https://www.linuxfoundation.org/trademark-usage">Trademark Usage</a>
+                page.
+              </div>
+            </div>
+            <div class="footer-right">
+              <div class="footer-column">
+                <h3>Site Map</h3>
+                <ul>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/case-studies">Case Studies</a></li>
+                  <li><a href="/partners">Partners</a></li>
+                  <li><a target="_blank" href="https://github.com/kubeedge/kubeedge/releases">Download</a></li>
+                </ul>
+              </div>
+              <div class="footer-column">
+                <h3>Join the Community</h3>
+                <div class="social-icons">
+                  <a href="https://github.com/kubeedge/kubeedge" class="social-icon footer-github-link">
+                    GitHub
+                  </a>
+                  <a href="/docs/community/slack" class="social-icon footer-slack-link">
+                    Slack
+                  </a>
+                  <a href="https://twitter.com/KubeEdge" class="social-icon footer-x-link">
+                    Twitter
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
       },
       prism: {
         theme: lightCodeTheme,
