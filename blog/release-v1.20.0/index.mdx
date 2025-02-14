@@ -1,0 +1,95 @@
+---
+authors:
+  - KubeEdge SIG Release
+categories:
+  - General
+  - Announcements
+date: 2025-01-25
+draft: false
+lastmod: 2025-01-25
+summary: KubeEdge v1.20 is live!
+tags:
+  - KubeEdge
+  - kubeedge
+  - edge computing
+  - kubernetes edge computing
+  - K8s edge orchestration
+  - edge computing platform
+  - cloud native
+  - iot
+  - iiot
+  - dashboard
+  - release v1.20
+  - v1.20
+title: KubeEdge v1.20 is live!
+---
+
+On Jan 25, 2025, KubeEdge released v1.20. This new release introduces significant enhancements, including batch node operations, multi-language Mapper-Framework support, and improved edge resource management.
+
+## 1.20 What's New
+
+- [Support Batch Node Process](#support-batch-node-process)
+- [Multi-language Mapper-Framework Support](#multi-language-mapper-framework-support)
+- [Support Pods logs/exec/describe and Devices get/edit/describe Operation at Edge Using keadm ctl](#support-pods-logsexecdescribe-and-devices-geteditdescribe-operation-at-edge-using-keadm-ctl)
+- [Decouple EdgeApplications from NodeGroups, Support Node Label Selector](#decouple-edgeapplications-from-nodegroups-support-node-label-selector)
+- [CloudHub-EdgeHub Supports IPv6](#cloudhub-edgehub-supports-ipv6)
+- [Upgrade Kubernetes Dependency to v1.30.7](#upgrade-kubernetes-dependency-to-v1.30.7)
+
+## Release Highlights
+
+### Support Batch Node Process
+
+Previously, the `keadm` tool only supported manual single-node management. In edge scenarios with a large number of nodes, managing them individually was inefficient.
+
+In v1.20, we introduce batch node operation capabilities. Users can now use a single configuration file to perform batch operations (join, reset, upgrade) on all edge nodes via a control node.
+
+Refer to the link for more details. ([#5988](https://github.com/kubeedge/kubeedge/pull/5988), [#5968](https://github.com/kubeedge/kubeedge/pull/5968))
+
+### Multi-language Mapper-Framework Support
+
+To simplify custom Mapper development, KubeEdge now provides a Java version of the Mapper-Framework. Users can access the `feature-multilingual-mapper` branch to generate Java-based custom Mapper projects.
+
+Refer to the link for more details. ([#5773](https://github.com/kubeedge/kubeedge/pull/5773), [#5900](https://github.com/kubeedge/kubeedge/pull/5900))
+
+### Support Pods logs/exec/describe and Devices get/edit/describe Operation at Edge Using keadm ctl
+
+The `keadm ctl` command, introduced in v1.17, has been expanded to support:
+
+- Pod logs, exec, and describe operations
+- Device get, edit, and describe operations
+
+These enhancements make it easier to manage edge resources, particularly in offline scenarios.
+
+Refer to the link for more details. ([#5752](https://github.com/kubeedge/kubeedge/pull/5752), [#5901](https://github.com/kubeedge/kubeedge/pull/5901))
+
+### Decouple EdgeApplications from NodeGroups, Support Node Label Selector
+
+EdgeApplications were previously tied to NodeGroups for deployment and configuration. In v1.20, we introduce `targetNodeLabels`, allowing applications to deploy based on node labels instead.
+
+Refer to the link for more details. ([#5755](https://github.com/kubeedge/kubeedge/pull/5755), [#5845](https://github.com/kubeedge/kubeedge/pull/5845))
+
+### CloudHub-EdgeHub Supports IPv6
+
+With the growing demand for IoT and real-time data processing, IPv6 support has become essential. KubeEdge now supports IPv6 networking for CloudHub and EdgeHub, enabling seamless cloud-edge communication in IPv6 environments.
+
+#### Getting Started
+
+1. Ensure IPv6 is enabled on the node (`ip -6 route show`).
+2. Enable IPv4/IPv6 dual-stack in the Kubernetes cluster by configuring the necessary CIDRs.
+3. Modify `kube-proxy`, `kubelet`, and `Calico` settings to support dual-stack networking.
+4. Configure CloudCore services to support IPv6.
+5. Use `keadm join --cloudcore-ipport=[<IPv6 IP>]:<Port> --token=...` to connect edge nodes.
+6. Verify the configuration using `kubectl get nodes`.
+
+Refer to the document for more details. ([IPv6](https://kubeedge.io/docs/advanced/support_ipv6))
+
+### Upgrade Kubernetes Dependency to v1.30.7
+
+KubeEdge now supports Kubernetes v1.30.7, allowing users to leverage the latest features on both cloud and edge sides.
+Refer to the link for more details. ([#5997](https://github.com/kubeedge/kubeedge/issues/5997))
+
+## Important Steps before Upgrading
+
+- From v1.20, the default value of `edged.rootDirectory` will change from `/var/lib/edged` to `/var/lib/kubelet`. If you wish to continue using the original path, set `--set edged.rootDirectory=/var/lib/edged` when installing EdgeCore with `keadm`.
+
+For a complete list of changes, refer to the [official release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.20.0).
