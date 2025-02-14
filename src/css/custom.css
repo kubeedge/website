@@ -59,7 +59,7 @@
 
 /* Footer styles */
 .footer {
-  --ifm-footer-background-color: #1C77C8;
+  --ifm-footer-background-color: #0968bb;
   --ifm-footer-color: #CEE8FF;
   --ifm-footer-link-color: #ffffff;
   --ifm-footer-title-color: #ffffff;
@@ -85,6 +85,7 @@
 .footer-logo {
   display: flex;
   align-items: center;
+  gap: 10px;
   margin-bottom: 1rem;
 }
 
