@@ -7,6 +7,140 @@ tags:
   - UserCase
 ---
 
-# ZCITC practice in smart parking base on KubeEdge
+# Introduction
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/zcitc.
+As urban parking resources continue to expand and application scenarios diversify, **edge applications** are becoming increasingly complex. The rapid growth in **edge nodes** and the data they generate presents **several challenges in managing edge applications**:
+
+1. **Complex Network Topologies & Unstable Connectivity**:
+
+   - Retrofitting old parking lots with smart systems and constructing new smart parking lots require careful **network planning** based on project requirements, physical location, and road layout.
+   - Some large parking lots can deploy **dedicated fiber-optic lines**, while others may rely on **mobile networks** due to **physical restrictions on cable installation**.
+   - Network quality varies, and municipal construction may **occasionally cause power or network outages**, affecting system availability.
+
+2. **Highly Customized Demands & Frequent Updates**:
+
+   - Urban platforms integrate various parking resources, including **public street parking, commercial lots, residential spaces, and redeveloped zones**.
+   - Different **sensing technologies, operators, and pricing policies** make a **one-size-fits-all parking application infeasible**.
+   - Even after construction, **customizations and updates** are needed to accommodate events like **promotional discounts, special period pricing, and business collaborations**.
+   - Parking applications must support **version control, extensibility, and flexible deployment**.
+
+3. **Heterogeneous Edge Gateway Hardware Challenges**:
+   - Parking lots vary in scale, leading to **different computational needs**.
+   - Small lots may have **a single lane with a few spaces**, while larger lots feature **multiple entrances, hundreds of spaces, and zone-based pricing**.
+   - Gateways use different **CPU architectures** (x86_64, aarch32, aarch64), increasing technical complexity and management overhead.
+
+Zhejiang Zhicheng Software Co., Ltd. specializes in **urban-scale integrated smart parking solutions**. To support **unattended parking management**, the **Zhicheng team increasingly deploys containerized applications at edge nodes** to enhance security, reliability, efficiency, and maintainability.
+
+# Cloud-Native Edge Computing Technology
+
+Edge computing **decentralizes computation**, shifting workloads from cloud data centers to edge nodes, reducing latency and improving **real-time processing**.
+
+- **Cloud-native** methodologies (Kubernetes + Docker) enable flexible, scalable, and automated edge application management.
+- **Microservice architecture** enhances **modularity and maintainability**.
+- **DevOps & CI/CD** support continuous iteration and automated deployment.
+
+As computational scale and complexity increase, **cloud-native edge computing** is emerging as a key trend. **KubeEdge**, based on Kubernetes, is a leading **cloud-native edge computing framework**.
+
+![KubeEdge Architecture](/img/casestudies/zcitc/kubeedgeArchitecture.png)
+
+# Smart Parking System Architecture Based on Cloud-Native Edge Computing
+
+## Overall Architecture
+
+The **integrated urban parking platform** aims to unify street and off-street parking resources, merge **static and dynamic traffic data**, and create an **open ecosystem** for parking operators and users. Zhicheng **containerized all parking services**, deploying them **dynamically across cloud and edge nodes**.
+
+![System Structure](/img/casestudies/zcitc/systemStructure.png)
+
+## Technical Implementation
+
+KubeEdge extends Kubernetes' **application orchestration** capabilities to the edge, ensuring **high availability** and support for **complex parking services**.
+
+![Kubernetes Cluster](/img/casestudies/zcitc/KubernetesCluster.png)
+
+The **parking edge layer** consists of **loosely coupled containerized applications**, leveraging **Kubernetes and KubeEdge** for service deployment.
+
+![Edge Architecture](/img/casestudies/zcitc/EdgeArchitecture.png)
+
+### Key Components at the Edge:
+
+1. **Core Services**:
+
+   - **PostgreSQL** stores business data.
+   - **Redis** functions as an LRU cache to reduce disk I/O.
+   - **Zabbix** monitors system health.
+   - **Zeroconf Service** provides **gateway discovery** for operator terminals.
+
+2. **Gateway Broker**:
+
+   - Manages **message subscription, publishing, and bidirectional communication** between the edge and cloud.
+
+3. **Device Integration Layer**:
+
+   - Includes **camera, barrier gate, parking space display, voice alerts, and vehicle detection modules**.
+
+4. **Storage & Upload Services**:
+
+   - **StorageService** handles **image and video persistence**.
+   - **DiskUsageService** monitors disk capacity.
+   - **UploadService** manages **priority-based data uploads**.
+
+5. **Business Applications**:
+   - **Order management, entrance control, and fee calculations**.
+
+## Key Deployment Strategies
+
+1. **Master-Slave Edge Database Configuration**:
+   - Large parking lots (e.g., shopping malls, stadiums) require **multi-node failover setups**.
+   - Deploy **PostgreSQL and Redis using StatefulSets** for persistent storage across nodes.
+
+![Master-Slave Deployment](/img/casestudies/zcitc/MasterSlave.png)
+
+2. **Active-Active Redundancy**:
+
+   - Use **ReplicaSets** for **automatic failover and load balancing**.
+
+3. **Affinity Scheduling for Related Applications**:
+
+   - **ParkingLotService** and **DeviceService** are deployed **on the same node** for optimal performance.
+
+4. **Cross-Node Instance Deployment**:
+
+   - Applications like **ParkingLotService** run multiple instances across nodes for **high availability**.
+   - Small-scale parking lots can **deploy cloud-based backups**.
+
+5. **Node-Based Deployment Groups**:
+
+   - Parking lots use different hardware (x86_64, aarch32, aarch64).
+   - Applications are deployed using **NodeSelector** labels to match hardware architectures.
+
+6. **Automated Node Onboarding**:
+
+   - New edge nodes **automatically inherit deployment configurations** when joining the cluster.
+
+7. **Multi-Parking Lot Coordination**:
+   - **EdgeMesh** facilitates **real-time inter-lot communication** for:
+     - **Shared vehicle entry/exit tracking**.
+     - **Cross-lot payment processing**.
+     - **Real-time road traffic guidance integration**.
+
+# Implementation Results
+
+The **Zhicheng Smart Parking OS** supports **x86_64, aarch32, and aarch64 CPU architectures**, adapting to various parking scales and cost structures. MQTT-based **lightweight communication** reduces **bandwidth usage**.
+
+### Cloud-Edge Benefits:
+
+1. **Smart Device Integration**: Connects **cameras, sensors, and control units**.
+2. **Bidirectional Data Sync**: Real-time data exchange between **edge and cloud**.
+3. **Short-Term Offline Operation**:
+   - Vehicles can still **enter/exit**, process **white-listed vehicles**, and compute **offline payments**.
+   - Data automatically syncs upon **network recovery**.
+4. **Load Balancing & High Availability**:
+   - Supports **“single-node multi-active” and “cloud-edge redundancy”**.
+5. **Continuous Deployment & Rapid Updates**:
+   - **Full-containerized applications** enable **automated deployments, updates, and rollbacks**.
+
+# Conclusion
+
+Unattended parking services and **online parking management** remain **early-stage growth areas**, delivering **cost savings and efficiency improvements**. Moving forward, **Zhicheng** will continue leveraging **IoT and edge computing** to enhance parking operations, **increase parking turnover, reduce labor costs, and optimize overall revenue**.
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/zcitc.

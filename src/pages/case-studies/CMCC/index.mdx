@@ -7,6 +7,112 @@ tags:
   - UserCase
 ---
 
-# CMCC Panzhou Panji Platform base on KubeEdge
+# China Mobile PanZhou PanJi Platform KubeEdge Implementation
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/CMCC.
+## Introduction
+
+The **PanZhou Integrated Cloud Delivery Platform** is a self-developed platform by **China Mobile**, designed for **code development, automated deployment, and continuous integration**. It features an **in-house GitOps engine** that enables seamless **application deployment on the PanJi container cloud platform**.
+
+The **PanJi container cloud platform** is an enterprise-grade **PaaS solution based on Kubernetes**, offering:
+
+- **Standardized Kubernetes capabilities**
+- **Development & runtime environments**
+- **Elastic resource scaling**
+- **Fine-grained microservice management**
+- **One-stop service deployment**
+- **Cross-region multi-cluster scheduling**
+- **Intelligent monitoring and maintenance**
+
+![PanJi Platform](/img/casestudies/CMCC/panji_platform.png)
+
+PanZhou and PanJi work **seamlessly together**:
+
+- Developers use **PanZhou clusters for development**.
+- Applications are **deployed on PanJi PaaS clusters**.
+- GitOps is used to **manage and deploy configurations** on PanJi clusters.
+
+![PanZhou PanJi Platform](/img/casestudies/CMCC/platform.png)
+
+## Managing Multi-Region Clusters
+
+With China Mobile’s **adoption of domestic infrastructure**, large-scale **Kunpeng-powered clusters** are deployed across multiple regions. **Key challenges include:**
+
+- **Managing 500+ ARM servers** while maintaining **dual-architecture (x86/ARM) support**.
+- **Frequent Kubernetes cluster operations**—over **800 cluster creations and deletions in two months**.
+- **Manual deployment bottlenecks**:
+  - Developers create images on **PanZhou Kubernetes clusters**.
+  - Manual deployment via **multi-hop SSH tunneling** to **province-level Kubernetes clusters**.
+  - Inefficient, non-automated workflow.
+
+### Key Considerations
+
+1. **Unifying Kubernetes clusters?**
+
+   - Not feasible due to **business-specific requirements** in each province.
+
+2. **Implementing Kubernetes Cluster Federation?**
+
+   - **High latency across provinces** makes federation **resource-intensive**.
+   - **Direct SSH access to province clusters is simpler**.
+
+3. **Maintaining manual SSH-based workflows?**
+   - **Manual shell script maintenance is inefficient**.
+   - **Not aligned with cloud-native best practices**.
+   - **Contradicts PanZhou-PanJi’s vision of seamless cloud migration**.
+
+## The "1+31+N" Model
+
+To improve **flexibility, automation, and efficiency**, China Mobile designed a **“1+31+N” network model**:
+
+- **1 central cluster**
+- **31 province-level clusters**
+- **N edge clusters**
+- **Network isolation between regions**
+
+This approach ensures **automated, cloud-native management** while maintaining **GitOps-based deployment** across clusters.
+
+To implement this, **KubeEdge was selected** as the core edge computing solution.
+
+## KubeEdge Implementation in PanZhou-PanJi
+
+By aligning **KubeEdge** with **China Mobile’s “1+31+N” model**, the architecture was mapped as follows:
+
+- **Central (Group-level) Kubernetes cluster** → KubeEdge **CloudCore**
+- **Province-level Kubernetes clusters** → KubeEdge **EdgeCore nodes**
+
+### **1) Cluster Deployment & GitOps Automation**
+
+- The **Group Kubernetes master node** acts as **CloudCore**.
+- **Province nodes** function as **EdgeCore**.
+- **ArgoCD pods** are deployed at the **EdgeCore** nodes.
+- GitOps **automates metadata distribution** across province-level clusters.
+
+### **2) Automated Cluster Creation**
+
+- **PanJi PaaS clusters** are automatically created at **province-level resource pools**.
+- Operators use **PanZhou GitOps** to deploy **OpenEuler-based Eggo tools**.
+- Eggo enables **automated Kubernetes cluster provisioning** at the **edge**.
+
+![KubeEdge Architecture](/img/casestudies/CMCC/cmcc_kubeedge_arch.png)
+
+## Results & Benefits
+
+By integrating **KubeEdge into the PanJi PaaS platform**, China Mobile successfully:
+
+- **Unified networking** across **1+31+N Kubernetes clusters**.
+- **Streamlined cluster management** and **reduced operational costs**.
+- **Automated provisioning** of **500+ Kunpeng ARM servers** and **BC-Linux for Euler clusters**.
+- **Significantly improved operational efficiency**.
+
+## Future Roadmap for Multi-Cluster Management
+
+Following the success of **KubeEdge integration**, China Mobile aims to:
+
+1. **Extend automation to control planes**
+   - Multi-node **southbound clusters** will be **automatically provisioned**.
+2. **Implement CNCF’s Karmada for Cluster Federation**
+   - Further improve **“1+31+N” multi-cluster unified management**.
+
+By leveraging **KubeEdge and Karmada**, China Mobile will continue to **enhance cloud-native multi-cluster orchestration** and **scale Kubernetes across its vast infrastructure**.
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/CMCC.

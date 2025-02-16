@@ -7,6 +7,115 @@ tags:
   - UserCase
 ---
 
-# The architecture design and application of KubeEdge in Big Data Center of China Academy Industrial Internet
+# Architecture Design and Application of KubeEdge in the National Industrial Internet Big Data Center
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/CAII.
+## Issues and Challenges
+
+### Requirements
+
+- Collect production and operational data from factories and aggregate them in the cloud.
+- Unified cloud control: determine what data to collect and how to process it.
+
+![Background](/img/casestudies/CAII/background.png)
+
+### Challenges
+
+- Only the edge can actively connect to the cloud; the cloud cannot actively connect to the edge (the edge has no public IP).
+- Must be flexible enough to adapt to various industrial devices and protocols.
+- Requires edge autonomy, ensuring edge functionality even when the network is unstable.
+- Supports edge computing capabilities to run various applications on edge nodes.
+- Low resource consumption and power efficiency.
+
+## Technology Selection
+
+KubeEdge provides cloud-edge collaboration, lightweight resource consumption, and device management capabilities, making it a perfect fit for our needs.
+
+### Architecture Design
+
+![Architecture Design](/img/casestudies/CAII/arch.png)
+
+## Overall Framework
+
+In the National Industrial Internet Big Data Center, KubeEdge plays a core role in device and application management. A Kubernetes (K8s) cluster is deployed in the cloud with KubeEdge’s **CloudCore**, where all management and operational data is stored. On the edge, industrial computers or gateways run **EdgeCore**, responsible for containerized applications, including device management and data collection.
+
+Below **EdgeCore**, the **Mapper** module, defined by the KubeEdge community, handles device management and data collection. The community currently provides Modbus and Bluetooth support. To manage a camera or other devices, developers must write Mappers according to community standards.
+
+Above this, we have encapsulated a management service layer using **Java and Spring Cloud**. This extra abstraction prevents exposing KubeEdge or K8s APIs directly, improving security and ensuring better data isolation.
+
+Finally, we created an **Industrial APP Marketplace**, allowing developers to publish **Mappers** for commercial or free distribution, fostering an ecosystem around KubeEdge.
+
+## Data Collection
+
+### Enhancements to KubeEdge
+
+1. **Support for a Wider Range of Industrial Devices and Protocols**
+
+   - Initially, KubeEdge only supported Bluetooth and Modbus, making protocol extensions difficult. To address this, we introduced:
+     - `CustomizedValue` field for extending existing protocols.
+     - `CustomizedProtocol` field for defining entirely custom protocols.
+
+2. **More Flexible Device Data Collection Configurations**
+
+   - Traditional IT follows a **template-first, instance-second** approach, whereas industrial setups often define instances first and copy them for modification.
+   - We moved `PropertyVisitor` from the **Device model** to **DeviceInstance** and introduced dynamic collection cycles based on measurement requirements.
+   - **Example:** Temperature sensors might require hourly data collection, while energy consumption metrics may need different frequencies.
+
+3. **Optimized Twin Property Dispatching**
+4. **Added Bypass Data Configuration**
+
+## Bypass Data Processing
+
+![Bypass Data Processing](/img/casestudies/CAII/data-process.png)
+
+- Allows **Mapper** to push time-series data to the **edge MQTT broker** without processing by EdgeCore.
+- Integrated with **EMQX Kuiper**, enabling metadata retrieval from **DeviceProfile**.
+- KubeEdge sends data cleansing rules to **Kuiper**.
+- Third-party applications can retrieve data directly from **edge MQTT**.
+
+## Status Monitoring
+
+Effective status monitoring is crucial for commercialization. The KubeEdge community provides **Cloud Stream**, which works with **MetricServer** and **Prometheus** but requires **iptables-based traffic interception**, leading to inefficiencies.
+
+### Our Solution:
+
+- A **scheduled task container** runs on edge nodes, collecting local metrics via **NodeExporter**.
+- Data is pushed to **PushGateway**, an official Prometheus component, allowing centralized monitoring.
+
+## Case Studies
+
+### Case 1: OPC-UA Data Collection and Processing
+
+Through our **Industrial APP Marketplace**, users can deploy an **OPC-UA Mapper** to edge gateways. Configuration is performed via a web interface, enabling data collection from industrial devices:
+
+- **OPC-UA Mapper** collects temperature data.
+- **Edge node alarm application** retrieves data directly.
+- If data exceeds a threshold, an **alarm triggers and stops the device**.
+- **KubeEdge dynamically adjusts thresholds**.
+
+### Case 2: Industrial Video Surveillance
+
+This edge-autonomous application performs **AI inference locally**. If required, cloud-trained models are deployed to the edge via KubeEdge. Key features include:
+
+- **KubeEdge manages video surveillance applications on edge nodes.**
+- **Edge video security applications run autonomously.**
+- **Cameras capture live streams for AI analysis.**
+- **Detects safety helmets and protective clothing compliance.**
+- **Monitors restricted area access violations.**
+
+## Summary
+
+1. **Industrial Data Collection with KubeEdge**
+
+   - Supports **custom protocols** via `CustomizedProtocol` and `CustomizedValue`.
+   - Uses **ConfigMap** to manage edge **Mapper applications** from the cloud.
+   - **Bypass data (Spec/Data)** simplifies time-series data processing.
+
+2. **KubeEdge Productization**
+   - **Multi-tenant solutions**.
+   - **Enhanced monitoring strategies**.
+   - **High availability mechanisms**.
+   - **Public IP reuse solutions**.
+
+---
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/CAII.
