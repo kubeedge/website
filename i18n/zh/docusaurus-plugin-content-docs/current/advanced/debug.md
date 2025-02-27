@@ -167,13 +167,13 @@ sidebar_position: 3
     sudo vi /etc/kubeedge/edgecore.service
     ```
 
-    - 将以下行添加到 **edgecore.service** 文件：
+    将以下行添加到 **edgecore.service** 文件：
 
     ```shell
     Environment="CHECK_EDGECORE_ENVIRONMENT=false"
     ```
 
-    - 最终文件应如下所示：
+    最终文件应如下所示：
 
     ```
     Description=edgecore.service

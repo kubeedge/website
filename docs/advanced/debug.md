@@ -6,7 +6,7 @@ sidebar_position: 3
 > Note for Helm deployments:
 > - Stream certificates are generated automatically and the CloudStream feature is enabled by default. Therefore, Steps 1-3 can be skipped unless customization is needed.
 > - Step 4 could be finished by iptablesmanager component by default, so manual operations are not needed. Refer to the [cloudcore helm values](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/values.yaml#L67).
-> - Operations in Steps 5-6 related to CloudCore can also be skipped.
+> - If CloudCore is deploy in container (by default), operations in Steps 5-6 can also be skipped.
 
 1. Make sure you can find the kubernetes `ca.crt` and `ca.key` files. If you set up your kubernetes cluster by `kubeadm` , those files will be in `/etc/kubernetes/pki/` directory.
 
