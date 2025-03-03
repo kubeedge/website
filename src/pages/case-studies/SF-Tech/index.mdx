@@ -7,6 +7,80 @@ tags:
   - UserCase
 ---
 
-# The practice of KubeEdge in SF Technology Industrial Internet of Things(IIoT)
+# Application of KubeEdge Edge Computing in SF Tech's Industrial IoT
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/SF-Tech.
+## Development of Industrial IoT and Edge Computing
+
+Industrial IoT (IIoT) was first introduced by **General Electric (GE)** in 2012 with the launch of the **Predix platform**. In China, the government published the **Smart Manufacturing Development Plan (2016-2020)** in 2015, emphasizing major strategies in intelligent manufacturing. By September 2020, China further accelerated **digital transformation** among state-owned enterprises. As an enabler of **smart manufacturing and Industry 4.0**, Industrial IoT requires the **convergence of Operational Technology (OT) and Information Technology (IT)**. However, integrating these two domains presents several challenges, primarily in the following aspects:
+
+- **Differences between OT and IT:**
+  - OT prioritizes **stability and reliability**, and OT personnel tend to avoid frequent changes to running systems.
+  - IT focuses on **data processing speed, system reliability, and security**, requiring continuous innovation to keep up with evolving technologies.
+- **Organizational and Implementation Challenges:**
+  - Who should lead the integration?
+  - What is the implementation scope?
+  - What measurable benefits can be achieved?
+
+![OT vs IT Technologies](/img/casestudies/sf-tech/OT-IT.png)
+
+As the **bridge between OT and IT**, Industrial IoT relies on multiple supporting technologies, including **industrial automation, sensor networks, ubiquitous connectivity, edge computing, cloud computing, big data analytics, and industrial data modeling**. These components collectively build the **Industrial IoT ecosystem**.
+
+![Industrial IoT Supporting Framework](/img/casestudies/sf-tech/IIOT-system.png)
+
+Industrial IoT architecture varies based on use cases but generally consists of five layers:
+
+- **Perception Layer**: Responsible for **data acquisition** from industrial equipment, sensors, and heterogeneous systems.
+- **Edge Computing Layer**: Handles **real-time processing, analysis, and data filtering** before transmitting data to higher layers.
+- **Network Layer**: Establishes **wired or wireless connectivity** between edge nodes and cloud infrastructure.
+- **Platform Layer**: Provides **Industrial PaaS capabilities** such as data ingestion, analytics, and application templates.
+- **Application Layer**: Delivers **business-specific solutions**, integrating with ERP, WMS, CRM, and other enterprise systems to eliminate data silos.
+
+![Industrial IoT Architecture](/img/casestudies/sf-tech/IIOT-arch.png)
+
+## Three Key Problems Addressed by Edge Computing in IIoT
+
+Currently, **edge computing** in Industrial IoT aims to address the following challenges:
+
+1. **Real-time Data Processing**: Ensuring real-time monitoring and control in industrial operations. **SF Tech** has actively explored OT-IT integration and IIoT applications, overcoming obstacles related to **network infrastructure, personnel training, cost, and legacy system compatibility**.
+2. **Network Security and Reliability**: Addressing concerns such as **limited bandwidth, connectivity disruptions, and cybersecurity risks**.
+3. **Trends Driving Adoption**:
+   - **Increased device connectivity** across industrial environments.
+   - **Growing demand for efficiency, quality, and cost optimization**.
+   - **The gradual convergence of OT and IT ecosystems**.
+
+## How SF Tech Solves These Challenges
+
+Given the **convergence of OT and IT**, how can we leverage **cloud-edge collaboration, edge data collection, and edge data cleansing** to meet the demands of real-time decision-making and security?
+
+Industrial operations inherently require **real-time processing**. The **adoption of edge computing** is becoming natural as **hardware processing capabilities improve**. However, OT systems often lack agility, and industrial **automation control systems** remain heavily reliant on **on-site engineering teams**. Deployment, upgrades, and system modifications in traditional **single-machine architectures** can cause significant disruptions.
+
+### **Key Benefits of Edge Computing**
+
+- **Integrates OT and IT** while ensuring system stability.
+- **Reduces latency** by processing data closer to its source.
+- **Enhances security** by limiting exposure to cloud environments.
+- **Supports automation** without disrupting existing workflows.
+
+![Edge Computing: The Bridge Between OT and IT](/img/casestudies/sf-tech/edgecomputing-OT.png)
+
+## Application of KubeEdge in SF Tech
+
+To implement edge computing, **SF Tech** adopted **KubeEdge**, an open-source edge computing platform, as the foundation for **edge node management and edge application orchestration**. Building on its **expertise in IoT device management and data processing**, SF Tech established a **leading framework for cloud-edge collaboration**.
+
+![KubeEdge Open Source Framework](/img/casestudies/sf-tech/kubeedge-arch.png)
+
+### **Key Achievements**
+
+1. **Built a pervasive sensing network**:
+   - Directly connects to heterogeneous industrial devices.
+   - Bridges gaps between OT production systems and IT environments.
+2. **Applied IoT technology to logistics and supply chains**:
+   - Enhanced automation in sorting centers.
+   - Improved tracking and monitoring across transport networks.
+3. **Standardized digital monitoring and intelligent management**:
+   - Supported automated production and efficiency control.
+   - Strengthened data-driven decision-making.
+
+Ultimately, **SF Tech's Industrial IoT architecture** enables **continuous digital transformation** by improving automation, reducing costs, and driving operational excellence.
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/SF-Tech.

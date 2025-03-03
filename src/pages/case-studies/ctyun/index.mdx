@@ -7,6 +7,141 @@ tags:
   - UserCase
 ---
 
-# ctyun’s large-scale CDN scenario implementation practice based on KubeEdge
+# Tianyi Cloud's Large-Scale CDN Implementation Based on KubeEdge
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/ctyun.
+## Tianyi Cloud CDN Cloudification Project
+
+### Tianyi Cloud CDN Business
+
+China Telecom accelerates cloud-network integration with a "2+4+31+X" resource layout. "X" is the access layer, which puts content and storage closest to users, making the network move with the cloud, convenient cloud access, and smooth access between clouds, meeting users' on-demand selection and low latency requirements. Although Tianyi Cloud CDN started late, it currently has all the basic CDN functions, rich resource reserves, supports precise scheduling, and adheres to quality first. The overall business development is entering the fast lane.
+
+### Business Background
+
+## Edge Service Containerization
+
+Unlike other cloud vendors and traditional CDN vendors, Tianyi Cloud CDN started late, but it also coincided with the popularization of the cloud-native concept. Therefore, we chose to build a CDN PaaS platform through containers and k8s orchestration technology, but the CDN edge service has not yet completed the cloud-native transformation.
+
+![Service Containerization](/img/casestudies/ctyun/serviceContainer.png)
+
+### Existing Problems:
+
+1. **How to manage CDN nodes distributed on the edge on a large scale?**
+2. **How to reliably deploy and upgrade CDN edge services?**
+3. **How to build a unified and scalable resource scheduling platform?**
+
+## Edge Node Management with KubeEdge
+
+### CDN Physical Node Architecture
+
+The cache acceleration service provided by CDN solves the last mile acceleration problem. To meet the needs of nearby access and fast response, most CDN nodes need to be deployed close to the user side, and the user access is connected to the nearest node through the CDN global traffic scheduling system. Usually, CDN nodes are distributed in a discrete manner, and most of them are based on regional IDC and prefecture-level IDC computer room resources. Each edge computer room builds multiple CDN service clusters based on the export bandwidth and server resource planning.
+
+![Physical Node Architecture](/img/casestudies/ctyun/nodeArchitecture.png)
+
+### Edge Service Containerization Technology Selection
+
+When considering containerization, we conducted technical selection and research in the early stage, mainly in three directions:
+
+- **Standard K8s**: Edge nodes are added to the master as standard worker nodes, but this method also has problems. If there are too many connections, it is easy to cause relist issues, and the load pressure on the k8s master is high. Network fluctuations cause pods to be expelled, resulting in unnecessary reconstruction.
+- **Independent Edge Clusters**: Deploying K8s or K3s separately for edge nodes. This method results in multiple control planes and fragmented scheduling platforms, requiring additional high-availability node redundancy.
+- **KubeEdge-based Cloud-Edge Access**: By using KubeEdge, we can consolidate edge node connections, integrate them into a unified K8S cluster, and provide cloud-edge collaboration and autonomy while retaining most native K8s functionalities.
+
+### KubeEdge-Based Edge Node Management Plan
+
+![Edge Node Management Plan](/img/casestudies/ctyun/managementPlan.png)
+
+The architecture above shows how we deployed multiple Kubernetes clusters in regional centers and data centers, ensuring edge nodes connect to the closest available cluster. To avoid single-point failures and excessive cloudcore load, we established distributed K8s clusters for edge node access and application orchestration.
+
+## CloudCore Multi-Replica Deployment and Connection Imbalance
+
+![Unbalanced Connection](/img/casestudies/ctyun/unbalancedConnection.png)
+
+- The **hub-to-upstream module** runs in a **single-threaded** mode, causing **delays in message submissions**.
+- Some **edge nodes fail to submit updates to the API server**, leading to deployment inconsistencies.
+- **CloudCore upgrades or restarts** result in **connection imbalances** due to ineffective load balancing.
+
+### Optimizing CloudCore Multi-Replica Load Balancing
+
+1. Each CloudCore instance **reports real-time connection counts** via ConfigMap.
+2. CloudCore calculates expected connections per instance.
+3. If an instance exceeds the tolerable limit, it enters a **30s observation phase** before redistributing connections.
+4. The cycle continues until **connection balancing is achieved**.
+
+![Connection Changes](/img/casestudies/ctyun/connectionChanges.png)
+![Balance After Restart](/img/casestudies/ctyun/equilibriumSituation.png)
+
+## CDN Acceleration Service Deployment
+
+### CDN Workflow Overview
+
+CDN consists of two core systems: **scheduling and caching**.
+
+1. The **scheduling system** collects network and bandwidth cost metrics to determine optimal traffic routing.
+2. The **caching system** ensures content is stored at edge nodes to minimize latency.
+3. Cache **misses** lead to fallback requests to upstream caches or the origin server.
+
+![CDN Workflow](/img/casestudies/ctyun/overallProcess.png)
+
+### Challenges in CDN Caching:
+
+1. **Ensuring controlled and sequential upgrades of edge node containers.**
+2. **Implementing A/B testing for version rollouts.**
+3. **Validating and monitoring the upgrade process.**
+
+### Upgrade Deployment Strategy
+
+1. **Batch Upgrades & In-Group Parallelism**
+   - Define **upgrade tasks**.
+   - Upgrade designated machines in phases.
+2. **Granular Version Control**
+   - Map **versions at the host level**.
+   - Enable version-based pod selection.
+3. **Graceful Upgrades**
+   - Utilize **lifecycle hooks (preStop/postStart)** for traffic redirection.
+   - Leverage **GSLB-based traffic shifting** in special cases.
+4. **Upgrade Validation & Rollback**
+   - Integrate monitoring and rollback triggers upon anomalies.
+   - Use **Admission Webhooks** to enforce upgrade policies.
+
+![Upgrade Plan](/img/casestudies/ctyun/upgradePlan.png)
+
+## CDN Edge Container Disaster Recovery & Migration
+
+Migration Steps:
+
+1. **Backup etcd and restore it in the new cluster**.
+2. **Switch DNS access**.
+3. **Restart CloudCore to disconnect cloud-edge hubs**.
+
+![Disaster Recovery & Migration](/img/casestudies/ctyun/recoveryMigration.png)
+
+## Large-Scale CDN File Distribution
+
+**Use Cases:**
+
+- **CDN edge service configurations**
+- **GSLB scheduling decision data**
+- **Container image preloading tasks**
+
+![File Distribution](/img/casestudies/ctyun/fileDistribution.png)
+
+## Future Evolution of CDN Edge Computing
+
+### Challenges
+
+- **Diverse architectures & resources**
+- **Network latency and reliability constraints**
+- **Security concerns in edge computing**
+- **Diverse business use cases**
+
+### Evolution Goals
+
+- **CDN & Edge Node Hybrid Deployment**
+- **Service Mesh for edge networking**
+- **CDN gateway as an ingress controller**
+- **CDN resource virtualization**
+- **Serverless containerized edge platforms**
+- **Unified CDN & container resource scheduling**
+
+---
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/ctyun.
