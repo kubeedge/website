@@ -143,7 +143,7 @@ make
 
 The compiled kubeedge binaries will be put to `_output/local/bin` directory.
 
-### Deploy demo on edge nodes
+## Deploy demo on edge nodes
 
 After you start both `cloudcore` and `edgecore` successfully, you can run `kubectl get node` to ensure whether edgecore has already registered to cloudcore successfully. The edge nodes are in `Ready` status like below.
 ```shell
