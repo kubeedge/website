@@ -1,32 +1,111 @@
 .partners-pages {
   background-color: var(--ifm-background-color);
+  padding: 20px;
+}
 
-  .partners-header {
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("/img/partners.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
 
-    .partners {
-      font-size: 40px;
-      font-weight: 700;
-      color: white;
-   }
+.partners-header {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/img/partners.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
 
+
+  .partners {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
   }
-
-  .partners-content {
-        display: flex;
-        justify-content: center;
-        margin: 50px 0;
+}
 
 
-       .partners-md {
-          width: 60%;
-       }
-     }
+.partners-content {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+
+.partners-md {
+  width: 85%; /* Reduce width for better margins */
+  max-width: 1200px; /* Keep it centered */
+  background-color: white; /* Ensure background is visible */
+  padding: 20px;
+  border-radius: 8px; /* Slight rounding for better aesthetics */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 20px 0; /* Add margin to keep spacing */
+}
+
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+
+th {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  text-align: center;
+}
+
+
+/* Column Width Adjustments */
+th:nth-child(1),
+td:nth-child(1) {
+  /* Organization/Company */
+  width: 18%;
+  text-align: center;
+}
+
+
+th:nth-child(2),
+td:nth-child(2) {
+  /* Product */
+  width: 15%; /* Reduced width */
+  text-align: center;
+}
+
+
+th:nth-child(3),
+td:nth-child(3) {
+  /* Description */
+  width: 50%; /* Expanded */
+}
+
+
+th:nth-child(4),
+td:nth-child(4) {
+  /* Website */
+  width: 17%;
+  text-align: center;
+}
+
+
+/* Hyperlink Styling */
+td a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+td a:hover {
+  text-decoration: underline;
 }

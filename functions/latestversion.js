@@ -1,6 +1,6 @@
 exports.handler = function(event, context, callback) {
     // Set the latest version here.
-    const latestVersion = "v1.19.0";
+    const latestVersion = "v1.20.0";
     callback(null, {
         headers: {
             "Access-Control-Allow-Origin": "*",
