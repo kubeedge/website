@@ -1,0 +1,194 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2025-01-21
+draft: false
+lastmod: 2025-01-21
+summary: KubeEdge v1.20 is live!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- dashboard
+- release v1.20
+- v1.20
+title: KubeEdge v1.20 is live!
+---
+
+On January 21, 2025, KubeEdge released v1.20. The new release has enhanced the capabilities of managing and operating edge nodes and applications for large-scale, offline and other edge scenarios. At the same time, it has added support for the multi-language Mapper-Framework.
+
+## 1.20 What's New
+
+- [Support Batch Node Process](#support-batch-node-process)
+- [Multi-language Mapper-Framework Support](#multi-language-mapper-framework-support)
+- [Support Pods logs/exec/describe and Devices get/edit/describe Operation at Edge Using `keadm ctl`](#support-pods-logsexecdescribe-and-devices-geteditdescribe-operation-at-edge-using-keadm-ctl)
+- [Decouple EdgeApplications from NodeGroups, Support Node Label Selector](#decouple-edgeapplications-from-nodegroups-support-node-label-selector )
+- [CloudHub-EdgeHub Supports IPv6](#cloudhub-edgehub-supports-ipv6)
+- [Upgrade Kubernetes Dependency to v1.30.7](#upgrade-kubernetes-dependency-to-v1307)
+
+## Release Highlights
+
+### Support Batch Node Process
+
+Previously, the keadm tool of KubeEdge only supports manual single-node management. However, in edge scenarios, the scale of nodes is often very large, and the management process of a single node can no longer cope with such large-scale scenarios.
+
+In v1.20, we have provided the batch node operation and maintenance capability. With this capability, users only need to use one configuration file to perform batch operation and maintenance on all edge nodes through a control node (which can log in to all edge nodes). The supported operation and maintenance capabilities include join, reset, and upgrade.
+
+```json
+# Configuration Requirements
+keadm:
+  download:
+    enable: true              # <Optional> Whether to download the keadm package, which can be left unconfigured, default is true. if it is false, the 'offlinePackageDir' will be used.
+    url: ""                   # <Optional> The download address of the keadm package, which can be left unconfigured. If this parameter is not configured, the official github repository will be used by default.
+  keadmVersion: ""            # <Required> The version of keadm to be installed. for example: v1.19.0
+  archGroup:                  # <Required> This parameter can configure one or more of amd64/arm64/arm.
+    - amd64
+  offlinePackageDir: ""       # <Optional> The path of the offline package. When download.enable is true, this parameter can be left unconfigured.
+  cmdTplArgs:                 # <Optional> This parameter is the execution command template, which can be optionally configured and used in conjunction with nodes[x].keadmCmd.
+    cmd: ""                   # This is an example parameter, which can be used in conjunction with nodes[x].keadmCmd.
+    token: ""                 # This is an example parameter, which can be used in conjunction with nodes[x].keadmCmd.
+nodes:
+  - nodeName: edge-node       # <Required> Unique name, used to identify the node
+    arch: amd64               # <Required> The architecture of the node, which can be configured as amd64/arm64/arm
+    keadmCmd: ""              # <Required> The command to be executed on the node, can used in conjunction with keadm.cmdTplArgs. for example: "{{.cmd}} --edgenode-name=containerd-node1 --token={{.token}}"
+    copyFrom: ""              # <Optional> The path of the file to be copied from the local machine to the node, which can be left unconfigured.
+    ssh:
+      ip: ""                  # <Required> The IP address of the node.
+      username: root          # <Required> The username of the node, need administrator permissions.
+      port: 22                # <Optional> The port number of the node, the default is 22.
+      auth:                   # Log in to the node with a private key or password, only one of them can be configured.
+        type: password        # <Required> The value can be configured as 'password' or 'privateKey'.
+        passwordAuth:         # It can be configured as 'passwordAuth' or 'privateKeyAuth'.
+          password: ""        # <Required> The key can be configured as 'password' or 'privateKeyPath'.
+maxRunNum: 5                  # <Optional> The maximum number of concurrent executions, which can be left unconfigured. The default is 5.`
+
+# Configuration Example
+keadm:
+  download:
+    enable: true
+    url: https://github.com/kubeedge/kubeedge/releases/download/v1.20.0 # If this parameter is not configured, the official github repository will be used by default
+  keadmVersion: v1.20.0
+  archGroup: # This parameter can configure one or more of amd64\arm64\arm
+    - amd64
+  offlinePackageDir: /tmp/kubeedge/keadm/package/amd64  # When download.enable is true, this parameter can be left unconfigured
+  cmdTplArgs: # This parameter is the execution command template, which can be optionally configured and used in conjunction with nodes[x].keadmCmd
+    cmd: join --cgroupdriver=cgroupfs --cloudcore-ipport=192.168.1.102:10000 --hub-protocol=websocket --certport=10002 --image-repository=docker.m.daocloud.io/kubeedge --kubeedge-version=v1.20.0 --remote-runtime-endpoint=unix:///run/containerd/containerd.sock
+    token: xxx
+nodes:
+  - nodeName: ubuntu1   # Unique name
+    arch: amd64
+    keadmCmd: '{{.cmd}} --edgenode-name=containerd-node1 --token={{.token}}' # Used in conjunction with keadm.cmdTplArgs
+    copyFrom: /root/test-keadm-batchjoin  # The file directory that needs to be remotely accessed to the joining node
+    ssh:
+      ip: 192.168.1.103
+      username: root
+      auth:
+        type: privateKey   # Log in to the node using a private key
+        privateKeyAuth:
+          privateKeyPath: /root/ssh/id_rsa
+  - nodeName: ubuntu2
+    arch: amd64
+    keadmCmd: join --edgenode-name=containerd-node2 --cgroupdriver=cgroupfs --cloudcore-ipport=192.168.1.102:10000 --hub-protocol=websocket --certport=10002 --image-repository=docker.m.daocloud.io/kubeedge --kubeedge-version=v1.20.0 --remote-runtime-endpoint=unix:///run/containerd/containerd.sock  # Used alone
+    copyFrom: /root/test-keadm-batchjoin
+    ssh:
+      ip: 192.168.1.104
+      username: root
+      auth:
+        type: password
+        passwordAuth:
+          password: *****
+maxRunNum: 5
+
+# Usage
+keadm batch -c config.yaml
+```
+
+Refer to the link for more details.([#5988](https://github.com/kubeedge/kubeedge/pull/5988), [#5968](https://github.com/kubeedge/kubeedge/pull/5968))
+
+### Multi-language Mapper-Framework Support
+
+To further reduce the complexity of developing custom Mapper, in this version, KubeEdge provides the Java version of Mapper-Framework. Users can access the KubeEdge `feature-multilingual-mapper` branch to use Mapper-Framework to generate a Java version of custom Mapper project.
+
+Refer to the link for more details.([#5773](https://github.com/kubeedge/kubeedge/pull/5773), [#5900](https://github.com/kubeedge/kubeedge/pull/5900))
+
+### Support Pods logs/exec/describe and Devices get/edit/describe Operation at Edge Using `keadm ctl`
+
+In v1.17, a new command `keadm ctl` has been introduced to support pods query and restart at Edge. In this release, `keadm ctl` supports more functionality including `pod logs/exec/describe` and `device get/edit/describe` to help users operate resources at edge, especially in offline scenarios.
+
+```
+[root@edgenode1 ~]# keadm ctl -h
+Commands operating on the data plane at edge
+
+Usage:
+  keadm ctl [command]
+
+Available Commands:
+...
+  describe    Show details of a specific resource
+  edit        Edit a specific resource
+  exec        Execute command in edge pod
+  get         Get resources in edge node
+  logs        Get pod logs in edge node
+...
+```
+
+Refer to the link for more details.([#5752](https://github.com/kubeedge/kubeedge/pull/5752), [#5901](https://github.com/kubeedge/kubeedge/pull/5901))
+
+### Decouple EdgeApplications from NodeGroups, Support Node Label Selector
+
+EdgeApplication can be overrides deployment spec(i.e. replicas, image, commands and environments) via the node group, and pod traffics are closed-loop in a node group(Deployments managed by EdgeApplication share a Service). But in the real scenario, the scope of nodes that need batch operations is different from that of nodes that need to collaborate with each other.
+
+We add a new targetNodeLabels field for node label selectors in the EdgeApplication CRD, this field will allow the application to deploy based on node labels and apply overrides specific to those nodes.
+
+```yaml
+apiVersion: apps.kubeedge.io/v1alpha1
+kind: EdgeApplication
+metadata:
+  name: edge-app
+  namespace: default
+spec:
+  replicas: 3
+  image: my-app-image:latest
+  # New field: targetNodeLabels
+  targetNodeLabels:
+    - labelSelector:
+        - matchExpressions:
+            - key: "region"
+              operator: In
+              values:
+                - "HangZhou"
+    overriders:
+      containerImage:
+        name: new-image:latest
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "128Mi"
+```
+
+Refer to the link for more details.([#5755](https://github.com/kubeedge/kubeedge/issues/5755), [#5845](https://github.com/kubeedge/kubeedge/pull/5845))
+
+### CloudHub-EdgeHub Supports IPv6
+
+We provide a configuration guide in the documentation on the official website, which is how KubeEdge enables the cloud-edge hub to support IPv6 in a K8s cluster.
+
+Refer to the document https://kubeedge.io/docs/advanced/support_ipv6
+
+### Upgrade Kubernetes Dependency to v1.30.7
+
+Upgrade the vendered kubernetes version to v1.30.7, users are now able to use the feature of new version on the cloud and on the edge side.
+
+Refer to the link for more details. ([#5997](https://github.com/kubeedge/kubeedge/issues/5997))
+
+## Important Steps before Upgrading
+
+- From v1.20, the default value for the EdgeCore configuration option `edged.rootDirectory` will change from `/var/lib/edged` to `/var/lib/kubelet`. If you wish to continue using the original path, you can set `--set edged.rootDirectory=/var/lib/edged` when installing EdgeCore with keadm.
