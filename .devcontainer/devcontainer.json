@@ -1,0 +1,21 @@
+{
+  "name": "KubeEdge Website DevContainer",
+  "build": {
+    "dockerfile": "../docker/image/Dockerfile"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/tmp/doc_repository,type=bind",
+  "workspaceFolder": "/tmp/doc_repository",
+  "postCreateCommand": "yarn install",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "postStartCommand": "/bin/bash"
+}
