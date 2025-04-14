@@ -105,12 +105,12 @@ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-## Using Contaier
+## Using Container
 
 ### Docker
 
 ```shell
-docker build -t kubeedge:website -f docker/image/Dockerfile .
+docker build -t kubeedge:website -f Dockerfile .
 docker run -it --network host --rm -v $(pwd):/tmp/doc_repository kubeedge:website /bin/bash
 yarn start
 ```

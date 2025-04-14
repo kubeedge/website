@@ -1,8 +1,3 @@
-# This dockerfile is expecting to be run with the following build command
-#
-# docker build -t kubeedge:website -f docker/image/Dockerfile .
-# docker run -it --network host --rm -v $(pwd):/tmp/doc_repository kubeedge:website /bin/bash
-
 FROM node:22
 
 ARG user=kubeedge

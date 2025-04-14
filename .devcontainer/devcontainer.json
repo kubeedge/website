@@ -1,10 +1,13 @@
 {
   "name": "KubeEdge Website DevContainer",
   "build": {
-    "dockerfile": "../docker/image/Dockerfile"
+    "dockerfile": "../Dockerfile"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/tmp/doc_repository,type=bind",
   "workspaceFolder": "/tmp/doc_repository",
+  "runArgs": [
+    "--network=host"
+  ],
   "postCreateCommand": "yarn install",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
