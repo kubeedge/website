@@ -105,6 +105,35 @@ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+## Using Container
+
+### Docker
+
+```shell
+docker build -t kubeedge:website -f Dockerfile .
+docker run -it --network host --rm -v $(pwd):/tmp/doc_repository kubeedge:website /bin/bash
+yarn start
+```
+
+### Devcontainer
+
+Once you open the vscode with `devcontainer`, you can see the following terminal.
+
+```shell
+Running the postCreateCommand from devcontainer.json...
+
+[12035 ms] Start: Run in container: /bin/sh -c yarn install
+yarn install v1.22.22
+[1/5] Validating package.json...
+[2/5] Resolving packages...
+success Already up-to-date.
+Done in 0.24s.
+Running the postStartCommand from devcontainer.json...
+
+[14333 ms] Start: Run in container: /bin/sh -c /bin/bash
+kubeedge@be52334d349c:/tmp/doc_repository$
+```
+
 ## Versioning
 
 For each stable release, we should create a new branch for the relevant documentation. For
