@@ -167,7 +167,7 @@ const config = {
                 to: "/job-center",
               },
             ],
-            hide: true,
+            hide: process.env.DOCUSAURUS_CURRENT_LOCALE === "en",
           },
           {
             label: "Downloads",
