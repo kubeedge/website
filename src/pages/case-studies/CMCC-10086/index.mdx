@@ -7,6 +7,175 @@ tags:
   - UserCase
 ---
 
-# China Mobile 10086 customer service cloud-edge collaboration platform based on KubeEdge
+# China Mobile 10086 Customer Service Cloud-Edge Collaborative Platform with KubeEdge
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/CMCC-10086.
+## Evolution of China Mobile's Infrastructure
+
+### Introduction to China Mobile Online Marketing Service Center
+
+China Mobile's **Online Marketing Service Center** is a **second-tier professional institution** responsible for **managing online service resources and digital channels**. It operates the **world’s largest call center**, with:
+
+- **44,000 self-owned service seats**
+- **900 million users served**
+- **53 customer service centers**
+- **A leading position in customer service technology and business**
+
+![China Mobile Roadmap](/img/casestudies/CMCC-10086/roadmap.png)
+
+## Cloud-Native Strategy
+
+![Cloud-Native Strategy](/img/casestudies/CMCC-10086/cloud-native-route.png)
+
+## Cloud-Edge Collaboration Solution
+
+### **Requirements**
+
+China Mobile’s **integrated customer service system** is designed with **centralized call control and localized media access**. Due to **limited server capacity** at provincial branches, the infrastructure follows a **star topology** with **two central hubs and 31 provincial branches**.
+
+To improve **latency, audio/video transmission**, and user experience, **video customer service and voice portal services** are deployed **closer to the edge** at provincial branches. However, this approach introduced several **challenges**:
+
+1. **Slow business response:**
+
+   - Each provincial branch operates **independent resource pools**, leading to **low agility and inefficient resource sharing**.
+   - Limited ability to **scale workloads elastically**, affecting service stability.
+
+2. **Low operational efficiency:**
+
+   - Provincial deployments require **manual maintenance**, increasing **error rates and downtime**.
+
+3. **Low resource utilization:**
+   - Traditional **virtualization technology prevents efficient compute aggregation**.
+   - **Idle resources accumulate**, reducing overall efficiency.
+
+![Nationwide Deployment](/img/casestudies/CMCC-10086/nationwide-deployment.png)
+
+### **Cloud-Edge Collaboration Architecture Selection**
+
+A key challenge was **managing provincial branch nodes efficiently**. Two architectures were considered:
+
+- **Edge clusters** (full management resources, high performance, but high physical costs).
+- **Edge nodes** (leveraging cloud-side management, reducing overhead, and enabling direct control from the cloud).
+
+![Edge Cluster vs. Edge Node](/img/casestudies/CMCC-10086/edge-cluster-or-node.png)
+
+#### **Final Decision: Edge Node-Based Model**
+
+Since **provincial branches have limited server resources**, full-fledged **edge clusters would waste resources**. The **edge node model** was chosen, allowing:
+
+- **Cloud-based centralized control**.
+- **Offline autonomy**, ensuring service availability even in weak network conditions.
+- **Full compatibility with Kubernetes APIs**.
+
+## Cloud-Edge Collaboration Framework
+
+Using **KubeEdge**, China Mobile implemented a **“Central Hub + Edge Nodes”** model, extending containerized computing capabilities to edge locations while enabling **unified resource management**.
+
+![Network Architecture](/img/casestudies/CMCC-10086/network.png)
+
+**Key Capabilities:**
+
+- **Centralized Cluster Management:** Unified containerized service management.
+- **Edge Node Enrollment:** KubeEdge-based automated edge integration.
+- **Offline Autonomy:** Enhancements to EdgeCore ensure service resilience.
+- **CI/CD:** Reusing cloud-side DevOps capabilities for efficient deployment.
+- **Cloud-Edge Coordination:** Synchronizing **data, management, and maintenance**.
+
+## Implementation Challenges & Solutions
+
+### **Edge Networking**
+
+Multiple networking models were evaluated, and **Calico IP-in-IP** was chosen to maintain **isolated intra-branch traffic loops**.
+
+![Edge Networking](/img/casestudies/CMCC-10086/edge-network.png)
+
+### **Edge Resource Management**
+
+To avoid **resource fragmentation**, **resource pools** were established using **Kubernetes taints and tolerations**:
+
+![Edge Resource Management](/img/casestudies/CMCC-10086/edge-resource-management.png)
+
+- **Taint-based segmentation:** Isolates resources into dedicated pools.
+- **Flexible scheduling:** Assigns workloads dynamically based on priority.
+- **Optimized utilization:** Reduces redundancy and enhances emergency response capabilities.
+
+### **Edge Service Exposure & Traffic Handling**
+
+While **EdgeMesh** provides basic service exposure, **seven-layer load balancing was required**. A hybrid approach was adopted:
+
+![Service Discovery](/img/casestudies/CMCC-10086/service-discovery.png)
+
+- **East-West Traffic:** Downstream CoreDNS ensures domain resolution within branches.
+- **North-South Traffic:** Customized **Ingress Controllers** handle external requests.
+
+### **Service Traffic Isolation & Routing**
+
+![Traffic Topology](/img/casestudies/CMCC-10086/traffic-topology.png)
+
+- **Traffic Isolation:** Multi-tier **Ingress Controllers** allocate traffic efficiently.
+- **Segmented Deployments:** Minimizes fault impact across clusters.
+- **Canary Releases:** Gradual rollouts for new feature validation.
+- **Zero-Downtime Deployments:** Load-balanced auto-scaling ensures seamless upgrades.
+
+## **Optimizations**
+
+### **Hierarchical Image Registry**
+
+To mitigate **slow image downloads** at the edge, a **multi-tier image registry** was deployed:
+
+![Image Registry](/img/casestudies/CMCC-10086/image-registry.png)
+
+### **Federated Monitoring & Alerting**
+
+A **Prometheus + AlertManager + Grafana** monitoring stack was implemented:
+
+![Federated Monitoring](/img/casestudies/CMCC-10086/monitor.png)
+
+- **Decentralized data collection** at branches.
+- **Centralized visualization** via cloud-side Grafana.
+- **Aggregated alerts** using AlertManager.
+
+### **Offline IP Retention**
+
+Edge nodes **retain IP addresses even after disconnections**:
+
+![Offline IP Retention](/img/casestudies/CMCC-10086/offline-ip-retention.png)
+
+### **Edge Proxy for Offline Autonomy**
+
+To enhance **resilience**, an **Edge Proxy module** caches API requests:
+
+![Edge Proxy](/img/casestudies/CMCC-10086/edge-proxy.png)
+
+## **KubeEdge Community Contributions**
+
+China Mobile contributed several enhancements to KubeEdge:
+
+1. **keadm debug toolkit** – Debugging commands for easier edge issue diagnosis.
+2. **CloudCore memory optimization** – Reduced memory footprint by ~40%.
+3. **Default labels & taints for edge nodes** – Simplified deployment configuration.
+4. **Host resource reservation** – Prevents resource exhaustion at the edge.
+
+## **Conclusion & Future Directions**
+
+### **Summary**
+
+- **Enhanced Edge Management:** KubeEdge improved edge **resource control & service deployment**.
+- **Business-Centric Implementation:** Tailored solutions for **call center operations**.
+- **Optimized Service Exposure:** Integrated **customized networking and load balancing**.
+- **Resilient Monitoring & Automation:** Implemented **hierarchical image caching and federated monitoring**.
+- **Open-Source Contribution:** Actively improved KubeEdge with **community enhancements**.
+
+### **Future Roadmap**
+
+1. **Unified Compute Architecture:**
+
+   - Investigating **KubeVirt** for managing **both VMs and containers** at the edge.
+
+2. **Edge Middleware Management:**
+   - Exploring **operator-based management** for **databases & middleware** in unreliable networks.
+
+![Future Roadmap](/img/casestudies/CMCC-10086/k8s-kubeedge-kubevirt.png)
+
+China Mobile is committed to advancing **cloud-native edge computing** and welcomes more developers to contribute to the **KubeEdge community**.
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/CMCC-10086.

@@ -7,6 +7,174 @@ tags:
   - Solution
 ---
 
-# Practice for processing edge streaming data with KubeEdge and Kuiper
+# Edge Streaming Data Processing with KubeEdge and Kuiper
 
-For more detailed information, please visit http://kubeedge.io/zh/case-studies/Kuiper.
+## Introduction
+
+KubeEdge is an open-source edge computing platform that extends Kubernetes' native container orchestration and scheduling capabilities to enable cloud-edge collaboration, compute offloading, large-scale edge device management, and edge autonomy. KubeEdge also supports 5G MEC, AI cloud-edge collaboration, and other scenarios through plugins. This article shares practical experiences of using KubeEdge and Kuiper for edge streaming data processing.
+
+## Kuiper: An Edge Streaming Processing Product
+
+Kuiper development began in early 2019, with its first version released in October 2019, and has continued to iterate ever since. Its architecture follows a classic streaming processing design.
+
+### Product Design Goal:
+
+Enable streaming processing at the edge, similar to how Spark and Flink operate in the cloud.
+
+![Kuiper Architecture](/img/casestudies/kuiper/kuiper_architecture.png)
+
+The overall architecture consists of three main parts:
+
+- **Sources (left)**: Data input sources, such as the MQTT broker in KubeEdge's edge layer, files, databases, or windows.
+- **Sinks (right)**: Data output destinations, including MQTT, files, databases, or HTTP services.
+- **Processing Layer (middle)**:
+  - **Business Logic Layer**: Handles SQL statements, rule parsing, and SQL plan conversion.
+  - **Streaming & SQL Runtime**: Executes the processing plan.
+  - **Storage Layer**: Stores outgoing message streams.
+
+## Kuiper Use Cases
+
+- **Streaming Processing**: Real-time data streaming processing at the edge.
+- **Rule Engine**: Define flexible rule-based processing, including alerts and message forwarding.
+- **Data Format & Protocol Conversion**: Bridge different data formats and protocols between the edge and cloud for IT & OT integration.
+
+![KubeEdge & Kuiper Integration](/img/casestudies/kuiper/kubeedge&kuiper.png)
+
+Kuiper runs behind the **KubeEdge MQTT Broker**, operating entirely at the edge. Below it, various **Mappers** connect different protocols. The **Edge MQTT Broker** facilitates message exchange.
+
+### Types of Data Processing:
+
+- Extracting data definitions from device model files.
+- Converting data to Kuiper-supported types.
+- Using schema-less stream definitions when creating data streams.
+- Supported data types: `int`, `string`, `bool`, `float`.
+
+## KubeEdge Model Files & Configuration
+
+The following configuration file defines device attributes, including name, data type, and description.
+
+![Configuration File](/img/casestudies/kuiper/configuration.png)
+
+### Storing Device Model Files
+
+- Model file details are configured in `ect/mqtt_source.yaml`.
+- Configuration options:
+  1. **KubeEdgeVersion**: Reserved for future model file versions.
+  2. **KubeEdgeModelFile**: Specifies the model file path.
+- Configurations are delivered via **ConfigMap**, saving them in the required directory.
+
+## Kuiper Usage Process
+
+### 1) Define a Stream
+
+A stream definition is similar to a database table schema.
+
+- **DATASOURCE**: Set to `"$hw/events/device/+/twin/update"`, a pre-defined topic in KubeEdge.
+
+![Stream Definition](/img/casestudies/kuiper/stream.png)
+
+### 2) Define and Submit Rules
+
+![Rule Definition](/img/casestudies/kuiper/rules.png)
+
+Business logic is implemented using SQL, and results are sent to a designated target.
+
+#### Supported SQL Syntax:
+
+```sql
+SELECT/FROM/WHERE/ORDER
+JOIN/GROUP/HAVING
+```
+
+#### Supported Features:
+
+- **Four types of time windows** + **One count-based window**
+- **60+ SQL functions**
+
+### 3) Execute Processing
+
+## Deploying Kuiper Rules in KubeEdge
+
+### 1) Using Kuiper-Kubernetes-Tool
+
+- This standalone tool runs in a container and executes command configurations delivered via **ConfigMap**.
+- Configuration file specifies Kuiper service address, ports, and command locations.
+- The tool periodically scans and executes commands from the **ConfigMap**.
+
+### 2) Managing Kuiper via Cloud-Edge Coordination
+
+Another approach is to use a **management console** to oversee multiple Kuiper nodes.
+
+![Multiple Kuiper Nodes](/img/casestudies/kuiper/multiple_nodes.png)
+
+For example, in **vehicle networking**, Kuiper instances run inside vehicle-mounted edge boxes. The **Kuiper Manager** centralizes rule updates for all instances.
+
+1. **Install Plugins**: Custom plugins can be installed for integrating unsupported data sources.
+
+![Android Plugin](/img/casestudies/kuiper/android_plugin.png)
+
+2. **Create Stream Definitions**:
+
+![Stream Definition Example](/img/casestudies/kuiper/demo_stream.png)
+
+3. **Define Data Storage Location**:
+
+![Target Attribute](/img/casestudies/kuiper/target_attribute.png)
+
+4. **Use a Visual Rule Editor** to define rules interactively.
+
+![Rule Writing Interface](/img/casestudies/kuiper/write_rules.png)
+
+## Use Case: National Industrial Internet Big Data Center
+
+![Big Data Center](/img/casestudies/kuiper/big_data_center.png)
+
+In this case study, **K8s + CloudCore** is deployed in the cloud, and rules are distributed to **Kuiper** via the management channel. Kuiper is placed behind the **MQTT Broker** to handle **data processing and cleansing**. Two processing channels are used:
+
+1. **Forwarding processed messages** to the **Cloud MQTT Broker**.
+2. **Persisting local data** using **InfluxDB**, allowing third-party applications to access and visualize data.
+
+## Kuiper Rule Engine in LF EdgeX Foundry
+
+Kuiper is integrated into **LF EdgeX Foundry** as a built-in rule engine, officially released in the **April 2020 Geneva version**.
+
+![LF EdgeX Foundry](/img/casestudies/kuiper/edgex_foundry.png)
+
+![EdgeX Foundry Integration](/img/casestudies/kuiper/edgex_foundry2.png)
+
+## Use Case: Data Format Conversion for Heterogeneous Systems
+
+Kuiper enables data exchange between **ERP, MES, and other IT systems** with flexible extensions:
+
+- Data from **heterogeneous sources** can be **collected via custom plugins** and processed using **SQL functions**.
+- The **sink module** formats processed data for different target systems.
+- Example: A **temperature >30°C** alert might need:
+  - **One action to control a device**.
+  - **Another to send an alert via WeChat**.
+- Using Kuiper, both can be triggered **from the same rule**, eliminating redundant programming.
+
+## Performance Metrics
+
+### Kuiper Supports Thousands of Concurrent Rules
+
+- **8000 rules × 0.1 messages/sec per rule = 800 TPS**.
+
+```sql
+Source: MQTT
+SQL: SELECT temperature FROM source WHERE temperature > 20 (90% data filtered)
+Target: Log
+```
+
+#### Test Configuration:
+
+- **AWS:** 2-core, 4GB RAM
+- **Ubuntu OS**
+- **Resource Usage:**
+  - **Memory**: 0.4MB per rule (72%-89% utilization)
+  - **GPU**: 25%
+
+### AWS t2.micro Handling 10K+ Messages/Sec
+
+![AWS Throughput](/img/casestudies/kuiper/aws.png)
+
+To read this case study in Chinese language, please visit http://kubeedge.io/zh/case-studies/Kuiper.
