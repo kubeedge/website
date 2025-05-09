@@ -1,0 +1,36 @@
+.cncf-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+  
+    &__text {
+      font-size: large;
+      margin-bottom: 1rem;
+     font-weight: 700;
+      a {
+        text-decoration: none;
+        color: #0366d6;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    &__logo {
+      max-width: 300px;
+      height: auto;
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cncf-card {
+      &__text {
+        font-size:medium;
+        margin-bottom: 1rem;
+       font-weight: 600;
+      }}
+  }

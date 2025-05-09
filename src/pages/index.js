@@ -5,8 +5,8 @@ import About from "@site/src/components/about";
 import Why from "@site/src/components/why";
 import Supporters from "@site/src/components/supporters";
 import BlogPost from "@site/src/components/blogPost";
+import CncfCard from "@site/src/components/cncfcard";
 import "./index.scss";
-
 export default function Home() {
   return (
     <Layout>
@@ -17,6 +17,7 @@ export default function Home() {
         <Supporters />
       </div>
       <BlogPost />
+      <CncfCard />
     </Layout>
   );
 }
