@@ -429,7 +429,7 @@ It indicates that there are residual containerd containers or tasks with the sam
 
 Currently, when using the `cri` runtime, you need to install the cni plugin and configure the cni config before executing `keadm join`. You can follow the steps below as a reference:
 
-1. Download cni-plugins-{OS}-{ARCH}-{VERSION}.tgz from https://github.com/containernetworking/plugins/releases , and extract it under `/opt/cni/bin`:
+1. Download `cni-plugins-{OS}-{ARCH}-{VERSION}.tgz` from https://github.com/containernetworking/plugins/releases , and extract it under `/opt/cni/bin`:
 
 ```bash
 $ mkdir -p /opt/cni/bin
