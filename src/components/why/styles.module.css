@@ -1,42 +1,101 @@
-/* Default styles */
 .whyContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
 }
 
-.reasonBoxContainer {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 3rem;
-}
-
-.reasonBox {
-  flex-basis: 33.333%;
-  padding: 0 15px;
+/* Section Title */
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
   margin-bottom: 2rem;
 }
 
-.reasonTitle{
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  font-weight: bolder;
+/* Box Container */
+.reasonBoxContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1100px;
 }
 
+/* Individual Box */
+.reasonBox {
+  flex: 1 1 calc(33.333% - 1.5rem);
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border for subtle separation */
+  transition: all 0.3s ease-in-out;
+  text-align: left;
+}
+
+/* Hover Effect */
+.reasonBox:hover {
+  background: rgba(0, 0, 0, 0.03); /* Very light background change */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Slightly darker border on hover */
+  transform: translateY(-3px); /* Subtle lift effect */
+}
+
+/* Reason Title */
+.reasonTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.8rem;
+}
+
+/* Reason Content */
 .reasonContent {
-  font-size: 0.9rem;
-  white-space: pre-wrap;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
 }
 
-/* Responsive styles */
-@media screen and (max-width: 768px) {
+/* Dark Mode Fixes */
+html[data-theme="dark"] {
+  .whyContainer {
+    background: #1e1e1e;
+  }
+
+  .sectionTitle {
+    color: #fff !important; /* Fixes the faded title in dark mode */
+  }
+
   .reasonBox {
-    flex-basis: 50%; /* Show two reasons per row on screens up to 768px */
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Light border in dark mode */
+    color: #ddd;
+  }
+
+  .reasonBox:hover {
+    background: rgba(255, 255, 255, 0.05); /* Very light hover effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+  }
+
+  .reasonTitle {
+    color: #fff;
+  }
+
+  .reasonContent {
+    color: #ccc;
   }
 }
 
-@media screen and (max-width: 480px) {
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
   .reasonBox {
-    flex-basis: 100%; /* Show one reason per row on screens up to 480px */
+    flex: 1 1 calc(50% - 1.5rem); /* Two per row */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .reasonBox {
+    flex: 1 1 100%; /* One per row */
   }
 }
