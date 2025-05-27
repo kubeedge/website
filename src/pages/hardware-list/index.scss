@@ -1,0 +1,117 @@
+.hardware-list-page {
+    background-color: var(--ifm-background-color);
+    padding: 20px;
+  }
+  
+  .hardware-header {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/img/partners.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  
+    .hardware-title {
+      font-size: 40px;
+      font-weight: 700;
+      color: white;
+    }
+  }
+  
+  .hardware-content {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+  }
+  
+  .hardware-md {
+    width: 85%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 20px 0;
+  }
+  
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: var(--ifm-color-primary);
+    color: white;
+    text-align: center;
+  }
+  
+  td a {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  td a:hover {
+    text-decoration: underline;
+  }
+
+  /* 卡片样式 */
+.hardware-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  
+    .hardware-image {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-right: 16px;
+    }
+  
+    .hardware-info {
+      flex: 1;
+  
+      h3 {
+        font-size: 18px;
+        margin: 0 0 8px 0;
+      }
+  
+      p {
+        font-size: 14px;
+        margin: 0 0 8px 0;
+        color: #666;
+      }
+  
+      a {
+        font-size: 14px;
+        color: var(--ifm-color-primary);
+        text-decoration: none;
+        font-weight: bold;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+}

@@ -1,74 +1,98 @@
 import React, { useState } from 'react';
 
-export default function PartnerCard({ name, product, description, link }) {
-  const [expanded, setExpanded] = useState(false);
+export default function PartnerCard({ name, logo, product, description, link }) {
+  const [hovered, setHovered] = useState(false);
 
   return (
     <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => window.open(link, '_blank')}
       style={{
-        border: '1px solid #e0e0e0',
-        borderRadius: '12px',
-        padding: '20px',
+        position: 'relative',
+        borderRadius: '20px',
+        padding: '24px',
         margin: '10px',
         width: '100%',
-        maxWidth: '400px',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+        maxWidth: '380px',
+        height: hovered ? '360px' : '260px', // 加高
+        background: 'rgba(255, 255, 255, 0.7)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        boxShadow: hovered
+          ? '0 16px 32px rgba(0, 0, 0, 0.15)'
+          : '0 6px 12px rgba(0, 0, 0, 0.08)',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#fff',
+        alignItems: 'center', //子元素居中
+        justifyContent: 'flex-start',
+        cursor: 'pointer',
+        overflow: 'hidden',
+        transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+        transform: hovered ? 'scale(1.05)' : 'scale(1)',
       }}
     >
-      <div>
-        <h3 style={{ margin: '0 0 10px 0' }}>{name}</h3>
-        <h4 style={{ margin: '0 0 10px 0', color: '#555' }}>{product}</h4>
-        <p
+      {/* Name */}
+      <h3 style={{
+        margin: '10px 0 5px 0',
+        fontSize: '32px',
+        fontWeight: '700',
+        color: '#0084FF',
+        textAlign: 'center',
+      }}>
+        {name}
+      </h3>
+
+      {/* Logo图片 */}
+      {logo && (
+        <img
+          src={logo}
+          alt={`${name} logo`}
           style={{
+            width: '150px',
+            height: '75px',
+            objectFit: 'contain',
+            margin: '5px 0', // 上下留空
+          }}
+        />
+      )}
+
+      {/* Product */}
+      <h4 style={{
+        margin: '10px 0 0 0',
+        fontSize: '16px',
+        fontWeight: '400',
+        color: '#000000',
+        textAlign: 'center',
+      }}>
+        {product}
+      </h4>
+
+      {/* 蒙版 */}
+      {hovered && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.7)',
+            color: '#fff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px',
+            textAlign: 'center',
             fontSize: '14px',
-            color: '#666',
-            lineHeight: '1.6',
-            overflow: expanded ? 'visible' : 'hidden',
-            display: '-webkit-box',
-            WebkitLineClamp: expanded ? 'none' : 3,
-            WebkitBoxOrient: 'vertical',
+            lineHeight: '1.8',
+            overflowY: 'auto',
+            borderRadius: '20px',
           }}
         >
           {description}
-        </p>
-        {description.length > 120 && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            style={{
-              marginTop: '4px',
-              background: 'none',
-              border: 'none',
-              color: '#0078e7',
-              cursor: 'pointer',
-              fontSize: '14px',
-              padding: 0,
-            }}
-          >
-            {expanded ? 'Collapse' : 'Expand'}
-          </button>
-        )}
-      </div>
-
-      <div style={{ marginTop: '8px' }}>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            padding: '8px 16px',
-            backgroundColor: '#0078e7',
-            color: '#fff',
-            textDecoration: 'none',
-            borderRadius: '6px',
-            fontSize: '14px',
-          }}
-        >
-          Visit Website
-        </a>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
