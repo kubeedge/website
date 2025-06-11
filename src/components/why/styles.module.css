@@ -4,6 +4,9 @@
   flex-direction: column;
   align-items: center;
 }
+.whyContainer h1{
+  color: #0084FF;
+}
 
 .reasonBoxContainer {
   display: flex;
