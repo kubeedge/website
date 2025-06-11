@@ -25,10 +25,12 @@ export default function BlogPost() {
         </div>
         <div className="right">
           {blogPosts.slice(0, 3).map((item, index) => (
-            <div key={index} className="viewBlogContainer">
-              <h3 onClick={() => history.push(item.metadata.permalink)}>
-                {item.metadata.title}
-              </h3>
+            <div
+              onClick={() => history.push(item.metadata.permalink)}
+              key={index}
+              className="viewBlogContainer"
+            >
+              <h3>{item.metadata.title}</h3>
               {item.metadata?.frontMatter?.summary && (
                 <p>{item.metadata?.frontMatter.summary}</p>
               )}
