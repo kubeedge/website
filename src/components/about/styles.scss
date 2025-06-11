@@ -1,77 +1,122 @@
 .aboutContainer {
-  background-color: rgb(247, 247, 247);
+  background: linear-gradient(
+    135deg,
+    #eef2f3,
+    #d1d8e0
+  ); /* Soft gradient background */
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
 
-  @media screen {
-    @media (max-width: 992px) {
-      .sectionContainerInner {
-        .row {
-          .profile {
-            flex: 0 0 100%;
-            max-width: 100%;
-          }
-        }
-      }
-    }
-    @media (max-width: 768px) {
-      .sectionContainerInner {
-        .row {
-          .profile {
-            flex: 0 0 100%;
-            max-width: 100%;
-          }
-        }
-      }
-    }
+/* About Content */
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 5rem;
+  max-width: 1200px; /* Increased max width */
+}
+
+/* Left Side - Logo with Title & Tagline */
+.logo-container {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kubeedge-logo {
+  width: 200px; /* Increased Size */
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Logo Hover Effect */
+.kubeedge-logo:hover {
+  transform: scale(1.1);
+}
+
+/* Profile Text */
+.profile-name {
+  font-size: 2.7rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 1rem;
+}
+
+.profile-title {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Right Side - Wider Single Paragraph */
+.about-description {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 700px; /* Increased Width */
+}
+
+/* Text Box - Professional Styling */
+.text-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.15);
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 1.8;
+  font-family: "Inter", sans-serif; /* Professional font */
+  font-weight: 400;
+  text-align: justify;
+  max-width: 750px;
+}
+
+/* Dark Mode */
+html[data-theme="dark"] {
+  .aboutContainer {
+    background: linear-gradient(135deg, #1c1e22, #2a2d33);
   }
 
-  .row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-right: -15px;
-    margin-left: -15px;
+  .profile-name {
+    color: #ddd;
+  }
 
-    .profile {
-      flex: 0 0 33.333333%;
-      max-width: 33.333333%;
-      text-align: center;
-      padding: 0px 10px 30px;
-      position: relative;
-    }
+  .profile-title {
+    color: #bbb;
+  }
 
-    .portrait {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .description {
-      flex: 0 0 66.666667%;
-      max-width: 66.666667%;
-      font-size: 1.2rem;
-    }
-
-    .name {
-      font-size: 2em;
-      font-weight: 400;
-      margin: 20px 0 10px 0;
-    }
-
-    .jobTitle {
-      font-size: 1rem;
-      font-weight: 300;
-      margin: 0px 0 10px 0;
-    }
+  .text-box {
+    background: rgba(45, 47, 51, 0.95);
+    color: #eee;
   }
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
 
-html[data-theme='dark'] {
-  .aboutContainer {
-    background-color: #242526;
+  .about-description {
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  .kubeedge-logo {
+    width: 160px;
+    height: 160px;
+  }
+
+  .text-box {
+    text-align: center;
   }
 }
