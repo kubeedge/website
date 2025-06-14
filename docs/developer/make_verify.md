@@ -58,7 +58,7 @@ If the **HELP** variable is not set (the usual case), **`make verify`** will seq
 **`verify-codegen`**,**`verify-vendor-licenses`**, and **`verify-crds`** targets, which will be detailed below.
 
 ### 2.Verify golang
-The sub-target **`verify-golang`** will run its corrsponding shell script
+The sub-target **`verify-golang`** will run its corresponding shell script
 
 ```shell
 verify-golang:
@@ -73,7 +73,7 @@ kubeedge::golang::verify_golang_version
 ```
 
 ### 3.Verify vendor
-The sub-target **`verify-vendor`** will run its corrsponding shell script
+The sub-target **`verify-vendor`** will run its corresponding shell script
 
 ```shell
 verify-vendor:
@@ -111,7 +111,7 @@ done
 ```
 
 It will update go.mod and go.sum for each repository in the staging repos.  
-And then it will re-create a symlink in the vendor directory pointing to the corresponding staging respository
+And then it will re-create a symlink in the vendor directory pointing to the corresponding staging repository
 
 ```shell
 for repo in $(kubeedge::util::list_staging_repos); do
@@ -136,7 +136,7 @@ ret=$(kubeedge::git::check_status)
  
 ### 4.Verify codegen
 
-The sub-target **`verify-codegen`** will run its corrsponding shell script
+The sub-target **`verify-codegen`** will run its corresponding shell script
 
 ```shell
 verify-codegen:
@@ -177,7 +177,7 @@ If there are differences, it prompts the user to update the code generation by r
 
 ### 5.Verify vendor licenses 
 
-The sub-target **`verify-vendor-licenses`** will run its corrsponding shell script
+The sub-target **`verify-vendor-licenses`** will run its corresponding shell script
 
 ```shell
 verify-vendor-licenses:
@@ -215,7 +215,7 @@ If there are differences, it prompts the user to update the licenses by running 
 
 ### 6.Verify crds
 
-The sub-target **`verify-crds`** will run its corrsponding shell script
+The sub-target **`verify-crds`** will run its corresponding shell script
 
 ```shell
 verify-crds:
@@ -250,7 +250,7 @@ cp -a "${TMP_DIFFROOT}"/* "${DIFFROOT}"
 **6.4**. Check differences.
 
 
-This script ensure that the Custom Resource Difinitions (CRDs) in the build/crds directory are up-to-date by comparying
+This script ensure that the Custom Resource Definitions (CRDs) in the build/crds directory are up-to-date by comparying
 them with freshly generated CRDs.  
 If there are differences, it prompts the user to update the CRDs by running
 **`hack/generate-crds.sh`**

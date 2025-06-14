@@ -145,7 +145,7 @@ kubectl apply -f ~/kubeedge/yaml/node.json
 Create the `/etc/kubeedge/config` folder
 
 ```shell
-    # the default configration file path is '/etc/kubeedge/config/edgecore.yaml'
+    # the default configuration file path is '/etc/kubeedge/config/edgecore.yaml'
     # also you can specify it anywhere with '--config'
     mkdir -p /etc/kubeedge/config/
 ```
