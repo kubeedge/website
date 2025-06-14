@@ -47,10 +47,10 @@ flag when you make a commit,here are the steps to follow so the computer can add
 ```
 
 
-## Ensuring to squash similiar commits
+## Ensuring to squash similar commits
 
   
-To ensure that your pull request does not contain multiple similiar commits, you may need to squash your commits.
+To ensure that your pull request does not contain multiple similar commits, you may need to squash your commits.
   
 Here's how to do it:
 
@@ -72,7 +72,7 @@ Interactive rebase to squash commits:
     git rebase -i HEAD~N
 ```
     
-Replace 'N' with the number of similiar commits you want to squash. In the interactive rebase interface, 
+Replace 'N' with the number of similar commits you want to squash. In the interactive rebase interface, 
 
 Replace 'pick' with 'squash' for all commits except the first one. And amend the commit message if needed.
   	

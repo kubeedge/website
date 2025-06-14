@@ -13,7 +13,7 @@ The release process can be thought of as having four main phases:
 
 - **Feature Definition (Week 1~2)**
 
-    With ongoing feature definition through the year, some set of items will bubble up as targeting a given release. During the initial two weeks, feature work for the given release is defined in suitable planning artifacts in conjunction with SIG Release Team. Milestone is created adn applied correctly so that SIG Release Team can track enhancements and bugs.
+    With ongoing feature definition through the year, some set of items will bubble up as targeting a given release. During the initial two weeks, feature work for the given release is defined in suitable planning artifacts in conjunction with SIG Release Team. Milestone is created and applied correctly so that SIG Release Team can track enhancements and bugs.
 
 - **Feature Work (Week 3~10)**
    
@@ -25,7 +25,7 @@ The release process can be thought of as having four main phases:
 
 - **Release (Week 12)**
 
-  Once the first three phases are comleted, the release branch enters the final stage. The community prepares for the official release by conducting thorough testing and ensuring documentation and release notes are up-to-date. Following this, the final version is officially released and made available for public use.
+  Once the first three phases are completed, the release branch enters the final stage. The community prepares for the official release by conducting thorough testing and ensuring documentation and release notes are up-to-date. Following this, the final version is officially released and made available for public use.
 
 When the code base is sufficiently stable, the master branch opens for general development and work begins there for the next release milestone. 
 
