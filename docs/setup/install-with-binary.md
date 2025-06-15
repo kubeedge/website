@@ -22,6 +22,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/apps/apps_v1alpha1_edgeapplication.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/apps/apps_v1alpha1_nodegroup.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha2_nodeupgradejob.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha2_configupdatejob.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha2_imageprepulljob.yaml
 ```
 
 ### Prepare cloudcore binary
@@ -54,6 +56,12 @@ please refer to [configuration for cloud](./config#configuration-cloud-side-kube
 
 ```shell
 # cloudcore --config cloudcore.yaml
+```
+
+You may need to prepend `sudo` if required dependencies (such as privileged ports or files) need elevated permissions:
+
+```shell
+sudo cloudcore --config cloudcore.yaml
 ```
 
 Run `cloudcore -h` to get help info and add options if needed.
@@ -120,8 +128,13 @@ Start edgecore:
 edgecore --config edgecore.yaml
 ```
 
-Run `edgecore -h` to get help info and add options if needed.
+If using environment variables and needing root access, use sudo -E
 
+```shell
+sudo -E edgecore --config edgecore.yaml
+```
+
+Run `edgecore -h` to get help info and add options if needed.
 
 
 ### Build from source
