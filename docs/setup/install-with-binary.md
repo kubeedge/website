@@ -123,7 +123,7 @@ Start edgecore:
 edgecore --config edgecore.yaml
 ```
 
-If you are running as root and need to use environment variables, use -E:
+If running with sudo and need user env vars, use -E:
 
 ```shell
 sudo -E edgecore --config edgecore.yaml
