@@ -58,11 +58,6 @@ please refer to [configuration for cloud](./config#configuration-cloud-side-kube
 # cloudcore --config cloudcore.yaml
 ```
 
-You may need to prepend `sudo` if required dependencies (such as privileged ports or files) need elevated permissions:
-
-```shell
-sudo cloudcore --config cloudcore.yaml
-```
 
 Run `cloudcore -h` to get help info and add options if needed.
 
@@ -128,7 +123,7 @@ Start edgecore:
 edgecore --config edgecore.yaml
 ```
 
-If using environment variables and needing root access, use sudo -E
+If you are running as root and need to use environment variables, use -E:
 
 ```shell
 sudo -E edgecore --config edgecore.yaml
