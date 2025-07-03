@@ -15,7 +15,7 @@ Mapper is an application that is used to connect and control devices. The respon
 
 KubeEdge uses Device Controller, Device Twin and Mapper to control the devices. The Device Controller is on the cloud side, it uses CRD to define and control devices.
 The Device Twin is on the edge side, it stores the value/status from the Mapper and transfers the messages with Device Controller and Mapper. 
-Meanwhile, DMI in the Device Twin is used for registing mapper and transfer Device Instance and Device Model to user Mapper.
+Meanwhile, DMI in the Device Twin is used for registering mapper and transfer Device Instance and Device Model to user Mapper.
 
 ## How to create your own Mappers
 Now we use **[Mapper Framework](../mapper-framework)** to genenrate your own Mapper to control the edge devices.
@@ -33,7 +33,7 @@ A project named as your input will be generated. The file tree is as below:
 mapper
 ├── cmd ------------------------ Main process.
 │ └── main.go ------------------ Almost need not change.
-├── config.yaml ---------------- Configuration file including DMI's grpc settting
+├── config.yaml ---------------- Configuration file including DMI's grpc setting
 ├── data ----------------------- Publish data and database implementation layer, almost need not change
 │ ├── dbmethod ----------------- Provider implement database interfaces to save data
 │ │ ├── influxdb2 -------------- Implementation of Time Series Database(InfluxDB)
@@ -136,4 +136,4 @@ We currently provide virtual device mapper, modbus protocol mapper and USB proto
 - [modbus mapper](https://github.com/kubeedge/mappers-go/pull/113)
 - [USB camera mapper](https://github.com/kubeedge/mappers-go/tree/main/mappers/kubeedge-v1.15.0/usbcamera-dmi)
 
-We will provide more build-in mappers like onvif and bluetooth later.
+We will provide more built-in mappers like onvif and bluetooth later.

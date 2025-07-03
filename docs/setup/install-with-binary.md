@@ -178,7 +178,7 @@ spec:
 EOF
 ```
 
-Then you can see the Pod is deployed to edge-node succesfully.
+Then you can see the Pod is deployed to edge-node successfully.
 ```shell
 # kubectl get pod -owide
 NAME    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
