@@ -1,32 +1,38 @@
 .tag-toggle-container {
+  width: 100%;
+  max-width: 100%; /* Ensure it stays within the container */
+  overflow: hidden;
+
   .tag-toggle-list {
     display: flex;
-    height: 60px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
     align-items: center;
-    vertical-align: top;
-    padding: 16px 40px;
+    justify-content: center;
+    padding: 12px 20px; /* Reduced padding for better fit */
     box-shadow: 0 1px 5px rgba(45, 47, 51, 0.1);
     background-color: var(--ifm-navbar-background-color);
-    gap: 24px;
+    gap: 16px; /* Reduce gap to fit within box */
 
     .title {
-      height: 30px;
-      padding: 3px 12px;
-      display: flex;
-      align-items: center;
+      padding: 2px 10px;
+      font-size: 14px;
+      text-align: center;
+      white-space: nowrap; /* Prevents breaking into multiple lines */
     }
 
     .tag-list {
       display: flex;
-      gap: 12px;
+      flex-wrap: wrap; /* Allow tags to wrap */
+      gap: 10px;
 
       .tag-toggle {
-        height: 30px;
-        padding: 3px 12px;
+        padding: 4px 10px;
         cursor: pointer;
-        border: 1px solid rgba(0, 0, 0, 0);
+        border: 1px solid transparent;
         display: flex;
         align-items: center;
+        font-size: 14px;
+        white-space: nowrap; /* Prevents multi-line tags */
 
         &:hover {
           color: #3578e5;
@@ -41,6 +47,45 @@
   }
 }
 
+/* 🔹 Responsive Fixes */
+@media screen and (max-width: 768px) {
+  .tag-toggle-list {
+    flex-direction: column; /* Stack elements in smaller screens */
+    align-items: center;
+    padding: 10px 15px;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+
+  .tag-list {
+    gap: 8px;
+  }
+
+  .tag-toggle {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tag-toggle-list {
+    padding: 8px 10px;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+
+  .tag-toggle {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}
+
+/* 🔹 Dark Mode */
 html[data-theme="dark"] {
   .tag-toggle-container {
     .tag-toggle-list {
