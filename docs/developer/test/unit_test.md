@@ -63,7 +63,7 @@ ormerMock = beego.NewMockOrmer(mockCtrl)
 
 4. ormermock is now a fake implementation of Ormer interface. We can make any function in ormermock return any value you want.
 
-5. replace the real Ormer implementation with this fake implementation. DBAccess is variable to type Ormer which we will replace with mock implemention
+5. replace the real Ormer implementation with this fake implementation. DBAccess is variable to type Ormer which we will replace with mock implementation
 ```shell
 dbm.DBAccess = ormerMock
 ```

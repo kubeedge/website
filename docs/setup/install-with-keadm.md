@@ -202,7 +202,7 @@ You can run the `systemctl status edgecore` command to ensure EdgeCore is runnin
 
 #### keadm deprecated join
 
-You can also use `keadm deprecated join` to start EdgeCore from the release pacakge. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
+You can also use `keadm deprecated join` to start EdgeCore from the release package. It will download release packages from [KubeEdge release website](https://github.com/kubeedge/kubeedge/releases), and then start `edgecore` in binary progress.
 
 Example:
 
@@ -270,7 +270,7 @@ Refer to the [Enable Kubectl logs/exec](../advanced/debug.md) documentation.
 
 3. Apply the deployment yaml. For specific deployment documents, you can refer to https://github.com/kubernetes-sigs/metrics-server/tree/master/manifests.
 
-    **Note:** those iptables below must be applyed on the machine (to be exactly network namespace, so metrics-server needs to run in hostnetwork mode also) metric-server runs on.
+    **Note:** those iptables below must be applied on the machine (to be exactly network namespace, so metrics-server needs to run in hostnetwork mode also) metric-server runs on.
     ```
     iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
     ```

@@ -125,7 +125,7 @@ Click [here](https://github.com/kubeedge/kubeedge/releases) and download.
 
 #### Configuring EdgeSite
 
-Genarate edgesite config by `edgesite --minconfig` and update:
+Generate edgesite config by `edgesite --minconfig` and update:
 
 + Configure K8S (API Server)
 
