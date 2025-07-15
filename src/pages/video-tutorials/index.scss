@@ -1,0 +1,38 @@
+.video-tutorials-page {
+  background-color: var(--ifm-background-color);
+  padding: 20px;
+}
+
+.video-header {
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/img/partners.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+
+  .video-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+  }
+}
+
+.video-content {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.video-md {
+  width: 85%;
+  max-width: 1200px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

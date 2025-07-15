@@ -1,4 +1,5 @@
 .blogPostContainer {
+  background-color: #DAEAF9;
   @media (max-width: 992px) {
     .sectionContainerInner {
       .row {
@@ -32,6 +33,7 @@
       h1 {
         text-align: left;
         margin-bottom: 0.5rem;
+        color: #0084FF;
       }
 
       a {
@@ -51,7 +53,7 @@
         h3 {
           text-align: left;
           cursor: pointer;
-
+          color: #0084FF;
           &:hover {
             color: #3578e5;
           }
@@ -94,6 +96,7 @@
 
 html[data-theme="dark"] {
   .blogPostContainer {
+    background-color: rgb(255 255 255 / 5%);
     .viewBlogContainer {
       .author {
         a {
