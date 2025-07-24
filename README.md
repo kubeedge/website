@@ -40,39 +40,99 @@ and run a local server. This section shows you how.
 
 ### Install Node.js
 
-[Node.js](https://nodejs.org/en/download) version 16.14 or above (which can be checked by running `node -v`). You can use [nvm](https://github.com/nvm-sh/nvm) for managing multiple Node versions on a single machine installed.
+[Node.js](https://nodejs.org/en/download) version 16.14 or above required, please see more details for [Node.js official supported version](https://endoflife.date/nodejs).
+
+> [!NOTE]
+> Aligned with [official download](https://nodejs.org/en/download), using `nvm` and `npm` installation is recommended.
+
+- using `nvm` with `npm`
+
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install 22
+node -v
+```
+
+If you want to install `apt` package on Ubuntu.
+
+- `apt`
+
+```shell
+curl -sL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+node -v
+```
 
 ### Install yarn
 
-```
+- `npm`
+
+```shell
 npm install -g yarn
+```
+
+- `apt`
+
+```shell
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install -y yarn
 ```
 
 ### Install dependencies
 
-```
+```shell
 cd website
-
 yarn
 ```
 
 ### Local Development
 
-```
-$ yarn start
+```shell
+yarn start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-Your website is at [http://localhost:3000/](http://localhost:3000/)
+Your website is at [http://localhost:3000/](http://localhost:3000/). (You can also use `--host` option to bind the IP address instead of `localhost`.)
 
 ### Build
 
-```
-$ yarn build
+```shell
+yarn build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+## Using Container
+
+### Docker
+
+```shell
+docker build -t kubeedge:website -f Dockerfile .
+docker run -it --network host --rm -v $(pwd):/tmp/doc_repository kubeedge:website /bin/bash
+yarn start
+```
+
+### Devcontainer
+
+Once you open the vscode with `devcontainer`, you can see the following terminal.
+
+```shell
+Running the postCreateCommand from devcontainer.json...
+
+[12035 ms] Start: Run in container: /bin/sh -c yarn install
+yarn install v1.22.22
+[1/5] Validating package.json...
+[2/5] Resolving packages...
+success Already up-to-date.
+Done in 0.24s.
+Running the postStartCommand from devcontainer.json...
+
+[14333 ms] Start: Run in container: /bin/sh -c /bin/bash
+kubeedge@be52334d349c:/tmp/doc_repository$
+```
 
 ## Versioning
 

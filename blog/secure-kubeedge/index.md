@@ -85,7 +85,7 @@ Security is a paramount requirement for edge computing architecture as security 
 
 * Certificate rotation: Short-lived certificates are generated and rotation policies can be configured for every service communication. There is no need for custom agents and reliance on specific orchestrators for certificate rotation configuration and management.
 
-* Automated non-root CA certificate heirarchical deployments: Edge spire servers can be configured to not share any root CA chain for downstream nodes and workloads.
+* Automated non-root CA certificate hierarchical deployments: Edge spire servers can be configured to not share any root CA chain for downstream nodes and workloads.
 
 ## Example Demo
 

@@ -21,7 +21,9 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/router/router_v1_rule.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/apps/apps_v1alpha1_edgeapplication.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/apps/apps_v1alpha1_nodegroup.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha1_nodeupgradejob.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha2_nodeupgradejob.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha2_configupdatejob.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/crds/operations/operations_v1alpha2_imageprepulljob.yaml
 ```
 
 ### Prepare cloudcore binary
@@ -55,6 +57,7 @@ please refer to [configuration for cloud](./config#configuration-cloud-side-kube
 ```shell
 # cloudcore --config cloudcore.yaml
 ```
+
 
 Run `cloudcore -h` to get help info and add options if needed.
 
@@ -120,8 +123,13 @@ Start edgecore:
 edgecore --config edgecore.yaml
 ```
 
-Run `edgecore -h` to get help info and add options if needed.
+If running with sudo and need user env vars, use -E:
 
+```shell
+sudo -E edgecore --config edgecore.yaml
+```
+
+Run `edgecore -h` to get help info and add options if needed.
 
 
 ### Build from source
@@ -143,7 +151,7 @@ make
 
 The compiled kubeedge binaries will be put to `_output/local/bin` directory.
 
-### Deploy demo on edge nodes
+## Deploy demo on edge nodes
 
 After you start both `cloudcore` and `edgecore` successfully, you can run `kubectl get node` to ensure whether edgecore has already registered to cloudcore successfully. The edge nodes are in `Ready` status like below.
 ```shell
@@ -170,7 +178,7 @@ spec:
 EOF
 ```
 
-Then you can see the Pod is deployed to edge-node succesfully.
+Then you can see the Pod is deployed to edge-node successfully.
 ```shell
 # kubectl get pod -owide
 NAME    READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
