@@ -42,7 +42,7 @@ The following are the functions performed by Edge controller:
   - **PodPhase**: Current condition of the pod
   - **Conditions**: Details indicating why the pod is in this condition
   - **HostIP**: IP address of the host to which pod is assigned
-  - **PodIp**: IP address allocated to the Pod
+  - **PodIP**: IP address allocated to the Pod
   - **QosClass**: Assigned to the pod based on resource requirement
 
    ![Upstream Controller](/img/edgecontroller/UpstreamController.png)
@@ -54,6 +54,6 @@ The following are the functions performed by Edge controller:
 - Manages OnAdd, OnUpdate and OnDelete events which will be updated to the respective edge node from the K8s Api-server
 - Creates an eventManager(configMaps, pod, secrets) which will start a CommonResourceEventHandler, NewListWatch and a newShared Informer for each event to sync(add/update/delete)event(pod, configmap, secret) to edgecore via cloudHub
 - **Below is the List of handlers created by the controller Manager**
-  - **CommonResourceEventHandler**: NewcommonResourceEventHandler creates CommonResourceEventHandler which is used for Configmap and pod Manager
+  - **CommonResourceEventHandler**: NewCommonResourceEventHandler creates CommonResourceEventHandler which is used for ConfigMap and Pod Manager
   - **NewListWatch**: Creates a new ListWatch from the specified client resource namespace and field selector
-  - **NewSharedInformer**: Creates a new Instance for the Listwatcher
+  - **NewSharedInformer**: Creates a new Instance for the ListWatcher
