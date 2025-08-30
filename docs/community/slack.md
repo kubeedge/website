@@ -5,16 +5,19 @@ sidebar_position: 7
 
 # Join the KubeEdge Slack Community
 
-The KubeEdge community collaborates on the **CNCF Slack workspace**.  
+The KubeEdge community collaborates on the **CNCF Slack workspace**.
+
 If you’re new, follow these steps to get started:
 
 ## Step 1: Create/Join CNCF Slack
-- Go to [slack.cncf.io](https://slack.cncf.io/)  
-- Sign in with your email (or create a new account if you don’t already have one).  
+
+- Go to [slack.cncf.io](https://slack.cncf.io/)
+- Sign in with your email (or create a new account if you don’t already have one).
 - You’ll be added to the **Cloud Native Computing Foundation (CNCF)** Slack workspace.
 
 ## Step 2: Find KubeEdge Channels
-Once inside CNCF Slack, use the search bar to find and join the KubeEdge channels below.  
+
+Once inside CNCF Slack, use the search bar to find and join the KubeEdge channels below.
 
 | Channel | Purpose |
 |---------|---------|
@@ -32,8 +35,8 @@ Once inside CNCF Slack, use the search bar to find and join the KubeEdge channel
 Note: Direct Slack links may not work unless you are already logged in. Always join via [slack.cncf.io](https://slack.cncf.io/) first.
 
 ## Step 3: Follow Community Guidelines
-- Be respectful and inclusive.  
-- Ask questions in the most relevant channel.  
-- Search existing discussions before posting.  
-- For contributor discussions, prefer `#kubeedge-dev`.  
 
+- Be respectful and inclusive.
+- Ask questions in the most relevant channel.
+- Search existing discussions before posting.
+- For contributor discussions, prefer `#kubeedge-dev`.
