@@ -47,7 +47,7 @@ Refer to [build from source instructions](./install-with-binary#build-from-sourc
 
 
 
-Setup Cloud Side (KubeEdge Master Node)
+## Setup Cloud Side (KubeEdge Master Node)
 
 
 
@@ -55,7 +55,7 @@ Ports 10000 and 10002 must be open. Ensure edge nodes can reach the cloud node. 
 
 
 
-keadm init
+### keadm init
 
 keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.21.0 --kube-config=/root/.kube/config
 Verify CloudCore:
@@ -67,13 +67,13 @@ keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root
 Use --skip-crds flag to skip CRDs.
 
 
-keadm deprecated init
+### keadm manifest generate
 
 keadm deprecated init --advertise-address="THE-EXPOSED-IP"
 Check CloudCore:
 
 ps -elf | grep cloudcore
-Helm Notes:
+### Helm Notes:
 
 Set flags `--set key=value` for CloudCore Helm chart, see [CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
 
