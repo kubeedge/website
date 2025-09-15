@@ -189,13 +189,4 @@ keadm deprecated reset
 Stops cloudcore/edgecore, deletes KubeEdge resources, but does not remove prerequisites.
 ---
 
-This version:
-
-- Updates **all commands to v1.21.0**  
-- Fixes **GitHub/Docker URLs**  
-- Makes all **links clickable**  
-- Ensures **metrics-server, kubectl logs/exec, and Helm references** are included  
-
----
-
 
