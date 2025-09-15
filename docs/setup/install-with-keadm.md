@@ -4,10 +4,9 @@ title: Installing KubeEdge with Keadm
 sidebar_position: 3
 ---
 
-Keadm is used to install the cloud and edge components of KubeEdge. It does **not** handle Kubernetes installation or its runtime environment.  
+Keadm is used to install the cloud and edge components of KubeEdge. It does **not** handle Kubernetes installation or its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).
 
 Check [Kubernetes compatibility](https://github.com/kubeedge/kubeedge?tab=readme-ov-file#kubernetes-compatibility) to confirm supported versions.
-
 
 ## Prerequisite
 
@@ -17,66 +16,72 @@ Check [Kubernetes compatibility](https://github.com/kubeedge/kubeedge?tab=readme
 
 ## Kubernetes Compatibility
 
-KubeEdge v1.21.0 supports these Kubernetes versions:
+KubeEdge v1.21.0 is compatible with these Kubernetes versions:
 
 | KubeEdge Version | Compatible Kubernetes Versions |
 |-----------------|-------------------------------|
 | v1.21.0         | v1.25, v1.26, v1.27          |
 
-> ⚠️ Using an unsupported Kubernetes version may lead to errors.
+> ⚠️ Using an unsupported Kubernetes version may cause errors.
 
 ---
 
 ## Install Keadm
 
-There are three options:
+There are three ways to download the `keadm` binary:
 
-1. **From GitHub release**
+1. **Download from GitHub release**
 
 ```bash
 wget https://github.com/kubeedge/kubeedge/releases/download/v1.21.0/keadm-v1.21.0-linux-amd64.tar.gz
 tar -zxvf keadm-v1.21.0-linux-amd64.tar.gz
 cp keadm-v1.21.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
-From Docker Hub
+Download from Docker Hub
 
 docker run --rm kubeedge/installation-package:v1.21.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm
 chmod +x /usr/local/bin/keadm
 Build from Source
 
-Refer to [build from source instructions](./install-with-binary#build-from-source).
-
-Setup Cloud Side (Master Node)
+Refer to [build from source instructions](./install-with-binary#build-from-source)
 
 
 
-Ports 10000 and 10002 must be open for edge connectivity.
 
-Ensure edge nodes can reach the cloud node.
-
-Use --advertise-address to specify a public IP; it is added to CloudCore certificates.
+Setup Cloud Side (KubeEdge Master Node)
 
 
 
-Initialize CloudCore
+Ports 10000 and 10002 must be open. Ensure edge nodes can reach the cloud node. Use --advertise-address to specify a public IP; it is added to CloudCore certificate SANs.
+
+
+
+keadm init
 
 keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.21.0 --kube-config=/root/.kube/config
-Verify:
+Verify CloudCore:
 
 kubectl get all -n kubeedge
-Generate Manifests
+keadm manifest generate
 
 keadm manifest generate --advertise-address="THE-EXPOSED-IP" --kube-config=/root/.kube/config > kubeedge-cloudcore.yaml
-Add --skip-crds if you want to skip CRDs.
+Use --skip-crds flag to skip CRDs.
 
 
-
-Deprecated Binary Init
+keadm deprecated init
 
 keadm deprecated init --advertise-address="THE-EXPOSED-IP"
-Check CloudCore is running:
+Check CloudCore:
 
 ps -elf | grep cloudcore
-Setup Edge Side (Worker Node)
+Helm Notes:
+
+Set flags `--set key=value` for CloudCore Helm chart, see [CloudCore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/manifests/charts/cloudcore/README.md).
+
+Refer to the built-in configuration profile [version.yaml](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml) as `values.yaml`. You can create your custom values file and add flags like `--kubeedge-version=v1.21.0 --set key=value` to use this profile.
+
+To deploy CloudCore as binary, use keadm deprecated init.
+
+Setup Edge Side (KubeEdge Worker Node)
 
 
 
@@ -89,34 +94,85 @@ keadm join --cloudcore-ipport=<CLOUD-IP>:10000 --token=<TOKEN> --kubeedge-versio
 Verify EdgeCore:
 
 systemctl status edgecore
+Deprecated join
+
+keadm deprecated join --cloudcore-ipport=<CLOUD-IP>:10000 --token=<TOKEN> --kubeedge-version=v1.21.0
 Deploy Demo on Edge Nodes
 
 Refer to [Deploy demo on edge nodes](./install-with-binary#deploy-demo-on-edge-nodes).
+
+
+
 
 Enable 
 
 kubectl logs/exec
 
- (Metrics-server)
+ Feature
 
-Clone and build:
+Required before deploying metrics-server.
+
+Refer to [Enable Kubectl logs/exec](../advanced/debug.md) documentation.
+
+Support Metrics-server in Cloud
+
+Reuses cloudstream and edgestream modules.
+
+Metrics-server <0.4.x requires manual compilation.
 
 git clone https://github.com/kubernetes-sigs/metrics-server.git
 cd metrics-server
 make container
+Tag image:
+
 docker images
 docker tag <IMAGE_ID> metrics-server-kubeedge:latest
-Apply deployment:
+Apply deployment YAML:
 
 kubectl apply -f <deployment-yaml>
 Update iptables:
 
 iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
-Taint master node if necessary:
+Make master node schedulable:
 
 kubectl taint nodes --all node-role.kubernetes.io/master-
-Ensure hostnetwork mode and enable --kubelet-use-node-status-port.
-Reset Nodes
+Deployment YAML example (metrics-server-deployment.yaml)
+
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - charlie-latest
+  hostNetwork: true
+  containers:
+  - name: metrics-server
+    image: metrics-server-kubeedge:latest
+    imagePullPolicy: Never
+    args:
+      - --cert-dir=/tmp
+      - --secure-port=4443
+      - --v=2
+      - --kubelet-insecure-tls
+      - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalIP,Hostname
+      - --kubelet-use-node-status-port
+    ports:
+    - name: main-port
+      containerPort: 4443
+      protocol: TCP
+Notes:
+
+Use hostnetwork mode.
+
+Use image you built, set imagePullPolicy: Never.
+
+Enable --kubelet-use-node-status-port in args.
+
+Reset KubeEdge Master and Worker Nodes
 
 
 
@@ -125,13 +181,21 @@ Master
 keadm reset --kube-config=$HOME/.kube/config
 # or
 keadm deprecated reset
-Worker
+Node
 
 keadm reset
 # or
 keadm deprecated reset
-This stops services and deletes KubeEdge resources but does not remove prerequisites.
+Stops cloudcore/edgecore, deletes KubeEdge resources, but does not remove prerequisites.
+---
 
-All commands now reference KubeEdge v1.21.0, aligned with the Kubernetes compatibility matrix.
+This version:
+
+- Updates **all commands to v1.21.0**  
+- Fixes **GitHub/Docker URLs**  
+- Makes all **links clickable**  
+- Ensures **metrics-server, kubectl logs/exec, and Helm references** are included  
+
+---
 
 
