@@ -1,36 +1,33 @@
-Troubleshooting
+
+# **Troubleshooting**
 
 This page addresses common issues encountered during the setup and operation of KubeEdge.
 
-keadm init failed to download release
+## **keadm init failed to download release**
+If you experience connectivity issues with GitHub during `keadm init`, you can manually download the required KubeEdge release and CRD files before proceeding with the setup. This approach is particularly useful in environments with restricted internet access.
 
-If you experience connectivity issues with GitHub during keadm init, you can manually download the required KubeEdge release and CRD files before proceeding with the setup. This approach is particularly useful in environments with restricted internet access.
+### Example using **KubeEdge v1.21.0**:
 
-Example using KubeEdge v1.21.0:
+#### **Download the release package**
 
-Download the release package
+Get it from the [KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
 
-Get it from the[KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
+Make sure to select the correct architecture for your edge node (e.g., `linux-amd64`, `linux-arm64`).
 
-Make sure to select the correct architecture for your edge node (e.g., linux-amd64, linux-arm64).
+#### **Download the CRD YAMLs**
 
-Download the CRD YAMLs
+For v1.21, use the v1beta1 CRDs available under `build/crds`:
 
-For v1.21, use the v1beta1 CRDs available under build/crds:
+*   [devices\_v1beta1\_device.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_device.yaml)
+*   [devices\_v1beta1\_devicemodel.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_devicemodel.yaml)
+*   [cluster\_objectsync\_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml)
+*   [objectsync\_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/reliablesyncs/objectsync_v1alpha1.yaml)
 
-[devices_v1beta1_device.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_device.yaml)  
-
-[devices_v1beta1_devicemodel.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_devicemodel.yaml)
-
-[cluster_objectsync_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml)
-
-[objectsync_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/reliablesyncs/objectsync_v1alpha1.yaml)
-
-Place the files under /etc/kubeedge:
-
+#### **Place the files under `/etc/kubeedge`**:
 
 ```bash
-$ tree -L 3 /etc/kubeedge
+tree -L 3 /etc/kubeedge
+
 .
 ├── crds
 │   ├── devices
@@ -41,73 +38,81 @@ $ tree -L 3 /etc/kubeedge
 │       └── objectsync_v1alpha1.yaml
 └── kubeedge-v1.21.0-linux-amd64.tar.gz
 ```
-Run keadm init with version flag
+
+**Run keadm init with version flag**
 
 ```bash
 keadm init --kubeedge-version v1.21.0
 ```
-
-
-
 This ensures that keadm detects the local CRDs and release files, skipping the download process.
 
-Container keeps Pending or Terminating
-
-
+**Container keeps Pending or Terminating**
 
 If your pods remain in a Pending or Terminating state, try the following:
 
-Check node health:
+**Check node health**:
+
+```bash
 
 kubectl get nodes
+```
 Ensure nodes are in a Ready state.
 
-Describe the pod:
+**Describe the pod**:
 
+```bash
 kubectl describe pod <your-pod>
 This provides details and related events.
 
-Inspect EdgeCore logs:
+```
 
-If using systemd:
+**Inspect EdgeCore logs**:
 
+**If using systemd**:
+
+```bash
 journalctl --unit edgecore.service -f
+```
+**If started manually**:
 
+Check the log file or stdout.
 
-If started manually, check the log file or stdout.
-
-Verify architecture compatibility:
+**Verify architecture compatibility**:
 
 Ensure the container image matches your edge node architecture.
 
-Example: use arm64v8/nginx for Raspberry Pi 4 (arm64) instead of nginx.
+**Example**: use arm64v8/nginx for Raspberry Pi 4 (arm64) instead of nginx.
 
-Check podSandboxImage in edgecore.yaml:
+**Check podSandboxImage in 
+
+edgecore.yaml**
+
+:
 
 Confirm it points to a valid, compatible image.
 
-Manually run the container:
+**Manually run the container**:
 
+```bash
 docker run <your-container-image>
-
-
-Check disk space:
+```
+**Check disk space**:
 
 Low disk space can prevent image pulls. Free up space if needed.
 
-Where to find CloudCore/EdgeCore logs
+**Where to find CloudCore/EdgeCore logs**
 
-Using systemd:
+**Using systemd**:
 
+```bash
 journalctl --unit cloudcore.service -f
 journalctl --unit edgecore.service -f
-
-
-Using nohup or manual execution:
+```
+**Using nohup or manual execution:**
 
 Logs are usually written to the file specified during startup, or to stdout if no file was given.
 
-Where to find pod logs
+**Where to find pod logs**
 
 To access pod logs:
 
@@ -119,19 +124,18 @@ Check the log files under /var/log/pods.
 
 Use Docker to view container logs:
 
+```bash
 docker logs <container-id>
+```
 Alternatively, enable the kubectl logs feature:
 
-See [Enable kubectl logs/exec to debug pods on the edge](https://kubeedge.io/docs/advanced/debug/).
+See[Enable kubectl logs/exec to debug pods on the edge](https://kubeedge.io/docs/advanced/debug/).
 
-Notes
+**Important Considerations**
 
 Device CRDs are v1beta1 since v1.15. Older v1alpha1 and v1alpha2 CRDs are deprecated.
-
 Always replace version numbers (v1.21.0 in this example) with the version you plan to install.
-
-Official release artifacts and checksums are on the  [KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
-
-CRDs are located in the [build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
+Official release artifacts and checksums are on the[KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
+CRDs are located in the[build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
 
 
