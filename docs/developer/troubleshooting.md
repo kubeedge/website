@@ -16,12 +16,11 @@ Make sure to select the correct architecture for your edge node (e.g., `linux-am
 
 #### **Download the CRD YAMLs**
 
-For v1.21, use the **v1beta1 CRDs** available under `build/crds`:
-
-*   [devices\_v1beta1\_device.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_device.yaml)
-*   [devices\_v1beta1\_devicemodel.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_devicemodel.yaml)
-*   [cluster\_objectsync\_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml)
-*   [objectsync\_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/reliablesyncs/objectsync_v1alpha1.yaml)
+For v1.21, use the** v1beta1 CRDs** available under `build/crds`:
+* [devices_v1beta1_device.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/devices/devices_v1beta1_device.yaml)
+* [devices_v1beta1_devicemodel.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/devices/devices_v1beta1_devicemodel.yaml)
+* [cluster_objectsync_v1alpha1.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml)
+* [objectsync_v1alpha1.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/reliablesyncs/objectsync_v1alpha1.yaml)
 
 #### **Place the files under `/etc/kubeedge`**:
 
@@ -50,13 +49,13 @@ This ensures that keadm detects the local CRDs and release files, skipping the d
 
 If your pods remain in a Pending or Terminating state, try the following:
 
-**Check node health**:
+- **Check node health**:
 
 ```bash
 
 kubectl get nodes
 ```
-Ensure nodes are in a Ready state.
+- **Ensure nodes are in a Ready state.**
 
 **Describe the pod**:
 
@@ -86,7 +85,6 @@ Ensure the container image matches your edge node architecture.
 **Check podSandboxImage in edgecore.yaml :**
 
 
-
 Confirm it points to a valid, compatible image.
 
 **Manually run the container**:
@@ -100,19 +98,19 @@ Low disk space can prevent image pulls. Free up space if needed.
 
 **Where to find CloudCore/EdgeCore logs**
 
-**Using systemd**:
+- **Using systemd**:
 
 ```bash
 journalctl --unit cloudcore.service -f
 journalctl --unit edgecore.service -f
 ```
-**Using nohup or manual execution:**
+- **Using nohup or manual execution:**
 
 Logs are usually written to the file specified during startup, or to stdout if no file was given.
 
 **Where to find pod logs**
 
-**To access pod logs**:
+To access pod logs:
 
 - Connect to the edge node.
 
