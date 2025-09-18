@@ -83,11 +83,9 @@ Ensure the container image matches your edge node architecture.
 
 **Example**: use arm64v8/nginx for Raspberry Pi 4 (arm64) instead of nginx.
 
-**Check podSandboxImage in 
+**Check podSandboxImage in edgecore.yaml :**
 
-edgecore.yaml**
 
-:
 
 Confirm it points to a valid, compatible image.
 
@@ -129,13 +127,13 @@ docker logs <container-id>
 ```
 Alternatively, enable the kubectl logs feature:
 
-See[Enable kubectl logs/exec to debug pods on the edge](https://kubeedge.io/docs/advanced/debug/).
+See [Enable kubectl logs/exec to debug pods on the edge](https://kubeedge.io/docs/advanced/debug/).
 
 **Important Considerations**
 
 Device CRDs are v1beta1 since v1.15. Older v1alpha1 and v1alpha2 CRDs are deprecated.
 Always replace version numbers (v1.21.0 in this example) with the version you plan to install.
 Official release artifacts and checksums are on the[KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
-CRDs are located in the[build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
+CRDs are located in the [build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
 
 
