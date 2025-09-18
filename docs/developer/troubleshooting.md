@@ -16,7 +16,7 @@ Make sure to select the correct architecture for your edge node (e.g., `linux-am
 
 #### **Download the CRD YAMLs**
 
-For v1.21, use the v1beta1 CRDs available under `build/crds`:
+For v1.21, use the **v1beta1 CRDs** available under `build/crds`:
 
 *   [devices\_v1beta1\_device.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_device.yaml)
 *   [devices\_v1beta1\_devicemodel.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.21.0/build/crds/devices/devices_v1beta1_devicemodel.yaml)
@@ -112,15 +112,15 @@ Logs are usually written to the file specified during startup, or to stdout if n
 
 **Where to find pod logs**
 
-To access pod logs:
+**To access pod logs**:
 
-Connect to the edge node.
+- Connect to the edge node.
 
-Use one of the following methods:
+- Use one of the following methods:
 
-Check the log files under /var/log/pods.
+1) Check the log files under /var/log/pods.
 
-Use Docker to view container logs:
+2) Use Docker to view container logs:
 
 ```bash
 docker logs <container-id>
@@ -131,9 +131,12 @@ See [Enable kubectl logs/exec to debug pods on the edge](https://kubeedge.io/doc
 
 **Important Considerations**
 
-Device CRDs are v1beta1 since v1.15. Older v1alpha1 and v1alpha2 CRDs are deprecated.
-Always replace version numbers (v1.21.0 in this example) with the version you plan to install.
-Official release artifacts and checksums are on the[KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
-CRDs are located in the [build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
+- Device CRDs are v1beta1 since v1.15. Older v1alpha1 and v1alpha2 CRDs are deprecated.
+
+- Always replace version numbers (v1.21.0 in this example) with the version you plan to install.
+
+- Official release artifacts and checksums are on the[KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
+
+- CRDs are located in the [build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
 
 
