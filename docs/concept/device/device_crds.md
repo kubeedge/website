@@ -1,6 +1,7 @@
------
-
-## title: Device CRDs sidebar\_position: 3
+---
+title: Device CRDs
+sidebar_position: 3
+---
 
 KubeEdge supports device management using **Kubernetes Custom Resource Definitions (CRDs)** and a **Device Mapper** corresponding to the device being used.
 
