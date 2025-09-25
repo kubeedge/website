@@ -1,22 +1,31 @@
----
-title: Device CRDs
-sidebar_position: 3
----
-KubeEdge supports device management with the help of Kubernetes [CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions) and Device Mapper corresponding to the device being used.
-We currently use Device Model and Device Instance to define the device.
+-----
+
+## title: Device CRDs sidebar\_position: 3
+
+KubeEdge supports device management using **Kubernetes Custom Resource Definitions (CRDs)** and a **Device Mapper** corresponding to the device being used.
+
+We currently define devices using two primary resources: **Device Model** and **Device Instance**.
+
+-----
 
 ## Notice
-Device CRDs are updated from v1alpha2 to v1beta1 in release v1.15.
-It is **not** compatible with v1alpha1 and v1alpha2.
-Details can be found [device-crd-v1beta1](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md).
+
+Device CRDs were updated from **v1alpha2** to **v1beta1** in release **v1.15**.
+
+**Compatibility Warning:** The `v1beta1` CRDs are **not compatible** with `v1alpha1` and `v1alpha2`. Older device CRDs must be **migrated** to the new specification.
+
+For detailed migration information, please refer to the [device-crd-v1beta1 proposal](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-device-iot/device-crd-v1beta1.md).
+
+-----
 
 ## Device Model
 
-A `device model` describes the device properties exposed by a type of devices.
-A device model is a `Physical model` which constrains the properties and parameters of physical devices.
+A **Device Model** defines constraints on the properties and parameters of a **type** of physical device. It essentially describes the properties exposed by a specific kind of device.
 
 ### Device Model Sample
-A sample device model like below. For complete Device Model definition, you can refer to [device-model](https://github.com/kubeedge/kubeedge/blob/master/build/crds/devices/devices_v1beta1_devicemodel.yaml).
+
+A sample `DeviceModel` is shown below. For the complete definition, refer to the [device-model YAML](https://github.com/kubeedge/kubeedge/blob/master/build/crds/devices/devices_v1beta1_devicemodel.yaml).
+
 ```yaml
 apiVersion: devices.kubeedge.io/v1beta1
 kind: DeviceModel
@@ -25,7 +34,7 @@ metadata:
 spec:
   properties:
     - name: temp
-      description: beta1-model
+      description: Temperature attribute
       type: INT
       accessMode: ReadWrite
       maximum: "100"
@@ -33,18 +42,21 @@ spec:
       unit: "Celsius"
   protocol: modbus
 ```
-In the above example, a device model named beta1-model is defined, which uses the modbus protocol and 
-defines a device attribute named temp, whose data type is int. 
-In addition, the access method, value range and unit of the device attribute are also defined.
+
+This example defines a `DeviceModel` named `beta1-model` which utilizes the **Modbus** protocol. It defines a property called `temp` with a data type of **INT**, specifies its access mode (`ReadWrite`), value range (`1` to `100`), and unit (`Celsius`).
+
+-----
 
 ## Device Instance
 
-A `device instance` represents an actual device object.
+A **Device Instance** (represented by the `Device` CRD) represents an **actual physical device** object.
 
-The device spec is static, including device properties list, it describes the details of each property, including its name, type, access method.
+It includes a list of device properties and describes concrete details such as the device's name, type, access method, and how it reports data.
 
 ### Device Instance Sample
-A sample device instance like below. For complete Device Instance definition, you can refer to [device-instance](https://github.com/kubeedge/kubeedge/blob/master/build/crds/devices/devices_v1beta1_device.yaml).
+
+A sample `Device` (Device Instance) is shown below. For the complete definition, refer to the [device-instance YAML](https://github.com/kubeedge/kubeedge/blob/master/build/crds/devices/devices_v1beta1_device.yaml).
+
 ```yaml
 apiVersion: devices.kubeedge.io/v1beta1
 kind: Device
@@ -53,11 +65,11 @@ metadata:
 spec:
   deviceModelRef:
     name: beta1-model
-  nodeName: worker-node1
+  nodeName: worker-node1 # Must match an existing node in the cluster
   properties:
     - name: temp
-      collectCycle: 10000000000  # The frequency of reporting data to the cloud, once every 10 seconds
-      reportCycle: 10000000000   # The frequency of data push to user applications or databases, once every 10 seconds
+      collectCycle: 10000000000 # Report data to cloud every 10 seconds (in nanoseconds)
+      reportCycle: 10000000000  # Push data to apps or DB every 10 seconds (in nanoseconds)
       reportToCloud: true
       desired:
         value: "30"
@@ -92,28 +104,50 @@ spec:
     configData:
       ip: 172.17.0.3
       port: 1502
-
 ```
 
-In the above example, a device named beta1-device is defined, the model associated with it is beta1-model, 
-and the node where the device runs is worker-node1. It defines device properties in the spec.properties field, 
-including message reporting frequency, message push method (spec.properties.pushMethod), 
-and parameters required to access the device (spec.properties.visitors). In addition, the protocol used 
-by the device is defined in the `spec.protocol` field. 
+This example defines a device named `beta1-device` that is:
+
+1.  Associated with the `DeviceModel` named **`beta1-model`**.
+2.  Scheduled to run on the cluster node **`worker-node1`**.
+
+It specifies:
+
+  * **Message reporting frequency** (`collectCycle` and `reportCycle`).
+  * **Message push methods** (e.g., via **MQTT** and **InfluxDB2**).
+  * **Access parameters** (`spec.properties.visitors`) for interacting with the physical device's property (e.g., the Modbus register details).
+  * **Protocol configuration** (`spec.protocol`) for the device's main connection (e.g., the Modbus IP and Port).
+
+-----
 
 ## Usage of Device CRD
 
-The following are the steps to
+The following steps outline the process for deploying and verifying KubeEdge Device CRDs on the cloud node.
 
-1. Create a device model, execute in the cloud node.
+1.  ### Create a Device Model
 
-    ```shell
-    kubectl apply -f <path to device model yaml>
+    Apply the Device Model YAML file to the cluster:
+
+    ```bash
+    kubectl apply -f <path-to-device-model-yaml>
     ```
 
-2. Create a device instance, execute in the cloud node.
-    
-    ```shell
-    kubectl apply -f <path to device instance yaml>
+    Verify the Device Model creation:
+
+    ```bash
+    kubectl get devicemodels
     ```
 
+2.  ### Create a Device Instance
+
+    Apply the Device Instance YAML file to the cluster:
+
+    ```bash
+    kubectl apply -f <path-to-device-instance-yaml>
+    ```
+
+    Verify the Device Instance creation:
+
+    ```bash
+    kubectl get devices
+    ```
