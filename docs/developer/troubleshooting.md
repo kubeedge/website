@@ -1,70 +1,135 @@
+
+````markdown
 ---
-title: TroubleShooting
+title: Troubleshooting
 sidebar_position: 7
 ---
 
-This page contains a few commonly occurring questions.
+# Troubleshooting
 
+This page addresses common issues encountered during the setup and operation of KubeEdge.
+
+---
 
 ## keadm init failed to download release
 
-If you have issue about connection to github, please follow below guide with proxy before do setup, take `v1.12.1` as example:
+If you experience connectivity issues with GitHub during `keadm init`, you can manually download the required KubeEdge release and CRD files before proceeding with the setup. This approach is particularly useful in environments with restricted internet access.
 
-- download release pkgs from [release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.12.1)
-- download crds yamls matches the release version you downloaded, links as below:
-  - [devices_v1alpha1_device.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.12.1/build/crds/devices/devices_v1alpha2_device.yaml)
-  - [devices_v1alpha1_devicemodel.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.12.1/build/crds/devices/devices_v1alpha2_devicemodel.yaml)
-  - [cluster_objectsync_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.12.1/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml)
-  - [objectsync_v1alpha1.yaml](https://raw.githubusercontent.com/kubeedge/kubeedge/v1.12.1/build/crds/reliablesyncs/objectsync_v1alpha1.yaml)
-- put them under `/etc/kubeedge` as below:
+### Example using KubeEdge v1.21.0
+
+#### Download the release package
+
+Get it from the [KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
+
+Make sure to select the correct architecture for your edge node (e.g., `linux-amd64`, `linux-arm64`).
+
+#### Download the CRD YAMLs
+
+For v1.21, use the **v1beta1 CRDs** available under `build/crds`:
+
+- [devices_v1beta1_device.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/devices/devices_v1beta1_device.yaml)
+- [devices_v1beta1_devicemodel.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/devices/devices_v1beta1_devicemodel.yaml)
+- [cluster_objectsync_v1alpha1.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/reliablesyncs/cluster_objectsync_v1alpha1.yaml)
+- [objectsync_v1alpha1.yaml](https://github.com/kubeedge/kubeedge/blob/v1.21.0/build/crds/reliablesyncs/objectsync_v1alpha1.yaml)
+
+#### Place the files under `/etc/kubeedge`
+
+```bash
+tree -L 3 /etc/kubeedge
+
+.
+├── crds
+│   ├── devices
+│   │   ├── devices_v1beta1_device.yaml
+│   │   └── devices_v1beta1_devicemodel.yaml
+│   └── reliablesyncs
+│       ├── cluster_objectsync_v1alpha1.yaml
+│       └── objectsync_v1alpha1.yaml
+└── kubeedge-v1.21.0-linux-amd64.tar.gz
+````
+
+**Run keadm init with version flag**
+
+```bash
+keadm init --kubeedge-version v1.21.0
+```
+
+This ensures that `keadm` detects the local CRDs and release files, skipping the download process.
+
+---
+
+## Container keeps Pending or Terminating
+
+If your pods remain in a **Pending** or **Terminating** state, try the following troubleshooting steps:
+
+1.  **Check node health**
+    Run `kubectl get nodes` and ensure all nodes are in a `Ready` state.
+
+2.  **Describe the pod**
+    Run `kubectl describe pod <your-pod>` to get details about scheduling and other events.
+
+3.  **Inspect EdgeCore logs**
+
+      - **If using systemd**:
+        ```bash
+        journalctl --unit edgecore.service -f
+        ```
+      - **If started manually**:
+        Check the log file specified at startup or stdout.
+
+4.  **Verify architecture compatibility**
+    Ensure the container image architecture matches your edge node's architecture. For example, use `arm64v8/nginx` for a Raspberry Pi 4 (arm64) instead of the default `nginx` image.
+
+5.  **Check `podSandboxImage` in `edgecore.yaml`**
+    Confirm that `podSandboxImage` points to a valid and compatible image for your node's architecture.
+
+6.  **Manually run the container**
+    Attempt to run the container image manually on the edge node to isolate potential runtime issues:
+
     ```bash
-    $ tree -L 3
-    .
-    ├── crds
-    │   ├── devices
-    │   │   ├── devices_v1alpha2_devicemodel.yaml
-    │   │   └── devices_v1alpha2_device.yaml
-    │   └── reliablesyncs
-    │       ├── cluster_objectsync_v1alpha1.yaml
-    │       └── objectsync_v1alpha1.yaml
-    └── kubeedge-v1.12.1-linux-amd64.tar.gz
-
-    3 directories, 5 files
-
+    docker run <your-container-image>
     ```
 
-Then you can do setup without any network issue, `keadm` would detect them and not download again(make sure you specify `v1.12.1` with option `--kubeedge-version v1.12.1`).
+7.  **Check disk space**
+    Insufficient disk space can prevent new images from being pulled. Free up space if necessary.
 
-## Container keeps pending/ terminating
+---
 
-1. Check the output of `kubectl get nodes`, whether the node is running healthy. Note that nodes in unreachable, offline status cannot complete graceful/soft pod deletion until they come back to normal.
-2. Check the output of `kubectl describe pod <your-pod>`, whether the pod is scheduled successfully.
-3. Check the `edgecore` logs for any errors.
-4. Check the architecture of the node running `edgecore` and make sure that container image you are trying to run is of the same architecture.
-   For example, if you are running `edgecore` on Raspberry Pi 4, which is of `arm64v8` architecture, the nginx image to be executed would be `arm64v8/nginx` from the docker hub.
+## Viewing logs
 
-5. Also, check that the `podSandboxImage` is correctly set as defined in [Modification in edgecore.yaml](../setup/config#modification-in-edgecoreyaml).
+### CloudCore / EdgeCore logs
 
-6. If all of the above is correctly set, login manually to your edge node and run your docker image manually by
+  - **Using systemd**:
+    ```bash
+    journalctl --unit cloudcore.service -f
+    journalctl --unit edgecore.service -f
+    ```
+  - **Using nohup or manual execution:**
+    Logs are usually written to the file specified during startup, or to stdout if no file was given.
 
-    ```shell
-     docker run <your-container-image>
+### Pod logs
+
+To access pod logs, first **connect to the edge node**, then use one of the following methods:
+
+1.  **Check log files directly**:
+    The logs are located in the `/var/log/pods` directory.
+2.  **Use Docker to view container logs**:
+    ```bash
+    docker logs <container-id>
     ```
 
-7. If the docker container image is not pulled from the docker hub, please check that there is enough space on the edge node.
+Alternatively, you can enable the `kubectl logs` feature to access logs from the cloud side. See [Enable kubectl logs/exec to debug pods on the edge](https://kubeedge.io/docs/advanced/debug/).
 
-## Where do we find cloudcore/edgecore logs
+---
 
-This depends on the how cloudcore/ edgecore has been executed.
+## Important Considerations
 
-1. If `systemd` was used to start the cloudcore/ edgecore? then use `journalctl --unit <name of the service probably edgecore.service>` to view the logs.
-2. If `nohup` was used to start the cloudcore/ edgecore, either a path would have been added where the log is located, Otherwise, if the log file wasn't provided, the logs would be written to stdout.
+  - Device CRDs are **v1beta1** since v1.15. Older `v1alpha1` and `v1alpha2` CRDs are deprecated.
+  - Always replace version numbers (`v1.21.0` in this example) with the version you plan to install.
+  - Official release artifacts and checksums are on the [KubeEdge v1.21.0 release page](https://github.com/kubeedge/kubeedge/releases/tag/v1.21.0).
+  - CRDs are located in the [build/crds folder of the KubeEdge GitHub repository](https://github.com/kubeedge/kubeedge/tree/v1.21.0/build/crds).
 
-## Where do we find the pod logs
+<!-- end list -->
 
-Connect to the edge node and then either
-
-- use the log file located in `/var/log/pods` or
-- use commands like `docker logs <container id>`
-
-You can also enable `kubectl logs` feature refer to this [guide](../advanced/debug.md).
+```
+```
