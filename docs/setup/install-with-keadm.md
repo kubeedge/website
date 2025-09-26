@@ -3,19 +3,9 @@ title: Installing KubeEdge with Keadm
 sidebar_position: 3
 ---
 
-<<<<<<< HEAD
-Keadm is used to install the cloud and edge components of KubeEdge.  
-It does **not** handle Kubernetes installation or its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).
-Check [Kubernetes compatibility](https://github.com/kubeedge/kubeedge?tab=readme-ov-file#kubernetes-compatibility) to confirm supported versions.
-=======
-<<<<<<< Updated upstream
-Keadm is used to install the cloud and edge components of KubeEdge. It does not handle the installation of Kubernetes and its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).
-=======
 Keadm is used to install the cloud and edge components of KubeEdge.  
 It does **not** handle Kubernetes installation or its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).  
 Check [Kubernetes compatibility](https://github.com/kubeedge/kubeedge?tab=readme-ov-file#kubernetes-compatibility) to confirm supported versions.
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 
 ---
 
@@ -31,23 +21,11 @@ There are three ways to download the `keadm` binary:
 
 ### 1. Download from GitHub release
 
-<<<<<<< HEAD
-```bash
-wget [https://github.com/kubeedge/kubeedge/releases/download/v1.21.0/keadm-v1.21.0-linux-amd64.tar.gz](https://github.com/kubeedge/kubeedge/releases/download/v1.21.0/keadm-v1.21.0-linux-amd64.tar.gz)
-tar -zxvf keadm-v1.21.0-linux-amd64.tar.gz
-cp keadm-v1.21.0-linux-amd64/keadm /usr/local/bin/keadm
-````
-=======
-<<<<<<< Updated upstream
-2. Download from the official KubeEdge release image on Docker Hub.
-=======
 ```bash
 wget https://github.com/kubeedge/kubeedge/releases/download/v1.21.0/keadm-v1.21.0-linux-amd64.tar.gz
 tar -zxvf keadm-v1.21.0-linux-amd64.tar.gz
 cp keadm-v1.21.0-linux-amd64/keadm /usr/local/bin/keadm
 ```
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 
 ### 2\. Download from Docker Hub
 
@@ -64,27 +42,9 @@ Refer to [build from source instructions](https://kubeedge.io/docs/developer/bui
 
 ## Setup Cloud Side (KubeEdge Master Node)
 
-<<<<<<< HEAD
-  - Ports **10000** and **10002** must be open.
-  - Ensure edge nodes can reach the cloud node.
-  - Use `--advertise-address` to specify a public IP (added to CloudCore certificate SANs).
-=======
-<<<<<<< Updated upstream
-By default, ports `10000` and `10002` on your CloudCore needs to be accessible for your edge nodes.
-
-**IMPORTANT NOTES:**  
-
-1. At least one of `kubeconfig` or `master` must be configured correctly to verify the version and other information of the Kubernetes cluster.
-
-2. Ensure the edge node can connect to the cloud node using the local IP of cloud node, or specify the public IP of the cloud node with the `--advertise-address` flag.
-
-3. `--advertise-address` is the address exposed by the cloud side (it will be added to the SANs of the CloudCore certificate). The default value is the local IP.
-=======
 - Ports **10000** and **10002** must be open.
 - Ensure edge nodes can reach the cloud node.
 - Use `--advertise-address` to specify a public IP (added to CloudCore certificate SANs).
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 
 ### keadm init
 
@@ -170,15 +130,7 @@ Refer to [Deploy demo on edge nodes](https://kubeedge.io/docs/setup/install-with
 
 This is required before deploying metrics-server.
 
-<<<<<<< HEAD
-Refer to [Enable Kubectl logs/exec documentation](https://www.google.com/search?q=../advanced/debug.md).
-=======
-<<<<<<< Updated upstream
-## Deploy demo on edge nodes
-=======
 Refer to [Enable Kubectl logs/exec documentation](../advanced/debug.md).
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 
 ---
 
@@ -188,23 +140,11 @@ Reuses cloudstream and edgestream modules. Metrics-server \<0.4.x requires manua
 
 ### Steps:
 
-<<<<<<< HEAD
-```bash
-git clone [https://github.com/kubernetes-sigs/metrics-server.git](https://github.com/kubernetes-sigs/metrics-server.git)
-cd metrics-server
-make container
-```
-=======
-<<<<<<< Updated upstream
-    Git clone latest metrics server repository:
-=======
 ```bash
 git clone https://github.com/kubernetes-sigs/metrics-server.git
 cd metrics-server
 make container
 ```
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 
 ### Tag the image:
 
@@ -270,23 +210,9 @@ spec:
 
 ### Notes:
 
-<<<<<<< HEAD
-  - Use `hostNetwork` mode.
-  - Use the image you built (`imagePullPolicy: Never`).
-  - Enable `--kubelet-use-node-status-port` in `args`.
-=======
-<<<<<<< Updated upstream
-    **Note:** those iptables below must be applied on the machine (to be exactly network namespace, so metrics-server needs to run in hostnetwork mode also) metric-server runs on.
-    ```
-    iptables -t nat -A OUTPUT -p tcp --dport 10350 -j DNAT --to $CLOUDCOREIPS:10003
-    ```
-    (To direct the request for metric-data from edgecore:10250 through tunnel between CloudCore and EdgeCore, the iptables is vitally important.)
-=======
 - Use `hostNetwork` mode.
 - Use the image you built (`imagePullPolicy: Never`).
 - Enable `--kubelet-use-node-status-port` in `args`.
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 
 ---
 
@@ -302,12 +228,6 @@ keadm deprecated reset
 
 ### Node
 
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-`keadm reset` or `keadm deprecated reset` will stop `edgecore` and it doesn't uninstall/remove any of the pre-requisites.
-=======
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
 ```bash
 keadm reset
 # or
@@ -315,10 +235,3 @@ keadm deprecated reset
 ```
 
 Stops cloudcore/edgecore, deletes KubeEdge resources, but does not remove prerequisites.
-
-<<<<<<< HEAD
-```
-```
-=======
->>>>>>> Stashed changes
->>>>>>> 8eef044 (Resolve merge conflict: finalize install-with-keadm.md for KubeEdge v1.21)
