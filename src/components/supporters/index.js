@@ -213,6 +213,12 @@ const supportList = [
     name: "LookCan Ai",
     img_src: "img/supporters/lookcan-logo.svg", 
     external_link: "https://www.lookcan.ai/",
+  },
+
+  {
+    name: "SYSU",
+    img_src: "img/supporters/sysu.svg", 
+    external_link: "https://www.sysu.edu.cn/",
   }
 ];
 
