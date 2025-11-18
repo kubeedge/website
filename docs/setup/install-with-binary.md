@@ -31,7 +31,7 @@ There're two ways to download `cloudcore` binary.
 
 - Download from github release.
 
-    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package according to your platform.
+    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package with correct release binary version (e.g v1.12.0) according to your platform.
     
     ```shell
     wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
@@ -69,7 +69,7 @@ There're three ways to download a `edgecore` binary.
 
 - Download from github release.
   
-  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package according to your platform.
+  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package correct release binary version (e.g v1.12.0) according to your platform.
   ```shell
   wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
   tar -zxvf kubeedge-v1.12.0-linux-amd64.tar.gz
@@ -90,13 +90,13 @@ docker run --rm kubeedge/installation-package:v1.12.0 cat /usr/local/bin/edgecor
 - generate config file
 
 ```shell
-edgecore --defaultconfig > edgecore.yaml
+edgecore --defaultconfig > /etc/kubeedge/config/edgecore.yaml
 ```
 
 - get token value at cloud side:
 
 ```shell
-kubectl get secret -nkubeedge tokensecret -o=jsonpath='{.data.tokendata}' | base64 -d
+kubectl get secret -n kubeedge tokensecret -o=jsonpath='{.data.tokendata}' | base64 -d
 ```
 
 - update token value in edgecore config file:
@@ -109,7 +109,7 @@ The `token` is what above step get.
 
 please refer to [configuration for edge](./config#configuration-edge-side-kubeedge-worker-node) for details.
 
-### Run
+### Run 
 
 If you want to run cloudcore and edgecore at the same host, run following command first:
 
@@ -120,13 +120,37 @@ export CHECK_EDGECORE_ENVIRONMENT="false"
 Start edgecore:
 
 ```shell
-edgecore --config edgecore.yaml
+edgecore --config /etc/kubeedge/config/edgecore.yaml
 ```
 
 If running with sudo and need user env vars, use -E:
 
 ```shell
-sudo -E edgecore --config edgecore.yaml
+sudo -E edgecore --config /etc/kubeedge/config/edgecore.yaml
+```
+
+If you want to integration edgecore binary with systemd, you need:
+
+```shell
+cat > /etc/systemd/system/edgecore.service << "EOF"
+[Unit]
+Description=edgecore.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/edgecore
+Restart=always
+RestartSec=10
+Environment=DEPLOY_MQTT_CONTAINER=false
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable edgecore
+systemctl start edgecore
 ```
 
 Run `edgecore -h` to get help info and add options if needed.
