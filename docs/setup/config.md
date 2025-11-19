@@ -180,9 +180,9 @@ Verify the configurations before running `edgecore`
     getconf LONG_BIT
   ```
 
-    + `kubeedge/pause-arm:3.x` for arm arch
-    + `kubeedge/pause-arm64:3.x` for arm64 arch
-    + `kubeedge/pause:3.x` for x86 arch
+    + `kubeedge/pause-arm:3.1` for arm arch
+    + `kubeedge/pause-arm64:3.1` for arm64 arch
+    + `kubeedge/pause:3.1` for x86 arch
 
 2. Before KubeEdge v1.3: check whether the cert files for `modules.edgehub.tlsCaFile` and `modules.edgehub.tlsCertFile` and `modules.edgehub.tlsPrivateKeyFile` exists. If those files not exist, you need to copy them from cloud side.
 

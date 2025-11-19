@@ -31,7 +31,7 @@ There're two ways to download `cloudcore` binary.
 
 - Download from github release.
 
-    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package with correct release binary version (e.g v1.12.0) according to your platform.
+    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package with the correct release binary version (e.g v1.12.0) according to your platform.
     
     ```shell
     wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
@@ -69,7 +69,7 @@ There're three ways to download a `edgecore` binary.
 
 - Download from github release.
   
-  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package correct release binary version (e.g v1.12.0) according to your platform.
+  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package with the correct release binary version (e.g v1.12.0) according to your platform.
   ```shell
   wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
   tar -zxvf kubeedge-v1.12.0-linux-amd64.tar.gz
@@ -109,7 +109,7 @@ The `token` is what above step get.
 
 please refer to [configuration for edge](./config#configuration-edge-side-kubeedge-worker-node) for details.
 
-### Run 
+### Run
 
 If you want to run cloudcore and edgecore at the same host, run following command first:
 
@@ -129,24 +129,14 @@ If running with sudo and need user env vars, use -E:
 sudo -E edgecore --config /etc/kubeedge/config/edgecore.yaml
 ```
 
-If you want to integration edgecore binary with systemd, you need:
+If you want to integrate edgecore binary with systemd, you need:
 
 ```shell
-cat > /etc/systemd/system/edgecore.service << "EOF"
-[Unit]
-Description=edgecore.service
 
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/edgecore
-Restart=always
-RestartSec=10
-Environment=DEPLOY_MQTT_CONTAINER=false
-KillMode=process
-
-[Install]
-WantedBy=multi-user.target
-EOF
+wget -O edgecore.service \
+  https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/tools/edgecore.service
+  
+cp edgecore.service /etc/systemd/system/edgecore.service
 
 systemctl daemon-reload
 systemctl enable edgecore
