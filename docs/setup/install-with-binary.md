@@ -31,12 +31,12 @@ There're two ways to download `cloudcore` binary.
 
 - Download from github release.
 
-    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package with the correct release binary version (e.g v1.12.0) according to your platform.
+    Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right package with the correct release binary version (e.g v1.21.0) according to your platform.
     
     ```shell
-    wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
-    tar -zxvf kubeedge-v1.12.0-linux-amd64.tar.gz
-    cp kubeedge-v1.12.0-linux-amd64/cloud/cloudcore/cloudcore /usr/local/bin/cloudcore
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.21.0/kubeedge-v1.21.0-linux-amd64.tar.gz
+    tar -zxvf kubeedge-v1.21.0-linux-amd64.tar.gz
+    cp kubeedge-v1.21.0-linux-amd64/cloud/cloudcore/cloudcore /usr/local/bin/cloudcore
     ```
 
 - Build from source
@@ -69,16 +69,16 @@ There're three ways to download a `edgecore` binary.
 
 - Download from github release.
   
-  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package with the correct release binary version (e.g v1.12.0) according to your platform.
+  Now KubeEdge github officially holds three arch releases: amd64, arm, arm64. Please download the right arch package with the correct release binary version (e.g v1.21.0) according to your platform.
   ```shell
-  wget https://github.com/kubeedge/kubeedge/releases/download/v1.12.0/kubeedge-v1.12.0-linux-amd64.tar.gz
-  tar -zxvf kubeedge-v1.12.0-linux-amd64.tar.gz
-  cp kubeedge-v1.12.0-linux-amd64/edge/edgecore /usr/local/bin/edgecore
+  wget https://github.com/kubeedge/kubeedge/releases/download/v1.21.0/kubeedge-v1.21.0-linux-amd64.tar.gz
+  tar -zxvf kubeedge-v1.21.0-linux-amd64.tar.gz
+  cp kubeedge-v1.21.0-linux-amd64/edge/edgecore /usr/local/bin/edgecore
   ```
 
 - Download from dockerhub KubeEdge official release image.
 ```shell
-docker run --rm kubeedge/installation-package:v1.12.0 cat /usr/local/bin/edgecore > /usr/local/bin/edgecore && chmod +x /usr/local/bin/edgecore
+docker run --rm kubeedge/installation-package:v1.21.0 cat /usr/local/bin/edgecore > /usr/local/bin/edgecore && chmod +x /usr/local/bin/edgecore
 ```
 
 - Build from source
@@ -135,7 +135,7 @@ If you want to integrate edgecore binary with systemd, you need:
 
 wget -O edgecore.service \
   https://raw.githubusercontent.com/kubeedge/kubeedge/master/build/tools/edgecore.service
-  
+
 cp edgecore.service /etc/systemd/system/edgecore.service
 
 systemctl daemon-reload
@@ -171,7 +171,7 @@ After you start both `cloudcore` and `edgecore` successfully, you can run `kubec
 ```shell
 # kubectl get node
 NAME                 STATUS   ROLES                  AGE     VERSION
-ecs-8f95             Ready    agent,edge             5m45s   v1.22.6-kubeedge-v1.12.0
+ecs-8f95             Ready    agent,edge             5m45s   v1.22.6-kubeedge-v1.21.0
 kind-control-plane   Ready    control-plane,master   13m     v1.23.4
 ```
 Now we can deploy a Pod to edge node, just run the following command:
