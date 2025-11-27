@@ -59,6 +59,7 @@ See more details at [Design  Proposal for Resource Upgrade Control at Edge](http
 Before using annotations `edge.kubeedge.io/hold-upgrade: "true"`, ensure you have:
 
 - KubeEdge `v1.22.0` or later installed
+- MetaServer component running on edge nodes (required for unhold operations)
 - `kubectl` configured to access your Kubernetes cluster
 - (recommended) `keadm` CLI tool available on edge nodes
 - Edge nodes running and connected to the cloud
