@@ -134,6 +134,35 @@ Running the postStartCommand from devcontainer.json...
 kubeedge@be52334d349c:/tmp/doc_repository$
 ```
 
+## Spell Check
+
+We use [codespell](https://github.com/codespell-project/codespell) to check for common spelling mistakes in the documentation.
+
+**Note:** Spell checking is automatically enforced in the [GitHub workflow](./.github/workflows/codespell.yml). All pull requests will be checked for spelling errors, and the CI will fail if any issues are found. You can run the spell check locally before submitting your PR to catch issues early.
+
+First, create a Python virtual environment and install codespell:
+
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip install codespell
+```
+
+### Run spell check
+
+```shell
+codespell --config codespell.cfg
+```
+
+This will check specified files according to the configuration in [codespell.cfg](./codespell.cfg) and report any spelling errors found.
+
+- [codespell_dictionary](./codespell_dictionary.txt) is a custom dictionary file containing project-specific terms and words that should be recognized as correctly spelled.
+- [codespell_whitelist](./codespell_whitelist.txt) is a whitelist file containing words that should be ignored by the spell checker, typically containing technical terms, acronyms, or intentional spellings.
+
+### Usage
+
+The tools are configured to work together as part of the development workflow to ensure code quality and consistency across the project.
+
 ## Versioning
 
 For each stable release, we should create a new branch for the relevant documentation. For

@@ -68,7 +68,7 @@ const reasons = [
     ),
   },
   {
-    title: <Translate>Heterogenous</Translate>,
+    title: <Translate>Heterogeneous</Translate>,
     content: <Translate>Native support of x86, ARMv7, ARMv8</Translate>,
   },
 ];
