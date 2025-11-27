@@ -219,7 +219,7 @@ Verify the configurations before running `edgecore`
 7. Configure the token.
 
     ```shell
-    kubectl get secret tokensecret -n kubeedge -oyaml
+    kubectl get secret tokensecret -n kubeedge -o yaml
     ```
 
     Then you get it like this:
