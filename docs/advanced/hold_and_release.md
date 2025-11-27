@@ -24,7 +24,7 @@ This feature enables you to:
 
 4. **Release**: When an unhold command is issued (via `keadm ctl` or API), the cached Pod upgrade is released to the container runtime, and the Pod starts normally.
 
-See more details at [Dersign Proposal for Resource Upgrade Control at Edge](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-node/edge-resource-upgrade-control.md).
+See more details at [Design  Proposal for Resource Upgrade Control at Edge](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-node/edge-resource-upgrade-control.md).
 
 ## Use cases
 
@@ -154,7 +154,7 @@ Be advised that the following commands need to be issued on the edge node system
 
 #### `keadm ctl unhold-upgrade` (recommended)
 
-This unholds the all upgrades in the speccified node.
+This unholds all the upgrades in the specified node.
 
 ```bash
 keadm ctl unhold-upgrade node edge-node
@@ -162,7 +162,7 @@ keadm ctl unhold-upgrade node edge-node
 
 #### `curl` command
 
-If you want to unhold the upgrade on specific pod:
+If you want to unhold the upgrade on a specific pod:
 
 ```bash
 curl -X POST \
@@ -173,7 +173,7 @@ curl -X POST \
   https://127.0.0.1:10550/api/v1/pods/unhold-upgrade
 ```
 
-Or if you want to unhold the all upgrades in the node:
+Or if you want to unhold all the upgrades in the node:
 
 ```bash
 curl -X POST \
