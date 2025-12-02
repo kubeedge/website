@@ -8,6 +8,8 @@ sidebar_position: 4
 In edge computing scenarios such as drones, robotics, and autonomous vehicles, uncontrolled resource upgrades can cause serious safety and operational issues.
 The `hold-and-release` mechanism allows edge administrators to control when upgrades to edge resources occur, ensuring that resources cannot be upgraded without explicit confirmation from the edge.
 
+![Resource Upgrade Control at Edge](/img/edged/resource_upgrade_control_at_edge.gif)
+
 This feature enables you to:
 
 - Hold resource upgrades at the edge using annotations `edge.kubeedge.io/hold-upgrade: "true"`
