@@ -1,0 +1,126 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2025-11-11
+draft: false
+lastmod: 2025-11-11
+summary: KubeEdge v1.22.0 版本发布！
+tags:
+- KubeEdge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.22
+- v1.22
+title: KubeEdge v1.22.0 版本发布！
+---
+
+北京时间2025年11月4日，KubeEdge 发布1.22.0版本。新版本对 Beehive 框架以及 Device Model做了优化升级，同时对边缘资源管理能力做了提升。
+
+## KubeEdge v1.22 新增特性：
+
+- [新增 hold/release 机制控制边缘资源更新](#新增-holdrelease-机制控制边缘资源更新)
+- [Beehive 框架升级，支持配置子模块重启策略](#beehive框架升级支持配置子模块重启策略)
+- [基于物模型与产品概念的设备模型能力升级](#基于物模型与产品概念的设备模型能力升级)
+- [边缘轻量化Kubelet新增 Pod Resources Server 和 CSI Plugin 特性开关](#边缘轻量化kubelet新增-pod-resources-server-和-csi-plugin-特性开关)
+- [C语言版本Mapper-Framework 支持](#c语言版本mapper-framework支持)
+- [升级K8s依赖到1.31](#升级k8s依赖到131)
+
+## 新特性概览
+
+### 新增 hold/release 机制控制边缘资源更新
+
+在自动驾驶、无人机和机器人等应用场景中，我们希望在边缘能够控制对边缘资源的更新，以确保在未得到边缘设备管理员的许可下，这些资源无法被更新。在1.22.0版本中，我们引入了 `hold/release` 机制来管理边缘资源的更新。
+
+在云端，用户可以通过对 `Deployment`、`StatefulSet` 和 `DaemonSet` 等资源添加 `edge.kubeedge.io/hold-upgrade: "true"` 的 annotation，表示对应的 Pod 在边缘更新需要被hold。
+
+在边缘，被标记了 `edge.kubeedge.io/hold-upgrade: "true"` 的Pod会被暂缓被处理。边缘管理员可以通过执行以下命令来释放对该Pod的锁，完成资源更新。
+
+```
+keadm ctl unhold-upgrade pod <pod-name>
+```
+
+也可以执行以下命令解锁边缘节点上所有被hold的边缘资源。
+
+```
+keadm ctl unhold-upgrade node
+```
+
+:::note
+
+使用 keadm ctl 命令需要启动 DynamicController 和 MetaServer 开关。
+
+:::
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/6348
+https://github.com/kubeedge/kubeedge/pull/6418
+
+### Beehive框架升级，支持配置子模块重启策略
+
+在1.17版本中，我们实现了 EdgeCore 模块的自重启，可以通过全局配置来设置边缘模块的重启。在1.22版本中，我们对 Beehive 框架进行了升级优化，支持边缘子模块级别的重启策略配置。同时我们统一了 Beehive 各子模块启动的错误处理方式，对子模块能力标准化。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/6444
+https://github.com/kubeedge/kubeedge/pull/6445
+
+### 基于物模型与产品概念的设备模型能力升级
+
+目前的 Device Model 基于物模型概念设计，而在传统IoT中，设备通常采用物模型、产品和设备实例三层结构进行设计，可能导致用户在实际使用中产生困惑。
+
+在 1.22.0 版本中，我们结合物模型与实际产品的概念，对设备模型的设计进行了升级。从现有的设备实例中提取了`protocolConfigData`, `visitors` 字段到设备模型中，设备实例可以共享这些模型配置。同时，为了降低模型分离的成本，设备实例可以重写覆盖以上配置。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/6457
+https://github.com/kubeedge/kubeedge/pull/6458
+
+### 边缘轻量化Kubelet新增 Pod Resources Server 和 CSI Plugin 特性开关
+
+在之前的版本中，我们在 EdgeCore 集成的轻量化 Kubelet 中移除了`Pod Resources Server`能力，但在一些使用场景中，用户希望恢复该能力以实现对Pod的监控等。同时，由于 Kubelet 默认启动`CSI Plugin`，离线环境下启动 EdgeCore 会由于 CSINode 创建失败而导致失败。
+
+在 1.22.0 版本中，我们在轻量化 Kubelet 中新增了 Pod Resources Server 和 CSI Plugin 特性开关，如果您需要启用 Pod Resources Server 或关闭 CSI Plugin，您可以在 EdgeCore 配置中添加如下特性开关：
+
+```
+apiVersion: edgecore.config.kubeedge.io/v1alpha2
+kind: EdgeCore
+modules:
+     edged:
+         tailoredKubeletConfig:
+            featureGates:
+               KubeletPodResources: true
+               DisableCSIVolumePlugin: true
+...
+```
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubernetes/pull/12
+https://github.com/kubeedge/kubernetes/pull/13
+https://github.com/kubeedge/kubeedge/pull/6452
+
+### C语言版本Mapper-Framework支持
+
+在1.20.0版本中，我们在原有的go语言版本Mapper工程基础上，新增了Java版本的Mapper-Framework。由于边缘IoT设备通信协议的多样性，很多边缘设备驱动协议都是基于C语言实现的，因此在新版本中，KubeEdge提供了C语言版本的Mapper-Framework，用户可以访问KubeEdge主仓库的`feature-multilingual-mapper-c`分支，利用Mapper-Framework生成C语言版本的自定义Mapper工程。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/6405
+https://github.com/kubeedge/kubeedge/pull/6455
+
+### 升级K8s依赖到1.31
+
+新版本将依赖的Kubernetes版本升级到v1.31.12，您可以在云和边缘使用新版本的特性。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/6443
