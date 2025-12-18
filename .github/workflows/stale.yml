@@ -26,14 +26,18 @@ jobs:
           stale-pr-label: 'lifecycle/stale'
           exempt-issue-labels: 'lifecycle/frozen,help-wanted,good-first-issue'
           exempt-pr-labels: 'lifecycle/frozen,help-wanted,good-first-issue'
+
+          # Exemptions
           exempt-all-issue-assignees: true
           exempt-all-pr-assignees: true
+          exempt-all-issue-milestones: true
+          exempt-all-pr-milestones: true
           
           # Issue messages
           stale-issue-message: |
             Hello 👋 Looks like there was no activity on this issue for last 90 days.
             
-            **Do you mind updating us on the status?** Is this still reproducible or needed? If yes, just comment on this PR or push a commit. Thanks! 🤗
+            **Do you mind updating us on the status?** Is this still reproducible or needed? If yes, just comment on this issue or push a commit. Thanks! 🤗
             
             If there will be no activity for 60 days, this issue will be closed (we can always reopen an issue if we need!).
           
@@ -46,13 +50,14 @@ jobs:
             
             **Do you mind updating us on the status?** Is there anything we can help with? If you plan to still work on it, just comment on this PR or push a commit. Thanks! 🤗
             
-            If there will be no activity for 60 days, this issue will be closed (we can always reopen a PR if you get back to this!).
+            If there will be no activity for 60 days, this PR will be closed (we can always reopen a PR if you get back to this!).
           
           close-pr-message: |
             Closing for now as there was no activity for last 60 days after marked as stale, let us know if you need this to be reopened! 🤗
           
-          # Operations limit
+          # Operations and behavior
           operations-per-run: 100
-          
-          # Remove stale label when updated
+          ascending: true
           remove-stale-when-updated: true
+          remove-issue-stale-when-updated: true
+          remove-pr-stale-when-updated: true
