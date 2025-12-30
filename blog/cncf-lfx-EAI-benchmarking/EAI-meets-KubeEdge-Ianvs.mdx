@@ -14,7 +14,7 @@ This blog introduces how to enable comprehensive embodied intelligence benchmark
 
 ## Why Embodied Intelligence Benchmarking for Industrial Manufacturing?
 
-The manufacturing industry is experiencing a profound transformation driven by intelligent robotics, adaptive production lines, and precision assembly systems. Modern industrial environments demand more than basic task execution—they require multimodal perception, force-controlled manipulation, and real-time quality verification integrated into cohesive workflows.
+The manufacturing industry is experiencing a profound transformation driven by intelligent robotics, adaptive production lines, and precision assembly systems. Modern industrial environments demand more than basic task execution,they require multimodal perception, force-controlled manipulation, and real-time quality verification integrated into cohesive workflows.
 
 ### A First-of-Its-Kind Benchmark Addressing Critical Gaps
 
@@ -23,21 +23,21 @@ Despite growing interest in Embodied Intelligence for manufacturing, the researc
 #### Current Limitations in the Field:
 
 - **Isolated Task Focus**: Popular benchmarks like YCB and OCRTOC evaluate individual capabilities (grasping, object detection) but don't assess how these integrate in multi-stage industrial workflows
-- **Missing Deformable Component Coverage**: While NIST has developed benchmarks for rigid components and simple deformable objects (cables, belts), existing datasets don't support multiple representations of deformable objects with different self-occlusions typical in manufacturing [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/)
+- **Missing Deformable Component Coverage**: While NIST has developed benchmarks for rigid components and simple deformable objects (cables, belts), existing datasets don't support multiple representations of deformable objects with different self-occlusions typical in manufacturing [PubMed Central](https://www.ncbi.nlm.nih.gov)
 - **No Electronic Assembly Benchmarks**: Despite datasets for PCB defect detection (BoardVision, FICS-PCB) and component recognition (ElectroCom61), none evaluate robotic assembly of electronic components, particularly those requiring precision force control
 - **Academic-Industry Gap**: A large gap exists between embodied AI in academic research and what manufacturers can feasibly implement [National Institute of Standards and Technology](https://www.nist.gov/), with limited benchmarks that mirror real production challenges
 
 #### What Makes This Project Unique:
 
-This work represents the **first comprehensive benchmark** for robotic assembly of deformable electronic components—a scenario ubiquitous in modern electronics manufacturing yet completely absent from existing research infrastructure. Our contributions are unprecedented in scope:
+This work represents the **first comprehensive benchmark** for robotic assembly of deformable electronic components,a scenario ubiquitous in modern electronics manufacturing yet completely absent from existing research infrastructure. Our contributions are unprecedented in scope:
 
 1. **First Multimodal Industrial Assembly Dataset**: To our knowledge, no publicly available dataset combines RGB-D vision, force/torque sensor data, and robot trajectories for electronic component assembly.
 
-2. **First Deformable Electronics Benchmark**: Existing deformable object benchmarks focus on textiles (GarmentLab), food items, or abstract shapes. This is the first benchmark specifically designed for deformable electronic components like flexible circuits and memory modules—components that require both precision alignment and compliance control.
+2. **First Deformable Electronics Benchmark**: Existing deformable object benchmarks focus on textiles (GarmentLab), food items, or abstract shapes. This is the first benchmark specifically designed for deformable electronic components like flexible circuits and memory modules,components that require both precision alignment and compliance control.
 
 3. **First End-to-End Assembly Workflow Evaluation**: Unlike fragmented benchmarks that test perception OR manipulation OR verification separately, we evaluate complete assembly pipelines. This mirrors how industrial systems actually operate, where failure in any stage cascades to overall task failure.
 
-4. **Practical Manufacturing Relevance**: Our five assembly scenarios (RAM modules, cooling mounts, CPU sockets, flexible circuits, security chips) represent actual production challenges in electronics manufacturing—an industry segment worth over $2 trillion globally that currently relies heavily on manual assembly due to lack of validated automation solutions.
+4. **Practical Manufacturing Relevance**: Our five assembly scenarios (RAM modules, cooling mounts, CPU sockets, flexible circuits, security chips) represent actual production challenges in electronics manufacturing,an industry segment worth over $2 trillion globally that currently relies heavily on manual assembly due to lack of validated automation solutions.
 
 ### Addressing Real Industrial Needs
 
@@ -50,11 +50,11 @@ The electronics manufacturing sector faces mounting pressure to automate assembl
 Manufacturers need streamlined ways of assessing the productive impact of AI systems through AI-specific productivity metrics and test methods [National Institute of Standards and Technology](https://www.nist.gov/). This benchmark directly addresses that need by providing:
 
 - **Realistic Industrial Scenarios**: Deformable component assembly representing real manufacturing challenges
-- **Comprehensive Multimodal Dataset**: RGB-D images, force/torque sensor data, and robot trajectories—the complete sensor suite used in production environments
+- **Comprehensive Multimodal Dataset**: RGB-D images, force/torque sensor data, and robot trajectories,the complete sensor suite used in production environments
 - **End-to-End Evaluation**: Metrics that assess entire workflows, not just individual subtasks, revealing integration challenges invisible to component-level testing
 - **Reproducible Infrastructure**: Standardized test environments and baseline algorithms that enable fair comparison across different robotic systems
 
-By combining distributed AI benchmarking framework KubeEdge-Ianvs with this domain-specific industrial dataset, we enable objective comparison of robotic systems on tasks that mirror real-world manufacturing complexity—bridging the gap between academic research and industrial deployment while accelerating the development of reliable autonomous assembly systems.
+By combining distributed AI benchmarking framework KubeEdge-Ianvs with this domain-specific industrial dataset, we enable objective comparison of robotic systems on tasks that mirror real-world manufacturing complexity,bridging the gap between academic research and industrial deployment while accelerating the development of reliable autonomous assembly systems.
 
 ---
 
