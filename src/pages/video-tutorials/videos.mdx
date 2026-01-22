@@ -1,0 +1,43 @@
+---
+title: KubeEdge VideoCard
+hide_table_of_contents: true
+---
+
+import VideoCard from '@site/src/components/VideoCard';
+
+<div
+  style={{
+    fontSize: '18px',
+    lineHeight: '1.8',
+    color: '#333',
+    background: '#f9f9f9',
+    padding: '20px 24px',
+    borderRadius: '12px',
+    marginBottom: '24px',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+  }}
+>
+  <strong>Learn KubeEdge</strong> with a curated collection of high-quality community videos.
+  These tutorials take you step-by-step from the basics to production-ready deployment.
+  Topics include architecture, component design, installation, configuration, and real-world edge scenarios.
+</div>
+
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '20px',
+    justifyContent: 'center',
+  }}
+>
+  <VideoCard
+    title="KubeEdge云原生边缘计算公开课01-云原生边缘计算技术导学-Keith Chan & Kevin Wang"
+    link="https://www.bilibili.com/video/BV1xG411w7oh/?share_source=copy_web&vd_source=cc4cec7dba2b59571ae29db2cc502f63"
+    image="/img/videoicon/video1.jpg"
+  />
+  <VideoCard
+    title="KubeEdge云原生边缘计算公开课05-如何安装部署一套KubeEdge"
+    link="https://www.bilibili.com/video/BV1z84y1r79h/?share_source=copy_web&vd_source=cc4cec7dba2b59571ae29db2cc502f63"
+    image="/img/videoicon/video2.jpg"
+  />
+</div>

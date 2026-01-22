@@ -1,0 +1,34 @@
+import HardwareCard from '@site/src/components/HardwareCard';
+
+<div style={{fontSize:'18px', display:'block', marginBottom:'10px'}}>
+  Below are recommended edge hardware devices that work well with KubeEdge. Each card includes basic specifications and vendor link.
+</div>
+
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '20px',
+    justifyContent: 'center',
+  }}
+>
+  <HardwareCard
+    name="Intel NUC 11"
+    description="Compact x86 edge device with multiple USB and HDMI ports. Supports container runtimes like Docker or containerd."
+    image="https://intelcorp.scene7.com/is/image/intelcorp/e830-product-images-e830-1280x720:1920-1080?wid=576&hei=324&fmt=webp-alpha"
+    link="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html"
+  />
+  <HardwareCard
+    name="Raspberry Pi 4"
+    description="Affordable ARM-based device suitable for light edge workloads. Works well with KubeEdge on ARM64."
+    image="https://assets.raspberrypi.com/static/raspberry-pi-4-labelled@2x-1c8c2d74ade597b9c9c7e9e2fff16dd4.png"
+    link="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"
+  />
+  <HardwareCard
+  name="NVIDIA Jetson Nano"
+  image="https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/embedded/images/jetsonNano/nvidia-jetson-nano-module-standing-2c50-d.jpg"
+  description="A small, powerful computer for edge AI tasks and robotics applications."
+  link="https://developer.nvidia.com/embedded/jetson-nano"
+/>
+
+</div>

@@ -3,11 +3,37 @@ title: KubeEdge Partners
 hide_table_of_contents: true
 ---
 
+import PartnerCard from '@site/src/components/PartnerCard';
+
 <span style={{fontSize:'18px', display:'block', marginBottom:'10px'}}>KubeEdge works with partners to create a strong, vibrant cloud native edge computing ecosystem. Here we have a list of <span style={{fontWeight:'bold'}}>KubeEdge Distributions, Hosted Platforms and Installers</span> with deep experience helping enterprises successfully adopt KubeEdge.</span>
 
-
-| Organization/Company |          Product          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Website                                                                   |
-| :------------------: | :-----------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-|       DaoCloud       |  DaoCloud Enterprise 5.0  | DaoCloud Enterprise 5.0 (DCE 5.0) is an advanced and highly scalable cloud native operating system designed to provide a consistent and dependable experience across diverse infrastructures and environments. With its support for heterogeneous clouds, edge clouds, and multicloud management, DCE 5.0 offers unparalleled flexibility.                                                                                                                                                                                                                       | [Dao Cloud](https://www.daocloud.io/products/standard-edition/index.html) |
-|     Huawei Cloud     |            IEF            | Edge computing platform built upon KubeEdge, provides extremely lightweight, edge intelligent, and powerful in terms of computing capabilities.                                                                                                                                                                                                                                                                                                                                                                                                                  | [Huawei_Cloud](https://www.huaweicloud.com/product/ief.html)              |
-|      KubeSphere      | KubeSphere Enterprise 4.0 | Based on the open and extensible architecture of KubeSphere LuBan, KubeSphere Enterprise 4.0 can easily achieve upstream and downstream linkage of applications, integrate various high-quality extensions from KubeSphere Marketplace anytime, and provide seamless business capabilities and highly consistent product experience. Edge computing extension based on KubeEdge provide easier-to-use and broader coverage of edge computing capabilities, solving operational issues such as node status management and relationship tree management for users. | [Kubesphere ](https://kubesphere.co/kse/)                                 |
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '20px',
+    justifyContent: 'center',
+  }}
+>
+  <PartnerCard
+    name="DaoCloud"
+    logo="https://file.qingflow.com/uploads/file/79a287b2-1589-4125-b660-40d5dc433eae.png"
+    product="DaoCloud Enterprise 5.0"
+    description="DaoCloud Enterprise 5.0 (DCE 5.0) is an advanced and highly scalable cloud native operating system designed to provide a consistent and dependable experience across diverse infrastructures and environments. With its support for heterogeneous clouds, edge clouds, and multicloud management, DCE 5.0 offers unparalleled flexibility."
+    link="https://www.daocloud.io/products/standard-edition/index.html"
+  />
+  <PartnerCard
+    name="Huawei Cloud"
+    logo="https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/wangxue/header/logo.svg"
+    product="IEF"
+    description="Edge computing platform built upon KubeEdge, provides extremely lightweight, edge intelligent, and powerful in terms of computing capabilities."
+    link="https://www.huaweicloud.com/product/ief.html"
+  />
+  <PartnerCard
+    name="KubeSphere"
+    logo="https://ks-com-en-staging.pek3b.qingstor.com/images/logo.svg"
+    product="KubeSphere Enterprise 4.0"
+    description="Based on the open and extensible architecture of KubeSphere LuBan, KubeSphere Enterprise 4.0 can easily achieve upstream and downstream linkage of applications, integrate various high-quality extensions from KubeSphere Marketplace anytime, and provide seamless business capabilities and highly consistent product experience. Edge computing extension based on KubeEdge provide easier-to-use and broader coverage of edge computing capabilities, solving operational issues such as node status management and relationship tree management for users."
+    link="https://kubesphere.co/kse/"
+  />
+</div>

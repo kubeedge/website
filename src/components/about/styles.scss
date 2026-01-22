@@ -1,77 +1,78 @@
 .aboutContainer {
   background-color: rgb(247, 247, 247);
+  padding: 40px 0;
 
-  @media screen {
-    @media (max-width: 992px) {
-      .sectionContainerInner {
-        .row {
-          .profile {
-            flex: 0 0 100%;
-            max-width: 100%;
-          }
-        }
-      }
+  .about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-template-columns: 1fr 260px;
+    align-items: center;
+    gap: 40px;
+    padding: 0 40px;
+  }
+
+  .about-left {
+    flex: 1 1 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .about-title {
+    margin-bottom: 20px;
+    text-align: left;
+    .name {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #0084FF;
+      margin: 0 0 8px;
+      text-align: left;
     }
-    @media (max-width: 768px) {
-      .sectionContainerInner {
-        .row {
-          .profile {
-            flex: 0 0 100%;
-            max-width: 100%;
-          }
-        }
-      }
+
+    .jobTitle {
+      font-size: 1.2em;
+      font-weight: 400;
+      color: #0084FF;
+      margin: 0;
     }
   }
 
-  .row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-right: -15px;
-    margin-left: -15px;
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    text-align: left;
+  }
 
-    .profile {
-      flex: 0 0 33.333333%;
-      max-width: 33.333333%;
-      text-align: center;
-      padding: 0px 10px 30px;
-      position: relative;
-    }
+  .about-right {
+    flex: 0 0 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    min-height: 100%;   
+    padding-top: 20px;
 
     .portrait {
       width: 200px;
       height: 200px;
-      margin: 0 auto;
       border-radius: 50%;
       object-fit: cover;
-    }
-
-    .description {
-      flex: 0 0 66.666667%;
-      max-width: 66.666667%;
-      font-size: 1.2rem;
-    }
-
-    .name {
-      font-size: 2em;
-      font-weight: 400;
-      margin: 20px 0 10px 0;
-    }
-
-    .jobTitle {
-      font-size: 1rem;
-      font-weight: 300;
-      margin: 0px 0 10px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
   }
 }
 
-
-html[data-theme='dark'] {
+html[data-theme="dark"] {
   .aboutContainer {
     background-color: #242526;
+
+    .jobTitle {
+      color: #0084FF;
+    }
+    .description {
+      color: #ccc;
+    }
   }
 }
