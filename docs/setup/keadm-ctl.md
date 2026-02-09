@@ -27,7 +27,7 @@ Before using `keadm ctl` commands, ensure:
 1. KubeEdge is properly installed and running
 2. Edge nodes are connected to the cloud
 3. You have appropriate permissions to manage edge resources
-4. The `kubectl logs/exec` feature is enabled (see [Enable Kubectl logs/exec](../advanced/debug.md))
+4. The `kubectl logs/exec` feature is enabled (see [Enable Kubectl logs/exec](/docs/advanced/debug/))
 
 ## Command Reference
 
@@ -370,7 +370,7 @@ keadm ctl restart my-app-pod-123 --node edge-node-1
 
 ## Additional Resources
 
-- [KubeEdge Setup Guide](./install-with-keadm.md)
-- [Enable Kubectl logs/exec](../advanced/debug.md)
-- [Hold and Release Edge Upgrades](../advanced/hold_and_release.md)
-- [KubeEdge Troubleshooting](../developer/troubleshooting.md)
+- [KubeEdge Setup Guide](/docs/setup/install-with-keadm/)
+- [Enable Kubectl logs/exec](/docs/advanced/debug/)
+- [Hold and Release Edge Upgrades](/docs/advanced/hold_and_release/)
+- [KubeEdge Troubleshooting](/docs/developer/troubleshooting/)
