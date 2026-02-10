@@ -10,8 +10,9 @@ ENV SHELL=/bin/bash
 RUN if id -u $uid ; then userdel `id -un $uid` ; fi
 
 RUN apt-get update && \
-    apt-get install yarn -y && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install yarn python3 python3-pip -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip3 install --break-system-packages codespell
 
 RUN useradd -u $uid -m $user
 ENV HOME=/home/$user
