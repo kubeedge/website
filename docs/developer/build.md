@@ -5,7 +5,7 @@ sidebar_position: 1
 
 ## Prerequisites
 
-* A recent Go distribution (>=1.16)
+* A recent Go distribution (>=1.21)
 * ``yq`` command-line YAML processor (latest version recommended, install from [binary releases](https://github.com/mikefarah/yq/releases))
 
 Additionally, if you are on macOS, you will need ``bash`` > v4, GNU ``sed`` (gsed), ``jq``, and ``wget``.
@@ -19,7 +19,7 @@ For ``yq``, it's recommended to install the latest version from binary:
 ```bash
 # Download and install the latest yq binary (platform-specific)
 # For Linux (amd64)
-wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq && sudo chmod +x /usr/local/bin/yq
 
 # Or visit https://github.com/mikefarah/yq/releases for other platforms
 ```
