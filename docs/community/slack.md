@@ -1,23 +1,42 @@
 ---
-title: How to Join KubeEdge Slack 
+title: How to Join KubeEdge Slack
 sidebar_position: 7
 ---
 
-# Slack
+# Join the KubeEdge Slack Community
 
+The KubeEdge community collaborates on the **CNCF Slack workspace**.
 
-If you have any questions you are always welcome in KubeEdge channels on the CNCF Slack:
+If you’re new, follow these steps to get started:
 
-- Navigate to https://slack.cncf.io/ and create your Slack account.
-- Find us in one of the following channels and ask your question:
-    - [#kubeedge](https://cloud-native.slack.com/archives/C066UJZJKQE)
-    - [#kubeedge-announcement](https://cloud-native.slack.com/archives/C067DTAF4Q1)
-    - [#kubeedge-dev](https://cloud-native.slack.com/archives/C06718TB6F4)
-    - [#kubeedge-dashboard](https://cloud-native.slack.com/archives/C066LNA3015)
-    - [#kubeedge-docs](https://cloud-native.slack.com/archives/C06718RDHCJ)
-    - [#kubeedge-sig-ai](https://cloud-native.slack.com/archives/C067DTGJJM7)
-    - [#kubeedge-sig-device-iot](https://cloud-native.slack.com/archives/C067Q8J3KTJ)
-    - [#kubeedge-sig-robotics](https://cloud-native.slack.com/archives/C066LNMUME3)
-    - [#kubeedge-sig-security](https://cloud-native.slack.com/archives/C067Q8LC3T2)
-    - [#kubeedge-sig-mec](https://cloud-native.slack.com/archives/C06716458P5)
+## Step 1: Create/Join CNCF Slack
 
+- Go to [slack.cncf.io](https://slack.cncf.io/)
+- Sign in with your email (or create a new account if you don’t already have one).
+- You’ll be added to the **Cloud Native Computing Foundation (CNCF)** Slack workspace.
+
+## Step 2: Find KubeEdge Channels
+
+Once inside CNCF Slack, use the search bar to find and join the KubeEdge channels below.
+
+| Channel | Purpose |
+|---------|---------|
+| `#kubeedge` | General questions, community help, and announcements. |
+| `#kubeedge-announcement` | Official announcements from the maintainers. |
+| `#kubeedge-dev` | Developer discussions and contributor coordination. |
+| `#kubeedge-dashboard` | Questions and discussions on the KubeEdge Dashboard. |
+| `#kubeedge-docs` | Documentation help, improvements, and discussions. |
+| `#kubeedge-sig-ai` | AI and edge intelligence SIG. |
+| `#kubeedge-sig-device-iot` | IoT and device-related SIG. |
+| `#kubeedge-sig-robotics` | Robotics use cases and contributions. |
+| `#kubeedge-sig-security` | Security discussions and SIG activities. |
+| `#kubeedge-sig-mec` | Multi-access Edge Computing SIG. |
+
+Note: Direct Slack links may not work unless you are already logged in. Always join via [slack.cncf.io](https://slack.cncf.io/) first.
+
+## Step 3: Follow Community Guidelines
+
+- Be respectful and inclusive.
+- Ask questions in the most relevant channel.
+- Search existing discussions before posting.
+- For contributor discussions, prefer `#kubeedge-dev`.
