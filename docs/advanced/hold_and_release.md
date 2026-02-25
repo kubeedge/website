@@ -1,6 +1,6 @@
 ---
 title: Resource Upgrade Control at Edge
-sidebar_position: 4
+sidebar_position: 9
 ---
 
 ## Abstract
