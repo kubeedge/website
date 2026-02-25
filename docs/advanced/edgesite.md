@@ -1,6 +1,7 @@
 ---
 draft: true
 linktitle: Run lightweight clusters on the edge with EdgeSite
+sidebar_position: 11
 menu:
   docs:
     parent: advanced
