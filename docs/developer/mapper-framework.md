@@ -1,6 +1,6 @@
 ---
 title: Mapper-Framework
-sidebar_position: 1
+sidebar_position: 12
 ---
 ## Mapper-Framework
 Mapper-Framework provides a new Mapper development framework, which integrates DMI management plane and data plane capabilities, allowing
