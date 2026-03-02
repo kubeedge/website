@@ -1,6 +1,7 @@
 ---
 draft: true
 linktitle: Create HTTP service with ServiceBus
+sidebar_position: 10
 menu:
   docs:
     parent: advanced configuration
