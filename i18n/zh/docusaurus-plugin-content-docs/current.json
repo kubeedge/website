@@ -55,10 +55,6 @@
     "message": "社区",
     "description": "The label for category Community in sidebar documentationSideBar"
   },
-  "sidebar.documentationSideBar.category.Subproject": {
-    "message": "KubeEdge子项目",
-    "description": "The label for category Subproject in sidebar documentationSideBar"
-  },
   "sidebar.documentationSideBar.category.Frequently Asked Questions (FAQ)": {
     "message": "常见问题",
     "description": "The label for category Frequently Asked Questions (FAQ) in sidebar documentationSideBar"
