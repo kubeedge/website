@@ -1,6 +1,6 @@
 ---
 title: Mapper-Framework
-sidebar_position: 1
+sidebar_position: 12
 ---
 ## Mapper-Framework
 Mapper-Framework 提供全新Mapper开发框架，集成DMI管理面与数据面能力，允许设备在边缘或云端处理数据，提高设备数据管理的灵活性。
