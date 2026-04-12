@@ -1,6 +1,6 @@
 ---
 title: "Embodied Intelligence meets KubeEdge-Ianvs: Industrial Assembly Benchmarking"
-date: "2025-12-11"
+date: "2026-04-12"
 readTime: "12 min read"
 author: "Ronak Raj"
 categories : ["LFX" ]
@@ -10,7 +10,36 @@ description: "This blog introduces how to enable comprehensive embodied intellig
 
 # Embodied Intelligence meets KubeEdge-Ianvs: Industrial Assembly Benchmarking
 
-This blog introduces how to enable comprehensive embodied intelligence benchmarking for industrial manufacturing using the KubeEdge-Ianvs framework.
+This blog introduces how to enable comprehensive embodied intelligence benchmarking for industrial manufacturing using the KubeEdge-Ianvs framework. **You will see**:
+![deformable-component-manipulation](deformable-component-manipulation.jpg "Robotic manipulation of deformable parts")
+
+---
+
+### Video Explanation
+
+[Industrial Embodied Intelligence Dataset(CNCF'LFX 25@kubeedge8739 )Project Explanation](https://youtu.be/LviadKqa3og?si=hA8PEwrRLSXtmtVw)
+
+### YOLO Detection Predictions
+
+Real-world inference results on test images showing deformable component detection:
+
+| | |
+|---|---|
+| ![YOLO Predictions - Sample 3](yolo_predictions3.jpg)  | ![YOLO Predictions - Sample 2](yolo_predictions2.jpg) |
+
+### Model Performance Analysis
+
+| | |
+|---|---|
+| ![F1-Confidence Curve](F1-confidence_curve.jpg) | ![Precision-Confidence Curve](precision-confidence_curve.jpg) |
+| *Optimal F1-score achieved at confidence threshold of ~0.5* | *High precision maintained across various confidence levels* |
+
+### Dataset Analysis
+
+| | |
+|---|---|
+| ![Labels Distribution](labels.jpg) | ![Label Correlations](labels_correlate.jpg) |
+| *Distribution of component classes across the training dataset* | *Spatial correlation analysis between different component types* |
 
 ## Why Embodied Intelligence Benchmarking for Industrial Manufacturing?
 
@@ -58,23 +87,15 @@ By combining distributed AI benchmarking framework KubeEdge-Ianvs with this doma
 
 ---
 
-![deformable-component-manipulation](deformable-component-manipulation.jpg "Robotic manipulation of deformable parts")
-
-## How to Enable Embodied Intelligence Benchmarking with KubeEdge-Ianvs
-
-The following procedures set up a complete benchmarking environment for industrial assembly tasks using KubeEdge-Ianvs with custom multimodal datasets.
-
-After completing these steps, you'll have a fully operational benchmark capable of evaluating multi-stage robotic assembly workflows.
-
 ### Contents:
 
 - [Prerequisites](#prerequisites)
-- [Ianvs Installation](#ianvs-installation)
 - [Dataset Setup](#dataset-setup)
 - [Benchmark Configuration](#benchmark-configuration)
 - [Algorithm Integration](#algorithm-integration)
-- [Run Benchmarking](#run-benchmarking)
 - [Analyze Results](#analyze-results)
+- [Ianvs Installation](#ianvs-installation)
+- [Run Benchmarking](#run-benchmarking)
 
 ---
 
@@ -96,48 +117,6 @@ After completing these steps, you'll have a fully operational benchmark capable 
 - Understanding of computer vision fundamentals
 
 > **Note**: This benchmark has been tested on Linux platforms. Windows users may need to adapt commands accordingly.
-
----
-
-## Ianvs Installation
-
-### 1. Download the Ianvs codebase
-
-```bash
-git clone https://github.com/kubeedge/ianvs.git
-cd ianvs
-```
-
-### 2. Create and activate a virtual environment
-```bash
-sudo apt-get install -y virtualenv
-mkdir ~/venv 
-virtualenv -p python3 ~/venv/ianvs
-source ~/venv/ianvs/bin/activate
-```
-
-### 3. Install system dependencies and Python packages
-```bash
-sudo apt-get update
-sudo apt-get install libgl1-mesa-glx -y
-python -m pip install --upgrade pip
-
-python -m pip install ./examples/resources/third_party/*
-python -m pip install -r requirements.txt
-```
-
-### 4. Install benchmark-specific requirements
-```bash
-pip install -r examples/industrialEI/single_task_learning_bench/deformable_component_manipulation/requirements.txt
-```
-
-### 5. Install Ianvs
-```bash
-python setup.py install  
-ianvs -v
-```
-
-If the version information prints successfully, Ianvs is ready to use.
 
 ---
 
@@ -207,41 +186,6 @@ Each episode represents a distinct assembly challenge:
 
 ---
 
-## Benchmark Configuration
-
-The benchmark is organized following the Ianvs framework structure:
-```
-ianvs/examples/industrialEI/single_task_learning_bench/
-└── deformable_assembly/
-    ├── testalgorithms/
-    │   └── assembly_alg/
-    │       ├── components/
-    │       │   ├── perception.py          # YOLOv8 detection + CNN inspection
-    │       │   └── manipulation.py        # Force control algorithms
-    │       ├── testenv/
-    │       │   ├── acc.py                 # End-to-end metrics
-    │       │   └── testenv.yaml           # Environment configuration
-    │       └── naive_assembly_process.py  # Workflow orchestration
-    ├── benchmarkingjob.yaml
-    └── README.md
-```
-
-### Configure Dataset Paths
-
-The dataset path is pre-configured in `testenv.yaml`. Set up the algorithm path:
-```bash
-export PYTHONPATH=$PYTHONPATH:/ianvs/examples/industrialEI/single_task_learning_bench/deformable_assembly/testalgorithms/assembly_alg
-```
-
-The configuration defines the complete test environment including:
-
-- Dataset locations and splits
-- Simulation parameters
-- Sensor configurations
-- Performance metrics
-
----
-
 ## Algorithm Integration
 
 The benchmark implements a **multi-stage single-task paradigm** that orchestrates three sequential modules:
@@ -275,26 +219,7 @@ The entire workflow is orchestrated by `naive_assembly_process.py`, which execut
 
 ---
 
-## Run Benchmarking
-
-Execute the benchmark from the Ianvs root directory:
-```bash
-cd /ianvs
-ianvs -f examples/industrialEI/single_task_learning_bench/deformable_assembly/benchmarkingjob.yaml
-```
-
-The benchmark will:
-
-1. Load the multimodal dataset with all sensor modalities
-2. Run YOLOv8 detection on each frame for component localization
-3. Execute force-controlled assembly in PyBullet simulation
-4. Perform CNN-based visual inspection on assembled products
-5. Calculate comprehensive performance metrics
-6. Generate detailed reports and leaderboards
-
----
-
-## Analyze Results
+## Results
 
 Results are available in the output directory (`/ianvs/industrialEI_workspace`) as defined in `benchmarkingjob.yaml`.
 
@@ -344,38 +269,26 @@ Results are available in the output directory (`/ianvs/industrialEI_workspace`) 
 
 The benchmark provides comprehensive training visualizations:
 
-Matplotlib curves:
-
-#### F1-Score vs Confidence
-![F1-Confidence Curve](F1-confidence_curve.jpg)
-*Optimal F1-score achieved at confidence threshold of ~0.5*
-
-#### Precision vs Confidence
-![Precision-Confidence Curve](precision-confidence_curve.jpg)
-*High precision maintained across various confidence levels*
-
-#### Precision-Recall Curve
-![Precision-Recall Curve](precision-recall_curve.jpg)
-*Trade-off analysis between precision and recall metrics*
-
-#### Recall vs Confidence
-![Recall-Confidence Curve](recall-confidence_curve.jpg)
-*Recall performance across different detection thresholds*
-
-#### Label Distribution
-![Labels Distribution](labels.jpg)
-*Distribution of component classes across the training dataset*
-
-#### Label Correlation Matrix
-![Label Correlations](labels_correlate.jpg)
-*Spatial correlation analysis between different component types*
-### 🔍 YOLO Detection Predictions
+**Matplotlib curves:**
+## Model Performance & Dataset Analysis
+ 
+| **Metric Type** | **Visualization 1** | **Visualization 2** |
+|---|---|---|
+| **Confidence Analysis** | ![F1-Confidence Curve](F1-confidence_curve.jpg)<br/>*Optimal F1-score achieved at confidence threshold of ~0.5* | ![Precision-Confidence Curve](precision-confidence_curve.jpg)<br/>*High precision maintained across various confidence levels* |
+| **Trade-off Analysis** | ![Precision-Recall Curve](precision-recall_curve.jpg)<br/>*Trade-off analysis between precision and recall metrics* | ![Recall vs Confidence](recall-confidence_curve.jpg)<br/>*Recall performance across different detection thresholds* |
+| **Dataset Insights** | ![Labels Distribution](labels.jpg)<br/>*Distribution of component classes across the training dataset* | ![Label Correlations](labels_correlate.jpg)<br/>*Spatial correlation analysis between different component types* |
+### YOLO Detection Predictions
 
 Real-world inference results on test images showing deformable component detection:
 
 ![YOLO Predictions - Sample 1](yolo_predictions.jpg)
-![YOLO Predictions - Sample 2](yolo_predictions2.jpg)
-![YOLO Predictions - Sample 3](yolo_predictions3.jpg)
+
+Real-world inference results on test images showing deformable component detection:
+
+| | |
+|---|---|
+| ![YOLO Predictions - Sample 3](yolo_predictions3.jpg) | ![YOLO Predictions - Sample 2](yolo_predictions2.jpg) |
+
 
 Model successfully detects RAM modules, cooling mounts, CPU slots, FCPs, and chip keys with accurate bounding boxes*
 
@@ -464,9 +377,110 @@ The framework is designed to accommodate advanced features:
 For more technical details and ongoing development, see the project repository and subscribe to updates.
 
 ---
+## How to Enable Embodied Intelligence Benchmarking with KubeEdge-Ianvs
+
+The following procedures set up a complete benchmarking environment for industrial assembly tasks using KubeEdge-Ianvs with custom multimodal datasets.
+
+After completing these steps, you'll have a fully operational benchmark capable of evaluating multi-stage robotic assembly workflows.
+[Ianvs readme](https://github.com/kubeedge/ianvs/blob/main/examples/industrialEI/single_task_learning_bench/deformable_component_manipulation/README.md)
+
 
 ## Getting Started with Your Own Benchmarks
 
+---
+## Ianvs Installation
+
+### 1. Download the Ianvs codebase
+
+```bash
+git clone https://github.com/kubeedge/ianvs.git
+cd ianvs
+```
+
+### 2. Create and activate a virtual environment
+```bash
+sudo apt-get install -y virtualenv
+mkdir ~/venv 
+virtualenv -p python3 ~/venv/ianvs
+source ~/venv/ianvs/bin/activate
+```
+
+### 3. Install system dependencies and Python packages
+```bash
+sudo apt-get update
+sudo apt-get install libgl1-mesa-glx -y
+python -m pip install --upgrade pip
+
+python -m pip install ./examples/resources/third_party/*
+python -m pip install -r requirements.txt
+```
+
+### 4. Install benchmark-specific requirements
+```bash
+pip install -r examples/industrialEI/single_task_learning_bench/deformable_component_manipulation/requirements.txt
+```
+
+### 5. Install Ianvs
+```bash
+python setup.py install  
+ianvs -v
+```
+
+If the version information prints successfully, Ianvs is ready to use.
+
+---
+
+## Benchmark Configuration
+
+The benchmark is organized following the Ianvs framework structure:
+```
+ianvs/examples/industrialEI/single_task_learning_bench/
+└── deformable_assembly/
+    ├── testalgorithms/
+    │   └── assembly_alg/
+    │       ├── components/
+    │       │   ├── perception.py          # YOLOv8 detection + CNN inspection
+    │       │   └── manipulation.py        # Force control algorithms
+    │       ├── testenv/
+    │       │   ├── acc.py                 # End-to-end metrics
+    │       │   └── testenv.yaml           # Environment configuration
+    │       └── naive_assembly_process.py  # Workflow orchestration
+    ├── benchmarkingjob.yaml
+    └── README.md
+```
+
+### Configure Dataset Paths
+
+The dataset path is pre-configured in `testenv.yaml`. Set up the algorithm path:
+```bash
+export PYTHONPATH=$PYTHONPATH:/ianvs/examples/industrialEI/single_task_learning_bench/deformable_assembly/testalgorithms/assembly_alg
+```
+
+The configuration defines the complete test environment including:
+
+- Dataset locations and splits
+- Simulation parameters
+- Sensor configurations
+- Performance metrics
+
+## Run Benchmarking
+
+Execute the benchmark from the Ianvs root directory:
+```bash
+cd /ianvs
+ianvs -f examples/industrialEI/single_task_learning_bench/deformable_assembly/benchmarkingjob.yaml
+```
+
+The benchmark will:
+
+1. Load the multimodal dataset with all sensor modalities
+2. Run YOLOv8 detection on each frame for component localization
+3. Execute force-controlled assembly in PyBullet simulation
+4. Perform CNN-based visual inspection on assembled products
+5. Calculate comprehensive performance metrics
+6. Generate detailed reports and leaderboards
+
+---
 This framework is designed for extensibility. To create your own industrial assembly benchmarks:
 
 1. **Collect your dataset**: Use the provided PyBullet simulation scripts or capture real robot data
@@ -476,12 +490,6 @@ This framework is designed for extensibility. To create your own industrial asse
 5. **Run and compare**: Execute benchmarks and contribute results to the community leaderboard
 
 The complete documentation, dataset access, and baseline implementations are available in the [Ianvs repository](https://github.com/kubeedge/ianvs).
-
----
-
-## Video Explanation
-
-[Industrial Embodied Intelligence Dataset(CNCF'LFX 25@kubeedge8739 )Project Explanation](https://youtu.be/LviadKqa3og?si=hA8PEwrRLSXtmtVw)
 
 ---
 
