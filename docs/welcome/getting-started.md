@@ -10,6 +10,10 @@ In this quick-start guide, we will explain:
 - A few common ways of deploying KubeEdge.
 - Links for further reading.
 
+## Before you begin
+
+KubeEdge is installed on top of an existing Kubernetes environment. Installing KubeEdge does not automatically provision Kubernetes or the container runtime, so make sure they are prepared before installation.
+
 ## Dependencies
 
 For cloud side, we need:
