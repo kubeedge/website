@@ -10,6 +10,18 @@ In this quick-start guide, we will explain:
 - A few common ways of deploying KubeEdge.
 - Links for further reading.
 
+## Choose an installation method
+
+KubeEdge provides two common installation approaches: using `keadm` and installing from binaries manually. 
+
+- **`keadm`** is recommended for most users who want a simpler and more automated installation experience.
+- **Binary installation** is more suitable for users who need more flexibility and full control over binary placement, configuration files, and service setup.
+
+| Method | Best for | Automation | Configuration and service setup |
+| --- | --- | --- | --- |
+| `keadm` | quick start, evaluation, and standard deployments | higher | mostly handled by `keadm` |
+| binary installation | custom environments, development, and debugging | lower | managed manually |
+
 ## Dependencies
 
 For cloud side, we need:
