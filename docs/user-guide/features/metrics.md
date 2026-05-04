@@ -5,7 +5,7 @@ sidebar_position: 6
 
 ## Enable `kubectl logs/exec` feature
 
-Refer to this [doc](./debug).
+Refer to this [doc](../troubleshooting/debug).
 
 
 ## Deploy metrics server

@@ -29,7 +29,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 # cloudcore --minconfig > cloudcore.yaml
 ```
 
-有关详细信息，请参阅[云端配置](./config#configuration-cloud-side-kubeedge-master)。
+有关详细信息，请参阅[云端配置](../configuration/config#configuration-cloud-side-kubeedge-master)。
 
 ### 运行
 
@@ -64,7 +64,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 
 `token` 值来自于之前步骤。
 
-有关详细信息，请参阅[边缘配置](./config#configuration-edge-side-kubeedge-worker-node)。
+有关详细信息，请参阅[边缘配置](../configuration/config#configuration-edge-side-kubeedge-worker-node)。
 
 ### 运行
 

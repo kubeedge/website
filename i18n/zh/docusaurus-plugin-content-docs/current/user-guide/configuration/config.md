@@ -204,7 +204,7 @@ kubectl apply -f ~/kubeedge/yaml/node.json
     runtimeType: remote
     ```
 
-5. 如果您的运行类型是remote，请遵循[KubeEdge CRI配置](../setup/prerequisites/runtime.md)指南来设置基于 remote/CRI 的运行时的KubeEdge。
+5. 如果您的运行类型是remote，请遵循[KubeEdge CRI配置](../getting-started/prerequisites/runtime.md)指南来设置基于 remote/CRI 的运行时的KubeEdge。
 
     **注意：** 如果您的KubeEdge版本低于v1.3，则跳过步骤6-7。
 

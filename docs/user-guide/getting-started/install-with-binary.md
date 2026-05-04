@@ -50,7 +50,7 @@ There're two ways to download `cloudcore` binary.
 cloudcore --defaultconfig > cloudcore.yaml
 ```
 
-please refer to [configuration for cloud](./config#configuration-cloud-side-kubeedge-master) for details.
+please refer to [configuration for cloud](../configuration/config#configuration-cloud-side-kubeedge-master) for details.
 
 ### Run
 
@@ -107,7 +107,7 @@ kubectl get secret -n kubeedge tokensecret -o=jsonpath='{.data.tokendata}' | bas
 
 The `token` is what above step get.
 
-please refer to [configuration for edge](./config#configuration-edge-side-kubeedge-worker-node) for details.
+please refer to [configuration for edge](../configuration/config#configuration-edge-side-kubeedge-worker-node) for details.
 
 ### Run
 
