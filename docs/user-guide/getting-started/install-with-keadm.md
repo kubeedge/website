@@ -225,7 +225,7 @@ Refer to the [Deploy demo on edge nodes](./install-with-binary#deploy-demo-on-ed
 ## Enable `kubectl logs/exec` Feature
 
 Before deploying the metrics-server, the `kubectl logs/exec` feature must be activated.
-Refer to the [Enable Kubectl logs/exec](../advanced/debug.md) documentation.
+Refer to the [Enable Kubectl logs/exec](../troubleshooting/debug.md) documentation.
 
 ## Support Metrics-server in Cloud
 
