@@ -43,9 +43,9 @@ NVIDIA GeForce    →  CUDA 12 + cuDNN 9            →  llama.cpp / vLLM / Tens
 ### Intel NPU (Core Ultra — Meteor Lake / Lunar Lake)
 
 ```bash
-# Install linux-npu-driver package
-wget https://github.com/intel/linux-npu-driver/releases/latest/download/intel-driver-compiler-npu_*.deb
-sudo dpkg -i intel-driver-compiler-npu_*.deb
+# Install linux-npu-driver package (replace <VERSION> with the latest version)
+wget https://github.com/intel/linux-npu-driver/releases/download/v<VERSION>/intel-driver-compiler-npu_<VERSION>_amd64.deb
+sudo dpkg -i intel-driver-compiler-npu_<VERSION>_amd64.deb
 
 # Add user to render group for device access
 sudo usermod -aG render,video $USER
@@ -102,14 +102,14 @@ kubectl get nodes -l node-type=ai-pc
 
 ## Step 3: Deploy the Intel NPU Device Plugin
 
-The device plugin is what tells Kubernetes that this node has an NPU. It registers the `gpu.intel.com/i915` resource (which covers both Intel iGPU and NPU on Core Ultra):
+The device plugin is what tells Kubernetes that this node has an NPU. It registers the `npu.intel.com/vpu` resource:
 
 ```bash
 kubectl apply -f intel-npu-plugin-daemonset.yaml
 
 # Verify resource is registered
 kubectl get node ai-pc-node-01 -o json | \
-  jq '.status.allocatable["gpu.intel.com/i915"]'
+  jq '.status.allocatable["npu.intel.com/vpu"]'
 # Output: "1"
 ```
 
@@ -133,7 +133,7 @@ scp -r yolov8n_openvino_model/ user@ai-pc:/opt/edge-models/yolov8n/
 
 ### Deploy OVMS
 
-The deployment requests `gpu.intel.com/i915: "1"` so Kubernetes schedules it only on nodes with the NPU resource, and OVMS targets `target_device: NPU` internally:
+The deployment requests `npu.intel.com/vpu: "1"` so Kubernetes schedules it only on nodes with the NPU resource, and OVMS targets `target_device: NPU` internally:
 
 ```bash
 kubectl apply -f models/vision-inference-pod.yaml -n edge-ai
@@ -219,7 +219,7 @@ sleep 60
 crictl pods --name yolov8n-ovms
 
 # Send inference request — should still work
-curl http://127.0.0.1:8080/v2/health/ready
+curl http://127.0.0.1:8000/v2/health/ready
 
 # Restore connectivity
 sudo iptables -D OUTPUT -d <CLOUD_IP> -j DROP
