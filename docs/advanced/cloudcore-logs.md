@@ -1,6 +1,6 @@
 ---
 title: Checking CloudCore Logs
-sidebar_position: 2
+sidebar_position: 12
 ---
 
 > **Applies to:** KubeEdge v1.13+  
@@ -79,7 +79,7 @@ kubectl logs -n kubeedge -l kubeedge=cloudcore --tail=100 -f
 
 # Show logs since a specific time
 kubectl logs -n kubeedge -l kubeedge=cloudcore --since=30m
-kubectl logs -n kubeedge -l kubeedge=cloudcore --since-time="2024-01-15T10:00:00Z"
+kubectl logs -n kubeedge -l kubeedge=cloudcore --since-time="2026-01-15T10:00:00Z"
 ```
 
 :::tip Go Log Format
@@ -117,7 +117,7 @@ journalctl -u cloudcore.service -n 200
 journalctl -u cloudcore.service -b
 
 # View logs from a specific time window
-journalctl -u cloudcore.service --since "2024-01-15 10:00:00" --until "2024-01-15 10:30:00"
+journalctl -u cloudcore.service --since "2026-01-15 10:00:00" --until "2026-01-15 10:30:00"
 
 # Filter to show only error-level and above
 journalctl -u cloudcore.service -p err
