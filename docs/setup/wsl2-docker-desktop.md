@@ -149,8 +149,10 @@ Without CNI plugins, the edge node will register with the cluster but remain per
 Create the required directories and download the CNI plugin bundle:
 
 ```bash
+# Check for the latest version at https://github.com/containernetworking/plugins/releases
+CNI_PLUGINS_VERSION="v1.5.0"
 sudo mkdir -p /opt/cni/bin
-wget https://github.com/containernetworking/plugins/releases/download/v1.5.0/cni-plugins-linux-amd64-v1.5.0.tgz \
+wget "https://github.com/containernetworking/plugins/releases/download/${CNI_PLUGINS_VERSION}/cni-plugins-linux-amd64-${CNI_PLUGINS_VERSION}.tgz" \
   -O /tmp/cni.tgz
 sudo tar -xzf /tmp/cni.tgz -C /opt/cni/bin
 ```

@@ -87,8 +87,10 @@ edged:
 ### 步骤 5：安装 CNI 插件
 
 ```bash
+# 可在 https://github.com/containernetworking/plugins/releases 查看最新版本
+CNI_PLUGINS_VERSION="v1.5.0"
 sudo mkdir -p /opt/cni/bin
-wget https://github.com/containernetworking/plugins/releases/download/v1.5.0/cni-plugins-linux-amd64-v1.5.0.tgz \
+wget "https://github.com/containernetworking/plugins/releases/download/${CNI_PLUGINS_VERSION}/cni-plugins-linux-amd64-${CNI_PLUGINS_VERSION}.tgz" \
   -O /tmp/cni.tgz
 sudo tar -xzf /tmp/cni.tgz -C /opt/cni/bin
 ```
