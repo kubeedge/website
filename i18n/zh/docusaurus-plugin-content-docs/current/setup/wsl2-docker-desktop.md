@@ -9,7 +9,7 @@ sidebar_position: 9
 本文档说明如何在 Windows 环境下通过 **WSL2**（Windows Subsystem for Linux 2）和 **Docker Desktop** 运行 KubeEdge 边缘节点。
 
 :::note 中文翻译说明
-本页面为英文原文的占位镜像，完整内容请参阅英文版本：[Running KubeEdge on Windows (WSL2 + Docker Desktop)](../wsl2-docker-desktop)。
+本页面为英文原文的占位镜像，完整内容请参阅英文版本（English documentation）。
 :::
 
 ---
