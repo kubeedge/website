@@ -1,5 +1,5 @@
 ---
-title: CNI Plugins and Edge Networking Boundary
+title: CNI 插件与边缘网络边界说明
 sidebar_position: 6
 ---
 
