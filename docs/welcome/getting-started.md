@@ -33,7 +33,7 @@ During release, we build tarballs for major platforms and release docker images 
 
 ## Deploying KubeEdge
 
-Check [setup docs](../setup/install-with-keadm.md).
+Check [setup docs](../user-guide/getting-started/install-with-keadm.md).
 
 ## Contributing
 

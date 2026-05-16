@@ -18,9 +18,9 @@ explore the possibility of two or more Mappers with same protocol running on sam
 ![mapper](/img/device/mapper.png)
 
 ### Creating a Mapper
-Users can easily generate their own Mapper through **[Mapper Framework](../../developer/mapper-framework)**.
+Users can easily generate their own Mapper through **[Mapper Framework](../../developer-guide/mapper-framework)**.
 
-You can follow the **[guide](../../developer/mappers#how-to-create-your-own-mappers)** to create your Mapper.
+You can follow the **[guide](../../developer-guide/mappers/index.md#how-to-create-your-own-mappers)** to create your Mapper.
 
 
 

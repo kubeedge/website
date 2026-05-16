@@ -25,7 +25,7 @@ We're always excited to welcome new contributors! Here's how to get started:
    git clone https://github.com/YOUR-USERNAME/kubeedge.git
    cd kubeedge
    ```
-3. Read the [Developer Guide](../developer/build.md) to learn how to build and test KubeEdge
+3. Read the [Developer Guide](../developer-guide/build.md) to learn how to build and test KubeEdge
 
 ### Find Something to Work On
 
