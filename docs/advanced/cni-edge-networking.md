@@ -79,8 +79,9 @@ directly route to each other.
 Because edge nodes are often managed separately from the cloud, there are a few CNI-specific things users need
 to handle manually on edge nodes that are typically automatic on cloud nodes:
 
-1. **CNI binaries**: Ensure that CNI binaries are present at `/opt/cni/bin` on every edge node. Some CNI
-   DaemonSets do not schedule onto edge nodes by default and need a toleration or nodeSelector to do so.
+1. **CNI binaries**: Ensure that CNI binaries are present at `/opt/cni/bin` (or the path configured in your
+   container runtime, e.g., `cni_bin_dir` in containerd) on every edge node. Some CNI DaemonSets do not
+   schedule onto edge nodes by default and need a toleration or nodeSelector to do so.
 
 2. **Preventing CNI DaemonSets from scheduling on edge nodes unintentionally**: If your CNI DaemonSet is not
    designed for edge nodes, use a `nodeSelector` or `affinity` rule to prevent it from scheduling there.
@@ -107,7 +108,7 @@ Use the following decision tree to identify whether a networking problem is a CN
 | Pod on edge node cannot reach a pod on a different LAN | EdgeMesh | EdgeMesh installation and configuration |
 | EdgeCore is not connecting to CloudCore | KubeEdge | CloudCore and EdgeCore logs, firewall rules on port 10000 |
 | Device twin state is not syncing | KubeEdge | EdgeCore DeviceTwin logs, Mapper logs |
-| CNI agent (e.g., cilium-agent) crashes on edge node | KubeEdge MetaManager | Requires KubeEdge >= v1.16, check MetaManager InClusterConfig setting |
+| CNI agent (e.g., cilium-agent) crashes on edge node | KubeEdge MetaManager | Requires KubeEdge >= v1.16, check if `metaServer` is enabled in `edgecore.yaml` |
 
 ## Supported CNI Plugins
 
