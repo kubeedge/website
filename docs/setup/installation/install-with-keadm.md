@@ -1,6 +1,6 @@
 ---
 title: Installing KubeEdge with Keadm
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 Keadm is used to install the cloud and edge components of KubeEdge. It does not handle the installation of Kubernetes and its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).
@@ -225,7 +225,7 @@ Refer to the [Deploy demo on edge nodes](./install-with-binary#deploy-demo-on-ed
 ## Enable `kubectl logs/exec` Feature
 
 Before deploying the metrics-server, the `kubectl logs/exec` feature must be activated.
-Refer to the [Enable Kubectl logs/exec](../advanced/debug.md) documentation.
+Refer to the [Enable Kubectl logs/exec](../../advanced/debug.md) documentation.
 
 ## Support Metrics-server in Cloud
 
