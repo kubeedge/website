@@ -1,6 +1,6 @@
 ---
 title: 使用Keadm进行部署
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 Keadm 是一款用于安装 KubeEdge 的工具。
@@ -266,7 +266,7 @@ nginx   1/1     Running   0          11s   172.17.0.2   ecs-8f95   <none>       
 ## 启用 `kubectl logs/exec` 功能
 
 Before deploying the metrics-server, the `kubectl logs/exec` feature must be activated.
-Refer to the [启用 Kubectl logs/exec/attach 操作边缘 pods](../advanced/debug.md) documentation.
+Refer to the [启用 Kubectl logs/exec/attach 操作边缘 pods](../../advanced/debug.md) documentation.
 
 ## 在云端支持 Metrics-server
 

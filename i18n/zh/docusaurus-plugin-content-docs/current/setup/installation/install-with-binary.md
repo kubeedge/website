@@ -1,6 +1,6 @@
 ---
 title: 使用二进制部署
-sidebar_position: 4
+sidebar_position: 2
 ---
 使用二进制部署KubeEdge进行测试，切勿在生产环境中使用这种方式。
 
@@ -29,7 +29,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 # cloudcore --minconfig > cloudcore.yaml
 ```
 
-有关详细信息，请参阅[云端配置](./config#configuration-cloud-side-kubeedge-master)。
+有关详细信息，请参阅[云端配置](../config#configuration-cloud-side-kubeedge-master)。
 
 ### 运行
 
@@ -64,7 +64,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubeedge/kubeedge/master/buil
 
 `token` 值来自于之前步骤。
 
-有关详细信息，请参阅[边缘配置](./config#configuration-edge-side-kubeedge-worker-node)。
+有关详细信息，请参阅[边缘配置](../config#configuration-edge-side-kubeedge-worker-node)。
 
 ### 运行
 

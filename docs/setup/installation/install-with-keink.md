@@ -1,7 +1,7 @@
-```yaml
+---
 title: Installing KubeEdge with Keink
-sidebar_position: 5
-```
+sidebar_position: 3
+---
 
 Deploying KubeEdge with Keink is only used for trial kubeedge, please do not use it in a production environment.
 

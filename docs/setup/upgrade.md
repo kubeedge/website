@@ -58,4 +58,4 @@ $ mv /tmp/kubeedge_backup/edgecore.db /var/lib/kubeedge/
 
 ## Deploy
 
-Read the [setup](./install-with-keadm) for deployment.
+Read the [setup](./installation/install-with-keadm) for deployment.

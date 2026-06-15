@@ -113,7 +113,7 @@ Image versions         cilium             quay.io/cilium/cilium:v1.17.2@sha256:3
 
 ### CloudCore Installation
 
-Install `keadm` with the official procedure [Installing KubeEdge with keadm](https://kubeedge.io/docs/setup/install-with-keadm).
+Install `keadm` with the official procedure [Installing KubeEdge with keadm](https://kubeedge.io/docs/setup/installation/install-with-keadm).
 
 In this blog, we use `keadm v1.19.2` as following.
 
