@@ -334,6 +334,12 @@ Refer to the [Enable Kubectl logs/exec](../advanced/debug.md) documentation.
               protocol: TCP
     ```
 
+## Managing Edge Nodes with CTL Commands
+
+After installing KubeEdge, you can use `keadm ctl` commands to manage edge nodes and pods. These commands provide comprehensive control over edge resources, including viewing logs, executing commands, restarting pods, and managing upgrades.
+
+For detailed documentation on all available `keadm ctl` commands, see [Keadm CTL Commands](./keadm-ctl.md).
+
 ## Reset KubeEdge Master and Worker nodes
 
 ### Master
