@@ -65,7 +65,7 @@ Run `cloudcore -h` to get help info and add options if needed.
 ## Setup Edge Side (KubeEdge Worker Node)
 
 ### Prepare edgecore binary
-There're three ways to download a `edgecore` binary.
+There're three ways to download `edgecore` binary.
 
 - Download from github release.
   
