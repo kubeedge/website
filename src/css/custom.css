@@ -18,12 +18,12 @@
   height: 2.5rem;
 }
 
-.heade-icon {
+.header-icon {
   padding: 5px;
   transform: scale(0.85);
 }
 
-.heade-icon:hover {
+.header-icon:hover {
   opacity: 0.6;
 }
 
