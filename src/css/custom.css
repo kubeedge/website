@@ -94,7 +94,7 @@
   }
 
   /* Slightly increase touch area and keep visuals consistent */
-  .navbar-sidebar .heade-icon {
+  .navbar-sidebar .header-icon {
     padding: 8px;
     transform: scale(1);
   }
