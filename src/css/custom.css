@@ -78,3 +78,57 @@
 .dropdown__link svg {
   display: none;
 }
+
+/* Mobile sidebar: arrange header social icons horizontally and pin to corner */
+@media screen and (max-width: 768px) {
+  /* Ensure icon links render inline inside the mobile menu */
+  .navbar-sidebar .navbar__items--right {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1000;
+  }
+
+  /* Slightly increase touch area and keep visuals consistent */
+  .navbar-sidebar .heade-icon {
+    padding: 8px;
+    transform: scale(1);
+  }
+
+  /* Keep default navbar items layout; don't force column to avoid stacking social icons */
+
+  /* Ensure specific social links inside sidebar render inline */
+  .navbar-sidebar .header-github-link,
+  .navbar-sidebar .header-x-link,
+  .navbar-sidebar .header-slack-link {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    border-radius: 6px;
+    background: transparent;
+  }
+
+  /* Make sure the icon pseudo-elements remain visible */
+  .navbar-sidebar .header-github-link::before,
+  .navbar-sidebar .header-x-link::before,
+  .navbar-sidebar .header-slack-link::before {
+    display: block;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Optional: subtle background for better contrast on dark themes */
+  html[data-theme="dark"] .navbar-sidebar .header-github-link,
+  html[data-theme="dark"] .navbar-sidebar .header-x-link,
+  html[data-theme="dark"] .navbar-sidebar .header-slack-link {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
