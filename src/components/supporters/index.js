@@ -239,7 +239,7 @@ export default function Supporters() {
       <div className={"supporterBoxContainer"}>
         {supportList.map((item, index) => (
           <div key={index} className="supporterBox">
-            <div className="imgContainer">
+            <div className={`imgContainer ${item.external_link ? 'clickable' : ''}`}>
               {item.external_link ? (
                 <Link to={item.external_link}>
                   <img alt={item.name} src={item.img_src} />

@@ -11,7 +11,6 @@
 
   .supporterBoxContainer {
     display: flex;
-    cursor: pointer;
     flex-wrap: wrap;
 
     .supporterBox {
@@ -35,7 +34,10 @@
         border-color: #dde6ed;
         transition: transform 0.2s;
       }
-      .imgContainer:hover {
+      .imgContainer.clickable {
+        cursor: pointer;
+      }
+      .imgContainer.clickable:hover {
         transform: scale(1.05);
       }
       img {
