@@ -178,16 +178,19 @@ const config = {
             href: "https://github.com/kubeedge/kubeedge",
             position: "right",
             className: "header-github-link heade-icon",
+            "aria-label": "GitHub repository", // Accessibility: Add aria-label for icon-only link
           },
           {
             href: "https://twitter.com/KubeEdge",
             position: "right",
             className: "header-x-link heade-icon",
+            "aria-label": "KubeEdge Twitter", // Accessibility: Add aria-label for icon-only link
           },
           {
             to: "/docs/community/slack",
             position: "right",
             className: "header-slack-link heade-icon",
+            "aria-label": "KubeEdge Slack community", // Accessibility: Add aria-label for icon-only link
           },
           {
             type: "localeDropdown",
