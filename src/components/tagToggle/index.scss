@@ -22,7 +22,7 @@
     .tag-list {
       display: flex;
       flex-wrap: nowrap;
-      overflow: auto;
+      overflow-x: auto;
       gap: 12px;
 
       .tag-toggle {
