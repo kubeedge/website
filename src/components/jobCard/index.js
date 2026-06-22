@@ -15,12 +15,11 @@ export default function JobCard(props) {
         logo = "",
         link = "",
     } = props;
-    const logoAlt = company ? `${company} logo` : title ? `${title} logo` : "Company logo";
 
     return (
         <Link className="job-card" to={link}>
             <div className="image">
-                <img src={logo} alt={logoAlt} />
+                <img src={logo} alt="" />
             </div>
             <div className="content">
                 <div className="title">
