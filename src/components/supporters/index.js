@@ -219,7 +219,13 @@ const supportList = [
     name: "SYSU",
     img_src: "img/supporters/sysu.svg", 
     external_link: "https://www.sysu.edu.cn/",
-  }
+  },
+
+  {
+    name: "BlueDot",
+    img_src: "img/supporters/bluedot.png",
+    external_link: "http://portal.bluedotai.cn",
+  },
 ];
 
 export default function Supporters() {
