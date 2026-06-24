@@ -14,10 +14,15 @@
       padding: 3px 12px;
       display: flex;
       align-items: center;
+      white-space: nowrap;
+      font-weight: 600;
+      margin-right: 12px;
     }
 
     .tag-list {
       display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
       gap: 12px;
 
       .tag-toggle {
