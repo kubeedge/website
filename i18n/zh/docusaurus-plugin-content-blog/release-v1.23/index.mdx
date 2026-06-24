@@ -1,0 +1,54 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2026-03-11
+draft: false
+lastmod: 2026-03-11
+summary: KubeEdge v1.23.0 正式发布！
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- dashboard
+- release v1.23
+- v1.23
+title: KubeEdge v1.23.0 正式发布！
+---
+
+2026年3月11日，KubeEdge 发布了 v1.23.0。
+
+## 1.23 版本新特性
+
+- [Windows 操作系统支持增强](#windows-操作系统支持增强)
+- [设备管理功能增强](#设备管理功能增强)
+- [性能与架构优化](#性能与架构优化)
+
+## 版本亮点
+
+### Windows 操作系统支持增强
+
+在 v1.23.0 中，对 Windows 支持进行了重大改进：
+- **Local DMI 服务：** 鉴于 Windows 不支持 Unix 域套接字，现在通过 Windows 命名管道实现本地网络通信。这提高了与 Containerd 和 Kubelet 的兼容性。
+- **Keadm 升级与下载优化：** Keadm 现在能够检测现有的 `edgecore.exe` 版本，并在有新版本时重新下载相关包。
+- **可观测性改进：** 当 EdgeCore 作为 Windows 服务运行时，日志现在会被重定向到日志文件中，极大地方便了故障排查。
+
+### 设备管理功能增强
+
+- **设备异常检测：** 新框架允许用户在 Device CRD 中配置异常检测（`pushMethod`）。Mapper 现在可以实现可插拔的异常检测逻辑，并与设备状态上报工作流相连接。
+- **DeviceStatus CRD：** 将 Device CRD 中的状态部分提取到了独立的 `DeviceStatus` CRD 中。在保持向后兼容性的同时，鼓励用户从这一新资源中获取设备状态。
+
+### 性能与架构优化
+
+- **节点查询优化：** 优化了从边缘到云的节点查询路径。EdgeCore 现在直接从本地边缘数据库获取节点信息，而不是通过 CloudCore 查询，从而减轻了带宽压力。CloudCore 会自动将更新同步到边缘数据库。
+- **数据库迁移：** Edge DB 重构，将 Beego 替换为 GORM。在 MetaManager 模块内引入了统一的数据库操作入口，以提高可维护性。
+
+更多详细信息，请参阅 [CHANGELOG-1.23.md](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.23.md)。

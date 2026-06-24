@@ -1,0 +1,54 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2026-03-11
+draft: false
+lastmod: 2026-03-11
+summary: KubeEdge v1.23 is live!
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- dashboard
+- release v1.23
+- v1.23
+title: KubeEdge v1.23 is live!
+---
+
+On March 11, 2026, KubeEdge released v1.23.
+
+## 1.23 What's New
+
+- [Windows OS Enhancements](#windows-os-enhancements)
+- [Device Management Enhancements](#device-management-enhancements)
+- [Performance & Architecture Optimizations](#performance--architecture-optimizations)
+
+## Release Highlights
+
+### Windows OS Enhancements
+
+In v1.23.0, significant improvements have been made to Windows support:
+- **Local DMI Service:** Local network communication is now implemented via Windows named pipes, as Unix Domain Sockets are not supported on Windows. This improves compatibility with Containerd and Kubelet.
+- **Keadm Upgrade/Download:** Keadm now detects existing `edgecore.exe` versions and re-downloads the package if a newer version is available.
+- **Observability:** Logs are now properly redirected to a log file when EdgeCore runs as a Windows service, significantly aiding in troubleshooting.
+
+### Device Management Enhancements
+
+- **Device Anomaly Detection:** A new framework allows users to configure anomaly detection in Device CRDs (`pushMethod`). Mappers can now implement pluggable anomaly detection logic connected to the device status reporting workflow.
+- **DeviceStatus CRD:** The status portion of the Device CRD has been extracted into a separate `DeviceStatus` CRD. While backward compatibility is maintained, users are encouraged to retrieve device status from this new resource.
+
+### Performance & Architecture Optimizations
+
+- **Optimized Node Querying:** The node querying path from Edge to Cloud has been optimized. EdgeCore now retrieves node information directly from the local edge database instead of querying via CloudCore, reducing bandwidth strain. CloudCore automatically synchronizes updates to the edge database.
+- **Database Migration:** Beego has been replaced with GORM, reconstructing the Edge DB. A unified database operation entry point was introduced within the MetaManager module to improve maintainability.
+
+For more details, please refer to the [CHANGELOG-1.23.md](https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.23.md).
