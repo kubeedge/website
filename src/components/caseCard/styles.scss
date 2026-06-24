@@ -76,3 +76,60 @@ html[data-theme="dark"] {
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
 }
+
+@media (max-width: 768px) {
+  .case-card {
+    grid-template-areas:
+      "title"
+      "hr"
+      "sub"
+      "desc"
+      "date"
+      "btn";
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+    padding: 20px;
+    min-height: auto;
+
+    .title {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    hr {
+      height: 3px !important;
+      width: 36px !important;
+      margin: 8px 0;
+    }
+
+    .sub {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .desc {
+      font-size: 15px;
+      overflow: visible;
+      text-overflow: inherit;
+      display: block;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+      margin-top: 12px;
+      white-space: normal;
+    }
+
+    .date {
+      font-size: 12px;
+      margin-top: 12px;
+      align-self: start;
+    }
+
+    a {
+      justify-self: start;
+      margin-top: 12px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+  
+  }
