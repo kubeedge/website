@@ -1,7 +1,7 @@
 import React from "react";
 import { usePluginData } from "@docusaurus/useGlobalData";
+import Link from "@docusaurus/Link";
 import SectionContainer from "../sectionContainer";
-import { useHistory } from "@docusaurus/router";
 import Translate from "@docusaurus/Translate";
 import "./index.scss";
 
@@ -10,8 +10,6 @@ export default function BlogPost() {
     blogGlobalData: { blogPosts },
   } = usePluginData("blog-global-dataPlugin");
 
-  const history = useHistory();
-
   return (
     <SectionContainer className="blogPostContainer">
       <div className="row">
@@ -19,15 +17,17 @@ export default function BlogPost() {
           <h1>
             <Translate>Recent News</Translate>
           </h1>
-          <a onClick={() => history.push("blog")}>
+          <Link to="/blog">
             <Translate>View All</Translate>
-          </a>
+          </Link>
         </div>
         <div className="right">
-          {blogPosts.slice(0, 3).map((item, index) => (
-            <div key={index} className="viewBlogContainer">
-              <h3 onClick={() => history.push(item.metadata.permalink)}>
-                {item.metadata.title}
+          {blogPosts.slice(0, 3).map((item) => (
+            <div key={item.metadata.permalink} className="viewBlogContainer">
+              <h3>
+                <Link className="post-link" to={item.metadata.permalink}>
+                  {item.metadata.title}
+                </Link>
               </h3>
               {item.metadata?.frontMatter?.summary && (
                 <p>{item.metadata?.frontMatter.summary}</p>
