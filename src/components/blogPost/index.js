@@ -34,9 +34,13 @@ export default function BlogPost() {
               )}
               <div className="info">
                 <div className="author">
-                  {(item.metadata?.authors || []).map((item) => (
-                    <a href={item.url} target="_blank">
-                      {item.name}
+                  {(item.metadata?.authors || []).map((author, authorIndex) => (
+                    <a
+                      key={author.url || author.name || authorIndex}
+                      href={author.url}
+                      target="_blank"
+                    >
+                      {author.name}
                     </a>
                   ))}
                 </div>
