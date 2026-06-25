@@ -47,7 +47,7 @@ export default function CaseStudies() {
                     <Row gutter={[48, 48]}>
                         {casestudiesGlobalDataMemo.map((item, index) => (
                             <Col
-                                key={item.metadata?.permalink || item.metadata?.title || index}
+                                key={item.metadata?.permalink}
                                 xs={24}
                                 sm={24}
                                 md={24}
