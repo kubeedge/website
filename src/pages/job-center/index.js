@@ -25,8 +25,9 @@ export default function JobCenter() {
                     </button>
                 </div>
                 <div className="job-list">
-                    {jobcenterGlobalData.map((item) => (
+                    {jobcenterGlobalData.map((item, index) => (
                         <JobCard
+                            key={item.metadata?.permalink || item.metadata?.title || index}
                             title={item.metadata?.title}
                             company={item.metadata?.frontMatter?.company}
                             date={item.metadata?.frontMatter?.date}
