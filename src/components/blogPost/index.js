@@ -39,6 +39,7 @@ export default function BlogPost() {
                       key={author.url || author.name || authorIndex}
                       href={author.url}
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {author.name}
                     </a>
