@@ -35,77 +35,76 @@
 .partners-md {
   width: 85%; /* Reduce width for better margins */
   max-width: 1200px; /* Keep it centered */
-  background-color: white; /* Ensure background is visible */
+  background-color: var(--ifm-background-surface-color); /* Theme-aware background */
   padding: 20px;
   border-radius: 8px; /* Slight rounding for better aesthetics */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* Table Styling scoped to partners-md */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 20px 0; /* Add margin to keep spacing */
+    background-color: transparent; /* Inherit from partners-md */
+    color: var(--ifm-font-color-base);
+  }
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid var(--ifm-color-emphasis-300);
+  }
+
+  th {
+    background-color: var(--ifm-color-primary);
+    color: white;
+    text-align: center;
+  }
+
+  /* Column Width Adjustments */
+  th:nth-child(1),
+  td:nth-child(1) {
+    /* Organization/Company */
+    width: 18%;
+    text-align: center;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    /* Product */
+    width: 15%; /* Reduced width */
+    text-align: center;
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    /* Description */
+    width: 50%; /* Expanded */
+  }
+
+  th:nth-child(4),
+  td:nth-child(4) {
+    /* Website */
+    width: 17%;
+    text-align: center;
+  }
+
+  /* Hyperlink Styling */
+  td a {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  td a:hover {
+    text-decoration: underline;
+  }
 }
 
-
-/* Table Styling */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin: 20px 0; /* Add margin to keep spacing */
-}
-
-
-th,
-td {
-  padding: 12px 15px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-
-th {
-  background-color: var(--ifm-color-primary);
-  color: white;
-  text-align: center;
-}
-
-
-/* Column Width Adjustments */
-th:nth-child(1),
-td:nth-child(1) {
-  /* Organization/Company */
-  width: 18%;
-  text-align: center;
-}
-
-
-th:nth-child(2),
-td:nth-child(2) {
-  /* Product */
-  width: 15%; /* Reduced width */
-  text-align: center;
-}
-
-
-th:nth-child(3),
-td:nth-child(3) {
-  /* Description */
-  width: 50%; /* Expanded */
-}
-
-
-th:nth-child(4),
-td:nth-child(4) {
-  /* Website */
-  width: 17%;
-  text-align: center;
-}
-
-
-/* Hyperlink Styling */
-td a {
-  color: var(--ifm-color-primary);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-
-td a:hover {
-  text-decoration: underline;
+html[data-theme="dark"] {
+  .partners-md {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
 }
