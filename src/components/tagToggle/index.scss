@@ -30,6 +30,11 @@
         align-items: center;
         font: inherit;
 
+        &:focus-visible {
+          outline: 2px solid #3578e5;
+          outline-offset: 2px;
+        }
+
         &:hover {
           color: #3578e5;
         }

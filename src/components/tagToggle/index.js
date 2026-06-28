@@ -1,24 +1,15 @@
-import React, { useMemo } from "react";
+import React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { TAG_Type_EN, TAG_TYPE_ZH } from "@site/src/const";
 import Translate from "@docusaurus/Translate";
 import "./index.scss";
 
 export default function TagToggle({ selected, onChange }) {
-  const [activeIndex, setActiveIndex] = React.useState(0);
   const { i18n } = useDocusaurusContext();
-
-  const tagType = useMemo(() => {
-    if (i18n.currentLocale === "en") {
-      return TAG_Type_EN;
-    }
-
-    return TAG_TYPE_ZH;
-  }, []);
+  const tagType = i18n.currentLocale === "en" ? TAG_Type_EN : TAG_TYPE_ZH;
+  const activeIndex = selected ? Math.max(tagType.indexOf(selected), 0) : 0;
 
   const handleOnclick = (tag, index) => {
-    setActiveIndex(index);
-
     if (index === 0) {
       onChange("");
     } else {
@@ -38,6 +29,7 @@ export default function TagToggle({ selected, onChange }) {
               className={`tag-toggle ${activeIndex === index ? "active" : ""}`}
               key={index}
               type="button"
+              aria-pressed={activeIndex === index}
               onClick={() => handleOnclick(tag, index)}
             >
               {tag}
