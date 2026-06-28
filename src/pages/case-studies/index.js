@@ -15,6 +15,10 @@ export default function CaseStudies() {
     "casestudies-global-dataPlugin",
   );
   const [filters, setFilters] = React.useState();
+  const caseStudiesDocsPath =
+    i18n.currentLocale === "en"
+      ? "/docs/community/casestudies/"
+      : `/${i18n.currentLocale}/docs/community/casestudies/`;
 
   const casestudiesGlobalDataMemo = React.useMemo(() => {
     if (filters) {
@@ -42,7 +46,7 @@ export default function CaseStudies() {
           </p>
           <a
             className="button"
-            href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/casestudies/`}
+            href={caseStudiesDocsPath}
             target="_blank"
             rel="noopener noreferrer"
           >
