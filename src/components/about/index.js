@@ -8,13 +8,11 @@ export default function About() {
     <SectionContainer className="aboutContainer">
       <div className={"row"}>
         <div className={"profile"}>
-          <img className={"portrait"} src="img/avatar.png"></img>
+          <img alt="KubeEdge" className={"portrait"} src="img/avatar.png"></img>
           <div className={"portraitTitle"}>
             <h3 className={"name"}>KubeEdge</h3>
             <h3 className={"jobTitle"}>
-              <Translate>
-                Kubernetes Native Edge Computing Framework
-              </Translate>
+              <Translate>Kubernetes Native Edge Computing Framework</Translate>
             </h3>
           </div>
         </div>
