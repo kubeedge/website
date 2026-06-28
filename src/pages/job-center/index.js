@@ -18,7 +18,7 @@ export default function JobCenter() {
           <p className="job-center-subtitle">
             <Translate>
               Welcome to the KubeEdge Job Center. We wish you the best of luck
-              to find the right job or top telent here.
+              to find the right job or top talent here.
             </Translate>
           </p>
           <a
