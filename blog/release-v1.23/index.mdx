@@ -1,0 +1,60 @@
+authors	
+KubeEdge SIG Release
+categories	
+General
+Announcements
+date	2026-05-08
+draft	false
+lastmod	2026-05-08
+summary	KubeEdge v1.23 is live!
+tags	
+KubeEdge
+kubeedge
+edge computing
+kubernetes edge computing
+K8s edge orchestration
+edge computing platform
+cloud native
+iot
+iiot
+release v1.23
+v1.23
+title	KubeEdge v1.23 is live!
+
+KubeEdge v1.23 is live!
+
+1.23 What's New
+- EdgeCore and Keadm Capability Enhancements on Windows OS
+- Support Device Anomaly Detection in Device CRDs and mappers
+- Optimizing Node Querying Path from Edge to Reduce Edge-Cloud Bandwidth
+- Replace Beego with Gorm and Reconstruct Edge DB
+- Upgrade Kubernetes Dependency to v1.32.10
+- New Release Dashboard: i18n(Chinese), Performance Enhancements and UI Improvement
+
+Release Highlights
+
+EdgeCore and Keadm Capability Enhancements on Windows OS
+In v1.23.0, several enhancements were made for Windows OS support:
+- Local DMI service is now provided using Windows named pipes for local network communication.
+- Keadm now detects existing edgecore.exe version and re-downloads when a newer version is available.
+- When EdgeCore runs as a Windows service, logs are redirected to a log file for better troubleshooting.
+
+Support Device Anomaly Detection in Device CRDs and mappers
+In v1.23.0, a device anomaly detection framework is introduced in KubeEdge device management. Users can specify anomaly detection configuration in Device CRDs pushMethod. This makes anomaly detection pluggable at the mapper level.
+
+Optimizing Node Querying Path from Edge to Reduce Edge-Cloud Bandwidth
+EdgeCore now retrieves node information directly from the local edge database instead of remote querying via CloudCore. CloudCore automatically synchronizes updated node information to the edge database. This significantly improves performance in large-scale edge deployments.
+
+Replace Beego with Gorm and Reconstruct Edge DB
+In v1.23.0, Beego has been replaced with GORM for a lighter-weight edge component. All database operations have been refactored with a unified entry point within the MetaManager module.
+
+Upgrade Kubernetes Dependency to v1.32.10
+Kubernetes dependency has been upgraded to v1.32.10, enabling users to use the latest Kubernetes features on both cloud and edge.
+
+New Release Dashboard v0.2.0
+- Introduces a Backend-for-Frontend (BFF) layer for better performance
+- Adds Chinese language support
+- Improves visual style and user experience
+
+Important Steps before Upgrading
+In v1.23.0, the status part of Device CRD has been extracted into a separate DeviceStatus CRD. Device status must now be retrieved from the new DeviceStatus CRD.
