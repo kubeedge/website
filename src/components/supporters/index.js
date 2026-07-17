@@ -2,7 +2,6 @@ import React from "react";
 import SectionContainer from "../sectionContainer";
 import Translate from "@docusaurus/Translate";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import "./index.scss";
 
 const supportList = [
@@ -229,13 +228,12 @@ const supportList = [
 ];
 
 export default function Supporters() {
-  const { i18n } = useDocusaurusContext();
   return (
     <SectionContainer className={"supporterContainer"}>
       <div className={"supporters"}>
         <h1>
-          <a
-            href={`/${i18n.currentLocale}/docs/community/supporters`}
+          <Link
+            to="/docs/community/supporters"
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none" }}
@@ -246,7 +244,7 @@ export default function Supporters() {
             <span style={{ color: "#1c77c8" }}>
               <Translate>Community</Translate>
             </span>
-          </a>
+          </Link>
         </h1>
       </div>
       <div className={"supporterBoxContainer"}>
