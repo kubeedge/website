@@ -3,7 +3,7 @@ title: Installation
 sidebar_position: 1
 ---
 
-If you encounter problems during installation, such as cloudcore/edgecore don't start successfully, or they both start but edge nodes are always in `NotReady`, or pod cannot be deployed to edge nodes as what is described in [Deploy demo on edge nodes](../setup/install-with-binary.md#Deploy-demo-on-edge-nodes). This doc can help you debug how to fix the issues.
+If you encounter problems during installation, such as cloudcore/edgecore don't start successfully, or they both start but edge nodes are always in `NotReady`, or pod cannot be deployed to edge nodes as what is described in [Deploy demo on edge nodes](../setup/installation/install-with-binary.md#deploy-demo-on-edge-nodes). This doc can help you debug how to fix the issues.
 
 # Common knowledge
 ## How to check logs?

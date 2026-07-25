@@ -58,4 +58,4 @@ $ mv /tmp/kubeedge_backup/edgecore.db /var/lib/kubeedge/
 
 ## 部署
 
-阅读[部署文档](./install-with-keadm) 。
+阅读[部署文档](./installation/install-with-keadm) 。

@@ -1,7 +1,7 @@
-```yaml
+---
 title: keink部署KubeEdge
-sidebar_position: 5
-```
+sidebar_position: 3
+---
 
 此方法仅用于试用 KubeEdge，请勿在生产环境中使用。
 

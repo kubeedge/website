@@ -349,6 +349,6 @@ systemctl cat cloudcore.service
 ## Related Documentation
 
 - [Enable kubectl logs/exec to debug pods on the edge](./debug.md)
-- [KubeEdge Installation with keadm](../setup/install-with-keadm.md)
+- [KubeEdge Installation with keadm](../setup/installation/install-with-keadm.md)
 - [CloudCore Configuration Reference](../setup/config.md)
 - [KubeEdge Troubleshooting FAQ](../faq/setup.md)
