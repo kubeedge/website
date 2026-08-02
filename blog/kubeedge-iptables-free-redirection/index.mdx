@@ -155,8 +155,8 @@ The port had switched to CloudCore's stream port instead of the local DNAT tunne
 And then the part that actually matters to anyone using the cluster:
 
 ```bash
-kubectl exec <pod> -n <namespace> -- echo hello-from-edgetunnelip
-kubectl logs <pod> -n <namespace> --tail=5
+kubectl logs kube-proxy-krx78 -n kube-system --tail=2
+kubectl exec kube-proxy-krx78 -n kube-system -- /usr/local/bin/kube-proxy --version
 ```
 
 ![real kubectl exec and logs output flowing through the tunnel](./screenshot-4-exec-logs.png)
