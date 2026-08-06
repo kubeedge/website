@@ -1,0 +1,207 @@
+# KubeEdge 秋季带薪远程实习来了！2026 年 LFX Mentorship 开启申请
+
+## 一、LFX Mentorship 计划简介
+
+LFX Mentorship 计划由 Linux Foundation 组织，2019 年起为 CNCF 开源社区开发者提供带薪实习与导师指导。
+
+- 累计收到 20000 + 份申请，开放 2200 + 课题
+- 超 1400 名实习生顺利结业
+- 累计发放津贴超 380 万美金
+
+### 2026 秋季（Term 3）基础信息
+
+1. **申请时间**：8 月 3 日 – 8 月 18 日 23:59 UTC
+2. **实习周期**：9 月 7 日起，为期 3 个月，全程远程线上协作
+3. **实习报酬**：中国开发者津贴 $3100 美金（约合￥20916 人民币）
+4. **申请官网**：[https://mentorship.lfx.linuxfoundation.org/](https://link.wtturl.cn/?target=https%3A%2F%2Fmentorship.lfx.linuxfoundation.org%2F&scene=im&aid=497858&lang=zh)
+
+## 二、KubeEdge 社区介绍
+
+KubeEdge 已连续 6 年参与 LFX Mentorship，累计提供 30 + 实习项目：
+
+- 定位：业界首个云原生边缘计算框架，CNCF 毕业级唯一边缘计算开源项目
+- GitHub 数据：8.2k+ Stars、2.3k+ Fork
+- 社区规模：覆盖全球 35 + 国家、120 + 贡献组织、1800 + 开发者
+- 标杆落地项目：
+  1. 最大规模云原生边云协同项目（统一管理 10 万边缘节点 / 50 万边缘应用）
+  2. 业界首个云原生星地协同卫星、车云协同汽车、云原生油田项目
+  3. 开源分布式协同 AI 框架 Sedna、边云协同终身学习范式
+  4. 分布式 AI 基准测试工具 Ianvs
+- 社区仓库：[https://github.com/kubeedge/kubeedge](https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fkubeedge%2Fkubeedge&scene=im&aid=497858&lang=zh)
+
+## 三、面向申请者要求
+
+需在 2026 年 8 月 18 日前完成官网 Mentee 注册与项目申请，准入规则如下：
+
+- 实习开始时年满 18 周岁
+- 所属单位 / 组织不限制参与本次远程实习
+- 未同期参加其他 Linux Mentorship 项目
+- 以个人身份申报（在校生、已毕业均可）
+- 持有申报国家合法工作权限（中国地区已开放许可）
+- 非社区核心维护者 / 长期高频贡献者（Maintainer、Recurring Contributor 不可申报）
+- 满足目标课题对应的前置技术要求
+
+## 四、2026 秋季完整时间流程
+
+表格
+
+| 阶段 | 时间节点（UTC/PDT） | 事项 |
+| --- | --- | --- |
+| 注册申报 | 8.3 – 8.18 23:59 UTC | Mentee 账号注册 + 项目申请提交 |
+| 材料审核 | 8.19 – 9.1 18:00 UTC | 社区导师筛选申请者 |
+| 入选通知 | 9.2 – 9.4 | 邮件告知申请结果 |
+| 实习启动 | 9.7 | 正式开发协作开启 |
+| 中期考核 | 10.20 18:00 UTC | 阶段成果评审 |
+| 首期津贴发放 | 10.21 | 发放一半实习薪资 |
+| 结项交付 | 11.24 18:00 UTC | 提交实习报告 + 合并项目 PR |
+| 尾款审批 | 11.25 | 最终津贴审核通过 |
+| 项目结束 | 11.27 | 本期 LFX 实习全部收尾 |
+
+补充说明：
+
+1. 全程线上协作，无需线下到场；
+2. 全部代码成果需在 11 月 24 日前以 PR 形式合并至社区开源仓库。
+3. 申请操作指南：[https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply](https://link.wtturl.cn/?target=https%3A%2F%2Fdocs.linuxfoundation.org%2Flfx%2Fmentorship%2Fmentee-guide%2Fhow-to-apply&scene=im&aid=497858&lang=zh)
+
+## 五、KubeEdge 四大实习课题详情
+
+### 课题 1：Modernize KubeEdge Controllers and Admission Webhooks
+
+#### 课题描述
+
+KubeEdge 当前云端 Controller 和 Admission Webhook 采用两套独立实现，不符合 Kubebuilder /controller-runtime 官方推荐架构。
+项目目标：统一 Controller Manager 进程，将 Admission Webhook 集成至控制器主程序，对齐 Go、K8s、controller-runtime 工具链版本，统一证书、缓存、监控、生命周期管理，并完善安全漏洞检测与自动化测试体系。
+
+#### 预期产出
+
+1. 梳理现有 Go、K8s、controller-runtime、Webhook 完整技术栈现状
+2. 输出架构升级设计方案（迁移步骤、兼容、回退、证书管理）
+3. 统一改造 go.mod、Dockerfile、Makefile、CI 脚本的编译版本
+4. 迁移所有 Admission Handler 至 controller-runtime 标准框架
+5. 合并独立 Webhook 部署组件，复用同一套 Scheme/Client/ 缓存 / 日志
+6. 补充单元、envtest 集成、端到端全链路测试
+7. 接入 govulncheck 自动化 Go 依赖漏洞扫描
+8. 验证 AMD64 / ARM64 多架构构建
+9. 更新开发、部署、故障排查文档 + 发布技术博客
+
+#### 前置技能
+
+Go、Kubernetes、KubeEdge、Kubebuilder、controller-runtime、controller-tools、Admission Webhook、CRD、GitHub Actions、Docker、Linux
+
+#### 导师信息
+
+- Wei Hu (@WillardHu) wei.hu@daocloud.io
+- Chuanhao Jin (@chuanhao jin) jch995321@gmail.com
+
+#### 项目链接
+
+- LFX 课题页：[https://mentorship.lfx.linuxfoundation.org/project/104f564b-8f94-436b-b52e-8915ff290ef9](https://link.wtturl.cn/?target=https%3A%2F%2Fmentorship.lfx.linuxfoundation.org%2Fproject%2F104f564b-8f94-436b-b52e-8915ff290ef9&scene=im&aid=497858&lang=zh)
+- GitHub Issue：[https://github.com/kubeedge/kubeedge/issues/7105](https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fkubeedge%2Fkubeedge%2Fissues%2F7105&scene=im&aid=497858&lang=zh)
+
+---
+
+### 课题 2：Enable RuntimeClass and Confidential Containers on KubeEdge
+
+#### 课题描述
+
+KubeEdge 目前缺少完整 RuntimeClass 支持，边缘工作负载无法切换 Kata Containers、机密容器等隔离运行时。
+项目目标：实现云边 RuntimeClass 资源同步，让 Edged 可识别 Pod `runtimeClassName` 并匹配对应 CRI 运行时；可选基于 Intel TDX 验证机密容器、边缘 AI 机密推理场景。
+
+#### 预期产出
+
+1. 调研上游 K8s RuntimeClass 工作流，定位 KubeEdge 缺失能力
+2. 搭建 KubeEdge + Kata Containers 复现测试环境
+3. 输出 RuntimeClass 云边同步、缓存、异常处理设计文档
+4. 代码改造：RuntimeClass 资源下发至边缘，Edged 自动匹配 CRI 运行时
+5. 完善异常分支处理（运行时不存在、配置非法等）
+6. 单元测试、端到端测试覆盖断连、重启、资源同步场景
+7. 提供完整部署清单、验证脚本、运维文档
+8. 输出用户指南技术博客
+9. 可选：TDX 机密容器验证、边缘机密 AI 推理演示
+
+#### 前置技能
+
+Go、Kubernetes、KubeEdge、RuntimeClass、Containerd、CRI、Kata Containers、Confidential Containers、Linux、机密计算
+
+#### 导师信息
+
+- Hongbing Zhang (@HongbingZhang) hongbing.zhang@daocloud.io
+- Shelley Bao (@Shelley-BaoYue) baoyue2@huawei.com
+
+#### 项目链接
+
+- LFX 课题页：[https://mentorship.lfx.linuxfoundation.org/project/ef5b6ae6-99be-42e0-aeae-897684b0e9c8](https://link.wtturl.cn/?target=https%3A%2F%2Fmentorship.lfx.linuxfoundation.org%2Fproject%2Fef5b6ae6-99be-42e0-aeae-897684b0e9c8&scene=im&aid=497858&lang=zh)
+- GitHub Issue：[https://github.com/kubeedge/kubeedge/issues/7106](https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fkubeedge%2Fkubeedge%2Fissues%2F7106&scene=im&aid=497858&lang=zh)
+
+---
+
+### 课题 3：Comprehensive Example Restoration for KubeEdge Ianvs: Phase IV (2026 Term 3)
+
+#### 课题描述
+
+Ianvs 是 KubeEdge SIG AI 分布式基准测试套件，现有 30 + 示例；但 Python、AI 依赖持续迭代导致大量样例失效、用户故障 Issue 激增。本项目系统性修复所有示例，完善 CI 保障样例长期可用。
+
+#### 预期产出
+
+1. 批量修复样例依赖、配置、运行报错，完成许可证扫描
+2. 重写可复现教程、故障排查手册，发布社区技术博客
+3. 升级 GitHub Actions CI，多 Python 版本自动校验示例，拦截破坏性 PR
+
+#### 前置技能
+
+Python、Benchmark、KubeEdge-Ianvs、AI / 机器学习
+
+#### 导师信息
+
+- Zimu Zheng (@MooreZheng) zimu.zheng@huawei.com
+- Kai-Wei Chou (@ken6078) ken60786213@gmail.com
+
+#### 项目链接
+
+- LFX 课题页：[https://mentorship.lfx.linuxfoundation.org/project/0a346d47-1eff-480c-990d-fa8bf6d9e24a](https://link.wtturl.cn/?target=https%3A%2F%2Fmentorship.lfx.linuxfoundation.org%2Fproject%2F0a346d47-1eff-480c-990d-fa8bf6d9e24a&scene=im&aid=497858&lang=zh)
+- GitHub Issue：[https://github.com/kubeedge/ianvs/issues/230](https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fkubeedge%2Fianvs%2Fissues%2F230&scene=im&aid=497858&lang=zh)
+
+---
+
+### 课题 4：KubeEdge-Ianvs Simulation Sandbox: Environment-Isolated Execution
+
+#### 课题描述
+
+大规模云边 AI 集群部署成本高、测试易出现 Python 依赖冲突、OOM 内存溢出。项目基于单机嵌套节点仿真方案，实现测试用例环境隔离、资源配额限制，采集 CPU / 内存等系统指标，低成本模拟多边缘节点集群。
+
+#### 预期产出
+
+1. 修复并扩展历史仿真模块，搭建仿真控制器：
+   - 环境管理员：校验主机资源、自动创建 / 销毁隔离仿真集群
+   - 作业管理器：Docker 镜像构建、仿真任务调度、资源配额管控（CPU / 内存）
+2. Kind+EdgeCore+Sedna 一体化仿真集群验证方案
+3. 打通系统指标（CPU、峰值内存、耗时）与 AI 算法评测指标，统一可视化看板
+4. 彻底解决多模型并行测试依赖冲突、OOM 崩溃问题
+
+#### 前置技能
+
+KubeEdge、Kubernetes、Docker、Linux 内核机制、Go、Python、Benchmark、AI/ML、Sedna、Ianvs
+
+#### 导师信息
+
+- Zimu Zheng (@MooreZheng) zimu.zheng@huawei.com
+- Shijing Hu (@hsj576) sjhu21@m.fudan.edu.cn
+
+#### 项目链接
+
+- LFX 课题页：[https://mentorship.lfx.linuxfoundation.org/project/0aca7087-4985-4d22-a7c2-b8d5845e962b](https://link.wtturl.cn/?target=https%3A%2F%2Fmentorship.lfx.linuxfoundation.org%2Fproject%2F0aca7087-4985-4d22-a7c2-b8d5845e962b&scene=im&aid=497858&lang=zh)
+- GitHub Issue：[https://github.com/kubeedge/ianvs/issues/348](https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fkubeedge%2Fianvs%2Fissues%2F348&scene=im&aid=497858&lang=zh)
+
+## 六、社区咨询渠道
+
+有课题、申请相关问题可通过两种方式提问：在对应 GitHub 仓库提交 Issue 沟通
+
+> 
+> 今年秋季，KubeEdge 社区期待在 LFX Mentorship 见到您！
+
+## 参考链接
+
+[1] LFX Mentorship 官网申报入口：[https://mentorship.lfx.linuxfoundation.org/#projects_all](https://link.wtturl.cn/?target=https%3A%2F%2Fmentorship.lfx.linuxfoundation.org%2F%23projects_all&scene=im&aid=497858&lang=zh)
+[2] 申请者资格说明：[https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/am-i-eligible](https://link.wtturl.cn/?target=https%3A%2F%2Fdocs.linuxfoundation.org%2Flfx%2Fmentorship%2Fmentee-guide%2Fam-i-eligible&scene=im&aid=497858&lang=zh)
+[3] 2026 秋季项目总说明：[https://github.com/cncf/mentoring/tree/main/programs/lfx-mentorship/2026/03-Sep-Nov](https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fcncf%2Fmentoring%2Ftree%2Fmain%2Fprograms%2Flfx-mentorship%2F2026%2F03-Sep-Nov&scene=im&aid=497858&lang=zh)
+[4] 实习生申请完整指南：[https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply](https://link.wtturl.cn/?target=https%3A%2F%2Fdocs.linuxfoundation.org%2Flfx%2Fmentorship%2Fmentee-guide%2Fhow-to-apply&scene=im&aid=497858&lang=zh)
