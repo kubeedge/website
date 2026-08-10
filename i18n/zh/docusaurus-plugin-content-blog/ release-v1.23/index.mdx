@@ -83,13 +83,13 @@ https://github.com/kubeedge/kubeedge/pull/6543
 
 之前的版本中，EdgeCore 需要通过边云通道远程查询节点信息，在大规模场景下，边云通道带宽消耗尤其显著。在新版本中，EdgeCore 直接从边缘数据库查询节点，同时，CloudCore 检测到节点信息更新时会自动同步到边缘数据库，显著提升了大规模边缘场景下的系统性能和可靠性。
 
-**更多信息可参考**：https://github.com/kubeedge/kubeedge/pull/6543
+**更多信息可参考 **：https://github.com/kubeedge/kubeedge/pull/6543
 
 ### 使用 Gorm 替换 Beego，并重构边缘数据库
 
 原有的边缘数据库使用的 Beego 框架，实际上仅用到了 ORM 部分。在新版本中，我们使用更轻量的 Gorm 替换 Beego 框架。同时，对边缘数据库进行重构，在 MetaManager 中引入统一的数据库操作入口，使数据库交互更清晰、易维护。
 
-**更多信息可参考：**https://github.com/kubeedge/kubeedge/issues/6296https://github.com/kubeedge/kubeedge/pull/6585
+**更多信息可参考： **https://github.com/kubeedge/kubeedge/issues/6296https://github.com/kubeedge/kubeedge/pull/6585
 
 ### 升级K8s依赖到1.32
 
