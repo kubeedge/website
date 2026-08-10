@@ -73,19 +73,20 @@ anomolyDetection:
 https://github.com/kubeedge/kubeedge/pull/6478
 
 https://github.com/kubeedge/kubeedge/pull/6543
+<br>
 
 **▍优化边缘侧查询节点流程，降低边云通道带宽占用**
 
 之前的版本中，EdgeCore 需要通过边云通道远程查询节点信息，在大规模场景下，边云通道带宽消耗尤其显著。在新版本中，EdgeCore 直接从边缘数据库查询节点，同时，CloudCore 检测到节点信息更新时会自动同步到边缘数据库，显著提升了大规模边缘场景下的系统性能和可靠性。**更多信息可参考**：https://github.com/kubeedge/kubeedge/pull/6543
-
+<br>
 **▍使用 Gorm 替换 Beego，并重构边缘数据库**原有的边缘数据库使用的 Beego 框架，实际上仅用到了 ORM 部分。在新版本中，我们使用更轻量的 Gorm 替换 Beego 框架。同时，对边缘数据库进行重构，在 MetaManager 中引入统一的数据库操作入口，使数据库交互更清晰、易维护。
 
 更多信息可参考：https://github.com/kubeedge/kubeedge/issues/6296https://github.com/kubeedge/kubeedge/pull/6585
-
+<br>
 **▍升级K8s依赖到1.32**
 
 新版本将依赖的 Kubernetes 版本升级到 v1.32.10，您可以在云和边缘使用新版本的特性。**更多信息可参考：**https://github.com/kubeedge/kubeedge/pull/6549
-
+<br>
 **▍Dashboard 新版本发布：国际化（中文）支持、性能提升与页面优化**
 
 Dashboard v0.2.0 正式发布，包括如下更新：
@@ -97,7 +98,7 @@ Dashboard v0.2.0 正式发布，包括如下更新：
 更多信息可参考：
 
 https://github.com/kubeedge/dashboard/tree/v0.2.0
-
+<br>
 **版本升级注意事项**
 
 v1.23.0 开始，Device CRD 的 Status 字段将分离出来，单独作为 DeviceStatus CRD 使用。该变更兼容旧版CRD，但需注意，在后续版本中设备状态需要通过新的 DeviceStatus CRD 获取。
@@ -105,11 +106,11 @@ v1.23.0 开始，Device CRD 的 Status 字段将分离出来，单独作为 Devi
 **更多信息可参考：**
 
 https://github.com/kubeedge/kubeedge/pull/6534
-
+<br>
 **▍致谢**
 
 感谢KubeEdge社区技术指导委员会(TSC)、各SIG成员对v1.23版本开发的支持与贡献，未来KubeEdge将持续在新场景探索与支持、稳定性、安全性、可扩展性等方面持续发展与演进！
-
+<br>
 **▍相关链接**
 
 Release Notes：
@@ -117,28 +118,3 @@ Release Notes：
 https://github.com/kubeedge/kubeedge/blob/master/CHANGELOG/CHANGELOG-1.23.md
 
 
-
-
-
-
-
-1、ConfigUpdateJob updateFields 启用了在边缘节点上的远程 shell 注入和代码执行
-https://github.com/kubeedge/kubeedge/security/advisories/GHSA-m3c6-2p7h-cfr3
-CVE ID：CVE-2026-62182
-CVSS 评级：3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
-
-2、keadm DecompressTarGz 路径遍历功能允许在边缘节点加入期间在 Windows 上进行任意文件写入
-https://github.com/kubeedge/kubeedge/security/advisories/GHSA-9vm9-pqxx-x83v
-CVE ID：CVE-2026-62369
-CVSS 评级：3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:H
-
-3、高架打包器中的无限制分配功能支持针对 CloudHub 的已认证远程 DoS 攻击
-https://github.com/kubeedge/kubeedge/security/advisories/GHSA-gfw4-49f9-cp25
-CVE ID：CVE-2026-62370
-CVSS 评级:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H
-
-4、NodeUpgradeJob 中的命令注入漏洞 - 通过 v1alpha2 API 对边缘节点进行远程代码执行
-https://github.com/kubeedge/kubeedge/security/advisories/GHSA-5jpj-293f-rhvj
-CVE ID：CVE-2026-62371
-CVSS 评级:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
- 
