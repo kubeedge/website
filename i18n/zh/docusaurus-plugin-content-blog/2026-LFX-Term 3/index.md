@@ -23,6 +23,7 @@ title: KubeEdge秋季带薪远程实习来了！2026年LFX Mentorship开启申�
 # KubeEdge秋季带薪远程实习来了！2026年LFX Mentorship开启申请
 
 LFX Mentorship 计划，由 Linux Foundation 组织，从19年开始为 CNCF 各个开源社区中的开发人员持续提供带薪实习和指导。往年已获20k+申请，发起**2200**+课题，毕业超千名实习生，发放超过**390万**美金报酬。
+[头像](i18n/zh/docusaurus-plugin-content-blog/2026-LFX-Term 3/images/1.png)
 
 **2026年秋季(Term 3）申请时间为8月3日 – 8月18日（23:59 UTC)**，**远程实习将从 9月 7 日开始为期三个月**。参与到 LFX Mentorship 计划中，为开源项目做贡献、获得开源社区的认可同时，完成工作还能获取报酬 (**位于中国的开发者报酬为$3100美金，约合￥20916人民币**）。
 
