@@ -26,7 +26,7 @@ LFX Mentorship 计划，由 Linux Foundation 组织，从19年开始为 CNCF 各
 
 **2026年秋季(Term 3）申请时间为8月3日 – 8月18日（23:59 UTC)**，**远程实习将从 9月 7 日开始为期三个月**。参与到 LFX Mentorship 计划中，为开源项目做贡献、获得开源社区的认可同时，完成工作还能获取报酬 (**位于中国的开发者报酬为$3100美金，约合￥20916人民币**）。
 
-今年 KubeEdge 社区在 LFX Mentorship 计划中准备了多个课题，感兴趣的读者可于**即日起**前点击**阅读全文**，或到官方平台申请：_https://mentorship.lfx.linuxfoundation.org/_
+今年 KubeEdge 社区在 LFX Mentorship 计划中准备了多个课题，感兴趣的读者可于**即日起**到官方平台申请：_https://mentorship.lfx.linuxfoundation.org/_
 
 ## KubeEdge社区介绍 
 
@@ -78,7 +78,9 @@ _https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply_
 
 **课题描述**：
 
-KubeEdge 当前的云端 Controller 与 Admission Webhook 使用了不同的实现和部署方式。Controller Manager 已经采用 controller-runtime Manager 和 Reconcile 模型，而 Admission 仍然作为独立命令、HTTP Server、Webhook 注册流程、Deployment 和 Service 运行。当前 Kubebuilder 和 controller-runtime 推荐将 Reconcile Controller 与 Admission Webhook Server 运行在同一个 Controller Manager 进程中，从而统一 Kubernetes Client、Scheme、Cache、生命周期、健康检查、Leader Election、Metrics、日志和证书管理。本项目旨在升级 KubeEdge 的 Go 和 Kubebuilder 相关技术栈，将 controller-runtime、controller-tools 与 KubeEdge 使用的 Kubernetes 版本对齐，把现有 Admission Handler 迁移到 controller-runtime Webhook 框架，并最终将 Controller 与 Admission 能力合并到统一的 Controller Manager 组件中。项目同时将引入自动化依赖漏洞检查和工具链版本管理，增强 KubeEdge 的依赖安全基线。**预计输出件：**
+KubeEdge 当前的云端 Controller 与 Admission Webhook 使用了不同的实现和部署方式。Controller Manager 已经采用 controller-runtime Manager 和 Reconcile 模型，而 Admission 仍然作为独立命令、HTTP Server、Webhook 注册流程、Deployment 和 Service 运行。当前 Kubebuilder 和 controller-runtime 推荐将 Reconcile Controller 与 Admission Webhook Server 运行在同一个 Controller Manager 进程中，从而统一 Kubernetes Client、Scheme、Cache、生命周期、健康检查、Leader Election、Metrics、日志和证书管理。本项目旨在升级 KubeEdge 的 Go 和 Kubebuilder 相关技术栈，将 controller-runtime、controller-tools 与 KubeEdge 使用的 Kubernetes 版本对齐，把现有 Admission Handler 迁移到 controller-runtime Webhook 框架，并最终将 Controller 与 Admission 能力合并到统一的 Controller Manager 组件中。项目同时将引入自动化依赖漏洞检查和工具链版本管理，增强 KubeEdge 的依赖安全基线。
+
+**预计输出件：**
 
 - 梳理 KubeEdge 当前使用的 Go、Kubernetes、controller-runtime、controller-tools、代码生成、Controller Manager 和 Admission Webhook 实现。
 - 根据 KubeEdge 使用的 Kubernetes 版本确定合适的 Go、controller-runtime、controller-tools 和 Kubebuilder 兼容版本。
@@ -124,6 +126,7 @@ _https://mentorship.lfx.linuxfoundation.org/project/104f564b-8f94-436b-b52e-8915
 
 _https://github.com/kubeedge/kubeedge/issues/7105_
 
+##
 ### Enable RuntimeClass and Confidential Containers on KubeEdge
 
 **课题描述：**
@@ -170,6 +173,7 @@ _https://mentorship.lfx.linuxfoundation.org/project/ef5b6ae6-99be-42e0-aeae-8976
 
 **Github Issue：**  
 _https://github.com/kubeedge/kubeedge/issues/7106_
+##
 
 ### Comprehensive Example Restoration for KubeEdge Ianvs: Phase IV (2026 Term 3)
 
@@ -206,6 +210,7 @@ _https://mentorship.lfx.linuxfoundation.org/project/0a346d47-1eff-480c-990d-fa8b
 **Github Issue：**
 
 _https://github.com/kubeedge/ianvs/issues/230_
+##
 
 ### KubeEdge-Ianvs Simulation Sandbox: Environment-Isolated Execution
 
@@ -246,8 +251,6 @@ _https://mentorship.lfx.linuxfoundation.org/project/0aca7087-4985-4d22-a7c2-b8d5
 _https://github.com/kubeedge/ianvs/issues/348_
 
 如果对课题内容有任何问题，欢迎在 GitHub 仓库提交 Issue 或者添加社区小助手微信k8s2222向社区提问。
-
-扫码回复 “**KubeEdge**” 进入技术群
 
 今年秋季，KubeEdge 社区期待在 LFX Mentorship 见到您！
 
