@@ -70,7 +70,7 @@ _https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply_
 
 实习申请结果预计将在9月2日—9月4日通知到申请人。主线开发日期为2026年9月7日 – 11月24日，**全程线上协作，无需线下参与**。结项需要在**2026年11月24日**前以 PR 的形式提交到项目所在的开源社区仓库中并完成合并。
 
-**KubeEdge课题**
+## **KubeEdge课题**
 
 最后，向各位申请者推荐 CNCF KubeEdge 社区下列课题：
 
