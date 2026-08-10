@@ -19,145 +19,113 @@ tags:
 - 2026秋季
 - Term3
 title: KubeEdge秋季带薪远程实习来了！2026年LFX Mentorship开启申请
----
+# **KubeEdge秋季带薪远程实习来了！2026年LFX Mentorship开启申请**
 
-LFX Mentorship 计划，由 Linux Foundation 组织，从19年开始为 CNCF 各个开源社区中的开发人员持续提供带薪实习和指导。往年已获20k+申请，发起2200+课题，毕业超千名实习生，发放超过390万美金报酬。
+LFX Mentorship 计划，由 Linux Foundation 组织，从19年开始为 CNCF 各个开源社区中的开发人员持续提供带薪实习和指导。往年已获20k+申请，发起**2200**+课题，毕业超千名实习生，发放超过**390万**美金报酬。
 
-2026年秋季(Term 3）申请时间为8月3日 – 8月18日（23:59 UTC)，远程实习将从 9月 7 日开始为期三个月。参与到 LFX Mentorship 计划中，为开源项目做贡献、获得开源社区的认可同时，完成工作还能获取报酬 (位于中国的开发者报酬为$3100美金，约合￥20916人民币）。
+**2026年秋季(Term 3）申请时间为8月3日 – 8月18日（23:59 UTC)**，**远程实习将从 9月 7 日开始为期三个月**。参与到 LFX Mentorship 计划中，为开源项目做贡献、获得开源社区的认可同时，完成工作还能获取报酬 (**位于中国的开发者报酬为$3100美金，约合￥20916人民币**）。
 
-今年 KubeEdge 社区在 LFX Mentorship 计划中准备了多个课题，感兴趣的读者可于即日起前点击阅读全文，或到官方平台申请：https://mentorship.lfx.linuxfoundation.org/
+今年 KubeEdge 社区在 LFX Mentorship 计划中准备了多个课题，感兴趣的读者可于**即日起**前点击**阅读全文**，或到官方平台申请：
 
-# KubeEdge社区介绍
+_https://mentorship.lfx.linuxfoundation.org/_
 
-KubeEdge 社区已经连续6年参与 LFX Mentorship 计划，过去已为学员提供30+个项目。KubeEdge 是业界首个云原生边缘计算框架、云原生计算基金会内部唯一毕业级边缘计算开源项目。在 GitHub 获得 8.2k+Stars和2.3k+Fork，吸引了全球来自35+国家的120+贡献组织及1800+开发者。近年来，KubeEdge 社区持续开拓创新，完成业界最大规模云原生边云协同高速公路项目（统一管理10万边缘节点/50万边缘应用）、业界首个云原生星地协同卫星、业界首个云原生车云协同汽车、业界首个云原生油田项目，开源业界首个分布式协同 AI 框架 Sedna 及业界首个边云协同终身学习范式、开源业界首个分布式协同 AI 基准测试 Ianvs。
+**KubeEdge社区介绍**
 
-社区地址：🌍https://github.com/kubeedge/kubeedge
+**KubeEdge 社区已经连续6年参与 LFX Mentorship 计划，过去已为学员提供30+个项目**。KubeEdge 是业界首个云原生边缘计算框架、云原生计算基金会内部唯一毕业级边缘计算开源项目。在 GitHub 获得 **8.2k+Stars**和**2.3k+Fork**，吸引了全球来自**35+国家的120+贡献组织及1800+开发者**。
+
+近年来，KubeEdge 社区持续开拓创新，完成业界最大规模云原生边云协同高速公路项目（统一管理10万边缘节点/50万边缘应用）、业界首个云原生星地协同卫星、业界首个云原生车云协同汽车、业界首个云原生油田项目，开源业界首个分布式协同 AI 框架 Sedna 及业界首个边云协同终身学习范式、开源业界首个分布式协同 AI 基准测试 Ianvs。社区地址：
+
+🌍_https://github.com/kubeedge/kubeedge_
 
 在 LFX Mentorship 2026秋季计划，KubeEdge 期待再次和计算机领域新生力量一起，开拓数字未来。
 
-# 面向对象
+**面向对象**
 
-秋季计划申请者需在2026年8月18日前在 LFX 官网[1]完成 Mentee 注册及项目申请。若被接收作为 Mentee，您将能在开源社区经验丰富、积极贡献的 Mentor 指导下为开源项目做出贡献。依据官方规定，对 Mentee 的申请者有以下要求[2]:
+**秋季计划申请者需在2026年8月18日前在 LFX 官网**<sup>\[1\]</sup>**完成 Mentee 注册及项目申请**。若被接收作为 Mentee，您将能在开源社区经验丰富、积极贡献的 Mentor 指导下为开源项目做出贡献。依据官方规定，对 Mentee 的申请者有以下要求<sup>\[2\]</sup>:
 
-计划开始时至少年满18周岁
+- 计划开始时至少年满18周岁
+- 所在单位和组织不禁止该实习
+- 未参加另外的 Linux Mentorship 计划
+- 开发者以个人身份参与（在校或已毕业均可）
+- 具备所注册国家中工作权利且所注册国家未被计划禁止 (中国已获许可)
+- 并非社区中高于最低限度贡献成员（如Maintainer、Recurring Contributor）
+- 满足具体所属项目中提及的其它前置需求
 
-所在单位和组织不禁止该实习
+## **课题参与方式** 根据官方安排 <sup>\[3\]</sup>，LFX Mentorship 2026年秋季活动流程如下：
 
-未参加另外的 Linux Mentorship 计划
+- **Mentee 注册与项目申请：8月3日-8月18日**（00:00 UTC/23:59 UTC)
+- **申请者审核期**： 8月19日-9月1日（11:00 AM PDT/18:00 UTC)
+- **申请者入选通知**：9月2日-9月4日
+- **实习正式开始**：9月7日
+- **中期考核**：10月20日（11:00 AM PDT/18:00 UTC)
+- **首次津贴支付**：10月21日
+- **结项考核、实习报告提交**：11月24日（11:00 AM PDT/18:00 UTC)
+- **最终津贴支付批准**：11月25日本期结束
+- **最终日期**：11月27日
 
-开发者以个人身份参与（在校或已毕业均可）
+申请者需要在8月18日前完成 Mentee 注册和项目申请，流程详见 <sup>\[4\]</sup>：
 
-具备所注册国家中工作权利且所注册国家未被计划禁止 (中国已获许可)
+_https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply_
 
-并非社区中高于最低限度贡献成员（如Maintainer、Recurring Contributor）
+实习申请结果预计将在9月2日—9月4日通知到申请人。主线开发日期为2026年9月7日 – 11月24日，**全程线上协作，无需线下参与**。结项需要在**2026年11月24日**前以 PR 的形式提交到项目所在的开源社区仓库中并完成合并。
 
-满足具体所属项目中提及的其它前置需求
-
-# 课题参与方式
-
-根据官方安排 [3]，LFX Mentorship 2026年秋季活动流程如下：
-
-Mentee 注册与项目申请：8月3日-8月18日（00:00 UTC/23:59 UTC)
-
-申请者审核期： 8月19日-9月1日（11:00 AM PDT/18:00 UTC)
-
-申请者入选通知：9月2日-9月4日
-
-实习正式开始：9月7日
-
-中期考核：10月20日（11:00 AM PDT/18:00 UTC)
-
-首次津贴支付：10月21日
-
-结项考核、实习报告提交：11月24日（11:00 AM PDT/18:00 UTC)
-
-最终津贴支付批准：11月25日本期结束
-
-最终日期：11月27日
-
-申请者需要在8月18日前完成 Mentee 注册和项目申请，流程详见 [4]：https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply
-
-实习申请结果预计将在9月2日—9月4日通知到申请人。主线开发日期为2026年9月7日 – 11月24日，全程线上协作，无需线下参与。结项需要在2026年11月24日前以 PR 的形式提交到项目所在的开源社区仓库中并完成合并。
-
-# KubeEdge课题
+**KubeEdge课题**
 
 最后，向各位申请者推荐 CNCF KubeEdge 社区下列课题：
 
-## ▍Modernize KubeEdge Controllers and Admission Webhooks
+## **Modernize KubeEdge Controllers and Admission Webhooks**
 
-课题描述：
+**课题描述**：
 
-KubeEdge 当前的云端 Controller 与 Admission Webhook 使用了不同的实现和部署方式。Controller Manager 已经采用 controller-runtime Manager 和 Reconcile 模型，而 Admission 仍然作为独立命令、HTTP Server、Webhook 注册流程、Deployment 和 Service 运行。
+KubeEdge 当前的云端 Controller 与 Admission Webhook 使用了不同的实现和部署方式。Controller Manager 已经采用 controller-runtime Manager 和 Reconcile 模型，而 Admission 仍然作为独立命令、HTTP Server、Webhook 注册流程、Deployment 和 Service 运行。当前 Kubebuilder 和 controller-runtime 推荐将 Reconcile Controller 与 Admission Webhook Server 运行在同一个 Controller Manager 进程中，从而统一 Kubernetes Client、Scheme、Cache、生命周期、健康检查、Leader Election、Metrics、日志和证书管理。本项目旨在升级 KubeEdge 的 Go 和 Kubebuilder 相关技术栈，将 controller-runtime、controller-tools 与 KubeEdge 使用的 Kubernetes 版本对齐，把现有 Admission Handler 迁移到 controller-runtime Webhook 框架，并最终将 Controller 与 Admission 能力合并到统一的 Controller Manager 组件中。项目同时将引入自动化依赖漏洞检查和工具链版本管理，增强 KubeEdge 的依赖安全基线。**预计输出件：**
 
-当前 Kubebuilder 和 controller-runtime 推荐将 Reconcile Controller 与 Admission Webhook Server 运行在同一个 Controller Manager 进程中，从而统一 Kubernetes Client、Scheme、Cache、生命周期、健康检查、Leader Election、Metrics、日志和证书管理。
+- 梳理 KubeEdge 当前使用的 Go、Kubernetes、controller-runtime、controller-tools、代码生成、Controller Manager 和 Admission Webhook 实现。
+- 根据 KubeEdge 使用的 Kubernetes 版本确定合适的 Go、controller-runtime、controller-tools 和 Kubebuilder 兼容版本。
+- 提交设计提案，说明统一 Controller Manager 架构、迁移步骤、兼容策略、证书管理、异常处理和回退方案。
+- 统一升级 go.mod、Builder 镜像、Dockerfile、Makefile、构建脚本、GitHub Actions 和贡献者文档中的 Go 版本。
+- 升级 controller-runtime 及相关 Controller 开发依赖，并确保与 KubeEdge Kubernetes 依赖兼容。
+- 根据需要，将现有 Controller 改造为当前 controller-runtime 推荐的 Reconcile 和 Manager 模式。
+- 将 Admission Webhook Server 集成到 KubeEdge Controller Manager 进程中。
+- 将现有 Validating 和 Mutating Admission Handler 迁移为 controller-runtime Admission Handler，或者适用情况下使用 Kubebuilder 风格的 Validator 和 Defaulter。
+- 通过同一个 controller-runtime Manager 统一注册 Controller 和 Webhook，并共享 Scheme、Client、Cache、Logger、健康检查和生命周期。
+- 使用 controller-tools Marker 和声明式 Manifest 替代当前手工创建 WebhookConfiguration 的方式。
+- 在完成功能一致性验证后，合并或移除独立 Admission Command、Deployment、Service、配置、RBAC 和证书处理逻辑。
+- 保持现有 Device、DeviceModel、Rule、RuleEndpoint、NodeUpgradeJob 和离线迁移等 Admission 能力。
+- 为统一组件补充 Leader Election、Health、Readiness、Metrics、Graceful Shutdown 和 Webhook 就绪检查。
+- 升级并统一 controller-gen、setup-envtes 和相关代码生成工具。
+- 重新生成并验证 CRD、RBAC、WebhookConfiguration 和 API 生成代码。
+- 为 Reconcile Controller 和 Admission Webhook 增加单元测试及基于 envtest 的集成测试。
+- 增加端到端测试，验证组件合并前后的 Controller 和 Admission 行为一致。
+- 接入 govulncheck 等 Go 漏洞检查，并记录漏洞处理规则。
+- 验证 AMD64 和 ARM64 构建链路，确保生成文件和 Vendor 依赖一致。
+- 更新安装、升级、开发和故障排查文档。
+- 发布技术博客或贡献者指南，介绍升级后的 KubeEdge Controller 架构。
 
-本项目旨在升级 KubeEdge 的 Go 和 Kubebuilder 相关技术栈，将 controller-runtime、controller-tools 与 KubeEdge 使用的 Kubernetes 版本对齐，把现有 Admission Handler 迁移到 controller-runtime Webhook 框架，并最终将 Controller 与 Admission 能力合并到统一的 Controller Manager 组件中。
+**前置技能：**
 
-项目同时将引入自动化依赖漏洞检查和工具链版本管理，增强 KubeEdge 的依赖安全基线。
+Go; Kubernetes; KubeEdge; Kubebuilder; controller-runtime; controller-tools; Admission Webhook; CRD; GitHub Actions; Docker; Linux
 
-预计输出件：
-
-梳理 KubeEdge 当前使用的 Go、Kubernetes、controller-runtime、controller-tools、代码生成、Controller Manager 和 Admission Webhook 实现。
-
-根据 KubeEdge 使用的 Kubernetes 版本确定合适的 Go、controller-runtime、controller-tools 和 Kubebuilder 兼容版本。
-
-提交设计提案，说明统一 Controller Manager 架构、迁移步骤、兼容策略、证书管理、异常处理和回退方案。
-
-统一升级 go.mod、Builder 镜像、Dockerfile、Makefile、构建脚本、GitHub Actions 和贡献者文档中的 Go 版本。
-
-升级 controller-runtime 及相关 Controller 开发依赖，并确保与 KubeEdge Kubernetes 依赖兼容。
-
-根据需要，将现有 Controller 改造为当前 controller-runtime 推荐的 Reconcile 和 Manager 模式。
-
-将 Admission Webhook Server 集成到 KubeEdge Controller Manager 进程中。
-
-将现有 Validating 和 Mutating Admission Handler 迁移为 controller-runtime Admission Handler，或者适用情况下使用 Kubebuilder 风格的 Validator 和 Defaulter。
-
-通过同一个 controller-runtime Manager 统一注册 Controller 和 Webhook，并共享 Scheme、Client、Cache、Logger、健康检查和生命周期。
-
-使用 controller-tools Marker 和声明式 Manifest 替代当前手工创建 WebhookConfiguration 的方式。
-
-在完成功能一致性验证后，合并或移除独立 Admission Command、Deployment、Service、配置、RBAC 和证书处理逻辑。
-
-保持现有 Device、DeviceModel、Rule、RuleEndpoint、NodeUpgradeJob 和离线迁移等 Admission 能力。
-
-为统一组件补充 Leader Election、Health、Readiness、Metrics、Graceful Shutdown 和 Webhook 就绪检查。
-
-升级并统一  controller-gen、setup-envtes 和相关代码生成工具。
-
-重新生成并验证 CRD、RBAC、WebhookConfiguration 和 API 生成代码。
-
-为 Reconcile Controller 和 Admission Webhook 增加单元测试及基于 envtest 的集成测试。
-
-增加端到端测试，验证组件合并前后的 Controller 和 Admission 行为一致。
-
-接入 govulncheck 等 Go 漏洞检查，并记录漏洞处理规则。
-
-验证 AMD64 和 ARM64 构建链路，确保生成文件和 Vendor 依赖一致。
-
-更新安装、升级、开发和故障排查文档。
-
-发布技术博客或贡献者指南，介绍升级后的 KubeEdge Controller 架构。
-
-前置技能：Go; Kubernetes; KubeEdge; Kubebuilder; controller-runtime; controller-tools; Admission Webhook; CRD; GitHub Actions; Docker; Linux
-
-课题导师：
+**课题导师：**
 
 Wei Hu (@WillardHu)
 
 wei.hu@daocloud.io
 
-Chuanhao Jin  (@chuanhao jin)
+Chuanhao Jin (@chuanhao jin)
 
 jch995321@gmail.com
 
-课题链接：https://mentorship.lfx.linuxfoundation.org/project/104f564b-8f94-436b-b52e-8915ff290ef9
+**课题链接：**
 
-Github Issue：https://github.com/kubeedge/kubeedge/issues/7105
+_https://mentorship.lfx.linuxfoundation.org/project/104f564b-8f94-436b-b52e-8915ff290ef9_
 
-## ▍Enable RuntimeClass and Confidential Containers on KubeEdge
+**Github Issue：**
 
-课题描述：
+_https://github.com/kubeedge/kubeedge/issues/7105_
+
+## **Enable RuntimeClass and Confidential Containers on KubeEdge**
+
+**课题描述：**
 
 Kubernetes RuntimeClass 允许工作负载选择指定的容器运行时处理器，包括标准 OCI 运行时、Kata Containers 和机密容器运行时。目前 KubeEdge 尚未为运行在边缘节点上的工作负载提供完整的 RuntimeClass 支持，因此依赖替代运行时或更强运行时隔离能力的工作负载无法正常部署到边缘节点。
 
@@ -165,37 +133,27 @@ Kubernetes RuntimeClass 允许工作负载选择指定的容器运行时处理�
 
 第一阶段聚焦于使用当前支持的 KubeEdge 与 Kata Containers 环境完成 RuntimeClass 验证，识别具体缺失的集成链路。基本 RuntimeClass 流程完成后，可以在具备测试环境和社区支持的情况下，进一步使用 Intel TDX 等技术验证机密工作负载，包括远程证明以及受保护的密钥或 Secret 下发。
 
-预计输出件：
+**预计输出件**：
 
-研究上游 Kubernetes RuntimeClass 工作流程，识别 KubeEdge 在资源同步和运行时选择方面缺失的能力。
+- 研究上游 Kubernetes RuntimeClass 工作流程，识别 KubeEdge 在资源同步和运行时选择方面缺失的能力。
+- 使用可复现的 KubeEdge 和 Kata Containers 环境验证当前行为。
+- 提交设计提案，说明 RuntimeClass 同步、边缘侧缓存、运行时处理器解析、兼容性和异常处理方案。
+- 完成所需代码改造，使 RuntimeClass 资源可以从 Kubernetes 控制面同步到 KubeEdge 边缘节点。
+- 支持边缘工作负载通过 spec.runtimeClassName 指定运行时。
+- 确保 Edged 能够正确选择对应的 CRI Runtime Handler。
+- 至少使用一种替代运行时完成验证，例如 Kata Containers。
+- 正确处理 RuntimeClass 不存在、配置无效或运行时处理器不可用等情况。
+- 增加单元测试和端到端测试，覆盖 RuntimeClass 同步、运行时选择、EdgeCore 重启和云边重新连接。
+- 提供可复现的部署清单、配置文件、验证脚本、架构文档和故障排查说明。
+- 发布技术博客或用户指南，介绍如何在 KubeEdge 中运行基于 RuntimeClass 的安全工作负载。
+- 可选：在 Intel TDX 或其他受支持的机密计算平台上，使用 Confidential Containers Runtime 验证机密工作负载。
+- 可选：在 RuntimeClass 和 Confidential Containers 基础集成完成后，演示一个边缘机密 AI 推理场景。
 
-使用可复现的 KubeEdge 和 Kata Containers 环境验证当前行为。
+**前置技能：**
 
-提交设计提案，说明 RuntimeClass 同步、边缘侧缓存、运行时处理器解析、兼容性和异常处理方案。
+Go; Kubernetes; KubeEdge; RuntimeClass; Containerd; Container Runtime Interface; Kata Containers; Confidential Containers; Linux; Confidential Computing
 
-完成所需代码改造，使 RuntimeClass 资源可以从 Kubernetes 控制面同步到 KubeEdge 边缘节点。
-
-支持边缘工作负载通过 spec.runtimeClassName 指定运行时。
-
-确保 Edged 能够正确选择对应的 CRI Runtime Handler。
-
-至少使用一种替代运行时完成验证，例如 Kata Containers。
-
-正确处理 RuntimeClass 不存在、配置无效或运行时处理器不可用等情况。
-
-增加单元测试和端到端测试，覆盖 RuntimeClass 同步、运行时选择、EdgeCore 重启和云边重新连接。
-
-提供可复现的部署清单、配置文件、验证脚本、架构文档和故障排查说明。
-
-发布技术博客或用户指南，介绍如何在 KubeEdge 中运行基于 RuntimeClass 的安全工作负载。
-
-可选：在 Intel TDX 或其他受支持的机密计算平台上，使用 Confidential Containers Runtime 验证机密工作负载。
-
-可选：在 RuntimeClass 和 Confidential Containers 基础集成完成后，演示一个边缘机密 AI 推理场景。
-
-前置技能：Go; Kubernetes; KubeEdge; RuntimeClass; Containerd; Container Runtime Interface; Kata Containers; Confidential Containers; Linux; Confidential Computing
-
-课题导师：
+**课题导师：**
 
 Hongbing Zhang (@HongbingZhang)
 
@@ -205,27 +163,32 @@ Shelley Bao (@Shelley-BaoYue)
 
 baoyue2@huawei.com
 
-课题链接：https://mentorship.lfx.linuxfoundation.org/project/ef5b6ae6-99be-42e0-aeae-897684b0e9c8
+**课题链接：**
 
-Github Issue：https://github.com/kubeedge/kubeedge/issues/7106
+_https://mentorship.lfx.linuxfoundation.org/project/ef5b6ae6-99be-42e0-aeae-897684b0e9c8_
 
-## ▍Comprehensive Example Restoration for KubeEdge Ianvs: Phase IV (2026 Term 3)
+**Github Issue：  
+**_https://github.com/kubeedge/kubeedge/issues/7106_
 
-课题描述：
+## **Comprehensive Example Restoration for KubeEdge Ianvs: Phase IV (2026 Term 3)**
 
-Ianvs 充当着 KubeEdge SIG AI 分布式基准测试工具套件的角色。随着越来越多的贡献者参与其中，KubeEdge Ianvs 目前已拥有多达 30 个样例，且这数字仍在不断增长。然而由于AI类依赖包的快速演进和验证机制的复杂性，KubeEdge Ianvs 面临着日益增多的可用性问题。具体地，随着 Python 版本、第三方库及 Ianvs 功能快速迭代，部分历史样例可能变得过时。这也导致用户报告的 Issue 激增，亟需避免被未稳定贡献代码误损原有功能、修复与实际能力不再匹配的文档。若不进行系统干预，对边缘 AI 开发者、尤其是新入行者而言这些样例可能变得难以使用。因此，我们尝试通过全面的样例修复工作来强化 Ianvs 可用性。
+**课题描述：**
 
-预计输出件：
+Ianvs 充当着 KubeEdge SIG AI 分布式基准测试工具套件的角色。随着越来越多的贡献者参与其中，KubeEdge Ianvs 目前已拥有多达 30 个样例，且这数字仍在不断增长。然而由于AI类依赖包的快速演进和验证机制的复杂性，KubeEdge Ianvs 面临着日益增多的可用性问题。
 
-诊断和修复多个样例中的错误，包括依赖关系清单、许可证扫描和运行时配置。
+具体地，随着 Python 版本、第三方库及 Ianvs 功能快速迭代，部分历史样例可能变得过时。这也导致用户报告的 Issue 激增，亟需避免被未稳定贡献代码误损原有功能、修复与实际能力不再匹配的文档。若不进行系统干预，对边缘 AI 开发者、尤其是新入行者而言这些样例可能变得难以使用。因此，我们尝试通过全面的样例修复工作来强化 Ianvs 可用性。
 
-文档更新，包括修订带有可复现步骤指南的教程，发布以开发人员为重点的常见故障调试演示手册。编写并上传相应的博客到KubeEdge网站。
+**预计输出件：**
 
-使用GitHub Actions针对多个Python版本、关键的 Ianvs/上游更新来完善CI管道测试示例，并阻止破坏已验证示例的PR。
+- 诊断和修复多个样例中的错误，包括依赖关系清单、许可证扫描和运行时配置。
+- 文档更新，包括修订带有可复现步骤指南的教程，发布以开发人员为重点的常见故障调试演示手册。编写并上传相应的博客到KubeEdge网站。
+- 使用GitHub Actions针对多个Python版本、关键的 Ianvs/上游更新来完善CI管道测试示例，并阻止破坏已验证示例的PR。
 
-前置技能：Python; Benchmark; KubeEdge-Ianvs; AI/ML
+**前置技能：**
 
-课题导师：
+Python; Benchmark; KubeEdge-Ianvs; AI/ML
+
+**课题导师：**
 
 Zimu Zheng (@MooreZheng)
 
@@ -235,31 +198,37 @@ Kai-Wei Chou (@ken6078)
 
 ken60786213@gmail.com
 
-课题链接：https://mentorship.lfx.linuxfoundation.org/project/0a346d47-1eff-480c-990d-fa8bf6d9e24a
+**课题链接：**
 
-Github Issue：https://github.com/kubeedge/ianvs/issues/230
+_https://mentorship.lfx.linuxfoundation.org/project/0a346d47-1eff-480c-990d-fa8bf6d9e24a_
 
-## ▍KubeEdge-Ianvs Simulation Sandbox: Environment-Isolated Execution
+**Github Issue：**
 
-课题描述：
+_https://github.com/kubeedge/ianvs/issues/230_
 
-对于大多数分布式人工智能方案开发者而言，构建和部署大规模云边协作系统通常既复杂又繁琐。尽管 KubeEdge-Ianvs 目前提供了一个单节点算法测试器，可以使用测试数据集评估准确率指标，但对于大规模节点而言，在实际环境中测量带宽、计算能力和峰值内存等系统级指标却极其困难且成本高昂。此外，在单个共享的 Python 进程中执行所有测试用例很容易引发依赖冲突、路径污染以及致命的内存溢出 (OOM) 崩溃，尤其是在运行 LLM、VLA 和基础模型等高负载模型以及轻量级示例时。为了应对这些挑战，本项目旨在引入一种工业级分布式协作系统仿真方案，该方案采用单机上的工作节点嵌套模式，提供低成本、可扩展的测试能力、强大的环境隔离以及精确的系统级指标分析。
+## **KubeEdge-Ianvs Simulation Sandbox: Environment-Isolated Execution**
 
-预计输出件：
+**课题描述**：
 
-恢复仿真核心功能：鉴于之前的提案，恢复并扩展 Ianvs 2022 仿真提案（Ianvs PR #35）及其实现（Ianvs PR #39，已发现 5 个以上缺陷），构建仿真控制器，将每个测试用例隔离在独立的瞬态运行时环境中，并强制执行系统级资源配额和边界控制机制，以限制边缘节点资源（CPU 和内存），从而避免依赖冲突和内存溢出 (OOM) 风险。关键组件包括：
+对于大多数分布式人工智能方案开发者而言，构建和部署大规模云边协作系统通常既复杂又繁琐。尽管 KubeEdge-Ianvs 目前提供了一个单节点算法测试器，可以使用测试数据集评估准确率指标，但对于大规模节点而言，在实际环境中测量带宽、计算能力和峰值内存等系统级指标却极其困难且成本高昂。
 
-仿真控制器环境管理员：在测试用例控制器中引入仿真控制器，以在单台机器上提供工作节点嵌套的工作节点系统，模拟多节点系统。实现仿真环境管理员，以解析系统配置、检查主机环境要求（例如，内存 > 4GB），并自动构建、部署、关闭和删除仿真环境。
+此外，在单个共享的 Python 进程中执行所有测试用例很容易引发依赖冲突、路径污染以及致命的内存溢出 (OOM) 崩溃，尤其是在运行 LLM、VLA 和基础模型等高负载模型以及轻量级示例时。为了应对这些挑战，本项目旨在引入一种工业级分布式协作系统仿真方案，该方案采用单机上的工作节点嵌套模式，提供低成本、可扩展的测试能力、强大的环境隔离以及精确的系统级指标分析。
 
-仿真控制器仿真作业管理器：开发关键的仿真作业管理器，负责算法镜像构建（例如 Docker）、YAML 生成、作业部署/删除以及使用工作进程监控仿真结果列表。同时，部署一个使用临时运行时环境和系统资源配额（CPU 和内存）的隔离执行层，以彻底防止依赖冲突和内存溢出崩溃。
+**预计输出件：**
 
-使用多维指标验证集群：使用 kind + edgecore + Sedna 一体化脚本完成 KubeEdge 原生集群模拟验证。
+- 恢复仿真核心功能：鉴于之前的提案，恢复并扩展 Ianvs 2022 仿真提案（Ianvs PR #35）及其实现（Ianvs PR #39，已发现 5 个以上缺陷），构建仿真控制器，将每个测试用例隔离在独立的瞬态运行时环境中，并强制执行系统级资源配额和边界控制机制，以限制边缘节点资源（CPU 和内存），从而避免依赖冲突和内存溢出 (OOM) 风险。关键组件包括：
+    - 仿真控制器环境管理员：在测试用例控制器中引入仿真控制器，以在单台机器上提供工作节点嵌套的工作节点系统，模拟多节点系统。实现仿真环境管理员，以解析系统配置、检查主机环境要求（例如，内存 > 4GB），并自动构建、部署、关闭和删除仿真环境。
+    - 仿真控制器仿真作业管理器：开发关键的仿真作业管理器，负责算法镜像构建（例如 Docker）、YAML 生成、作业部署/删除以及使用工作进程监控仿真结果列表。同时，部署一个使用临时运行时环境和系统资源配额（CPU 和内存）的隔离执行层，以彻底防止依赖冲突和内存溢出崩溃。
+- 使用多维指标验证集群：使用 kind + edgecore + Sedna 一体化脚本完成 KubeEdge 原生集群模拟验证。
+- 多维指标集成：将底层系统指标（CPU 利用率、峰值内存、实际运行时间）与上层算法指标对齐，并在现有的 StoryManager 排行榜中统一呈现，从而实现分布式 AI 的端到端综合性能评估。
 
-多维指标集成：将底层系统指标（CPU 利用率、峰值内存、实际运行时间）与上层算法指标对齐，并在现有的 StoryManager 排行榜中统一呈现，从而实现分布式 AI 的端到端综合性能评估。
+**前置技能：**
 
-前置技能：KubeEdge; Kubernetes; Docker; Linux Kernel mechanisms; Go; Python; Benchmark; AI/ML; KubeEdge-Sedna; KubeEdge-Ianvs
+KubeEdge; Kubernetes; Docker; Linux Kernel mechanisms; Go; Python; Benchmark; AI/ML; KubeEdge-Sedna; KubeEdge-Ianvs
 
-课题导师：Zimu Zheng (@MooreZheng)
+**课题导师：**
+
+Zimu Zheng (@MooreZheng)
 
 zimu.zheng@huawei.com
 
@@ -267,19 +236,26 @@ Shijing Hu (@hsj576)
 
 sjhu21@m.fudan.edu.cn
 
-课题链接：https://mentorship.lfx.linuxfoundation.org/project/0aca7087-4985-4d22-a7c2-b8d5845e962b
+**课题链接：**
 
-Github Issue：https://github.com/kubeedge/ianvs/issues/348
+_https://mentorship.lfx.linuxfoundation.org/project/0aca7087-4985-4d22-a7c2-b8d5845e962b_
+
+**Github Issue：**
+
+_https://github.com/kubeedge/ianvs/issues/348_
 
 如果对课题内容有任何问题，欢迎在 GitHub 仓库提交 Issue 或者添加社区小助手微信向社区提问。
 
+扫码回复 “**KubeEdge**” 进入技术群
+
 今年秋季，KubeEdge 社区期待在 LFX Mentorship 见到您！
 
-Reference：
+**Reference：**
 
-[1] LFX Mentorship计划官网及申报入口: https://mentorship.lfx.linuxfoundation.org/#projects_all
-[2] LFX Mentorship - Application Requirement: https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/am-i-eligible
+\[1\] _LFX Mentorship计划官网及申报入口: https://mentorship.lfx.linuxfoundation.org/#projects_all_
 
-[3] LFX Mentorship - Program Readme: https://github.com/cncf/mentoring/tree/main/programs/lfx-mentorship/2026/03-Sep-Nov
+\[2\] _LFX Mentorship - Application Requirement: https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/am-i-eligible_
 
-[4] LFX Mentorship - Mentee Application Guideline: https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply
+\[3\] _LFX Mentorship - Program Readme: https://github.com/cncf/mentoring/tree/main/programs/lfx-mentorship/2026/03-Sep-Nov_
+
+\[4\] _LFX Mentorship - Mentee Application Guideline: https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply_
