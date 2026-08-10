@@ -51,7 +51,7 @@ _https://mentorship.lfx.linuxfoundation.org/_
 - 并非社区中高于最低限度贡献成员（如Maintainer、Recurring Contributor）
 - 满足具体所属项目中提及的其它前置需求
 
-## **课题参与方式** 根据官方安排 <sup>\[3\]</sup>，LFX Mentorship 2026年秋季活动流程如下：
+# **课题参与方式** 根据官方安排 <sup>\[3\]</sup>，LFX Mentorship 2026年秋季活动流程如下：
 
 - **Mentee 注册与项目申请：8月3日-8月18日**（00:00 UTC/23:59 UTC)
 - **申请者审核期**： 8月19日-9月1日（11:00 AM PDT/18:00 UTC)
