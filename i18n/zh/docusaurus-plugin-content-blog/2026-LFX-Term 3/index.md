@@ -40,7 +40,7 @@ _https://mentorship.lfx.linuxfoundation.org/_
 
 在 LFX Mentorship 2026秋季计划，KubeEdge 期待再次和计算机领域新生力量一起，开拓数字未来。
 
-*面向对象*
+## *面向对象*
 
 **秋季计划申请者需在2026年8月18日前在 LFX 官网**<sup>\[1\]</sup>**完成 Mentee 注册及项目申请**。若被接收作为 Mentee，您将能在开源社区经验丰富、积极贡献的 Mentor 指导下为开源项目做出贡献。依据官方规定，对 Mentee 的申请者有以下要求<sup>\[2\]</sup>:
 
