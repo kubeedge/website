@@ -74,7 +74,7 @@ _https://docs.linuxfoundation.org/lfx/mentorship/mentee-guide/how-to-apply_
 
 最后，向各位申请者推荐 CNCF KubeEdge 社区下列课题：
 
-## **Modernize KubeEdge Controllers and Admission Webhooks**
+## Modernize KubeEdge Controllers and Admission Webhooks
 
 **课题描述**：
 
