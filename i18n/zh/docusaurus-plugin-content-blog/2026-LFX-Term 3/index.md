@@ -169,7 +169,7 @@ baoyue2@huawei.com
 _https://mentorship.lfx.linuxfoundation.org/project/ef5b6ae6-99be-42e0-aeae-897684b0e9c8_
 
 **Github Issue：  
-**_https://github.com/kubeedge/kubeedge/issues/7106_
+_https://github.com/kubeedge/kubeedge/issues/7106_
 
 ## **Comprehensive Example Restoration for KubeEdge Ianvs: Phase IV (2026 Term 3)**
 
