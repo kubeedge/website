@@ -29,7 +29,7 @@ LFX Mentorship 计划，由 Linux Foundation 组织，从19年开始为 CNCF 各
 
 _https://mentorship.lfx.linuxfoundation.org/_
 
-**KubeEdge社区介绍**
+*KubeEdge社区介绍*
 
 **KubeEdge 社区已经连续6年参与 LFX Mentorship 计划，过去已为学员提供30+个项目**。KubeEdge 是业界首个云原生边缘计算框架、云原生计算基金会内部唯一毕业级边缘计算开源项目。在 GitHub 获得 **8.2k+Stars**和**2.3k+Fork**，吸引了全球来自**35+国家的120+贡献组织及1800+开发者**。
 
@@ -39,7 +39,7 @@ _https://mentorship.lfx.linuxfoundation.org/_
 
 在 LFX Mentorship 2026秋季计划，KubeEdge 期待再次和计算机领域新生力量一起，开拓数字未来。
 
-**面向对象**
+*面向对象*
 
 **秋季计划申请者需在2026年8月18日前在 LFX 官网**<sup>\[1\]</sup>**完成 Mentee 注册及项目申请**。若被接收作为 Mentee，您将能在开源社区经验丰富、积极贡献的 Mentor 指导下为开源项目做出贡献。依据官方规定，对 Mentee 的申请者有以下要求<sup>\[2\]</sup>:
 
