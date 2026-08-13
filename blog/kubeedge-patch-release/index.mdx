@@ -1,0 +1,194 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- Security
+- Announcements
+date: 2026-07-23
+draft: false
+lastmod: 2026-07-23
+summary: 'KubeEdge simultaneously releases three security patch versions: v1.23.1 / v1.22.2 / v1.21.2, addressing command execution and resource boundary issues in critical paths including NodeUpgradeJob, ConfigUpdateJob, keadm and viaduct packer.'
+tags:
+- KubeEdge
+- security
+- release
+- patch release
+- CVE
+- GHSA
+- edge computing
+title: 'KubeEdge Security Patch Release: v1.23.1 / v1.22.2 / v1.21.2'
+---
+
+## I. Release Overview
+
+Recently, the KubeEdge Security Team released several security bulletins and simultaneously launched three security patch versions: **v1.23.1, v1.22.2, and v1.21.2.** This update focuses on fixing security vulnerabilities in multiple paths, including edge node task execution, configuration updates, installation package decompression, and communication protocol processing.
+
+This patch update covers multiple release branches currently under maintenance. Users using affected versions are advised to upgrade to the corresponding patch version as soon as possible to avoid potential security risks.
+
+| Patch version | Applicable branches | Description |
+| :---: | :---: | :---: |
+| v1.23.1 | release-1.23 | Security patch version |
+| v1.22.2 | release-1.22 | Security patch version |
+| v1.21.2 | release-1.21 | Security patch version |
+
+## II. Issues Fixed in This Release
+
+This security patch primarily addresses and fixes **four types of** frequently occurring security risks. The following is a simplified explanation for end users; developers can find full details on the KubeEdge GitHub security bulletin page.
+
+| CVE | Affected Components | Problem Type | Impact Overview |
+| :---: | :---: | ----- | ----- |
+| CVE-2026-62371 | NodeUpgradeJob | Command execution path hardening | Affects the execution path of edge node upgrade tasks |
+| CVE-2026-62182 | ConfigUpdateJob | Command execution path hardening | Affects the execution path of edge node configuration update tasks |
+| CVE-2026-62369 | keadm | Decompression path verification and reinforcement | Affects the Windows edge node installation/joining process |
+| CVE-2026-62370 | viaduct packer | Payload length verification and hardening | Impacts CloudHub resource stability |
+
+This fix does not introduce any new user-side features; its main objectives are to perform input validation for security-sensitive paths, adjust command execution methods, and restrict resource boundaries.
+
+## III. Detailed Analysis of the Issues
+
+### 1. CVE-2026-62371 | NodeUpgradeJob Command Execution Path Hardening
+
+📌 **Cause of the Vulnerability**
+
+In the KubeEdge v1alpha2 upgrade API, the NodeUpgradeJob processor directly concatenates the user-controllable *`spec.version`* and *`spec.image`* fields into a shell command for execution. Attackers can construct malicious upgrade parameters by passing in special shell metacharacters, thereby achieving arbitrary system command injection and execution.
+
+💡 **Risk**
+
+Authenticated users with permissions to create/update NodeUpgradeJob resources can remotely control target edge nodes, execute arbitrary commands with upgrade process privileges, completely take over the edge nodes, and affect node confidentiality, integrity, and availability.
+
+📘 **Affected Versions**
+
+* 1.12.0 ≤ version < 1.21.2
+* 1.22.0 ≤ version < 1.22.2
+* 1.23.0 ≤ version < 1.23.1
+
+⚙️ **Repair Plan**
+
+NodeUpgradeJob is used to manage edge node upgrade tasks. This fix strengthens the command construction and parameter passing methods in upgrade tasks to prevent external input from being appended to shell commands for execution.
+
+The patch adjusts the relevant execution paths to a safer parameterized calling method and adds corresponding tests to reduce the risk of command injection in edge node upgrade tasks.
+
+🗒️ **Safe Versions**: 1.21.2, 1.22.2, 1.23.1
+
+🔍 **Corresponding Advisory**: *GHSA-5jpj-293f-rhvj*
+
+---
+
+### 2. CVE-2026-62182 | ConfigUpdateJob Command Execution Path Hardening
+
+📌 **Cause of the Vulnerability**
+
+The KubeEdge configuration update task `ConfigUpdateJob` contains a command injection vulnerability. The program directly concatenates user-controllable *`updateFields`* fields into system commands and executes them via shell. Special characters are not filtered or escaped, allowing malicious configuration fields to trigger arbitrary command execution.
+
+💡 **Risk**
+
+Attackers with ConfigUpdateJob resource operation privileges can issue malicious configuration update tasks, execute arbitrary system commands on target edge nodes, steal business data, tamper with service configurations, implant persistent backdoors, and gain full control of edge business nodes.
+
+📘 **Affected Versions**
+
+* 1.21.0 ≤ version < 1.21.2
+* 1.22.0 ≤ version < 1.22.2
+* 1.23.0 ≤ version < 1.23.1
+
+⚙️ **Repair Plan**
+
+ConfigUpdateJob is used for configuration updates on the edge side. This fix strengthens the command execution path for configuration update fields such as *`updateFields`*, to prevent configuration values from being interpreted and executed as shell fragments.
+
+The patch adjusts the parameter handling method and adds configuration update-related tests to improve the security of configuration update tasks.
+
+🗒️ **Safe Versions**: 1.21.2, 1.22.2, 1.23.1
+
+🔍 **Corresponding Advisory**: *GHSA-m3c6-2p7h-cfr3*
+
+---
+
+### 3. CVE-2026-62369 | keadm Decompression Path Verification and Reinforcement
+
+📌 **Cause of the Vulnerability**
+
+The *`DecompressTarGz`* decompression function in the KubeEdge tool keadm contains a path traversal vulnerability. It does not strictly validate file paths when decompressing compressed packages and does not filter dangerous characters such as `../` parent directory crossings, Windows backslashes, absolute paths, and drive letter paths, which allows writing files across directories.
+
+💡 **Risk**
+
+This vulnerability primarily affects Windows edge nodes. Attackers can construct malicious *`tar.gz`* installation packages and overwrite system configurations, executable files, and service files during node access, installation, and upgrade processes, achieving persistent system tampering and ultimately triggering code execution risks.
+
+📘 **Affected Versions**
+
+* 1.16.0 ≤ version < 1.21.2
+* 1.22.0 ≤ version < 1.22.2
+* 1.23.0 ≤ version < 1.23.1
+
+⚙️ **Repair Plan**
+
+keadm is an essential tool in KubeEdge for installing, initializing, and adding edge nodes. This fix enhances the path verification capabilities of the *`DecompressTarGz`* decompression logic, preventing abnormal paths in archive files from being written outside the target directory.
+
+This issue is particularly relevant to Windows edge node installation or join processes. The patch adds path normalization, absolute path checking, parent directory traversal checking, and safe path concatenation to ensure that the decompression target is always located in the expected directory.
+
+🗒️ **Safe Versions**: 1.21.2, 1.22.2, 1.23.1
+
+🔍 **Corresponding Advisory**: *GHSA-9vm9-pqxx-x83v*
+
+---
+
+### 4. CVE-2026-62370 | viaduct packer Payload Length Verification and Reinforcement
+
+📌 **Cause of the Vulnerability**
+
+KubeEdge CloudHub relies on the *`viaduct`* packer to parse edge node reported messages. The program directly reads the 32-bit payload length value in the message header and does not set a memory allocation limit check. It directly requests a memory buffer according to the read value, which has an unlimited memory allocation defect (CWE-789).
+
+💡 **Risk**
+
+A malicious/compromised edge node that has been authenticated can construct and continuously send malicious packets with extremely large payload lengths, triggering CloudHub to consume excessive memory, causing memory exhaustion, process OOM crashes, and repeated service restarts, thereby causing temporary interruption of cloud-edge communication and affecting the availability of edge cluster services; this vulnerability can only achieve denial of service and cannot steal data or execute code.
+
+📘 **Affected Versions**
+
+* 1.0.0 ≤ version < 1.21.2
+* 1.22.0 ≤ version < 1.22.2
+* 1.23.0 ≤ version < 1.23.1
+
+⚙️ **Repair Plan**
+
+This update specifically addresses the issue of excessive memory allocation caused by excessively long payloads, setting a maximum payload limit of 32 MiB for *`viaduct`* communication messages. Furthermore, length verification rules have been added to the entire message sending, receiving, reading, and writing process to identify and intercept excessively large abnormal messages before the system allocates memory, effectively preventing malicious requests from triggering memory over-limit usage. In addition, the team has supplemented test cases for various scenarios, including normal messages and malicious messages exceeding the limit, covering various abnormal situations and comprehensively fixing this vulnerability.
+
+🗒️ **Safe Versions**: 1.21.2, 1.22.2, 1.23.1
+
+🔍 **Corresponding Advisory**: *GHSA-gfw4-49f9-cp25*
+
+## IV. What Should Users Do?
+
+If you are using KubeEdge v1.21.x, v1.22.x, or v1.23.x, it is recommended that you upgrade to the corresponding patch version as soon as possible.
+
+| Current version | Recommended upgrade version |
+| ----- | :---- |
+| v1.23.x | v1.23.1 |
+| v1.22.x | v1.22.2 |
+| v1.21.x | v1.21.2 |
+
+Before upgrading, it is recommended that you complete the following checks:
+
+* Back up existing configurations and critical data.
+* Read the release notes for the corresponding version.
+* Verify the upgrade process in a test environment.
+* Upgrade CloudCore, EdgeCore, keadm, and other related components.
+* Check whether the processes such as edge node upgrades, configuration updates, and node joins are functioning correctly.
+
+## V. Community Security Response Process
+
+This security remediation was coordinated and promoted by the KubeEdge Security Team. The overall process included vulnerability confirmation, impact scope analysis, remediation plan design, master branch remediation, release branch backtracking, patch release, and public disclosure of GHSA/CVE information.
+
+During the remediation process, the community comprehensively reviewed all security-sensitive execution links and supplemented necessary tests and CI fixes for different release branches to ensure that the patches can be stably rolled back to the current maintenance version.
+
+In a cloud-edge collaborative architecture, edge nodes are typically deployed across multiple networks and operating environments. Timely iteration and upgrades of security patches are crucial for ensuring the secure and stable operation of the cluster. The KubeEdge community will continue to optimize security response mechanisms and enhance the security and reliability of cloud-edge collaborative infrastructure.
+
+## VI. Acknowledgements
+
+We thank the vulnerability reporter for their responsible disclosure of KubeEdge security issues, and we also thank the KubeEdge Security Team, the patch developers, code reviewers, validators, release maintainers, and all community members who participated in the patch release.
+
+This fix covers multiple core components and maintenance branches, and it would not have been possible without the collaborative efforts of community members in areas such as vulnerability identification, impact analysis, code development, review, CI verification, CVE/GHSA coordination, and version release.
+
+**More Information**
+
+Users can view complete information on version updates and security announcements through the following official links:
+
+* KubeEdge GitHub Releases: [https://github.com/kubeedge/kubeedge/releases](https://github.com/kubeedge/kubeedge/releases)
+* KubeEdge Security Advisories: [https://github.com/kubeedge/kubeedge/security/advisories](https://github.com/kubeedge/kubeedge/security/advisories)
