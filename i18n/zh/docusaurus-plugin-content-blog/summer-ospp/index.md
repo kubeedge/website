@@ -15,7 +15,8 @@ tags:
 - K8s edge orchestration
 - edge computing platform
 - cloud native
-- 开源之夏
+- label: 开源之夏
+  permalink: ospp
 title: 开源之夏2024重磅来袭！KubeEdge社区18个课题报名启动
 ---
 ## 开源之夏介绍
@@ -221,4 +222,3 @@ https://summer-ospp.ac.cn/org/prodetail/2498a0428?lang=zh&list=pro
 
 #### 如何快速选定项目
 对KubeEdge社区开源之夏课题感兴趣的同学，可以 ***通过本文上方导师邮箱***，及时联系导师沟通锁定课题。为方便同学们更快了解与找到最适合自己的课题方向，KubeEdge社区将于 ***5月8日、5月9日特别组织18个课题线上宣讲会，大咖导师空降***，为你娓娓道来，欢迎同学们通过以下方式参会：https://zoom.us/my/kubeedge
-
