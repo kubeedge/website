@@ -180,7 +180,7 @@ const config = {
             className: "header-github-link heade-icon",
           },
           {
-            href: "https://twitter.com/KubeEdge",
+            href: "https://x.com/KubeEdge",
             position: "right",
             className: "header-x-link heade-icon",
           },
