@@ -1,6 +1,7 @@
 ---
 draft: true
 linktitle: Control resources on the edge with Admission
+sidebar_position: 1
 menu:
   docs:
     parent: advanced configuration
