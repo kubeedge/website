@@ -27,6 +27,6 @@ DMI定义了EdgeCore和Mapper之间的统一连接入口，EdgeCore和Mapper分�
 4. Mapper通过云边通道将设备数据推送到云端。
 
 ### DMI接口定义
-DMI接口定义可以参考 [DMI interface](https://github.com/kubeedge/kubeedge/blob/master/pkg/apis/dmi/services.go)。
+DMI接口定义可以参考 [DMI interface](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/api/apis/dmi/services.go)。
 
 当前版本的 DMI 接口是在 gRPC proto 中定义的。你可以使用generate-dmi-proto脚本创建相应的gRPC-go代码。
