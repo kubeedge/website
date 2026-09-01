@@ -6,19 +6,17 @@ import "./styles.scss";
 export default function About() {
   return (
     <SectionContainer className="aboutContainer">
-      <div className={"row"}>
-        <div className={"profile"}>
-          <img className={"portrait"} src="img/avatar.png"></img>
-          <div className={"portraitTitle"}>
-            <h3 className={"name"}>KubeEdge</h3>
-            <h3 className={"jobTitle"}>
-              <Translate>
-                Kubernetes Native Edge Computing Framework
-              </Translate>
+      <div className="row">
+        <div className="profile">
+          <img alt="KubeEdge" className="portrait" src="img/avatar.png" />
+          <div className="portraitTitle">
+            <h3 className="name">KubeEdge</h3>
+            <h3 className="jobTitle">
+              <Translate>Kubernetes Native Edge Computing Framework</Translate>
             </h3>
           </div>
         </div>
-        <div className={"description"}>
+        <div className="description">
           <p>
             <Translate>
               KubeEdge is an open source system for extending native
