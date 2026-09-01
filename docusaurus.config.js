@@ -156,7 +156,7 @@ const config = {
             target: "_self",
           },
           { to: "/case-studies", label: "Case Studies", position: "left" },
-          { to: "/partners", label: "Partners", position: "left"},
+          { to: "/partners", label: "Partners", position: "left" },
           {
             type: "dropdown",
             label: "Community",
@@ -180,7 +180,7 @@ const config = {
             className: "header-github-link heade-icon",
           },
           {
-            href: "https://twitter.com/KubeEdge",
+            href: "https://x.com/KubeEdge",
             position: "right",
             className: "header-x-link heade-icon",
           },
@@ -208,10 +208,10 @@ const config = {
             html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" class="footer__logo dark">',
           },
           {
-            html: '<p>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" target="_blank">Trademark Usage</a> page.</p>',
+            html: '<p>Copyright KubeEdge a Series of LF Projects, LLC. For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" target="_blank" rel="noopener noreferrer">lfprojects.org/policies</a>.</p>',
           },
         ],
-        copyright: `${new Date().getFullYear()} © KubeEdge Project Authors. All rights reserved.`,
+        copyright: `Copyright © ${new Date().getFullYear()} The KubeEdge Authors. All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,
