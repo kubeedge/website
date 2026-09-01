@@ -21,7 +21,7 @@ Meanwhile, DMI in the Device Twin is used for registering mapper and transfer De
 ## How to create your own Mappers
 Now we use **[Mapper Framework](../mapper-framework)** to genenrate your own Mapper to control the edge devices.
 ### 1. Design the device model and device instance CRDs
-If you don't know how to define the configuration files of Device Model and Device Instance, please get more details in the **[page](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md)**.
+If you don't know how to define the configuration files of Device Model and Device Instance, please get more details in the **[page](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-device-iot/device-crd-v1beta1.md)**.
 
 ### 2. Generate the Mapper project
 The command below will generate a framework for the basic Mapper. Run the command and input your mapper's name:
