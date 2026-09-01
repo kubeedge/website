@@ -46,7 +46,13 @@ export default function CaseStudies() {
                     <TagToggle selected={filters} onChange={(e) => setFilters(e)} />
                     <Row gutter={[48, 48]}>
                         {casestudiesGlobalDataMemo.map((item, index) => (
-                            <Col xs={24} sm={24} md={24} lg={12}>
+                            <Col
+                                key={item.metadata?.permalink}
+                                xs={24}
+                                sm={24}
+                                md={24}
+                                lg={12}
+                            >
                                 <CaseCard
                                     title={item.metadata?.title}
                                     subTitle={item.metadata?.frontMatter?.subTitle}
