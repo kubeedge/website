@@ -22,7 +22,15 @@
     color: #fff;
     font-size: 36px;
     margin-bottom: 18px;
-    cursor: pointer;
+
+    .title-link {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   hr {
@@ -61,7 +69,7 @@
     font-size: 12px;
   }
 
-  a {
+  .button {
     grid-area: btn;
     font-size: 16px;
     padding-left: 20px;
