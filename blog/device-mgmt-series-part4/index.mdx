@@ -1,0 +1,109 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-02-27
+draft: false
+lastmod: 2025-02-27
+summary: In version 1.17, the Mapper-Framework added video stream data processing capabilities, improving the management scope of KubeEdge edge devices.
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: "KubeEdge Edge Device Management Series (Part 4): Mapper-Framework Video Stream Processing"
+---
+
+In response to the new version of the `Device-IoT` update, we plan to release a series of articles to introduce these features in detail. The general outline of the articles is as follows:
+
+1. [Design and Implementation of Device Management API Based on Object Model](/blog/device-mgmt-series-part1)
+2. [DMI Data Plane Capability Design and Implementation](/blog/device-mgmt-series-part2)
+3. [Mapper Development Framework: Design and Implementation](/blog/device-mgmt-series-part3)
+4. [How to use Mapper to process video stream data](/blog/device-mgmt-series-part4)
+5. [How to implement device data writing using Mapper](/blog/device-mgmt-series-part5)
+6. [How to develop a Mapper from scratch (using `Modbus` as an example)](/blog/device-mgmt-series-part6)
+
+In the previous article, we introduced the Mapper-Framework, a Mapper development framework. Mapper-Framework integrates DMI management and data plane capabilities, automatically generating Mapper projects for users, effectively lowering the development threshold for Mapper.
+
+In version 1.15, for edge scenarios with discrete data such as temperature and humidity monitoring and pH monitoring, the Mapper-Framework data plane could collect and report single-point values in various ways on a regular basis. However, in edge computing, the management of streaming data devices such as cameras is also an indispensable part. Therefore, in version 1.17, the Mapper-Framework added **video stream data processing** capabilities, improving the management scope of KubeEdge edge devices.
+
+## ONVIF Camera Equipment Management
+
+In the field of camera management, `ONVIF` (Open Network Video Interface Forum) is a widely used general-purpose device protocol designed to establish a unified standard for the interconnection and interoperability of IP devices in video surveillance and other physical security fields, ensuring seamless integration and collaboration between devices from different manufacturers.
+
+In KubeEdge version 1.17, in order to support cloud-native access and management of camera devices, we designed and implemented a built-in Mapper for the ONVIF protocol based on Mapper-Framework. This plugin is stored in the mappers-go repository. Users only need to run the built-in <a href="https://github.com/kubeedge/mappers-go/tree/main/mappers/kubeedge-v1.17.0/onvif-mapper">Mapper</a> and modify the corresponding device configuration file according to the specific information of their own camera devices to complete the automatic access and management of camera devices. In this way, ONVIF network camera devices can have cloud-native capabilities and support unified management, remote control and data collection in the edge environment. The device-instance configuration file of ONVIF network camera devices mainly includes the following key fields:
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: onvif-device-01
+spec:
+  ...
+  protocol:
+    protocolName: onvif
+    configData:
+      url: 192.168.168.64:80   # Replace it with the address of your own onvif camera
+      userName: admin          # Replace it with the username of your own onvif camera
+      password: /etc/secret/password   # Fill in the fields according to your secret.yaml
+```
+
+The above fields specify the device protocol name, the URL of the network camera device, the username, and the password. Users need to modify these fields according to the actual device details. To avoid storing the password in plaintext, it needs to be mounted via a Kubernetes secret. The complete configuration file information can be obtained from the configuration file <a href="https://github.com/kubeedge/mappers-go/tree/main/mappers/kubeedge-v1.17.0/onvif-mapper/resource">example</a>.
+
+## Mapper-Framework Supports Video Stream Data Processing
+
+In most application scenarios, camera devices typically output video data in the form of RTSP (Real-Time Streaming Protocol) streams. According to the ONVIF protocol, the Mapper can automatically connect to and obtain the camera's profileToken authentication file and RTSP stream URI according to the parameters defined by the user in the device-instance configuration file, ultimately realizing the acquisition of video stream data.
+
+To simplify the user's workflow for processing video stream data, in KubeEdge version 1.17, we have built video stream data processing functionality into the data plane of the Mapper-Framework, primarily supporting the following capabilities:
+
+- **Built-in video clip storage function:** It can automatically convert the video stream reported by the device into video clip files, which are convenient for storage and subsequent analysis.
+
+- **Built-in video frame storage function:** It can parse and store video stream data as video frame files (image sequences), thereby supporting subsequent AI computing tasks, such as object detection and behavior recognition.
+
+Users only need to configure the relevant settings in the `device-instance` configuration file to use the current version's streaming data processing capabilities. Furthermore, it supports user-defined streaming data processing logic to meet specific business needs, such as real-time video stream analysis and AI inference. The configuration file's relevant field definitions and corresponding structures are as follows:
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: onvif-device-01
+spec:
+  ...
+  properties:
+    - name: saveFrame
+      visitors:
+        protocolName: onvif
+        configData:
+          format: jpg             # Video frame file format
+          outputDir: /tmp/case/   # Output path of video frame file
+          frameCount: 30          # Number of output frame files
+          frameInterval: 1000000  # interval between frames, the unit is nanoseconds
+          dataType: stream
+
+    - name: saveVideo
+      visitors:
+        protocolName: onvif
+        configData:
+          frameCount: 1000        # The number of frames the video clip contains
+          format: mp4             # Video file format
+          outputDir: /tmp/case/   # Output path of video file
+          videoNum: 2             # Number of output video files
+          dataType: stream
+```
+
+In version 1.17 and later, the Mapper-Framework's data plane capabilities have been further enhanced. In addition to the ability to push device data to databases and user applications, it has added the ability to process video stream data, significantly improving the ability to collect and retrieve device data, making integration into scenarios such as edge AI and video analytics more convenient.
+
+However, in real-world production environments, writing device data is also a crucial feature. For example, some industrial and security applications require writing processed data back to the device to execute specific control commands or adjust parameters. In the next article in this series, we will provide a detailed introduction to implementing **device data writing functionality using Mapper.**
+
+Learn more about KubeEdge:
+
+- KubeEdge: https://kubeedge.io/
+- Website: https://kubeedge.io/
+- GitHub Repository: https://github.com/kubeedge/kubeedge
+- Documentation: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge

@@ -1,0 +1,115 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-01-16
+draft: false
+lastmod: 2025-01-16
+summary: In version v1.15.0, to simplify the process of creating Mappers for users, KubeEdge launched the Mapper-Framework, a Mapper development framework that can automatically generate Mapper projects for users to use, effectively lowering the development threshold for Mappers.
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: "KubeEdge Edge Device Management Series (Part 3): Mapper-Framework Design and Implementation"
+---
+
+In response to the new version of the `Device-IoT` update, we plan to release a series of articles to introduce these features in detail. The general outline of the articles is as follows:
+
+1. [Design and Implementation of Device Management API Based on Object Model](/blog/device-mgmt-series-part1)
+2. [DMI Data Plane Capability Design and Implementation](/blog/device-mgmt-series-part2)
+3. [Mapper Development Framework: Design and Implementation](/blog/device-mgmt-series-part3)
+4. [How to use Mapper to process video stream data](/blog/device-mgmt-series-part4)
+5. [How to implement device data writing using Mapper](/blog/device-mgmt-series-part5)
+6. [How to develop a Mapper from scratch (using `Modbus` as an example)](/blog/device-mgmt-series-part6)
+
+In the previous article, we enhanced the DMI data plane capabilities for managing massive amounts of data from edge devices, enabling the processing of device data in multiple ways. In actual device management within KubeEdge, the device management plugin Mapper needs to implement the standard interfaces in DMI to complete its registration with the cluster and the inclusion of devices in the management system, which presents significant development challenges.
+
+Therefore, in version v1.15.0, to simplify the process of creating Mappers for users, KubeEdge launched the Mapper-Framework, a Mapper development framework that can automatically generate Mapper projects for users to use, effectively lowering the development threshold for Mappers.
+
+## Introduction to the Mapper-Framework
+
+To simplify the process of creating Mappers for users, version 1.15 introduced the Mapper-Framework development framework. The Mapper-Framework integrates DMI management and data plane capabilities.
+
+### Capabilities provided by the management side
+
+The Mapper-Framework primarily implements northbound device management capabilities in the management plane, including:
+
+1. Mapper registers with the cloud
+
+2. The cloud sends device information to the Mapper and enables subsequent device creation, update, and deletion functions.
+
+3. Reserve a south-facing device driver interface.
+
+### Capabilities provided by the data plane
+
+The Mapper-Framework primarily implements the ability to push device data on the data plane, including:
+
+1. The Mapper-Framework data plane has built-in protocols such as HTTP and MQTT, which can push device data to user applications.
+
+2. The Mapper-Framework data plane incorporates data push methods for InfluxDB, Redis, TDengine, and MySQL databases, enabling the push of device data to user databases for storage.
+
+3. The Mapper-Framework can report device data to the cloud.
+
+4. The Mapper-Framework provides API interfaces for users to actively retrieve device data.
+
+The functional architecture diagram of the Mapper-Framework is shown below:
+
+![Mapper-Framework Functional Architecture](https://files.mdnice.com/user/46056/f95aa683-d9bf-49ae-8d9d-a0350649e7d7.png)
+
+Users can automatically generate Mapper projects based on Mapper-Framework. The generated Mapper projects have been pre-integrated with the upstream stream for Mapper to register itself with the cluster and the downstream stream for EdgeCore to send device management information. They also have built-in data plane capabilities for Mapper to push device data.
+
+Users only need to implement the device driver-related functions in the generated Mapper project, mainly including device initialization and obtaining device data, to complete the full lifecycle management of the device.
+
+## How Mapper-Framework Works
+
+When users implement custom Mappers using Mapper-Framework, they need to clone the KubeEdge <a href="https://github.com/kubeedge/mapper-framework">Mapper-Framework repository</a> to their local machine, switch to the appropriate version, execute the `make generate` command in the command line, enter the name of the custom Mapper, and then find the automatically generated Mapper project file in the parent directory.
+
+The generated Mapper project structure is as follows:
+
+```text
+├── cmd ------------------------ Main process.
+│   └── main.go ------------------ Almost need not change.
+├── config.yaml ---------------- Configuration file including DMI's grpc setting
+├── data ----------------------- Publish data and database implementation layer, almost need not change
+│   ├── dbmethod ----------------- Provider implement database interfaces to save data
+│   │   ├── influxdb2 ------------- Implementation of Time Series Database (InfluxDB)
+│   │   │   └── client.go
+│   │   └── redis ----------------- Implementation of K/V Database (Redis)
+│   │       └── client.go
+│   └── publish ------------------ Publisher implement push interfaces to push data, will add more protocols in the future
+│       ├── http ----------------- HTTP client will push data to server
+│       │   └── client.go
+│       └── mqtt ----------------- MQTT client will push data to broker
+│           └── client.go
+├── device --------------------- Implementation device layer, almost need not change
+│   ├── device.go ---------------- Device control, almost need not change
+│   └── devicetwin.go ------------ Push twin data to EdgeCore, almost need not change
+├── Dockerfile
+├── driver --------------------- Device driver layer, complete TODO item in this
+│   ├── devicetype.go ------------ Refine the struct as your CRD
+│   └── driver.go ---------------- Fill in the functions like getting data/setting register.
+├── hack
+│   └── make-rules
+│       └── mapper.sh
+└── Makefile
+```
+
+Users only need to implement the functionality of the driver layer and populate the Mapper's configuration file to create a fully functional Mapper. Once the Mapper is started, it registers with the EdgeCore DMI interface via `grpcClient`. EdgeCore primarily receives Device Model and Device Instance information from the cloud and distributes this information to the Mapper in a list format based on the protocol name. The Mapper then manages the devices.
+
+Subsequent user-submitted device update and deletion commands in the cloud will be transmitted to EdgeCore via the cloud-edge channel. EdgeCore will then pass these commands to the Mapper via the DMI interface, enabling device management capabilities. Simultaneously, the Mapper data plane will periodically collect device data by invoking user-implemented device driver capabilities. Following the user's definitions in the Device Instance configuration file, this data will be pushed to the user application via protocols such as HTTP and MQTT, or saved to the user's database, completing the device data collection and reporting process.
+
+Mapper's data plane can process edge device data in various ways, making it suitable for many edge scenarios, such as temperature and humidity monitoring, and pH monitoring. In these scenarios, device data is discrete, and single-point values can be collected and reported periodically. However, in edge computing, the management of streaming data devices such as cameras is also an indispensable part. **In the next article in this series, we will provide a detailed introduction to Mapper's video stream data processing capabilities.**
+
+Learn more about KubeEdge:
+
+- KubeEdge: https://kubeedge.io/
+- Website: https://kubeedge.io/
+- GitHub Repository: https://github.com/kubeedge/kubeedge
+- Documentation: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge
