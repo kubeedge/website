@@ -35,7 +35,7 @@ In version 1.12, KubeEdge introduced the Device Management Framework (DMI). The 
 
 The architecture diagram of DMI is shown below:
 
-![DMI Architecture](https://files.mdnice.com/user/46056/7cb96b91-61c6-4f8c-be89-0ee9b2c777cc.png)
+![DMI Architecture](./images/dmi-architecture.png)
 
 A key feature of the DMI framework is **the decoupling of the device management plane from the device data plane.** The device management plane, based on the Device CRD, handles the lifecycle management of the device itself, as shown by the yellow line in the diagram; the device data plane, on the other hand, allows device data to be provided to data consumer applications through microservices, offering various data push methods, as shown by the blue line in the diagram.
 
@@ -45,7 +45,7 @@ The DMI device management plane data mainly includes device metadata, device att
 
 The DMI data plane system architecture is shown in the following figure:
 
-![DMI Data Plane System Architecture](https://files.mdnice.com/user/46056/e557deb5-4631-414c-bc0d-27b5a817918c.png)
+![DMI Data Plane System Architecture](./images/dmi-data-plane-architecture.png)
 
 After the v1.15.0 update, the DMI data plane supports processing push device data in four ways as shown in the figure:
 

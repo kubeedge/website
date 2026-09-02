@@ -36,7 +36,7 @@ title: KubeEdge边缘设备管理系列（二）：DMI数据面设计与实现
 
 DMI 的架构图如下图所示：
 
-![DMI 架构图](https://files.mdnice.com/user/46056/b13246f4-66b2-4f6c-a347-e43e87c9441c.png)
+![DMI 架构图](./images/dmi-architecture.png)
 
 DMI 框架中一个重要的特性是设备管理面与设备数据面解耦。设备管理面基于 Device CRD 承载设备本身的生命周期管理，如图中黄色线条；设备数据面则让设备数据通过微服务的方式向数据消费者应用提供，拥有多种数据推送方式，如图中蓝色线条。
 
@@ -46,7 +46,7 @@ DMI 设备管理面数据主要包括设备的元数据、设备属性、配置�
 
 DMI 数据面系统架构如下图所示：
 
-![DMI 数据面系统架构](https://files.mdnice.com/user/46056/737f61aa-7806-48c4-87ad-5b29f0531179.png)
+![DMI 数据面系统架构](./images/dmi-data-plane-architecture.png)
 
 在 v1.15.0 版本更新后，DMI 数据面支持如图中四种方式处理推送设备数据：
 
