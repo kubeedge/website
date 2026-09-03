@@ -28,7 +28,7 @@ DMI设备管理面和设备数据面可以通过Mapper-Framework实现，开发�
 标准化数据定义是[DataModel](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/mapper-framework/pkg/common/datamodel.go#L4)。
 
 #### 数据推送
-数据推送模块可以根据CRD中定义的目的地规则把设备数据至可达的用户消费应用，为了满足新的要求，当前v1beta1 CRD在Device Instance的定义中添加新字段 [PushMethod](https://github.com/kubeedge/kubeedge/blob/master/pkg/apis/devices/v1beta1/device_instance_types.go#L116)。
+数据推送模块可以根据CRD中定义的目的地规则把设备数据至可达的用户消费应用，为了满足新的要求，当前v1beta1 CRD在Device Instance的定义中添加新字段 [PushMethod](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/api/apis/devices/v1beta1/device_instance_types.go#L127)。
 
 定义Mapper将数据推送到用户应用程序的配置文件示例如下：
 ```yaml
@@ -55,7 +55,7 @@ spec:
 当Mapper执行时，会自动解析`pushMethod`字段的值并执行`DataPanel`接口来推送数据。未来`DataPanel`将会增加更多接口，保证数据安全。
 
 #### 数据库
-数据库模块可以根据[DBMethod](https://github.com/kubeedge/kubeedge/blob/master/pkg/apis/devices/v1beta1/device_instance_types.go#L155)定义的目标规则将设备数据存储到数据库。定义Mapper将数据推送到用户数据库的配置文件示例如下：
+数据库模块可以根据[DBMethod](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/api/apis/devices/v1beta1/device_instance_types.go#L143)定义的目标规则将设备数据存储到数据库。定义Mapper将数据推送到用户数据库的配置文件示例如下：
 ```yaml
 apiVersion: devices.kubeedge.io/v1beta1
 kind: Device

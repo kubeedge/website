@@ -2,7 +2,6 @@ import React from "react";
 import SectionContainer from "../sectionContainer";
 import Translate from "@docusaurus/Translate";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import "./index.scss";
 
 const supportList = [
@@ -215,7 +214,7 @@ const supportList = [
 
   {
     name: "SYSU",
-    img_src: "img/supporters/sysu.svg", 
+    img_src: "img/supporters/sysu.svg",
     external_link: "https://www.sysu.edu.cn/",
   },
 
@@ -227,19 +226,23 @@ const supportList = [
 ];
 
 export default function Supporters() {
-  const { i18n } = useDocusaurusContext();
   return (
     <SectionContainer className={"supporterContainer"}>
       <div className={"supporters"}>
         <h1>
-          <a href={`https://kubeedge.io/${i18n.currentLocale}/docs/community/supporters`} target="_blank" style={{textDecoration:'none'}}>
-             <span className={"joins"} >
-                <Translate>Join the Growing </Translate>
-             </span>
-             <span style={{color: '#1c77c8'}}>
-                <Translate>Community</Translate>
-             </span>
-          </a>
+          <Link
+            to="/docs/community/supporters"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <span className={"joins"}>
+              <Translate>Join the Growing </Translate>
+            </span>
+            <span style={{ color: "#1c77c8" }}>
+              <Translate>Community</Translate>
+            </span>
+          </Link>
         </h1>
       </div>
       <div className={"supporterBoxContainer"}>

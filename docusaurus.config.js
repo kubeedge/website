@@ -156,7 +156,7 @@ const config = {
             target: "_self",
           },
           { to: "/case-studies", label: "Case Studies", position: "left" },
-          { to: "/partners", label: "Partners", position: "left"},
+          { to: "/partners", label: "Partners", position: "left" },
           {
             type: "dropdown",
             label: "Community",
@@ -178,16 +178,19 @@ const config = {
             href: "https://github.com/kubeedge/kubeedge",
             position: "right",
             className: "header-github-link heade-icon",
+            "aria-label": "GitHub repository", // Accessibility: Add aria-label for icon-only link
           },
           {
-            href: "https://twitter.com/KubeEdge",
+            href: "https://x.com/KubeEdge",
             position: "right",
             className: "header-x-link heade-icon",
+            "aria-label": "KubeEdge Twitter", // Accessibility: Add aria-label for icon-only link
           },
           {
             to: "/docs/community/slack",
             position: "right",
             className: "header-slack-link heade-icon",
+            "aria-label": "KubeEdge Slack community", // Accessibility: Add aria-label for icon-only link
           },
           {
             type: "localeDropdown",
@@ -208,7 +211,7 @@ const config = {
             html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" class="footer__logo dark">',
           },
           {
-            html: '<p>Copyright KubeEdge a Series of LF Projects, LLC. For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" target="_blank">lfprojects.org/policies</a>.</p>',
+            html: '<p>Copyright KubeEdge a Series of LF Projects, LLC. For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" target="_blank" rel="noopener noreferrer">lfprojects.org/policies</a>.</p>',
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} The KubeEdge Authors. All rights reserved.`,
