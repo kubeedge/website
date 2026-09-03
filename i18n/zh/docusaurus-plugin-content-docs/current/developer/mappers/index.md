@@ -21,7 +21,7 @@ Device Twin位于边缘侧，它能够存储来自Mapper的值/状态并在Mappe
 ## 如何创建Mapper
 现在用户能够使用 **[mapper framework](../mapper-framework)** 来生成自己的Mapper并控制边缘设备。
 ### 1. 设计设备模型与设备实例的CRDs
-如果你不清楚如何定义Device Model和Device Instance的配置文件，你可以从**[page](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md)**中获取更多细节。
+如果你不清楚如何定义Device Model和Device Instance的配置文件，你可以从**[page](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-device-iot/device-crd-v1beta1.md)**中获取更多细节。
 ### 2. 生成Mapper工程
 下方的命令能够生成一个基础的Mapper框架。运行命令并输入定义的Mapper名称：
 ```shell
