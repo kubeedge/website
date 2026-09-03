@@ -30,7 +30,7 @@ make
 
 本地还需要安装docker、go、kind、kubectl、containerd。
 
-部署最新KubeEdge v1.17推荐版本：
+部署 KubeEdge [最新推荐版本](https://github.com/kubeedge/kubeedge/releases) ：
 
 ```
 docker 26.0.0
