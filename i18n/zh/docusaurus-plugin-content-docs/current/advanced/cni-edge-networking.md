@@ -92,7 +92,7 @@ to handle manually on edge nodes that are typically automatic on cloud nodes:
 3. **MetaManager as API proxy**: CNI agents (such as `cilium-agent`) need to call the Kubernetes API server
    to configure themselves. On edge nodes, KubeEdge's MetaManager acts as a local proxy for these API calls
    so they work reliably even when the edge-to-cloud connection is intermittent. This requires
-   **KubeEdge v1.16 or later**. See [Enable Cilium with KubeEdge](./cilium.md) for a working setup guide.
+   **KubeEdge v1.16 or later**. See [Enable Cilium with KubeEdge](https://kubeedge.io/docs/advanced/cilium) for a working setup guide.
 
 4. **IPv6 and dual-stack**: KubeEdge supports IPv6. See [IPv6 Support](./support_ipv6.md) for details.
 
@@ -116,13 +116,13 @@ KubeEdge has been tested with the following CNI plugins in edge deployments:
 
 | CNI Plugin | Notes |
 |---|---|
-| **Cilium** | Fully supported with KubeEdge v1.16+. Requires `configure_cilium.sh`. See [Enable Cilium with KubeEdge](./cilium.md). |
+| **Cilium** | Fully supported with KubeEdge v1.16+. Requires `configure_cilium.sh`. See [Enable Cilium with KubeEdge](https://kubeedge.io/docs/advanced/cilium). |
 | **Flannel** | Works for basic intra-LAN scenarios. No special edge-specific configuration required. |
 | **Calico** | Works in routed mode. Edge nodes may require manual BGP peer configuration depending on topology. |
 
 ## Related Documentation
 
 - [Edge connection with EdgeMesh](./edgemesh.md)
-- [Enable Cilium with KubeEdge](./cilium.md)
+- [Enable Cilium with KubeEdge](https://kubeedge.io/docs/advanced/cilium)
 - [IPv6 Support](./support_ipv6.md)
 - [MetaManager Architecture](https://kubeedge.io/docs/architecture/edge/metamanager)
