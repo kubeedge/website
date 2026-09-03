@@ -31,7 +31,9 @@ The architectures and related concepts are shown in the below figure. The ianvs 
 - Story Manager: the output management and presentation of the test case, e.g., leaderboards
 
 
-![Ianvs architecture diagram](/img/subproject/ianvs_arch.png)
+![Ianvs architecture diagram. Detailed description follows.](/img/subproject/ianvs_arch.png)
+
+The diagram presents a single-node workflow. User input enters the Test Environment Manager, which provides datasets and metrics to the Test Case Controller. The controller contains algorithm paradigms, a Generation Assistant, and a Simulation Controller, and sends output to the Story Manager. The Story Manager produces leaderboards and test reports. All three components are connected to local storage.
 
 More details on Ianvs components:
 1. Test-Environment Manager supports the CRUD of Test environments, which basically includes
