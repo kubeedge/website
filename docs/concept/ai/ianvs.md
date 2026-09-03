@@ -31,7 +31,7 @@ The architectures and related concepts are shown in the below figure. The ianvs 
 - Story Manager: the output management and presentation of the test case, e.g., leaderboards
 
 
-![](/img/subproject/ianvs_arch.png)
+![Ianvs architecture diagram](/img/subproject/ianvs_arch.png)
 
 More details on Ianvs components:
 1. Test-Environment Manager supports the CRUD of Test environments, which basically includes
