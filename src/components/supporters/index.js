@@ -14,7 +14,7 @@ const supportList = [
   {
     name: "BoCloud",
     img_src: "img/supporters/bocloud.svg",
-    external_link: "https://www.bocloud.com.cn/product/BeyondEdge",
+    external_link: "https://www.bocloud.com.cn/",
   },
 
   {
@@ -26,7 +26,7 @@ const supportList = [
   {
     name: "China Southern Power Grid Shenzheng Digital Power Grid",
     img_src: "img/supporters/szdgri.png",
-    external_link: "https://www.szdgri.com/",
+    external_link: "https://www.csg.cn/",
   },
 
   {
@@ -86,7 +86,6 @@ const supportList = [
   {
     name: "jylink",
     img_src: "img/supporters/jylink.png",
-    external_link: "http://www.jylink.com/",
   },
 
   {
@@ -210,8 +209,7 @@ const supportList = [
 
   {
     name: "LookCan Ai",
-    img_src: "img/supporters/lookcan-logo.svg",
-    external_link: "https://www.lookcan.ai/",
+    img_src: "img/supporters/lookcan-logo.svg", 
   },
 
   {
@@ -250,10 +248,14 @@ export default function Supporters() {
       <div className={"supporterBoxContainer"}>
         {supportList.map((item, index) => (
           <div key={index} className="supporterBox">
-            <div className="imgContainer">
-              <Link to={item.external_link}>
+            <div className={`imgContainer ${item.external_link ? 'clickable' : ''}`}>
+              {item.external_link ? (
+                <Link to={item.external_link}>
+                  <img alt={item.name} src={item.img_src} />
+                </Link>
+              ) : (
                 <img alt={item.name} src={item.img_src} />
-              </Link>
+              )}
             </div>
           </div>
         ))}
