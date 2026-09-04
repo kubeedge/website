@@ -2,7 +2,13 @@
 title: Installing KubeEdge with Binary
 sidebar_position: 4
 ---
-Deploying KubeEdge with binary is used to test, never use this way in production environment.
+Binary installation is mainly intended for testing and development, and is generally not recommended for production environments.
+
+## When to choose binary installation
+
+Binary installation is more suitable for advanced users who want full control over binary placement, configuration files, and service management. It is usually a better fit for custom environments, development, debugging, or cases where users do not want to rely on `keadm`.
+
+Compared with `keadm`, binary installation provides more flexibility, but it also requires more manual setup.
 
 ## Limitation
 
