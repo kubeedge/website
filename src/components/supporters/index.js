@@ -225,6 +225,12 @@ const supportList = [
     img_src: "img/supporters/bluedot.png",
     external_link: "http://portal.bluedotai.cn",
   },
+
+  {
+    name: "Dayu",
+    img_src: "img/supporters/dayu.svg",
+    external_link: "https://dayu-autostreamer.github.io/",
+  },
 ];
 
 export default function Supporters() {
