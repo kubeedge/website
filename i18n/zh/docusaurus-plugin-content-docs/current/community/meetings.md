@@ -7,6 +7,7 @@ sidebar_position: 10
 
 KubeEdge runs regular open community meetings where maintainers, contributors, and users discuss the project roadmap, in-flight design proposals, release planning, and operational issues.
 All meetings are public and anyone is welcome to join, listen in, or present a topic.
+Like every other KubeEdge interaction, meetings are governed by the project [Code of Conduct](governance.md#code-of-conduct).
 
 The single source of truth for meeting times, agendas, and recordings lives in the [kubeedge/community](https://github.com/kubeedge/community) repository.
 The information below is a quick reference and may lag the upstream `README`; if anything here disagrees with the upstream repository, the upstream repository wins.
@@ -41,31 +42,10 @@ The links below come from the [community `README`](https://github.com/kubeedge/c
 If you want to present a topic, add it to the shared agenda document at least one meeting day in advance so it can be slotted in.
 Discussion items submitted on the day of the meeting will usually be deferred to the next session unless there is unused time.
 
-## SIGs and working groups
+## SIG and working group meetings
 
-In addition to the TSC and the general community meeting, several Special Interest Groups (SIGs) and Working Groups (WGs) run their own meetings.
-Each SIG/WG owns its meeting cadence and is documented under its directory in the [community repository](https://github.com/kubeedge/community).
-Notable groups include:
-
-- [`sig-ai`](https://github.com/kubeedge/community/tree/master/sig-ai)
-- [`sig-cluster-lifecycle`](https://github.com/kubeedge/community/tree/master/sig-cluster-lifecycle)
-- [`sig-device-iot`](https://github.com/kubeedge/community/tree/master/sig-device-iot)
-- [`sig-mec`](https://github.com/kubeedge/community/tree/master/sig-mec)
-- [`sig-networking`](https://github.com/kubeedge/community/tree/master/sig-networking)
-- [`sig-node`](https://github.com/kubeedge/community/tree/master/sig-node)
-- [`sig-release`](https://github.com/kubeedge/community/tree/master/sig-release)
-- [`sig-robotics`](https://github.com/kubeedge/community/tree/master/sig-robotics)
-- [`sig-scalability`](https://github.com/kubeedge/community/tree/master/sig-scalability)
-- [`sig-security`](https://github.com/kubeedge/community/tree/master/sig-security)
-- [`sig-testing`](https://github.com/kubeedge/community/tree/master/sig-testing)
-- [`wg-wireless`](https://github.com/kubeedge/community/tree/master/wg-wireless)
-
-Refer to each SIG/WG charter for its scope, current chairs and tech leads, and meeting schedule.
-
-## Code of conduct
-
-All community meetings, just like every other KubeEdge interaction, are governed by the project [Code of Conduct](https://github.com/kubeedge/kubeedge/blob/master/CODE_OF_CONDUCT.md).
-If you experience or witness behavior that violates the Code of Conduct, please follow the reporting instructions in that document.
+In addition to the TSC and the general community meeting, each Special Interest Group (SIG) and Working Group (WG) runs its own meetings and owns its meeting cadence.
+See the [list of SIGs and working groups](governance.md#current-sigs-and-working-groups) on the Governance page, and refer to each group's charter in the [community repository](https://github.com/kubeedge/community) for its meeting schedule.
 
 ## Related links
 
