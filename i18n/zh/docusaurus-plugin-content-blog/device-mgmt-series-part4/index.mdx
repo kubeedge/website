@@ -1,0 +1,109 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-02-27
+draft: false
+lastmod: 2025-02-27
+summary: 在1.17版本中，Mapper-Framework 增加了视频流数据处理的功能，完善了 KubeEdge 边缘设备的管理范围。
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: KubeEdge边缘设备管理系列（四）：Mapper-Framework视频流处理
+---
+
+针对新版本 **Device-IoT** 领域的更新，我们计划推出一系列的文章对这些特性进行详细的介绍，大致的文章大纲为：
+
+1. [基于物模型的设备管理 API 设计与实现](/zh/blog/device-mgmt-series-part1)
+2. [DMI 数据面能力设计与实现](/zh/blog/device-mgmt-series-part2)
+3. [Mapper 开发框架 Mapper-Framework 设计与实现](/zh/blog/device-mgmt-series-part3)
+4. [如何使用 Mapper 完成视频流数据处理](/zh/blog/device-mgmt-series-part4)
+5. [如何使用 Mapper 实现设备数据写入](/zh/blog/device-mgmt-series-part5)
+6. [如何从头开发一个 Mapper（以 `modbus` 为例）](/zh/blog/device-mgmt-series-part6)
+
+在上一篇文章中，我们介绍了 Mapper 开发框架 Mapper-Framework。Mapper-Framework 中集成了 DMI 管理面和数据面能力，能够自动生成 Mapper 工程供用户使用，有效降低 Mapper 的开发门槛。
+
+在 1.15 版本中，针对温湿度监测、酸碱度监测等数据离散的边缘场景，Mapper-Framework 数据面能以多种方式定时采集上报单点数值。但在边缘计算中，摄像头之类流数据设备的管理也是不可或缺的部分。因此，在 1.17 版本中，Mapper-Framework 增加了 **视频流数据处理** 的功能，完善了 KubeEdge 边缘设备的管理范围。
+
+## ONVIF 摄像头设备纳管
+
+在摄像头管理领域，ONVIF（Open Network Video Interface Forum）是一种广泛应用的通用设备协议，旨在为视频监控及其他物理安全领域的 IP 设备之间的互联互通建立统一的标准，确保不同厂商的设备能够无缝集成和协作。
+
+在 KubeEdge 1.17 版本中，为了支持摄像头设备的云原生接入与管理，我们基于 Mapper-Framework 设计并实现了 ONVIF 协议的内置 Mapper，该插件已存放于 mappers-go 仓库中，用户只需运行该内置 <a href="https://github.com/kubeedge/mappers-go/tree/main/mappers/kubeedge-v1.17.0/onvif-mapper">mapper</a>，并根据自身摄像头设备的具体信息修改相应的 device 配置文件，即可完成摄像头设备的自动接入与纳管。通过这种方式，能够让 ONVIF 网络摄像头设备具备云原生能力，支持在边缘环境下进行统一管理、远程控制和数据采集。ONVIF 网络摄像头设备的 device-instance 配置文件主要包含以下关键字段：
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: onvif-device-01
+spec:
+  ...
+  protocol:
+    protocolName: onvif
+    configData:
+      url: 192.168.168.64:80   # Replace it with the address of your own onvif camera
+      userName: admin          # Replace it with the username of your own onvif camera
+      password: /etc/secret/password   # Fill in the fields according to your secret.yaml
+```
+
+上述字段指定了设备协议名称以及网络摄像头设备的 url、用户名以及密码，用户需要根据实际设备的详细信息进行修改。为避免密码明文存储，需要通过 Kubernetes secret 的形式完成挂载。完整的配置文件信息可以在配置文件 <a href="https://github.com/kubeedge/mappers-go/tree/main/mappers/kubeedge-v1.17.0/onvif-mapper/resource">示例</a> 获取。
+
+## Mapper-Framework 支持视频流数据处理
+
+在大多数应用场景中，摄像头设备通常通过 `RTSP`（Real-Time Streaming Protocol）流的形式输出视频数据。根据 ONVIF 协议，Mapper 可以按照用户在 device-instance 配置文件中定义的参数，自动连接并获取摄像头的 `profileToken` 鉴权文件和 `RTSP` 流 URI，最终实现视频流数据的采集。
+
+为了简化用户对视频流数据的处理流程，在 KubeEdge 1.17 版本中，我们在 Mapper-Framework 的数据面内置了视频流数据处理功能，主要支持以下能力：
+
+- **内置视频片段存储功能**：能够将设备上报的视频流自动转化为视频片段文件，便于存储和后续分析。
+
+- **内置视频帧存储功能**：能够将视频流数据解析并存储为视频帧文件（图像序列），从而支持后续 AI 计算任务，如目标检测、行为识别等。
+
+用户只需在 **device-instance** 配置文件中进行相关配置，即可使用当前版本的流数据处理能力。此外还支持用户自定义流数据处理逻辑以满足特定的业务需求，例如视频流实时分析、AI 推理等。配置文件相关字段定义及对应结构如下：
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: onvif-device-01
+spec:
+  ...
+  properties:
+    - name: saveFrame
+      visitors:
+        protocolName: onvif
+        configData:
+          format: jpg             # Video frame file format
+          outputDir: /tmp/case/   # Output path of video frame file
+          frameCount: 30          # Number of output frame files
+          frameInterval: 1000000  # interval between frames, the unit is nanoseconds
+          dataType: stream
+
+    - name: saveVideo
+      visitors:
+        protocolName: onvif
+        configData:
+          frameCount: 1000        # The number of frames the video clip contains
+          format: mp4             # Video file format
+          outputDir: /tmp/case/   # Output path of video file
+          videoNum: 2             # Number of output video files
+          dataType: stream
+```
+
+在 1.17 版本后，Mapper-Framework 数据面能力得到了进一步增强。除了将设备数据推送至数据库和用户应用的功能外，还新增了对视频流数据的处理能力，显著提升了设备数据的采集和读取能力，使得边缘 AI 和视频分析等场景的集成更加便捷。
+
+然而，在实际的生产环境中，设备数据的写入也是一个至关重要的特性。例如，一些工业和安防应用场景需要将处理后的数据写回设备，以执行特定的控制指令或参数调整。在本系列的下一篇文章中，我们会对 Mapper 实现设备数据写入的功能进行详细的介绍。
+
+了解更多关于 KubeEdge 的信息，访问：
+
+- KubeEdge: https://kubeedge.io/
+- 网站: https://kubeedge.io/
+- GitHub 仓库: https://github.com/kubeedge/kubeedge
+- 文档: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge
