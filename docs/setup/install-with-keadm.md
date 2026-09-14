@@ -3,7 +3,11 @@ title: Installing KubeEdge with Keadm
 sidebar_position: 3
 ---
 
-Keadm is used to install the cloud and edge components of KubeEdge. It does not handle the installation of Kubernetes and its [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime).
+Keadm is used to install the cloud and edge components of KubeEdge. It does not install Kubernetes or the [runtime environment](https://kubeedge.io/docs/setup/prerequisites/runtime). Before using `keadm`, make sure your Kubernetes cluster and runtime environment are already prepared.
+
+## Important note
+
+Installing KubeEdge with `keadm` does not install Kubernetes or the container runtime. `keadm` only installs KubeEdge components. Before running `keadm init` or `keadm join`, make sure Kubernetes and the runtime environment are already installed and working properly.
 
 Please refer to [Kubernetes compatibility](https://github.com/kubeedge/kubeedge#kubernetes-compatibility) documentation to check **Kubernetes compatibility** and ascertain the Kubernetes version to be installed.
 
