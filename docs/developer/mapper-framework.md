@@ -34,7 +34,7 @@ The standardized data definition is [DataModel](https://github.com/kubeedge/kube
 #### Push
 The data push module can push property values of devices to reachable user apps for consumption according to 
 destination rules that defined by CRD. To meet the new requirements, the current v1beta1 CRD definitions of Device 
-Instance add new fields [PushMethod](https://github.com/kubeedge/kubeedge/blob/master/pkg/apis/devices/v1beta1/device_instance_types.go#L116).
+Instance add new fields [PushMethod](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/api/apis/devices/v1beta1/device_instance_types.go#L127).
 
 An example of a configuration file that defines mapper to push data to user applications is as follows:
 ```yaml
@@ -64,7 +64,7 @@ In the future, `DataPanel` interface will add more interfaces to ensure data sec
 
 #### DataBase
 The database module can store device data to a local database 
-according to destination rules that defined by [DBMethod](https://github.com/kubeedge/kubeedge/blob/master/pkg/apis/devices/v1beta1/device_instance_types.go#L155).
+according to destination rules that defined by [DBMethod](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/api/apis/devices/v1beta1/device_instance_types.go#L143).
 An example of a configuration file that defines mapper to push data to user database is as follows:
 ```yaml
 apiVersion: devices.kubeedge.io/v1beta1

@@ -1,0 +1,106 @@
+---
+date: 2026-08-31
+title: Dayu
+subTitle: A programmable platform for cloud-edge collaborative AI stream analytics
+description: Dayu builds on KubeEdge to help teams compose, deploy, schedule, and observe multi-stage AI stream applications across heterogeneous cloud and edge resources.
+tags:
+  - Solution
+---
+
+# Dayu: Provide infrastructure for cloud-edge collaborative AI stream data analytics with KubeEdge
+
+<div style={{textAlign: 'center'}}>
+    <img src="/img/casestudies/dayu/dayu-logo-horizontal.svg" alt="Dayu logo" width="420"/>
+</div>
+
+[Dayu](https://github.com/dayu-autostreamer/dayu) is an open-source platform for building and operating multi-stage AI stream applications across cloud and edge resources. It brings workflow composition, reusable AI services, cloud-edge deployment, adaptive scheduling, runtime observation, and result analysis into one environment.
+
+KubeEdge provides Dayu with a Kubernetes-native foundation for managing distributed cloud and edge resources. Dayu builds on that foundation with an application-aware layer that understands data sources, processing workflows, and scheduling goals. Together, they turn a collection of models and devices into a programmable cloud-edge stream analytics system.
+
+## The Challenge: From Individual Models to Continuous Workflows
+
+A useful stream analytics application is usually much more than a model running in a container. A traffic perception workflow, for example, may ingest several camera feeds, detect and track objects, identify events, combine intermediate results, and deliver insights continuously. Its stages may need different processors, while available compute, network conditions, queue pressure, and scene complexity change over time.
+
+Cloud-edge infrastructure can manage nodes and workloads, but application teams still need to answer a second set of questions: How should multiple AI services be connected? Which stages should be available on which nodes? Where should each task run? How can a policy react to changing conditions? And how can the entire process be inspected and compared?
+
+Without a shared application runtime, teams often rebuild these capabilities for every pipeline or scheduling experiment. Dayu was created to provide that missing layer.
+
+## What Dayu Is
+
+Dayu represents a stream application as a directed workflow of reusable services. This model supports both straightforward pipelines and workflows with parallel branches or joined results, while keeping the application definition independent from the scheduling policy used to run it.
+
+Through a web-based environment and declarative templates, users can select data sources, compose an application, choose cloud and edge resources, apply a scheduling strategy, and observe the result. The same platform serves three complementary groups:
+
+- **Application developers** can assemble cloud-edge AI workflows from reusable services instead of building a distributed runtime from scratch.
+- **Scheduling researchers** can implement and compare policies on a common execution and observation path.
+- **Platform operators** can manage experiments, inspect runtime behavior, and retain results from one interface.
+
+## What Dayu Enables
+
+Dayu provides an end-to-end path from an incoming stream to an observable cloud-edge application:
+
+- **Compose multi-stage AI workflows.** Services can be arranged into application graphs that reflect real processing dependencies rather than a single indivisible workload.
+- **Connect recorded and live data sources.** The platform can feed repeatable test data or live camera streams into the same application workflow.
+- **Run across heterogeneous resources.** Cloud servers and different classes of edge devices can participate in one coordinated execution environment.
+- **Coordinate service placement and task execution.** Dayu can decide where services should be available and where incoming work should execute, allowing policies to act at the level most appropriate to the application.
+- **Adapt through scheduling policies.** Strategies can use application context and runtime observations to respond to workload and resource changes.
+- **Observe and analyze the full lifecycle.** Users can inspect application topology, placement and execution decisions, resource use, queueing, latency, and results, then export data for further analysis.
+- **Extend the platform.** New AI services, scheduling approaches, monitoring logic, and visualizations can reuse the same templates and runtime interfaces.
+
+This combination makes Dayu useful not only for demonstrating an AI model, but also for understanding how a complete stream application behaves across the cloud-edge continuum.
+
+## Why Dayu Builds on KubeEdge
+
+Dayu does not replace the cloud-edge infrastructure responsibilities that KubeEdge already solves. Instead, the two projects have clear and complementary roles:
+
+| KubeEdge provides | Dayu adds |
+| --- | --- |
+| A Kubernetes-compatible control plane spanning cloud and edge nodes | An application model for data sources, multi-stage AI workflows, and scheduling goals |
+| Distributed node and workload lifecycle management | Coordinated deployment and execution of stream-processing services |
+| A common resource and API foundation | Application-aware scheduling, feedback, visualization, and experiment management |
+
+Dayu uses KubeEdge-managed nodes and workloads as the real execution substrate for its decisions. Dayu-maintained integrations with ecosystem projects such as [Sedna](https://github.com/dayu-autostreamer/dayu-sedna) and [EdgeMesh](https://github.com/dayu-autostreamer/dayu-edgemesh) support collaborative service deployment and communication across cloud and edge nodes. This lets Dayu focus on application structure and runtime coordination while remaining aligned with Kubernetes-native edge management.
+
+## Solution Architecture and User Journey
+
+Dayu organizes its responsibilities into five layers:
+
+| Layer | Responsibility |
+| --- | --- |
+| AI application | Reusable AI services are composed into application workflows. |
+| Runtime coordination | Deployment, scheduling, task movement, feedback, and monitoring are coordinated across the workflow. |
+| Platform services | The user interface, control services, and datasource management provide a unified operating environment. |
+| Edge collaboration | Sedna and EdgeMesh integrations connect application intent with distributed services and communication. |
+| Cloud-edge foundation | KubeEdge provides the common cluster, node, and workload substrate. |
+
+![Dayu five-layer architecture built on KubeEdge](/img/casestudies/dayu/dayu-layer-structure.png)
+
+From a user's perspective, the lifecycle is intentionally simple:
+
+1. Define or select a data source, an application workflow, candidate resources, and a scheduling strategy.
+2. Dayu prepares the required services on cloud and edge nodes managed by KubeEdge.
+3. Stream tasks move through the application workflow while Dayu coordinates their execution across available resources.
+4. Runtime observations and application feedback allow the selected policy to adapt its decisions.
+5. Results, topology, performance, and resource information return to the Dayu interface for inspection and analysis.
+
+The internal services remain modular, but users interact with one coherent application lifecycle rather than a collection of disconnected infrastructure components.
+
+## What Makes Dayu Distinctive
+
+- **Application-aware orchestration.** Dayu understands the stages and dependencies of a stream application, so coordination can happen at service and task level rather than only at container level.
+- **Two complementary decision horizons.** It coordinates both where services are made available and where incoming work executes, without forcing both decisions into one rigid mechanism.
+- **A reusable platform, not a single algorithm.** Application services and scheduling strategies are pluggable, allowing different methods to share the same deployment, execution, monitoring, and evaluation environment.
+- **Designed for heterogeneous cloud-edge systems.** The platform treats differences in device capability, workload, and connectivity as part of the scheduling context.
+- **A closed loop from deployment to evidence.** Built-in visualization and telemetry connect decisions with outcomes, supporting debugging, comparison, and reproducible evaluation.
+
+## Value to Users and the KubeEdge Community
+
+For developers, Dayu shortens the path from a set of AI services to an executable cloud-edge application. For researchers, it provides a consistent system in which a new policy can be evaluated without rebuilding the surrounding runtime. For the KubeEdge community, it is an example of how the KubeEdge resource plane can support a higher-level, application-aware platform for continuous AI workloads.
+
+Dayu has also supported peer-reviewed scheduling research. In one evaluation on a KubeEdge-based prototype, [Hier-EI](https://dayu-autostreamer.github.io/hier-ei/) reported up to a 3.6× improvement in latency compliance and a 67.4% reduction in P95 latency against the baselines evaluated in that study. These figures are specific to that policy, workload, and test environment; Dayu's broader contribution is the common platform that makes such policies implementable, observable, and comparable.
+
+## Looking Ahead
+
+The project will continue to broaden its reusable service catalog and representative workflows, improve the experience of composing and observing cloud-edge applications, and strengthen support for diverse edge environments. Dayu will also continue evolving with the KubeEdge ecosystem so that application and scheduling innovation can build on a maintained, Kubernetes-native edge foundation.
+
+Learn more in the [Dayu documentation](https://dayu-autostreamer.github.io/) and [source repository](https://github.com/dayu-autostreamer/dayu).

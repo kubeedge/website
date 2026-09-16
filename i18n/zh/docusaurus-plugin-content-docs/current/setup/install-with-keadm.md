@@ -20,14 +20,14 @@ KubeEdge 对 Kubernetes 的版本兼容性，更多详细信息您可以参考 [
 - 从github下载：[github releases](https://github.com/kubeedge/kubeedge/releases)  
 kubeEdge Github 官方提供了三种架构的发布版本： arm64, arm和amd64。 请根据您的平台和所需的版本下载正确的软件包
     ```shell
-    wget https://github.com/kubeedge/kubeedge/releases/download/v1.17.0/keadm-v1.17.0-linux-amd64.tar.gz
-    tar -zxvf keadm-v1.17.0-linux-amd64.tar.gz
-    cp keadm-1.17.0-linux-amd64/keadm/keadm /usr/local/bin/keadm
+    wget https://github.com/kubeedge/kubeedge/releases/download/v1.23.1/keadm-v1.23.1-linux-amd64.tar.gz
+    tar -zxvf keadm-v1.23.1-linux-amd64.tar.gz
+    cp keadm-1.23.1-linux-amd64/keadm/keadm /usr/local/bin/keadm
     ```
 	
 - 下载dockerhub KebeEdge的官方发行版本
   ```shell
-  docker run --rm kubeedge/installation-package:v1.17.0 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
+  docker run --rm kubeedge/installation-package:v1.23.1 cat /usr/local/bin/keadm > /usr/local/bin/keadm && chmod +x /usr/local/bin/keadm
   ```
   
 - 从源代码编译安装：  
@@ -70,7 +70,7 @@ kubeEdge Github 官方提供了三种架构的发布版本： arm64, arm和amd64
 举个例子：
 
 ```shell
-# keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.17.0  --kube-config=/root/.kube/config (only work since 1.3 release)
+# keadm init --advertise-address="THE-EXPOSED-IP" --kubeedge-version=v1.23.1  --kube-config=/root/.kube/config (only work since 1.3 release)
 ```
 
 输出：
@@ -107,7 +107,7 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
    值可以参考 [KubeEdge Cloudcore Helm Charts README.md](https://github.com/kubeedge/kubeedge/blob/master/build/helm/charts/cloudcore/README.md)
 2. 您可以从 Keadm 的一个内置配置概要文件开始，然后根据您的特定需求进一步定制配置。目前，内置的配置概要文件关键字是 `version`
    。请参考 [`version.yaml`](https://github.com/kubeedge/kubeedge/blob/master/manifests/profiles/version.yaml)
-   ，您可以在这里创建您的自定义配置文件, 使用 `--kubeedge-version=v1.17.0 --set key=value` 来使用它。
+   ，您可以在这里创建您的自定义配置文件, 使用 `--kubeedge-version=v1.23.1 --set key=value` 来使用它。
 
 此外，还可使用 `--external-helm-root` 安装外部的 helm chart 组件，如 edgemesh 。
 
@@ -178,7 +178,7 @@ replicaset.apps/cloudcore-56b8454784   1         1         1       46s
 举个例子：
 
 ```shell
-# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.17.0
+# keadm join --cloudcore-ipport=192.168.20.50:10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.23.1
 ```
 
 **重要提示：**
@@ -214,7 +214,7 @@ KubeEdge edgecore is running, For logs visit: journalctl -u edgecore.service -xe
 举个例子:
 
 ```shell
-keadm deprecated join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=1.12.0
+keadm deprecated join --cloudcore-ipport="THE-EXPOSED-IP":10000 --token=27a37ef16159f7d3be8fae95d588b79b3adaaf92727b72659eb89758c66ffda2.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTAyMTYwNzd9.JBj8LLYWXwbbvHKffJBpPd5CyxqapRQYDIXtFZErgYE --kubeedge-version=v1.23.1
 ```
 
 输出:

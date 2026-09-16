@@ -8,7 +8,7 @@ We currently use Device Model and Device Instance to define the device.
 ## Notice
 Device CRDs are updated from v1alpha2 to v1beta1 in release v1.15.
 It is **not** compatible with v1alpha1 and v1alpha2.
-Details can be found [device-crd-v1beta1](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md).
+Details can be found [device-crd-v1beta1](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-device-iot/device-crd-v1beta1.md).
 
 ## Device Model
 

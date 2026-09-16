@@ -80,6 +80,27 @@ summary of the SIG's work to the community. SIGs are also responsible to:
 - Use the above forums as the primary means of working, communicating, and collaborating, as opposed
   to private emails and meetings.
 
+### Current SIGs and Working Groups
+
+Each SIG and Working Group (WG) is documented under its own directory in the [community repository](https://github.com/kubeedge/community), which holds its charter, membership, and meeting schedule.
+Current groups include:
+
+- [`sig-ai`](https://github.com/kubeedge/community/tree/master/sig-ai)
+- [`sig-cluster-lifecycle`](https://github.com/kubeedge/community/tree/master/sig-cluster-lifecycle)
+- [`sig-device-iot`](https://github.com/kubeedge/community/tree/master/sig-device-iot)
+- [`sig-mec`](https://github.com/kubeedge/community/tree/master/sig-mec)
+- [`sig-networking`](https://github.com/kubeedge/community/tree/master/sig-networking)
+- [`sig-node`](https://github.com/kubeedge/community/tree/master/sig-node)
+- [`sig-release`](https://github.com/kubeedge/community/tree/master/sig-release)
+- [`sig-robotics`](https://github.com/kubeedge/community/tree/master/sig-robotics)
+- [`sig-scalability`](https://github.com/kubeedge/community/tree/master/sig-scalability)
+- [`sig-security`](https://github.com/kubeedge/community/tree/master/sig-security)
+- [`sig-testing`](https://github.com/kubeedge/community/tree/master/sig-testing)
+- [`wg-wireless`](https://github.com/kubeedge/community/tree/master/wg-wireless)
+
+Refer to each SIG/WG charter for its scope, current chairs and tech leads, and meeting schedule.
+In addition to the project-wide [community meetings](meetings.md), each SIG/WG runs its own meetings and owns its meeting cadence.
+
 ## CLA
 All contributors must sign the CNCF CLA, as described [here](https://github.com/kubernetes/community/blob/master/CLA.md).
 

@@ -35,6 +35,6 @@ methods, including push data and pull data, etc. The details are as follows:
 4. Mapper pushes device data to the cloud through the cloud edge channel.
 
 ### DMI interface definition
-DMI interface definition refers to [DMI interface](https://github.com/kubeedge/kubeedge/blob/master/pkg/apis/dmi/services.go).
+DMI interface definition refers to [DMI interface](https://github.com/kubeedge/kubeedge/blob/master/staging/src/github.com/kubeedge/api/apis/dmi/services.go).
 The current version of DMI interface is defined in gRPC proto.  
 You can use the generate-dmi-proto [script](https://github.com/kubeedge/kubeedge/blob/master/hack/generate-dmi-proto.sh) to create the corresponding gRPC-go code.
