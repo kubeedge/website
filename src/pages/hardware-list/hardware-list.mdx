@@ -1,0 +1,55 @@
+import HardwareCard from '@site/src/components/HardwareCard';
+
+<div className="hardware-intro">
+  <p>
+    This page collects reference edge hardware and platforms that have been used
+    to build or validate KubeEdge environments. It is intended as a community
+    reference rather than a certification program. Actual compatibility depends
+    on the operating system, CPU architecture, container runtime, KubeEdge
+    version, device drivers, and optional accelerator stack used by each
+    deployment.
+  </p>
+</div>
+
+## Recently Validated Platforms
+
+<div className="hardware-grid">
+  <HardwareCard
+    name="AI PC"
+    description="Windows AI PC validated with KubeEdge through WSL2, including edge-node onboarding, cloud-edge workload delivery, local AI inference, and CPU/GPU/NPU-oriented runtime integration."
+    image="/img/hardware/intel-core-ultra.svg"
+    link="https://www.intel.com/content/www/us/en/products/details/processors/core-ultra.html"
+  />
+
+  <HardwareCard
+    name="Intel Edge AI Box"
+    description="Intel Edge AI Box is being used to validate KubeEdge edge-node onboarding, application delivery, local workload execution, cloud-edge coordination, and accelerator-aware edge AI scenarios."
+    image="/img/hardware/intel-core-ultra.svg"
+    link="https://www.intel.com/content/www/us/en/developer/articles/reference-implementation/intel-edge-ai-box.html"
+  />
+</div>
+
+## Community Reference Devices
+
+<div className="hardware-grid">
+  <HardwareCard
+    name="Intel NUC 11"
+    description="Compact x86 edge device suitable for general-purpose edge workloads and local application deployment."
+    image="https://intelcorp.scene7.com/is/image/intelcorp/e830-product-images-e830-1280x720:1920-1080?wid=576&hei=324&fmt=webp-alpha"
+    link="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html"
+  />
+
+  <HardwareCard
+    name="Raspberry Pi 4"
+    description="ARM-based single-board computer commonly used for lightweight edge workloads, device access, and development environments."
+    image="https://assets.raspberrypi.com/static/raspberry-pi-4-labelled@2x-1c8c2d74ade597b9c9c7e9e2fff16dd4.png"
+    link="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"
+  />
+
+  <HardwareCard
+    name="NVIDIA Jetson Nano"
+    description="Compact edge AI platform for computer vision, robotics, and GPU-accelerated inference scenarios."
+    image="https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/embedded/images/jetsonNano/nvidia-jetson-nano-module-standing-2c50-d.jpg"
+    link="https://developer.nvidia.com/embedded/jetson-nano"
+  />
+</div>

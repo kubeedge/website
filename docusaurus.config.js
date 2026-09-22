@@ -158,6 +158,11 @@ const config = {
           { to: "/case-studies", label: "Case Studies", position: "left" },
           { to: "/partners", label: "Partners", position: "left" },
           {
+            to: "/hardware-list",
+            label: "Hardware",
+            position: "left",
+          },
+          {
             type: "dropdown",
             label: "Community",
             position: "left",
