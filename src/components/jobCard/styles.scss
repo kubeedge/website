@@ -9,6 +9,18 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px;
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #3578e5;
+    outline-offset: 2px;
+  }
 
   .image {
     width: 80px;
