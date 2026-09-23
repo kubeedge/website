@@ -205,6 +205,10 @@ kata-runtime kata-check
 - Kata Containers as a RuntimeClass
 - Kata Containers as a runtime for untrusted workloads
 
+:::note
+As of this writing, full `RuntimeClass` support on KubeEdge edge nodes (`spec.runtimeClassName`) is still being worked on — see [kubeedge/kubeedge#7106](https://github.com/kubeedge/kubeedge/issues/7106) for the current status. The example below uses the untrusted-workload annotation approach, which is the option that currently works on KubeEdge.
+:::
+
 Suppose you have configured Kata Containers as the runtime for untrusted workloads. In order to verify whether it works on your edge node, you can run:
 
 ```yaml
