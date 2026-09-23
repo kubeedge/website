@@ -41,7 +41,7 @@ The major steps involved in this process are as follows :-
 2. Send that message to cloudHub
 3. If the message received is a sync message then :
 
- 	3.1 If response is received on syncChannel then it creates a map[string] chan containing the messageID of the message as key
+	3.1 If response is received on syncChannel then it creates a map[string] chan containing the messageID of the message as key
 
 	3.2 It waits for one heartbeat period to receive a response on the channel created, if it does not receive any response on the channel within the specified time then it times out.
 
@@ -73,5 +73,5 @@ The major steps involved in this process are as follows :-
 
 EdgeHub can be configured to communicate in two ways as mentioned below:
 
-- **Through websocket protocol**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#edgehub-connect-to-cloudhub-through-websocket-protocol) for details.
-- **Through QUIC protocol**: Click [here](https://github.com/kubeedge/kubeedge/tree/master/docs/proposals/quic-design.md#edgehub-connect-to-cloudhub-through-quic) for details.
+- [**Details on connecting via websocket protocol**](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-architecture/quic-design.md#edgehub-connect-to-cloudhub-through-websocket-protocol)
+- [**Details on connecting via QUIC protocol**](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-architecture/quic-design.md#edgehub-connect-to-cloudhub-through-quic)
