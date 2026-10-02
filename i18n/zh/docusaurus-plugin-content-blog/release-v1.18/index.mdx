@@ -1,0 +1,130 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2024-07-26
+draft: false
+lastmod: 2024-07-26
+summary: KubeEdge v1.18.0 版本发布！
+tags:
+- KubeEdge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- release v1.18
+- v1.18
+title: KubeEdge v1.18.0 版本发布！
+---
+
+北京时间2024年7月26日，KubeEdge发布1.18.0版本。新版本在稳定性、安全性等方面有了显著的提升，同时持续在易用性等方面做了增强。
+
+## KubeEdge v1.18 新增特性：
+
+- [RouterManager支持高可用](#routermanager支持高可用)
+- [CloudCore云边通道鉴权增强](#cloudcore云边通道鉴权增强)
+- [支持设备状态上报](#支持设备状态上报)
+- [Keadm能力增强](#keadm能力增强)
+- [封装Token，CA和证书操作，提高扩展性](#封装tokenca和证书操作提高扩展性)
+- [升级K8s依赖到v1.29](#升级k8s依赖到v129)
+
+## 新特性概览
+
+### RouterManager支持高可用
+
+针对CloudCore采用高可用部署时，RouterManager无法准确路由的问题，在新版本中，对RouterManager在高可用部署时做了优化与增强，云端发往边缘的自定义消息将会被路由到对应EdgeNode所连接的CloudCore中，并正确下发到对应的EdgeNode。同时考虑了边界情况，在转发过程中，如果EdgeNode重连到其他CloudCore时，消息将会被重新转发到正确的CloudCore中。
+
+**更多信息可参考:**
+
+https://github.com/kubeedge/kubeedge/pull/5635
+https://github.com/kubeedge/kubeedge/pull/5619
+
+### CloudCore云边通道鉴权增强
+
+CloudCore 作为连接边缘节点和Kube-APIServer的桥梁，需要限制边缘节点对集群资源的访问权限。在新版本中，我们对云边通道的安全性进行了增强，CloudHub会识别消息发送方并校验其是否有足够的权限，从而限制边缘节点操作其他节点的资源。
+v1.18.0目前已支持node authorization模式。该特性引入了如下配置参数，在新版本中默认关闭，开启如下开关即可启用该特性。
+
+```yaml
+apiVersion: v1
+data:
+  cloudcore.yaml:
+  ...
+  modules：
+    cloudhub:
+      authorization:
+        // optional, default false, toggle authoration
+        enable: true
+        // optional, default to false, do authorization but always allow all the requests
+        debug: false
+        // required, an authorizer chain
+        authorizers:
+          // node authorization mode
+          - node:
+          ebable：true
+  ...
+```
+
+为了安全启用此特性，可以先开启debug。当鉴权失败时，CloudCore只记录日志，但请求仍会正常处理。
+
+**更多信息可参考:**
+
+https://github.com/kubeedge/kubeedge/pull/5512
+https://github.com/kubeedge/kubeedge/pull/5585
+
+### 支持设备状态上报
+
+设备有其自身的状态，比如在线、离线、异常等。1.18.0版本支持了设备状态上报的能力。该特性在Mapper-Framework已经默认实现，用户基于Mapper-Framework生成自己需要的mapper，即可使用。状态上报成功后，可通过device的资源查看结果：
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+...
+spec:
+  status:
+    lastOnlineTime: "2024-07-30T17:55:49Z"
+    state: ok
+    twins:
+    - observedDesired:
+    ...
+```
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/5650
+https://github.com/kubeedge/kubeedge/pull/5649
+https://github.com/kubeedge/kubeedge/pull/5651
+
+### Keadm能力增强
+
+在旧版本中，使用`keadm join`安装EdgeCore只能指定部分参数的配置。在最新版本中，我们对EdgeCore的配置流程进行了显著优化。现在，您无需等待节点接入完成,手动编辑edgecore.yaml配置文件，再重启EdgeCore。通过在`keadm join`命令中使用新增的`--set`参数，您可以在节点加入时直接设置配置，就像使用Helm配置values.yaml一样便捷。这一改进大大简化了配置管理过程，提高了效率。下列指令是一个开启MetaServer的样例：
+
+```
+keadm join --set modules.metaManager.enable=true,modules.metaManager.metaServer.enable=true,modules.metaManager.remoteQueryTimeout=32
+```
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/5574
+https://github.com/kubeedge/kubeedge/pull/5564
+
+### 封装Token，CA和证书操作，提高扩展性
+
+在本版本中，我们对Token和Certificate的处理进行了彻底的整理和优化。原先分散在代码各处的处理逻辑现在已被集中管理，显著降低了维护成本。Token处理已被集成到一个统一的工具包中，而Certificate的处理则通过接口抽象化，不仅支持自建CA流程，还适配了通过Kubernetes CSR申请Certificate的流程。此外，我们的设计允许未来轻松扩展以支持更多类型的私钥和客户自定义的Certificate。此次重构不仅提升了Token和Certificate业务代码的可读性和可维护性，而且保持了对外接口的完全向下兼容性，确保了现有系统的无缝升级。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/5502
+https://github.com/kubeedge/kubeedge/pull/5544
+
+### 升级K8s依赖到v1.29
+
+新版本将依赖的Kubernetes版本升级到v1.29.6，您可以在云和边缘使用新版本的特性。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/5656

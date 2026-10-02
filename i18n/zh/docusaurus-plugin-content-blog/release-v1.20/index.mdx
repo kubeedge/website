@@ -1,0 +1,210 @@
+---
+authors:
+- KubeEdge SIG Release
+categories:
+- General
+- Announcements
+date: 2025-01-21
+draft: false
+lastmod: 2025-01-21
+summary: KubeEdge v1.20.0 版本发布！
+tags:
+- KubeEdge
+- edge computing
+- kubernetes edge computing
+- K8s edge orchestration
+- edge computing platform
+- cloud native
+- iot
+- iiot
+- dashboard
+- release v1.20
+- v1.20
+title: KubeEdge v1.20.0 版本发布！
+---
+
+北京时间2025年1月21日，KubeEdge发布1.20.0版本。新版本针对大规模、离线等边缘场景对边缘节点和应用的管理、运维等能力进行了增强，同时新增了多语言Mapper-Framework的支持。
+
+## KubeEdge v1.20 新增特性：
+
+- [支持批量节点操作](#支持批量节点操作)
+- [多语言 Mapper-Framework 支持](#多语言mapper-framework支持)
+- [边缘 keadm ctl 新增 pods logs/exec/describe 和 Devices get/edit/describe 能力](#边缘keadm-ctl新增-pods-logsexecdescribe-和-devices-geteditdescribe-能力)
+- [解耦边缘应用与节点组，支持使用Node LabelSelector](#解耦边缘应用与节点组支持使用node-labelselector)
+- [边云通道支持IPv6](#边云通道支持ipv6)
+- [升级k8s依赖到1.30](#升级k8s依赖到130)
+
+## 新特性概览
+
+### 支持批量节点操作
+
+在之前的版本中，keadm工具仅支持单个节点的安装与管理，然而在边缘场景中，节点数量通常比较庞大，单个节点的管理难以满足大规模场景的需求。
+
+在1.20版本中，我们提供了批量节点操作和运维的能力。基于这个能力，用户仅需要使用一个配置文件，即可通过一个控制节点（控制节点可以登录所有边缘节点）对所有边缘节点进行批量操作和维护。keadm当前版本支持的批量能力包括join, reset和upgrade。
+
+```json
+# 配置文件配置要求参考如下
+keadm:
+  download:
+    enable: true              # <Optional> Whether to download the keadm package, which can be left unconfigured, default is true. if it is false, the 'offlinePackageDir' will be used.
+    url: ""                   # <Optional> The download address of the keadm package, which can be left unconfigured. If this parameter is not configured, the official github repository will be used by default.
+  keadmVersion: ""            # <Required> The version of keadm to be installed. for example: v1.19.0
+  archGroup:                  # <Required> This parameter can configure one or more of amd64/arm64/arm.
+    - amd64
+  offlinePackageDir: ""       # <Optional> The path of the offline package. When download.enable is true, this parameter can be left unconfigured.
+  cmdTplArgs:                 # <Optional> This parameter is the execution command template, which can be optionally configured and used in conjunction with nodes[x].keadmCmd.
+    cmd: ""                   # This is an example parameter, which can be used in conjunction with nodes[x].keadmCmd.
+    token: ""                 # This is an example parameter, which can be used in conjunction with nodes[x].keadmCmd.
+nodes:
+  - nodeName: edge-node       # <Required> Unique name, used to identify the node
+    arch: amd64               # <Required> The architecture of the node, which can be configured as amd64/arm64/arm
+    keadmCmd: ""              # <Required> The command to be executed on the node, can used in conjunction with keadm.cmdTplArgs. for example: "{{.cmd}} --edgenode-name=containerd-node1 --token={{.token}}"
+    copyFrom: ""              # <Optional> The path of the file to be copied from the local machine to the node, which can be left unconfigured.
+    ssh:
+      ip: ""                  # <Required> The IP address of the node.
+      username: root          # <Required> The username of the node, need administrator permissions.
+      port: 22                # <Optional> The port number of the node, the default is 22.
+      auth:                   # Log in to the node with a private key or password, only one of them can be configured.
+        type: password        # <Required> The value can be configured as 'password' or 'privateKey'.
+        passwordAuth:         # It can be configured as 'passwordAuth' or 'privateKeyAuth'.
+          password: ""        # <Required> The key can be configured as 'password' or 'privateKeyPath'.
+maxRunNum: 5                  # <Optional> The maximum number of concurrent executions, which can be left unconfigured. The default is 5.`
+
+# 配置文件参考用例 (各字段具体值请根据实际环境进行配置)
+keadm:
+  download:
+    enable: true
+    url: https://github.com/kubeedge/kubeedge/releases/download/v1.20.0 # If this parameter is not configured, the official github repository will be used by default
+  keadmVersion: v1.20.0
+  archGroup: # This parameter can configure one or more of amd64\arm64\arm
+    - amd64
+  offlinePackageDir: /tmp/kubeedge/keadm/package/amd64  # When download.enable is true, this parameter can be left unconfigured
+  cmdTplArgs: # This parameter is the execution command template, which can be optionally configured and used in conjunction with nodes[x].keadmCmd
+    cmd: join --cgroupdriver=cgroupfs --cloudcore-ipport=192.168.1.102:10000 --hub-protocol=websocket --certport=10002 --image-repository=docker.m.daocloud.io/kubeedge --kubeedge-version=v1.20.0 --remote-runtime-endpoint=unix:///run/containerd/containerd.sock
+    token: xxx
+nodes:
+  - nodeName: ubuntu1   # Unique name
+    arch: amd64
+    keadmCmd: '{{.cmd}} --edgenode-name=containerd-node1 --token={{.token}}' # Used in conjunction with keadm.cmdTplArgs
+    copyFrom: /root/test-keadm-batchjoin  # The file directory that needs to be remotely accessed to the joining node
+    ssh:
+      ip: 192.168.1.103
+      username: root
+      auth:
+        type: privateKey   # Log in to the node using a private key
+        privateKeyAuth:
+          privateKeyPath: /root/ssh/id_rsa
+  - nodeName: ubuntu2
+    arch: amd64
+    keadmCmd: join --edgenode-name=containerd-node2 --cgroupdriver=cgroupfs --cloudcore-ipport=192.168.1.102:10000 --hub-protocol=websocket --certport=10002 --image-repository=docker.m.daocloud.io/kubeedge --kubeedge-version=v1.20.0 --remote-runtime-endpoint=unix:///run/containerd/containerd.sock  # Used alone
+    copyFrom: /root/test-keadm-batchjoin
+    ssh:
+      ip: 192.168.1.104
+      username: root
+      auth:
+        type: password
+        passwordAuth:
+          password: *****
+maxRunNum: 5
+
+# 用法 (保存以上文件，例如保存为 config.yaml)
+# 在控制节点下载最新版本 keadm, 执行以下命令进行使用
+keadm batch -c config.yaml
+```
+
+**更多信息可参考:**
+
+https://github.com/kubeedge/kubeedge/pull/5988
+https://github.com/kubeedge/kubeedge/pull/5968
+https://github.com/kubeedge/website/pull/657
+
+### 多语言Mapper-Framework支持
+
+由于边缘IoT设备通信协议的多样性，用户可能需要使用Mapper-Framework生成自定义Mapper插件来纳管边缘设备。当前Mapper-Framework只能生成go语言版本的Mapper工程，对于部分不熟悉go语言的开发者来说使用门槛仍然较高。因此在新版本中，KubeEdge提供了Java版本的Mapper-Framework，用户可以访问 KubeEdge主仓库 的 `feature-multilingual-mapper` 分支，利用 Mapper-Framework 生成 Java 版的自定义 Mapper 工程。
+
+**更多信息可参考:**
+
+https://github.com/kubeedge/kubeedge/pull/5773
+https://github.com/kubeedge/kubeedge/pull/5900
+
+### 边缘keadm ctl新增 pods logs/exec/describe 和 Devices get/edit/describe 能力
+
+在v1.17.0版本中，我们新增了keadm ctl子命令，支持在离线场景下对边缘pod进行查询和重启。在v1.20中我们对该命令做了进一步增强，支持pod的logs/exec/describe等功能，用户在边缘可对pod进行日志查询、pod资源详细信息查询、进入容器内部等操作。同时还新增了对device的操作，支持device的get/edit/describe的功能，可以在边缘获取device列表、device的详细信息查询、在边缘离线场景下对device进行编辑操作。
+
+如下所示，新增的keadm ctl子命令功能均在MetaServer中开放了Restful接口，并与K8s ApiServer对应的接口完全兼容。
+
+```
+[root@edgenode1 ~]# keadm ctl -h
+Commands operating on the data plane at edge
+
+Usage:
+  keadm ctl [command]
+
+Available Commands:
+...
+  describe    Show details of a specific resource
+  edit        Edit a specific resource
+  exec        Execute command in edge pod
+  get         Get resources in edge node
+  logs        Get pod logs in edge node
+...
+```
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/5752
+https://github.com/kubeedge/kubeedge/pull/5901
+
+### 解耦边缘应用与节点组，支持使用Node LabelSelector
+
+EdgeApplication 可以通过节点组覆盖部署定义（如副本、镜像、命令和环境），Pod 流量在节点组内闭环（EdgeApplication 管理的 Deployment 共用一个 Service）。但在实际场景中，需要批量操作的节点范围与需要相互协作的节点范围并不相同。例如在智慧园区的场景中，每个城市都有很多个智慧园区，我们需要应用的流量在一个智慧园区内闭环，但应用批量管理的范围可能是城市级，也可能是省级。
+
+我们在 EdgeApplication CRD 中为节点标签选择器添加了一个新的 targetNodeLabels 字段，该字段将允许应用程序根据节点标签进行部署，并且覆盖特定的字段，YAML定义如下：
+
+```yaml
+apiVersion: apps.kubeedge.io/v1alpha1
+kind: EdgeApplication
+metadata:
+  name: edge-app
+  namespace: default
+spec:
+  replicas: 3
+  image: my-app-image:latest
+  # New field: targetNodeLabels
+  targetNodeLabels:
+    - labelSelector:
+        - matchExpressions:
+            - key: "region"
+              operator: In
+              values:
+                - "HangZhou"
+    overriders:
+      containerImage:
+        name: new-image:latest
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "128Mi"
+```
+
+**更多信息可参考：**
+
+Issue: https://github.com/kubeedge/kubeedge/issues/5755
+
+Pull Request: https://github.com/kubeedge/kubeedge/pull/5845
+
+### 边云通道支持IPv6
+
+我们在官网的文档中提供了一份配置指南，介绍了KubeEdge如何在Kubernetes集群中让云边 hub 隧道支持IPv6。文档地址：https://kubeedge.io/docs/advanced/support_ipv6
+
+### 升级K8s依赖到v1.30
+
+新版本将依赖的Kubernetes版本升级到v1.30.7，您可以在云和边缘使用新版本的特性。
+
+**更多信息可参考：**
+
+https://github.com/kubeedge/kubeedge/pull/5997
+
+## 版本升级注意事项
+
+- 从v1.20.0版本开始，EdgeCore的配置项edged.rootDirectory的默认值将会由`/var/lib/edged`切换至`/var/lib/kubelet`，如果您需要继续使用原有路径，可以在使用keadm安装EdgeCore时设置`--set edged.rootDirectory=/var/lib/edged`。

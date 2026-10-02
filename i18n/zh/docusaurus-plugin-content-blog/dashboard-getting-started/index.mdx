@@ -1,0 +1,91 @@
+---
+authors:
+  - KubeEdge
+categories:
+  - General
+  - Dashboard
+date: 2024-12-12
+draft: false
+lastmod: 2024-12-12
+tags:
+  - KubeEdge
+  - Dashboard
+  - edge computing
+  - kubernetes edge computing
+  - K8S edge orchestration
+  - edge computing platform
+  - cncf graduation
+  - cloud native
+title: KubeEdge Dashboard的部署和使用
+---
+
+在KubeEdge v1.19版本中，我们引入了重构后的全新版本KubeEdge Dashboard，该版本的KubeEdge Dashboard采用了Next.js框架及MUI组件库，具有更好的性能和用户体验。同时，我们还对KubeEdge Dashboard的功能进行了优化和增强，包括对仪表盘设备管理以及设备模型管理等功能进行了优化。
+
+在本文中，我们将介绍KubeEdge Dashboard的部署和使用。
+
+## 环境准备
+
+首先，我们需要获取KubeEdge Dashboard的源代码并进行运行环境的准备。最新的KubeEdge Dashboard源代码可以从[KubeEdge Dashboard代码仓库](https://github.com/kubeedge/dashboard)获取。
+
+在部署KubeEdge Dashboard之前，我们需要准备以下环境：
+
+- **KubeEdge集群**：请参考[KubeEdge官方文档](https://release-1-19.docs.kubeedge.io/docs/category/setup)部署KubeEdge集群，KubeEdge Dashboard依赖于KubeEdge v1.15及以上版本。
+- **Node.js**：请确保系统中已经安装了Node.js，建议使用Node.js v18及以上版本。
+- **Node.js包管理工具**：请确保系统中已经安装了Node.js包管理工具，例如npm、yarn或者pnpm。
+
+## 安装与运行
+
+下面我们以pnpm为例，介绍如何在本地环境中安装和运行KubeEdge Dashboard。首先，我们需要在项目根目录中通过包管理工具安装KubeEdge Dashboard所需的依赖：
+
+```shell
+pnpm install
+```
+
+由于KubeEdge Dashboard需要连接到KubeEdge后端API，我们需要在启动KubeEdge Dashboard时设置`API_SERVER`环境变量，以指定KubeEdge集群的API Server地址。以Kubernetes API Server地址为`192.168.33.129:6443`为例，我们可以通过下面的命令编译并启动KubeEdge Dashboard：
+
+```shell
+pnpm run build
+API_SERVER=https://192.168.33.129:6443 pnpm run start
+```
+
+在启动KubeEdge Dashboard后，我们可以通过浏览器访问`http://localhost:3000`查看KubeEdge Dashboard的界面。
+
+对于使用自签名证书的KubeEdge集群，我们需要在启动KubeEdge Dashboard时指定`NODE_TLS_REJECT_UNAUTHORIZED=0`环境变量，以忽略证书验证。
+
+```shell
+NODE_TLS_REJECT_UNAUTHORIZED=0 API_SERVER=<api-server> pnpm run start
+```
+
+## 创建登录Token
+
+为了通过KubeEdge Dashboard管理KubeEdge集群，我们需要创建一个Token用于登录。下面以通过`kubectl`在`kube-system`命名空间中创建一个名为`dashboard-user`的ServiceAccount为例，创建一个用于KubeEdge Dashboard身份验证的Token。
+
+首先，我们需要在Kubernetes集群中创建一个ServiceAccount。
+
+```shell
+kubectl create serviceaccount dashboard-user -n kube-system
+```
+
+在创建ServiceAccount后，我们需要将ServiceAccount与ClusterRole绑定，以授予相应的权限。Kubernetes提供了一些内置的角色，例如`cluster-admin`角色，它拥有集群中所有资源的访问权限。另外，也可以参考[Kubernetes文档](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)根据需要创建自定义的ClusterRole。
+
+```shell
+kubectl create clusterrolebinding dashboard-user-binding --clusterrole=cluster-admin --serviceaccount=kube-system:dashboard-user -n kube-system
+```
+
+对于Kubernetes v1.24及以上版本，Kubernetes将不再自动为ServiceAccount创建Secret，我们需要通过`kubectl create token`命令创建token。默认情况下，该token的有效期根据服务器配置确定，也可以通过`--duration`参数指定token的有效期。
+
+```shell
+kubectl create token dashboard-user -n kube-system
+```
+
+对于Kubernetes v1.23及以下版本，Kubernetes会自动为ServiceAccount创建Secret。我们可以使用`kubelet describe secret`命令获取，或使用下面的命令快速获取对应的Secret。
+
+```shell
+kubectl describe secret -n kube-system $(kubectl get secret -n kube-system | grep dashboard-user | awk '{print $1}')
+```
+
+## 结论
+
+通过KubeEdge Dashboard，我们可以更方便地管理KubeEdge集群中的EdgeApplication及设备等资源。我们也将在后续版本中继续增强和优化KubeEdge Dashboard的功能和用户体验，也欢迎社区用户提出宝贵的意见和建议。
+
+对于KubeEdge Dashboard的更多信息，请参考[KubeEdge Dashboard GitHub仓库](https://github.com/kubeedge/dashboard)。
