@@ -17,7 +17,24 @@ There're three ways to download the `keadm` binary:
 
 1. Download from [GitHub release](https://github.com/kubeedge/kubeedge/releases).
   
-    KubeEdge GitHub officially holds three architecture releases: amd64, arm, and arm64. Please download the correct package according to your platform and desired version.
+    Choose a release package for the operating system and CPU architecture of the machine where you will run `keadm`. Check that machine before downloading:
+
+    ```shell
+    uname -s
+    uname -m
+    ```
+
+    For Linux, use the following mapping:
+
+    | `uname -m` output | Release architecture | Package name |
+    | --- | --- | --- |
+    | `x86_64` | `amd64` | `keadm-<version>-linux-amd64.tar.gz` |
+    | `aarch64` | `arm64` | `keadm-<version>-linux-arm64.tar.gz` |
+    | `armv7l` | `arm` | `keadm-<version>-linux-arm.tar.gz` |
+
+    Choose the architecture of the installed operating system, rather than relying only on the device model: an ARM64-capable board can run a 32-bit ARM operating system. Check the assets for your chosen [release](https://github.com/kubeedge/kubeedge/releases) to confirm that it provides the required package.
+
+    The following example is for **Linux AMD64**. For Linux ARM or ARM64, replace `amd64` in all three commands with `arm` or `arm64`, respectively.
 
     ```shell
     wget https://github.com/kubeedge/kubeedge/releases/download/v1.23.1/keadm-v1.23.1-linux-amd64.tar.gz
