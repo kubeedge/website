@@ -205,10 +205,10 @@ const config = {
             html: '<p style="font-size: large;">KubeEdge is a <a href="https://cncf.io/">Cloud Native Computing Foundation</a> graduated project.</p>',
           },
           {
-            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/color/cncf-color.png?raw=true" class="footer__logo light">',
+            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/color/cncf-color.png?raw=true" alt="" class="footer__logo light">',
           },
           {
-            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" class="footer__logo dark">',
+            html: '<img src="https://github.com/cncf/artwork/blob/main/other/cncf/horizontal/white/cncf-white.png?raw=true" alt="" class="footer__logo dark">',
           },
           {
             html: '<p>Copyright KubeEdge a Series of LF Projects, LLC. For website terms of use, trademark policy and other project policies please see <a href="https://lfprojects.org/policies/" target="_blank" rel="noopener noreferrer">lfprojects.org/policies</a>.</p>',
