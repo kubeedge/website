@@ -1,0 +1,310 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-04-17
+draft: false
+lastmod: 2025-04-17
+summary: 作为系列文章的最终部分，我们将展示如何从零开始开发一个 Mapper 工程，并通过该工程实现对边缘设备的管理。
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: KubeEdge边缘设备管理系列（六）：Mapper-Framework开发示例
+---
+
+针对新版本 **Device-IoT** 领域的更新，我们计划推出一系列的文章对这些特性进行详细的介绍，大致的文章大纲为：
+
+1. [基于物模型的设备管理 API 设计与实现](/zh/blog/device-mgmt-series-part1)
+2. [DMI 数据面能力设计与实现](/zh/blog/device-mgmt-series-part2)
+3. [Mapper 开发框架 Mapper-Framework 设计与实现](/zh/blog/device-mgmt-series-part3)
+4. [如何使用 Mapper 完成视频流数据处理](/zh/blog/device-mgmt-series-part4)
+5. [如何使用 Mapper 实现设备数据写入](/zh/blog/device-mgmt-series-part5)
+6. [如何从头开发一个 Mapper（以 `modbus`为例）](/zh/blog/device-mgmt-series-part6)
+
+在本系列的前几篇文章中，我们详细介绍了基于物模型的设备管理 API、DMI 数据面能力的增强、Mapper-Framework 开发框架的原理、使用 Mapper 进行视频流数据采集上报以及设备数据写入等核心特性，作为系列文章的最终部分，我们将展示如何**从零开始开发一个 Mapper 工程，并通过该工程实现对边缘设备的管理**。
+
+## 定义Device CRD
+
+用户需要按照 KubeEdge v1beta1 版本的 Device CRD 定义，以物模型的形式构建 device-model 与 device-instance，具体的定义细节可以参考本系列的第一篇文章。
+
+以下是一个具体的示例：
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: DeviceModel
+metadata:
+  name: temperature-model
+spec:
+  properties:
+    - name: temp                      # define device property
+      description: The temperature collected by the sensor
+      type: INT                       # date type of device property
+      accessMode: ReadWrite
+  protocol: modbus                    # protocol for device, need to be same with device instance
+```
+首先，我们定义了一个名为 `temperature-model` 的 device-model，该模型用于定义一类温度传感器的共同特性。在这个示例中，`temperature-model` 描述了温度传感器的一个重要属性 temp。该属性表示温度传感器采集到的温度值，数据类型为 int。此外，设备的通信协议采用了 Modbus 协议，并且 temp 属性的访问方式被设置为“读写”模式。这意味着，Mapper 将会对从设备采集到的数据进行归一化或其他处理后，返回标准化的结果。
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: temperature-instance-01
+  labels:
+    model: temperature-model
+spec:
+  deviceModelRef:
+    name: temperature-model
+  protocol:
+    protocolName: modbus
+    configData:
+      serialPort: '/dev/ttyS0'
+      baudRate: 9600
+      dataBits: 8
+      parity: even
+      stopBits: 1
+  nodeName: edge-node
+  properties:
+    - name: temp
+      visitors:
+        protocolName: modbus
+        configData:
+          register: HoldingRegister
+          offset: 2
+          limit: 1
+          scale: 1
+          isSwap: true
+          isRegisterSwap: true
+      reportCycle: 10000
+      collectCycle: 10000
+      reportToCloud: true
+      pushMethod:
+        mqtt:
+          address: tcp://127.0.0.1:1883
+          topic: temperature
+          qos: 0
+          retained: false
+```
+接下来，我们定义了一个名为 `temperature-instance-01` 的 device-instance，代表一个实际的 Modbus 温度传感器设备。在定义中，`spec.protocol` 字段需要具体说明设备的通信协议参数，在示例中使用 `Modbus` 协议，并为其定义了典型的通信参数，如串口、波特率等。Mapper 将根据这些参数与设备进行通信，完成数据的采集与交互。
+
+在 `spec.properties` 字段中，我们定义了与设备模型中一致的 `temp` 属性，并进一步细化了访问方式。在 `visitors` 字段中，我们详细列出了 `temp` 属性的访问方式，包括寄存器类型、寄存器地址以及偏移量等信息。根据这些定义，Mapper 会准确地访问设备的寄存器，从而获取所需的数据。
+
+最后，在 `spec.properties.pushMethod `字段中，我们定义了设备数据的推送方式。DMI 数据面支持将设备数据推送到多种目标，包括数据库、用户应用等。具体的推送方式可以参考本系列的**第二篇文章**。
+
+## 构建Modbus Mapper工程
+
+如果开发者需要构建自定义的 Mapper 插件，可以通过 KubeEdge 的 Mapper-Framework 子仓库生成 Mapper 工程模板。接下来，开发者只需根据设备的具体信息，填充设备初始化、数据采集等功能，即可完成自定义 Mapper 插件的构建。
+
+以下是相关示例：
+
+**1、生成 Mapper 工程**
+
+开发者首先通过 `git clone` 命令克隆 KubeEdge 的<a href="https://github.com/kubeedge/mapper-framework">Mapper-Framework 仓库</a> ，随后使用 `git checkout` 指令切换到稳定版本（目前支持的版本为1.16至1.20）并执行 `make generate` 命令，输入自定义 Mapper 的名称及是否处理流数据等信息，最终生成 Mapper 工程：
+
+![image](https://files.mdnice.com/user/46056/7d19b89a-0401-48b4-ba54-d100d81f1437.png)
+
+生成的 modbus mapper 工程将会被构建到 Mapper-Framework 的同级目录，工程结构可以参考本系列的第三篇文章中提供的详细说明。
+
+**2、实现设备驱动功能**
+
+在大多数情况下，开发者需要填充 Mapper 工程中的 driver 目录下的两个文件以及 Mapper 的配置文件。
+
+主要的工作集中在 `devicetype.go` 和 `driver.go` 文件中。在 `devicetype.go` 文件中，开发者需要填充设备协议的配置信息及属性访问的字段，而在 `driver.go` 文件中，需要实现设备初始化、数据获取等具体功能。
+
+以下是相关文件的示例：
+```yaml
+type ProtocolConfig struct {
+    ProtocolName string `json:"protocolName"`
+    ConfigData   `json:"configData"`
+}
+
+type ConfigData struct {
+    // TODO: add your protocol config data
+    SerialPort string `json:"serialPort"`
+    DataBits   int    `json:"dataBits"`
+    BaudRate   int    `json:"baudRate"`
+    Parity     string `json:"parity"`
+    StopBits   int    `json:"stopBits"`
+}
+
+type VisitorConfig struct {
+    ProtocolName      string `json:"protocolName"`
+    VisitorConfigData `json:"configData"`
+}
+
+type VisitorConfigData struct {
+    // TODO: add your visitor config data
+    DataType       string  `json:"dataType"`
+    Register       string  `json:"register"`
+    Offset         uint16  `json:"offset"`
+    Limit          int     `json:"limit"`
+    Scale          float64 `json:"scale"`
+    IsSwap         bool    `json:"isSwap"`
+    IsRegisterSwap bool    `json:"isRegisterSwap"`
+}
+```
+在 `devicetype.go` 文件中，开发者需要填充协议参数（如 `ConfigData`）和属性访问参数（如 `VisitorConfigData`）。这些定义必须与 `device-instance` 中的字段保持一致，以确保 Mapper 能正确解析来自 `device-instance` 配置文件的参数值，从而实现设备与应用之间的数据交互。
+```yaml
+var clients *sync.Map
+
+var clientInit sync.Once
+
+func initMap() {
+    clientInit.Do(func() {
+        if clients == nil {
+            clients = new(sync.Map)
+        }
+     })
+}
+
+func NewClient(protocol ProtocolConfig) (*CustomizedClient, error) {
+    client := &CustomizedClient{
+        ProtocolConfig: protocol,
+        deviceMutex:    sync.Mutex{},
+        // TODO initialize the variables you added
+     }
+     return client, nil
+}
+
+func (c *CustomizedClient) InitDevice() error {
+
+    initMap()
+    klog.Infoln("SerialPort : ", c.ProtocolConfig.SerialPort)
+    v, ok := clients.Load(c.ProtocolConfig.SerialPort)
+    if ok {
+        c.ModbusClient = v.(modbus.Client)
+        return nil
+    }
+
+    handler := modbus.NewRTUClientHandler(c.ProtocolConfig.SerialPort)
+    handler.BaudRate = c.ProtocolConfig.BaudRate
+    handler.DataBits = c.ProtocolConfig.DataBits
+    handler.Parity = parity(c.ProtocolConfig.Parity)
+    handler.StopBits = c.ProtocolConfig.StopBits
+    client := modbus.NewClient(handler)
+    clients.Store(c.ProtocolConfig.SerialPort, &client)
+    c.ModbusClient = client
+
+    return nil
+}
+
+func (c *CustomizedClient) GetDeviceData(visitor *VisitorConfig) (interface{}, error) {
+    c.deviceMutex.Lock()
+    defer c.deviceMutex.Unlock()
+
+    var results []byte
+    var err error
+    switch visitor.Register {
+    case "CoilRegister":
+        results, err = c.ModbusClient.ReadCoils(visitor.Offset, uint16(visitor.Limit))
+    case "DiscreteInputRegister":
+        results, err = c.ModbusClient.ReadDiscreteInputs(visitor.Offset, uint16(visitor.Limit))
+    case "HoldingRegister":
+        results, err = c.ModbusClient.ReadHoldingRegisters(visitor.Offset, uint16(visitor.Limit))
+    case "InputRegister":
+        results, err = c.ModbusClient.ReadInputRegisters(visitor.Offset, uint16(visitor.Limit))
+    default:
+        return nil, errors.New("Bad register type")
+    }
+    klog.V(2).Info("Get result: ", results)
+    return results, err
+}
+
+func (c *CustomizedClient) StopDevice() error {
+    // TODO: stop device
+    // you can use c.ProtocolConfig
+    err := c.ModbusClient.Close()
+    if err != nil {
+        return err
+    }
+    return nil
+}
+```
+在 `driver.go` 文件中，开发者根据 `devicetype.go` 中解析得到的协议配置字段和属性访问参数，实现设备驱动的具体功能。例如，在上面的示例中，我们实现了 `Modbus` 设备的初始化、数据获取以及设备停止等功能。具体实现需要根据所使用设备的协议和操作需求进行定制。
+
+除了设备驱动的实现外，开发者还需要修改 Mapper 的配置文件 `config.yaml`。一般来说，开发者只需填充 Mapper 的协议名字段（`protocol`）即可：
+```yaml
+grpc_server:
+  socket_path: /etc/kubeedge/modbus.sock
+common:
+  name: Modbus-mapper
+  version: v1.13.0
+  api_version: v1.0.0
+  protocol: modbus # TODO add your protocol name
+  address: 127.0.0.1
+  edgecore_sock: /etc/kubeedge/dmi.sock
+```
+## 部署自定义Mapper插件
+
+完成自定义 Mapper 工程的构建后，接下来就可以进行编译并将其部署到 KubeEdge 集群中。目前，推荐使用两种部署方式：二进制部署和 Deployment 部署。
+
+**二进制部署**
+
+适合在开发和调试阶段使用。这种方式操作简便，适合快速运行和排查错误。通过以下命令，开发者可以直接在本地编译并运行 Mapper 插件：
+
+```yaml
+go run cmd/main.go --v <log level,like 3> --config-file <path to config yaml>
+```
+在这条命令中，`--v` 参数用来设置日志级别，日志级别越高，输出的信息越详细；`--config-file` 参数则指定了 Mapper 配置文件的路径。
+
+**Deployment 部署**
+
+当 Mapper 插件经过充分调试并能够稳定运行后，建议将其以容器的形式部署到 KubeEdge 集群中。通过使用 Mapper-Framework 生成的 `Dockerfile`，开发者可以构建 Docker 镜像并创建 `Kubernetes Deployment`，以便在生产环境中稳定运行。
+
+以下是一个示例 Deployment 配置：
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modbus-mapper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      nodeName: edge-node # replace with your edge node name
+      containers:
+        - name: demo
+          volumeMounts: # Required, mapper need to communicate with grpcclient and get the config
+            - name: test-volume
+              mountPath: /etc/kubeedge
+          image: modbus-mapper:v1.0.0 # Replace with your mapper image name
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 300m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          command: ["/bin/sh","-c"]
+          args: ["/kubeedge/main --config-file /kubeedge/config.yaml --v 4"]
+      volumes:
+        - name: test-volume
+          hostPath:
+            path: /etc/kubeedge
+            type: Directory
+```
+完成自定义 Mapper 插件的部署后，用户可以向集群创建 device-model 和 device-instance 资源，随后 Mapper 将收到通知并开始进行设备的管理，定期获取设备数据并进行推送。这样，就完成了边缘设备的云原生化管理，使设备的生命周期、数据采集、处理和推送过程都能够在云原生架构下高效、可靠地进行。
+
+通过本系列技术文章的深入探讨，我们全面分析了 KubeEdge 在 **Device-IoT** 领域的创新与实践，重点涵盖了基于物模型的设备管理 API、DMI 数据面能力的增强、Mapper-Framework 的设计与实现、使用 Mapper 完成视频流数据处理、设备数据写入以及自定义 Mapper 工程开发的实际案例。
+
+这些内容充分展示了 KubeEdge 如何有效推动边缘计算与物联网技术的融合，为边缘设备的云原生化管理提供了切实可行的解决方案。随着物联网设备的日益普及以及边缘计算需求的持续增长，KubeEdge 在设备管理和数据处理方面的独特优势将愈发突出。通过这一系列功能的实现，KubeEdge 为物联网设备的管理、数据流的处理以及边缘计算任务的执行提供了强大支持。我们期待更多开发者加入 KubeEdge 社区，共同为全球的边缘计算生态贡献力量。
+
+了解更多关于 KubeEdge 的信息，访问：
+- KubeEdge: https://kubeedge.io/
+- 网站: https://kubeedge.io/
+- GitHub 仓库: https://github.com/kubeedge/kubeedge
+- 文档: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge

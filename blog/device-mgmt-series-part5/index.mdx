@@ -1,0 +1,182 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-03-20
+draft: false
+lastmod: 2025-03-20
+summary: in KubeEdge version 1.19, the Mapper-Framework enhances its device management capabilities by adding the ability to write device data , making the control of edge devices more comprehensive.
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: "KubeEdge Edge Device Management Series (Part 5): Mapper-Framework Device Data Writing"
+---
+
+In response to the new version  of the `Device-IoT`  update, we plan to release a series of articles to introduce these features in detail. The general outline of the articles is as follows:
+
+1. [Design and Implementation of Device Management API Based on Object Model](/blog/device-mgmt-series-part1)
+2. [DMI Data Plane Capability Design and Implementation](/blog/device-mgmt-series-part2)
+3. [Mapper Development Framework: Design and Implementation](/blog/device-mgmt-series-part3)
+4. [How to use Mapper to process video stream data](/blog/device-mgmt-series-part4)
+5. [How to implement device data writing using Mapper](/blog/device-mgmt-series-part5)
+6. [How to develop a Mapper from scratch (using `Modbus` as an example)](/blog/device-mgmt-series-part6)
+
+In the previous article, we introduced  how to implement the management of camera devices and video stream data processing through  Mapper-Framework , which significantly improved the device's data acquisition and reading capabilities, further enhancing the data plane's capabilities.
+
+However, in real-world production environments, device management involves more than just reading data; it may also require writing processed data back to the device to execute specific control commands or adjust operating parameters. Therefore, in KubeEdge version 1.19, the Mapper-Framework enhances its device management capabilities by adding **the ability to write device data** , making the control of edge devices more comprehensive.
+
+## Device Method API Introduction
+
+From the traditional definition of a physical model, the parameters of a device are usually divided into three categories according to their functional type:
+
+- **Property** : Used to describe the device status, such as the ambient temperature read by the temperature sensor, the on/off status of the socket, etc.
+
+- **Method** : A method of the device that can be called and executed externally, such as adjusting device parameters.
+
+- **Event** : Describes an event reported by the device to the cloud.
+
+In the first article of this series, we introduced the definition of device properties in the v1beta1 version of the device management API, allowing users to obtain the status of devices. In KubeEdge version 1.19, we further extended the API by introducing device methods, allowing users to call device methods to achieve dynamic control over device properties.
+
+The API definition for Device Method is as follows:
+
+```yaml
+// DeviceMethod describes the specifics all the methods of the device.
+type DeviceMethod struct {
+    // Required: The device method name to be accessed. It must be unique.
+    Name string `json:"name,omitempty"`
+    // Define the description of device method.
+    // +optional
+    Description string `json:"description,omitempty"`
+    // PropertyNames are list of device properties that device methods can control.
+    // Required: A device method can control multiple device properties.
+    PropertyNames []string `json:"propertyNames,omitempty"`
+}
+```
+The Device Method is designed to consist of the following three core fields :
+
+   **Name :** Used to identify the device method. Within the same device instance  , the name of each method must be unique.
+
+   **Description:** Used to explain the specific purpose of this method.
+
+   **PropertyNames :** Defines the list of device properties that this method can operate on. A method can control multiple device properties.
+
+Below is a  sample device-instance  configuration file demonstrating how to add a Device Method:
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: sensor-tag-instance-02
+  namespace: default
+spec:
+  deviceModelRef:
+    name: sensor-tag-model
+  nodeName: edge-node
+  properties:
+    - name: temperature
+      visitors:
+     ...
+  methods:
+    - name: setValue
+     description: This method aim to writing values to device properties
+     propertyNames:
+       - temperature
+       - name2
+```
+Here we define a  setValue method for  the sensor-tag-instance-02 device  , which allows users to modify  the values   of the two device attributes, temperature  and  name2  .
+
+It is important to note that   the Device Method defined in the device-instance configuration file is only a framework definition of the method; the specific functional implementation still needs to be completed in the mapper device driver layer.
+
+## Mapper-Framework Device data write interface
+
+After defining the device method framework through the Device Method API , users need to implement the corresponding data writing logic in the mapper device driver layer based on the predefined methods. To simplify user operations, Mapper-Framework version 1.19 implements the device writing interface:
+```yaml
+func (c *CustomizedClient) DeviceDataWrite(visitor *VisitorConfig, deviceMethodName string, propertyName string, data interface{}) error {
+    // TODO: add the code to write device's data
+    // you can use c.ProtocolConfig and visitor
+    return nil
+}
+```
+Specifically, users can call  the device protocol configuration information (ProtocolConfig) and device attribute access configuration (VisitorConfig) in  the device-instance CRD to perform write operations on device registers. For example, in a Modbus device, users can access a specific Modbus register address according to VisitorConfig  and write new values, thereby controlling the device's operating status.
+
+##   Mapper-Framework Restful API capability enhancement
+
+In KubeEdge version 1.19, the Mapper-Framework has extended the RESTful API, making it easier for users to query and call Device Methods. Specific features are as follows:
+
+  Methods to obtain all device information
+```yaml
+Url: https://{mapper-pod-ip}:{mapper-api-port}/api/v1/devicemethod/{deviceNamespace}/{deviceName}
+Response:
+{
+"Data": {
+     "Methods": [
+         {
+             "Name": "setValue",
+             "Path": "/api/v1/devicemethod/default/random-instance-01/setValue/{propertyName}/{data}",
+             "Parameters": [
+                 {
+                     "PropertyName": "random-int",
+                     "ValueType": "int"
+                 }
+             ]
+         }
+     ]
+ }
+ }
+```
+
+The  response  indicates that the target device has a Device Method named `setValue`, which can be invoked using the fields shown in the Path. Furthermore, the `setValue` method can be used to control the ` random-int` device attribute.
+
+   Create a device data write request
+
+```yaml
+Url: https://{mapper-pod-ip}:{mapper-api-port}/api/v1/devicemethod/{deviceNamespace}/{deviceName}/{deviceMethodName}/{propertyName}/{data}
+Response:
+ {
+ "statusCode": 200,
+ "Message": "Write data ** to device ** successfully."
+ }
+```
+There are two ways for users to initiate device data write requests via the RESTful API :
+
+**1) Edge-end call**
+
+Users can directly interact with devices by sending requests through the RESTful API exposed by the Mapper Pod on the edge node, achieving low-latency local control.
+
+**2) Cloud access**
+
+In the cloud, users can use components such as EdgeMesh to forward requests from the cloud to the corresponding edge nodes, where Mappers will process and execute device write operations.
+
+Regardless of the invocation method used, the Mapper will perform the following operations upon receiving a device data write request:
+
+- Parse the request content to obtain the target device, target method, and its parameters.
+
+- The DeviceDataWrite function in the device driver layer is invoked to communicate with the device according to the defined protocol.
+
+- Complete writing device attributes and update device status.
+
+To date, this series of articles has systematically introduced  the core features of KubeEdge SIG Device-IoT  since version 1.15, including:
+
+- The device management API based on the object model can provide a more comprehensive description of physical devices.
+
+- DMI data capabilities enhanced
+The Mapper-Framework development framework is designed to simplify the development of custom mapper plugins for users.
+
+- Use Mapper to collect and report video stream data, supporting data access from devices such as cameras.
+
+- Use Mapper to write device data and enhance edge device management capabilities.
+
+In the final article of this series, we will show you how to  develop a  Modbus  protocol  Mapper  plugin from scratch based on  the Mapper-Framework . We will explain in detail how to define the device model, build the Mapper project, implement the device driver, and obtain and push device data, thereby helping developers to build and integrate custom Mapper components more efficiently.
+
+Learn more about KubeEdge:
+- KubeEdge:https://kubeedge.io/
+- Website:https://kubeedge.io/
+- GitHub Repository: https://github.com/kubeedge/kubeedge
+- Documentation: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge

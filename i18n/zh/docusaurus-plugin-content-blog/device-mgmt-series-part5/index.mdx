@@ -1,0 +1,172 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-03-20
+draft: false
+lastmod: 2025-03-20
+summary: 在KubeEdge 1.19版本中，Mapper-Framework 增强了对设备的管理能力，新增了设备数据写入的功能，使边缘设备的管控更加完善。
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: KubeEdge边缘设备管理系列（五）：Mapper-Framework设备数据写入
+---
+
+针对新版本 **Device-IoT** 领域的更新，我们计划推出一系列的文章对这些特性进行详细的介绍，大致的文章大纲为：
+
+1. [基于物模型的设备管理 API 设计与实现](/zh/blog/device-mgmt-series-part1)
+2. [DMI 数据面能力设计与实现](/zh/blog/device-mgmt-series-part2)
+3. [Mapper 开发框架 Mapper-Framework 设计与实现](/zh/blog/device-mgmt-series-part3)
+4. [如何使用 Mapper 完成视频流数据处理](/zh/blog/device-mgmt-series-part4)
+5. [如何使用 Mapper 实现设备数据写入](/zh/blog/device-mgmt-series-part5)
+6. [如何从头开发一个 Mapper（以 `modbus`为例）](/zh/blog/device-mgmt-series-part6)
+
+在上一篇文章中，我们介绍了通过 Mapper-Framework 实现摄像头设备的纳管以及视频流数据处理的功能，显著提升了设备数据的采集和读取能力，使数据面的能力进一步增强。
+
+然而，在实际的生产环境中，设备管理不仅涉及数据的读取，还可能需要将处理后的数据回写到设备，以执行特定的控制指令或调整运行参数。因此在KubeEdge 1.19版本中，Mapper-Framework 增强了对设备的管理能力，新增了**设备数据写入的功能**，使边缘设备的管控更加完善。
+
+## Device Method API 简介
+
+从物模型的传统定义来看，设备的参数按照功能类型通常分为三类：
+- **属性（Property）**：用于描述设备状态，例如温度传感器所读取的环境温度、插座的开关状态等。
+- **方法（Method）**：设备可被外部调用并执行的方法，例如调整设备参数等。
+- **事件（Event）**：描述设备上报云端的事件。
+
+在本系列的第一篇文章中，我们已经在 v1beta1 版本的设备管理 API 中引入了设备**属性（Property）** 的定义，使用户可以获取设备的状态。而在 KubeEdge 1.19 版本中，我们进一步扩展了 API，引入了设备方法（Device Method），允许用户调用设备方法实现对设备属性的动态控制。
+
+Device Method 的 API 定义如下：
+
+```yaml
+// DeviceMethod describes the specifics all the methods of the device.
+type DeviceMethod struct {
+    // Required: The device method name to be accessed. It must be unique.
+    Name string `json:"name,omitempty"`
+    // Define the description of device method.
+    // +optional
+    Description string `json:"description,omitempty"`
+    // PropertyNames are list of device properties that device methods can control.
+    // Required: A device method can control multiple device properties.
+    PropertyNames []string `json:"propertyNames,omitempty"`
+}
+```
+在 Device Method 的设计中，它主要由以下三个核心字段构成：
+
+  **Name**：用于标识设备方法，在同一device-instance 内，每个方法的名称必须是唯一的。
+
+  **Description**：用于说明该方法的具体用途。
+
+  **PropertyNames**：定义该方法能够操作的设备属性列表，一个方法可以控制多个设备属性
+
+下面是一个 device-instance 配置文件示例，展示了如何添加 Device Method：
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: sensor-tag-instance-02
+  namespace: default
+spec:
+  deviceModelRef:
+    name: sensor-tag-model
+  nodeName: edge-node
+  properties:
+    - name: temperature
+      visitors:
+     ...
+  methods:
+    - name: setValue
+     description: This method aim to writing values to device properties
+     propertyNames:
+       - temperature
+       - name2
+```
+这里我们为 `sensor-tag-instance-02 `的设备定义了一个 `setValue` 方法，该方法允许用户修改 `temperature` 和 `name2` 这两个设备属性的值。
+
+需要注意的是，在 device-instance 配置文件中定义的 Device Method 仅是方法的框架性定义，具体的功能实现仍然需要在 mapper 设备驱动层完成。
+
+## Mapper-Framework设备数据写入接口
+
+用户通过 `Device Method API` 定义设备方法的框架之后，需要在 mapper 设备驱动层根据预定义的方法，实现相应的数据写入逻辑。为简化用户操作，1.19版本的 Mapper-Framework 实现了设备写入的接口：
+
+```yaml
+func (c *CustomizedClient) DeviceDataWrite(visitor *VisitorConfig, deviceMethodName string, propertyName string, data interface{}) error {
+    // TODO: add the code to write device's data
+    // you can use c.ProtocolConfig and visitor
+    return nil
+}
+```
+
+具体来说，用户可以调用 `device-instance CRD` 中设备协议配置信息（`ProtocolConfig`）以及设备属性访问配置（`VisitorConfig`），实现对设备寄存器的写入操作。例如，在 `Modbus` 设备中，用户可以根据 `VisitorConfig` 访问特定的 `Modbus` 寄存器地址并写入新值，进而控制设备的运行状态。
+
+## Mapper-Framework Restful API能力增强
+
+在KubeEdge 1.19版本中，Mapper-Framework 扩展了 `Restful API`，使用户可以更加便捷地查询和调用 `Device Method`，具体功能如下：
+```yaml
+Url: https://{mapper-pod-ip}:{mapper-api-port}/api/v1/devicemethod/{deviceNamespace}/{deviceName}
+Response:
+{
+"Data": {
+     "Methods": [
+         {
+             "Name": "setValue",
+             "Path": "/api/v1/devicemethod/default/random-instance-01/setValue/{propertyName}/{data}",
+             "Parameters": [
+                 {
+                     "PropertyName": "random-int",
+                     "ValueType": "int"
+                 }
+             ]
+         }
+     ]
+ }
+ }
+```
+从 Response 中可以看出，目标 device 拥有名为 setValue 的 Device Method，可以通过 Path 中显示的字段进行调用。此外，setValue method 可以用来控制 `random-int` 这一设备属性。
+
+  创建设备数据写入请求
+```yaml
+Url: https://{mapper-pod-ip}:{mapper-api-port}/api/v1/devicemethod/{deviceNamespace}/{deviceName}/{deviceMethodName}/{propertyName}/{data}
+Response:
+ {
+ "statusCode": 200,
+ "Message": "Write data ** to device ** successfully."
+ }
+```
+用户通过 Restful API 发起设备数据写入请求有**两种方式**：
+
+**1）边缘端调用**
+
+用户可以直接在边缘节点上，通过 Mapper Pod 暴露的 Restful API 发送请求，直接与设备交互，实现低延迟的本地控制。
+
+**2）云端调用**
+
+在云端，用户可以借助 EdgeMesh 等组件，将请求从云端转发至对应的边缘节点，然后由 Mapper 处理并执行设备写入操作。
+
+无论采用哪种调用方式，Mapper 在接收到设备数据写入请求后，会执行以下操作：
+
+- 解析请求内容，获取目标设备、目标方法及其参数。
+- 调用设备驱动层中的 DeviceDataWrite 功能，按照定义的协议与设备进行通信。
+- 完成设备属性的写入，更新设备状态。
+
+截至目前，本系列文章已经系统地介绍了 `KubeEdge SIG Device-IoT` 自1.15版本以来的核心特性，包括：
+
+- 基于物模型的设备管理 API， 能够更全面的描述物理设备。
+- DMI 数据面能力增强
+- Mapper-Framework 开发框架原理，用于简化用户开发自定义 mapper 插件。
+- 使用 Mapper 进行视频流数据采集与上报，支持摄像头等设备的数据接入。
+- 使用 Mapper 进行设备数据写入，增强边缘设备管理能力。
+
+在本系列的最后一篇文章中，我们将向大家展示如何从零开始基于 Mapper-Framework 开发一个 Modbus 协议的 Mapper 插件，并详细讲解如何定义设备模型、构建 Mapper 工程、实现设备驱动、获取并推送设备数据，从而帮助开发者更高效地构建和集成自定义 Mapper 组件。
+
+了解更多关于 KubeEdge 的信息，访问：
+- KubeEdge: https://kubeedge.io/
+- 网站: https://kubeedge.io/
+- GitHub 仓库: https://github.com/kubeedge/kubeedge
+- 文档: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge
