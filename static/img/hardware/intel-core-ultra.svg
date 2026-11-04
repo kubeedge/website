@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658 558" role="img" aria-labelledby="title desc">
+  <title id="title">Intel Core Ultra</title>
+  <desc id="desc">Intel Core Ultra style reference graphic used for KubeEdge hardware validation cards</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1732c7"/>
+      <stop offset="55%" stop-color="#071a83"/>
+      <stop offset="100%" stop-color="#00155d"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2739a7"/>
+      <stop offset="100%" stop-color="#050d4c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="18%" r="65%">
+      <stop offset="0%" stop-color="#6fe9ff" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#6fe9ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <rect width="658" height="558" fill="url(#bg)"/>
+  <rect width="658" height="558" fill="url(#glow)"/>
+
+  <g opacity=".18">
+    <circle cx="420" cy="55" r="2" fill="#7be9ff"/>
+    <circle cx="445" cy="58" r="2" fill="#7be9ff"/>
+    <circle cx="470" cy="62" r="2" fill="#7be9ff"/>
+    <circle cx="495" cy="69" r="2" fill="#7be9ff"/>
+    <circle cx="520" cy="78" r="2" fill="#7be9ff"/>
+    <circle cx="545" cy="90" r="2" fill="#7be9ff"/>
+  </g>
+
+  <rect x="73" y="57" width="468" height="468" rx="2"
+        fill="url(#panel)" stroke="#315cd8" stroke-width="2"/>
+
+  <rect x="89" y="73" width="436" height="436" fill="none"
+        stroke="#1d2f89" stroke-width="1"/>
+
+  <g fill="#fff" font-family="Arial, Helvetica, sans-serif">
+    <text x="113" y="214" font-size="142" font-weight="600" letter-spacing="-10">intel</text>
+    <text x="112" y="326" font-size="108" font-weight="400" letter-spacing="-6">CORE</text>
+    <text x="116" y="482" font-size="63" font-weight="700" letter-spacing="3">ULTRA</text>
+  </g>
+
+  <g fill="#2d74ff">
+    <rect x="438" y="121" width="13" height="13" rx="2"/>
+    <rect x="479" y="157" width="13" height="13" rx="2"/>
+    <rect x="438" y="196" width="13" height="13" rx="2"/>
+    <rect x="479" y="197" width="13" height="13" rx="2"/>
+    <rect x="397" y="236" width="13" height="13" rx="2"/>
+    <rect x="438" y="236" width="13" height="13" rx="2"/>
+    <rect x="479" y="236" width="13" height="13" rx="2"/>
+    <rect x="356" y="276" width="13" height="13" rx="2"/>
+    <rect x="397" y="276" width="13" height="13" rx="2"/>
+    <rect x="438" y="276" width="13" height="13" rx="2"/>
+    <rect x="479" y="276" width="13" height="13" rx="2"/>
+    <rect x="316" y="316" width="13" height="13" rx="2"/>
+    <rect x="356" y="316" width="13" height="13" rx="2"/>
+    <rect x="397" y="316" width="13" height="13" rx="2"/>
+    <rect x="438" y="316" width="13" height="13" rx="2"/>
+    <rect x="479" y="316" width="13" height="13" rx="2"/>
+    <rect x="276" y="356" width="13" height="13" rx="2"/>
+    <rect x="316" y="356" width="13" height="13" rx="2"/>
+    <rect x="356" y="356" width="13" height="13" rx="2"/>
+    <rect x="397" y="356" width="13" height="13" rx="2"/>
+    <rect x="438" y="356" width="13" height="13" rx="2"/>
+    <rect x="479" y="356" width="13" height="13" rx="2"/>
+    <rect x="236" y="396" width="13" height="13" rx="2"/>
+    <rect x="276" y="396" width="13" height="13" rx="2"/>
+    <rect x="316" y="396" width="13" height="13" rx="2"/>
+    <rect x="356" y="396" width="13" height="13" rx="2"/>
+    <rect x="397" y="396" width="13" height="13" rx="2"/>
+    <rect x="438" y="396" width="13" height="13" rx="2"/>
+    <rect x="479" y="396" width="13" height="13" rx="2"/>
+  </g>
+
+  <g fill="#7cecff">
+    <rect x="122" y="106" width="23" height="23" rx="2"/>
+    <rect x="356" y="395" width="15" height="15" rx="2"/>
+    <rect x="397" y="395" width="15" height="15" rx="2"/>
+    <rect x="438" y="395" width="15" height="15" rx="2"/>
+    <rect x="479" y="395" width="15" height="15" rx="2"/>
+    <rect x="438" y="356" width="15" height="15" rx="2"/>
+    <rect x="479" y="356" width="15" height="15" rx="2"/>
+    <rect x="479" y="316" width="15" height="15" rx="2"/>
+  </g>
+</svg>
