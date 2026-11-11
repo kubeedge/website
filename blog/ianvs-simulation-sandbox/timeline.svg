@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="360" fill="#0b1f3a"/>
+  <text x="60" y="62" fill="#ffffff" font-size="30" font-weight="800">One command, start to finish: under 9 minutes</text>
+  <text x="60" y="94" fill="#b9cdf0" font-size="17">What happens after you run <tspan fill="#7ee2a8" font-family="Consolas, Menlo, monospace">ianvs -f benchmarkingjob.yaml</tspan></text>
+
+  <line x1="100" y1="190" x2="1100" y2="190" stroke="#3b5f93" stroke-width="4" stroke-linecap="round"/>
+
+  <g text-anchor="middle">
+    <circle cx="120" cy="190" r="34" fill="#2c4f86" stroke="#7fb3ff" stroke-width="3"/>
+    <text x="120" y="198" fill="#fff" font-size="22">1</text>
+    <text x="120" y="254" fill="#fff" font-size="17" font-weight="700">Check the host</text>
+    <text x="120" y="278" fill="#b9cdf0" font-size="13">Docker, kind, CPU, memory</text>
+    <text x="120" y="302" fill="#7ee2a8" font-size="15" font-weight="700">under 1 s</text>
+
+    <circle cx="360" cy="190" r="34" fill="#1e5aa8" stroke="#7fb3ff" stroke-width="3"/>
+    <text x="360" y="198" fill="#fff" font-size="22">2</text>
+    <text x="360" y="254" fill="#fff" font-size="17" font-weight="700">Build the cluster</text>
+    <text x="360" y="278" fill="#b9cdf0" font-size="13">cloud + edge node, KubeEdge, Sedna</text>
+    <text x="360" y="302" fill="#7ee2a8" font-size="15" font-weight="700">4 min 16 s</text>
+
+    <circle cx="600" cy="190" r="34" fill="#1e5aa8" stroke="#7fb3ff" stroke-width="3"/>
+    <text x="600" y="198" fill="#fff" font-size="22">3</text>
+    <text x="600" y="254" fill="#fff" font-size="17" font-weight="700">Build the sandbox image</text>
+    <text x="600" y="278" fill="#b9cdf0" font-size="13">first run only, then reused</text>
+    <text x="600" y="302" fill="#7ee2a8" font-size="15" font-weight="700">3 min 43 s</text>
+
+    <circle cx="840" cy="190" r="34" fill="#178a5a" stroke="#7ee2a8" stroke-width="3"/>
+    <text x="840" y="198" fill="#fff" font-size="22">4</text>
+    <text x="840" y="254" fill="#fff" font-size="17" font-weight="700">Run test cases as Jobs</text>
+    <text x="840" y="278" fill="#b9cdf0" font-size="13">on the edge node, with its limits</text>
+    <text x="840" y="302" fill="#7ee2a8" font-size="15" font-weight="700">13 to 19 s each</text>
+
+    <circle cx="1080" cy="190" r="34" fill="#2c4f86" stroke="#7fb3ff" stroke-width="3"/>
+    <text x="1080" y="198" fill="#fff" font-size="22">5</text>
+    <text x="1080" y="254" fill="#fff" font-size="17" font-weight="700">Clean up</text>
+    <text x="1080" y="278" fill="#b9cdf0" font-size="13">even if the job fails</text>
+    <text x="1080" y="302" fill="#7ee2a8" font-size="15" font-weight="700">6 s</text>
+  </g>
+  <text x="1140" y="130" fill="#6f8bb8" font-size="13" text-anchor="end">Measured on a 4-core Intel Core i3 laptop, WSL 2 with 8 GB</text>
+  <text x="1140" y="342" fill="#6f8bb8" font-size="13" text-anchor="end">3 small test cases; total 8 min 54 s</text>
+</svg>

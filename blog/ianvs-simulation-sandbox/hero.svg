@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1f3a"/>
+      <stop offset="1" stop-color="#123a6b"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16325c"/>
+      <stop offset="1" stop-color="#0e2547"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7fb3ff"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#bg)"/>
+
+  <!-- title -->
+  <text x="60" y="80" fill="#ffffff" font-size="44" font-weight="800">Your laptop is now an <tspan fill="#7ee2a8">edge-cloud cluster</tspan></text>
+  <text x="60" y="116" fill="#b9cdf0" font-size="20">No edge boards. No manual installs. No leftovers. One command with KubeEdge-Ianvs.</text>
+
+  <!-- LEFT: without the simulator -->
+  <text x="60" y="176" fill="#ff9b8a" font-size="17" font-weight="700" letter-spacing="1">WITHOUT THE SIMULATOR</text>
+  <g>
+    <!-- cloud server -->
+    <rect x="60" y="196" width="150" height="92" rx="10" fill="#1d3b66" stroke="#4d6f9f"/>
+    <rect x="76" y="212" width="118" height="12" rx="3" fill="#4d6f9f"/>
+    <rect x="76" y="232" width="118" height="12" rx="3" fill="#4d6f9f"/>
+    <rect x="76" y="252" width="118" height="12" rx="3" fill="#4d6f9f"/>
+    <text x="135" y="306" fill="#d6e2f7" font-size="14" text-anchor="middle">cloud server</text>
+    <!-- edge devices -->
+    <rect x="240" y="206" width="76" height="56" rx="8" fill="#1d3b66" stroke="#4d6f9f"/>
+    <rect x="330" y="206" width="76" height="56" rx="8" fill="#1d3b66" stroke="#4d6f9f"/>
+    <rect x="240" y="276" width="76" height="56" rx="8" fill="#1d3b66" stroke="#4d6f9f"/>
+    <rect x="330" y="276" width="76" height="56" rx="8" fill="#1d3b66" stroke="#4d6f9f"/>
+    <text x="323" y="352" fill="#d6e2f7" font-size="14" text-anchor="middle">edge devices</text>
+    <!-- tangled cables -->
+    <path d="M210 242 C 225 230, 230 250, 240 234" stroke="#ff9b8a" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+    <path d="M210 260 C 300 350, 320 200, 330 300" stroke="#ff9b8a" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+  </g>
+  <g fill="#ffd2c9" font-size="16">
+    <text x="60" y="400">✕  Several machines and edge boards to buy</text>
+    <text x="60" y="430">✕  Hand-install Kubernetes, KubeEdge and Sedna</text>
+    <text x="60" y="460">✕  Hunt for versions that work together</text>
+    <text x="60" y="490">✕  Clean up by hand when you are done</text>
+    <text x="60" y="520">✕  Most contributors have no edge hardware at all</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="470" y1="170" x2="470" y2="540" stroke="#3b5f93" stroke-width="2"/>
+
+  <!-- RIGHT: with the simulator -->
+  <text x="510" y="176" fill="#7ee2a8" font-size="17" font-weight="700" letter-spacing="1">WITH THE IANVS SIMULATOR</text>
+
+  <!-- laptop -->
+  <rect x="510" y="196" width="420" height="250" rx="14" fill="#0a1a33" stroke="#7fb3ff" stroke-width="2"/>
+  <rect x="526" y="212" width="388" height="218" rx="8" fill="url(#screen)"/>
+  <path d="M480 446 h480 l-30 22 h-420 z" fill="#2a4a7a"/>
+
+  <!-- inside the laptop: simulated cluster -->
+  <text x="720" y="238" fill="#b9cdf0" font-size="13" text-anchor="middle">simulated cluster (kind + KubeEdge + Sedna)</text>
+  <rect x="548" y="252" width="160" height="70" rx="8" fill="#1e5aa8"/>
+  <text x="628" y="282" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">Cloud node</text>
+  <text x="628" y="302" fill="#cfe0ff" font-size="12" text-anchor="middle">cloudcore · Sedna GM</text>
+  <rect x="738" y="252" width="80" height="70" rx="8" fill="#178a5a"/>
+  <rect x="828" y="252" width="70" height="70" rx="8" fill="#178a5a" opacity="0.75"/>
+  <text x="778" y="282" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Edge</text>
+  <text x="778" y="300" fill="#d4f5e3" font-size="11" text-anchor="middle">edgecore</text>
+  <text x="863" y="282" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Edge</text>
+  <text x="863" y="300" fill="#d4f5e3" font-size="11" text-anchor="middle">edgecore</text>
+  <line x1="708" y1="287" x2="736" y2="287" stroke="#7fb3ff" stroke-width="2"/>
+
+  <!-- pipeline -->
+  <g font-size="12" fill="#ffffff" text-anchor="middle">
+    <rect x="548" y="346" width="76" height="30" rx="15" fill="#2c4f86"/><text x="586" y="366">check</text>
+    <rect x="640" y="346" width="76" height="30" rx="15" fill="#2c4f86"/><text x="678" y="366">build</text>
+    <rect x="732" y="346" width="84" height="30" rx="15" fill="#2c4f86"/><text x="774" y="366">run Jobs</text>
+    <rect x="832" y="346" width="66" height="30" rx="15" fill="#2c4f86"/><text x="865" y="366">clean</text>
+  </g>
+  <g stroke="#7fb3ff" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="624" y1="361" x2="638" y2="361"/>
+    <line x1="716" y1="361" x2="730" y2="361"/>
+    <line x1="816" y1="361" x2="830" y2="361"/>
+  </g>
+  <rect x="548" y="392" width="350" height="28" rx="6" fill="#06142a"/>
+  <text x="560" y="411" fill="#7ee2a8" font-size="13" font-family="Consolas, Menlo, monospace">$ ianvs -f benchmarkingjob.yaml</text>
+
+  <!-- stat cards -->
+  <g text-anchor="middle">
+    <rect x="960" y="196" width="190" height="72" rx="10" fill="#0f2b52" stroke="#3b5f93"/>
+    <text x="1055" y="232" fill="#7ee2a8" font-size="28" font-weight="700">1 laptop</text>
+    <text x="1055" y="256" fill="#b9cdf0" font-size="13">4 cores · 8 GB for Linux</text>
+
+    <rect x="960" y="280" width="190" height="72" rx="10" fill="#0f2b52" stroke="#3b5f93"/>
+    <text x="1055" y="316" fill="#7ee2a8" font-size="28" font-weight="700">~4 min</text>
+    <text x="1055" y="340" fill="#b9cdf0" font-size="13">to a ready cluster</text>
+
+    <rect x="960" y="364" width="190" height="72" rx="10" fill="#0f2b52" stroke="#3b5f93"/>
+    <text x="1055" y="400" fill="#7ee2a8" font-size="28" font-weight="700">$0</text>
+    <text x="1055" y="424" fill="#b9cdf0" font-size="13">extra hardware</text>
+
+    <rect x="960" y="448" width="190" height="72" rx="10" fill="#0f2b52" stroke="#3b5f93"/>
+    <text x="1055" y="484" fill="#7ee2a8" font-size="28" font-weight="700">0 left over</text>
+    <text x="1055" y="508" fill="#b9cdf0" font-size="13">cluster removed in 6 seconds</text>
+  </g>
+
+  <text x="510" y="520" fill="#b9cdf0" font-size="15">Measured on a 4-core Intel Core i3 laptop with WSL 2 (8 GB).</text>
+  <text x="1140" y="580" fill="#6f8bb8" font-size="13" text-anchor="end">KubeEdge-Ianvs Simulation Sandbox</text>
+</svg>
