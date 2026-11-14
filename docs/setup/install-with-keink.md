@@ -30,7 +30,7 @@ make
 
 You also need to install Docker, Go, kind, and kubectl locally.
 
-Deploy the latest recommended version of KubeEdge v1.17:
+Deploy the [latest recommended version](https://github.com/kubeedge/kubeedge/releases) of KubeEdge:
 
 ```
 docker 26.0.0

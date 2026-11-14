@@ -30,7 +30,7 @@ reviewing issues/PRs or participate in community discussions on slack/mailing li
     - Authoring PRs
     - Reviewing issues/PRs authored by other community members
     - Participating in community discussions on slack/mailing list
-    - Participate in KubeEdge community meetings
+    - Participate in [KubeEdge community meetings](./meetings.md)
 
 
 ### Responsibilities and privileges

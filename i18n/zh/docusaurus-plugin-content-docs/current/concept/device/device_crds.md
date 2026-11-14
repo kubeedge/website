@@ -9,7 +9,7 @@ KubeEdge 借助 Kubernetes [CRD](https://kubernetes.io/docs/concepts/extend-kube
 ## 注意
 
 在 v1.15 版本中，设备 CRD 从 v1alpha2 更新为 v1beta1，它与 v1alpha1 和 v1alpha2 **不**兼容。
-详细信息可以参见[device-crd-v1beta1](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md)。
+详细信息可以参见[device-crd-v1beta1](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/sig-device-iot/device-crd-v1beta1.md)。
 
 ## 设备模型
 

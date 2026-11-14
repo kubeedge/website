@@ -46,5 +46,5 @@ of the community. Here are ways to get in touch with the community:
 
 - [Mailing list](https://groups.google.com/forum/#!forum/kubeedge)
 - [Slack](https://kubeedge.io/docs/community/slack/)
-- [Twitter](https://twitter.com/kubeedge)
+- [X](https://x.com/KubeEdge)
 - [GitHub Issues](https://github.com/kubeedge/kubeedge/issues)

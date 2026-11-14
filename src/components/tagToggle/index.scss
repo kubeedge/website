@@ -24,9 +24,16 @@
         height: 30px;
         padding: 3px 12px;
         cursor: pointer;
+        background: none;
         border: 1px solid rgba(0, 0, 0, 0);
         display: flex;
         align-items: center;
+        font: inherit;
+
+        &:focus-visible {
+          outline: 2px solid #3578e5;
+          outline-offset: 2px;
+        }
 
         &:hover {
           color: #3578e5;
