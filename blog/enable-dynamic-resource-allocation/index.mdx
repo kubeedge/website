@@ -1,0 +1,1037 @@
+---
+authors:
+- Gao Feng
+categories:
+- General
+- Announcements
+date: 2026-11-17
+draft: false
+lastmod: 2026-11-17
+summary: Enable DRA with KubeEdge
+tags:
+- KubeEdge
+- kubeedge
+- cloud native
+- dynamic resource allocation
+- DRA
+title: Dynamic Resource Allocation Feature KubeEdge Migration and Demonstration
+---
+
+This blog introduces how to migrate and enable dynamic resource allocation feature for KubeEdge cluster.
+
+# Why we want to use DRA Feature?
+
+Although KubeEdge provide the DMI(device management interface) to control and manager edge side devices, but with the following reason, we still need to enable this feature of DRA with KubeEdge
+- DRA introduces a **cloud-native**, **flexible allocation model** patterned after how Kubernetes handles persistent storage.
+It replaces the traditional device plugins, which is extremely limited while working. 
+- More and more hardware like GPU start to support DRA feature now.
+- DRA is becoming the standard and critira with Kubernetes cluster       
+
+## Dynamic GPU Slicing
+
+The Old Way: A pod requested an entire GPU. If an application only needed 10% of that GPU's processing power, the remaining 90% sat idle and wasted, as other pods couldn't touch it.
+
+With DRA: Pods can request specific slices, memory limits, or time-sharing channels on a device. You can pack multiple lightweight machine learning inference pods onto a single physical GPU node safely, drastically reducing infrastructure costs.
+
+## Complex Multi-Device Arbitrary Claims
+
+The Old Way: If a pod needed two specific types of GPUs connected by a high-speed NVLink bridge, the scheduler couldn't easily verify the network topology. It would randomly assign any two GPUs, often hurting performance.
+
+With DRA: The allocation model allows drivers to evaluate hardware topologies during scheduling. DRA can ensure that a distributed training pod gets a tightly coupled cluster of GPUs that can talk to each other at maximum speed.
+
+## Network-Attached and Remote Discovered Hardware
+
+The Old Way: Device plugins only understood hardware physically plugged into the PCIe slots of that exact node.
+
+With DRA: The system can allocate network-attached hardware (like a pool of AI chips sitting on a remote server accessible via RDMA fabrics). DRA claims the resource over the network network socket line, attaches it to the pod, and releases it back to the cluster pool when done.
+
+## Clean Initialization & Teardown Lifecycles
+
+The Old Way: Pre-start container hooks were brittle. If a pod crashed unexpectedly, hardware memory states could get corrupted or "stuck" in a zombie reservation state.
+
+With DRA: DRA relies on explicit, robust ResourceClaims. Hardware initialization happens before the container sandbox boots, and the state is explicitly torn down when the pod is deleted, preventing resource leakage.
+
+# How to Migrate and Enable DRA for KubeEdge?
+
+Although DRA is mature in Kubernetes, KubeEdge `v1.23` still aligns to Kubernetes main stream `v1.32`, where DRA APIs version is still `v1beta1`. Thus we choose that DRA  `v1beta1` version as baseline. And porting entire DRA API version `v1`(available with Kubernetes v1.35) to Kubeedge v1.23 is out of scope of this manual.
+
+An update of the procedure will be expected when newer k8s is bumped into KubeEdge.
+
+- [Environment and Baseline](#environment-and-baseline)
+- [Code Modifications and Build Modules](#code-modifications-and-build-modules)
+- [Cluster Deployment](#cluster-deployment)
+- [DRA Example Driver Demonstration](#dra-example-driver-demonstration)
+- [Appendix (Patches and Config Files)](#appendix)
+
+## Environment and Baseline
+
+### KubeEdge
+https://github.com/FengGaoCSC/kubeedge-gao.git
+branch: enable-dra-on-release-1.23 (commit bd0b0aa1cbb35026dd7b5af7bf434ce074da2f81)
+
+#### DraExampleDriver
+https://github.com/FengGaoCSC/dra-example-driver-gao.git
+branch: adapter-KubeEdge-0.1.3 (commit 1b9ab4e4b1e06a6da6c8ec8031e0b60eb544a421)
+
+### Kubernetes
+(just for reference, no need to use)
+https://github.com/kubernetes/kubernetes.git
+v1.32.13 (release-1.32 HEAD) (1214ccfca074d7677ec959e327bc03148ee436f4)
+
+### Environment
+
+#### Build Environment
+
+go 1.25.14, gcc 11.4.0, make 4.3, docker 27.4.1
+
+#### Deploy Environment
+
+Ubuntu 22.04, containerd v1.6.31, crictl v1.27.1
+
+- Cloud Node (192.168.0.124)
+- Edge Node (192.168.0.117)
+
+## Code Modifications and Build Modules
+
+### containerd configuration
+```
+vim /etc/containerd/config.toml
+
+[plugins."io.containerd.grpc.v1.cri"]
+  enable_cdi = true
+  cdi_specs_dir = ["/etc/cdi", "/var/run/cdi"]  
+```
+
+### KubeEdge
+
+Patch
+- Add DRA related resources to resources event handler of DynamicController.
+- ResourceSlice and ResourceClaim bridges for EdgeCore to manage DRA related resources.
+- Loopback client and corresponding MetaServer token and authenticator.
+- Add MetaServer handler for DeleteCollection and functions for pruning local database.
+- CloudCode RBAC rules for DRA related resources access.
+
+Build
+```
+cd kubeedge
+
+# build cloudcore binary
+CGO_ENABLED=0 make all WHAT=cloudcore BUILD_WITH_CONTAINER=false
+
+# build edgecore binary
+make all WHAT=edgecore BUILD_WITH_CONTAINER=false
+
+# output binaries location
+ls _output/local/bins
+```
+
+### DraExampleDriver
+
+Patch
+- Specify message format to json.
+
+Build
+```
+cd dra-example-driver
+
+# build docker image
+./demo/build-driver.sh
+
+# export docker image
+docker save -o dra-example-driver.tar registry.k8s.io/dra-example-driver/dra-example-driver:v0.1.0
+
+# import image so that containerd can access
+sudo ctr -n k8s.io images import dra-example-driver.tar
+```
+
+## Cluster Deployment
+
+### Cluster Initialization
+
+```
+# turn off swap
+sudo swapoff -a
+
+# k8s cluster initialization
+sudo kubeadm init --apiserver-advertise-address=192.168.0.124
+
+# authorize kubectl access to apiserver
+mkdir -p $HOME/.kube
+rm ~/.kube/config
+cp -i /etc/kubernetes/admin.conf ~/.kube/config
+chown $(id -u):$(id -g) ~/.kube/config
+
+# untaint master node for control plane pods
+kubectl taint node master node-role.kubernetes.io/control-plane:NoSchedule-
+
+# enable DRA feature gate in kube-apiserver.yaml, kube-controller-manager.yaml, and kube-scheduler.yaml
+# just simply use the modified config files
+sudo cp ~/dra-demo/kube-*.yaml  /etc/kubernetes/manifests/
+
+# enable DRA feature gate in kubelet's config
+# then restart kubelet
+sudo cp ~/dra-demo/kubelet-config.yaml /var/lib/kubelet/config.yaml
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+```
+
+```
+# wait for about 40 second for all these pods restarted and ready
+kubectl get all -A
+
+NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-668d6bf9bc-bdxx5         1/1     Running   0          11s
+kube-system   pod/coredns-668d6bf9bc-nqcgk         1/1     Running   0          11s
+kube-system   pod/etcd-master                      1/1     Running   37         41s
+kube-system   pod/kube-apiserver-master            1/1     Running   10         32s
+kube-system   pod/kube-controller-manager-master   1/1     Running   10         32s
+kube-system   pod/kube-proxy-nnkg8                 1/1     Running   0          11s
+kube-system   pod/kube-scheduler-master            1/1     Running   10         32s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  42s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   41s
+
+NAMESPACE     NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   40s
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   2/2     2            2           41s
+
+NAMESPACE     NAME                                 DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-668d6bf9bc   2         2         2       11s
+```
+
+```
+# KubeEdge initialization
+# enable requireAuthorization and dynamicController
+sudo keadm init --set cloudcore.image.tag=v1.23.0 --set cloudCore.modules.dynamicController.enable=true --set cloudCore.featureGates.requireAuthorization=true --kubeedge-version=1.23.0 --advertise-address=192.168.0.124 --kube-config=~/.kube/config
+
+# patch cloudcore deployment to use custom cloudcore binary
+kubectl patch deployment cloudcore -n kubeedge --patch-file ~/dra-demo/patch-cloudcore.yaml
+
+# remove the existing cloudcore pod to let new cloudcore pod start
+kubectl get all -A | grep cloudcore | grep Running | awk '{print $2}' | xargs -I {} kubectl delete -n kubeedge {}
+```
+
+```
+# wait for about 12 second for cloudcore pod restarted and ready
+kubectl get all -A
+
+NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-668d6bf9bc-bdxx5         1/1     Running   0          34s
+kube-system   pod/coredns-668d6bf9bc-nqcgk         1/1     Running   0          34s
+kube-system   pod/etcd-master                      1/1     Running   35         69s
+kube-system   pod/kube-apiserver-master            1/1     Running   8          56s
+kube-system   pod/kube-controller-manager-master   1/1     Running   8          56s
+kube-system   pod/kube-proxy-nnkg8                 1/1     Running   0          34s
+kube-system   pod/kube-scheduler-master            1/1     Running   8          56s
+kubeedge      pod/cloud-iptables-manager-vfbq2     1/1     Running   0          21s
+kubeedge      pod/cloudcore-846d4d698b-5tcnf       1/1     Running   0          16s
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                             AGE
+default       service/kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP                                             66s
+kube-system   service/kube-dns     ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP                              65s
+kubeedge      service/cloudcore    ClusterIP   10.105.141.140   <none>        10000/TCP,10001/UDP,10002/TCP,10003/TCP,10004/TCP   21s
+
+NAMESPACE     NAME                                    DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   daemonset.apps/kube-proxy               1         1         1       1            1           kubernetes.io/os=linux   65s
+kubeedge      daemonset.apps/cloud-iptables-manager   1         1         1       1            1           <none>                   21s
+kubeedge      daemonset.apps/edge-eclipse-mosquitto   0         0         0       0            0           <none>                   21s
+
+NAMESPACE     NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns     2/2     2            2           65s
+kubeedge      deployment.apps/cloudcore   1/1     1            1           21s
+
+NAMESPACE     NAME                                   DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-668d6bf9bc     2         2         2       35s
+kubeedge      replicaset.apps/cloudcore-5df4c74877   0         0         0       21s
+kubeedge      replicaset.apps/cloudcore-846d4d698b   1         1         1       16s
+```
+
+```
+# create cluster role and cluster role binding related to service account access
+kubectl apply -f rbac-cloudcore.yaml
+
+# get KubeEdge join-in token
+keadm gettoken --kube-config=$HOME/.kube/config
+```
+
+### Edge Node Joining
+
+```
+# turn off swap
+sudo swapoff -a
+
+# use KubeEdge joining token to add edge node
+sudo keadm join --cloudcore-ipport=192.168.0.124:10000 --kubeedge-version=v1.23.0 --cgroupdriver=systemd --remote-runtime-endpoint=unix:///run/containerd/containerd.sock --set modules.metaManager.metaServer.enable=true --token $TOKEN
+
+sudo systemctl stop edgecore
+
+# enable requireAuthorization, DynamicResourceAllocation feature in edged tailoredKubeletConfig, and metaServer in edgecore's config
+sudo cp ~/dra-demo/edgecore.yaml /etc/kubeedge/config/edgecore.yaml
+
+# use custom edgecore binary
+sudo cp ~/dra-demo/edgecore /usr/local/bin/edgecore
+
+# restart edgecore service
+sudo systemctl start edgecore
+```
+
+```
+kubectl get pod -A -o wide
+
+NAMESPACE            NAME                                     READY   STATUS    RESTARTS   AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+kube-system          coredns-668d6bf9bc-bdxx5                 1/1     Running   0          20m   10.88.1.108     master           <none>           <none>
+kube-system          coredns-668d6bf9bc-nqcgk                 1/1     Running   0          20m   10.88.1.109     master           <none>           <none>
+kube-system          etcd-master                              1/1     Running   35         21m   192.168.0.124   master           <none>           <none>
+kube-system          kube-apiserver-master                    1/1     Running   8          20m   192.168.0.124   master           <none>           <none>
+kube-system          kube-controller-manager-master           1/1     Running   8          20m   192.168.0.124   master           <none>           <none>
+kube-system          kube-proxy-nnkg8                         1/1     Running   0          20m   192.168.0.124   master           <none>           <none>
+kube-system          kube-proxy-q6mrp                         1/1     Running   0          19m   192.168.0.117   anode-ultraman   <none>           <none>
+kube-system          kube-scheduler-master                    1/1     Running   8          20m   192.168.0.124   master           <none>           <none>
+kubeedge             cloud-iptables-manager-vfbq2             1/1     Running   0          20m   192.168.0.124   master           <none>           <none>
+kubeedge             cloudcore-846d4d698b-5tcnf               1/1     Running   0          20m   192.168.0.124   master           <none>           <none>
+kubeedge             edge-eclipse-mosquitto-7r2r2             1/1     Running   0          19m   192.168.0.117   anode-ultraman   <none>           <none>
+```
+
+## DRA Example Driver Demonstration
+
+```
+# deploy dra-example-driver resources including driver plugin DaemonSet
+kubectl apply -f ~/dra-demo/dra-example-driver.yaml
+```
+
+```
+# check DRA driver plugin pods
+kubectl get pod -A -o wide
+
+NAMESPACE            NAME                                     READY   STATUS    RESTARTS   AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+dra-example-driver   dra-example-driver-kubeletplugin-9zfh5   1/1     Running   0          27s   10.88.1.114     master           <none>           <none>
+dra-example-driver   dra-example-driver-kubeletplugin-vmbvz   1/1     Running   0          27s   10.88.0.248     anode-ultraman   <none>           <none>
+kube-system          coredns-668d6bf9bc-bdxx5                 1/1     Running   0          22m   10.88.1.108     master           <none>           <none>
+kube-system          coredns-668d6bf9bc-nqcgk                 1/1     Running   0          22m   10.88.1.109     master           <none>           <none>
+kube-system          etcd-master                              1/1     Running   35         23m   192.168.0.124   master           <none>           <none>
+kube-system          kube-apiserver-master                    1/1     Running   8          22m   192.168.0.124   master           <none>           <none>
+kube-system          kube-controller-manager-master           1/1     Running   8          22m   192.168.0.124   master           <none>           <none>
+kube-system          kube-proxy-nnkg8                         1/1     Running   0          22m   192.168.0.124   master           <none>           <none>
+kube-system          kube-proxy-q6mrp                         1/1     Running   0          21m   192.168.0.117   anode-ultraman   <none>           <none>
+kube-system          kube-scheduler-master                    1/1     Running   8          22m   192.168.0.124   master           <none>           <none>
+kubeedge             cloud-iptables-manager-vfbq2             1/1     Running   0          22m   192.168.0.124   master           <none>           <none>
+kubeedge             cloudcore-846d4d698b-5tcnf               1/1     Running   0          22m   192.168.0.124   master           <none>           <none>
+kubeedge             edge-eclipse-mosquitto-7r2r2             1/1     Running   0          21m   192.168.0.117   anode-ultraman   <none>           <none>
+
+# check ResourceSlices on cloud side
+kubectl get resourceslices
+
+NAME                                   NODE             DRIVER            POOL             AGE
+anode-ultraman-gpu.example.com-7dbtz   anode-ultraman   gpu.example.com   anode-ultraman   1m48s
+master-gpu.example.com-td5z4           master           gpu.example.com   master           1m47s
+
+# check ResourceSlices in edge local database
+sudo sqlite3 /var/lib/kubeedge/edgecore.db "select * from meta_v2 where group_version_resource like '%resourceslices%';" | cut -c1-200
+
+/resource.k8s.io/v1beta1/resourceslices/null/anode-ultraman-gpu.example.com-7dbtz|resource.k8s.io/v1beta1, Resource=resourceslices||anode-ultraman-gpu.example.com-7dbtz|6924|{"apiVersion":"resource.k8
+```
+
+```
+# deploy dra-example-driver demonstration pods
+kubectl apply --filename=~/dra-example-driver/demo/gpu-test{1,2,3,4,5}.yaml
+```
+
+- gpu-test1:
+	Two pods, each with its own claim generated from a ResourceClaimTemplate. Each pod gets a distinct GPU.
+- gpu-test2:
+	One pod asking for two GPUs in one request (ExactCount, count: 2).
+- gpu-test3:
+	One pod with two containers that both reference the same claim (shared-gpu). Both containers see the same GPU.
+- gpu-test4:
+	A standalone ResourceClaim referenced by name (resourceClaimName) from two pods. Both pods share one allocated GPU.
+- gpu-test5:
+	One claim with two requests, ts-gpu and sp-gpu, each with driver-specific config (time slicing and space partitioning). Four containers pick a request through `request:`.
+
+```
+# check DRA demonstration pods
+kubectl get pod -A -o wide
+
+NAMESPACE            NAME                                     READY   STATUS    RESTARTS   AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+dra-example-driver   dra-example-driver-kubeletplugin-9zfh5   1/1     Running   0          76s   10.88.1.114     master           <none>           <none>
+dra-example-driver   dra-example-driver-kubeletplugin-vmbvz   1/1     Running   0          76s   10.88.0.248     anode-ultraman   <none>           <none>
+gpu-test1            pod0                                     1/1     Running   0          6s    10.88.1.32      anode-ultraman   <none>           <none>
+gpu-test1            pod1                                     1/1     Running   0          6s    10.88.1.29      anode-ultraman   <none>           <none>
+gpu-test2            pod0                                     1/1     Running   0          5s    10.88.1.30      anode-ultraman   <none>           <none>
+gpu-test3            pod0                                     2/2     Running   0          5s    10.88.1.31      anode-ultraman   <none>           <none>
+gpu-test4            pod0                                     1/1     Running   0          5s    10.88.1.155     master           <none>           <none>
+gpu-test4            pod1                                     1/1     Running   0          5s    10.88.1.154     master           <none>           <none>
+gpu-test5            pod0                                     4/4     Running   0          4s    10.88.1.156     master           <none>           <none>
+kube-system          coredns-668d6bf9bc-bdxx5                 1/1     Running   0          23m   10.88.1.108     master           <none>           <none>
+kube-system          coredns-668d6bf9bc-nqcgk                 1/1     Running   0          23m   10.88.1.109     master           <none>           <none>
+kube-system          etcd-master                              1/1     Running   35         24m   192.168.0.124   master           <none>           <none>
+kube-system          kube-apiserver-master                    1/1     Running   8          23m   192.168.0.124   master           <none>           <none>
+kube-system          kube-controller-manager-master           1/1     Running   8          23m   192.168.0.124   master           <none>           <none>
+kube-system          kube-proxy-nnkg8                         1/1     Running   0          23m   192.168.0.124   master           <none>           <none>
+kube-system          kube-proxy-q6mrp                         1/1     Running   0          22m   192.168.0.117   anode-ultraman   <none>           <none>
+kube-system          kube-scheduler-master                    1/1     Running   8          23m   192.168.0.124   master           <none>           <none>
+kubeedge             cloud-iptables-manager-vfbq2             1/1     Running   0          23m   192.168.0.124   master           <none>           <none>
+kubeedge             cloudcore-846d4d698b-5tcnf               1/1     Running   0          23m   192.168.0.124   master           <none>           <none>
+kubeedge             edge-eclipse-mosquitto-7r2r2             1/1     Running   0          22m   192.168.0.117   anode-ultraman   <none>           <none>
+
+# check ResourceClaims on cloud side
+kubectl get resourceclaims -A
+
+NAMESPACE   NAME                     STATE                AGE
+gpu-test1   pod0-gpu-q6dh5           allocated,reserved   20s
+gpu-test1   pod1-gpu-98h4j           allocated,reserved   20s
+gpu-test2   pod0-gpus-9gfkc          allocated,reserved   19s
+gpu-test3   pod0-shared-gpu-cc9hr    allocated,reserved   19s
+gpu-test4   single-gpu               allocated,reserved   19s
+gpu-test5   pod0-shared-gpus-g72dh   allocated,reserved   18s
+```
+
+```
+# undeploy dra-example-driver demonstration pods
+kubectl delete --filename=~/dra-example-driver/demo/gpu-test{1,2,3,4,5}.yaml
+
+# undeploy dra-example-driver driver plugin DaemonSet
+kubectl delete ds -n dra-example-driver dra-example-driver-kubeletplugin
+```
+
+## Appendix
+
+### Config Files
+
+#### Kubernetes Manifest Files
+
+```
+~/dra-demo » sudo diff /etc/kubernetes/manifests/kube-controller-manager.yaml kube-controller-manager.yaml
+27a28
+>     - --feature-gates=DynamicResourceAllocation=true
+```
+```
+~/dra-demo » sudo diff /etc/kubernetes/manifests/kube-apiserver.yaml kube-apiserver.yaml
+42a43,44
+>     - --feature-gates=DynamicResourceAllocation=true
+>     - --runtime-config=resource.k8s.io/v1beta1=true
+```
+```
+~/dra-demo » sudo diff /etc/kubernetes/manifests/kube-scheduler.yaml kube-scheduler.yaml
+18a19
+>     - --feature-gates=DynamicResourceAllocation=true
+```
+
+#### Cloud Node Kubelet Config File
+
+```
+~/dra-demo » diff /var/lib/kubelet/config.yaml kubelet-config.yaml
+23a24,25
+> featureGates:
+>   DynamicResourceAllocation: true
+```
+
+#### rbac-cloudcore.yaml
+
+```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cloudcore-devicestatus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cloudcore-devicestatus
+subjects:
+- kind: ServiceAccount
+  name: cloudcore
+  namespace: kubeedge
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cloudcore-devicestatus
+rules:
+- apiGroups: ["devices.kubeedge.io"]
+  resources: ["devicestatuses"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["devices.kubeedge.io"]
+  resources: ["devicestatuses/status"]
+  verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cloudcore-sa-extra
+  labels:
+    rbac/aggregate-to-cloudcore: "true"
+rules:
+- apiGroups: [""]
+  resources: ["serviceaccounts"]
+  verbs: ["get"]
+- apiGroups: ["authentication.k8s.io"]
+  resources: ["tokenreviews"]
+  verbs: ["create"]
+- apiGroups: ["policy.kubeedge.io"]
+  resources: ["serviceaccountaccesses", "serviceaccountaccesses/status"]
+  verbs: ["get"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles", "clusterroles", "rolebindings", "clusterrolebindings"]
+  verbs: ["get"]
+```
+
+#### patch-cloudcore.yaml
+
+```
+spec:
+  template:
+    spec:
+      containers:
+      - name: cloudcore
+        env:
+        - name: PATH
+          value: "/etc/kubeedge/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        volumeMounts:
+        - name: bin
+          mountPath: /etc/kubeedge/bin/
+      volumes:
+      - name: bin
+        hostPath:
+          path: $HOME/dra-demo/
+          type: DirectoryOrCreate
+```
+
+#### edgecore Config File
+
+```
+~/dra-demo$ diff /etc/kubeedge/config/edgecore.yaml edgecore.yaml
+6c6,8
+< edgecoreVersion: v1.23.0
+---
+> edgecoreVersion: v1.23.0-beta.0.63+e1cf74a99cbf5a-dirty
+> featureGates:
+>   requireAuthorization: true
+92a95,96
+>       featureGates:
+>         DynamicResourceAllocation: true
+```
+
+#### DRA Example Driver Plugin Config File
+
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    kubernetes.io/metadata.name: dra-example-driver
+  name: dra-example-driver
+spec:
+  finalizers:
+  - kubernetes
+---
+# Source: dra-example-driver/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dra-example-driver-service-account
+  namespace: dra-example-driver
+  labels:
+    helm.sh/chart: dra-example-driver-0.0.0-dev
+    app.kubernetes.io/name: dra-example-driver
+    app.kubernetes.io/instance: dra-example-driver
+    app.kubernetes.io/version: "v0.1.0"
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: dra-example-driver/templates/clusterrole.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dra-example-driver-role
+  namespace: dra-example-driver
+rules:
+- apiGroups: ["resource.k8s.io"]
+  resources: ["resourceclaims"]
+  verbs: ["get"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get"]
+- apiGroups: ["resource.k8s.io"]
+  resources: ["resourceslices"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+# Source: dra-example-driver/templates/clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dra-example-driver-role-binding
+  namespace: dra-example-driver
+subjects:
+- kind: ServiceAccount
+  name: dra-example-driver-service-account
+  namespace: dra-example-driver
+roleRef:
+  kind: ClusterRole
+  name: dra-example-driver-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: dra-example-driver/templates/kubeletplugin.yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: dra-example-driver-kubeletplugin
+  namespace: dra-example-driver
+  labels:
+    helm.sh/chart: dra-example-driver-0.0.0-dev
+    app.kubernetes.io/name: dra-example-driver
+    app.kubernetes.io/instance: dra-example-driver
+    app.kubernetes.io/version: "v0.1.0"
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: kubeletplugin
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: dra-example-driver
+      app.kubernetes.io/instance: dra-example-driver
+      app.kubernetes.io/component: kubeletplugin
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: dra-example-driver
+        app.kubernetes.io/instance: dra-example-driver
+        app.kubernetes.io/component: kubeletplugin
+    spec:
+      priorityClassName: system-node-critical
+      serviceAccountName: dra-example-driver-service-account
+      securityContext:
+        {}
+      containers:
+      - name: plugin
+        securityContext:
+          privileged: true
+        image: registry.k8s.io/dra-example-driver/dra-example-driver:v0.1.0
+        imagePullPolicy: IfNotPresent
+        command: ["dra-example-kubeletplugin", "-v=5"] # ["sleep", "10800"] 
+        resources:
+          {}
+        env:
+        - name: CDI_ROOT
+          value: /var/run/cdi
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        # Simulated number of devices the example driver will pretend to have.
+        - name: NUM_DEVICES
+          value: "8"
+        volumeMounts:
+        - name: plugins-registry
+          mountPath: /var/lib/kubelet/plugins_registry
+        - name: plugins
+          mountPath: /var/lib/kubelet/plugins
+        - name: cdi
+          mountPath: /var/run/cdi
+      volumes:
+      - name: plugins-registry
+        hostPath:
+          path: /var/lib/kubelet/plugins_registry
+      - name: plugins
+        hostPath:
+          path: /var/lib/kubelet/plugins
+      - name: cdi
+        hostPath:
+          path: /var/run/cdi
+---
+# Source: dra-example-driver/templates/deviceclass.yaml
+apiVersion: resource.k8s.io/v1beta1
+kind: DeviceClass
+metadata:
+  name: gpu.example.com
+spec:
+  selectors:
+  - cel: 
+      expression: "device.driver == 'gpu.example.com'"
+---
+# Source: dra-example-driver/templates/validatingadmissionpolicy.yaml
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: resourceslices-policy-dra-example-driver
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+    - apiGroups:   ["resource.k8s.io"]
+      apiVersions: ["v1beta1"]
+      operations:  ["CREATE", "UPDATE", "DELETE"]
+      resources:   ["resourceslices"]
+  matchConditions:
+  - name: isRestrictedUser
+    expression: >-
+      request.userInfo.username == "system:serviceaccount:dra-example-driver:dra-example-driver-service-account"
+  variables:
+  - name: userNodeName
+    expression: >-
+      request.userInfo.extra[?'authentication.kubernetes.io/node-name'][0].orValue('')
+  - name: objectNodeName
+    expression: >-
+      (request.operation == "DELETE" ? oldObject : object).spec.?nodeName.orValue("")
+  validations:
+  - expression: variables.userNodeName != ""
+    message: >-
+      no node association found for user, this user must run in a pod on a node and ServiceAccountTokenPodNodeInfo must be enabled
+  - expression: variables.userNodeName == variables.objectNodeName
+    messageExpression: >-
+      "this user running on node '"+variables.userNodeName+"' may not modify " +
+      (variables.objectNodeName == "" ?"cluster resourceslices" : "resourceslices on node '"+variables.objectNodeName+"'")
+---
+# Source: dra-example-driver/templates/validatingadmissionpolicybinding.yaml
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: resourceslices-policy-dra-example-driver
+spec:
+  policyName: resourceslices-policy-dra-example-driver
+  validationActions: [Deny]
+  # All ResourceSlices are matched.
+---
+# additional configurations
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: edgecore-anonymous-dra-reader
+rules:
+- apiGroups: ["resource.k8s.io"]
+  resources: ["resourceclaims", "resourceslices", "resourceclasses"]
+  verbs: ["get", "list", "watch"] # Allows edgecore to discover and fetch DRA claims
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: edgecore-anonymous-dra-binding
+subjects:
+- kind: User
+  name: system:anonymous # Matches the identity shown in your 403 error log
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: edgecore-anonymous-dra-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: edge-node-dra-reader
+rules:
+- apiGroups: ["resource.k8s.io"]
+  resources: ["resourceclaims", "resourceclaimtemplates", "devices"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: edge-node-dra-reader-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: edge-node-dra-reader
+subjects:
+- kind: User
+  name: system:node:anode-ultraman
+  apiGroup: rbac.authorization.k8s.io
+```
+
+#### DRA Example Driver Sample Pods Config File
+
+```
+# Two pods, one container each
+# Each container asking for 1 distinct GPU
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-test1
+---
+apiVersion: resource.k8s.io/v1beta1
+kind: ResourceClaimTemplate
+metadata:
+  namespace: gpu-test1
+  name: single-gpu
+spec:
+  spec:
+    devices:
+      requests:
+      - name: gpu
+        deviceClassName: gpu.example.com
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test1
+  name: pod0
+  labels:
+    app: pod
+spec:
+  containers:
+  - name: ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: gpu
+  resourceClaims:
+  - name: gpu
+    resourceClaimTemplateName: single-gpu
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test1
+  name: pod1
+  labels:
+    app: pod
+spec:
+  containers:
+  - name: ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: gpu
+  resourceClaims:
+  - name: gpu
+    resourceClaimTemplateName: single-gpu
+# One pod, one container
+# Asking for 2 distinct GPUs
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-test2
+---
+apiVersion: resource.k8s.io/v1beta1
+kind: ResourceClaimTemplate
+metadata:
+  namespace: gpu-test2
+  name: multiple-gpus
+spec:
+  spec:
+    devices:
+      requests:
+      - name: gpus
+        deviceClassName: gpu.example.com
+        allocationMode: ExactCount
+        count: 2
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test2
+  name: pod0
+  labels:
+    app: pod
+spec:
+  containers:
+  - name: ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: gpus
+  resourceClaims:
+  - name: gpus
+    resourceClaimTemplateName: multiple-gpus
+# One pod, two containers
+# Each asking for shared access to a single GPU
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-test3
+---
+apiVersion: resource.k8s.io/v1beta1
+kind: ResourceClaimTemplate
+metadata:
+  namespace: gpu-test3
+  name: single-gpu
+spec:
+  spec:
+    devices:
+      requests:
+      - name: gpu
+        deviceClassName: gpu.example.com
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test3
+  name: pod0
+spec:
+  containers:
+  - name: ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpu
+  - name: ctr1
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpu
+  resourceClaims:
+  - name: shared-gpu
+    resourceClaimTemplateName: single-gpu
+# One shared, global claim providing access to a GPU
+# Two pods, each asking for access to the shared GPU
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-test4
+---
+apiVersion: resource.k8s.io/v1beta1
+kind: ResourceClaim
+metadata:
+  namespace: gpu-test4
+  name: single-gpu
+spec:
+  devices:
+    requests:
+    - name: gpu
+      deviceClassName: gpu.example.com
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test4
+  name: pod0
+  labels:
+    app: pod
+spec:
+  containers:
+  - name: ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpu
+  resourceClaims:
+  - name: shared-gpu
+    resourceClaimName: single-gpu
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test4
+  name: pod1
+  labels:
+    app: pod
+spec:
+  containers:
+  - name: ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpu
+  resourceClaims:
+  - name: shared-gpu
+    resourceClaimName: single-gpu
+# One pod, 1 container
+# Run as deployment with 1 replica
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gpu-test5
+---
+apiVersion: resource.k8s.io/v1beta1
+kind: ResourceClaimTemplate
+metadata:
+  namespace: gpu-test5
+  name: multiple-gpus
+spec:
+  spec:
+    devices:
+      requests:
+      - name: ts-gpu
+        deviceClassName: gpu.example.com
+      - name: sp-gpu
+        deviceClassName: gpu.example.com
+      config:
+      - requests: ["ts-gpu"]
+        opaque:
+          driver: gpu.example.com
+          parameters:
+            apiVersion: gpu.resource.example.com/v1alpha1
+            kind: GpuConfig
+            sharing:
+              strategy: TimeSlicing
+              timeSlicingConfig:
+                interval: Long
+      - requests: ["sp-gpu"]
+        opaque:
+          driver: gpu.example.com
+          parameters:
+            apiVersion: gpu.resource.example.com/v1alpha1
+            kind: GpuConfig
+            sharing:
+              strategy: SpacePartitioning
+              spacePartitioningConfig:
+                partitionCount: 10
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: gpu-test5
+  name: pod0
+spec:
+  containers:
+  - name: ts-ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpus
+        request: ts-gpu
+  - name: ts-ctr1
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpus
+        request: ts-gpu
+  - name: sp-ctr0
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpus
+        request: sp-gpu
+  - name: sp-ctr1
+    image: ubuntu:22.04
+    command: ["bash", "-c"]
+    args: ["export; trap 'exit 0' TERM; sleep 9999 & wait"]
+    resources:
+      claims:
+      - name: shared-gpus
+        request: sp-gpu
+  resourceClaims:
+  - name: shared-gpus
+    resourceClaimTemplateName: multiple-gpus
+```
