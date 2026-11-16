@@ -21,7 +21,7 @@ This blog introduces how to migrate and enable dynamic resource allocation featu
 
 # Why we want to use DRA Feature?
 
-Although KubeEdge provide the DMI(device managerment interface) to control and manager edge side devices, but with the following reason, we still need to enable this feature of DRA with KubeEdge
+Although KubeEdge provide the DMI(device management interface) to control and manager edge side devices, but with the following reason, we still need to enable this feature of DRA with KubeEdge
 - DRA introduces a **cloud-native**, **flexible allocation model** patterned after how Kubernetes handles persistent storage.
 It replaces the traditional device plugins, which is extremely limited while working. 
 - More and more hardware like GPU start to support DRA feature now.
@@ -105,7 +105,7 @@ vim /etc/containerd/config.toml
 ### KubeEdge
 
 Patch
-- Add DRA realted resources to resoure event handler of DynamicController.
+- Add DRA related resources to resources event handler of DynamicController.
 - ResourceSlice and ResourceClaim bridges for EdgeCore to manage DRA related resources.
 - Loopback client and corresponding MetaServer token and authenticator.
 - Add MetaServer handler for DeleteCollection and functions for pruning local database.
