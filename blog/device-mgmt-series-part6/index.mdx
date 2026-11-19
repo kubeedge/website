@@ -1,0 +1,313 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2025-04-17
+draft: false
+lastmod: 2025-04-17
+summary: As the final part of the series, we will demonstrate how to develop a Mapper project from scratch and use it to manage edge devices.
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: "KubeEdge Edge Device Management Series (Part 6): Mapper-Framework Development Examples"
+---
+
+In response to the new version  of the `Device-IoT`  update, we plan to release a series of articles to introduce these features in detail. The general outline of the articles is as follows:
+
+1. [Design and Implementation of Device Management API Based on Object Model](/blog/device-mgmt-series-part1)
+2. [DMI Data Plane Capability Design and Implementation](/blog/device-mgmt-series-part2)
+3. [Mapper Development Framework: Design and Implementation](/blog/device-mgmt-series-part3)
+4. [How to use Mapper to process video stream data](/blog/device-mgmt-series-part4)
+5. [How to implement device data writing using Mapper](/blog/device-mgmt-series-part5)
+6. [How to develop a Mapper from scratch (using `Modbus` as an example)](/blog/device-mgmt-series-part6)
+
+In the previous articles of this series, we detailed the device management API based on the object model, the enhancement of DMI data plane capabilities, the principles of the Mapper-Framework development framework, and the core features of using Mapper for video stream data acquisition and reporting, as well as device data writing. As the final part of the series, we will demonstrate how to **develop a Mapper project from scratch and use it to manage edge devices.**
+
+##  Define Device CRD
+
+Users need to construct the device-model  and  device-instance in the form of an object model according to the Device CRD definition of KubeEdge v1beta1.  For specific definition details, please refer to the first article in this series .
+
+Here  is a specific example:
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: DeviceModel
+metadata:
+  name: temperature-model
+spec:
+  properties:
+    - name: temp                      # define device property
+      description: The temperature collected by the sensor
+      type: INT                       # date type of device property
+      accessMode: ReadWrite
+  protocol: modbus                    # protocol for device, need to be same with device instance
+```
+First, we define a device-model named  `temperature-model`  , which defines the common characteristics of a class of temperature sensors. In this example, `temperature-model`  describes an important attribute of the temperature sensor: temp. This attribute represents the temperature value acquired by the sensor and is of data type  int. Furthermore, the device uses the Modbus protocol for communication, and the temp attribute is accessed in "read-write" mode. This means that the Mapper will normalize or otherwise process the data acquired from the device and return a standardized result.
+
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+metadata:
+  name: temperature-instance-01
+  labels:
+    model: temperature-model
+spec:
+  deviceModelRef:
+    name: temperature-model
+  protocol:
+    protocolName: modbus
+    configData:
+      serialPort: '/dev/ttyS0'
+      baudRate: 9600
+      dataBits: 8
+      parity: even
+      stopBits: 1
+  nodeName: edge-node
+  properties:
+    - name: temp
+      visitors:
+        protocolName: modbus
+        configData:
+          register: HoldingRegister
+          offset: 2
+          limit: 1
+          scale: 1
+          isSwap: true
+          isRegisterSwap: true
+      reportCycle: 10000
+      collectCycle: 10000
+      reportToCloud: true
+      pushMethod:
+        mqtt:
+          address: tcp://127.0.0.1:1883
+          topic: temperature
+          qos: 0
+          retained: false
+```
+Next, we define a device-instance named  `temperature-instance-01`  , representing an actual Modbus temperature sensor device. In the definition, the `spec.protocol`  field needs to specify the device's communication protocol parameters. In this example, the `Modbus` protocol is used, and typical communication parameters such as serial port and baud rate are defined. The Mapper will communicate with the device based on these parameters to complete data acquisition and interaction.
+
+In  the `spec.properties`  field, we defined the `temp` property, consistent with the device model, and further refined the access methods. In  the `visitors`  field, we listed the access methods for the `temp` property in detail, including register type, register address, and offset information. Based on these definitions, the Mapper will accurately access the device's registers to obtain the required data.
+
+Finally, in  the `spec.properties.pushMethod`  field, we define the method for pushing device data. The DMI data plane supports pushing device data to various targets, including databases and user applications. For specific push methods, please refer to **the second article in this series** .
+
+## Building a Modbus  Mapper project
+
+If developers need to build custom Mapper plugins, they can generate Mapper project templates through the KubeEdge  Mapper-Framework  sub-repository. Next, developers only need to fill in the device initialization, data acquisition, and other functions according to the specific device information to complete the construction of the custom Mapper plugin.
+
+The following are relevant examples:
+
+**1. Generate Mapper Project**
+
+The developers first  cloned the KubeEdge <a href="https://github.com/kubeedge/mapper-framework">Mapper-Framework repository</a> using the  git clone command , then   switched to the stable version (currently supported versions 1.16 to 1.20)  using the `git checkout` command and executed the `make generate`  command, inputting the name of the custom Mapper and information such as whether to process streaming data, and finally generated the Mapper project:
+
+![image](https://files.mdnice.com/user/46056/bf6e5ec2-a81e-4e7d-a016-e97f97bf8f23.png)
+
+The generated  Modbus mapper  project will be built into the same directory as Mapper-Framework. The project structure can be found in the detailed explanation provided in the third article of this series.
+
+**2. Implement device driver functions**
+
+In most cases, developers need to populate two files in the driver directory of the Mapper project, as well as the Mapper's configuration file.
+
+The main work is concentrated in  the  `devicetype.go` and   `driver.go`  files. In  the devicetype.go  file, developers need to fill in the device protocol configuration information and attribute access fields, while in  the driver.go  file, specific functions such as device initialization and data acquisition need to be implemented.
+
+Below  are examples of relevant documents:
+```yaml
+type ProtocolConfig struct {
+    ProtocolName string `json:"protocolName"`
+    ConfigData   `json:"configData"`
+}
+
+type ConfigData struct {
+    // TODO: add your protocol config data
+    SerialPort string `json:"serialPort"`
+    DataBits   int    `json:"dataBits"`
+    BaudRate   int    `json:"baudRate"`
+    Parity     string `json:"parity"`
+    StopBits   int    `json:"stopBits"`
+}
+
+type VisitorConfig struct {
+    ProtocolName      string `json:"protocolName"`
+    VisitorConfigData `json:"configData"`
+}
+
+type VisitorConfigData struct {
+    // TODO: add your visitor config data
+    DataType       string  `json:"dataType"`
+    Register       string  `json:"register"`
+    Offset         uint16  `json:"offset"`
+    Limit          int     `json:"limit"`
+    Scale          float64 `json:"scale"`
+    IsSwap         bool    `json:"isSwap"`
+    IsRegisterSwap bool    `json:"isRegisterSwap"`
+}
+```
+In  the `devicetype.go`  file, developers need to populate protocol parameters (such as `ConfigData`) and attribute access parameters (such as VisitorConfigData). These definitions must be consistent with the fields in the `device-instance` to ensure that the Mapper can correctly parse the parameter values from the `device-instance` configuration file, thereby enabling data interaction between the device and the application.
+```yaml
+var clients *sync.Map
+
+var clientInit sync.Once
+
+func initMap() {
+    clientInit.Do(func() {
+        if clients == nil {
+            clients = new(sync.Map)
+        }
+     })
+}
+
+func NewClient(protocol ProtocolConfig) (*CustomizedClient, error) {
+    client := &CustomizedClient{
+        ProtocolConfig: protocol,
+        deviceMutex:    sync.Mutex{},
+        // TODO initialize the variables you added
+     }
+     return client, nil
+}
+
+func (c *CustomizedClient) InitDevice() error {
+
+    initMap()
+    klog.Infoln("SerialPort : ", c.ProtocolConfig.SerialPort)
+    v, ok := clients.Load(c.ProtocolConfig.SerialPort)
+    if ok {
+        c.ModbusClient = v.(modbus.Client)
+        return nil
+    }
+
+    handler := modbus.NewRTUClientHandler(c.ProtocolConfig.SerialPort)
+    handler.BaudRate = c.ProtocolConfig.BaudRate
+    handler.DataBits = c.ProtocolConfig.DataBits
+    handler.Parity = parity(c.ProtocolConfig.Parity)
+    handler.StopBits = c.ProtocolConfig.StopBits
+    client := modbus.NewClient(handler)
+    clients.Store(c.ProtocolConfig.SerialPort, &client)
+    c.ModbusClient = client
+
+    return nil
+}
+
+func (c *CustomizedClient) GetDeviceData(visitor *VisitorConfig) (interface{}, error) {
+    c.deviceMutex.Lock()
+    defer c.deviceMutex.Unlock()
+
+    var results []byte
+    var err error
+    switch visitor.Register {
+    case "CoilRegister":
+        results, err = c.ModbusClient.ReadCoils(visitor.Offset, uint16(visitor.Limit))
+    case "DiscreteInputRegister":
+        results, err = c.ModbusClient.ReadDiscreteInputs(visitor.Offset, uint16(visitor.Limit))
+    case "HoldingRegister":
+        results, err = c.ModbusClient.ReadHoldingRegisters(visitor.Offset, uint16(visitor.Limit))
+    case "InputRegister":
+        results, err = c.ModbusClient.ReadInputRegisters(visitor.Offset, uint16(visitor.Limit))
+    default:
+        return nil, errors.New("Bad register type")
+    }
+    klog.V(2).Info("Get result: ", results)
+    return results, err
+}
+
+func (c *CustomizedClient) StopDevice() error {
+    // TODO: stop device
+    // you can use c.ProtocolConfig
+    err := c.ModbusClient.Close()
+    if err != nil {
+        return err
+    }
+    return nil
+}
+```
+In  the `driver.go`  file, developers implement the specific functions of the device driver based on  the protocol configuration fields and attribute access parameters parsed from devicetype.go  . For example, in the example above, we implemented the initialization, data acquisition, and device stopping functions of the M`odbus`device. The specific implementation needs to be customized according to the protocol and operational requirements of the device used.
+
+In addition to implementing the device driver, developers also need to modify the Mapper's configuration file,  `config.yaml` . Generally, developers only need to fill in the Mapper's protocol name field.
+
+```yaml
+grpc_server:
+  socket_path: /etc/kubeedge/modbus.sock
+common:
+  name: Modbus-mapper
+  version: v1.13.0
+  api_version: v1.0.0
+  protocol: modbus # TODO add your protocol name
+  address: 127.0.0.1
+  edgecore_sock: /etc/kubeedge/dmi.sock
+```
+
+## Deploying a custom Mapper plugin
+
+After building the custom Mapper project , you can compile it and deploy it to the KubeEdge cluster. Currently, two deployment methods are recommended: binary deployment and  Deployment deployment .
+
+**Binary Deployment**
+
+Binary deployment is suitable for use during the development and debugging phases. This method is simple to operate and suitable for quick running and troubleshooting. Developers can directly compile and run the Mapper plugin locally using the following commands:
+
+```yaml
+go run cmd/main.go --v <log level,like 3> --config-file <path to config yaml>
+```
+In this command, the --v  parameter is used to set the log level; the higher the log level, the more detailed the output information. The --config-file  parameter specifies the path to the Mapper configuration file.
+
+**Deployment**
+
+Once the Mapper plugin has been thoroughly debugged and is running stably, it is recommended to deploy it as a container to a KubeEdge cluster. Using  the Dockerfile generated by Mapper-Framework , developers can build Docker images and create Kubernetes Deployments for stable operation in a production environment.
+
+Below  is a sample Deployment configuration:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modbus-mapper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      nodeName: edge-node # replace with your edge node name
+      containers:
+        - name: demo
+          volumeMounts: # Required, mapper need to communicate with grpcclient and get the config
+            - name: test-volume
+              mountPath: /etc/kubeedge
+          image: modbus-mapper:v1.0.0 # Replace with your mapper image name
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 300m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          command: ["/bin/sh","-c"]
+          args: ["/kubeedge/main --config-file /kubeedge/config.yaml --v 4"]
+      volumes:
+        - name: test-volume
+          hostPath:
+            path: /etc/kubeedge
+            type: Directory
+```
+
+After deploying the custom Mapper plugin, users can create  device-model  and  device-instance  resources in the cluster. The Mapper will then receive a notification and begin managing the devices, periodically acquiring device data and pushing it to the system. This completes the cloud-native management of edge devices, enabling the device lifecycle, data collection, processing, and push processes to run efficiently and reliably within a cloud-native architecture.
+
+Through this series of in-depth technical articles, we comprehensively analyze KubeEdge's innovations and practices in the Device-IoT field, focusing on key aspects such as the device management API based on object models, enhanced DMI data plane capabilities, the design and implementation of the Mapper Framework, practical examples of using Mapper for video stream data processing, device data writing, and custom Mapper project development. This content fully demonstrates how KubeEdge effectively promotes the integration of edge computing and IoT technologies, providing a practical solution for the cloud-native management of edge devices.
+
+With the increasing prevalence of IoT devices and the continued growth in edge computing demand, KubeEdge's unique advantages in device management and data processing will become increasingly prominent. Through this suite of features, KubeEdge provides robust support for IoT device management, data stream processing, and edge computing task execution. We look forward to more developers joining the KubeEdge community to contribute to the global edge computing ecosystem.
+
+Learn more about KubeEdge:
+- KubeEdge:https://kubeedge.io/
+- Website:https://kubeedge.io/
+- GitHub Repository: https://github.com/kubeedge/kubeedge
+- Documentation: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge

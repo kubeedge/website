@@ -1,0 +1,164 @@
+---
+authors:
+- KubeEdge
+categories:
+- General
+date: 2024-11-21
+draft: false
+lastmod: 2024-11-21
+summary: Design and Implementation of Device Management API Based on Object Model
+tags:
+- KubeEdge
+- kubeedge
+- edge computing
+- kubernetes edge computing
+- K8S edge orchestration
+- edge computing platform
+- security
+title: KubeEdge边缘设备管理系列（一）：基于物模型的设备管理API设计与实现
+---
+
+随着万物互联时代快速到来，5G网络普及导致边缘设备产生的数据量快速增长。普通的边缘设备计算能力不足，因此传统方法会将边缘侧数据集中汇聚到云端数据中心进行处理，容易对响应实时性、网络稳定性以及数据安全性产生挑战。
+
+为满足用户在大规模设备场景中更高的可用性需求，KubeEdge Device-IoT在1.12版本推出设备管理框架（Device Management Interface，DMI）。DMI整合设备管理接口，将管理面和业务面数据解耦，优化边缘计算场景下的设备管理能力，打造基于云原生技术的设备数字孪生管理平台。
+
+在 1.15 版本中，我们根据边缘设备管理的用户需求迭代更新 v1beta1 版本的设备管理  API，并以此为基础完善 DMI 数据面功能，承载于南向的 Mapper 开发框架 Mapper-Framework 中。Mapper-Framework 提供了全新的 Mapper 自动生成框架，框架中集成了 DMI 设备管理面与数据面能力，能够自动生成 Mapper 工程，用户只需实现其中的设备驱动的功能即可使用 Mapper 管理边缘设备，简化用户设计开发 Mapper 的复杂度，提升开发效率。针对新版本 `Device-IoT`领域的更新，我们计划推出一系列的文章对这些特性进行详细的介绍，大致的文章大纲为：
+
+1. [基于物模型的设备管理 API 设计与实现](/zh/blog/device-mgmt-series-part1)
+2. [DMI 数据面能力设计与实现](/zh/blog/device-mgmt-series-part2)
+3. [Mapper 开发框架 Mapper-Framework 设计与实现](/zh/blog/device-mgmt-series-part3)
+4. [如何使用 Mapper 完成视频流数据处理](/zh/blog/device-mgmt-series-part4)
+5. [如何使用 Mapper 实现设备数据写入](/zh/blog/device-mgmt-series-part5)
+6. [如何从头开发一个 Mapper（以 `modbus`为例）](/zh/blog/device-mgmt-series-part6)
+
+**本篇文章是系列文章的第一篇，主要介绍基于物模型的设备管理 API**。
+
+ ## 基于物模型的设备管理 API
+
+为适应用户需求，在 v1.15.0 版本中，KubeEdge SIG Device-IoT 提出基于物模型的设备管理 API，将 Device Model 与 Device Instance从 v1alpha2 版本升级为 v1beta1 版本。新版本的设备管理 API 能够更全面的描述物理设备，新增了边缘设备数据处理的相关字段，能够适配 DMI 数据面能力增强功能。北向设备  API 结合南向的 DMI 接口，实现设备管理与设备数据处理，API 的主要更新包括：
+### 1. Device Model
+
+Device Model 用以描述一类边缘设备共同的设备属性。按照物模型的定义，Device Model 中新增了设备属性描述、设备属性类型、设备属性取值范围、设备属性单位等字段，如下图所示：
+```yaml
+// ModelProperty describes an individual device property / attribute like temperature / humidity etc.
+type ModelProperty struct {
+    // Required: The device property name.
+    // Note: If you need to use the built-in stream data processing function, you need to define Name as saveFrame or saveVideo
+    Name string `json:"name,omitempty"`
+    // The device property description.
+    // +optional
+    Description string `json:"description,omitempty"`
+    // Required: Type of device property, ENUM: INT,FLOAT,DOUBLE,STRING,BOOLEAN,BYTES,STREAM
+    Type PropertyType `json:"type,omitempty"`
+    // Required: Access mode of property, ReadWrite or ReadOnly.
+    AccessMode PropertyAccessMode `json:"accessMode,omitempty"`
+    // +optional
+    Minimum string `json:"minimum,omitempty"`
+    // +optional
+    Maximum string `json:"maximum,omitempty"`
+    // The unit of the property
+    // +optional
+    Unit string `json:"unit,omitempty"`
+}
+```
+上图展示了 Device Model 的核心  `ModelProperty` 字段，其中 Type 字段定义该属性的数据类型， `AccessMode ` 定义该属性的访问方式，包括读写和只读两种。当访问方式设置为只读时，Mapper 会直接返回采集到的设备数据，反之当设置为读写后，Mapper 会对采集到的设备数据进行归一化等处理后再返回。Minimum 与 Maximum 则定义了设备属性的最大最小值，Unit 字段定义了设备属性的单位。下图展示了一个 Device Model 配置文件的示例：
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: DeviceModel
+metadata:
+  name: beta1-model
+spec:
+  properties:
+    - name: temp                      # define device property
+      description: beta1-model
+      type: INT                       # date type of device property
+      accessMode: ReadWrite
+      maximum: "100"                  # range of device property (optional)
+      minimum: "1"
+      unit: "Celsius"                 # unit of device property
+  protocol: modbus                    # protocol for device, need to be same with device instance
+```
+
+### 2. Device Instance
+
+一个 Device Instance 代表一个实际的设备对象。v1beta1 版本中，Device Instance 中内置的协议配置全部移除，包括 Modbus、OPC-UA、Bluetooth 等。用户可以通过可扩展的 Protocol 配置来设置设备协议，能够实现任何协议的设备接入。Modbus、OPC-UA、Bluetooth 等内置协议的 Mapper 仍会保留在 Mappers-go 仓库中，同时也会不断增加其他协议的内置 Mapper。
+```yaml
+type ProtocolConfig struct {
+    // Unique protocol name
+    // Required.
+    ProtocolName string `json:"protocolName,omitempty"`
+    // Any config data
+    // +optional
+    // +kubebuilder:validation:XPreserveUnknownFields
+    ConfigData *CustomizedValue `json:"configData,omitempty"`
+}
+
+type CustomizedValue struct {
+    Data map[string]interface{} `json:"-"`
+}
+```
+
+此外，为增强 DMI 数据面功能，本次更新在 `Device Instance` 的设备属性中增加了设备数据处理的相关配置，例如设备上报频率、数据推送频率、属性是否上报云端、设备数据推送方式，如下图所示。
+```yaml
+type DeviceProperty struct {
+    ... 
+    // Define how frequent mapper will report the value.
+    // +optional
+    ReportCycle int64 `json:"reportCycle,omitempty"`
+    // Define how frequent mapper will collect from device.
+    // +optional
+    CollectCycle int64 `json:"collectCycle,omitempty"`
+    // whether be reported to the cloud
+    ReportToCloud bool `json:"reportToCloud,omitempty"`
+    // PushMethod represents the protocol used to push data,
+    // please ensure that the mapper can access the destination address.
+    // +optional
+    PushMethod *PushMethod `json:"pushMethod,omitempty"`
+}
+```
+- **ReportCycle** 字段定义了 Mapper 向用户数据库、用户应用推送数据的频率；  
+- **CollectCycle** 字段定义了 Mapper 向云端上报数据的频率；  
+- **ReportToCloud** 字段定义了 Mapper 采集到的设备数据是否需要上报云端；  
+- **PushMethod** 字段定义了 Mapper 推送设备数据的方式。
+
+目前提供 HTTP、MQTT 以及 OpenTelemetry 等方式向用户应用推送数据，并内置集成 InfluxDB、MySQL、Redis、TDengine 数据库。用户能够通过配置文件控制Mapper 向用户应用、用户数据库中定时推送设备数据，也能够通过 API 主动拉取设备数据，实现设备数据处理方式的多样化，相比于将所有数据推送至云端再行处理的传统方法，能够有效减少云边通信阻塞的风险。
+
+下图展示了一个 Device Instance 配置文件的示例：
+```yaml
+apiVersion: devices.kubeedge.io/v1beta1
+kind: Device
+...
+spec:
+  properties:
+    - name: temp
+      collectCycle: 2000      # The frequency of reporting data to cloud, 2 seconds
+      reportCycle: 2000       # The frequency of data push to user applications or databases, 2 seconds
+      reportToCloud: true     # Decide whether device data needs to be pushed to the cloud
+      pushMethod:
+        mqtt:                 # Define the MQTT config to push device data to user app
+          address: tcp://127.0.0.1:1883
+          topic: temp
+          qos: 0
+          retained: false
+      visitors:               # Define the configuration required by the mapper to access device properties (e.g. register address)
+        protocolName: modbus
+        configData:
+          register: "HoldingRegister"
+          offset: 2
+          limit: 1
+  protocol:                   # Device protocol. The relevant configuration of the modbus protocol is defined in the example.
+    protocolName: modbus
+    configData:
+      serialPort: '/dev/ttyS0'
+      baudRate: 9600
+```
+基于 v1beta1版本的设备管理 API，我们以 Kubernetes CRD 的形式将 Device Model 与 Device Instance 引入 KubeEdge 集群。如需要更多详细的信息，可以参考设备管 API 的[proposal 文件](https://github.com/kubeedge/kubeedge/blob/master/docs/proposals/device-crd-v1beta1.md)以及相关[PR #4983](https://github.com/kubeedge/kubeedge/pull/4983)。在本系列的下一篇文章中，我们会对 DMI 数据面能力的支持进行详细的介绍。
+
+
+了解更多关于 KubeEdge 的信息，访问：
+- KubeEdge: https://kubeedge.io/
+- 网站: https://kubeedge.io/
+- GitHub 仓库: https://github.com/kubeedge/kubeedge
+- 文档: https://kubeedge.io/docs/
+- Slack: https://kubeedge.io/docs/community/slack
+- X: https://x.com/kubeedge
