@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "@docusaurus/router";
+import Link from "@docusaurus/Link";
 import { IconCompany, IconLocation } from "@site/src/components/icons";
 import moment from 'moment';
 import Translate from "@docusaurus/Translate";
@@ -15,12 +15,11 @@ export default function JobCard(props) {
         logo = "",
         link = "",
     } = props;
-    const history = useHistory();
 
     return (
-        <div className="job-card" onClick={() => history.push(link)}>
+        <Link className="job-card" to={link}>
             <div className="image">
-                <img src={logo} />
+                <img src={logo} alt="" />
             </div>
             <div className="content">
                 <div className="title">
@@ -43,6 +42,6 @@ export default function JobCard(props) {
                 <br />
                 <Translate>expired-at</Translate>: {moment(expirydate).format('YYYY-MM-DD')}
             </div>
-        </div>
+        </Link>
     );
 }
