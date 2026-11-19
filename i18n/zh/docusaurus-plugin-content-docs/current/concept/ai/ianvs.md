@@ -31,7 +31,9 @@ Ianvs 的职责范围包括：
 - Story Manager：测试用例的输出管理和展示，例如排行榜
 
 
-![](/img/subproject/ianvs_arch.png)
+![Ianvs 架构图。下文提供详细说明。](/img/subproject/ianvs_arch.png)
+
+该图展示单节点工作流。用户输入进入 Test Environment Manager，该组件将数据集和指标提供给 Test Case Controller。控制器包含算法范式、Generation Assistant 和 Simulation Controller，并将输出发送至 Story Manager。Story Manager 生成排行榜和测试报告。三个组件均连接到本地存储。
 
 Ianvs 组件的更多细节：
 1. 测试环境管理器支持测试环境的 CRUD，包括
