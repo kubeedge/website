@@ -15,8 +15,10 @@ tags:
   - Provenance
   - slsa-github-generator
   - sigstore
-  - 软件供应链
-  - 边缘计算
+  - label: 软件供应链
+    permalink: software-supply-chain
+  - label: 边缘计算
+    permalink: edge-computing
 title: CNCF社区首个！KubeEdge达到软件供应链SLSA L3等级
 ---
 
