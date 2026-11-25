@@ -97,7 +97,7 @@ The following are the action callbacks which can be performed by the membership 
 
 **dealMembershipDetail**: dealMembershipDetail() provides the membership details of the edge node, providing information about the devices associated with the edge node, after removing the membership details of recently removed devices.
    - The eventbus module receives the message that arrives on the subscribed topic,the message is then forwarded  to the devicetwin controller which further forwards it to the membership module.
-   - The membership  module adds devices that are mentioned in the message, removes devices that that are not present in the cache.
+   - The membership  module adds devices that are mentioned in the message, removes devices that are not present in the cache.
    - After updating the details of the devices a message is sent to the communication module of the device twin.
 
   ![Membership Detail](/img/devicetwin/membership-detail.png)
