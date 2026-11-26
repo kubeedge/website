@@ -84,7 +84,7 @@ The main things DMI handles:
 - **Data flow**: Getting telemetry from devices to the cloud
 - **Control**: Sending commands from the cloud to devices
 
-If you're just using the built-in mappers, you don't really need to think about DMI. It's more relevent if you're building a custom mapper.
+If you're just using the built-in mappers, you don't really need to think about DMI. It's more relevant if you're building a custom mapper.
 
 ## My device isn't showing up in the cluster
 
@@ -159,7 +159,7 @@ That said, you could write a "fake" Mapper that just simulates device data for t
 
 ## Multiple devices on the same edge node
 
-You can absolutly have multiple devices on the same edge node. Just create multiple Device CRDs all pointing to the same node in the `nodeSelector`:
+You can absolutely have multiple devices on the same edge node. Just create multiple Device CRDs all pointing to the same node in the `nodeSelector`:
 
 ```yaml
 apiVersion: devices.kubeedge.io/v1alpha2
