@@ -3,196 +3,95 @@ title: Device Management
 sidebar_position: 3
 ---
 
-## How does KubeEdge handle IoT devices?
+## How does KubeEdge manage devices?
 
-KubeEdge takes a Kubernetes-native approach to device management. Instead of building separate platforms for your IoT devices, you define them as Kubernetes Custom Resources (CRDs) and manage them with `kubectl` just like pods and deployments.
+KubeEdge represents devices with Kubernetes custom resources. A `DeviceModel` describes a device type, and a `Device` represents an instance. The examples below use the current `devices.kubeedge.io/v1beta1` API. Device CRDs from `v1alpha2` are not compatible with `v1beta1`; see the [Device CRD guide](../concept/device/device_crds.md) before migrating existing resources.
 
-There are two main CRDs you'll work with:
+A model can describe a temperature property like this:
 
-**DeviceModel** - This defines what a type of device looks like. Think of it as a template:
 ```yaml
-apiVersion: devices.kubeedge.io/v1alpha2
+apiVersion: devices.kubeedge.io/v1beta1
 kind: DeviceModel
 metadata:
   name: temperature-model
 spec:
+  protocol: modbus
   properties:
     - name: temperature
-      description: temperature in degrees Celsius
-      type: float
+      description: Temperature in degrees Celsius
+      type: INT
       accessMode: ReadOnly
-      defaultValue: 0.0
 ```
 
-**Device** - This is an actual instance of a device. It references a DeviceModel and adds the real-world stuff like which node it's connected to and what its current state is:
+A `Device` references that model and selects the node it should run on. Mapper-specific `visitors` and protocol settings depend on the actual device and mapper, so fill them from that mapper's documentation:
+
 ```yaml
-apiVersion: devices.kubeedge.io/v1alpha2
+apiVersion: devices.kubeedge.io/v1beta1
 kind: Device
 metadata:
   name: temperature-sensor-01
-  labels:
-    description: Temperature sensor on factory floor
 spec:
   deviceModelRef:
     name: temperature-model
-  nodeSelector:
-    nodeSelectorTerms:
-      - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-              - edge-node-01
+  nodeName: edge-node-01
   properties:
     - name: temperature
-      collectCycle: 5000
+      collectCycle: 10000000000  # 10 seconds
+      reportToCloud: true
       desired:
         value: "0"
-        metadata:
-          timestamp: ""
-          type: integer
-      reportCycle: 5000
-      reported:
-        metadata:
-          timestamp: ""
-          type: integer
-        value: "25"
+      visitors:
+        protocolName: modbus
+        configData:
+          register: "HoldingRegister"
+          offset: 2
+          limit: 1
+          scale: 1
+          isSwap: true
+          isRegisterSwap: true
+  protocol:
+    protocolName: modbus
+    configData:
+      ip: 192.0.2.10
+      port: 1502
 ```
 
-The cloud-side `DeviceController` watches these CRDs and syncs the state to the edge. The edge node then uses a "Mapper" to translate this into actual device commands.
+The example leaves device-specific connection details empty because they cannot be inferred. Replace these placeholders with valid `configData` for the mapper and device before applying the resource. The full field definitions and examples are in the [Device CRD guide](../concept/device/device_crds.md).
 
-## What's a Mapper and how do I use it?
+## What is a Mapper?
 
-A Mapper is basically a translator between KubeEdge and your physical devices. It runs on the edge node and handles the actual communication with your sensors, actuators, etc.
+A Mapper connects a device to KubeEdge. It communicates with the physical device, reads telemetry, and can apply desired values for supported properties. Mapper configuration and supported protocols vary. See the [Mapper guide](../concept/device/mapper.md) and [Mapper Framework guide](../developer/mapper-framework.md) to learn about Mapper responsibilities and build a custom mapper.
 
-Here's the flow:
-1. You define your device as a CRD
-2. EdgeCore syncs that definition to the edge
-3. The Mapper connects to the physical device using whatever protocol it speaks (Modbus, OPC-UA, Bluetooth, etc.)
-4. The Mapper pushes telemetry data to EdgeCore
-5. EdgeCore syncs it back to the cloud
+## What is DMI?
 
-KubeEdge has some built-in mappers for common protocols, and there's a Mapper Framework if you need to build your own. The framework generates boilerplate code so you just need to implement the actual device communication part.
+DMI, the Device Mapper Interface, is the interface used for communication between the device-management components and Mappers. For details, see the [Mapper guide](../concept/device/mapper.md).
 
-Check out the [mapper-framework docs](../developer/mapper-framework.md) if you want to build a custom mapper.
+## My device is not appearing as expected
 
-## What's DMI?
-
-DMI stands for Device Mapper Interface. It's basically the contract between EdgeCore and Mappers - kind of like how CRI is the contract between kubelet and container runtimes.
-
-The main things DMI handles:
-- **Device CRUD**: Adding, updating, deleting devices
-- **Data flow**: Getting telemetry from devices to the cloud
-- **Control**: Sending commands from the cloud to devices
-
-If you're just using the built-in mappers, you don't really need to think about DMI. It's more relevant if you're building a custom mapper.
-
-## My device isn't showing up in the cluster
-
-This is a pretty common issue. Here's a troubleshooting checklist:
-
-**1. Is the Mapper running?**
+Check that the Device and DeviceModel resources were accepted, that the Device references the right model and edge node, and that the mapper for its protocol is running. Use Kubernetes to inspect the resources and mapper logs:
 
 ```shell
-# Check mapper pod status
-kubectl get pods -n kubeedge | grep mapper
-
-# Check mapper logs
-kubectl logs -n kubeedge <mapper-pod-name>
+kubectl get devicemodel,device -A
+kubectl describe device <device-name> -n <namespace>
+kubectl get pods -A
+kubectl logs -n <namespace> <mapper-pod-name>
 ```
 
-**2. Is the device CRD applied correctly?**
+For an EdgeCore installation managed by systemd, check its service and logs with:
 
 ```shell
-kubectl get device -n kubeedge
-kubectl describe device <device-name> -n kubeedge
+systemctl status edgecore
+journalctl -u edgecore.service -xe
 ```
 
-Look for any errors in the status section. Common issues:
-- `nodeSelector` doesn't match any edge nodes
-- `deviceModelRef` points to a non-existent model
+## How do I change a device's desired property value?
 
-**3. Is the Mapper actually talking to the device?**
+The desired value is part of the Device resource's `spec.properties` entry in the current `v1beta1` API. Edit the resource through the normal Kubernetes workflow and set the desired value for the named property. Before changing it, confirm the property name, value format, and mapper behavior in the DeviceModel and mapper documentation. See the [Device CRD guide](../concept/device/device_crds.md) for the API structure.
 
-This depends on your protocol, but for Modbus/TCP for example:
-```shell
-# Can you reach the device from the edge node?
-telnet <device-ip> <port>
+## Can I test device management without hardware?
 
-# Check if the mapper logs show connection errors
-kubectl logs -n kubeedge <mapper-pod> | grep -i error
-```
+KubeEdge documents a virtual-device mapper as an example. Use the [Mapper Framework guide](../developer/mapper-framework.md) to find its current setup and avoid assuming that an arbitrary fake mapper follows the same behavior as a production device mapper.
 
-**4. Check EdgeCore device sync**
+## Can several devices use the same edge node?
 
-```shell
-# On the edge node
-edgecore logs | grep -i device
-```
-
-You should see lines about device sync if everything is working. If you see errors about DMI or device not found, there's a sync issue.
-
-## How do I update device properties from the cloud?
-
-You can use `kubectl patch` or just edit the device directly:
-
-```shell
-kubectl patch device <device-name> -n kubeedge --type merge -p '{"spec":{"properties":[{"name":"switch","desired":{"value":"1"}}]}}'
-```
-
-Or edit interactively:
-```shell
-kubectl edit device <device-name> -n kubeedge
-```
-
-Then change the `desired.value` for the property you want to update. The Mapper on the edge should pick up the change and send it to the physical device.
-
-If the property isn't updating on the physical device, check:
-- Mapper logs for errors
-- That the property name matches exactly what the Mapper expects
-- That the value type is correct (string "1" vs integer 1)
-
-## Can I use KubeEdge devices without a Mapper?
-
-Nope. The Mapper is what actually talks to the physical hardware. Without it, KubeEdge just has the metadata definition but no way to actually communicate with the device.
-
-That said, you could write a "fake" Mapper that just simulates device data for testing purposes. It would follow the same DMI interface but instead of talking to real hardware, it just generates random values. Useful for testing device management workflows without physical devices.
-
-## Multiple devices on the same edge node
-
-You can absolutely have multiple devices on the same edge node. Just create multiple Device CRDs all pointing to the same node in the `nodeSelector`:
-
-```yaml
-apiVersion: devices.kubeedge.io/v1alpha2
-kind: Device
-metadata:
-  name: sensor-01
-spec:
-  deviceModelRef:
-    name: temperature-model
-  nodeSelector:
-    nodeSelectorTerms:
-      - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-              - factory-floor-node
-```
-
-```yaml
-apiVersion: devices.kubeedge.io/v1alpha2
-kind: Device
-metadata:
-  name: sensor-02
-spec:
-  deviceModelRef:
-    name: temperature-model
-  nodeSelector:
-    nodeSelectorTerms:
-      - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-              - factory-floor-node
-```
-
-The Mapper will handle all of them. How it handles multiple devices depends on the protocol - for Modbus it usually polls each device in sequence, for MQTT it subscribes to multiple topics, etc.
+A Device resource can name its target edge node with `spec.nodeName`. More than one Device can target the same node, provided the node and each mapper have enough resources to handle them. Mapper behavior and capacity depend on the protocol and implementation.
