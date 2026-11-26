@@ -6,6 +6,22 @@ sidebar_position: 1
 If you encounter problems during installation, such as cloudcore/edgecore don't start successfully, or they both start but edge nodes are always in `NotReady`, or pod cannot be deployed to edge nodes as what is described in [Deploy demo on edge nodes](../setup/install-with-binary.md#Deploy-demo-on-edge-nodes). This doc can help you debug how to fix the issues.
 
 # Common knowledge
+## Why does a downloaded binary fail with `exec format error`?
+
+This error can occur when the downloaded binary was built for a different CPU architecture or operating system. For example, a Linux AMD64 binary cannot run directly on a Linux ARM64 node.
+
+On the machine where you want to run the binary, compare the operating system and architecture with the downloaded executable:
+
+```shell
+uname -s
+uname -m
+file ./keadm
+```
+
+For example, if `uname -m` prints `aarch64` but `file ./keadm` identifies an `x86-64` executable, download the `linux-arm64` package instead. See the [Linux architecture mapping and download instructions](../setup/install-with-keadm.md#install-keadm). The same architecture suffixes apply to the `kubeedge-<version>-linux-<architecture>.tar.gz` packages used for manual binary installation.
+
+Extract the correct package and run the binary from that package. Changing executable permissions with `chmod +x` does not fix an architecture mismatch. `keadm` cannot display its own diagnostic message in this case because the operating system rejects the executable before `keadm` starts.
+
 ## How to check logs?
 
 The first step to start investigating installation failures or when a thing does not work as expected, is to find and look at the related installation logs.
