@@ -83,7 +83,7 @@ So you only need to open one port (default 10000 for WebSocket) in your cloud-si
 
 If you're using QUIC instead of WebSocket, you'd open port 10001 instead. And if you're running the certificate server separately, that's another port (default 10002).
 
-One gotcha: if your NAT changes the source IP of outgoing connections, make sure CloudCore's advertise-address matches what the edge nodes see. Otherwise you'll get certificate errors.
+One pitfall: if your NAT changes the source IP of outgoing connections, make sure CloudCore's advertise-address matches what the edge nodes see. Otherwise you'll get certificate errors.
 
 ## Edge nodes can't reach CloudCore
 
