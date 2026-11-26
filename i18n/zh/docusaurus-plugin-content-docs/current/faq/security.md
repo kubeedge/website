@@ -1,33 +1,30 @@
 ---
-title: 安全性
+title: 安全
 sidebar_position: 5
 ---
 
-本部分涵盖了 KubeEdge 的安全模型，包括边缘端的身份验证、流量加密和数据保护等常见问题。
+## 云边通信如何受到保护？
 
-## CloudCore 和 EdgeCore 之间的通信是如何得到安全保障的？
+CloudCore 和 EdgeCore 使用 TLS 证书保护云边通信。边缘节点加入时，EdgeCore 会获取 CA 证书并向 CloudCore 请求边缘证书。默认情况下，端口 10002 上的 HTTPS 服务用于证书设置；之后 WebSocket 或 QUIC 承载云边连接。证书路径和地址设置见 [CloudCore 和 EdgeCore 配置指南](../setup/config.md)。
 
-`CloudCore` 和 `EdgeCore` 之间的通信采用 **传输层安全协议 (TLS)** 进行保护：
-- **双向 TLS (mTLS)**：CloudCore 和 EdgeCore 通过证书相互认证。流经 WebSocket 或 QUIC 的所有控制面流量均经过加密。
-- **证书颁发机构 (CA)**：默认情况下，如果启动时不存在自签名 Root CA，CloudCore 将自动生成一个。它使用此 CA 为 EdgeCore 节点签署客户端证书。您也可以将 KubeEdge 配置为使用您自己的外部自定义 CA。
+EdgeCore 默认配置启用证书轮换，CloudCore 默认的边缘证书签发时长为 365 天。这些设置可以更改，请检查所用发行版生成的配置。不要把重置或重新加入节点当作常规证书轮换步骤；请依照所用版本支持的流程操作。
 
-## 边缘节点是如何被认证的？
+## 边缘节点加入时如何认证？
 
-边缘节点使用基于 Token 的引导程序（bootstrap）机制进行认证并加入集群：
-1. **生成 Token**：您可以使用云端的 `keadm gettoken` 命令获取一个安全 Token。
-2. **初始加入**：在边缘节点上运行 `keadm join` 时提供此 Token。
-3. **证书注册**：EdgeCore 使用此 Token 验证向 CloudCore 发起的初始请求。通过身份验证后，CloudCore 将为该 EdgeCore 实例签署唯一的节点证书。
-4. **后续通信**：此后的所有连接中，EdgeCore 均会使用已签署的证书进行双向 TLS 认证。届时将不再需要 Token。
+`keadm join` 使用令牌授权初始证书请求。令牌应作为机密信息处理，不要贴到公开问题、日志或文档中。安装指南说明了加入流程和所需的 CloudCore 地址。
 
-## KubeEdge 是如何保护边缘端的敏感数据的？
+## EdgeCore 在哪里存储本地元数据？
 
-KubeEdge 采取了多种措施保护边缘节点上的本地数据：
-- **限制访问**：密钥文件、配置文件和 SQLite 数据库文件均存储在 `/etc/kubeedge/` 目录下，并设置了严格的访问权限（通常仅允许 root 用户或服务所有者读取/写入）。
-- **解耦架构**：EdgeCore 仅请求已被调度到该特定节点上的资源的元数据。它没有访问集群全局 API 状态的权限，从而防止了某个受损的边缘节点窃取其他节点的数据。
+EdgeCore 使用本地 SQLite 数据库存储元数据。默认数据库路径为 `/var/lib/kubeedge/edgecore.db`，可通过配置字段 `database.dataSource` 修改。文件所有者和权限取决于服务的安装及配置方式，请在目标主机上核实，不要假设权限固定。
 
-## KubeEdge 支持加密的 Secret 同步吗？
+## Kubernetes Secret 会到达边缘节点吗？
 
-是的。Kubernetes 的 `Secret` 资源可以像其他资源（如 Pod 和 ConfigMap）一样同步到边缘端：
-- Secret 在通过 TLS 隧道传输期间会被加密。
-- 它们会本地存储在边缘节点的 SQLite 数据库中。对该数据库的访问受限于 EdgeCore 进程。
-- 运行在边缘端的 Pod 可以使用标准的 Kubernetes 卷挂载方式挂载这些 Secret，这由本地的 `edged` 组件负责处理。
+EdgeCore 可以获取边缘工作负载所需的 Secret，MetaManager 会在本地缓存元数据。因此，边缘节点上的 Secret 需要妥善保护：拥有足够节点或本地数据访问权限的人可能读取它们。请根据部署采用合适的 Kubernetes 访问控制和主机安全措施，并避免在日志或支持请求中发送 Secret 值。
+
+## 遇到证书错误时该怎么办？
+
+首先检查 CloudCore 的 `advertiseAddress` 是否包含 EdgeCore 用于连接的地址，并确认边缘节点可以访问配置的 CloudCore WebSocket 或 QUIC 端点及 HTTPS 端口 10002。[安装指南](../setup/install-with-keadm.md)介绍了常见证书和加入错误。仅为排查证书错误时，不要在未查看对应版本恢复指南的情况下运行 `keadm reset` 或重新初始化 CloudCore，因为重置可能影响节点或集群。
+
+## 可以使用自有 CA 吗？
+
+CloudCore 可以配置证书和 CA 文件路径。具体设置取决于 KubeEdge 版本和部署模式。请参阅 [CloudCore 和 EdgeCore 配置指南](../setup/config.md)及[安装指南](../setup/install-with-keadm.md)，按当前发行版配置证书。没有经过测试的轮换计划时，不要覆盖正在使用的 CA 文件。
