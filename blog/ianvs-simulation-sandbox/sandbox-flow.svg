@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7fb3ff"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="560" fill="#0b1f3a"/>
+  <text x="60" y="58" fill="#ffffff" font-size="30" font-weight="800">How a test case runs in the sandbox</text>
+  <text x="60" y="88" fill="#b9cdf0" font-size="16">Everything below happens on one laptop. Each node of the cluster is a container.</text>
+
+  <!-- host -->
+  <rect x="40" y="120" width="330" height="400" rx="14" fill="#0f2b52" stroke="#3b5f93" stroke-width="2"/>
+  <text x="60" y="152" fill="#7fb3ff" font-size="15" font-weight="700" letter-spacing="1">YOUR LAPTOP: IANVS</text>
+
+  <rect x="60" y="170" width="290" height="66" rx="10" fill="#1e5aa8"/>
+  <text x="205" y="197" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">1. Build the image</text>
+  <text x="205" y="219" fill="#cfe0ff" font-size="13" text-anchor="middle">Ianvs core + your requirements</text>
+
+  <rect x="60" y="254" width="290" height="66" rx="10" fill="#1e5aa8"/>
+  <text x="205" y="281" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">2. Pick a node, copy the files</text>
+  <text x="205" y="303" fill="#cfe0ff" font-size="13" text-anchor="middle">configs and datasets, same paths</text>
+
+  <rect x="60" y="338" width="290" height="66" rx="10" fill="#1e5aa8"/>
+  <text x="205" y="365" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">3. Create one Job per test case</text>
+  <text x="205" y="387" fill="#cfe0ff" font-size="13" text-anchor="middle">with the memory and CPU of a device</text>
+
+  <rect x="60" y="422" width="290" height="78" rx="10" fill="#178a5a"/>
+  <text x="205" y="451" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">5. Rank the results</text>
+  <text x="205" y="473" fill="#d4f5e3" font-size="13" text-anchor="middle">leaderboard as usual;</text>
+  <text x="205" y="490" fill="#d4f5e3" font-size="13" text-anchor="middle">a failed case fails alone</text>
+
+  <!-- cluster -->
+  <rect x="440" y="120" width="720" height="400" rx="14" fill="#0f2b52" stroke="#3b5f93" stroke-width="2"/>
+  <text x="460" y="152" fill="#7fb3ff" font-size="15" font-weight="700" letter-spacing="1">SIMULATED CLUSTER (kind + KubeEdge + Sedna)</text>
+
+  <rect x="460" y="170" width="200" height="110" rx="10" fill="#16325c" stroke="#4d6f9f"/>
+  <text x="560" y="200" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">Cloud side</text>
+  <text x="560" y="224" fill="#b9cdf0" font-size="13" text-anchor="middle">Kubernetes API server</text>
+  <text x="560" y="244" fill="#b9cdf0" font-size="13" text-anchor="middle">KubeEdge cloudcore</text>
+  <text x="560" y="264" fill="#b9cdf0" font-size="13" text-anchor="middle">Sedna GM, KB</text>
+
+  <rect x="700" y="170" width="440" height="330" rx="10" fill="#123a2c" stroke="#7ee2a8" stroke-width="2"/>
+  <text x="720" y="200" fill="#7ee2a8" font-size="16" font-weight="700">Edge node (KubeEdge edgecore)</text>
+
+  <rect x="720" y="216" width="400" height="92" rx="10" fill="#178a5a"/>
+  <text x="920" y="244" fill="#fff" font-size="16" font-weight="700" text-anchor="middle">4. The Job runs your test case</text>
+  <text x="920" y="266" fill="#d4f5e3" font-size="13" text-anchor="middle">limits: for example 1 GiB memory, 1 CPU; swap off</text>
+  <text x="920" y="288" fill="#d4f5e3" font-size="13" text-anchor="middle">train, predict, compute the metrics</text>
+
+  <g font-size="14">
+    <rect x="720" y="326" width="400" height="46" rx="8" fill="#0e2547" stroke="#7ee2a8"/>
+    <text x="736" y="355" fill="#7ee2a8" font-weight="700">Finished</text>
+    <text x="1104" y="355" fill="#d6e2f7" text-anchor="end">metrics and outputs go back to the laptop</text>
+
+    <rect x="720" y="382" width="400" height="46" rx="8" fill="#0e2547" stroke="#ffb86b"/>
+    <text x="736" y="411" fill="#ffb86b" font-weight="700">Over its memory</text>
+    <text x="1104" y="411" fill="#d6e2f7" text-anchor="end">killed, reported as OOM_FAILURE</text>
+
+    <rect x="720" y="438" width="400" height="46" rx="8" fill="#0e2547" stroke="#ff9b8a"/>
+    <text x="736" y="467" fill="#ff9b8a" font-weight="700">Error or too slow</text>
+    <text x="1104" y="467" fill="#d6e2f7" text-anchor="end">EXEC_FAILURE or TIMEOUT</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#7fb3ff" stroke-width="2.5" fill="none" marker-end="url(#a)">
+    <path d="M205 236 L 205 251"/>
+    <path d="M205 320 L 205 335"/>
+    <path d="M350 295 L 696 295"/>
+    <path d="M350 371 C 470 371, 550 350, 558 286" stroke-dasharray="0"/>
+    <path d="M660 225 L 696 240"/>
+    <path d="M716 349 C 600 349, 520 461, 354 461"/>
+  </g>
+  <g fill="#b9cdf0" font-size="13" text-anchor="middle">
+    <text x="628" y="314">image and files</text>
+    <text x="405" y="362">Job</text>
+    <text x="470" y="452">results</text>
+  </g>
+  <text x="1140" y="545" fill="#6f8bb8" font-size="13" text-anchor="end">KubeEdge-Ianvs Simulation Sandbox</text>
+</svg>
